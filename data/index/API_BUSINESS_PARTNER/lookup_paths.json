@@ -1,0 +1,1899 @@
+[
+  {
+    "path_id": "businesspartner_to_cityname_a_bpintladdressversion",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "BusinessPartner",
+    "target_entity_set": "A_BPIntlAddressVersion",
+    "target_field": "CityName",
+    "path_kind": "direct_lookup",
+    "return_object": "BusinessPartner",
+    "filter_fields": [
+      "BusinessPartner"
+    ],
+    "result_fields": [
+      "BusinessPartner",
+      "CityName"
+    ],
+    "description": "Resolve `BusinessPartner` directly on `A_BPIntlAddressVersion` to answer `CityName`.",
+    "business_aliases": [
+      "城市",
+      "city"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_BPIntlAddressVersion",
+        "filter_field": "BusinessPartner",
+        "select_fields": [
+          "BusinessPartner",
+          "CityName"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "businesspartner_to_cityname_a_businesspartneraddress",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "BusinessPartner",
+    "target_entity_set": "A_BusinessPartnerAddress",
+    "target_field": "CityName",
+    "path_kind": "direct_lookup",
+    "return_object": "BusinessPartner",
+    "filter_fields": [
+      "BusinessPartner"
+    ],
+    "result_fields": [
+      "BusinessPartner",
+      "CityName"
+    ],
+    "description": "Resolve `BusinessPartner` directly on `A_BusinessPartnerAddress` to answer `CityName`.",
+    "business_aliases": [
+      "城市",
+      "city"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_BusinessPartnerAddress",
+        "filter_field": "BusinessPartner",
+        "select_fields": [
+          "BusinessPartner",
+          "CityName"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "businesspartner_to_cityname_a_businesspartnerbank",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "BusinessPartner",
+    "target_entity_set": "A_BusinessPartnerBank",
+    "target_field": "CityName",
+    "path_kind": "direct_lookup",
+    "return_object": "BusinessPartner",
+    "filter_fields": [
+      "BusinessPartner"
+    ],
+    "result_fields": [
+      "BusinessPartner",
+      "CityName"
+    ],
+    "description": "Resolve `BusinessPartner` directly on `A_BusinessPartnerBank` to answer `CityName`.",
+    "business_aliases": [
+      "城市",
+      "city"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_BusinessPartnerBank",
+        "filter_field": "BusinessPartner",
+        "select_fields": [
+          "BusinessPartner",
+          "CityName"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "businesspartner_to_companypostalcode_a_bpintladdressversion",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "BusinessPartner",
+    "target_entity_set": "A_BPIntlAddressVersion",
+    "target_field": "CompanyPostalCode",
+    "path_kind": "direct_lookup",
+    "return_object": "BusinessPartner",
+    "filter_fields": [
+      "BusinessPartner"
+    ],
+    "result_fields": [
+      "BusinessPartner",
+      "CompanyPostalCode"
+    ],
+    "description": "Resolve `BusinessPartner` directly on `A_BPIntlAddressVersion` to answer `CompanyPostalCode`.",
+    "business_aliases": [
+      "公司邮编",
+      "公司邮政编码"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_BPIntlAddressVersion",
+        "filter_field": "BusinessPartner",
+        "select_fields": [
+          "BusinessPartner",
+          "CompanyPostalCode"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "businesspartner_to_companypostalcode_a_businesspartneraddress",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "BusinessPartner",
+    "target_entity_set": "A_BusinessPartnerAddress",
+    "target_field": "CompanyPostalCode",
+    "path_kind": "direct_lookup",
+    "return_object": "BusinessPartner",
+    "filter_fields": [
+      "BusinessPartner"
+    ],
+    "result_fields": [
+      "BusinessPartner",
+      "CompanyPostalCode"
+    ],
+    "description": "Resolve `BusinessPartner` directly on `A_BusinessPartnerAddress` to answer `CompanyPostalCode`.",
+    "business_aliases": [
+      "公司邮编",
+      "公司邮政编码"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_BusinessPartnerAddress",
+        "filter_field": "BusinessPartner",
+        "select_fields": [
+          "BusinessPartner",
+          "CompanyPostalCode"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "businesspartner_to_poboxpostalcode_a_bpintladdressversion",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "BusinessPartner",
+    "target_entity_set": "A_BPIntlAddressVersion",
+    "target_field": "POBoxPostalCode",
+    "path_kind": "direct_lookup",
+    "return_object": "BusinessPartner",
+    "filter_fields": [
+      "BusinessPartner"
+    ],
+    "result_fields": [
+      "BusinessPartner",
+      "POBoxPostalCode"
+    ],
+    "description": "Resolve `BusinessPartner` directly on `A_BPIntlAddressVersion` to answer `POBoxPostalCode`.",
+    "business_aliases": [
+      "邮箱邮编",
+      "邮箱邮政编码",
+      "邮政信箱邮编"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_BPIntlAddressVersion",
+        "filter_field": "BusinessPartner",
+        "select_fields": [
+          "BusinessPartner",
+          "POBoxPostalCode"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "businesspartner_to_poboxpostalcode_a_businesspartneraddress",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "BusinessPartner",
+    "target_entity_set": "A_BusinessPartnerAddress",
+    "target_field": "POBoxPostalCode",
+    "path_kind": "direct_lookup",
+    "return_object": "BusinessPartner",
+    "filter_fields": [
+      "BusinessPartner"
+    ],
+    "result_fields": [
+      "BusinessPartner",
+      "POBoxPostalCode"
+    ],
+    "description": "Resolve `BusinessPartner` directly on `A_BusinessPartnerAddress` to answer `POBoxPostalCode`.",
+    "business_aliases": [
+      "邮箱邮编",
+      "邮箱邮政编码",
+      "邮政信箱邮编"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_BusinessPartnerAddress",
+        "filter_field": "BusinessPartner",
+        "select_fields": [
+          "BusinessPartner",
+          "POBoxPostalCode"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "businesspartner_to_postalcode_a_bpintladdressversion",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "BusinessPartner",
+    "target_entity_set": "A_BPIntlAddressVersion",
+    "target_field": "PostalCode",
+    "path_kind": "direct_lookup",
+    "return_object": "BusinessPartner",
+    "filter_fields": [
+      "BusinessPartner"
+    ],
+    "result_fields": [
+      "BusinessPartner",
+      "PostalCode"
+    ],
+    "description": "Resolve `BusinessPartner` directly on `A_BPIntlAddressVersion` to answer `PostalCode`.",
+    "business_aliases": [
+      "邮编",
+      "邮政编码",
+      "postal code",
+      "postcode",
+      "zip code",
+      "zip"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_BPIntlAddressVersion",
+        "filter_field": "BusinessPartner",
+        "select_fields": [
+          "BusinessPartner",
+          "PostalCode"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "businesspartner_to_postalcode_a_businesspartneraddress",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "BusinessPartner",
+    "target_entity_set": "A_BusinessPartnerAddress",
+    "target_field": "PostalCode",
+    "path_kind": "direct_lookup",
+    "return_object": "BusinessPartner",
+    "filter_fields": [
+      "BusinessPartner"
+    ],
+    "result_fields": [
+      "BusinessPartner",
+      "PostalCode"
+    ],
+    "description": "Resolve `BusinessPartner` directly on `A_BusinessPartnerAddress` to answer `PostalCode`.",
+    "business_aliases": [
+      "邮编",
+      "邮政编码",
+      "postal code",
+      "postcode",
+      "zip code",
+      "zip"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_BusinessPartnerAddress",
+        "filter_field": "BusinessPartner",
+        "select_fields": [
+          "BusinessPartner",
+          "PostalCode"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "businesspartner_to_postalcode_via_a_bpcontacttoaddress",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "BusinessPartner",
+    "target_entity_set": "A_BPContactToAddress",
+    "target_field": "PostalCode",
+    "path_kind": "lookup",
+    "return_object": "BusinessPartner",
+    "filter_fields": [
+      "BusinessPartner",
+      "PostalCode"
+    ],
+    "result_fields": [
+      "BusinessPartner",
+      "CityName",
+      "Country",
+      "PostalCode",
+      "CompanyPostalCode",
+      "POBoxPostalCode"
+    ],
+    "description": "Read postal code directly from `A_BPContactToAddress`.",
+    "business_aliases": [
+      "邮编",
+      "邮政编码",
+      "postal code",
+      "postcode",
+      "zip code",
+      "zip"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_address",
+        "entity_set": "A_BPContactToAddress",
+        "filter_field": "BusinessPartnerCompany",
+        "select_fields": [
+          "BusinessPartnerCompany",
+          "CityName",
+          "Country",
+          "PostalCode",
+          "CompanyPostalCode",
+          "POBoxPostalCode"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.74
+  },
+  {
+    "path_id": "businesspartner_to_postalcode_via_a_bpintladdressversion",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "BusinessPartner",
+    "target_entity_set": "A_BPIntlAddressVersion",
+    "target_field": "PostalCode",
+    "path_kind": "lookup",
+    "return_object": "BusinessPartner",
+    "filter_fields": [
+      "BusinessPartner",
+      "PostalCode"
+    ],
+    "result_fields": [
+      "BusinessPartner",
+      "CityName",
+      "Country",
+      "PostalCode",
+      "CompanyPostalCode",
+      "POBoxPostalCode"
+    ],
+    "description": "Read postal code directly from `A_BPIntlAddressVersion`.",
+    "business_aliases": [
+      "邮编",
+      "邮政编码",
+      "postal code",
+      "postcode",
+      "zip code",
+      "zip"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_address",
+        "entity_set": "A_BPIntlAddressVersion",
+        "filter_field": "BusinessPartner",
+        "select_fields": [
+          "BusinessPartner",
+          "CityName",
+          "Country",
+          "PostalCode",
+          "CompanyPostalCode",
+          "POBoxPostalCode"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.8
+  },
+  {
+    "path_id": "businesspartner_to_postalcode_via_a_businesspartneraddress",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "BusinessPartner",
+    "target_entity_set": "A_BusinessPartnerAddress",
+    "target_field": "PostalCode",
+    "path_kind": "lookup",
+    "return_object": "BusinessPartner",
+    "filter_fields": [
+      "BusinessPartner",
+      "PostalCode"
+    ],
+    "result_fields": [
+      "BusinessPartner",
+      "CityName",
+      "Country",
+      "PostalCode",
+      "CompanyPostalCode",
+      "POBoxPostalCode"
+    ],
+    "description": "Read postal code directly from `A_BusinessPartnerAddress`.",
+    "business_aliases": [
+      "邮编",
+      "邮政编码",
+      "postal code",
+      "postcode",
+      "zip code",
+      "zip"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_address",
+        "entity_set": "A_BusinessPartnerAddress",
+        "filter_field": "BusinessPartner",
+        "select_fields": [
+          "BusinessPartner",
+          "CityName",
+          "Country",
+          "PostalCode",
+          "CompanyPostalCode",
+          "POBoxPostalCode"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 1.0
+  },
+  {
+    "path_id": "customer_list_by_cityname_via_a_bpcontacttoaddress",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_BusinessPartner",
+    "target_field": "CityName",
+    "path_kind": "attribute_filter_list",
+    "return_object": "Customer",
+    "filter_fields": [
+      "CityName"
+    ],
+    "result_fields": [
+      "Customer",
+      "BusinessPartner",
+      "BusinessPartnerFullName"
+    ],
+    "description": "Filter `Customer` records by address attribute `CityName` via `A_BPContactToAddress` and return the matching object list.",
+    "business_aliases": [
+      "城市",
+      "city"
+    ],
+    "steps": [
+      {
+        "step_id": "filter_address",
+        "entity_set": "A_BPContactToAddress",
+        "filter_field": "CityName",
+        "select_fields": [
+          "BusinessPartnerCompany",
+          "CityName",
+          "Country",
+          "PostalCode",
+          "CompanyPostalCode",
+          "POBoxPostalCode"
+        ],
+        "top": 50
+      },
+      {
+        "step_id": "resolve_anchor_object",
+        "entity_set": "A_BusinessPartner",
+        "filter_field": "BusinessPartner",
+        "select_fields": [
+          "BusinessPartner",
+          "Customer",
+          "BusinessPartnerFullName"
+        ],
+        "top": 50
+      }
+    ],
+    "confidence": 0.7
+  },
+  {
+    "path_id": "customer_list_by_cityname_via_a_bpintladdressversion",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_BusinessPartner",
+    "target_field": "CityName",
+    "path_kind": "attribute_filter_list",
+    "return_object": "Customer",
+    "filter_fields": [
+      "CityName"
+    ],
+    "result_fields": [
+      "Customer",
+      "BusinessPartner",
+      "BusinessPartnerFullName"
+    ],
+    "description": "Filter `Customer` records by address attribute `CityName` via `A_BPIntlAddressVersion` and return the matching object list.",
+    "business_aliases": [
+      "城市",
+      "city"
+    ],
+    "steps": [
+      {
+        "step_id": "filter_address",
+        "entity_set": "A_BPIntlAddressVersion",
+        "filter_field": "CityName",
+        "select_fields": [
+          "BusinessPartner",
+          "CityName",
+          "Country",
+          "PostalCode",
+          "CompanyPostalCode",
+          "POBoxPostalCode"
+        ],
+        "top": 50
+      },
+      {
+        "step_id": "resolve_anchor_object",
+        "entity_set": "A_BusinessPartner",
+        "filter_field": "BusinessPartner",
+        "select_fields": [
+          "BusinessPartner",
+          "Customer",
+          "BusinessPartnerFullName"
+        ],
+        "top": 50
+      }
+    ],
+    "confidence": 0.84
+  },
+  {
+    "path_id": "customer_list_by_cityname_via_a_businesspartneraddress",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_BusinessPartner",
+    "target_field": "CityName",
+    "path_kind": "attribute_filter_list",
+    "return_object": "Customer",
+    "filter_fields": [
+      "CityName"
+    ],
+    "result_fields": [
+      "Customer",
+      "BusinessPartner",
+      "BusinessPartnerFullName"
+    ],
+    "description": "Filter `Customer` records by address attribute `CityName` via `A_BusinessPartnerAddress` and return the matching object list.",
+    "business_aliases": [
+      "城市",
+      "city"
+    ],
+    "steps": [
+      {
+        "step_id": "filter_address",
+        "entity_set": "A_BusinessPartnerAddress",
+        "filter_field": "CityName",
+        "select_fields": [
+          "BusinessPartner",
+          "CityName",
+          "Country",
+          "PostalCode",
+          "CompanyPostalCode",
+          "POBoxPostalCode"
+        ],
+        "top": 50
+      },
+      {
+        "step_id": "resolve_anchor_object",
+        "entity_set": "A_BusinessPartner",
+        "filter_field": "BusinessPartner",
+        "select_fields": [
+          "BusinessPartner",
+          "Customer",
+          "BusinessPartnerFullName"
+        ],
+        "top": 50
+      }
+    ],
+    "confidence": 1.04
+  },
+  {
+    "path_id": "customer_list_by_cityname_via_a_businesspartnerbank",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_BusinessPartner",
+    "target_field": "CityName",
+    "path_kind": "attribute_filter_list",
+    "return_object": "Customer",
+    "filter_fields": [
+      "CityName"
+    ],
+    "result_fields": [
+      "Customer",
+      "BusinessPartner",
+      "BusinessPartnerFullName"
+    ],
+    "description": "Filter `Customer` records by address attribute `CityName` via `A_BusinessPartnerBank` and return the matching object list.",
+    "business_aliases": [
+      "城市",
+      "city"
+    ],
+    "steps": [
+      {
+        "step_id": "filter_address",
+        "entity_set": "A_BusinessPartnerBank",
+        "filter_field": "CityName",
+        "select_fields": [
+          "BusinessPartner",
+          "CityName"
+        ],
+        "top": 50
+      },
+      {
+        "step_id": "resolve_anchor_object",
+        "entity_set": "A_BusinessPartner",
+        "filter_field": "BusinessPartner",
+        "select_fields": [
+          "BusinessPartner",
+          "Customer",
+          "BusinessPartnerFullName"
+        ],
+        "top": 50
+      }
+    ],
+    "confidence": 0.96
+  },
+  {
+    "path_id": "customer_list_by_postalcode_via_a_bpcontacttoaddress",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_BusinessPartner",
+    "target_field": "PostalCode",
+    "path_kind": "attribute_filter_list",
+    "return_object": "Customer",
+    "filter_fields": [
+      "PostalCode"
+    ],
+    "result_fields": [
+      "Customer",
+      "BusinessPartner",
+      "BusinessPartnerFullName"
+    ],
+    "description": "Filter `Customer` records by address attribute `PostalCode` via `A_BPContactToAddress` and return the matching object list.",
+    "business_aliases": [
+      "邮编",
+      "邮政编码",
+      "postal code",
+      "postcode",
+      "zip code",
+      "zip"
+    ],
+    "steps": [
+      {
+        "step_id": "filter_address",
+        "entity_set": "A_BPContactToAddress",
+        "filter_field": "PostalCode",
+        "select_fields": [
+          "BusinessPartnerCompany",
+          "CityName",
+          "Country",
+          "PostalCode",
+          "CompanyPostalCode",
+          "POBoxPostalCode"
+        ],
+        "top": 50
+      },
+      {
+        "step_id": "resolve_anchor_object",
+        "entity_set": "A_BusinessPartner",
+        "filter_field": "BusinessPartner",
+        "select_fields": [
+          "BusinessPartner",
+          "Customer",
+          "BusinessPartnerFullName"
+        ],
+        "top": 50
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_list_by_postalcode_via_a_bpintladdressversion",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_BusinessPartner",
+    "target_field": "PostalCode",
+    "path_kind": "attribute_filter_list",
+    "return_object": "Customer",
+    "filter_fields": [
+      "PostalCode"
+    ],
+    "result_fields": [
+      "Customer",
+      "BusinessPartner",
+      "BusinessPartnerFullName"
+    ],
+    "description": "Filter `Customer` records by address attribute `PostalCode` via `A_BPIntlAddressVersion` and return the matching object list.",
+    "business_aliases": [
+      "邮编",
+      "邮政编码",
+      "postal code",
+      "postcode",
+      "zip code",
+      "zip"
+    ],
+    "steps": [
+      {
+        "step_id": "filter_address",
+        "entity_set": "A_BPIntlAddressVersion",
+        "filter_field": "PostalCode",
+        "select_fields": [
+          "BusinessPartner",
+          "CityName",
+          "Country",
+          "PostalCode",
+          "CompanyPostalCode",
+          "POBoxPostalCode"
+        ],
+        "top": 50
+      },
+      {
+        "step_id": "resolve_anchor_object",
+        "entity_set": "A_BusinessPartner",
+        "filter_field": "BusinessPartner",
+        "select_fields": [
+          "BusinessPartner",
+          "Customer",
+          "BusinessPartnerFullName"
+        ],
+        "top": 50
+      }
+    ],
+    "confidence": 0.76
+  },
+  {
+    "path_id": "customer_list_by_postalcode_via_a_businesspartneraddress",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_BusinessPartner",
+    "target_field": "PostalCode",
+    "path_kind": "attribute_filter_list",
+    "return_object": "Customer",
+    "filter_fields": [
+      "PostalCode"
+    ],
+    "result_fields": [
+      "Customer",
+      "BusinessPartner",
+      "BusinessPartnerFullName"
+    ],
+    "description": "Filter `Customer` records by address attribute `PostalCode` via `A_BusinessPartnerAddress` and return the matching object list.",
+    "business_aliases": [
+      "邮编",
+      "邮政编码",
+      "postal code",
+      "postcode",
+      "zip code",
+      "zip"
+    ],
+    "steps": [
+      {
+        "step_id": "filter_address",
+        "entity_set": "A_BusinessPartnerAddress",
+        "filter_field": "PostalCode",
+        "select_fields": [
+          "BusinessPartner",
+          "CityName",
+          "Country",
+          "PostalCode",
+          "CompanyPostalCode",
+          "POBoxPostalCode"
+        ],
+        "top": 50
+      },
+      {
+        "step_id": "resolve_anchor_object",
+        "entity_set": "A_BusinessPartner",
+        "filter_field": "BusinessPartner",
+        "select_fields": [
+          "BusinessPartner",
+          "Customer",
+          "BusinessPartnerFullName"
+        ],
+        "top": 50
+      }
+    ],
+    "confidence": 0.9600000000000001
+  },
+  {
+    "path_id": "customer_to_customerpaymentterms_a_customersalesarea",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_CustomerSalesArea",
+    "target_field": "CustomerPaymentTerms",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "CustomerPaymentTerms"
+    ],
+    "description": "Resolve `Customer` directly on `A_CustomerSalesArea` to answer `CustomerPaymentTerms`.",
+    "business_aliases": [
+      "付款条件",
+      "账期",
+      "payment terms"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerSalesArea",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "CustomerPaymentTerms"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_paymentterms_a_customercompany",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_CustomerCompany",
+    "target_field": "PaymentTerms",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "PaymentTerms"
+    ],
+    "description": "Resolve `Customer` directly on `A_CustomerCompany` to answer `PaymentTerms`.",
+    "business_aliases": [
+      "付款条件",
+      "账期",
+      "payment terms"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerCompany",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "PaymentTerms"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_postalcode_via_a_bpcontacttoaddress",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_BPContactToAddress",
+    "target_field": "PostalCode",
+    "path_kind": "multi_step_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer",
+      "PostalCode"
+    ],
+    "result_fields": [
+      "Customer",
+      "CityName",
+      "Country",
+      "PostalCode",
+      "CompanyPostalCode",
+      "POBoxPostalCode"
+    ],
+    "description": "Resolve `Customer` to `BusinessPartner` first, then read postal code from `A_BPContactToAddress`.",
+    "business_aliases": [
+      "邮编",
+      "邮政编码",
+      "postal code",
+      "postcode",
+      "zip code",
+      "zip"
+    ],
+    "steps": [
+      {
+        "step_id": "resolve_business_partner",
+        "entity_set": "A_BusinessPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "BusinessPartner",
+          "Customer"
+        ],
+        "top": 1
+      },
+      {
+        "step_id": "fetch_address",
+        "entity_set": "A_BPContactToAddress",
+        "filter_field": "BusinessPartnerCompany",
+        "select_fields": [
+          "BusinessPartnerCompany",
+          "CityName",
+          "Country",
+          "PostalCode",
+          "CompanyPostalCode",
+          "POBoxPostalCode"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.7799999999999999
+  },
+  {
+    "path_id": "customer_to_postalcode_via_a_bpintladdressversion",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_BPIntlAddressVersion",
+    "target_field": "PostalCode",
+    "path_kind": "multi_step_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer",
+      "PostalCode"
+    ],
+    "result_fields": [
+      "Customer",
+      "CityName",
+      "Country",
+      "PostalCode",
+      "CompanyPostalCode",
+      "POBoxPostalCode"
+    ],
+    "description": "Resolve `Customer` to `BusinessPartner` first, then read postal code from `A_BPIntlAddressVersion`.",
+    "business_aliases": [
+      "邮编",
+      "邮政编码",
+      "postal code",
+      "postcode",
+      "zip code",
+      "zip"
+    ],
+    "steps": [
+      {
+        "step_id": "resolve_business_partner",
+        "entity_set": "A_BusinessPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "BusinessPartner",
+          "Customer"
+        ],
+        "top": 1
+      },
+      {
+        "step_id": "fetch_address",
+        "entity_set": "A_BPIntlAddressVersion",
+        "filter_field": "BusinessPartner",
+        "select_fields": [
+          "BusinessPartner",
+          "CityName",
+          "Country",
+          "PostalCode",
+          "CompanyPostalCode",
+          "POBoxPostalCode"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.84
+  },
+  {
+    "path_id": "customer_to_postalcode_via_a_businesspartneraddress",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_BusinessPartnerAddress",
+    "target_field": "PostalCode",
+    "path_kind": "multi_step_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer",
+      "PostalCode"
+    ],
+    "result_fields": [
+      "Customer",
+      "CityName",
+      "Country",
+      "PostalCode",
+      "CompanyPostalCode",
+      "POBoxPostalCode"
+    ],
+    "description": "Resolve `Customer` to `BusinessPartner` first, then read postal code from `A_BusinessPartnerAddress`.",
+    "business_aliases": [
+      "邮编",
+      "邮政编码",
+      "postal code",
+      "postcode",
+      "zip code",
+      "zip"
+    ],
+    "steps": [
+      {
+        "step_id": "resolve_business_partner",
+        "entity_set": "A_BusinessPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "BusinessPartner",
+          "Customer"
+        ],
+        "top": 1
+      },
+      {
+        "step_id": "fetch_address",
+        "entity_set": "A_BusinessPartnerAddress",
+        "filter_field": "BusinessPartner",
+        "select_fields": [
+          "BusinessPartner",
+          "CityName",
+          "Country",
+          "PostalCode",
+          "CompanyPostalCode",
+          "POBoxPostalCode"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 1.04
+  },
+  {
+    "path_id": "customer_to_reconciliationaccount_a_customercompany",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_CustomerCompany",
+    "target_field": "ReconciliationAccount",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "ReconciliationAccount"
+    ],
+    "description": "Resolve `Customer` directly on `A_CustomerCompany` to answer `ReconciliationAccount`.",
+    "business_aliases": [
+      "统驭科目",
+      "reconciliation account"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerCompany",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "ReconciliationAccount"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_shippingcondition_a_customersalesarea",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_CustomerSalesArea",
+    "target_field": "ShippingCondition",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "ShippingCondition"
+    ],
+    "description": "Resolve `Customer` directly on `A_CustomerSalesArea` to answer `ShippingCondition`.",
+    "business_aliases": [
+      "装运条件",
+      "shipping condition"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerSalesArea",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "ShippingCondition"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_shippingcondition_a_custslsareaaddrdepdntinfo",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_CustSlsAreaAddrDepdntInfo",
+    "target_field": "ShippingCondition",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "ShippingCondition"
+    ],
+    "description": "Resolve `Customer` directly on `A_CustSlsAreaAddrDepdntInfo` to answer `ShippingCondition`.",
+    "business_aliases": [
+      "装运条件",
+      "shipping condition"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustSlsAreaAddrDepdntInfo",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "ShippingCondition"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_list_by_cityname_via_a_bpcontacttoaddress",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_BusinessPartner",
+    "target_field": "CityName",
+    "path_kind": "attribute_filter_list",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "CityName"
+    ],
+    "result_fields": [
+      "Supplier",
+      "BusinessPartner",
+      "BusinessPartnerFullName"
+    ],
+    "description": "Filter `Supplier` records by address attribute `CityName` via `A_BPContactToAddress` and return the matching object list.",
+    "business_aliases": [
+      "城市",
+      "city"
+    ],
+    "steps": [
+      {
+        "step_id": "filter_address",
+        "entity_set": "A_BPContactToAddress",
+        "filter_field": "CityName",
+        "select_fields": [
+          "BusinessPartnerCompany",
+          "CityName",
+          "Country",
+          "PostalCode",
+          "CompanyPostalCode",
+          "POBoxPostalCode"
+        ],
+        "top": 50
+      },
+      {
+        "step_id": "resolve_anchor_object",
+        "entity_set": "A_BusinessPartner",
+        "filter_field": "BusinessPartner",
+        "select_fields": [
+          "BusinessPartner",
+          "Supplier",
+          "BusinessPartnerFullName"
+        ],
+        "top": 50
+      }
+    ],
+    "confidence": 0.7
+  },
+  {
+    "path_id": "supplier_list_by_cityname_via_a_bpintladdressversion",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_BusinessPartner",
+    "target_field": "CityName",
+    "path_kind": "attribute_filter_list",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "CityName"
+    ],
+    "result_fields": [
+      "Supplier",
+      "BusinessPartner",
+      "BusinessPartnerFullName"
+    ],
+    "description": "Filter `Supplier` records by address attribute `CityName` via `A_BPIntlAddressVersion` and return the matching object list.",
+    "business_aliases": [
+      "城市",
+      "city"
+    ],
+    "steps": [
+      {
+        "step_id": "filter_address",
+        "entity_set": "A_BPIntlAddressVersion",
+        "filter_field": "CityName",
+        "select_fields": [
+          "BusinessPartner",
+          "CityName",
+          "Country",
+          "PostalCode",
+          "CompanyPostalCode",
+          "POBoxPostalCode"
+        ],
+        "top": 50
+      },
+      {
+        "step_id": "resolve_anchor_object",
+        "entity_set": "A_BusinessPartner",
+        "filter_field": "BusinessPartner",
+        "select_fields": [
+          "BusinessPartner",
+          "Supplier",
+          "BusinessPartnerFullName"
+        ],
+        "top": 50
+      }
+    ],
+    "confidence": 0.84
+  },
+  {
+    "path_id": "supplier_list_by_cityname_via_a_businesspartneraddress",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_BusinessPartner",
+    "target_field": "CityName",
+    "path_kind": "attribute_filter_list",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "CityName"
+    ],
+    "result_fields": [
+      "Supplier",
+      "BusinessPartner",
+      "BusinessPartnerFullName"
+    ],
+    "description": "Filter `Supplier` records by address attribute `CityName` via `A_BusinessPartnerAddress` and return the matching object list.",
+    "business_aliases": [
+      "城市",
+      "city"
+    ],
+    "steps": [
+      {
+        "step_id": "filter_address",
+        "entity_set": "A_BusinessPartnerAddress",
+        "filter_field": "CityName",
+        "select_fields": [
+          "BusinessPartner",
+          "CityName",
+          "Country",
+          "PostalCode",
+          "CompanyPostalCode",
+          "POBoxPostalCode"
+        ],
+        "top": 50
+      },
+      {
+        "step_id": "resolve_anchor_object",
+        "entity_set": "A_BusinessPartner",
+        "filter_field": "BusinessPartner",
+        "select_fields": [
+          "BusinessPartner",
+          "Supplier",
+          "BusinessPartnerFullName"
+        ],
+        "top": 50
+      }
+    ],
+    "confidence": 1.04
+  },
+  {
+    "path_id": "supplier_list_by_cityname_via_a_businesspartnerbank",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_BusinessPartner",
+    "target_field": "CityName",
+    "path_kind": "attribute_filter_list",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "CityName"
+    ],
+    "result_fields": [
+      "Supplier",
+      "BusinessPartner",
+      "BusinessPartnerFullName"
+    ],
+    "description": "Filter `Supplier` records by address attribute `CityName` via `A_BusinessPartnerBank` and return the matching object list.",
+    "business_aliases": [
+      "城市",
+      "city"
+    ],
+    "steps": [
+      {
+        "step_id": "filter_address",
+        "entity_set": "A_BusinessPartnerBank",
+        "filter_field": "CityName",
+        "select_fields": [
+          "BusinessPartner",
+          "CityName"
+        ],
+        "top": 50
+      },
+      {
+        "step_id": "resolve_anchor_object",
+        "entity_set": "A_BusinessPartner",
+        "filter_field": "BusinessPartner",
+        "select_fields": [
+          "BusinessPartner",
+          "Supplier",
+          "BusinessPartnerFullName"
+        ],
+        "top": 50
+      }
+    ],
+    "confidence": 0.96
+  },
+  {
+    "path_id": "supplier_list_by_postalcode_via_a_bpcontacttoaddress",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_BusinessPartner",
+    "target_field": "PostalCode",
+    "path_kind": "attribute_filter_list",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "PostalCode"
+    ],
+    "result_fields": [
+      "Supplier",
+      "BusinessPartner",
+      "BusinessPartnerFullName"
+    ],
+    "description": "Filter `Supplier` records by address attribute `PostalCode` via `A_BPContactToAddress` and return the matching object list.",
+    "business_aliases": [
+      "邮编",
+      "邮政编码",
+      "postal code",
+      "postcode",
+      "zip code",
+      "zip"
+    ],
+    "steps": [
+      {
+        "step_id": "filter_address",
+        "entity_set": "A_BPContactToAddress",
+        "filter_field": "PostalCode",
+        "select_fields": [
+          "BusinessPartnerCompany",
+          "CityName",
+          "Country",
+          "PostalCode",
+          "CompanyPostalCode",
+          "POBoxPostalCode"
+        ],
+        "top": 50
+      },
+      {
+        "step_id": "resolve_anchor_object",
+        "entity_set": "A_BusinessPartner",
+        "filter_field": "BusinessPartner",
+        "select_fields": [
+          "BusinessPartner",
+          "Supplier",
+          "BusinessPartnerFullName"
+        ],
+        "top": 50
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_list_by_postalcode_via_a_bpintladdressversion",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_BusinessPartner",
+    "target_field": "PostalCode",
+    "path_kind": "attribute_filter_list",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "PostalCode"
+    ],
+    "result_fields": [
+      "Supplier",
+      "BusinessPartner",
+      "BusinessPartnerFullName"
+    ],
+    "description": "Filter `Supplier` records by address attribute `PostalCode` via `A_BPIntlAddressVersion` and return the matching object list.",
+    "business_aliases": [
+      "邮编",
+      "邮政编码",
+      "postal code",
+      "postcode",
+      "zip code",
+      "zip"
+    ],
+    "steps": [
+      {
+        "step_id": "filter_address",
+        "entity_set": "A_BPIntlAddressVersion",
+        "filter_field": "PostalCode",
+        "select_fields": [
+          "BusinessPartner",
+          "CityName",
+          "Country",
+          "PostalCode",
+          "CompanyPostalCode",
+          "POBoxPostalCode"
+        ],
+        "top": 50
+      },
+      {
+        "step_id": "resolve_anchor_object",
+        "entity_set": "A_BusinessPartner",
+        "filter_field": "BusinessPartner",
+        "select_fields": [
+          "BusinessPartner",
+          "Supplier",
+          "BusinessPartnerFullName"
+        ],
+        "top": 50
+      }
+    ],
+    "confidence": 0.76
+  },
+  {
+    "path_id": "supplier_list_by_postalcode_via_a_businesspartneraddress",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_BusinessPartner",
+    "target_field": "PostalCode",
+    "path_kind": "attribute_filter_list",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "PostalCode"
+    ],
+    "result_fields": [
+      "Supplier",
+      "BusinessPartner",
+      "BusinessPartnerFullName"
+    ],
+    "description": "Filter `Supplier` records by address attribute `PostalCode` via `A_BusinessPartnerAddress` and return the matching object list.",
+    "business_aliases": [
+      "邮编",
+      "邮政编码",
+      "postal code",
+      "postcode",
+      "zip code",
+      "zip"
+    ],
+    "steps": [
+      {
+        "step_id": "filter_address",
+        "entity_set": "A_BusinessPartnerAddress",
+        "filter_field": "PostalCode",
+        "select_fields": [
+          "BusinessPartner",
+          "CityName",
+          "Country",
+          "PostalCode",
+          "CompanyPostalCode",
+          "POBoxPostalCode"
+        ],
+        "top": 50
+      },
+      {
+        "step_id": "resolve_anchor_object",
+        "entity_set": "A_BusinessPartner",
+        "filter_field": "BusinessPartner",
+        "select_fields": [
+          "BusinessPartner",
+          "Supplier",
+          "BusinessPartnerFullName"
+        ],
+        "top": 50
+      }
+    ],
+    "confidence": 0.9600000000000001
+  },
+  {
+    "path_id": "supplier_to_invoiceisgoodsreceiptbased_a_supplierpurchasingorg",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_SupplierPurchasingOrg",
+    "target_field": "InvoiceIsGoodsReceiptBased",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "InvoiceIsGoodsReceiptBased"
+    ],
+    "description": "Resolve `Supplier` directly on `A_SupplierPurchasingOrg` to answer `InvoiceIsGoodsReceiptBased`.",
+    "business_aliases": [
+      "基于收货的发票验证",
+      "基于收货的发票校验",
+      "收货发票校验",
+      "收货发票验证",
+      "goods receipt based invoice verification"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SupplierPurchasingOrg",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "InvoiceIsGoodsReceiptBased"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_materialplanneddeliverydurn_a_supplierpurchasingorg",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_SupplierPurchasingOrg",
+    "target_field": "MaterialPlannedDeliveryDurn",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "MaterialPlannedDeliveryDurn"
+    ],
+    "description": "Resolve `Supplier` directly on `A_SupplierPurchasingOrg` to answer `MaterialPlannedDeliveryDurn`.",
+    "business_aliases": [
+      "计划交货时间",
+      "planned delivery time",
+      "delivery time"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SupplierPurchasingOrg",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "MaterialPlannedDeliveryDurn"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_paymentterms_a_suppliercompany",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_SupplierCompany",
+    "target_field": "PaymentTerms",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PaymentTerms"
+    ],
+    "description": "Resolve `Supplier` directly on `A_SupplierCompany` to answer `PaymentTerms`.",
+    "business_aliases": [
+      "付款条件",
+      "账期",
+      "payment terms"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SupplierCompany",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PaymentTerms"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_paymentterms_a_supplierpurchasingorg",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_SupplierPurchasingOrg",
+    "target_field": "PaymentTerms",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PaymentTerms"
+    ],
+    "description": "Resolve `Supplier` directly on `A_SupplierPurchasingOrg` to answer `PaymentTerms`.",
+    "business_aliases": [
+      "付款条件",
+      "账期",
+      "payment terms"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SupplierPurchasingOrg",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PaymentTerms"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_postalcode_via_a_bpcontacttoaddress",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_BPContactToAddress",
+    "target_field": "PostalCode",
+    "path_kind": "multi_step_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier",
+      "PostalCode"
+    ],
+    "result_fields": [
+      "Supplier",
+      "CityName",
+      "Country",
+      "PostalCode",
+      "CompanyPostalCode",
+      "POBoxPostalCode"
+    ],
+    "description": "Resolve `Supplier` to `BusinessPartner` first, then read postal code from `A_BPContactToAddress`.",
+    "business_aliases": [
+      "邮编",
+      "邮政编码",
+      "postal code",
+      "postcode",
+      "zip code",
+      "zip"
+    ],
+    "steps": [
+      {
+        "step_id": "resolve_business_partner",
+        "entity_set": "A_BusinessPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "BusinessPartner",
+          "Supplier"
+        ],
+        "top": 1
+      },
+      {
+        "step_id": "fetch_address",
+        "entity_set": "A_BPContactToAddress",
+        "filter_field": "BusinessPartnerCompany",
+        "select_fields": [
+          "BusinessPartnerCompany",
+          "CityName",
+          "Country",
+          "PostalCode",
+          "CompanyPostalCode",
+          "POBoxPostalCode"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.7799999999999999
+  },
+  {
+    "path_id": "supplier_to_postalcode_via_a_bpintladdressversion",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_BPIntlAddressVersion",
+    "target_field": "PostalCode",
+    "path_kind": "multi_step_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier",
+      "PostalCode"
+    ],
+    "result_fields": [
+      "Supplier",
+      "CityName",
+      "Country",
+      "PostalCode",
+      "CompanyPostalCode",
+      "POBoxPostalCode"
+    ],
+    "description": "Resolve `Supplier` to `BusinessPartner` first, then read postal code from `A_BPIntlAddressVersion`.",
+    "business_aliases": [
+      "邮编",
+      "邮政编码",
+      "postal code",
+      "postcode",
+      "zip code",
+      "zip"
+    ],
+    "steps": [
+      {
+        "step_id": "resolve_business_partner",
+        "entity_set": "A_BusinessPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "BusinessPartner",
+          "Supplier"
+        ],
+        "top": 1
+      },
+      {
+        "step_id": "fetch_address",
+        "entity_set": "A_BPIntlAddressVersion",
+        "filter_field": "BusinessPartner",
+        "select_fields": [
+          "BusinessPartner",
+          "CityName",
+          "Country",
+          "PostalCode",
+          "CompanyPostalCode",
+          "POBoxPostalCode"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.84
+  },
+  {
+    "path_id": "supplier_to_postalcode_via_a_businesspartneraddress",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_BusinessPartnerAddress",
+    "target_field": "PostalCode",
+    "path_kind": "multi_step_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier",
+      "PostalCode"
+    ],
+    "result_fields": [
+      "Supplier",
+      "CityName",
+      "Country",
+      "PostalCode",
+      "CompanyPostalCode",
+      "POBoxPostalCode"
+    ],
+    "description": "Resolve `Supplier` to `BusinessPartner` first, then read postal code from `A_BusinessPartnerAddress`.",
+    "business_aliases": [
+      "邮编",
+      "邮政编码",
+      "postal code",
+      "postcode",
+      "zip code",
+      "zip"
+    ],
+    "steps": [
+      {
+        "step_id": "resolve_business_partner",
+        "entity_set": "A_BusinessPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "BusinessPartner",
+          "Supplier"
+        ],
+        "top": 1
+      },
+      {
+        "step_id": "fetch_address",
+        "entity_set": "A_BusinessPartnerAddress",
+        "filter_field": "BusinessPartner",
+        "select_fields": [
+          "BusinessPartner",
+          "CityName",
+          "Country",
+          "PostalCode",
+          "CompanyPostalCode",
+          "POBoxPostalCode"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 1.04
+  },
+  {
+    "path_id": "supplier_to_reconciliationaccount_a_suppliercompany",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_SupplierCompany",
+    "target_field": "ReconciliationAccount",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ReconciliationAccount"
+    ],
+    "description": "Resolve `Supplier` directly on `A_SupplierCompany` to answer `ReconciliationAccount`.",
+    "business_aliases": [
+      "统驭科目",
+      "reconciliation account"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SupplierCompany",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ReconciliationAccount"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_shippingcondition_a_supplierpurchasingorg",
+    "service_name": "API_BUSINESS_PARTNER",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_SupplierPurchasingOrg",
+    "target_field": "ShippingCondition",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ShippingCondition"
+    ],
+    "description": "Resolve `Supplier` directly on `A_SupplierPurchasingOrg` to answer `ShippingCondition`.",
+    "business_aliases": [
+      "装运条件",
+      "shipping condition"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SupplierPurchasingOrg",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ShippingCondition"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  }
+]

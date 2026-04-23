@@ -1,0 +1,13 @@
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.venv/
+env/
+*.pyc
+*.pyo
+*.pyd
+*.log
+data/cases/*.jsonl
+frontend/node_modules/
+frontend/dist/
+data/cases/
