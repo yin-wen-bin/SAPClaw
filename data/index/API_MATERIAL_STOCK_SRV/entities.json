@@ -1,0 +1,114 @@
+[
+  {
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "entity_set": "A_MaterialSerialNumber",
+    "entity_type": "A_MaterialSerialNumberType",
+    "key_fields": [
+      "Material",
+      "SerialNumber"
+    ],
+    "default_select_fields": [
+      "Material",
+      "SerialNumber",
+      "Plant",
+      "StorageLocation",
+      "InventorySpecialStockType",
+      "Batch",
+      "InventoryStockType",
+      "Equipment",
+      "Customer",
+      "Supplier"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_MatlStkInAcctMod"
+    ],
+    "description": "Get entities from A_MaterialSerialNumber",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "entity_set": "A_MaterialStock",
+    "entity_type": "A_MaterialStockType",
+    "key_fields": [
+      "Material"
+    ],
+    "default_select_fields": [
+      "Material",
+      "MaterialBaseUnit"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_MatlStkInAcctMod"
+    ],
+    "description": "Reads material ID and base unit of measure",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "entity_set": "A_MatlStkInAcctMod",
+    "entity_type": "A_MatlStkInAcctModType",
+    "key_fields": [
+      "Batch",
+      "Customer",
+      "InventorySpecialStockType",
+      "InventoryStockType",
+      "Material",
+      "Plant",
+      "SDDocument",
+      "SDDocumentItem",
+      "StorageLocation",
+      "Supplier",
+      "WBSElementInternalID"
+    ],
+    "default_select_fields": [
+      "Material",
+      "Plant",
+      "StorageLocation",
+      "Batch",
+      "Supplier",
+      "Customer",
+      "WBSElementInternalID",
+      "SDDocument",
+      "SDDocumentItem",
+      "InventorySpecialStockType"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_MaterialSerialNumber",
+      "to_MaterialStock"
+    ],
+    "description": "Reads material stocks in account model",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  }
+]

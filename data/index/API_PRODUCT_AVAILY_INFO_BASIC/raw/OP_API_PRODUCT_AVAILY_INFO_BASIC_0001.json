@@ -143,7 +143,7 @@
             "schema": {
               "type": "string",
               "pattern": "^[-]?[0-9]+(\\.[0-9]+)?[mM]$",
-              "multipleOf": 1.0e-3,
+              "multipleOf": 0.001,
               "minimum": -0.999,
               "maximum": 0.999,
               "example": "0M"
@@ -355,7 +355,7 @@
             "format": "decimal",
             "x-sap-precision": 16,
             "x-sap-scale": 3,
-            "multipleOf": 1.0e-3,
+            "multipleOf": 0.001,
             "example": "0",
             "title": "Available Quantity"
           },

@@ -1,0 +1,7011 @@
+[
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "AdditionalStreetPrefixName",
+    "label": "街道 3",
+    "business_aliases": [
+      "街道 3"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "街道 3",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "AdditionalStreetSuffixName",
+    "label": "街道 5",
+    "business_aliases": [
+      "街道 5"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "街道 5",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "AddressID",
+    "label": "地址",
+    "business_aliases": [
+      "地址"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "地址",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "AddressTimeZone",
+    "label": "时区",
+    "business_aliases": [
+      "时区",
+      "地址时区"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "地址时区",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "AddressType",
+    "label": "地址类型",
+    "business_aliases": [
+      "地址类型",
+      "采购申请地址类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购申请地址类型",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "AddresseeFullName",
+    "label": "全名",
+    "business_aliases": [
+      "全名",
+      "完整的人员名称"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "完整的人员名称",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "Building",
+    "label": "建筑物代码",
+    "business_aliases": [
+      "建筑物代码",
+      "建筑物（编号或代码）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "建筑物（编号或代码）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "BusinessPartnerName1",
+    "label": "名称",
+    "business_aliases": [
+      "名称",
+      "名称 1"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "名称 1",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "BusinessPartnerName2",
+    "label": "名称 2",
+    "business_aliases": [
+      "名称 2"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "名称 2",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "BusinessPartnerName3",
+    "label": "名称 3",
+    "business_aliases": [
+      "名称 3"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "名称 3",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "BusinessPartnerName4",
+    "label": "名称 4",
+    "business_aliases": [
+      "名称 4"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "名称 4",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "CareOfName",
+    "label": "代收人",
+    "business_aliases": [
+      "代收人",
+      "代收人姓名"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "代收人姓名",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "CityCode",
+    "label": "城市代码",
+    "business_aliases": [
+      "城市代码",
+      "城市/街道文件的城市号码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "城市/街道文件的城市号码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "CityName",
+    "label": "城市",
+    "business_aliases": [
+      "城市"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "城市",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "CitySearch",
+    "label": "城市",
+    "business_aliases": [
+      "城市",
+      "搜索帮助的大写城市名称"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "搜索帮助的大写城市名称",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "CompanyPostalCode",
+    "label": "公司邮政编码",
+    "business_aliases": [
+      "公司邮政编码",
+      "公司的邮政编码（针对大客户）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "公司的邮政编码（针对大客户）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "CorrespondenceLanguage",
+    "label": "语言代码",
+    "business_aliases": [
+      "语言代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "语言代码",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "Country",
+    "label": "国家/地区代码",
+    "business_aliases": [
+      "国家/地区代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "国家/地区代码",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "County",
+    "label": "县",
+    "business_aliases": [
+      "县"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "县",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "DeliveryServiceNumber",
+    "label": "交付服务编号",
+    "business_aliases": [
+      "交付服务编号",
+      "交付服务的编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "交付服务的编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "DeliveryServiceTypeCode",
+    "label": "交付服务类型",
+    "business_aliases": [
+      "交付服务类型",
+      "交付服务的类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "交付服务的类型",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "District",
+    "label": "区域",
+    "business_aliases": [
+      "区域"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "区域",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "FaxNumber",
+    "label": "传真",
+    "business_aliases": [
+      "传真",
+      "第一个传真号: 区号 + 编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "第一个传真号: 区号 + 编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "Floor",
+    "label": "楼层",
+    "business_aliases": [
+      "楼层",
+      "建筑物的层"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "建筑物的层",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "FormOfAddress",
+    "label": "称谓代码",
+    "business_aliases": [
+      "称谓代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "称谓代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "FullName",
+    "label": "全称",
+    "business_aliases": [
+      "全称",
+      "相关方全称（业务伙伴、组织单位、凭证地址）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "相关方全称（业务伙伴、组织单位、凭证地址）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "HomeCityName",
+    "label": "不同的城市",
+    "business_aliases": [
+      "不同的城市",
+      "城市（与邮政城市不同）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "城市（与邮政城市不同）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "HouseNumber",
+    "label": "门牌号",
+    "business_aliases": [
+      "门牌号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "门牌号",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "HouseNumberSupplementText",
+    "label": "补充",
+    "business_aliases": [
+      "补充",
+      "开户号补充"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "开户号补充",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "ItemDeliveryAddressID",
+    "label": "地址",
+    "business_aliases": [
+      "地址",
+      "交货地址编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "交货地址编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "ManualDeliveryAddressID",
+    "label": "地址",
+    "business_aliases": [
+      "地址",
+      "采购凭证项目中的人工地址号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购凭证项目中的人工地址号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "Nation",
+    "label": "地址版本",
+    "business_aliases": [
+      "地址版本",
+      "国际地址的版本标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "国际地址的版本标识",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "POBox",
+    "label": "邮政信箱",
+    "business_aliases": [
+      "邮政信箱"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "邮政信箱",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "POBoxDeviatingCityName",
+    "label": "邮政信箱城市",
+    "business_aliases": [
+      "邮政信箱城市"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "邮政信箱城市",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "POBoxDeviatingCountry",
+    "label": "邮箱国家",
+    "business_aliases": [
+      "邮箱国家"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "邮箱国家",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "POBoxDeviatingRegion",
+    "label": "邮政信箱区域",
+    "business_aliases": [
+      "邮政信箱区域",
+      "邮政信箱所在地区（国家/地区、州、省...）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "邮政信箱所在地区（国家/地区、州、省...）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "POBoxIsWithoutNumber",
+    "label": "没有编号的邮箱",
+    "business_aliases": [
+      "没有编号的邮箱",
+      "标志：没有编号的邮箱"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "标志：没有编号的邮箱",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "POBoxLobbyName",
+    "label": "前厅邮政信箱",
+    "business_aliases": [
+      "前厅邮政信箱"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "前厅邮政信箱",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "POBoxPostalCode",
+    "label": "邮箱邮政编码",
+    "business_aliases": [
+      "邮箱邮政编码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "邮箱邮政编码",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "Person",
+    "label": "人员编号",
+    "business_aliases": [
+      "人员编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "人员编号",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "PhoneNumber",
+    "label": "电话",
+    "business_aliases": [
+      "电话",
+      "第一个电话号码：区号 + 号码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "第一个电话号码：区号 + 号码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "Plant",
+    "label": "工厂",
+    "business_aliases": [
+      "工厂"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "工厂",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "PostalCode",
+    "label": "邮政编码",
+    "business_aliases": [
+      "邮政编码",
+      "城市邮政编码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "城市邮政编码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "PrfrdCommMediumType",
+    "label": "通讯方法",
+    "business_aliases": [
+      "通讯方法",
+      "通讯方法 (关键字)(业务地址服务)"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "通讯方法 (关键字)(业务地址服务)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "PurchaseRequisition",
+    "label": "采购申请",
+    "business_aliases": [
+      "采购申请",
+      "采购申请编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购申请编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "PurchaseRequisitionItem",
+    "label": "申请项目",
+    "business_aliases": [
+      "申请项目",
+      "采购申请的项目编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购申请的项目编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "Region",
+    "label": "地区",
+    "business_aliases": [
+      "地区",
+      "地区（省/自治区/直辖市、市、县）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "地区（省/自治区/直辖市、市、县）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "RoomNumber",
+    "label": "房间号",
+    "business_aliases": [
+      "房间号",
+      "房间或公寓号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "房间或公寓号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "SearchTerm1",
+    "label": "搜索词 1",
+    "business_aliases": [
+      "搜索词 1"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "搜索词 1",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "StreetName",
+    "label": "街道",
+    "business_aliases": [
+      "街道"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "街道",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "StreetPrefixName",
+    "label": "街道2",
+    "business_aliases": [
+      "街道2"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "街道2",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "StreetSearch",
+    "label": "街道",
+    "business_aliases": [
+      "街道",
+      "搜索帮助的大写街道名称"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "搜索帮助的大写街道名称",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "StreetSuffixName",
+    "label": "街道 4",
+    "business_aliases": [
+      "街道 4"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "街道 4",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "TaxJurisdiction",
+    "label": "税务管辖权",
+    "business_aliases": [
+      "税务管辖权"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "税务管辖权",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqAddDelivery",
+    "field_name": "TransportZone",
+    "label": "运输区",
+    "business_aliases": [
+      "运输区",
+      "发送货物的目的地运输区域"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "发送货物的目的地运输区域",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "BaseUnit",
+    "label": "计量单位",
+    "business_aliases": [
+      "计量单位",
+      "采购申请计量单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购申请计量单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "BusinessArea",
+    "label": "业务范围",
+    "business_aliases": [
+      "业务范围"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "业务范围",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "BusinessProcess",
+    "label": "业务处理",
+    "business_aliases": [
+      "业务处理"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "业务处理",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "ChartOfAccounts",
+    "label": "科目表",
+    "business_aliases": [
+      "科目表"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "科目表",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "CommitmentItem",
+    "label": "承诺项目",
+    "business_aliases": [
+      "承诺项目"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "承诺项目",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "ControllingArea",
+    "label": "成本控制范围",
+    "business_aliases": [
+      "成本控制范围"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "成本控制范围",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "CostCenter",
+    "label": "成本中心",
+    "business_aliases": [
+      "成本中心"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "成本中心",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "CostCtrActivityType",
+    "label": "活动类型",
+    "business_aliases": [
+      "活动类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "活动类型",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "CostElement",
+    "label": "总账科目",
+    "business_aliases": [
+      "总账科目",
+      "总账科目号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "总账科目号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "CostObject",
+    "label": "成本对象",
+    "business_aliases": [
+      "成本对象"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "成本对象",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "CreationDate",
+    "label": "创建日期",
+    "business_aliases": [
+      "创建日期",
+      "记录创建日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "记录创建日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "EarmarkedFundsDocument",
+    "label": "专项资金",
+    "business_aliases": [
+      "专项资金",
+      "专项资金的凭证编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "专项资金的凭证编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "EarmarkedFundsDocumentItem",
+    "label": "",
+    "business_aliases": [
+      "Earmarked Funds: Document Item"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Earmarked Funds: Document Item",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "FixedAsset",
+    "label": "子编号",
+    "business_aliases": [
+      "子编号",
+      "资产子编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "资产子编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "FunctionalArea",
+    "label": "职能范围",
+    "business_aliases": [
+      "职能范围"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "职能范围",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "Fund",
+    "label": "基金",
+    "business_aliases": [
+      "基金"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "基金",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "FundsCenter",
+    "label": "基金中心",
+    "business_aliases": [
+      "基金中心"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "基金中心",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "GLAccount",
+    "label": "总账科目",
+    "business_aliases": [
+      "总账科目",
+      "总账科目号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "总账科目号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "GoodsRecipientName",
+    "label": "收货方",
+    "business_aliases": [
+      "收货方"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "收货方",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "GrantID",
+    "label": "同意",
+    "business_aliases": [
+      "同意"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "同意",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "IsDeleted",
+    "label": "删除标识",
+    "business_aliases": [
+      "删除标识",
+      "采购凭证中的删除标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购凭证中的删除标识",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "JointVentureRecoveryCode",
+    "label": "回收标识",
+    "business_aliases": [
+      "回收标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "回收标识",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "MasterFixedAsset",
+    "label": "资产",
+    "business_aliases": [
+      "资产",
+      "主要资产编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "主要资产编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "MultipleAcctAssgmtDistrPercent",
+    "label": "分配(%)",
+    "business_aliases": [
+      "分配(%)",
+      "多帐目分配情况下的分配百分比"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "多帐目分配情况下的分配百分比",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "NetworkActivity",
+    "label": "工序/活动",
+    "business_aliases": [
+      "工序/活动",
+      "工序/活动编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": false,
+    "sortable": false,
+    "allowed_operators": [],
+    "description": "工序/活动编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "NetworkActivityInternalID",
+    "label": "计数器",
+    "business_aliases": [
+      "计数器",
+      "内部计数器"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "内部计数器",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "OrderID",
+    "label": "订单",
+    "business_aliases": [
+      "订单",
+      "订单编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "订单编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "OrderIntBillOfOperationsItem",
+    "label": "计数器",
+    "business_aliases": [
+      "计数器",
+      "订单的通用计数器"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "订单的通用计数器",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "OrderInternalID",
+    "label": "工序的任务清单号",
+    "business_aliases": [
+      "工序的任务清单号",
+      "订单中工序的工艺路线号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "订单中工序的工艺路线号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "PartnerAccountNumber",
+    "label": "合作伙伴",
+    "business_aliases": [
+      "合作伙伴",
+      "合伙人帐户编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "合伙人帐户编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "Plant",
+    "label": "工厂",
+    "business_aliases": [
+      "工厂"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "工厂",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "ProcessOrder",
+    "label": "订单",
+    "business_aliases": [
+      "订单",
+      "订单编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "订单编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "ProfitCenter",
+    "label": "利润中心",
+    "business_aliases": [
+      "利润中心"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "利润中心",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "ProfitabilitySegment",
+    "label": "获利能力段编号",
+    "business_aliases": [
+      "获利能力段编号",
+      "获利能力段编号(CO-PA)"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "获利能力段编号(CO-PA)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "ProjectNetwork",
+    "label": "网络",
+    "business_aliases": [
+      "网络",
+      "科目分配的网络号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "科目分配的网络号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "ProjectNetworkInternalID",
+    "label": "工序的任务清单号",
+    "business_aliases": [
+      "工序的任务清单号",
+      "订单中工序的工艺路线号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "订单中工序的工艺路线号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "PurReqnItemCurrency",
+    "label": "货币",
+    "business_aliases": [
+      "货币",
+      "货币码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "货币码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "PurReqnNetAmount",
+    "label": "订单净值",
+    "business_aliases": [
+      "订单净值",
+      "采购订单货币的订单净值"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购订单货币的订单净值",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "PurchaseReqnAcctAssgmtNumber",
+    "label": "序列号帐户分配",
+    "business_aliases": [
+      "序列号帐户分配",
+      "采购申请帐户分配段的序列号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购申请帐户分配段的序列号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "PurchaseRequisition",
+    "label": "采购申请",
+    "business_aliases": [
+      "采购申请",
+      "采购申请编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购申请编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "PurchaseRequisitionItem",
+    "label": "请求的项目",
+    "business_aliases": [
+      "请求的项目",
+      "采购申请的项目编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购申请的项目编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "PurchaseRequisitionType",
+    "label": "凭证类型",
+    "business_aliases": [
+      "凭证类型",
+      "采购申请凭证类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购申请凭证类型",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "PurchasingGroup",
+    "label": "采购组",
+    "business_aliases": [
+      "采购组"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购组",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "PurchasingOrganization",
+    "label": "采购组织",
+    "business_aliases": [
+      "采购组织"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购组织",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "Quantity",
+    "label": "申请数量",
+    "business_aliases": [
+      "申请数量",
+      "采购申请数量"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购申请数量",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "RealEstateObject",
+    "label": "房地产代码",
+    "business_aliases": [
+      "房地产代码",
+      "房地产对象的内码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "房地产对象的内码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "SDDocument",
+    "label": "销售和分销凭证",
+    "business_aliases": [
+      "销售和分销凭证",
+      "销售和分销凭证号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售和分销凭证号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "SalesDocumentItem",
+    "label": "销售凭证项目",
+    "business_aliases": [
+      "销售凭证项目"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售凭证项目",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "SalesOrder",
+    "label": "销售和分销凭证",
+    "business_aliases": [
+      "销售和分销凭证",
+      "销售和分销凭证号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售和分销凭证号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "SalesOrderItem",
+    "label": "销售凭证项目",
+    "business_aliases": [
+      "销售凭证项目"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售凭证项目",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "SalesOrderScheduleLine",
+    "label": "计划行号",
+    "business_aliases": [
+      "计划行号",
+      "计划行编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "计划行编号",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "ScheduleLine",
+    "label": "计划行号",
+    "business_aliases": [
+      "计划行号",
+      "计划行编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "计划行编号",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "SettlementReferenceDate",
+    "label": "参考日期",
+    "business_aliases": [
+      "参考日期",
+      "决算的参考日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "决算的参考日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "UnloadingPointName",
+    "label": "卸货点",
+    "business_aliases": [
+      "卸货点"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "卸货点",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "ValidityDate",
+    "label": "",
+    "business_aliases": [],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurReqnAcctAssgmt",
+    "field_name": "WBSElement",
+    "label": "WBS 要素",
+    "business_aliases": [
+      "WBS 要素",
+      "工作分解结构要素（WBS 要素）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "工作分解结构要素（WBS 要素）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseReqnItemText",
+    "field_name": "ArchObjectNumber",
+    "label": "文本名",
+    "business_aliases": [
+      "文本名",
+      "名称"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "名称",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseReqnItemText",
+    "field_name": "DocumentText",
+    "label": "文本标识",
+    "business_aliases": [
+      "文本标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "文本标识",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseReqnItemText",
+    "field_name": "FixedIndicator",
+    "label": "固定",
+    "business_aliases": [
+      "固定",
+      "文本的固定标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "文本的固定标识",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseReqnItemText",
+    "field_name": "Language",
+    "label": "语言代码",
+    "business_aliases": [
+      "语言代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "语言代码",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseReqnItemText",
+    "field_name": "NoteDescription",
+    "label": "长文本",
+    "business_aliases": [
+      "长文本"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "长文本",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseReqnItemText",
+    "field_name": "PurchaseRequisition",
+    "label": "采购申请",
+    "business_aliases": [
+      "采购申请",
+      "采购申请编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购申请编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseReqnItemText",
+    "field_name": "PurchaseRequisitionItem",
+    "label": "请求的项目",
+    "business_aliases": [
+      "请求的项目",
+      "采购申请的项目编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购申请的项目编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseReqnItemText",
+    "field_name": "TechnicalObjectType",
+    "label": "文本对象",
+    "business_aliases": [
+      "文本对象",
+      "文本: 应用程序对象"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "文本: 应用程序对象",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionHeader",
+    "field_name": "PurReqnDescription",
+    "label": "采购申请描述",
+    "business_aliases": [
+      "采购申请描述"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购申请描述",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionHeader",
+    "field_name": "PurReqnDoOnlyValidation",
+    "label": "布尔变量（X = 真，- = 假，空格 = 未知）",
+    "business_aliases": [
+      "布尔变量（X = 真，- = 假，空格 = 未知）"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "布尔变量（X = 真，- = 假，空格 = 未知）",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionHeader",
+    "field_name": "PurchaseRequisition",
+    "label": "采购申请",
+    "business_aliases": [
+      "采购申请",
+      "采购申请编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购申请编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionHeader",
+    "field_name": "PurchaseRequisitionType",
+    "label": "凭证类型",
+    "business_aliases": [
+      "凭证类型",
+      "采购申请凭证类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购申请凭证类型",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionHeader",
+    "field_name": "SourceDetermination",
+    "label": "复选框",
+    "business_aliases": [
+      "复选框"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "复选框",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "AccountAssignmentCategory",
+    "label": "科目分配类别",
+    "business_aliases": [
+      "科目分配类别"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "科目分配类别",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "AddressID",
+    "label": "地址",
+    "business_aliases": [
+      "地址",
+      "采购凭证项目中的人工地址号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购凭证项目中的人工地址号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "BaseUnit",
+    "label": "计量单位",
+    "business_aliases": [
+      "计量单位",
+      "采购申请计量单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购申请计量单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "Batch",
+    "label": "批次",
+    "business_aliases": [
+      "批次",
+      "批次编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "批次编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "CompanyCode",
+    "label": "公司代码",
+    "business_aliases": [
+      "公司代码",
+      "外部系统的公司代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "外部系统的公司代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "ConsumptionPosting",
+    "label": "消耗",
+    "business_aliases": [
+      "消耗",
+      "消耗记帐"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "消耗记帐",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "CreatedByUser",
+    "label": "创建人",
+    "business_aliases": [
+      "创建人",
+      "负责创建对象的人员姓名"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "负责创建对象的人员姓名",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "CreationDate",
+    "label": "请求日期",
+    "business_aliases": [
+      "请求日期",
+      "需求 (请求) 日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "需求 (请求) 日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "DelivDateCategory",
+    "label": "交货日期种类",
+    "business_aliases": [
+      "交货日期种类",
+      "交货日的类别"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "交货日的类别",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "DeliveryAddressID",
+    "label": "地址",
+    "business_aliases": [
+      "地址"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "地址",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "DeliveryDate",
+    "label": "交货日期",
+    "business_aliases": [
+      "交货日期",
+      "项目交货日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "项目交货日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "ExpectedOverallLimitAmount",
+    "label": "期望值",
+    "business_aliases": [
+      "期望值",
+      "期望值的总体限制"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "期望值的总体限制",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "ExternalApprovalStatus",
+    "label": "外部处理状态",
+    "business_aliases": [
+      "外部处理状态"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "外部处理状态",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "FixedSupplier",
+    "label": "固定供应商",
+    "business_aliases": [
+      "固定供应商"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "固定供应商",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "GoodsReceiptIsExpected",
+    "label": "收货",
+    "business_aliases": [
+      "收货",
+      "收货标识"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "收货标识",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "GoodsReceiptIsNonValuated",
+    "label": "收货未评估",
+    "business_aliases": [
+      "收货未评估",
+      "收货，未评估"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "收货，未评估",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "InvoiceIsExpected",
+    "label": "发票收据",
+    "business_aliases": [
+      "发票收据",
+      "发票收据标识"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "发票收据标识",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "IsClosed",
+    "label": "已结算",
+    "business_aliases": [
+      "已结算",
+      "已结算的采购申请"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "已结算的采购申请",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "IsDeleted",
+    "label": "删除标识",
+    "business_aliases": [
+      "删除标识",
+      "采购凭证中的删除标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购凭证中的删除标识",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "IsOutline",
+    "label": "为概要",
+    "business_aliases": [
+      "为概要"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "为概要",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "IsPurReqnBlocked",
+    "label": "冻结标识",
+    "business_aliases": [
+      "冻结标识",
+      "已冻结采购申请"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "已冻结采购申请",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "ItemDeliveryAddressID",
+    "label": "地址",
+    "business_aliases": [
+      "地址",
+      "交货地址编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "交货地址编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "ItemNetAmount",
+    "label": "",
+    "business_aliases": [],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "Language",
+    "label": "语言代码",
+    "business_aliases": [
+      "语言代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "语言代码",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "LastChangeDateTime",
+    "label": "时戳",
+    "business_aliases": [
+      "时戳",
+      "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)"
+    ],
+    "data_type": "Edm.DateTimeOffset",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "MRPController",
+    "label": "MRP 控制员",
+    "business_aliases": [
+      "MRP 控制员"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "MRP 控制员",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "ManualDeliveryAddressID",
+    "label": "地址",
+    "business_aliases": [
+      "地址",
+      "采购凭证项目中的人工地址号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购凭证项目中的人工地址号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "Material",
+    "label": "物料",
+    "business_aliases": [
+      "物料",
+      "物料编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "MaterialGoodsReceiptDuration",
+    "label": "收货处理时间",
+    "business_aliases": [
+      "收货处理时间",
+      "以天计的收货处理时间"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "以天计的收货处理时间",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "MaterialGroup",
+    "label": "物料组",
+    "business_aliases": [
+      "物料组"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料组",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "MaterialPlannedDeliveryDurn",
+    "label": "计划交货时间",
+    "business_aliases": [
+      "计划交货时间",
+      "计划交货时间（天）"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "计划交货时间（天）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "MaterialRevisionLevel",
+    "label": "修订级别",
+    "business_aliases": [
+      "修订级别"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "修订级别",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "MinRemainingShelfLife",
+    "label": "最小剩余货架寿命",
+    "business_aliases": [
+      "最小剩余货架寿命",
+      "最短剩余货架寿命"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "最短剩余货架寿命",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "MultipleAcctAssgmtDistribution",
+    "label": "分配标识",
+    "business_aliases": [
+      "分配标识",
+      "多重科目分配的分配指示器"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "多重科目分配的分配指示器",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "OrderedQuantity",
+    "label": "订货数量",
+    "business_aliases": [
+      "订货数量",
+      "对应于此采购申请的订货数量"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "对应于此采购申请的订货数量",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "OverallLimitAmount",
+    "label": "总体限制",
+    "business_aliases": [
+      "总体限制"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "总体限制",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PerformancePeriodEndDate",
+    "label": "结束日期",
+    "business_aliases": [
+      "结束日期",
+      "执行期间结束日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "执行期间结束日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PerformancePeriodStartDate",
+    "label": "开始日期",
+    "business_aliases": [
+      "开始日期",
+      "执行期间开始日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "执行期间开始日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "Plant",
+    "label": "工厂",
+    "business_aliases": [
+      "工厂"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "工厂",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "ProcessingStatus",
+    "label": "处理状态",
+    "business_aliases": [
+      "处理状态",
+      "采购申请处理状态"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购申请处理状态",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "ProcmtHubBackendBusSyst",
+    "label": "连接的系统",
+    "business_aliases": [
+      "连接的系统"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "连接的系统",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "ProductCharacteristic1",
+    "label": "",
+    "business_aliases": [
+      "Characteristic Value for Colors of Variants"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Characteristic Value for Colors of Variants",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "ProductCharacteristic1Desc",
+    "label": "",
+    "business_aliases": [
+      "Characteristic value description"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Characteristic value description",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "ProductCharacteristic2",
+    "label": "",
+    "business_aliases": [
+      "Characteristic Value for Main Sizes of Variants"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Characteristic Value for Main Sizes of Variants",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "ProductCharacteristic2Desc",
+    "label": "",
+    "business_aliases": [
+      "Characteristic value description"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Characteristic value description",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "ProductCharacteristic3",
+    "label": "",
+    "business_aliases": [
+      "Characteristic Value for Second Size for Variants"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Characteristic Value for Second Size for Variants",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "ProductCharacteristic3Desc",
+    "label": "",
+    "business_aliases": [
+      "Characteristic value description"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Characteristic value description",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "ProductCollection",
+    "label": "",
+    "business_aliases": [
+      "Fashion Collection"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Fashion Collection",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "ProductTheme",
+    "label": "",
+    "business_aliases": [
+      "Fashion Theme"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Fashion Theme",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "ProductType",
+    "label": "产品类型组",
+    "business_aliases": [
+      "产品类型组"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "产品类型组",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurContractForOverallLimit",
+    "label": "限制合同",
+    "business_aliases": [
+      "限制合同",
+      "增强限制的采购合同"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "增强限制的采购合同",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurContractItemForOverallLimit",
+    "label": "限制的采购合同项目",
+    "business_aliases": [
+      "限制的采购合同项目",
+      "增强限制项目的采购合同参考项目"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "增强限制项目的采购合同参考项目",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurReqCreationDate",
+    "label": "请求日期",
+    "business_aliases": [
+      "请求日期",
+      "需求 (请求) 日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "需求 (请求) 日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurReqnExternalReference",
+    "label": "外部凭证",
+    "business_aliases": [
+      "外部凭证",
+      "外部凭证的凭证编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "外部凭证的凭证编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurReqnExternalSystemId",
+    "label": "外部系统标识",
+    "business_aliases": [
+      "外部系统标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "外部系统标识",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurReqnExternalSystemType",
+    "label": "外部系统类型",
+    "business_aliases": [
+      "外部系统类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "外部系统类型",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurReqnItemCurrency",
+    "label": "货币",
+    "business_aliases": [
+      "货币",
+      "货币码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "货币码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurReqnItemExternalReference",
+    "label": "外部项目",
+    "business_aliases": [
+      "外部项目",
+      "外部凭证的项目号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "外部凭证的项目号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurReqnOrigin",
+    "label": "建立标识",
+    "business_aliases": [
+      "建立标识",
+      "建立标识 (采购申请/计划行)"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "建立标识 (采购申请/计划行)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurReqnPriceQuantity",
+    "label": "价格单位",
+    "business_aliases": [
+      "价格单位"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "价格单位",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurReqnProcessingDateTime",
+    "label": "时间戳",
+    "business_aliases": [
+      "时间戳"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "时间戳",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurReqnProcessingType",
+    "label": "处理状态",
+    "business_aliases": [
+      "处理状态"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "处理状态",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurReqnReleaseStatus",
+    "label": "处理状态",
+    "business_aliases": [
+      "处理状态",
+      "申请处理状态"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "申请处理状态",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurReqnSSPAuthor",
+    "label": "作者",
+    "business_aliases": [
+      "作者",
+      "申请的作者"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "申请的作者",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurReqnSSPCatalog",
+    "label": "Web 服务标识",
+    "business_aliases": [
+      "Web 服务标识",
+      "Web 服务的技术代码（例如 - 类别）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Web 服务的技术代码（例如 - 类别）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurReqnSSPCatalogItem",
+    "label": "目录项目",
+    "business_aliases": [
+      "目录项目",
+      "目录项目标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "目录项目标识",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurReqnSSPCrossCatalogItem",
+    "label": "目录项目键值",
+    "business_aliases": [
+      "目录项目键值"
+    ],
+    "data_type": "Edm.Int32",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "目录项目键值",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurReqnSSPRequestor",
+    "label": "请求者",
+    "business_aliases": [
+      "请求者"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "请求者",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurReqnSourceOfSupplyType",
+    "label": "采购凭证类别",
+    "business_aliases": [
+      "采购凭证类别"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购凭证类别",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurReqnTypeExternalReference",
+    "label": "外部凭证类型",
+    "business_aliases": [
+      "外部凭证类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "外部凭证类型",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurchaseContract",
+    "label": "框架协议",
+    "business_aliases": [
+      "框架协议",
+      "重要的采购协议号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "重要的采购协议号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurchaseContractItem",
+    "label": "协议项目",
+    "business_aliases": [
+      "协议项目",
+      "主采购协议的项目编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "主采购协议的项目编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurchaseOrderPriceType",
+    "label": "采购订单价格",
+    "business_aliases": [
+      "采购订单价格",
+      "使用采购订单中的申请价格"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "使用采购订单中的申请价格",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurchaseRequisition",
+    "label": "采购申请",
+    "business_aliases": [
+      "采购申请",
+      "采购申请编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购申请编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurchaseRequisitionIsFixed",
+    "label": "\"固定\"标识",
+    "business_aliases": [
+      "\"固定\"标识",
+      "采购申请是固定的"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购申请是固定的",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurchaseRequisitionItem",
+    "label": "申请项目",
+    "business_aliases": [
+      "申请项目",
+      "采购申请的项目编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购申请的项目编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurchaseRequisitionItemText",
+    "label": "短文本",
+    "business_aliases": [
+      "短文本"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "短文本",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurchaseRequisitionPrice",
+    "label": "评价价格",
+    "business_aliases": [
+      "评价价格",
+      "采购申请中的价格"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购申请中的价格",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurchaseRequisitionReleaseDate",
+    "label": "批准日期",
+    "business_aliases": [
+      "批准日期",
+      "采购申请批准日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购申请批准日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurchaseRequisitionStatus",
+    "label": "发布状态",
+    "business_aliases": [
+      "发布状态"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "发布状态",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurchaseRequisitionType",
+    "label": "凭证类型",
+    "business_aliases": [
+      "凭证类型",
+      "采购申请凭证类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购申请凭证类型",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurchasingDocument",
+    "label": "采购订单",
+    "business_aliases": [
+      "采购订单",
+      "采购订单号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购订单号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurchasingDocumentCategory",
+    "label": "采购凭证类别",
+    "business_aliases": [
+      "采购凭证类别"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购凭证类别",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurchasingDocumentItem",
+    "label": "采购订单项目",
+    "business_aliases": [
+      "采购订单项目",
+      "采购订单项目号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购订单项目号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurchasingDocumentItemCategory",
+    "label": "项目类别",
+    "business_aliases": [
+      "项目类别",
+      "采购凭证中的项目类别"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购凭证中的项目类别",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurchasingDocumentSubtype",
+    "label": "控制标识符",
+    "business_aliases": [
+      "控制标识符",
+      "采购凭证类型的控制标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购凭证类型的控制标识",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurchasingGroup",
+    "label": "采购组",
+    "business_aliases": [
+      "采购组"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购组",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurchasingInfoRecord",
+    "label": "采购信息记录",
+    "business_aliases": [
+      "采购信息记录",
+      "采购信息记录号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购信息记录号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurchasingOrganization",
+    "label": "采购组织",
+    "business_aliases": [
+      "采购组织"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购组织",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurchasingParentItem",
+    "label": "父项目编号",
+    "business_aliases": [
+      "父项目编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "父项目编号",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurgConfigurableItemNumber",
+    "label": "层次结构编号",
+    "business_aliases": [
+      "层次结构编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "层次结构编号",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "PurgExternalSortNumber",
+    "label": "外部排序编号",
+    "business_aliases": [
+      "外部排序编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "外部排序编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "ReleaseCode",
+    "label": "批准标识",
+    "business_aliases": [
+      "批准标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "批准标识",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "ReleaseIsNotCompleted",
+    "label": "需要审批",
+    "business_aliases": [
+      "需要审批",
+      "审批尚未完全生效"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "审批尚未完全生效",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "ReleaseStrategy",
+    "label": "审批策略",
+    "business_aliases": [
+      "审批策略",
+      "采购请求中的批准策略"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购请求中的批准策略",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "RequestedQuantity",
+    "label": "申请数量",
+    "business_aliases": [
+      "申请数量",
+      "采购申请数量"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购申请数量",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "RequirementSegment",
+    "label": "需求细分",
+    "business_aliases": [
+      "需求细分"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "需求细分",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "RequirementTracking",
+    "label": "需求跟踪编号",
+    "business_aliases": [
+      "需求跟踪编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "需求跟踪编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "RequisitionerName",
+    "label": "申请人",
+    "business_aliases": [
+      "申请人",
+      "申请人姓名"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "申请人姓名",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "Reservation",
+    "label": "预留",
+    "business_aliases": [
+      "预留",
+      "预留/相关需求的编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "预留/相关需求的编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "SSPAuthorExternalBPIdnNumber",
+    "label": "作者的业务伙伴标识",
+    "business_aliases": [
+      "作者的业务伙伴标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "作者的业务伙伴标识",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "SSPReqrUserId",
+    "label": "请求者用户标识",
+    "business_aliases": [
+      "请求者用户标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "请求者用户标识",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "ServicePerformer",
+    "label": "服务执行者",
+    "business_aliases": [
+      "服务执行者"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "服务执行者",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "SourceOfSupplyIsAssigned",
+    "label": "已分配",
+    "business_aliases": [
+      "已分配",
+      "已分配的货源"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "已分配的货源",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "StockSegment",
+    "label": "库存细分",
+    "business_aliases": [
+      "库存细分"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "库存细分",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "StorageLocation",
+    "label": "存储地点",
+    "business_aliases": [
+      "存储地点"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "存储地点",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "Supplier",
+    "label": "所需供应商",
+    "business_aliases": [
+      "所需供应商"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "所需供应商",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "SupplierMaterialNumber",
+    "label": "供应商物料编号",
+    "business_aliases": [
+      "供应商物料编号",
+      "供应商使用的物料编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "供应商使用的物料编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "SupplyingPlant",
+    "label": "供货工厂",
+    "business_aliases": [
+      "供货工厂",
+      "转储单的供应(发出)工厂"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "转储单的供应(发出)工厂",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "entity_set": "A_PurchaseRequisitionItem",
+    "field_name": "TaxCode",
+    "label": "税码",
+    "business_aliases": [
+      "税码",
+      "销售/购买税代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售/购买税代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  }
+]

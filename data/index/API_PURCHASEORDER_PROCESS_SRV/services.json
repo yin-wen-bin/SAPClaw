@@ -1,0 +1,30 @@
+[
+  {
+    "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV",
+    "description": "The service enables you to create purchase orders through an API call from a source system outside SAP S/4HANA. Furthermore, you can use the service to update, and delete existing purchase orders from the SAP S/4HANA system. The service contains header, item, account assignment, schedule line (including subcontracting), and pricing nodes. It is based on the OData Protocol and the information is sent in the request as a payload.",
+    "entity_sets": [
+      "A_POSubcontractingComponent",
+      "A_PurOrdAccountAssignment",
+      "A_PurOrdPricingElement",
+      "A_PurchaseOrder",
+      "A_PurchaseOrderItem",
+      "A_PurchaseOrderItemNote",
+      "A_PurchaseOrderNote",
+      "A_PurchaseOrderScheduleLine"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/ac/d2da57df6cc525e10000000a4450e5/frameset.htm",
+    "openapi_version": "1.0.0"
+  }
+]

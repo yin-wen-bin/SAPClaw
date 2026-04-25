@@ -2145,7 +2145,7 @@
             "format": "decimal",
             "x-sap-precision": 31,
             "x-sap-scale": 14,
-            "multipleOf": 1.0e-14,
+            "multipleOf": 1e-14,
             "example": "0"
           },
           "to_MaterialSerialNumber": {
@@ -2252,7 +2252,7 @@
             "format": "decimal",
             "x-sap-precision": 31,
             "x-sap-scale": 14,
-            "multipleOf": 1.0e-14,
+            "multipleOf": 1e-14,
             "example": "0"
           },
           "to_MaterialSerialNumber": {
@@ -2307,7 +2307,7 @@
             "format": "decimal",
             "x-sap-precision": 31,
             "x-sap-scale": 14,
-            "multipleOf": 1.0e-14,
+            "multipleOf": 1e-14,
             "example": "0"
           }
         },

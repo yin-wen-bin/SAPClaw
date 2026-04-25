@@ -1,0 +1,6199 @@
+[
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "AdditionalValueDays",
+    "label": "附加起息日",
+    "business_aliases": [
+      "附加起息日"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "附加起息日",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "BaseUnit",
+    "label": "基本计量单位",
+    "business_aliases": [
+      "基本计量单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "基本计量单位",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "CndnMaxNumberOfSalesOrders",
+    "label": "最大订单次数",
+    "business_aliases": [
+      "最大订单次数",
+      "每一条件记录销售订单最大数"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "每一条件记录销售订单最大数",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "ConditionAlternativeCurrency",
+    "label": "条件货币",
+    "business_aliases": [
+      "条件货币",
+      "条件货币（针对累计字段）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件货币（针对累计字段）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "ConditionApplication",
+    "label": "应用程序",
+    "business_aliases": [
+      "应用程序"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "应用程序",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "ConditionCalculationType",
+    "label": "计算类型",
+    "business_aliases": [
+      "计算类型",
+      "条件的计算类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件的计算类型",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "ConditionCurrency",
+    "label": "条件货币",
+    "business_aliases": [
+      "条件货币",
+      "条件单位（货币或百分比）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件单位（货币或百分比）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "ConditionExclusion",
+    "label": "排除",
+    "business_aliases": [
+      "排除",
+      "条件排除指示符"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件排除指示符",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "ConditionIsDeleted",
+    "label": "删除标识",
+    "business_aliases": [
+      "删除标识",
+      "条件记录的删除标识"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件记录的删除标识",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "ConditionLowerLimit",
+    "label": "下限",
+    "business_aliases": [
+      "下限",
+      "条件比率/金额的下限"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件比率/金额的下限",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "ConditionQuantity",
+    "label": "定价单位",
+    "business_aliases": [
+      "定价单位",
+      "条件定价单位"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件定价单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "ConditionQuantityUnit",
+    "label": "计量单位",
+    "business_aliases": [
+      "计量单位",
+      "条件单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "ConditionRateAmount",
+    "label": "金额",
+    "business_aliases": [
+      "金额",
+      "条件金额或百分比"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件金额或百分比",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "ConditionRateRatio",
+    "label": "比率",
+    "business_aliases": [
+      "比率",
+      "条件比率（以百分率或千分率为单位）"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件比率（以百分率或千分率为单位）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "ConditionRateRatioUnit",
+    "label": "计量单位",
+    "business_aliases": [
+      "计量单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "计量单位",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "ConditionRateValue",
+    "label": "条件金额",
+    "business_aliases": [
+      "条件金额",
+      "不存在等级的条件金额或百分比"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "不存在等级的条件金额或百分比",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "ConditionRateValueUnit",
+    "label": "条件货币",
+    "business_aliases": [
+      "条件货币",
+      "条件单位（货币或百分比）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件单位（货币或百分比）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "ConditionRecord",
+    "label": "条件记录编号",
+    "business_aliases": [
+      "条件记录编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件记录编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "ConditionReleaseStatus",
+    "label": "批准状态",
+    "business_aliases": [
+      "批准状态"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "批准状态",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "ConditionScaleAmount",
+    "label": "等级值",
+    "business_aliases": [
+      "等级值"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "等级值",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "ConditionScaleAmountCurrency",
+    "label": "等级货币",
+    "business_aliases": [
+      "等级货币"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "等级货币",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "ConditionScaleQuantity",
+    "label": "等级数量",
+    "business_aliases": [
+      "等级数量",
+      "条件等级数量"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件等级数量",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "ConditionScaleQuantityUnit",
+    "label": "等级计量单位",
+    "business_aliases": [
+      "等级计量单位",
+      "条件等级计量单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件等级计量单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "ConditionSequentialNumber",
+    "label": "条件序号",
+    "business_aliases": [
+      "条件序号",
+      "条件的序列号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件的序列号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "ConditionTextID",
+    "label": "文本号",
+    "business_aliases": [
+      "文本号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "文本号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "ConditionToBaseQtyDnmntr",
+    "label": "转换的分母",
+    "business_aliases": [
+      "转换的分母",
+      "从定价单位到基本单位转换的分母"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "从定价单位到基本单位转换的分母",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "ConditionToBaseQtyNmrtr",
+    "label": "转换的分子",
+    "business_aliases": [
+      "转换的分子",
+      "从条件单位到基准单位转换的分子"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "从条件单位到基准单位转换的分子",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "ConditionType",
+    "label": "条件类型",
+    "business_aliases": [
+      "条件类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件类型",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "ConditionUpperLimit",
+    "label": "上限",
+    "business_aliases": [
+      "上限",
+      "条件率金额上限"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件率金额上限",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "ConditionValidityEndDate",
+    "label": "有效期至",
+    "business_aliases": [
+      "有效期至",
+      "有效期至日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "有效期至日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "ConditionValidityStartDate",
+    "label": "有效期自",
+    "business_aliases": [
+      "有效期自",
+      "开始生效日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "开始生效日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "CreatedByUser",
+    "label": "创建人",
+    "business_aliases": [
+      "创建人",
+      "负责创建对象的人员姓名"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "负责创建对象的人员姓名",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "CreationDate",
+    "label": "创建日期",
+    "business_aliases": [
+      "创建日期",
+      "记录创建日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "记录创建日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "FixedValueDate",
+    "label": "固定起息日",
+    "business_aliases": [
+      "固定起息日"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "固定起息日",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "IncrementalScale",
+    "label": "增量等级",
+    "business_aliases": [
+      "增量等级",
+      "递增等级编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "递增等级编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "MaximumConditionAmount",
+    "label": "最大条件值",
+    "business_aliases": [
+      "最大条件值"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "最大条件值",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "MaximumConditionBasisValue",
+    "label": "最大条件基值",
+    "business_aliases": [
+      "最大条件基值"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "最大条件基值",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "MinimumConditionBasisValue",
+    "label": "最小条件基值",
+    "business_aliases": [
+      "最小条件基值"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "最小条件基值",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "PaymentTerms",
+    "label": "付款条件",
+    "business_aliases": [
+      "付款条件",
+      "付款条件代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "付款条件代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "PricingScaleBasis",
+    "label": "等级基础类型",
+    "business_aliases": [
+      "等级基础类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "等级基础类型",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "PricingScaleLine",
+    "label": "定价范围",
+    "business_aliases": [
+      "定价范围",
+      "定价的等级编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "定价的等级编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndn",
+    "field_name": "PricingScaleType",
+    "label": "等级类型",
+    "business_aliases": [
+      "等级类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "等级类型",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndnScale",
+    "field_name": "ConditionCurrency",
+    "label": "条件货币",
+    "business_aliases": [
+      "条件货币",
+      "条件单位（货币或百分比）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件单位（货币或百分比）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndnScale",
+    "field_name": "ConditionRateAmount",
+    "label": "金额",
+    "business_aliases": [
+      "金额",
+      "条件金额或百分比"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件金额或百分比",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndnScale",
+    "field_name": "ConditionRateRatio",
+    "label": "比率",
+    "business_aliases": [
+      "比率",
+      "条件比率（以百分率或千分率为单位）"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件比率（以百分率或千分率为单位）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndnScale",
+    "field_name": "ConditionRateRatioUnit",
+    "label": "计量单位",
+    "business_aliases": [
+      "计量单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "计量单位",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndnScale",
+    "field_name": "ConditionRateValue",
+    "label": "金额",
+    "business_aliases": [
+      "金额",
+      "条件金额或百分比"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件金额或百分比",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndnScale",
+    "field_name": "ConditionRateValueUnit",
+    "label": "条件货币",
+    "business_aliases": [
+      "条件货币",
+      "条件单位（货币或百分比）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件单位（货币或百分比）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndnScale",
+    "field_name": "ConditionRecord",
+    "label": "条件记录编号",
+    "business_aliases": [
+      "条件记录编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件记录编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndnScale",
+    "field_name": "ConditionScaleAmount",
+    "label": "等级值",
+    "business_aliases": [
+      "等级值"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "等级值",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndnScale",
+    "field_name": "ConditionScaleAmountCurrency",
+    "label": "等级货币",
+    "business_aliases": [
+      "等级货币"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "等级货币",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndnScale",
+    "field_name": "ConditionScaleIsDeleted",
+    "label": "删除标识",
+    "business_aliases": [
+      "删除标识",
+      "条件记录的删除标识"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件记录的删除标识",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndnScale",
+    "field_name": "ConditionScaleLine",
+    "label": "行号",
+    "business_aliases": [
+      "行号",
+      "行等级的当前号码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "行等级的当前号码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndnScale",
+    "field_name": "ConditionScaleQuantity",
+    "label": "等级数量",
+    "business_aliases": [
+      "等级数量",
+      "条件等级数量"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件等级数量",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndnScale",
+    "field_name": "ConditionScaleQuantityUnit",
+    "label": "等级计量单位",
+    "business_aliases": [
+      "等级计量单位",
+      "条件等级计量单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件等级计量单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndnScale",
+    "field_name": "ConditionSequentialNumber",
+    "label": "条件序号",
+    "business_aliases": [
+      "条件序号",
+      "条件的序列号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件的序列号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndnValidity",
+    "field_name": "ConditionApplication",
+    "label": "应用程序",
+    "business_aliases": [
+      "应用程序"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "应用程序",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndnValidity",
+    "field_name": "ConditionRecord",
+    "label": "条件记录编号",
+    "business_aliases": [
+      "条件记录编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件记录编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndnValidity",
+    "field_name": "ConditionType",
+    "label": "条件类型",
+    "business_aliases": [
+      "条件类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件类型",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndnValidity",
+    "field_name": "ConditionValidityEndDate",
+    "label": "有效期至",
+    "business_aliases": [
+      "有效期至",
+      "条件记录有效截止日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件记录有效截止日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndnValidity",
+    "field_name": "ConditionValidityStartDate",
+    "label": "有效期自",
+    "business_aliases": [
+      "有效期自",
+      "条件记录有效起始日"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件记录有效起始日",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndnValidity",
+    "field_name": "Material",
+    "label": "物料",
+    "business_aliases": [
+      "物料",
+      "物料编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndnValidity",
+    "field_name": "MaterialGroup",
+    "label": "物料组",
+    "business_aliases": [
+      "物料组"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料组",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndnValidity",
+    "field_name": "Plant",
+    "label": "工厂",
+    "business_aliases": [
+      "工厂"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "工厂",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndnValidity",
+    "field_name": "PurchasingInfoRecord",
+    "label": "采购信息记录",
+    "business_aliases": [
+      "采购信息记录",
+      "采购信息记录号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购信息记录号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndnValidity",
+    "field_name": "PurchasingInfoRecordCategory",
+    "label": "信息记录类别",
+    "business_aliases": [
+      "信息记录类别",
+      "采购信息记录分类"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购信息记录分类",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndnValidity",
+    "field_name": "PurchasingOrganization",
+    "label": "采购组织",
+    "business_aliases": [
+      "采购组织"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购组织",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndnValidity",
+    "field_name": "PurgDocOrderQuantityUnit",
+    "label": "订单单位",
+    "business_aliases": [
+      "订单单位",
+      "采购订单计量单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购订单计量单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdPrcgCndnValidity",
+    "field_name": "Supplier",
+    "label": "供应商",
+    "business_aliases": [
+      "供应商",
+      "供应商科目编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "供应商科目编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "AdditionalValueDays",
+    "label": "附加起息日",
+    "business_aliases": [
+      "附加起息日"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "附加起息日",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "BaseUnit",
+    "label": "基本计量单位",
+    "business_aliases": [
+      "基本计量单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "基本计量单位",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "CndnMaxNumberOfSalesOrders",
+    "label": "最大订单次数",
+    "business_aliases": [
+      "最大订单次数",
+      "每一条件记录销售订单最大数"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "每一条件记录销售订单最大数",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "ConditionAlternativeCurrency",
+    "label": "条件货币",
+    "business_aliases": [
+      "条件货币",
+      "条件货币（针对累计字段）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件货币（针对累计字段）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "ConditionApplication",
+    "label": "应用程序",
+    "business_aliases": [
+      "应用程序"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "应用程序",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "ConditionCalculationType",
+    "label": "计算类型",
+    "business_aliases": [
+      "计算类型",
+      "条件的计算类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件的计算类型",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "ConditionCurrency",
+    "label": "条件货币",
+    "business_aliases": [
+      "条件货币",
+      "条件单位（货币或百分比）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件单位（货币或百分比）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "ConditionExclusion",
+    "label": "排除",
+    "business_aliases": [
+      "排除",
+      "条件排除指示符"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件排除指示符",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "ConditionIsDeleted",
+    "label": "删除标识",
+    "business_aliases": [
+      "删除标识",
+      "条件记录的删除标识"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件记录的删除标识",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "ConditionLowerLimit",
+    "label": "下限",
+    "business_aliases": [
+      "下限",
+      "条件比率/金额的下限"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件比率/金额的下限",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "ConditionQuantity",
+    "label": "定价单位",
+    "business_aliases": [
+      "定价单位",
+      "条件定价单位"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件定价单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "ConditionQuantityUnit",
+    "label": "计量单位",
+    "business_aliases": [
+      "计量单位",
+      "条件单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "ConditionRateAmount",
+    "label": "金额",
+    "business_aliases": [
+      "金额",
+      "条件金额或百分比"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件金额或百分比",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "ConditionRateRatio",
+    "label": "比率",
+    "business_aliases": [
+      "比率",
+      "条件比率（以百分率或千分率为单位）"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件比率（以百分率或千分率为单位）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "ConditionRateRatioUnit",
+    "label": "计量单位",
+    "business_aliases": [
+      "计量单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "计量单位",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "ConditionRateValue",
+    "label": "条件金额",
+    "business_aliases": [
+      "条件金额",
+      "不存在等级的条件金额或百分比"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "不存在等级的条件金额或百分比",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "ConditionRateValueUnit",
+    "label": "条件货币",
+    "business_aliases": [
+      "条件货币",
+      "条件单位（货币或百分比）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件单位（货币或百分比）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "ConditionRecord",
+    "label": "条件记录编号",
+    "business_aliases": [
+      "条件记录编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件记录编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "ConditionReleaseStatus",
+    "label": "批准状态",
+    "business_aliases": [
+      "批准状态"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "批准状态",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "ConditionScaleAmount",
+    "label": "等级值",
+    "business_aliases": [
+      "等级值"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "等级值",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "ConditionScaleAmountCurrency",
+    "label": "等级货币",
+    "business_aliases": [
+      "等级货币"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "等级货币",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "ConditionScaleQuantity",
+    "label": "等级数量",
+    "business_aliases": [
+      "等级数量",
+      "条件等级数量"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件等级数量",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "ConditionScaleQuantityUnit",
+    "label": "等级计量单位",
+    "business_aliases": [
+      "等级计量单位",
+      "条件等级计量单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件等级计量单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "ConditionSequentialNumber",
+    "label": "条件序号",
+    "business_aliases": [
+      "条件序号",
+      "条件的序列号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件的序列号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "ConditionTextID",
+    "label": "文本号",
+    "business_aliases": [
+      "文本号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "文本号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "ConditionToBaseQtyDnmntr",
+    "label": "转换的分母",
+    "business_aliases": [
+      "转换的分母",
+      "从定价单位到基本单位转换的分母"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "从定价单位到基本单位转换的分母",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "ConditionToBaseQtyNmrtr",
+    "label": "转换的分子",
+    "business_aliases": [
+      "转换的分子",
+      "从条件单位到基准单位转换的分子"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "从条件单位到基准单位转换的分子",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "ConditionType",
+    "label": "条件类型",
+    "business_aliases": [
+      "条件类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件类型",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "ConditionUpperLimit",
+    "label": "上限",
+    "business_aliases": [
+      "上限",
+      "条件率金额上限"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件率金额上限",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "ConditionValidityEndDate",
+    "label": "有效期至",
+    "business_aliases": [
+      "有效期至",
+      "有效期至日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "有效期至日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "ConditionValidityStartDate",
+    "label": "有效期自",
+    "business_aliases": [
+      "有效期自",
+      "开始生效日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "开始生效日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "CreatedByUser",
+    "label": "创建人",
+    "business_aliases": [
+      "创建人",
+      "负责创建对象的人员姓名"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "负责创建对象的人员姓名",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "CreationDate",
+    "label": "创建日期",
+    "business_aliases": [
+      "创建日期",
+      "记录创建日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "记录创建日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "FixedValueDate",
+    "label": "固定起息日",
+    "business_aliases": [
+      "固定起息日"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "固定起息日",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "IncrementalScale",
+    "label": "增量等级",
+    "business_aliases": [
+      "增量等级",
+      "递增等级编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "递增等级编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "MaximumConditionAmount",
+    "label": "最大条件值",
+    "business_aliases": [
+      "最大条件值"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "最大条件值",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "MaximumConditionBasisValue",
+    "label": "最大条件基值",
+    "business_aliases": [
+      "最大条件基值"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "最大条件基值",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "MinimumConditionBasisValue",
+    "label": "最小条件基值",
+    "business_aliases": [
+      "最小条件基值"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "最小条件基值",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "PaymentTerms",
+    "label": "付款条件",
+    "business_aliases": [
+      "付款条件",
+      "付款条件代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "付款条件代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "PricingScaleBasis",
+    "label": "等级基础类型",
+    "business_aliases": [
+      "等级基础类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "等级基础类型",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "PricingScaleLine",
+    "label": "定价范围",
+    "business_aliases": [
+      "定价范围",
+      "定价的等级编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "定价的等级编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "field_name": "PricingScaleType",
+    "label": "等级类型",
+    "business_aliases": [
+      "等级类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "等级类型",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "AvailabilityEndDate",
+    "label": "可使用终止时间",
+    "business_aliases": [
+      "可使用终止时间",
+      "可用(可供货的)截至日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "可用(可供货的)截至日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "AvailabilityStartDate",
+    "label": "可使用起始时间",
+    "business_aliases": [
+      "可使用起始时间",
+      "可用（可供货的）开始日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "可用（可供货的）开始日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "BaseUnit",
+    "label": "基本计量单位",
+    "business_aliases": [
+      "基本计量单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "基本计量单位",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "CreationDate",
+    "label": "创建日期",
+    "business_aliases": [
+      "创建日期",
+      "记录创建日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "记录创建日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "IsDeleted",
+    "label": "完整信息记录",
+    "business_aliases": [
+      "完整信息记录",
+      "采购信息：标记为删除的一般数据"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购信息：标记为删除的一般数据",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "IsEndOfPurposeBlocked",
+    "label": "业务目的已完成",
+    "business_aliases": [
+      "业务目的已完成"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "业务目的已完成",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "IsRegularSupplier",
+    "label": "常规供应商",
+    "business_aliases": [
+      "常规供应商"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "常规供应商",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "LastChangeDateTime",
+    "label": "时戳",
+    "business_aliases": [
+      "时戳",
+      "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)"
+    ],
+    "data_type": "Edm.DateTimeOffset",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "Manufacturer",
+    "label": "制造商",
+    "business_aliases": [
+      "制造商"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "制造商",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "Material",
+    "label": "物料",
+    "business_aliases": [
+      "物料",
+      "物料编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "MaterialGroup",
+    "label": "物料组",
+    "business_aliases": [
+      "物料组"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料组",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "NoDaysReminder1",
+    "label": "第一次提醒/催询",
+    "business_aliases": [
+      "第一次提醒/催询",
+      "第一次提醒/催询的天数"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "第一次提醒/催询的天数",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "NoDaysReminder2",
+    "label": "第二次提醒/催询",
+    "business_aliases": [
+      "第二次提醒/催询",
+      "第二次提醒/催询的天数"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "第二次提醒/催询的天数",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "NoDaysReminder3",
+    "label": "第三次提醒/催询",
+    "business_aliases": [
+      "第三次提醒/催询",
+      "第三次提醒/催询的天数"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "第三次提醒/催询的天数",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "OrderItemQtyToBaseQtyDnmntr",
+    "label": "分母",
+    "business_aliases": [
+      "分母",
+      "订单单位到基本单位转换的分母"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "订单单位到基本单位转换的分母",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "OrderItemQtyToBaseQtyNmrtr",
+    "label": "等于",
+    "business_aliases": [
+      "等于",
+      "有关订货价格单位转换为基本单位的分子"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "有关订货价格单位转换为基本单位的分子",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "PriorSupplier",
+    "label": "先前供应商",
+    "business_aliases": [
+      "先前供应商"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "先前供应商",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "ProductPurchasePointsQty",
+    "label": "点数",
+    "business_aliases": [
+      "点数"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "点数",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "ProductPurchasePointsQtyUnit",
+    "label": "点单位",
+    "business_aliases": [
+      "点单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "点单位",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "PurchasingInfoRecord",
+    "label": "采购信息记录",
+    "business_aliases": [
+      "采购信息记录",
+      "采购信息记录号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购信息记录号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "PurchasingInfoRecordDesc",
+    "label": "信息短文本",
+    "business_aliases": [
+      "信息短文本",
+      "采购信息记录的短文本"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购信息记录的短文本",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "PurgDocOrderQuantityUnit",
+    "label": "订单单位",
+    "business_aliases": [
+      "订单单位",
+      "采购订单计量单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购订单计量单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "PurgInfoRecNonStockItmSortTerm",
+    "label": "排序字符串",
+    "business_aliases": [
+      "排序字符串",
+      "无库存信息记录的排序字符串"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "无库存信息记录的排序字符串",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "Supplier",
+    "label": "供应商",
+    "business_aliases": [
+      "供应商",
+      "供应商科目编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "供应商科目编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "SupplierMaterialGroup",
+    "label": "供应商物料组",
+    "business_aliases": [
+      "供应商物料组"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "供应商物料组",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "SupplierMaterialNumber",
+    "label": "供应商物料编号",
+    "business_aliases": [
+      "供应商物料编号",
+      "供应商使用的物料编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "供应商使用的物料编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "SupplierPhoneNumber",
+    "label": "电话",
+    "business_aliases": [
+      "电话",
+      "供应商电话号码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "供应商电话号码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "SupplierRespSalesPersonName",
+    "label": "销售员",
+    "business_aliases": [
+      "销售员",
+      "发生质疑事件时的责任销售员"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "发生质疑事件时的责任销售员",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "SupplierSubrange",
+    "label": "供应商子范围",
+    "business_aliases": [
+      "供应商子范围"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "供应商子范围",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "SupplierSubrangeSortNumber",
+    "label": "SSR 排序序号",
+    "business_aliases": [
+      "SSR 排序序号",
+      "排序序号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "排序序号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurchasingInfoRecord",
+    "field_name": "VarblPurOrdUnitIsActive",
+    "label": "变量订单单位",
+    "business_aliases": [
+      "变量订单单位",
+      "已激活变量采购订单单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "已激活变量采购订单单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPOText",
+    "field_name": "ArchObjectNumber",
+    "label": "文本名",
+    "business_aliases": [
+      "文本名",
+      "名称"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "名称",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPOText",
+    "field_name": "DocumentText",
+    "label": "文本标识",
+    "business_aliases": [
+      "文本标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "文本标识",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPOText",
+    "field_name": "Language",
+    "label": "语言代码",
+    "business_aliases": [
+      "语言代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "语言代码",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPOText",
+    "field_name": "NoteDescription",
+    "label": "长文本",
+    "business_aliases": [
+      "长文本"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "长文本",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPOText",
+    "field_name": "Plant",
+    "label": "工厂",
+    "business_aliases": [
+      "工厂"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "工厂",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPOText",
+    "field_name": "PurchasingInfoRecord",
+    "label": "采购信息记录",
+    "business_aliases": [
+      "采购信息记录",
+      "采购信息记录号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购信息记录号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPOText",
+    "field_name": "PurchasingInfoRecordCategory",
+    "label": "信息记录类别",
+    "business_aliases": [
+      "信息记录类别",
+      "采购信息记录分类"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购信息记录分类",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPOText",
+    "field_name": "PurchasingOrganization",
+    "label": "采购组织",
+    "business_aliases": [
+      "采购组织"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购组织",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPOText",
+    "field_name": "TechnicalObjectType",
+    "label": "文本对象",
+    "business_aliases": [
+      "文本对象",
+      "文本: 应用程序对象"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "文本: 应用程序对象",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "CreatedByUser",
+    "label": "创建人",
+    "business_aliases": [
+      "创建人",
+      "负责创建对象的人员姓名"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "负责创建对象的人员姓名",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "CreationDate",
+    "label": "创建日期",
+    "business_aliases": [
+      "创建日期",
+      "记录创建日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "记录创建日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "Currency",
+    "label": "货币",
+    "business_aliases": [
+      "货币",
+      "货币码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "货币码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "IncotermsClassification",
+    "label": "国际贸易条款",
+    "business_aliases": [
+      "国际贸易条款",
+      "国际贸易条款（第 1 部分）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "国际贸易条款（第 1 部分）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "IncotermsLocation1",
+    "label": "国际贸易条款位置 1",
+    "business_aliases": [
+      "国际贸易条款位置 1"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "国际贸易条款位置 1",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "IncotermsTransferLocation",
+    "label": "国际贸易条款(部分2)",
+    "business_aliases": [
+      "国际贸易条款(部分2)",
+      "国际贸易条款（第 2 部分）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "国际贸易条款（第 2 部分）",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "InvoiceIsGoodsReceiptBased",
+    "label": "基于收货的发票验证",
+    "business_aliases": [
+      "基于收货的发票验证",
+      "标识：基于收货的发票验证"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "标识：基于收货的发票验证",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "IsCashDiscountGranted",
+    "label": "没有现金折扣",
+    "business_aliases": [
+      "没有现金折扣",
+      "项目不允许现金折扣"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "项目不允许现金折扣",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "IsEndOfPurposeBlocked",
+    "label": "业务目的已完成",
+    "business_aliases": [
+      "业务目的已完成"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "业务目的已完成",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "IsEvaluatedRcptSettlmtAllowed",
+    "label": "没有ERS",
+    "business_aliases": [
+      "没有ERS",
+      "没有评估收据结算 (ERS)"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "没有评估收据结算 (ERS)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "IsMarkedForDeletion",
+    "label": "采购组织数据",
+    "business_aliases": [
+      "采购组织数据",
+      "采购信息: 组织数据标记为删除"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购信息: 组织数据标记为删除",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "IsOrderAcknRqd",
+    "label": "需要确认",
+    "business_aliases": [
+      "需要确认",
+      "供应商需要确认订单"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "供应商需要确认订单",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "IsPurOrderAllwdForInbDeliv",
+    "label": "交货的新采购订单",
+    "business_aliases": [
+      "交货的新采购订单",
+      "不使用参考创建交货的采购订单"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "不使用参考创建交货的采购订单",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "IsRelevantForAutomSrcg",
+    "label": "自动货源确定",
+    "business_aliases": [
+      "自动货源确定",
+      "与自动货源确定相关"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "与自动货源确定相关",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "IsRetMatlAuthznRqdBySupplier",
+    "label": "需供应商退货物料权限",
+    "business_aliases": [
+      "需供应商退货物料权限",
+      "需要供应商退回物料权限编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "需要供应商退回物料权限编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "LastReferencingPurOrderItem",
+    "label": "项目",
+    "business_aliases": [
+      "项目",
+      "采购凭证的项目编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购凭证的项目编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "LastReferencingPurchaseOrder",
+    "label": "采购凭证",
+    "business_aliases": [
+      "采购凭证",
+      "采购凭证编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购凭证编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "Material",
+    "label": "物料",
+    "business_aliases": [
+      "物料",
+      "物料编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "MaterialConditionGroup",
+    "label": "条件组",
+    "business_aliases": [
+      "条件组",
+      "供应商的条件组"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "供应商的条件组",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "MaterialGroup",
+    "label": "物料组",
+    "business_aliases": [
+      "物料组"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料组",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "MaterialPlannedDeliveryDurn",
+    "label": "计划交货时间",
+    "business_aliases": [
+      "计划交货时间",
+      "计划交货时间（天）"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "计划交货时间（天）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "MaterialPriceUnitQty",
+    "label": "价格单位",
+    "business_aliases": [
+      "价格单位"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "价格单位",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "MaterialRoundingProfile",
+    "label": "舍入参数文件",
+    "business_aliases": [
+      "舍入参数文件"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "舍入参数文件",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "MatlMstrTxtIsNotRlvtForPOItm",
+    "label": "无物料文本",
+    "business_aliases": [
+      "无物料文本",
+      "物料主记录采购订单文本不相关"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料主记录采购订单文本不相关",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "MaximumOrderQuantity",
+    "label": "最大订单数量",
+    "business_aliases": [
+      "最大订单数量",
+      "最大采购订单数量"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "最大采购订单数量",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "MinRemainingShelfLife",
+    "label": "最小剩余货架寿命",
+    "business_aliases": [
+      "最小剩余货架寿命",
+      "最短剩余货架寿命"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "最短剩余货架寿命",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "MinimumPurchaseOrderQuantity",
+    "label": "最小数量",
+    "business_aliases": [
+      "最小数量",
+      "最小采购订单数量"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "最小采购订单数量",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "NetPriceAmount",
+    "label": "净价",
+    "business_aliases": [
+      "净价",
+      "采购信息记录中的净价"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购信息记录中的净价",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "NetPriceQuantityUnit",
+    "label": "",
+    "business_aliases": [],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": false,
+    "sortable": false,
+    "allowed_operators": [],
+    "description": "",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "OverdelivTolrtdLmtRatioInPct",
+    "label": "过量交货容差",
+    "business_aliases": [
+      "过量交货容差"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "过量交货容差",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "Plant",
+    "label": "工厂",
+    "business_aliases": [
+      "工厂"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "工厂",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "PriceValidityEndDate",
+    "label": "有效期至",
+    "business_aliases": [
+      "有效期至",
+      "价格有效至"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "价格有效至",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "PricingDateControl",
+    "label": "定价日期控制",
+    "business_aliases": [
+      "定价日期控制",
+      "价格确定（定价）日期控制"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "价格确定（定价）日期控制",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "ProductionVersion",
+    "label": "生产版本",
+    "business_aliases": [
+      "生产版本"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "生产版本",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "PurchaseOrderPriceUnit",
+    "label": "订单价格单位",
+    "business_aliases": [
+      "订单价格单位",
+      "订单价格单位(采购)"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "订单价格单位(采购)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "PurchasingDocumentDate",
+    "label": "凭证日期",
+    "business_aliases": [
+      "凭证日期",
+      "信息记录中最近采购订单或计划协议凭证的日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "信息记录中最近采购订单或计划协议凭证的日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "PurchasingGroup",
+    "label": "采购组",
+    "business_aliases": [
+      "采购组"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购组",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "PurchasingInfoRecord",
+    "label": "采购信息记录",
+    "business_aliases": [
+      "采购信息记录",
+      "采购信息记录号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购信息记录号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "PurchasingInfoRecordCategory",
+    "label": "信息记录类别",
+    "business_aliases": [
+      "信息记录类别",
+      "采购信息记录分类"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购信息记录分类",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "PurchasingOrganization",
+    "label": "采购组织",
+    "business_aliases": [
+      "采购组织"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购组织",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "PurgDocOrderQuantityUnit",
+    "label": "订单单位",
+    "business_aliases": [
+      "订单单位",
+      "采购订单计量单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购订单计量单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "ShelfLifeExpirationDatePeriod",
+    "label": "SLED 的期间标识",
+    "business_aliases": [
+      "SLED 的期间标识",
+      "货架存放期过期日期的期间标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "货架存放期过期日期的期间标识",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "ShippingInstruction",
+    "label": "装运指令",
+    "business_aliases": [
+      "装运指令"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "装运指令",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "StandardPurchaseOrderQuantity",
+    "label": "标准采购订单数量",
+    "business_aliases": [
+      "标准采购订单数量"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "标准采购订单数量",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "Supplier",
+    "label": "供应商",
+    "business_aliases": [
+      "供应商",
+      "供应商科目编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "供应商科目编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "SupplierConfirmationControlKey",
+    "label": "确认控制",
+    "business_aliases": [
+      "确认控制",
+      "确认控制代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "确认控制代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "SupplierQuotation",
+    "label": "报价",
+    "business_aliases": [
+      "报价",
+      "报价单编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "报价单编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "SupplierQuotationDate",
+    "label": "报价有效自",
+    "business_aliases": [
+      "报价有效自",
+      "报价有效日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "报价有效日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "TaxCode",
+    "label": "税码",
+    "business_aliases": [
+      "税码",
+      "销售/购买税代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售/购买税代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "TaxCountry",
+    "label": "税收国家/地区",
+    "business_aliases": [
+      "税收国家/地区",
+      "报税国家/地区"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "报税国家/地区",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "TimeDependentTaxValidFromDate",
+    "label": "税率有效期起始日期",
+    "business_aliases": [
+      "税率有效期起始日期",
+      "税率的有效期起始日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "税率的有效期起始日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "UnderdelivTolrtdLmtRatioInPct",
+    "label": "交货不足容差",
+    "business_aliases": [
+      "交货不足容差"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "交货不足容差",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "entity_set": "A_PurgInfoRecdOrgPlantData",
+    "field_name": "UnlimitedOverdeliveryIsAllowed",
+    "label": "无限制过量交货",
+    "business_aliases": [
+      "无限制过量交货",
+      "允许的未限制的过量交货"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "允许的未限制的过量交货",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  }
+]

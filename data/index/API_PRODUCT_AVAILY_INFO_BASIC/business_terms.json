@@ -1,0 +1,32 @@
+[
+  {
+    "term": "Service Operations",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PRODUCT_AVAILY_INFO_BASIC",
+    "mapped_entity_set": "CalculateAvailabilityTimeseries",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Service Operations",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PRODUCT_AVAILY_INFO_BASIC",
+    "mapped_entity_set": "DetermineAvailabilityAt",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Service Operations",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PRODUCT_AVAILY_INFO_BASIC",
+    "mapped_entity_set": "DetermineAvailabilityOf",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  }
+]

@@ -1,0 +1,153 @@
+[
+  {
+    "service_name": "API_MATERIAL_DOCUMENT_SRV",
+    "entity_set": "A_MaterialDocumentHeader",
+    "entity_type": "A_MaterialDocumentHeaderType",
+    "key_fields": [
+      "MaterialDocument",
+      "MaterialDocumentYear"
+    ],
+    "default_select_fields": [
+      "MaterialDocumentYear",
+      "MaterialDocument",
+      "InventoryTransactionType",
+      "DocumentDate",
+      "PostingDate",
+      "CreationDate",
+      "CreationTime",
+      "CreatedByUser",
+      "MaterialDocumentHeaderText",
+      "ReferenceDocument"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_MaterialDocumentItem"
+    ],
+    "description": "Reads information on material document header level",
+    "supported_methods": [
+      "GET",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_MATERIAL_DOCUMENT_SRV",
+    "entity_set": "A_MaterialDocumentItem",
+    "entity_type": "A_MaterialDocumentItemType",
+    "key_fields": [
+      "MaterialDocument",
+      "MaterialDocumentItem",
+      "MaterialDocumentYear"
+    ],
+    "default_select_fields": [
+      "MaterialDocumentYear",
+      "MaterialDocument",
+      "MaterialDocumentItem",
+      "Material",
+      "Plant",
+      "StorageLocation",
+      "Batch",
+      "GoodsMovementType",
+      "InventoryStockType",
+      "InventoryValuationType"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_MaterialDocumentHeader",
+      "to_SerialNumbers"
+    ],
+    "description": "Reads information on material document items level",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_MATERIAL_DOCUMENT_SRV",
+    "entity_set": "A_SerialNumberMaterialDocument",
+    "entity_type": "A_SerialNumberMaterialDocumentType",
+    "key_fields": [
+      "Material",
+      "MaterialDocument",
+      "MaterialDocumentItem",
+      "MaterialDocumentYear",
+      "SerialNumber"
+    ],
+    "default_select_fields": [
+      "Material",
+      "SerialNumber",
+      "MaterialDocument",
+      "MaterialDocumentItem",
+      "MaterialDocumentYear",
+      "ManufacturerSerialNumber"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads information of serial numbers on material document items level",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_MATERIAL_DOCUMENT_SRV",
+    "entity_set": "Cancel",
+    "entity_type": "CancelType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Cancels a material document",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_MATERIAL_DOCUMENT_SRV",
+    "entity_set": "CancelItem",
+    "entity_type": "CancelItemType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Cancels a material document item",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  }
+]

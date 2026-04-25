@@ -1,0 +1,25 @@
+[
+  {
+    "service_name": "API_MATERIAL_DOCUMENT_SRV",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV",
+    "description": "This service enables you to retrieve and create material documents, e.g. to post a goods receipt for a purchase order or to document the transfer of materials between two storage locations. Additionally, the service allows to cancel existing material documents or single items. It can be consumed by external systems and user interfaces.",
+    "entity_sets": [
+      "A_MaterialDocumentHeader",
+      "A_MaterialDocumentItem",
+      "A_SerialNumberMaterialDocument"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/d4/c919581bc30a02e10000000a44147b/frameset.htm",
+    "openapi_version": "1.3.0"
+  }
+]

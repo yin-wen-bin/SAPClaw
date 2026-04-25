@@ -1,0 +1,132 @@
+[
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "from_entity_set": "A_PurInfoRecdPrcgCndn",
+    "navigation_name": "to_PurInfoRecdPrcgCndnValidity",
+    "to_entity_set": "ToRole_assoc_EC642964BBA4906AA921EF314FCF2BAE",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "from_entity_set": "A_PurInfoRecdPrcgCndn",
+    "navigation_name": "to_PurInfoRecdSuplmntPrcgCndn",
+    "to_entity_set": "ToRole_assoc_D89709F8722E3F5AFF46265C49B82DB4",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "from_entity_set": "A_PurInfoRecdPrcgCndn",
+    "navigation_name": "to_PurgInfoPricingCndnRecdScale",
+    "to_entity_set": "ToRole_assoc_93946053A4AADD02F1C5A3AF2B4AB6A9",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "from_entity_set": "A_PurInfoRecdPrcgCndnValidity",
+    "navigation_name": "to_PurInfoRecdPrcgCndn",
+    "to_entity_set": "ToRole_assoc_3A34AE07E736F2ADEA9461B5ABB92985",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "from_entity_set": "A_PurInfoRecdPrcgCndnValidity",
+    "navigation_name": "to_PurgInfoRecd",
+    "to_entity_set": "ToRole_assoc_346D4638B4A2885DA63651067424B1EE",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "from_entity_set": "A_PurInfoRecdPrcgCndnValidity",
+    "navigation_name": "to_PurgInfoRecdOrgPlantData",
+    "to_entity_set": "ToRole_assoc_8D27F3148F26F624FB97099A3EE227BC",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "from_entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "navigation_name": "to_PurInfoRecdPrcgCndn",
+    "to_entity_set": "ToRole_assoc_B8AA476DCB036C0BBB80E992C37AFFFB",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "from_entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "navigation_name": "to_PurInfoRecdPrcgCndnValidity",
+    "to_entity_set": "ToRole_assoc_D5C3EBFABDB4C0E1496D37D78C63D33C",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "from_entity_set": "A_PurInfoRecdSuplmntPrcgCndn",
+    "navigation_name": "to_PurgInfoPricingCndnRecdScale",
+    "to_entity_set": "ToRole_assoc_6E71A5756F08EC3FB4E78E8D074B51A2",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "from_entity_set": "A_PurchasingInfoRecord",
+    "navigation_name": "to_PurgInfoRecdOrgPlantData",
+    "to_entity_set": "ToRole_assoc_4A9E47FE9B451819930E6F5540DDAEB0",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "from_entity_set": "A_PurgInfoRecdOrgPlantData",
+    "navigation_name": "to_PurInfoRecdPrcgCndnValidity",
+    "to_entity_set": "ToRole_assoc_17A9E18614D24F22DB787AA208E9974F",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "from_entity_set": "A_PurgInfoRecdOrgPlantData",
+    "navigation_name": "to_PurInfoRecdPurOrgText",
+    "to_entity_set": "ToRole_assoc_0DF67592C4BBC31A48BF2F04DBBC4D40",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_INFORECORD_PROCESS_SRV",
+    "from_entity_set": "A_PurgInfoRecdOrgPlantData",
+    "navigation_name": "to_PurgInfoRecd",
+    "to_entity_set": "FromRole_assoc_4A9E47FE9B451819930E6F5540DDAEB0",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  }
+]

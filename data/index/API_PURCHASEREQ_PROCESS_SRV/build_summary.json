@@ -1,0 +1,15 @@
+{
+  "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+  "sap_metadata_entity_count": 5,
+  "sap_metadata_field_count": 225,
+  "openapi_documented_entity_count": 8,
+  "openapi_documented_entity_type_count": 9,
+  "merged_entity_count": 8,
+  "merged_field_count": 234,
+  "relation_count": 5,
+  "entity_graph_edge_count": 5,
+  "lookup_path_count": 110,
+  "business_term_count": 377,
+  "vector_document_count": 344,
+  "doc_chunk_count": 417
+}
