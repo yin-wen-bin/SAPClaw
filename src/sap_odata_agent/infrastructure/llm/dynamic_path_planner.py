@@ -638,8 +638,25 @@ class LlmDynamicPathPlanner:
             operator = str(item.get("operator") or "eq").lower()
             if operator not in {"eq", "ne", "gt", "ge", "lt", "le", "contains"}:
                 operator = "eq"
-            filters.append(FilterCondition(field=field_name, operator=operator, value=str(value)))
+            filters.append(
+                FilterCondition(
+                    field=field_name,
+                    operator=operator,
+                    value=str(value),
+                    value_type=LlmDynamicPathPlanner._filter_value_type(item, field_map[field_name]),
+                )
+            )
         return filters
+
+    @staticmethod
+    def _filter_value_type(raw_filter: dict[str, Any], field_metadata: dict[str, Any]) -> str:
+        explicit_type = raw_filter.get("value_type")
+        if isinstance(explicit_type, str) and explicit_type.strip():
+            return explicit_type.strip()
+        data_type = field_metadata.get("data_type") or field_metadata.get("type")
+        if isinstance(data_type, str) and data_type.strip():
+            return data_type.strip()
+        return "string"
 
     @staticmethod
     def _materialize_bindings(item: dict[str, Any], field_map: dict[str, dict[str, Any]]) -> list[StepBinding]:

@@ -75,6 +75,14 @@ def _write_fixture(root: Path) -> None:
                     "description": "Payment terms",
                     "filterable": True,
                 },
+                {
+                    "service_name": "API_TEST",
+                    "entity_set": "A_SupplierCompany",
+                    "field_name": "GoodsReceiptIsExpected",
+                    "description": "Goods receipt is expected",
+                    "filterable": True,
+                    "data_type": "Edm.Boolean",
+                },
             ]
         ),
         encoding="utf-8",
@@ -155,6 +163,47 @@ def test_llm_planner_prefers_specific_entity_for_payment_terms(tmp_path: Path) -
     assert plan.planner_diagnostics["planner_winner"] == "llm"
     assert plan.planner_diagnostics["fallback_plan_snapshot"]["entity_set"] == "A_SupplierCompany"
     assert plan.planner_diagnostics["llm_plan_snapshot"]["entity_set"] == "A_SupplierCompany"
+
+
+def test_llm_planner_preserves_schema_filter_value_type(tmp_path: Path) -> None:
+    _write_fixture(tmp_path)
+    planner = LlmStructuredIntentPlanner(
+        index_root=tmp_path,
+        service_name="API_TEST",
+        llm_client=StubClient(
+            json.dumps(
+                {
+                    "entity_set": "A_SupplierCompany",
+                    "http_method": "GET",
+                    "select_fields": ["Supplier", "GoodsReceiptIsExpected"],
+                    "response_summary_fields": ["Supplier", "GoodsReceiptIsExpected"],
+                    "filters": [{"field": "GoodsReceiptIsExpected", "operator": "eq", "value": "true"}],
+                    "requires_confirmation": False,
+                    "needs_clarification": False,
+                    "clarification_question": "",
+                    "clarification_options": [],
+                    "response_directive": "Answer with suppliers where goods receipt is expected.",
+                    "rationale": "GoodsReceiptIsExpected is available on A_SupplierCompany.",
+                }
+            )
+        ),
+    )
+    context = RetrievedContext(
+        documents=[
+            RetrievedDocument(
+                source="field",
+                title="A_SupplierCompany.GoodsReceiptIsExpected",
+                content="Goods receipt is expected",
+                score=12.0,
+                metadata={"entity_set": "A_SupplierCompany", "field_name": "GoodsReceiptIsExpected"},
+            ),
+        ]
+    )
+
+    plan = planner.plan(AgentRequest(user_input="show purchase orders where goods receipt is expected"), context)
+
+    assert plan.filters[0].field == "GoodsReceiptIsExpected"
+    assert plan.filters[0].value_type == "Edm.Boolean"
 
 
 def test_llm_planner_falls_back_when_json_is_invalid(tmp_path: Path) -> None:

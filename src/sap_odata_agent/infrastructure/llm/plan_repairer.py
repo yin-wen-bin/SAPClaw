@@ -96,13 +96,13 @@ class LlmPlanRepairer(LlmApiSpecificPlanner):
             "entity_set": "",
             "http_method": "GET",
             "select_fields": [],
-            "filters": [{"field": "", "operator": "eq", "value": ""}],
+            "filters": [{"field": "", "operator": "eq", "value": "", "value_type": "string | boolean | number | date"}],
             "steps": [
                 {
                     "step_id": "step_1",
                     "entity_set": "SourceEntitySet",
                     "select_fields": ["JoinField", "FilterField"],
-                    "filters": [{"field": "FilterField", "operator": "eq", "value": "literal"}],
+                    "filters": [{"field": "FilterField", "operator": "eq", "value": "literal", "value_type": "string"}],
                     "filter_from_previous": [],
                     "top": 50,
                 },
@@ -138,9 +138,10 @@ class LlmPlanRepairer(LlmApiSpecificPlanner):
             "1. If failure_context reports step_missing_filter_or_binding, add explicit filter_from_previous to each unbounded downstream step.\n"
             "2. Use filter_from_previous objects exactly as {\"field\": target_field_on_current_step, \"source_step_id\": previous_step_id, \"source_field\": field_selected_by_previous_step}.\n"
             "3. Select every source_field in its source step and every binding field in its target step.\n"
-            "4. Do not keep top-level filters that belong to a different entity; put each filter on the step whose entity owns that field.\n\n"
-            "5. If failure_context reports step_binding_target_not_in_entity, do not reuse that invalid target field. Insert an intermediate bridge entity that contains both the previous join field and the final target key, then bind from that bridge to the final entity.\n"
-            "6. For example, do not bind a previous BusinessPartner value directly onto an entity that only has Supplier or Customer; first read the entity that exposes BusinessPartner plus the final role key, then bind the role key to the final entity.\n\n"
+            "4. Set filter.value_type from the schema field data_type; use boolean for Edm.Boolean filters.\n"
+            "5. Do not keep top-level filters that belong to a different entity; put each filter on the step whose entity owns that field.\n\n"
+            "6. If failure_context reports step_binding_target_not_in_entity, do not reuse that invalid target field. Insert an intermediate bridge entity that contains both the previous join field and the final target key, then bind from that bridge to the final entity.\n"
+            "7. For example, do not bind a previous BusinessPartner value directly onto an entity that only has Supplier or Customer; first read the entity that exposes BusinessPartner plus the final role key, then bind the role key to the final entity.\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )

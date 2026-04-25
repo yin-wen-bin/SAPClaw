@@ -2054,6 +2054,7 @@ class LlmStructuredIntentPlanner(RetrievalAwareIntentPlanner):
                         field=field_name,
                         operator=str(item.get("operator", "eq")),
                         value=str(value),
+                        value_type=self._filter_value_type(item, field_map[field_name]),
                     )
                 )
         if not filters:
@@ -2149,6 +2150,7 @@ class LlmStructuredIntentPlanner(RetrievalAwareIntentPlanner):
                         field=field_name,
                         operator=str(raw_filter.get("operator", "eq") or "eq"),
                         value=str(value),
+                        value_type=self._filter_value_type(raw_filter, field_map[field_name]),
                     )
                 )
             bindings: list[StepBinding] = []
@@ -2181,6 +2183,16 @@ class LlmStructuredIntentPlanner(RetrievalAwareIntentPlanner):
                 )
             )
         return steps
+
+    @staticmethod
+    def _filter_value_type(raw_filter: dict[str, Any], field_metadata: dict[str, Any]) -> str:
+        explicit_type = raw_filter.get("value_type")
+        if isinstance(explicit_type, str) and explicit_type.strip():
+            return explicit_type.strip()
+        data_type = field_metadata.get("data_type") or field_metadata.get("type")
+        if isinstance(data_type, str) and data_type.strip():
+            return data_type.strip()
+        return "string"
 
     @classmethod
     def _parse_json_object(cls, raw_response: str) -> dict[str, Any]:
@@ -2233,7 +2245,10 @@ class LlmStructuredIntentPlanner(RetrievalAwareIntentPlanner):
             "http_method": plan.http_method,
             "select_fields": plan.select_fields,
             "response_summary_fields": plan.response_summary_fields,
-            "filters": [{"field": item.field, "operator": item.operator, "value": item.value} for item in plan.filters],
+            "filters": [
+                {"field": item.field, "operator": item.operator, "value": item.value, "value_type": item.value_type}
+                for item in plan.filters
+            ],
             "top": plan.top,
             "requires_confirmation": plan.requires_confirmation,
             "needs_clarification": plan.needs_clarification,
@@ -2250,7 +2265,10 @@ class LlmStructuredIntentPlanner(RetrievalAwareIntentPlanner):
                     "step_id": step.step_id,
                     "entity_set": step.entity_set,
                     "select_fields": step.select_fields,
-                    "filters": [{"field": item.field, "operator": item.operator, "value": item.value} for item in step.filters],
+                    "filters": [
+                        {"field": item.field, "operator": item.operator, "value": item.value, "value_type": item.value_type}
+                        for item in step.filters
+                    ],
                     "filter_from_previous": [
                         {"field": item.field, "source_step_id": item.source_step_id, "source_field": item.source_field}
                         for item in step.filter_from_previous
@@ -2622,6 +2640,7 @@ class LlmRepairEngine(IndexAwareRepairEngine):
                     field=field_name,
                     operator=str(item.get("operator", "eq") or "eq"),
                     value=str(value),
+                    value_type=LlmStructuredIntentPlanner._filter_value_type(item, field_map[field_name]),
                 )
             )
         if not select_fields:

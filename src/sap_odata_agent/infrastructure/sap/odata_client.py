@@ -97,7 +97,7 @@ class BasicODataCompiler:
             query_parts.append("$select=" + ",".join(plan.select_fields))
 
         if plan.filters:
-            filter_parts = [self._compile_filter_item(item.field, item.operator, item.value) for item in plan.filters]
+            filter_parts = [self._compile_filter_item(item) for item in plan.filters]
             query_parts.append("$filter=" + " and ".join(filter_parts))
 
         if plan.order_by:
@@ -115,19 +115,37 @@ class BasicODataCompiler:
         return CompiledRequest(method=plan.http_method, url=url, payload=plan.payload)
 
     @staticmethod
-    def _compile_filter_item(field: str, operator: str, value: str) -> str:
+    def _compile_filter_item(item: FilterCondition) -> str:
+        field = item.field
+        operator = item.operator
+        value = item.value
         if operator == "in":
             try:
                 values = json.loads(value)
             except json.JSONDecodeError:
                 values = [item.strip() for item in value.split("|") if item.strip()]
-            escaped_values = [str(item).replace("'", "''") for item in values if str(item)]
-            or_parts = [f"{field} eq '{item}'" for item in escaped_values]
+            or_parts = [
+                f"{field} eq {BasicODataCompiler._compile_literal(str(raw_value), item.value_type)}"
+                for raw_value in values
+                if str(raw_value)
+            ]
             return f"({' or '.join(or_parts)})" if or_parts else f"{field} eq ''"
         escaped = value.replace("'", "''")
         if operator == "contains":
             return f"substringof('{escaped}',{field}) eq true"
-        return f"{field} {operator} '{escaped}'"
+        return f"{field} {operator} {BasicODataCompiler._compile_literal(value, item.value_type)}"
+
+    @staticmethod
+    def _compile_literal(value: str, value_type: str) -> str:
+        normalized_type = str(value_type or "").lower()
+        if normalized_type in {"boolean", "bool", "edm.boolean"}:
+            normalized_value = str(value).strip().lower()
+            if normalized_value in {"true", "1", "yes"}:
+                return "true"
+            if normalized_value in {"false", "0", "no"}:
+                return "false"
+        escaped = str(value).replace("'", "''")
+        return f"'{escaped}'"
 
 
 class SapODataExecutor:
