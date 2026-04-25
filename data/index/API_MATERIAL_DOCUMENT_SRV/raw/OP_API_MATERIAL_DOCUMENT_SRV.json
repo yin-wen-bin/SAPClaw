@@ -1,0 +1,4393 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Material Documents - Read, Create",
+    "version": "1.3.0",
+    "description": "This service enables you to retrieve and create material documents, e.g. to post a goods receipt for a purchase order or to document the transfer of materials between two storage locations. Additionally, the service allows to cancel existing material documents or single items. It can be consumed by external systems and user interfaces."
+  },
+  "externalDocs": {
+    "description": "Business Documentation",
+    "url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/d4/c919581bc30a02e10000000a44147b/frameset.htm"
+  },
+  "x-sap-api-type": "ODATA",
+  "x-sap-shortText": "Use this synchronous inbound service to read and create material documents",
+  "x-sap-software-min-version": "2025",
+  "x-sap-ext-overview": [
+    {
+      "name": "Authentication Methods",
+      "values": [
+        {
+          "text": "x509",
+          "format": "plain"
+        }
+      ]
+    },
+    {
+      "name": "Business Object",
+      "values": [
+        {
+          "text": "Material Document",
+          "format": "plain"
+        }
+      ]
+    }
+  ],
+  "servers": [
+    {
+      "url": "https://{host}:{port}/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV",
+      "variables": {
+        "host": {
+          "default": ""
+        },
+        "port": {
+          "default": ""
+        }
+      }
+    }
+  ],
+  "x-sap-extensible": {
+    "supported": "manual",
+    "description": "If you are working with key user extensibility, the API can be extended by custom fields on the following business contexts (field usage for this API needs to be selected):\r\n* Accounting: Coding Block (FINS_CODING_BLOCK)\r\n* Material Document Item (MATERIALDOCUMENTITEM)\r\n\r\n[How to add an extension field to an API](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b5670aaaa2364a29935f40b16499972d/ce819b8557194ae0aa180ba4ac6a04de.html)\r\n\r\nNote: Please make sure to match the release selected in SAP Business Accelerator Hub with the Feature Pack (FPS) on help page."
+  },
+  "tags": [
+    {
+      "name": "Document Header"
+    },
+    {
+      "name": "Document Items"
+    },
+    {
+      "name": "Serial Numbers"
+    }
+  ],
+  "paths": {
+    "/A_MaterialDocumentHeader": {
+      "get": {
+        "summary": "Reads information on material document header level",
+        "description": "Reads material document header information to get an overview of the material document postings.",
+        "tags": [
+          "Document Header"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MaterialDocumentYear",
+                  "MaterialDocumentYear desc",
+                  "MaterialDocument",
+                  "MaterialDocument desc",
+                  "InventoryTransactionType",
+                  "InventoryTransactionType desc",
+                  "DocumentDate",
+                  "DocumentDate desc",
+                  "PostingDate",
+                  "PostingDate desc",
+                  "CreationDate",
+                  "CreationDate desc",
+                  "CreationTime",
+                  "CreationTime desc",
+                  "CreatedByUser",
+                  "CreatedByUser desc",
+                  "MaterialDocumentHeaderText",
+                  "MaterialDocumentHeaderText desc",
+                  "ReferenceDocument",
+                  "ReferenceDocument desc",
+                  "VersionForPrintingSlip",
+                  "VersionForPrintingSlip desc",
+                  "ManualPrintIsTriggered",
+                  "ManualPrintIsTriggered desc",
+                  "CtrlPostgForExtWhseMgmtSyst",
+                  "CtrlPostgForExtWhseMgmtSyst desc",
+                  "GoodsMovementCode",
+                  "GoodsMovementCode desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MaterialDocumentYear",
+                  "MaterialDocument",
+                  "InventoryTransactionType",
+                  "DocumentDate",
+                  "PostingDate",
+                  "CreationDate",
+                  "CreationTime",
+                  "CreatedByUser",
+                  "MaterialDocumentHeaderText",
+                  "ReferenceDocument",
+                  "VersionForPrintingSlip",
+                  "ManualPrintIsTriggered",
+                  "CtrlPostgForExtWhseMgmtSyst",
+                  "GoodsMovementCode",
+                  "to_MaterialDocumentItem"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_MaterialDocumentItem"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of A_MaterialDocumentHeaderType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentHeaderType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a material document",
+        "description": "Creates a material document compost by header and item for a specific business process.",
+        "tags": [
+          "Document Header"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentHeaderType-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_MaterialDocumentHeaderType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentHeaderType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_MaterialDocumentHeader(MaterialDocumentYear='{MaterialDocumentYear}',MaterialDocument='{MaterialDocument}')": {
+      "parameters": [
+        {
+          "name": "MaterialDocumentYear",
+          "in": "path",
+          "required": true,
+          "description": "Material Document Year",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "MaterialDocument",
+          "in": "path",
+          "required": true,
+          "description": "Number of Material Document",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        }
+      ],
+      "get": {
+        "summary": "Reads information for a specific material document header",
+        "description": "Reads material document header information for a specific material document to get an overview of the material document posting.",
+        "tags": [
+          "Document Header"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MaterialDocumentYear",
+                  "MaterialDocument",
+                  "InventoryTransactionType",
+                  "DocumentDate",
+                  "PostingDate",
+                  "CreationDate",
+                  "CreationTime",
+                  "CreatedByUser",
+                  "MaterialDocumentHeaderText",
+                  "ReferenceDocument",
+                  "VersionForPrintingSlip",
+                  "ManualPrintIsTriggered",
+                  "CtrlPostgForExtWhseMgmtSyst",
+                  "GoodsMovementCode",
+                  "to_MaterialDocumentItem"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_MaterialDocumentItem"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_MaterialDocumentHeaderType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentHeaderType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_MaterialDocumentHeader(MaterialDocumentYear='{MaterialDocumentYear}',MaterialDocument='{MaterialDocument}')/to_MaterialDocumentItem": {
+      "parameters": [
+        {
+          "name": "MaterialDocumentYear",
+          "in": "path",
+          "required": true,
+          "description": "Material Document Year",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "MaterialDocument",
+          "in": "path",
+          "required": true,
+          "description": "Number of Material Document",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        }
+      ],
+      "get": {
+        "summary": "Reads information for a specific material document header and material document items",
+        "description": "Reads material document header and material documents items information for a specific material document to get an overview of the material document posting.",
+        "tags": [
+          "Document Header",
+          "Document Items"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MaterialDocumentYear",
+                  "MaterialDocumentYear desc",
+                  "MaterialDocument",
+                  "MaterialDocument desc",
+                  "MaterialDocumentItem",
+                  "MaterialDocumentItem desc",
+                  "Material",
+                  "Material desc",
+                  "Plant",
+                  "Plant desc",
+                  "StorageLocation",
+                  "StorageLocation desc",
+                  "Batch",
+                  "Batch desc",
+                  "BatchBySupplier",
+                  "BatchBySupplier desc",
+                  "GoodsMovementType",
+                  "GoodsMovementType desc",
+                  "InventoryStockType",
+                  "InventoryStockType desc",
+                  "InventoryValuationType",
+                  "InventoryValuationType desc",
+                  "InventorySpecialStockType",
+                  "InventorySpecialStockType desc",
+                  "Supplier",
+                  "Supplier desc",
+                  "Customer",
+                  "Customer desc",
+                  "SalesOrder",
+                  "SalesOrder desc",
+                  "SalesOrderItem",
+                  "SalesOrderItem desc",
+                  "SalesOrderScheduleLine",
+                  "SalesOrderScheduleLine desc",
+                  "PurchaseOrder",
+                  "PurchaseOrder desc",
+                  "PurchaseOrderItem",
+                  "PurchaseOrderItem desc",
+                  "WBSElement",
+                  "WBSElement desc",
+                  "ManufacturingOrder",
+                  "ManufacturingOrder desc",
+                  "ManufacturingOrderItem",
+                  "ManufacturingOrderItem desc",
+                  "GoodsMovementRefDocType",
+                  "GoodsMovementRefDocType desc",
+                  "GoodsMovementReasonCode",
+                  "GoodsMovementReasonCode desc",
+                  "Delivery",
+                  "Delivery desc",
+                  "DeliveryItem",
+                  "DeliveryItem desc",
+                  "AccountAssignmentCategory",
+                  "AccountAssignmentCategory desc",
+                  "CostCenter",
+                  "CostCenter desc",
+                  "ControllingArea",
+                  "ControllingArea desc",
+                  "CostObject",
+                  "CostObject desc",
+                  "GLAccount",
+                  "GLAccount desc",
+                  "FunctionalArea",
+                  "FunctionalArea desc",
+                  "ProfitabilitySegment",
+                  "ProfitabilitySegment desc",
+                  "ProfitCenter",
+                  "ProfitCenter desc",
+                  "MasterFixedAsset",
+                  "MasterFixedAsset desc",
+                  "FixedAsset",
+                  "FixedAsset desc",
+                  "MaterialBaseUnit",
+                  "MaterialBaseUnit desc",
+                  "QuantityInBaseUnit",
+                  "QuantityInBaseUnit desc",
+                  "EntryUnit",
+                  "EntryUnit desc",
+                  "QuantityInEntryUnit",
+                  "QuantityInEntryUnit desc",
+                  "CompanyCodeCurrency",
+                  "CompanyCodeCurrency desc",
+                  "GdsMvtExtAmtInCoCodeCrcy",
+                  "GdsMvtExtAmtInCoCodeCrcy desc",
+                  "SlsPrcAmtInclVATInCoCodeCrcy",
+                  "SlsPrcAmtInclVATInCoCodeCrcy desc",
+                  "FiscalYear",
+                  "FiscalYear desc",
+                  "FiscalYearPeriod",
+                  "FiscalYearPeriod desc",
+                  "FiscalYearVariant",
+                  "FiscalYearVariant desc",
+                  "IssgOrRcvgMaterial",
+                  "IssgOrRcvgMaterial desc",
+                  "IssgOrRcvgBatch",
+                  "IssgOrRcvgBatch desc",
+                  "IssuingOrReceivingPlant",
+                  "IssuingOrReceivingPlant desc",
+                  "IssuingOrReceivingStorageLoc",
+                  "IssuingOrReceivingStorageLoc desc",
+                  "IssuingOrReceivingStockType",
+                  "IssuingOrReceivingStockType desc",
+                  "IssgOrRcvgSpclStockInd",
+                  "IssgOrRcvgSpclStockInd desc",
+                  "IssuingOrReceivingValType",
+                  "IssuingOrReceivingValType desc",
+                  "IsCompletelyDelivered",
+                  "IsCompletelyDelivered desc",
+                  "MaterialDocumentItemText",
+                  "MaterialDocumentItemText desc",
+                  "GoodsRecipientName",
+                  "GoodsRecipientName desc",
+                  "UnloadingPointName",
+                  "UnloadingPointName desc",
+                  "ShelfLifeExpirationDate",
+                  "ShelfLifeExpirationDate desc",
+                  "ManufactureDate",
+                  "ManufactureDate desc",
+                  "SerialNumbersAreCreatedAutomly",
+                  "SerialNumbersAreCreatedAutomly desc",
+                  "Reservation",
+                  "Reservation desc",
+                  "ReservationItem",
+                  "ReservationItem desc",
+                  "ReservationItemRecordType",
+                  "ReservationItemRecordType desc",
+                  "ReservationIsFinallyIssued",
+                  "ReservationIsFinallyIssued desc",
+                  "SpecialStockIdfgSalesOrder",
+                  "SpecialStockIdfgSalesOrder desc",
+                  "SpecialStockIdfgSalesOrderItem",
+                  "SpecialStockIdfgSalesOrderItem desc",
+                  "SpecialStockIdfgWBSElement",
+                  "SpecialStockIdfgWBSElement desc",
+                  "IsAutomaticallyCreated",
+                  "IsAutomaticallyCreated desc",
+                  "MaterialDocumentLine",
+                  "MaterialDocumentLine desc",
+                  "MaterialDocumentParentLine",
+                  "MaterialDocumentParentLine desc",
+                  "HierarchyNodeLevel",
+                  "HierarchyNodeLevel desc",
+                  "GoodsMovementIsCancelled",
+                  "GoodsMovementIsCancelled desc",
+                  "ReversedMaterialDocumentYear",
+                  "ReversedMaterialDocumentYear desc",
+                  "ReversedMaterialDocument",
+                  "ReversedMaterialDocument desc",
+                  "ReversedMaterialDocumentItem",
+                  "ReversedMaterialDocumentItem desc",
+                  "ReferenceDocumentFiscalYear",
+                  "ReferenceDocumentFiscalYear desc",
+                  "InvtryMgmtRefDocumentItem",
+                  "InvtryMgmtRefDocumentItem desc",
+                  "InvtryMgmtReferenceDocument",
+                  "InvtryMgmtReferenceDocument desc",
+                  "MaterialDocumentPostingType",
+                  "MaterialDocumentPostingType desc",
+                  "InventoryUsabilityCode",
+                  "InventoryUsabilityCode desc",
+                  "EWMWarehouse",
+                  "EWMWarehouse desc",
+                  "EWMStorageBin",
+                  "EWMStorageBin desc",
+                  "HandlingUnitExternalID",
+                  "HandlingUnitExternalID desc",
+                  "DebitCreditCode",
+                  "DebitCreditCode desc",
+                  "CrossPlantConfigurableProduct",
+                  "CrossPlantConfigurableProduct desc",
+                  "ProductCharacteristic1",
+                  "ProductCharacteristic1 desc",
+                  "ProductCharacteristic2",
+                  "ProductCharacteristic2 desc",
+                  "ProductCharacteristic3",
+                  "ProductCharacteristic3 desc",
+                  "ProductSeasonYear",
+                  "ProductSeasonYear desc",
+                  "ProductSeason",
+                  "ProductSeason desc",
+                  "ProductCollection",
+                  "ProductCollection desc",
+                  "ProductTheme",
+                  "ProductTheme desc",
+                  "StockSegment",
+                  "StockSegment desc",
+                  "IssgOrRcvgStockSegment",
+                  "IssgOrRcvgStockSegment desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MaterialDocumentYear",
+                  "MaterialDocument",
+                  "MaterialDocumentItem",
+                  "Material",
+                  "Plant",
+                  "StorageLocation",
+                  "Batch",
+                  "BatchBySupplier",
+                  "GoodsMovementType",
+                  "InventoryStockType",
+                  "InventoryValuationType",
+                  "InventorySpecialStockType",
+                  "Supplier",
+                  "Customer",
+                  "SalesOrder",
+                  "SalesOrderItem",
+                  "SalesOrderScheduleLine",
+                  "PurchaseOrder",
+                  "PurchaseOrderItem",
+                  "WBSElement",
+                  "ManufacturingOrder",
+                  "ManufacturingOrderItem",
+                  "GoodsMovementRefDocType",
+                  "GoodsMovementReasonCode",
+                  "Delivery",
+                  "DeliveryItem",
+                  "AccountAssignmentCategory",
+                  "CostCenter",
+                  "ControllingArea",
+                  "CostObject",
+                  "GLAccount",
+                  "FunctionalArea",
+                  "ProfitabilitySegment",
+                  "ProfitCenter",
+                  "MasterFixedAsset",
+                  "FixedAsset",
+                  "MaterialBaseUnit",
+                  "QuantityInBaseUnit",
+                  "EntryUnit",
+                  "QuantityInEntryUnit",
+                  "CompanyCodeCurrency",
+                  "GdsMvtExtAmtInCoCodeCrcy",
+                  "SlsPrcAmtInclVATInCoCodeCrcy",
+                  "FiscalYear",
+                  "FiscalYearPeriod",
+                  "FiscalYearVariant",
+                  "IssgOrRcvgMaterial",
+                  "IssgOrRcvgBatch",
+                  "IssuingOrReceivingPlant",
+                  "IssuingOrReceivingStorageLoc",
+                  "IssuingOrReceivingStockType",
+                  "IssgOrRcvgSpclStockInd",
+                  "IssuingOrReceivingValType",
+                  "IsCompletelyDelivered",
+                  "MaterialDocumentItemText",
+                  "GoodsRecipientName",
+                  "UnloadingPointName",
+                  "ShelfLifeExpirationDate",
+                  "ManufactureDate",
+                  "SerialNumbersAreCreatedAutomly",
+                  "Reservation",
+                  "ReservationItem",
+                  "ReservationItemRecordType",
+                  "ReservationIsFinallyIssued",
+                  "SpecialStockIdfgSalesOrder",
+                  "SpecialStockIdfgSalesOrderItem",
+                  "SpecialStockIdfgWBSElement",
+                  "IsAutomaticallyCreated",
+                  "MaterialDocumentLine",
+                  "MaterialDocumentParentLine",
+                  "HierarchyNodeLevel",
+                  "GoodsMovementIsCancelled",
+                  "ReversedMaterialDocumentYear",
+                  "ReversedMaterialDocument",
+                  "ReversedMaterialDocumentItem",
+                  "ReferenceDocumentFiscalYear",
+                  "InvtryMgmtRefDocumentItem",
+                  "InvtryMgmtReferenceDocument",
+                  "MaterialDocumentPostingType",
+                  "InventoryUsabilityCode",
+                  "EWMWarehouse",
+                  "EWMStorageBin",
+                  "HandlingUnitExternalID",
+                  "DebitCreditCode",
+                  "CrossPlantConfigurableProduct",
+                  "ProductCharacteristic1",
+                  "ProductCharacteristic2",
+                  "ProductCharacteristic3",
+                  "ProductSeasonYear",
+                  "ProductSeason",
+                  "ProductCollection",
+                  "ProductTheme",
+                  "StockSegment",
+                  "IssgOrRcvgStockSegment",
+                  "to_MaterialDocumentHeader",
+                  "to_SerialNumbers"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_MaterialDocumentHeader",
+                  "to_SerialNumbers"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of A_MaterialDocumentItemType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_MaterialDocumentItem": {
+      "get": {
+        "summary": "Reads information on material document items level",
+        "description": "Reads material document items information to get an overview of the material document postings.",
+        "tags": [
+          "Document Items"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MaterialDocumentYear",
+                  "MaterialDocumentYear desc",
+                  "MaterialDocument",
+                  "MaterialDocument desc",
+                  "MaterialDocumentItem",
+                  "MaterialDocumentItem desc",
+                  "Material",
+                  "Material desc",
+                  "Plant",
+                  "Plant desc",
+                  "StorageLocation",
+                  "StorageLocation desc",
+                  "Batch",
+                  "Batch desc",
+                  "BatchBySupplier",
+                  "BatchBySupplier desc",
+                  "GoodsMovementType",
+                  "GoodsMovementType desc",
+                  "InventoryStockType",
+                  "InventoryStockType desc",
+                  "InventoryValuationType",
+                  "InventoryValuationType desc",
+                  "InventorySpecialStockType",
+                  "InventorySpecialStockType desc",
+                  "Supplier",
+                  "Supplier desc",
+                  "Customer",
+                  "Customer desc",
+                  "SalesOrder",
+                  "SalesOrder desc",
+                  "SalesOrderItem",
+                  "SalesOrderItem desc",
+                  "SalesOrderScheduleLine",
+                  "SalesOrderScheduleLine desc",
+                  "PurchaseOrder",
+                  "PurchaseOrder desc",
+                  "PurchaseOrderItem",
+                  "PurchaseOrderItem desc",
+                  "WBSElement",
+                  "WBSElement desc",
+                  "ManufacturingOrder",
+                  "ManufacturingOrder desc",
+                  "ManufacturingOrderItem",
+                  "ManufacturingOrderItem desc",
+                  "GoodsMovementRefDocType",
+                  "GoodsMovementRefDocType desc",
+                  "GoodsMovementReasonCode",
+                  "GoodsMovementReasonCode desc",
+                  "Delivery",
+                  "Delivery desc",
+                  "DeliveryItem",
+                  "DeliveryItem desc",
+                  "AccountAssignmentCategory",
+                  "AccountAssignmentCategory desc",
+                  "CostCenter",
+                  "CostCenter desc",
+                  "ControllingArea",
+                  "ControllingArea desc",
+                  "CostObject",
+                  "CostObject desc",
+                  "GLAccount",
+                  "GLAccount desc",
+                  "FunctionalArea",
+                  "FunctionalArea desc",
+                  "ProfitabilitySegment",
+                  "ProfitabilitySegment desc",
+                  "ProfitCenter",
+                  "ProfitCenter desc",
+                  "MasterFixedAsset",
+                  "MasterFixedAsset desc",
+                  "FixedAsset",
+                  "FixedAsset desc",
+                  "MaterialBaseUnit",
+                  "MaterialBaseUnit desc",
+                  "QuantityInBaseUnit",
+                  "QuantityInBaseUnit desc",
+                  "EntryUnit",
+                  "EntryUnit desc",
+                  "QuantityInEntryUnit",
+                  "QuantityInEntryUnit desc",
+                  "CompanyCodeCurrency",
+                  "CompanyCodeCurrency desc",
+                  "GdsMvtExtAmtInCoCodeCrcy",
+                  "GdsMvtExtAmtInCoCodeCrcy desc",
+                  "SlsPrcAmtInclVATInCoCodeCrcy",
+                  "SlsPrcAmtInclVATInCoCodeCrcy desc",
+                  "FiscalYear",
+                  "FiscalYear desc",
+                  "FiscalYearPeriod",
+                  "FiscalYearPeriod desc",
+                  "FiscalYearVariant",
+                  "FiscalYearVariant desc",
+                  "IssgOrRcvgMaterial",
+                  "IssgOrRcvgMaterial desc",
+                  "IssgOrRcvgBatch",
+                  "IssgOrRcvgBatch desc",
+                  "IssuingOrReceivingPlant",
+                  "IssuingOrReceivingPlant desc",
+                  "IssuingOrReceivingStorageLoc",
+                  "IssuingOrReceivingStorageLoc desc",
+                  "IssuingOrReceivingStockType",
+                  "IssuingOrReceivingStockType desc",
+                  "IssgOrRcvgSpclStockInd",
+                  "IssgOrRcvgSpclStockInd desc",
+                  "IssuingOrReceivingValType",
+                  "IssuingOrReceivingValType desc",
+                  "IsCompletelyDelivered",
+                  "IsCompletelyDelivered desc",
+                  "MaterialDocumentItemText",
+                  "MaterialDocumentItemText desc",
+                  "GoodsRecipientName",
+                  "GoodsRecipientName desc",
+                  "UnloadingPointName",
+                  "UnloadingPointName desc",
+                  "ShelfLifeExpirationDate",
+                  "ShelfLifeExpirationDate desc",
+                  "ManufactureDate",
+                  "ManufactureDate desc",
+                  "SerialNumbersAreCreatedAutomly",
+                  "SerialNumbersAreCreatedAutomly desc",
+                  "Reservation",
+                  "Reservation desc",
+                  "ReservationItem",
+                  "ReservationItem desc",
+                  "ReservationItemRecordType",
+                  "ReservationItemRecordType desc",
+                  "ReservationIsFinallyIssued",
+                  "ReservationIsFinallyIssued desc",
+                  "SpecialStockIdfgSalesOrder",
+                  "SpecialStockIdfgSalesOrder desc",
+                  "SpecialStockIdfgSalesOrderItem",
+                  "SpecialStockIdfgSalesOrderItem desc",
+                  "SpecialStockIdfgWBSElement",
+                  "SpecialStockIdfgWBSElement desc",
+                  "IsAutomaticallyCreated",
+                  "IsAutomaticallyCreated desc",
+                  "MaterialDocumentLine",
+                  "MaterialDocumentLine desc",
+                  "MaterialDocumentParentLine",
+                  "MaterialDocumentParentLine desc",
+                  "HierarchyNodeLevel",
+                  "HierarchyNodeLevel desc",
+                  "GoodsMovementIsCancelled",
+                  "GoodsMovementIsCancelled desc",
+                  "ReversedMaterialDocumentYear",
+                  "ReversedMaterialDocumentYear desc",
+                  "ReversedMaterialDocument",
+                  "ReversedMaterialDocument desc",
+                  "ReversedMaterialDocumentItem",
+                  "ReversedMaterialDocumentItem desc",
+                  "ReferenceDocumentFiscalYear",
+                  "ReferenceDocumentFiscalYear desc",
+                  "InvtryMgmtRefDocumentItem",
+                  "InvtryMgmtRefDocumentItem desc",
+                  "InvtryMgmtReferenceDocument",
+                  "InvtryMgmtReferenceDocument desc",
+                  "MaterialDocumentPostingType",
+                  "MaterialDocumentPostingType desc",
+                  "InventoryUsabilityCode",
+                  "InventoryUsabilityCode desc",
+                  "EWMWarehouse",
+                  "EWMWarehouse desc",
+                  "EWMStorageBin",
+                  "EWMStorageBin desc",
+                  "HandlingUnitExternalID",
+                  "HandlingUnitExternalID desc",
+                  "DebitCreditCode",
+                  "DebitCreditCode desc",
+                  "CrossPlantConfigurableProduct",
+                  "CrossPlantConfigurableProduct desc",
+                  "ProductCharacteristic1",
+                  "ProductCharacteristic1 desc",
+                  "ProductCharacteristic2",
+                  "ProductCharacteristic2 desc",
+                  "ProductCharacteristic3",
+                  "ProductCharacteristic3 desc",
+                  "ProductSeasonYear",
+                  "ProductSeasonYear desc",
+                  "ProductSeason",
+                  "ProductSeason desc",
+                  "ProductCollection",
+                  "ProductCollection desc",
+                  "ProductTheme",
+                  "ProductTheme desc",
+                  "StockSegment",
+                  "StockSegment desc",
+                  "IssgOrRcvgStockSegment",
+                  "IssgOrRcvgStockSegment desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MaterialDocumentYear",
+                  "MaterialDocument",
+                  "MaterialDocumentItem",
+                  "Material",
+                  "Plant",
+                  "StorageLocation",
+                  "Batch",
+                  "BatchBySupplier",
+                  "GoodsMovementType",
+                  "InventoryStockType",
+                  "InventoryValuationType",
+                  "InventorySpecialStockType",
+                  "Supplier",
+                  "Customer",
+                  "SalesOrder",
+                  "SalesOrderItem",
+                  "SalesOrderScheduleLine",
+                  "PurchaseOrder",
+                  "PurchaseOrderItem",
+                  "WBSElement",
+                  "ManufacturingOrder",
+                  "ManufacturingOrderItem",
+                  "GoodsMovementRefDocType",
+                  "GoodsMovementReasonCode",
+                  "Delivery",
+                  "DeliveryItem",
+                  "AccountAssignmentCategory",
+                  "CostCenter",
+                  "ControllingArea",
+                  "CostObject",
+                  "GLAccount",
+                  "FunctionalArea",
+                  "ProfitabilitySegment",
+                  "ProfitCenter",
+                  "MasterFixedAsset",
+                  "FixedAsset",
+                  "MaterialBaseUnit",
+                  "QuantityInBaseUnit",
+                  "EntryUnit",
+                  "QuantityInEntryUnit",
+                  "CompanyCodeCurrency",
+                  "GdsMvtExtAmtInCoCodeCrcy",
+                  "SlsPrcAmtInclVATInCoCodeCrcy",
+                  "FiscalYear",
+                  "FiscalYearPeriod",
+                  "FiscalYearVariant",
+                  "IssgOrRcvgMaterial",
+                  "IssgOrRcvgBatch",
+                  "IssuingOrReceivingPlant",
+                  "IssuingOrReceivingStorageLoc",
+                  "IssuingOrReceivingStockType",
+                  "IssgOrRcvgSpclStockInd",
+                  "IssuingOrReceivingValType",
+                  "IsCompletelyDelivered",
+                  "MaterialDocumentItemText",
+                  "GoodsRecipientName",
+                  "UnloadingPointName",
+                  "ShelfLifeExpirationDate",
+                  "ManufactureDate",
+                  "SerialNumbersAreCreatedAutomly",
+                  "Reservation",
+                  "ReservationItem",
+                  "ReservationItemRecordType",
+                  "ReservationIsFinallyIssued",
+                  "SpecialStockIdfgSalesOrder",
+                  "SpecialStockIdfgSalesOrderItem",
+                  "SpecialStockIdfgWBSElement",
+                  "IsAutomaticallyCreated",
+                  "MaterialDocumentLine",
+                  "MaterialDocumentParentLine",
+                  "HierarchyNodeLevel",
+                  "GoodsMovementIsCancelled",
+                  "ReversedMaterialDocumentYear",
+                  "ReversedMaterialDocument",
+                  "ReversedMaterialDocumentItem",
+                  "ReferenceDocumentFiscalYear",
+                  "InvtryMgmtRefDocumentItem",
+                  "InvtryMgmtReferenceDocument",
+                  "MaterialDocumentPostingType",
+                  "InventoryUsabilityCode",
+                  "EWMWarehouse",
+                  "EWMStorageBin",
+                  "HandlingUnitExternalID",
+                  "DebitCreditCode",
+                  "CrossPlantConfigurableProduct",
+                  "ProductCharacteristic1",
+                  "ProductCharacteristic2",
+                  "ProductCharacteristic3",
+                  "ProductSeasonYear",
+                  "ProductSeason",
+                  "ProductCollection",
+                  "ProductTheme",
+                  "StockSegment",
+                  "IssgOrRcvgStockSegment",
+                  "to_MaterialDocumentHeader",
+                  "to_SerialNumbers"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_MaterialDocumentHeader",
+                  "to_SerialNumbers"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of A_MaterialDocumentItemType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_MaterialDocumentItem(MaterialDocumentYear='{MaterialDocumentYear}',MaterialDocument='{MaterialDocument}',MaterialDocumentItem='{MaterialDocumentItem}')": {
+      "parameters": [
+        {
+          "name": "MaterialDocumentYear",
+          "in": "path",
+          "required": true,
+          "description": "Material Document Year",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "MaterialDocument",
+          "in": "path",
+          "required": true,
+          "description": "Number of Material Document",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "MaterialDocumentItem",
+          "in": "path",
+          "required": true,
+          "description": "Material Document Item",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        }
+      ],
+      "get": {
+        "summary": "Reads information on material document items level for a specific material document",
+        "description": "Reads material document items information for a specific material document and year to get an overview of the material document postings.",
+        "tags": [
+          "Document Items"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MaterialDocumentYear",
+                  "MaterialDocument",
+                  "MaterialDocumentItem",
+                  "Material",
+                  "Plant",
+                  "StorageLocation",
+                  "Batch",
+                  "BatchBySupplier",
+                  "GoodsMovementType",
+                  "InventoryStockType",
+                  "InventoryValuationType",
+                  "InventorySpecialStockType",
+                  "Supplier",
+                  "Customer",
+                  "SalesOrder",
+                  "SalesOrderItem",
+                  "SalesOrderScheduleLine",
+                  "PurchaseOrder",
+                  "PurchaseOrderItem",
+                  "WBSElement",
+                  "ManufacturingOrder",
+                  "ManufacturingOrderItem",
+                  "GoodsMovementRefDocType",
+                  "GoodsMovementReasonCode",
+                  "Delivery",
+                  "DeliveryItem",
+                  "AccountAssignmentCategory",
+                  "CostCenter",
+                  "ControllingArea",
+                  "CostObject",
+                  "GLAccount",
+                  "FunctionalArea",
+                  "ProfitabilitySegment",
+                  "ProfitCenter",
+                  "MasterFixedAsset",
+                  "FixedAsset",
+                  "MaterialBaseUnit",
+                  "QuantityInBaseUnit",
+                  "EntryUnit",
+                  "QuantityInEntryUnit",
+                  "CompanyCodeCurrency",
+                  "GdsMvtExtAmtInCoCodeCrcy",
+                  "SlsPrcAmtInclVATInCoCodeCrcy",
+                  "FiscalYear",
+                  "FiscalYearPeriod",
+                  "FiscalYearVariant",
+                  "IssgOrRcvgMaterial",
+                  "IssgOrRcvgBatch",
+                  "IssuingOrReceivingPlant",
+                  "IssuingOrReceivingStorageLoc",
+                  "IssuingOrReceivingStockType",
+                  "IssgOrRcvgSpclStockInd",
+                  "IssuingOrReceivingValType",
+                  "IsCompletelyDelivered",
+                  "MaterialDocumentItemText",
+                  "GoodsRecipientName",
+                  "UnloadingPointName",
+                  "ShelfLifeExpirationDate",
+                  "ManufactureDate",
+                  "SerialNumbersAreCreatedAutomly",
+                  "Reservation",
+                  "ReservationItem",
+                  "ReservationItemRecordType",
+                  "ReservationIsFinallyIssued",
+                  "SpecialStockIdfgSalesOrder",
+                  "SpecialStockIdfgSalesOrderItem",
+                  "SpecialStockIdfgWBSElement",
+                  "IsAutomaticallyCreated",
+                  "MaterialDocumentLine",
+                  "MaterialDocumentParentLine",
+                  "HierarchyNodeLevel",
+                  "GoodsMovementIsCancelled",
+                  "ReversedMaterialDocumentYear",
+                  "ReversedMaterialDocument",
+                  "ReversedMaterialDocumentItem",
+                  "ReferenceDocumentFiscalYear",
+                  "InvtryMgmtRefDocumentItem",
+                  "InvtryMgmtReferenceDocument",
+                  "MaterialDocumentPostingType",
+                  "InventoryUsabilityCode",
+                  "EWMWarehouse",
+                  "EWMStorageBin",
+                  "HandlingUnitExternalID",
+                  "DebitCreditCode",
+                  "CrossPlantConfigurableProduct",
+                  "ProductCharacteristic1",
+                  "ProductCharacteristic2",
+                  "ProductCharacteristic3",
+                  "ProductSeasonYear",
+                  "ProductSeason",
+                  "ProductCollection",
+                  "ProductTheme",
+                  "StockSegment",
+                  "IssgOrRcvgStockSegment",
+                  "to_MaterialDocumentHeader",
+                  "to_SerialNumbers"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_MaterialDocumentHeader",
+                  "to_SerialNumbers"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_MaterialDocumentItemType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_MaterialDocumentItem(MaterialDocumentYear='{MaterialDocumentYear}',MaterialDocument='{MaterialDocument}',MaterialDocumentItem='{MaterialDocumentItem}')/to_MaterialDocumentHeader": {
+      "parameters": [
+        {
+          "name": "MaterialDocumentYear",
+          "in": "path",
+          "required": true,
+          "description": "Material Document Year",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "MaterialDocument",
+          "in": "path",
+          "required": true,
+          "description": "Number of Material Document",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "MaterialDocumentItem",
+          "in": "path",
+          "required": true,
+          "description": "Material Document Item",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        }
+      ],
+      "get": {
+        "summary": "Reads information on material document item and header level for a specific material document item",
+        "description": "Reads material document item and header information for a specific material document, year and item to get an overview of the material document posting.",
+        "tags": [
+          "Document Items",
+          "Document Header"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MaterialDocumentYear",
+                  "MaterialDocument",
+                  "InventoryTransactionType",
+                  "DocumentDate",
+                  "PostingDate",
+                  "CreationDate",
+                  "CreationTime",
+                  "CreatedByUser",
+                  "MaterialDocumentHeaderText",
+                  "ReferenceDocument",
+                  "VersionForPrintingSlip",
+                  "ManualPrintIsTriggered",
+                  "CtrlPostgForExtWhseMgmtSyst",
+                  "GoodsMovementCode",
+                  "to_MaterialDocumentItem"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_MaterialDocumentItem"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_MaterialDocumentHeaderType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentHeaderType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_MaterialDocumentItem(MaterialDocumentYear='{MaterialDocumentYear}',MaterialDocument='{MaterialDocument}',MaterialDocumentItem='{MaterialDocumentItem}')/to_SerialNumbers": {
+      "parameters": [
+        {
+          "name": "MaterialDocumentYear",
+          "in": "path",
+          "required": true,
+          "description": "Material Document Year",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "MaterialDocument",
+          "in": "path",
+          "required": true,
+          "description": "Number of Material Document",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "MaterialDocumentItem",
+          "in": "path",
+          "required": true,
+          "description": "Material Document Item",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        }
+      ],
+      "get": {
+        "summary": "Reads information on serial numbers for a specific material document item",
+        "description": "Reads information on serial numbers for a specific material document item to get an overview of the posted serial numbers.",
+        "tags": [
+          "Document Items",
+          "Serial Numbers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "Material desc",
+                  "SerialNumber",
+                  "SerialNumber desc",
+                  "MaterialDocument",
+                  "MaterialDocument desc",
+                  "MaterialDocumentItem",
+                  "MaterialDocumentItem desc",
+                  "MaterialDocumentYear",
+                  "MaterialDocumentYear desc",
+                  "ManufacturerSerialNumber",
+                  "ManufacturerSerialNumber desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "SerialNumber",
+                  "MaterialDocument",
+                  "MaterialDocumentItem",
+                  "MaterialDocumentYear",
+                  "ManufacturerSerialNumber"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of A_SerialNumberMaterialDocumentType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_MATERIAL_DOCUMENT_SRV.A_SerialNumberMaterialDocumentType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_SerialNumberMaterialDocument": {
+      "get": {
+        "summary": "Reads information of serial numbers on material document items level",
+        "description": "Reads information of serial numbers of material document items to get an overview of the posted serial numbers.",
+        "tags": [
+          "Serial Numbers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "Material desc",
+                  "SerialNumber",
+                  "SerialNumber desc",
+                  "MaterialDocument",
+                  "MaterialDocument desc",
+                  "MaterialDocumentItem",
+                  "MaterialDocumentItem desc",
+                  "MaterialDocumentYear",
+                  "MaterialDocumentYear desc",
+                  "ManufacturerSerialNumber",
+                  "ManufacturerSerialNumber desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "SerialNumber",
+                  "MaterialDocument",
+                  "MaterialDocumentItem",
+                  "MaterialDocumentYear",
+                  "ManufacturerSerialNumber"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of A_SerialNumberMaterialDocumentType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_MATERIAL_DOCUMENT_SRV.A_SerialNumberMaterialDocumentType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_SerialNumberMaterialDocument(Material='{Material}',SerialNumber='{SerialNumber}',MaterialDocument='{MaterialDocument}',MaterialDocumentItem='{MaterialDocumentItem}',MaterialDocumentYear='{MaterialDocumentYear}')": {
+      "parameters": [
+        {
+          "name": "Material",
+          "in": "path",
+          "required": true,
+          "description": "Material Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "SerialNumber",
+          "in": "path",
+          "required": true,
+          "description": "Serial Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 18
+          }
+        },
+        {
+          "name": "MaterialDocument",
+          "in": "path",
+          "required": true,
+          "description": "Number of Material Document",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "MaterialDocumentItem",
+          "in": "path",
+          "required": true,
+          "description": "Material Document Item",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "MaterialDocumentYear",
+          "in": "path",
+          "required": true,
+          "description": "Material Document Year",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        }
+      ],
+      "get": {
+        "summary": "Reads information of serial number on material document item level for a specific material document, item, year and material",
+        "description": "Reads information of serial number of a specific material document, item, year and material to get an overview of the posted serial numbers.",
+        "tags": [
+          "Serial Numbers"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "SerialNumber",
+                  "MaterialDocument",
+                  "MaterialDocumentItem",
+                  "MaterialDocumentYear",
+                  "ManufacturerSerialNumber"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_SerialNumberMaterialDocumentType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_MATERIAL_DOCUMENT_SRV.A_SerialNumberMaterialDocumentType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Cancel": {
+      "post": {
+        "summary": "Cancels a material document",
+        "description": "Cancels a complete material document that you specify by the material document number and year.",
+        "tags": [
+          "Document Header"
+        ],
+        "parameters": [
+          {
+            "name": "MaterialDocumentYear",
+            "in": "query",
+            "required": true,
+            "description": "Material Doc. Year  \n(Value needs to be enclosed in single quotes)",
+            "schema": {
+              "type": "string",
+              "maxLength": 6,
+              "pattern": "^'[^']*(''[^']*)*'$"
+            }
+          },
+          {
+            "name": "MaterialDocument",
+            "in": "query",
+            "required": true,
+            "description": "Material Document  \n(Value needs to be enclosed in single quotes)",
+            "schema": {
+              "type": "string",
+              "maxLength": 12,
+              "pattern": "^'[^']*(''[^']*)*'$"
+            }
+          },
+          {
+            "name": "PostingDate",
+            "in": "query",
+            "description": "Posting Date  \n(Value needs to be enclosed in single quotes and prefixed with `datetime`, e.g. `datetime'2017-12-31T00:00'`)",
+            "schema": {
+              "type": "string",
+              "nullable": true,
+              "pattern": "^datetime'[0-9]{4}-[0-9]{2}-[0-9]{2}T00:00'$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_MaterialDocumentHeaderType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentHeaderType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/CancelItem": {
+      "post": {
+        "summary": "Cancels a material document item",
+        "description": "Cancels a material document item that you specify by the material document number, year and item number.",
+        "tags": [
+          "Document Items"
+        ],
+        "parameters": [
+          {
+            "name": "MaterialDocumentYear",
+            "in": "query",
+            "required": true,
+            "description": "Material Doc. Year  \n(Value needs to be enclosed in single quotes)",
+            "schema": {
+              "type": "string",
+              "maxLength": 6,
+              "pattern": "^'[^']*(''[^']*)*'$"
+            }
+          },
+          {
+            "name": "MaterialDocument",
+            "in": "query",
+            "required": true,
+            "description": "Material Document  \n(Value needs to be enclosed in single quotes)",
+            "schema": {
+              "type": "string",
+              "maxLength": 12,
+              "pattern": "^'[^']*(''[^']*)*'$"
+            }
+          },
+          {
+            "name": "MaterialDocumentItem",
+            "in": "query",
+            "required": true,
+            "description": "Material Doc.Item  \n(Value needs to be enclosed in single quotes)",
+            "schema": {
+              "type": "string",
+              "maxLength": 6,
+              "pattern": "^'[^']*(''[^']*)*'$"
+            }
+          },
+          {
+            "name": "PostingDate",
+            "in": "query",
+            "description": "Posting Date  \n(Value needs to be enclosed in single quotes and prefixed with `datetime`, e.g. `datetime'2017-12-31T00:00'`)",
+            "schema": {
+              "type": "string",
+              "nullable": true,
+              "pattern": "^datetime'[0-9]{4}-[0-9]{2}-[0-9]{2}T00:00'$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_MaterialDocumentItemType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/$batch": {
+      "post": {
+        "summary": "Send a group of requests",
+        "description": "Group multiple requests into a single request payload, see [Batch Requests](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=152).\n\n*Please note that \"Try it out\" is not supported for this request.*",
+        "tags": [
+          "Batch Requests"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Batch request",
+          "content": {
+            "multipart/mixed;boundary=request-separator": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "--request-separator\nContent-Type: application/http\nContent-Transfer-Encoding: binary\n\nGET A_MaterialDocumentHeader HTTP/1.1\nAccept: application/json\n\n\n--request-separator--"
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Batch response",
+            "content": {
+              "multipart/mixed": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "--response-separator\nContent-Type: application/http\n\nHTTP/1.1 200 OK\nContent-Type: application/json\n\n{...}\n--response-separator--"
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentHeaderType": {
+        "type": "object",
+        "properties": {
+          "MaterialDocumentYear": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Material Document Year"
+          },
+          "MaterialDocument": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Material Document",
+            "description": "Number of Material Document"
+          },
+          "InventoryTransactionType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "InventoryTransactionType",
+            "title": "Transaction/Event Type"
+          },
+          "DocumentDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Document Date",
+            "description": "Document Date in Document"
+          },
+          "PostingDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Posting Date",
+            "description": "Posting Date in the Document"
+          },
+          "CreationDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Entry Date",
+            "description": "Day On Which Accounting Document Was Entered"
+          },
+          "CreationTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "PT15H51M04S",
+            "title": "Time of Entry"
+          },
+          "CreatedByUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "User Name"
+          },
+          "MaterialDocumentHeaderText": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 25,
+            "title": "Document Header Text"
+          },
+          "ReferenceDocument": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 16,
+            "title": "Reference",
+            "description": "Reference Document Number"
+          },
+          "VersionForPrintingSlip": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Print Version",
+            "description": "Version for Printing GR/GI Slip"
+          },
+          "ManualPrintIsTriggered": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Print Active",
+            "description": "Print via Output Control"
+          },
+          "CtrlPostgForExtWhseMgmtSyst": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "CtrlPostgForExtWhseMgmtSyst",
+            "title": "External WMS Control",
+            "description": "Control Posting for External WMS"
+          },
+          "GoodsMovementCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "GoodsMovementCode",
+            "title": "Goods Movement Code"
+          },
+          "to_MaterialDocumentItem": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType"
+                }
+              }
+            }
+          }
+        },
+        "title": "Document Header"
+      },
+      "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentHeaderType-create": {
+        "type": "object",
+        "properties": {
+          "MaterialDocumentYear": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Material Document Year"
+          },
+          "MaterialDocument": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Material Document",
+            "description": "Number of Material Document"
+          },
+          "InventoryTransactionType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "InventoryTransactionType",
+            "title": "Transaction/Event Type"
+          },
+          "DocumentDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Document Date",
+            "description": "Document Date in Document"
+          },
+          "PostingDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Posting Date",
+            "description": "Posting Date in the Document"
+          },
+          "CreationDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Entry Date",
+            "description": "Day On Which Accounting Document Was Entered"
+          },
+          "CreationTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "PT15H51M04S",
+            "title": "Time of Entry"
+          },
+          "CreatedByUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "User Name"
+          },
+          "MaterialDocumentHeaderText": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 25,
+            "title": "Document Header Text"
+          },
+          "ReferenceDocument": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 16,
+            "title": "Reference",
+            "description": "Reference Document Number"
+          },
+          "VersionForPrintingSlip": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Print Version",
+            "description": "Version for Printing GR/GI Slip"
+          },
+          "ManualPrintIsTriggered": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Print Active",
+            "description": "Print via Output Control"
+          },
+          "CtrlPostgForExtWhseMgmtSyst": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "CtrlPostgForExtWhseMgmtSyst",
+            "title": "External WMS Control",
+            "description": "Control Posting for External WMS"
+          },
+          "GoodsMovementCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "GoodsMovementCode",
+            "title": "Goods Movement Code"
+          },
+          "to_MaterialDocumentItem": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType-create"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "MaterialDocumentYear",
+          "MaterialDocument"
+        ],
+        "title": "Document Header (for create)"
+      },
+      "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentHeaderType-update": {
+        "type": "object",
+        "properties": {
+          "InventoryTransactionType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "InventoryTransactionType",
+            "title": "Transaction/Event Type"
+          },
+          "DocumentDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Document Date",
+            "description": "Document Date in Document"
+          },
+          "PostingDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Posting Date",
+            "description": "Posting Date in the Document"
+          },
+          "CreationDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Entry Date",
+            "description": "Day On Which Accounting Document Was Entered"
+          },
+          "CreationTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "PT15H51M04S",
+            "title": "Time of Entry"
+          },
+          "CreatedByUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "User Name"
+          },
+          "MaterialDocumentHeaderText": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 25,
+            "title": "Document Header Text"
+          },
+          "ReferenceDocument": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 16,
+            "title": "Reference",
+            "description": "Reference Document Number"
+          },
+          "VersionForPrintingSlip": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Print Version",
+            "description": "Version for Printing GR/GI Slip"
+          },
+          "ManualPrintIsTriggered": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Print Active",
+            "description": "Print via Output Control"
+          },
+          "CtrlPostgForExtWhseMgmtSyst": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "CtrlPostgForExtWhseMgmtSyst",
+            "title": "External WMS Control",
+            "description": "Control Posting for External WMS"
+          },
+          "GoodsMovementCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "GoodsMovementCode",
+            "title": "Goods Movement Code"
+          }
+        },
+        "title": "Document Header (for update)"
+      },
+      "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType": {
+        "type": "object",
+        "properties": {
+          "MaterialDocumentYear": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Material Document Year"
+          },
+          "MaterialDocument": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Material Document",
+            "description": "Number of Material Document"
+          },
+          "MaterialDocumentItem": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Material Document Item"
+          },
+          "Material": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "Plant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "StorageLocation": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "StorageLocation",
+            "title": "Storage Location"
+          },
+          "Batch": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Batch",
+            "description": "Batch Number"
+          },
+          "BatchBySupplier": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 15,
+            "title": "Supplier Batch",
+            "description": "Supplier Batch Number"
+          },
+          "GoodsMovementType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "GoodsMovementType",
+            "title": "Movement Type",
+            "description": "Movement Type (Inventory Management)"
+          },
+          "InventoryStockType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "InventoryStockType",
+            "title": "Stock Type",
+            "description": "Stock Type of Goods Movement (Stock Identifier)"
+          },
+          "InventoryValuationType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "x-sap-object-node-type-reference": "ProductValuationType",
+            "title": "Valuation Type"
+          },
+          "InventorySpecialStockType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "InventorySpecialStockType",
+            "title": "Special Stock Type"
+          },
+          "Supplier": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Supplier",
+            "description": "Supplier's Account Number"
+          },
+          "Customer": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Customer",
+            "description": "Account Number of Customer"
+          },
+          "SalesOrder": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Sales Order",
+            "description": "Sales Order Number"
+          },
+          "SalesOrderItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 6,
+            "title": "Sales Order Item"
+          },
+          "SalesOrderScheduleLine": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Sales Order Schedule"
+          },
+          "PurchaseOrder": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Purchase Order",
+            "description": "Purchase Order Number"
+          },
+          "PurchaseOrderItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "title": "Purchase Order Item",
+            "description": "Item Number of Purchasing Document"
+          },
+          "WBSElement": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 24,
+            "title": "WBS Element",
+            "description": "Work Breakdown Structure Element (WBS Element)"
+          },
+          "ManufacturingOrder": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Manufacturing Order"
+          },
+          "ManufacturingOrderItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Manufacturing Order Item"
+          },
+          "GoodsMovementRefDocType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "GoodsMovementReferenceDocType",
+            "title": "Reference Document Type",
+            "description": "Goods Movement Reference Document Type"
+          },
+          "GoodsMovementReasonCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "GoodsMovementReason",
+            "title": "Reason for Movement"
+          },
+          "Delivery": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Delivery"
+          },
+          "DeliveryItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 6,
+            "title": "Delivery Item"
+          },
+          "AccountAssignmentCategory": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "AccountAssignmentCategory",
+            "title": "Account Assignment Category"
+          },
+          "CostCenter": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Cost Center"
+          },
+          "ControllingArea": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Controlling Area"
+          },
+          "CostObject": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Cost Object"
+          },
+          "GLAccount": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "G/L Account",
+            "description": "G/L Account Number"
+          },
+          "FunctionalArea": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 16,
+            "title": "Functional Area"
+          },
+          "ProfitabilitySegment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Profitability Segment"
+          },
+          "ProfitCenter": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Profit Center"
+          },
+          "MasterFixedAsset": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Asset",
+            "description": "Main Asset Number"
+          },
+          "FixedAsset": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Asset Subnumber"
+          },
+          "MaterialBaseUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Base Unit of Measure"
+          },
+          "QuantityInBaseUnit": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Quantity"
+          },
+          "EntryUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Unit of Entry"
+          },
+          "QuantityInEntryUnit": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Quantity in Entry Unit",
+            "description": "Quantity in Unit of Entry"
+          },
+          "CompanyCodeCurrency": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Company Code Currency"
+          },
+          "GdsMvtExtAmtInCoCodeCrcy": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 14,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -99999999999.999,
+            "maximum": 99999999999.999,
+            "example": "0",
+            "title": "External Amount in LC",
+            "description": "Externally Entered Posting Amount in Local Currency"
+          },
+          "SlsPrcAmtInclVATInCoCodeCrcy": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 14,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -99999999999.999,
+            "maximum": 99999999999.999,
+            "example": "0",
+            "title": "Sales Value Including VAT",
+            "description": "Sales Value Including Value-Added Tax"
+          },
+          "FiscalYear": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Fiscal Year"
+          },
+          "FiscalYearPeriod": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 7,
+            "title": "Fiscal Year & Period from Posting date",
+            "description": "Period Year"
+          },
+          "FiscalYearVariant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "FiscalYearVariant",
+            "title": "Fiscal Year Variant"
+          },
+          "IssgOrRcvgMaterial": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Transfer Material"
+          },
+          "IssgOrRcvgBatch": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Transfer Batch"
+          },
+          "IssuingOrReceivingPlant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Rec/Iss Plant",
+            "description": "Receiving/Issuing Plant"
+          },
+          "IssuingOrReceivingStorageLoc": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Storage Location",
+            "description": "Receiving/Issuing Storage Location"
+          },
+          "IssuingOrReceivingStockType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "InventoryStockType",
+            "title": "Transfer Stock Type"
+          },
+          "IssgOrRcvgSpclStockInd": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "InventorySpecialStockType",
+            "title": "Transfer Special Stock Type"
+          },
+          "IssuingOrReceivingValType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "x-sap-object-node-type-reference": "ProductValuationType",
+            "title": "Transfer Batch (Valuation Type)"
+          },
+          "IsCompletelyDelivered": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Delivery Completed",
+            "description": "\"Delivery Completed\" Indicator"
+          },
+          "MaterialDocumentItemText": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 50,
+            "title": "Text",
+            "description": "Item Text"
+          },
+          "GoodsRecipientName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Goods Recipient"
+          },
+          "UnloadingPointName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 25,
+            "title": "Unloading Point"
+          },
+          "ShelfLifeExpirationDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "SLED/BBD",
+            "description": "Shelf Life Expiration or Best-Before Date"
+          },
+          "ManufactureDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Date of Manufacture"
+          },
+          "SerialNumbersAreCreatedAutomly": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Create Serial Number Automatically"
+          },
+          "Reservation": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Reservation",
+            "description": "Number of Reservation/Dependent Requirements"
+          },
+          "ReservationItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Reservation Item",
+            "description": "Item Number of Reservation / Dependent Requirements"
+          },
+          "ReservationItemRecordType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Reservation Record Type"
+          },
+          "ReservationIsFinallyIssued": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Final-Issue Reservation",
+            "description": "Final Issue for Reservation"
+          },
+          "SpecialStockIdfgSalesOrder": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Sales Order",
+            "description": "Sales Order Number of Valuated Sales Order Stock"
+          },
+          "SpecialStockIdfgSalesOrderItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 6,
+            "title": "Sales Order Item",
+            "description": "Sales Order Item of Valuated Sales Order Stock"
+          },
+          "SpecialStockIdfgWBSElement": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 24,
+            "title": "WBS Element",
+            "description": "Work Breakdown Structure Element (WBS Element)"
+          },
+          "IsAutomaticallyCreated": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Automatically Created",
+            "description": "Item Automatically Created Indicator"
+          },
+          "MaterialDocumentLine": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 6,
+            "title": "Line ID",
+            "description": "Unique Identification of Document Line"
+          },
+          "MaterialDocumentParentLine": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 6,
+            "title": "Parent line ID",
+            "description": "Identifier of immediately superior line"
+          },
+          "HierarchyNodeLevel": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Hierarchy Level",
+            "description": "Hierarchy Level of Line in Document"
+          },
+          "GoodsMovementIsCancelled": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Is Item Cancelled",
+            "description": "Item has been Cancelled"
+          },
+          "ReversedMaterialDocumentYear": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Reversed Document Year",
+            "description": "Reversed Material Document Year"
+          },
+          "ReversedMaterialDocument": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Reversed Material Document"
+          },
+          "ReversedMaterialDocumentItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Reversed Document Item",
+            "description": "Reversed Material Document Item"
+          },
+          "ReferenceDocumentFiscalYear": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Fiscal Year (Reference Document)",
+            "description": "Fiscal Year of a Reference Document"
+          },
+          "InvtryMgmtRefDocumentItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Reference Document Item",
+            "description": "Item of a Reference Document"
+          },
+          "InvtryMgmtReferenceDocument": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Reference Document",
+            "description": "Document No. of a Reference Document"
+          },
+          "MaterialDocumentPostingType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "MaterialDocumentPostingType",
+            "title": "Type of Posting",
+            "description": "Reversal, Return Delivery or Transfer Posting"
+          },
+          "InventoryUsabilityCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "InventoryUsabilityCode",
+            "title": "Posting Control Stock Type"
+          },
+          "EWMWarehouse": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "Warehouse",
+            "title": "Warehouse Number",
+            "description": "Warehouse Number/Warehouse Complex"
+          },
+          "EWMStorageBin": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 18,
+            "title": "Storage Bin"
+          },
+          "HandlingUnitExternalID": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 20,
+            "title": "Handling Unit",
+            "description": "External Handling Unit Identification"
+          },
+          "DebitCreditCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Debit/Credit Indicator"
+          },
+          "CrossPlantConfigurableProduct": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Cross-plant CM",
+            "description": "Cross-Plant Configurable Material"
+          },
+          "ProductCharacteristic1": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 18,
+            "title": "Color",
+            "description": "Characteristic Value for Colors of Variants"
+          },
+          "ProductCharacteristic2": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 18,
+            "title": "Main Size",
+            "description": "Characteristic Value for Main Sizes of Variants"
+          },
+          "ProductCharacteristic3": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 18,
+            "title": "Second Size",
+            "description": "Characteristic Value for Second Size for Variants"
+          },
+          "ProductSeasonYear": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Season Year"
+          },
+          "ProductSeason": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Season"
+          },
+          "ProductCollection": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Collection",
+            "description": "Fashion Collection"
+          },
+          "ProductTheme": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Theme",
+            "description": "Fashion Theme"
+          },
+          "StockSegment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Stock Segment"
+          },
+          "IssgOrRcvgStockSegment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Rec. Stock Segment",
+            "description": "Receiving/Issuing Stock Segment"
+          },
+          "to_MaterialDocumentHeader": {
+            "$ref": "#/components/schemas/API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentHeaderType"
+          },
+          "to_SerialNumbers": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/API_MATERIAL_DOCUMENT_SRV.A_SerialNumberMaterialDocumentType"
+                }
+              }
+            }
+          }
+        },
+        "title": "Document Items"
+      },
+      "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType-create": {
+        "type": "object",
+        "properties": {
+          "MaterialDocumentYear": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Material Document Year"
+          },
+          "MaterialDocument": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Material Document",
+            "description": "Number of Material Document"
+          },
+          "MaterialDocumentItem": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Material Document Item"
+          },
+          "Material": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "Plant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "StorageLocation": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "StorageLocation",
+            "title": "Storage Location"
+          },
+          "Batch": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Batch",
+            "description": "Batch Number"
+          },
+          "BatchBySupplier": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 15,
+            "title": "Supplier Batch",
+            "description": "Supplier Batch Number"
+          },
+          "GoodsMovementType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "GoodsMovementType",
+            "title": "Movement Type",
+            "description": "Movement Type (Inventory Management)"
+          },
+          "InventoryStockType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "InventoryStockType",
+            "title": "Stock Type",
+            "description": "Stock Type of Goods Movement (Stock Identifier)"
+          },
+          "InventoryValuationType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "x-sap-object-node-type-reference": "ProductValuationType",
+            "title": "Valuation Type"
+          },
+          "InventorySpecialStockType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "InventorySpecialStockType",
+            "title": "Special Stock Type"
+          },
+          "Supplier": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Supplier",
+            "description": "Supplier's Account Number"
+          },
+          "Customer": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Customer",
+            "description": "Account Number of Customer"
+          },
+          "SalesOrder": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Sales Order",
+            "description": "Sales Order Number"
+          },
+          "SalesOrderItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 6,
+            "title": "Sales Order Item"
+          },
+          "SalesOrderScheduleLine": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Sales Order Schedule"
+          },
+          "PurchaseOrder": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Purchase Order",
+            "description": "Purchase Order Number"
+          },
+          "PurchaseOrderItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "title": "Purchase Order Item",
+            "description": "Item Number of Purchasing Document"
+          },
+          "WBSElement": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 24,
+            "title": "WBS Element",
+            "description": "Work Breakdown Structure Element (WBS Element)"
+          },
+          "ManufacturingOrder": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Manufacturing Order"
+          },
+          "ManufacturingOrderItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Manufacturing Order Item"
+          },
+          "GoodsMovementRefDocType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "GoodsMovementReferenceDocType",
+            "title": "Reference Document Type",
+            "description": "Goods Movement Reference Document Type"
+          },
+          "GoodsMovementReasonCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "GoodsMovementReason",
+            "title": "Reason for Movement"
+          },
+          "Delivery": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Delivery"
+          },
+          "DeliveryItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 6,
+            "title": "Delivery Item"
+          },
+          "AccountAssignmentCategory": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "AccountAssignmentCategory",
+            "title": "Account Assignment Category"
+          },
+          "CostCenter": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Cost Center"
+          },
+          "ControllingArea": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Controlling Area"
+          },
+          "CostObject": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Cost Object"
+          },
+          "GLAccount": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "G/L Account",
+            "description": "G/L Account Number"
+          },
+          "FunctionalArea": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 16,
+            "title": "Functional Area"
+          },
+          "ProfitabilitySegment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Profitability Segment"
+          },
+          "ProfitCenter": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Profit Center"
+          },
+          "MasterFixedAsset": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Asset",
+            "description": "Main Asset Number"
+          },
+          "FixedAsset": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Asset Subnumber"
+          },
+          "MaterialBaseUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Base Unit of Measure"
+          },
+          "QuantityInBaseUnit": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Quantity"
+          },
+          "EntryUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Unit of Entry"
+          },
+          "QuantityInEntryUnit": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Quantity in Entry Unit",
+            "description": "Quantity in Unit of Entry"
+          },
+          "CompanyCodeCurrency": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Company Code Currency"
+          },
+          "GdsMvtExtAmtInCoCodeCrcy": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 14,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -99999999999.999,
+            "maximum": 99999999999.999,
+            "example": "0",
+            "title": "External Amount in LC",
+            "description": "Externally Entered Posting Amount in Local Currency"
+          },
+          "SlsPrcAmtInclVATInCoCodeCrcy": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 14,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -99999999999.999,
+            "maximum": 99999999999.999,
+            "example": "0",
+            "title": "Sales Value Including VAT",
+            "description": "Sales Value Including Value-Added Tax"
+          },
+          "FiscalYear": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Fiscal Year"
+          },
+          "FiscalYearPeriod": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 7,
+            "title": "Fiscal Year & Period from Posting date",
+            "description": "Period Year"
+          },
+          "FiscalYearVariant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "FiscalYearVariant",
+            "title": "Fiscal Year Variant"
+          },
+          "IssgOrRcvgMaterial": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Transfer Material"
+          },
+          "IssgOrRcvgBatch": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Transfer Batch"
+          },
+          "IssuingOrReceivingPlant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Rec/Iss Plant",
+            "description": "Receiving/Issuing Plant"
+          },
+          "IssuingOrReceivingStorageLoc": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Storage Location",
+            "description": "Receiving/Issuing Storage Location"
+          },
+          "IssuingOrReceivingStockType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "InventoryStockType",
+            "title": "Transfer Stock Type"
+          },
+          "IssgOrRcvgSpclStockInd": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "InventorySpecialStockType",
+            "title": "Transfer Special Stock Type"
+          },
+          "IssuingOrReceivingValType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "x-sap-object-node-type-reference": "ProductValuationType",
+            "title": "Transfer Batch (Valuation Type)"
+          },
+          "IsCompletelyDelivered": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Delivery Completed",
+            "description": "\"Delivery Completed\" Indicator"
+          },
+          "MaterialDocumentItemText": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 50,
+            "title": "Text",
+            "description": "Item Text"
+          },
+          "GoodsRecipientName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Goods Recipient"
+          },
+          "UnloadingPointName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 25,
+            "title": "Unloading Point"
+          },
+          "ShelfLifeExpirationDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "SLED/BBD",
+            "description": "Shelf Life Expiration or Best-Before Date"
+          },
+          "ManufactureDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Date of Manufacture"
+          },
+          "SerialNumbersAreCreatedAutomly": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Create Serial Number Automatically"
+          },
+          "Reservation": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Reservation",
+            "description": "Number of Reservation/Dependent Requirements"
+          },
+          "ReservationItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Reservation Item",
+            "description": "Item Number of Reservation / Dependent Requirements"
+          },
+          "ReservationItemRecordType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Reservation Record Type"
+          },
+          "ReservationIsFinallyIssued": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Final-Issue Reservation",
+            "description": "Final Issue for Reservation"
+          },
+          "SpecialStockIdfgSalesOrder": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Sales Order",
+            "description": "Sales Order Number of Valuated Sales Order Stock"
+          },
+          "SpecialStockIdfgSalesOrderItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 6,
+            "title": "Sales Order Item",
+            "description": "Sales Order Item of Valuated Sales Order Stock"
+          },
+          "SpecialStockIdfgWBSElement": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 24,
+            "title": "WBS Element",
+            "description": "Work Breakdown Structure Element (WBS Element)"
+          },
+          "IsAutomaticallyCreated": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Automatically Created",
+            "description": "Item Automatically Created Indicator"
+          },
+          "MaterialDocumentLine": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 6,
+            "title": "Line ID",
+            "description": "Unique Identification of Document Line"
+          },
+          "MaterialDocumentParentLine": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 6,
+            "title": "Parent line ID",
+            "description": "Identifier of immediately superior line"
+          },
+          "HierarchyNodeLevel": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Hierarchy Level",
+            "description": "Hierarchy Level of Line in Document"
+          },
+          "GoodsMovementIsCancelled": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Is Item Cancelled",
+            "description": "Item has been Cancelled"
+          },
+          "ReversedMaterialDocumentYear": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Reversed Document Year",
+            "description": "Reversed Material Document Year"
+          },
+          "ReversedMaterialDocument": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Reversed Material Document"
+          },
+          "ReversedMaterialDocumentItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Reversed Document Item",
+            "description": "Reversed Material Document Item"
+          },
+          "ReferenceDocumentFiscalYear": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Fiscal Year (Reference Document)",
+            "description": "Fiscal Year of a Reference Document"
+          },
+          "InvtryMgmtRefDocumentItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Reference Document Item",
+            "description": "Item of a Reference Document"
+          },
+          "InvtryMgmtReferenceDocument": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Reference Document",
+            "description": "Document No. of a Reference Document"
+          },
+          "MaterialDocumentPostingType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "MaterialDocumentPostingType",
+            "title": "Type of Posting",
+            "description": "Reversal, Return Delivery or Transfer Posting"
+          },
+          "InventoryUsabilityCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "InventoryUsabilityCode",
+            "title": "Posting Control Stock Type"
+          },
+          "EWMWarehouse": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "Warehouse",
+            "title": "Warehouse Number",
+            "description": "Warehouse Number/Warehouse Complex"
+          },
+          "EWMStorageBin": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 18,
+            "title": "Storage Bin"
+          },
+          "HandlingUnitExternalID": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 20,
+            "title": "Handling Unit",
+            "description": "External Handling Unit Identification"
+          },
+          "DebitCreditCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Debit/Credit Indicator"
+          },
+          "StockSegment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Stock Segment"
+          },
+          "IssgOrRcvgStockSegment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Rec. Stock Segment",
+            "description": "Receiving/Issuing Stock Segment"
+          },
+          "to_MaterialDocumentHeader": {
+            "$ref": "#/components/schemas/API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentHeaderType-create"
+          },
+          "to_SerialNumbers": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/API_MATERIAL_DOCUMENT_SRV.A_SerialNumberMaterialDocumentType-create"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "MaterialDocumentYear",
+          "MaterialDocument",
+          "MaterialDocumentItem"
+        ],
+        "title": "Document Items (for create)"
+      },
+      "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType-update": {
+        "type": "object",
+        "properties": {
+          "Material": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "Plant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "StorageLocation": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "StorageLocation",
+            "title": "Storage Location"
+          },
+          "Batch": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Batch",
+            "description": "Batch Number"
+          },
+          "BatchBySupplier": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 15,
+            "title": "Supplier Batch",
+            "description": "Supplier Batch Number"
+          },
+          "GoodsMovementType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "GoodsMovementType",
+            "title": "Movement Type",
+            "description": "Movement Type (Inventory Management)"
+          },
+          "InventoryStockType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "InventoryStockType",
+            "title": "Stock Type",
+            "description": "Stock Type of Goods Movement (Stock Identifier)"
+          },
+          "InventoryValuationType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "x-sap-object-node-type-reference": "ProductValuationType",
+            "title": "Valuation Type"
+          },
+          "InventorySpecialStockType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "InventorySpecialStockType",
+            "title": "Special Stock Type"
+          },
+          "Supplier": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Supplier",
+            "description": "Supplier's Account Number"
+          },
+          "Customer": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Customer",
+            "description": "Account Number of Customer"
+          },
+          "SalesOrder": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Sales Order",
+            "description": "Sales Order Number"
+          },
+          "SalesOrderItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 6,
+            "title": "Sales Order Item"
+          },
+          "SalesOrderScheduleLine": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Sales Order Schedule"
+          },
+          "PurchaseOrder": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Purchase Order",
+            "description": "Purchase Order Number"
+          },
+          "PurchaseOrderItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "title": "Purchase Order Item",
+            "description": "Item Number of Purchasing Document"
+          },
+          "WBSElement": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 24,
+            "title": "WBS Element",
+            "description": "Work Breakdown Structure Element (WBS Element)"
+          },
+          "ManufacturingOrder": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Manufacturing Order"
+          },
+          "ManufacturingOrderItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Manufacturing Order Item"
+          },
+          "GoodsMovementRefDocType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "GoodsMovementReferenceDocType",
+            "title": "Reference Document Type",
+            "description": "Goods Movement Reference Document Type"
+          },
+          "GoodsMovementReasonCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "GoodsMovementReason",
+            "title": "Reason for Movement"
+          },
+          "Delivery": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Delivery"
+          },
+          "DeliveryItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 6,
+            "title": "Delivery Item"
+          },
+          "AccountAssignmentCategory": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "AccountAssignmentCategory",
+            "title": "Account Assignment Category"
+          },
+          "CostCenter": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Cost Center"
+          },
+          "ControllingArea": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Controlling Area"
+          },
+          "CostObject": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Cost Object"
+          },
+          "GLAccount": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "G/L Account",
+            "description": "G/L Account Number"
+          },
+          "FunctionalArea": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 16,
+            "title": "Functional Area"
+          },
+          "ProfitabilitySegment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Profitability Segment"
+          },
+          "ProfitCenter": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Profit Center"
+          },
+          "MasterFixedAsset": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Asset",
+            "description": "Main Asset Number"
+          },
+          "FixedAsset": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Asset Subnumber"
+          },
+          "MaterialBaseUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Base Unit of Measure"
+          },
+          "QuantityInBaseUnit": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Quantity"
+          },
+          "EntryUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Unit of Entry"
+          },
+          "QuantityInEntryUnit": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Quantity in Entry Unit",
+            "description": "Quantity in Unit of Entry"
+          },
+          "CompanyCodeCurrency": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Company Code Currency"
+          },
+          "GdsMvtExtAmtInCoCodeCrcy": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 14,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -99999999999.999,
+            "maximum": 99999999999.999,
+            "example": "0",
+            "title": "External Amount in LC",
+            "description": "Externally Entered Posting Amount in Local Currency"
+          },
+          "SlsPrcAmtInclVATInCoCodeCrcy": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 14,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -99999999999.999,
+            "maximum": 99999999999.999,
+            "example": "0",
+            "title": "Sales Value Including VAT",
+            "description": "Sales Value Including Value-Added Tax"
+          },
+          "FiscalYear": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Fiscal Year"
+          },
+          "FiscalYearPeriod": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 7,
+            "title": "Fiscal Year & Period from Posting date",
+            "description": "Period Year"
+          },
+          "FiscalYearVariant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "FiscalYearVariant",
+            "title": "Fiscal Year Variant"
+          },
+          "IssgOrRcvgMaterial": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Transfer Material"
+          },
+          "IssgOrRcvgBatch": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Transfer Batch"
+          },
+          "IssuingOrReceivingPlant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Rec/Iss Plant",
+            "description": "Receiving/Issuing Plant"
+          },
+          "IssuingOrReceivingStorageLoc": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Storage Location",
+            "description": "Receiving/Issuing Storage Location"
+          },
+          "IssuingOrReceivingStockType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "InventoryStockType",
+            "title": "Transfer Stock Type"
+          },
+          "IssgOrRcvgSpclStockInd": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "InventorySpecialStockType",
+            "title": "Transfer Special Stock Type"
+          },
+          "IssuingOrReceivingValType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "x-sap-object-node-type-reference": "ProductValuationType",
+            "title": "Transfer Batch (Valuation Type)"
+          },
+          "IsCompletelyDelivered": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Delivery Completed",
+            "description": "\"Delivery Completed\" Indicator"
+          },
+          "MaterialDocumentItemText": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 50,
+            "title": "Text",
+            "description": "Item Text"
+          },
+          "GoodsRecipientName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Goods Recipient"
+          },
+          "UnloadingPointName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 25,
+            "title": "Unloading Point"
+          },
+          "ShelfLifeExpirationDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "SLED/BBD",
+            "description": "Shelf Life Expiration or Best-Before Date"
+          },
+          "ManufactureDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Date of Manufacture"
+          },
+          "SerialNumbersAreCreatedAutomly": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Create Serial Number Automatically"
+          },
+          "Reservation": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Reservation",
+            "description": "Number of Reservation/Dependent Requirements"
+          },
+          "ReservationItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Reservation Item",
+            "description": "Item Number of Reservation / Dependent Requirements"
+          },
+          "ReservationItemRecordType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Reservation Record Type"
+          },
+          "ReservationIsFinallyIssued": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Final-Issue Reservation",
+            "description": "Final Issue for Reservation"
+          },
+          "SpecialStockIdfgSalesOrder": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Sales Order",
+            "description": "Sales Order Number of Valuated Sales Order Stock"
+          },
+          "SpecialStockIdfgSalesOrderItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 6,
+            "title": "Sales Order Item",
+            "description": "Sales Order Item of Valuated Sales Order Stock"
+          },
+          "SpecialStockIdfgWBSElement": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 24,
+            "title": "WBS Element",
+            "description": "Work Breakdown Structure Element (WBS Element)"
+          },
+          "IsAutomaticallyCreated": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Automatically Created",
+            "description": "Item Automatically Created Indicator"
+          },
+          "MaterialDocumentLine": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 6,
+            "title": "Line ID",
+            "description": "Unique Identification of Document Line"
+          },
+          "MaterialDocumentParentLine": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 6,
+            "title": "Parent line ID",
+            "description": "Identifier of immediately superior line"
+          },
+          "HierarchyNodeLevel": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Hierarchy Level",
+            "description": "Hierarchy Level of Line in Document"
+          },
+          "GoodsMovementIsCancelled": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Is Item Cancelled",
+            "description": "Item has been Cancelled"
+          },
+          "ReversedMaterialDocumentYear": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Reversed Document Year",
+            "description": "Reversed Material Document Year"
+          },
+          "ReversedMaterialDocument": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Reversed Material Document"
+          },
+          "ReversedMaterialDocumentItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Reversed Document Item",
+            "description": "Reversed Material Document Item"
+          },
+          "ReferenceDocumentFiscalYear": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Fiscal Year (Reference Document)",
+            "description": "Fiscal Year of a Reference Document"
+          },
+          "InvtryMgmtRefDocumentItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Reference Document Item",
+            "description": "Item of a Reference Document"
+          },
+          "InvtryMgmtReferenceDocument": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Reference Document",
+            "description": "Document No. of a Reference Document"
+          },
+          "MaterialDocumentPostingType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "MaterialDocumentPostingType",
+            "title": "Type of Posting",
+            "description": "Reversal, Return Delivery or Transfer Posting"
+          },
+          "InventoryUsabilityCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "InventoryUsabilityCode",
+            "title": "Posting Control Stock Type"
+          },
+          "EWMWarehouse": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "Warehouse",
+            "title": "Warehouse Number",
+            "description": "Warehouse Number/Warehouse Complex"
+          },
+          "EWMStorageBin": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 18,
+            "title": "Storage Bin"
+          },
+          "HandlingUnitExternalID": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 20,
+            "title": "Handling Unit",
+            "description": "External Handling Unit Identification"
+          },
+          "DebitCreditCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Debit/Credit Indicator"
+          },
+          "StockSegment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Stock Segment"
+          },
+          "IssgOrRcvgStockSegment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Rec. Stock Segment",
+            "description": "Receiving/Issuing Stock Segment"
+          }
+        },
+        "title": "Document Items (for update)"
+      },
+      "API_MATERIAL_DOCUMENT_SRV.A_SerialNumberMaterialDocumentType": {
+        "type": "object",
+        "properties": {
+          "Material": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "SerialNumber": {
+            "type": "string",
+            "maxLength": 18,
+            "title": "Serial Number"
+          },
+          "MaterialDocument": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Material Document",
+            "description": "Number of Material Document"
+          },
+          "MaterialDocumentItem": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Material Document Item"
+          },
+          "MaterialDocumentYear": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Material Document Year"
+          },
+          "ManufacturerSerialNumber": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 30,
+            "title": "Manuf. Serial Number",
+            "description": "Manufacturer's Serial Number"
+          }
+        },
+        "title": "Serial Numbers"
+      },
+      "API_MATERIAL_DOCUMENT_SRV.A_SerialNumberMaterialDocumentType-create": {
+        "type": "object",
+        "properties": {
+          "Material": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "SerialNumber": {
+            "type": "string",
+            "maxLength": 18,
+            "title": "Serial Number"
+          },
+          "MaterialDocument": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Material Document",
+            "description": "Number of Material Document"
+          },
+          "MaterialDocumentItem": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Material Document Item"
+          },
+          "MaterialDocumentYear": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Material Document Year"
+          },
+          "ManufacturerSerialNumber": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 30,
+            "title": "Manuf. Serial Number",
+            "description": "Manufacturer's Serial Number"
+          }
+        },
+        "required": [
+          "Material",
+          "SerialNumber",
+          "MaterialDocument",
+          "MaterialDocumentItem",
+          "MaterialDocumentYear"
+        ],
+        "title": "Serial Numbers (for create)"
+      },
+      "API_MATERIAL_DOCUMENT_SRV.A_SerialNumberMaterialDocumentType-update": {
+        "type": "object",
+        "properties": {
+          "ManufacturerSerialNumber": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 30,
+            "title": "Manuf. Serial Number",
+            "description": "Manufacturer's Serial Number"
+          }
+        },
+        "title": "Serial Numbers (for update)"
+      },
+      "count": {
+        "type": "string",
+        "description": "The number of entities in the collection. Available when using the [$inlinecount](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=67) query option."
+      },
+      "error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "code",
+              "message"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "object",
+                "required": [
+                  "lang",
+                  "value"
+                ],
+                "properties": {
+                  "lang": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              },
+              "innererror": {
+                "type": "object",
+                "description": "The structure of this object is service-specific"
+              }
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "top": {
+        "name": "$top",
+        "in": "query",
+        "description": "Show only the first n items, see [Paging - Top](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=66)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "example": 50
+      },
+      "skip": {
+        "name": "$skip",
+        "in": "query",
+        "description": "Skip the first n items, see [Paging - Skip](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "count": {
+        "name": "$inlinecount",
+        "in": "query",
+        "description": "Include count of items, see [Inlinecount](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=67)",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "allpages",
+            "none"
+          ]
+        }
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/error"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "OAuth2Auth": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "scopes": {},
+            "refreshUrl": "https://{host}:{port}",
+            "authorizationUrl": "https://{host}:{port}",
+            "tokenUrl": "https://{host}:{port}"
+          }
+        }
+      },
+      "BasicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "OAuth2Auth": []
+    },
+    {
+      "BasicAuth": []
+    }
+  ]
+}
