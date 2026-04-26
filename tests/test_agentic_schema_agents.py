@@ -75,21 +75,35 @@ def test_schema_research_agent_materializes_llm_field_analysis() -> None:
 
 
 def test_result_verifier_agent_blocks_unsupported_business_conclusion() -> None:
-    agent = LlmResultVerifierAgent(
-        llm_client=StubClient(
-            {
-                "passed": False,
-                "issues": [
+    client = StubClient(
+        {
+            "passed": False,
+            "issues": [
+                {
+                    "code": "unsupported_business_conclusion",
+                    "message": "The returned flag indicates expectation, not open receipt status.",
+                    "blocking": True,
+                }
+            ],
+            "repair_hints": {
+                "preferred_filters": [
                     {
-                        "code": "unsupported_business_conclusion",
-                        "message": "The returned flag indicates expectation, not open receipt status.",
-                        "blocking": True,
-                    }
-                ],
-                "repair_hints": {"preferred_filters": [{"field": "IsCompletelyDelivered", "value": "false"}]},
-            }
-        )
+                        "entity_set": "A_PurchaseOrderItem",
+                        "field": "IsCompletelyDelivered",
+                        "operator": "eq",
+                        "value": "false",
+                    },
+                    {
+                        "entity_set": "A_PurchaseOrderItem",
+                        "field": "DeliveryCompleted",
+                        "operator": "eq",
+                        "value": "false",
+                    },
+                ]
+            },
+        }
     )
+    agent = LlmResultVerifierAgent(llm_client=client)
 
     result = agent.verify(
         AgentRequest(user_input="查询未收货采购订单"),
@@ -100,8 +114,27 @@ def test_result_verifier_agent_blocks_unsupported_business_conclusion() -> None:
         ),
         {"result_count": 1, "results": [{"PurchaseOrder": "4500000469", "GoodsReceiptIsExpected": True}]},
         schema_research={"semantic_risks": ["GoodsReceiptIsExpected is not receipt completion."]},
+        schema_context_summary={
+            "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+            "available_fields": [
+                {
+                    "entity_set": "A_PurchaseOrderItem",
+                    "field_name": "IsCompletelyDelivered",
+                    "data_type": "Edm.Boolean",
+                    "filterable": True,
+                },
+                {
+                    "entity_set": "A_PurchaseOrderItem",
+                    "field_name": "GoodsReceiptIsExpected",
+                    "data_type": "Edm.Boolean",
+                    "filterable": True,
+                },
+            ],
+        },
     )
 
     assert result["passed"] is False
     assert result["issues"][0]["code"] == "unsupported_business_conclusion"
     assert result["repair_hints"]["preferred_filters"][0]["field"] == "IsCompletelyDelivered"
+    assert [item["field"] for item in result["repair_hints"]["preferred_filters"]] == ["IsCompletelyDelivered"]
+    assert "available_fields" in client.user_prompt

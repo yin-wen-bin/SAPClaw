@@ -239,7 +239,7 @@ class SemanticResultVerifier:
     def __init__(self):
         self.calls = 0
 
-    def verify(self, request, plan, data, schema_research=None):
+    def verify(self, request, plan, data, schema_research=None, schema_context_summary=None):
         self.calls += 1
         if plan.entity_set == "A_Bad":
             return {
@@ -260,7 +260,7 @@ class AlwaysRejectingResultVerifier:
     def __init__(self):
         self.calls = 0
 
-    def verify(self, request, plan, data, schema_research=None):
+    def verify(self, request, plan, data, schema_research=None, schema_context_summary=None):
         self.calls += 1
         return {
             "passed": False,

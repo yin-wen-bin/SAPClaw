@@ -85,6 +85,44 @@ class SchemaContextProvider:
 
     @staticmethod
     def summarize(schema_context: dict[str, Any]) -> dict[str, Any]:
+        available_fields = []
+        seen_available_fields: set[tuple[str, str]] = set()
+
+        def add_available_field(field: dict[str, Any], entity_set_override: str = "") -> None:
+            if not isinstance(field, dict):
+                return
+            entity_set = str(entity_set_override or field.get("entity_set", "") or "")
+            field_name = str(field.get("field_name", "") or "")
+            if not entity_set or not field_name:
+                return
+            key = (entity_set, field_name)
+            if key in seen_available_fields:
+                return
+            seen_available_fields.add(key)
+            available_fields.append(
+                {
+                    "entity_set": entity_set,
+                    "field_name": field_name,
+                    "label": field.get("label", ""),
+                    "data_type": field.get("data_type", ""),
+                    "filterable": field.get("filterable", False),
+                }
+            )
+
+        for field in schema_context.get("candidate_fields", []):
+            add_available_field(field)
+            if len(available_fields) >= 120:
+                break
+        for entity in schema_context.get("entities", []):
+            if len(available_fields) >= 160:
+                break
+            if not isinstance(entity, dict):
+                continue
+            entity_set = str(entity.get("entity_set", "") or "")
+            for field in entity.get("fields", []):
+                add_available_field(field, entity_set_override=entity_set)
+                if len(available_fields) >= 160:
+                    break
         return {
             "service_name": schema_context.get("service_name", ""),
             "entity_count": len(schema_context.get("entities", [])),
@@ -96,6 +134,7 @@ class SchemaContextProvider:
                 f"{item.get('entity_set')}.{item.get('field_name')}"
                 for item in schema_context.get("candidate_fields", [])[:16]
             ],
+            "available_fields": available_fields,
         }
 
     @staticmethod
@@ -168,6 +207,7 @@ class SchemaContextProvider:
                 field_name in candidate_field_names
                 or field_name in set(entity.get("key_fields", []) or [])
                 or field_name in set(entity.get("default_select_fields", []) or [])
+                or self._is_business_status_field(field)
             ):
                 fields.append(self._field_payload(field, 0.0))
             if len(fields) >= 64:
@@ -265,6 +305,46 @@ class SchemaContextProvider:
             "filterable": field.get("filterable", False),
             "score": round(score, 3),
         }
+
+    @staticmethod
+    def _is_business_status_field(field: dict[str, Any]) -> bool:
+        text = " ".join(
+            [
+                str(field.get("field_name", "") or ""),
+                str(field.get("label", "") or ""),
+                str(field.get("description", "") or ""),
+                " ".join(str(item or "") for item in field.get("business_aliases", []) or []),
+            ]
+        ).lower()
+        positive_markers = {
+            "iscompletelydelivered",
+            "completely delivered",
+            "goodsreceipt",
+            "goods receipt",
+            "receivedquantity",
+            "received quantity",
+            "openquantity",
+            "open quantity",
+            "completion",
+            "completed",
+            "交货已完成",
+            "收货",
+        }
+        negative_markers = {
+            "deliveryaddress",
+            "delivery address",
+            "deliverydate",
+            "delivery date",
+            "deliverytime",
+            "delivery time",
+            "deliveryservice",
+            "planned delivery",
+            "postal",
+            "address",
+        }
+        return any(marker in text for marker in positive_markers) and not any(
+            marker in text for marker in negative_markers
+        )
 
     @staticmethod
     def _document_payload(documents: list[RetrievedDocument]) -> list[dict[str, Any]]:

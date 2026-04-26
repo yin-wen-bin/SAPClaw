@@ -883,6 +883,7 @@ class AgentOrchestrator:
                     final_plan,
                     final_data,
                     schema_research,
+                    schema_context_summary,
                 )
                 final_plan = replace(
                     final_plan,

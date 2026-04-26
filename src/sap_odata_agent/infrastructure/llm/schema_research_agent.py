@@ -134,6 +134,10 @@ class LlmSchemaResearchAgent:
             "5. Recommend filters only when the field exists in schema_context and the value follows from the user intent.\n"
             "6. Preserve user literals exactly, including leading zeros.\n"
             "7. If metadata is insufficient to prove the answer, say so in semantic_risks and planner_instructions.\n\n"
+            "8. For unreceived, undelivered, pending receipt, open goods receipt, or not fully received questions, "
+            "prefer actual completion/status or received/open quantity fields over expected/required/configuration flags.\n"
+            "9. If both GoodsReceiptIsExpected and IsCompletelyDelivered are available, treat GoodsReceiptIsExpected "
+            "as a configuration/expectation flag and prefer IsCompletelyDelivered eq false for not-complete delivery/receipt semantics.\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )

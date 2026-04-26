@@ -25,6 +25,7 @@ class LlmResultVerifierAgent:
         plan: QueryPlan,
         data: dict[str, Any] | None,
         schema_research: dict[str, Any] | None = None,
+        schema_context_summary: dict[str, Any] | None = None,
     ) -> dict[str, Any]:
         fallback = {"passed": True, "issues": [], "repair_hints": {}, "source": "result_verifier_unavailable"}
         if not self.enabled or self.llm_client is None or not data:
@@ -32,7 +33,7 @@ class LlmResultVerifierAgent:
         try:
             raw = self.llm_client.complete_json(
                 self._system_prompt(),
-                self._user_prompt(request, plan, data, schema_research or {}),
+                self._user_prompt(request, plan, data, schema_research or {}, schema_context_summary or {}),
                 max_tokens=1100,
             )
             parsed = LlmStructuredIntentPlanner._parse_json_object(raw)
@@ -42,7 +43,7 @@ class LlmResultVerifierAgent:
                 "source": "result_verifier_failed",
                 "error": str(exc),
             }
-        return self._materialize(parsed)
+        return self._materialize(parsed, schema_context_summary or {})
 
     @staticmethod
     def _system_prompt() -> str:
@@ -58,6 +59,7 @@ class LlmResultVerifierAgent:
         plan: QueryPlan,
         data: dict[str, Any],
         schema_research: dict[str, Any],
+        schema_context_summary: dict[str, Any],
     ) -> str:
         example = {
             "passed": False,
@@ -98,6 +100,11 @@ class LlmResultVerifierAgent:
                 ],
             },
             "schema_research": schema_research,
+            "schema_context_summary": {
+                "service_name": schema_context_summary.get("service_name", ""),
+                "top_entities": schema_context_summary.get("top_entities", []),
+                "available_fields": schema_context_summary.get("available_fields", [])[:120],
+            },
             "data_summary": {
                 "result_count": data.get("result_count"),
                 "results": data.get("results", [])[:20] if isinstance(data.get("results"), list) else [],
@@ -113,13 +120,15 @@ class LlmResultVerifierAgent:
             "3. For list questions, verify the result set is filtered by the requested business condition, not merely by a related control flag.\n"
             "4. If schema_research flagged semantic risks, verify the final plan addressed them.\n"
             "5. If the result is semantically unreliable, set passed=false and give repair_hints.\n"
-            "6. Do not block for presentation wording; only block data/plan support issues.\n\n"
+            "6. Do not block for presentation wording; only block data/plan support issues.\n"
+            "7. repair_hints must only recommend fields listed in schema_context_summary.available_fields; do not invent field names.\n"
+            "8. For unreceived/undelivered/open receipt questions, prefer actual completion/status or received/open quantity fields over expected/required/configuration flags.\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )
 
     @staticmethod
-    def _materialize(parsed: dict[str, Any]) -> dict[str, Any]:
+    def _materialize(parsed: dict[str, Any], schema_context_summary: dict[str, Any] | None = None) -> dict[str, Any]:
         issues = []
         for item in parsed.get("issues", []):
             if not isinstance(item, dict):
@@ -138,9 +147,33 @@ class LlmResultVerifierAgent:
         passed = bool(parsed.get("passed", False))
         if any(issue.get("blocking") for issue in issues):
             passed = False
+        repair_hints = parsed.get("repair_hints", {}) if isinstance(parsed.get("repair_hints"), dict) else {}
+        repair_hints = LlmResultVerifierAgent._filter_repair_hints(repair_hints, schema_context_summary or {})
         return {
             "passed": passed,
             "issues": issues,
-            "repair_hints": parsed.get("repair_hints", {}) if isinstance(parsed.get("repair_hints"), dict) else {},
+            "repair_hints": repair_hints,
             "source": "llm_result_verifier_agent",
+        }
+
+    @staticmethod
+    def _filter_repair_hints(repair_hints: dict[str, Any], schema_context_summary: dict[str, Any]) -> dict[str, Any]:
+        available_fields = schema_context_summary.get("available_fields", [])
+        if not available_fields:
+            return repair_hints
+        available_keys = {
+            (str(item.get("entity_set", "")), str(item.get("field_name", "")))
+            for item in available_fields
+            if isinstance(item, dict)
+        }
+        filtered_filters = []
+        for item in repair_hints.get("preferred_filters", []):
+            if not isinstance(item, dict):
+                continue
+            key = (str(item.get("entity_set", "")), str(item.get("field", "")))
+            if key in available_keys:
+                filtered_filters.append(item)
+        return {
+            **repair_hints,
+            "preferred_filters": filtered_filters,
         }

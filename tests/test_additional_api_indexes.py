@@ -66,6 +66,22 @@ def test_purchase_order_schema_context_loads_business_fields() -> None:
     assert ("A_PurchaseOrder", "CompanyCode") in fields
 
 
+def test_purchase_order_schema_summary_keeps_receipt_completion_fields() -> None:
+    provider = SchemaContextProvider(index_root="data/index")
+    context = provider.build(
+        "API_PURCHASEORDER_PROCESS_SRV",
+        "query supplier 17300003 unreceived purchase orders",
+    )
+    summary = provider.summarize(context)
+
+    available_fields = {
+        (field["entity_set"], field["field_name"])
+        for field in summary["available_fields"]
+    }
+    assert ("A_PurchaseOrderItem", "IsCompletelyDelivered") in available_fields
+    assert ("A_PurchaseOrderItem", "GoodsReceiptIsExpected") in available_fields
+
+
 def test_product_availability_index_is_marked_as_function_style_limited() -> None:
     snapshot = LocalIndexLoader(index_root="data/index").load("API_PRODUCT_AVAILY_INFO_BASIC")
 
