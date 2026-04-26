@@ -127,8 +127,10 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             "2. Use filter_from_previous objects exactly as {\"field\": target_field_on_current_step, \"source_step_id\": previous_step_id, \"source_field\": field_selected_by_previous_step}.\n"
             "3. Select every source_field in its source step and every binding field in its target step.\n"
             "4. Set filter.value_type from the schema field data_type; use boolean for Edm.Boolean filters.\n\n"
-            "5. If the intended target entity does not contain the binding target field, insert an intermediate bridge entity that contains both the previous join field and the final target key.\n"
-            "6. For example, do not bind BusinessPartner directly onto an entity that only has Supplier or Customer; first use an entity that contains BusinessPartner and Supplier/Customer, then bind the final key.\n\n"
+            "5. Follow schema_context.semantic_filter_guidance when present. Prefer its prefer_filters and avoid its avoid_filters.\n"
+            "6. For undelivered purchase order items, GoodsReceiptIsExpected only means goods receipt is expected; use IsCompletelyDelivered eq false when available.\n\n"
+            "7. If the intended target entity does not contain the binding target field, insert an intermediate bridge entity that contains both the previous join field and the final target key.\n"
+            "8. For example, do not bind BusinessPartner directly onto an entity that only has Supplier or Customer; first use an entity that contains BusinessPartner and Supplier/Customer, then bind the final key.\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )
