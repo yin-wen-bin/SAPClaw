@@ -14,10 +14,12 @@ class LlmApiRouter:
         llm_client: AnthropicCompatibleMessagesClient | None = None,
         enabled: bool = True,
         default_service_name: str = "API_BUSINESS_PARTNER",
+        allow_default_fallback: bool = False,
     ) -> None:
         self.llm_client = llm_client
         self.enabled = enabled
         self.default_service_name = default_service_name
+        self.allow_default_fallback = allow_default_fallback
 
     def route(
         self,
@@ -67,7 +69,7 @@ class LlmApiRouter:
             parsed = LlmStructuredIntentPlanner._parse_json_object(raw)
         except Exception as exc:
             fallback = self._unavailable_route(api_catalog)
-            fallback.raw_response = {"accepted": False, "reason": f"llm_error:{exc}"}
+            fallback.raw_response = {"accepted": False, "reason": f"api_router_failed:{exc}"}
             return fallback
         return self._materialize(parsed, api_catalog, user_input)
 
@@ -96,7 +98,12 @@ class LlmApiRouter:
                     reason=str(item.get("reason") or ""),
                 )
             )
-        if not selected and valid_services and not bool(parsed.get("needs_clarification", False)):
+        if (
+            not selected
+            and valid_services
+            and self.allow_default_fallback
+            and not bool(parsed.get("needs_clarification", False))
+        ):
             selected.append(SelectedApi(service_name=next(iter(valid_services)), confidence=0.0, reason="Fallback to first catalog API after invalid router selection."))
         return ApiRouteDecision(
             resolved_user_input=str(parsed.get("resolved_user_input") or user_input),
@@ -113,6 +120,11 @@ class LlmApiRouter:
         )
 
     def _unavailable_route(self, api_catalog: list[dict[str, Any]]) -> ApiRouteDecision:
+        if not self.allow_default_fallback:
+            return ApiRouteDecision(
+                selected_apis=[],
+                raw_response={"accepted": False, "reason": "api_router_unavailable"},
+            )
         service_name = (
             self.default_service_name
             if any(item.get("service_name") == self.default_service_name for item in api_catalog)

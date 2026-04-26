@@ -38,10 +38,13 @@ class LlmFailureDiagnoser:
             )
             parsed = LlmStructuredIntentPlanner._parse_json_object(raw)
         except Exception as exc:
+            fallback_evidence = [str(item) for item in payload.get("fallback_evidence", [])]
             return FailureDiagnosis(
-                category="unknown",
-                root_cause=f"Failure diagnosis LLM call failed: {exc}",
-                evidence=[str(item) for item in payload.get("fallback_evidence", [])],
+                category=str(payload.get("fallback_category") or "unknown"),
+                root_cause=str(payload.get("fallback_root_cause") or f"Failure diagnosis LLM call failed: {exc}"),
+                evidence=[*fallback_evidence, f"failure_diagnosis_llm_error:{exc}"],
+                suggested_next_action=str(payload.get("fallback_suggested_next_action") or ""),
+                raw_response={"diagnoser_error": str(exc)},
             )
         return FailureDiagnosis(
             category=str(parsed.get("category") or "unknown"),

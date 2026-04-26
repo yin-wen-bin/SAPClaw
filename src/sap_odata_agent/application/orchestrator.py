@@ -32,6 +32,7 @@ from sap_odata_agent.domain.models import (
     RetrievedContext,
     RetrievedDocument,
     ResultPresentation,
+    SelectedApi,
     ValidationIssue,
 )
 from sap_odata_agent.infrastructure.indexing.schema_context_provider import SchemaContextProvider
@@ -489,11 +490,7 @@ class AgentOrchestrator:
             latest_clarification_case=clarification_case,
             feedback_memories=feedback_memories,
         )
-        selected_service = (
-            route_decision.selected_apis[0].service_name
-            if route_decision.selected_apis
-            else (api_catalog[0].get("service_name") if api_catalog else "")
-        )
+        selected_service = route_decision.selected_apis[0].service_name if route_decision.selected_apis else ""
         effective_request = replace(
             request,
             resolved_user_input=route_decision.resolved_user_input or request.user_input,
@@ -513,6 +510,53 @@ class AgentOrchestrator:
             rationale="LLM-first pipeline route placeholder.",
             planner_diagnostics={"route_decision": route_decision.raw_response},
         )
+
+        if not route_decision.selected_apis and not route_decision.needs_clarification:
+            latest_critic_findings = [
+                CriticFinding(
+                    code="api_routing_failed",
+                    message="API router did not produce a valid API selection.",
+                    severity="error",
+                    blocking=True,
+                )
+            ]
+            final_message = "API router did not produce a valid API selection. No SAP request was executed."
+            failure_attribution = self.failure_attributor.attribute(
+                effective_request,
+                placeholder_plan,
+                success=False,
+                final_message=final_message,
+                critic_findings=latest_critic_findings,
+            )
+            response = AgentResponse(
+                success=False,
+                plan=placeholder_plan,
+                validation_issues=[],
+                attempts=[],
+                data=None,
+                presentation=None,
+                final_message=final_message,
+                needs_clarification=False,
+                clarification_question=None,
+                clarification_options=[],
+                critic_findings=latest_critic_findings,
+                failure_attribution=failure_attribution,
+            )
+            self._attach_timing(response, timings, run_started_at)
+            response.case_id = self._save_case(
+                request,
+                effective_request,
+                context,
+                placeholder_plan,
+                placeholder_plan,
+                [],
+                response,
+                critic_findings=latest_critic_findings,
+                failure_attribution=failure_attribution,
+                route_decision=route_decision,
+                schema_context_summary={},
+            )
+            return response
 
         if route_decision.needs_clarification:
             failure_attribution = self.failure_attributor.attribute(
@@ -592,9 +636,11 @@ class AgentOrchestrator:
             "schema_context_summary": schema_context_summary,
             "previous_failures": [],
         }
+        reroute_attempts = 0
+        force_initial_plan_after_reroute = False
 
         for attempt_number in range(1, self.llm_planning_max_attempts + 1):
-            if attempt_number == 1:
+            if attempt_number == 1 or force_initial_plan_after_reroute:
                 current_plan = self._timed_call(
                     timings,
                     "llm.api_specific_plan",
@@ -605,6 +651,7 @@ class AgentOrchestrator:
                     schema_context,
                 )
                 stage = "plan"
+                force_initial_plan_after_reroute = False
             else:
                 current_plan = self._timed_call(
                     timings,
@@ -620,6 +667,67 @@ class AgentOrchestrator:
                     failure_context,
                 )
                 stage = "repair"
+
+            if self._plan_requests_reroute(current_plan) and reroute_attempts < 1:
+                previous_service = selected_service
+                rerouted = self._build_reroute_decision(
+                    current_plan,
+                    route_decision,
+                    api_catalog,
+                    request.user_input,
+                    recent_cases,
+                    clarification_case,
+                    feedback_memories,
+                    timings,
+                )
+                if rerouted.selected_apis:
+                    reroute_attempts += 1
+                    route_decision = rerouted
+                    selected_service = route_decision.selected_apis[0].service_name
+                    effective_request = replace(
+                        effective_request,
+                        resolved_user_input=route_decision.resolved_user_input
+                        or effective_request.resolved_user_input
+                        or effective_request.user_input,
+                        semantic_frame={
+                            **(effective_request.semantic_frame or {}),
+                            "route_decision": route_decision.raw_response,
+                            "intent_summary": route_decision.intent_summary,
+                            "business_domain": route_decision.business_domain,
+                            "business_object": route_decision.business_object,
+                            "rerouted_from": previous_service,
+                        },
+                    )
+                    placeholder_plan = QueryPlan(
+                        service_name=selected_service or "UNKNOWN_SERVICE",
+                        entity_set="UNKNOWN_ENTITY",
+                        rationale="LLM-first pipeline route placeholder.",
+                        planner_diagnostics={"route_decision": route_decision.raw_response},
+                    )
+                    schema_context, schema_research, schema_context_summary = self._build_llm_schema_context(
+                        effective_request,
+                        route_decision,
+                        selected_service,
+                        feedback_memories,
+                        timings,
+                    )
+                    failure_context = {
+                        "route_decision": route_decision.raw_response,
+                        "schema_context_summary": schema_context_summary,
+                        "previous_failures": list(failure_context.get("previous_failures", [])),
+                        "rerouted_from": previous_service,
+                    }
+                    force_initial_plan_after_reroute = True
+                    planning_attempts.append(
+                        PlanningAttemptRecord(
+                            attempt_number=attempt_number,
+                            stage=stage,
+                            plan=current_plan,
+                            success=False,
+                            failure_reason="repair_requested_reroute",
+                        )
+                    )
+                    continue
 
             if current_plan.needs_clarification:
                 failure_attribution = self.failure_attributor.attribute(
@@ -983,6 +1091,127 @@ class AgentOrchestrator:
             final_failure_diagnosis=diagnosis,
         )
         return response
+
+    def _build_llm_schema_context(
+        self,
+        effective_request: AgentRequest,
+        route_decision: ApiRouteDecision,
+        selected_service: str,
+        feedback_memories: list[dict],
+        timings: list[dict],
+    ) -> tuple[dict, dict, dict]:
+        schema_context = self._timed_call(
+            timings,
+            "schema_context.build",
+            "譫・ｻｺ Schema Context",
+            self.schema_context_provider.build,
+            selected_service,
+            effective_request.resolved_user_input or effective_request.user_input,
+            route_decision,
+            [],
+            feedback_memories,
+        )
+        schema_research = self._timed_call(
+            timings,
+            "llm.schema_research",
+            "LLM Schema Research",
+            self.schema_research_agent.research,
+            effective_request,
+            route_decision,
+            schema_context,
+            feedback_memories,
+        )
+        schema_context = {
+            **schema_context,
+            "schema_research": schema_research,
+        }
+        schema_context_summary = self.schema_context_provider.summarize(schema_context)
+        schema_context_summary["schema_research"] = self.schema_research_agent.summarize(schema_research)
+        return schema_context, schema_research, schema_context_summary
+
+    @staticmethod
+    def _plan_requests_reroute(plan: QueryPlan) -> bool:
+        diagnostics = plan.planner_diagnostics or {}
+        dynamic = diagnostics.get("llm_dynamic_path_planner") or {}
+        raw = dynamic.get("raw") if isinstance(dynamic, dict) else {}
+        return (
+            str(plan.plan_kind or "") == "reroute_required"
+            or str(diagnostics.get("plan_kind") or "") == "reroute_required"
+            or str(dynamic.get("reason") if isinstance(dynamic, dict) else "") == "repair_requested_reroute"
+            or str((raw or {}).get("plan_kind") if isinstance(raw, dict) else "") == "reroute_required"
+        )
+
+    def _build_reroute_decision(
+        self,
+        plan: QueryPlan,
+        previous_route: ApiRouteDecision,
+        api_catalog: list[dict],
+        user_input: str,
+        recent_cases: list[dict],
+        clarification_case: dict | None,
+        feedback_memories: list[dict],
+        timings: list[dict],
+    ) -> ApiRouteDecision:
+        valid_catalog = {
+            str(item.get("service_name") or ""): item
+            for item in api_catalog
+            if str(item.get("service_name") or "")
+        }
+        previous_service = previous_route.selected_apis[0].service_name if previous_route.selected_apis else ""
+        requested_service = self._extract_reroute_service_from_plan(plan)
+        if requested_service in valid_catalog and requested_service != previous_service:
+            raw_response = {
+                "accepted": True,
+                "reason": "repair_requested_reroute",
+                "selected_apis": [{"service_name": requested_service}],
+                "previous_route": previous_route.raw_response,
+                "planner_diagnostics": plan.planner_diagnostics or {},
+            }
+            return ApiRouteDecision(
+                resolved_user_input=previous_route.resolved_user_input or user_input,
+                selected_apis=[
+                    SelectedApi(
+                        service_name=requested_service,
+                        confidence=0.8,
+                        reason="Planner repair requested reroute to this API.",
+                    )
+                ],
+                requires_multi_api=previous_route.requires_multi_api,
+                intent_summary=previous_route.intent_summary,
+                business_domain=previous_route.business_domain,
+                business_object=previous_route.business_object,
+                raw_response=raw_response,
+            )
+        return self._timed_call(
+            timings,
+            "llm.api_reroute",
+            "LLM API Reroute",
+            self.api_router.route,
+            user_input,
+            api_catalog,
+            recent_cases=recent_cases,
+            latest_clarification_case=clarification_case,
+            feedback_memories=feedback_memories,
+        )
+
+    @staticmethod
+    def _extract_reroute_service_from_plan(plan: QueryPlan) -> str:
+        diagnostics = plan.planner_diagnostics or {}
+        dynamic = diagnostics.get("llm_dynamic_path_planner") or {}
+        raw = dynamic.get("raw") if isinstance(dynamic, dict) else {}
+        candidates = [
+            raw.get("service_name") if isinstance(raw, dict) else None,
+            raw.get("target_service_name") if isinstance(raw, dict) else None,
+            raw.get("recommended_service_name") if isinstance(raw, dict) else None,
+            dynamic.get("service_name") if isinstance(dynamic, dict) else None,
+            diagnostics.get("service_name"),
+            plan.service_name,
+        ]
+        for candidate in candidates:
+            service_name = str(candidate or "").strip()
+            if service_name:
+                return service_name
+        return ""
 
     def _execute_query_plan(
         self,

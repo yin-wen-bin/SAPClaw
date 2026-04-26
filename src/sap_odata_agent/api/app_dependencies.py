@@ -114,6 +114,7 @@ def get_orchestrator() -> AgentOrchestrator:
             llm_client=llm_client,
             enabled=settings.llm_enabled,
             default_service_name=settings.default_index_service,
+            allow_default_fallback=False,
         ),
         schema_context_provider=SchemaContextProvider(
             index_root=settings.index_root,

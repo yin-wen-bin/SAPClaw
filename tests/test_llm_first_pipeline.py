@@ -10,12 +10,21 @@ from sap_odata_agent.domain.models import (
     ResultPresentation,
     SelectedApi,
 )
+from sap_odata_agent.infrastructure.llm.failure_diagnoser import LlmFailureDiagnoser
 from sap_odata_agent.infrastructure.repositories.file_case_repository import JsonlCaseRepository
 
 
 class StaticCatalogProvider:
     def load(self):
         return [{"service_name": "API_TEST", "business_scope": ["test"], "top_entities": ["A_Bad", "A_Good"]}]
+
+
+class MultiCatalogProvider:
+    def load(self):
+        return [
+            {"service_name": "API_TEST", "business_scope": ["test"], "top_entities": ["A_Bad"]},
+            {"service_name": "API_REROUTED", "business_scope": ["test"], "top_entities": ["A_Good"]},
+        ]
 
 
 class StaticRouter:
@@ -25,6 +34,15 @@ class StaticRouter:
             selected_apis=[SelectedApi(service_name="API_TEST", confidence=0.99, reason="test")],
             intent_summary="test intent",
             raw_response={"selected_apis": [{"service_name": "API_TEST"}]},
+        )
+
+
+class EmptyRouter:
+    def route(self, user_input, api_catalog, recent_cases=None, latest_clarification_case=None, feedback_memories=None):
+        return ApiRouteDecision(
+            resolved_user_input=user_input,
+            selected_apis=[],
+            raw_response={"accepted": False, "reason": "api_router_failed:test"},
         )
 
 
@@ -51,6 +69,23 @@ class InitialPlanner:
         )
 
 
+class ServiceAwarePlanner:
+    def __init__(self):
+        self.calls = 0
+
+    def plan_for_api(self, request, route_decision, schema_context):
+        self.calls += 1
+        service_name = schema_context["service_name"]
+        entity_set = "A_Good" if service_name == "API_REROUTED" else "A_Bad"
+        field = "GoodField" if entity_set == "A_Good" else "BadField"
+        return QueryPlan(
+            service_name=service_name,
+            entity_set=entity_set,
+            select_fields=[field],
+            rationale=f"service-aware plan for {service_name}",
+        )
+
+
 class RepairPlanner:
     def __init__(self, always_bad=False):
         self.calls = 0
@@ -64,6 +99,30 @@ class RepairPlanner:
             entity_set=entity_set,
             select_fields=["GoodField"],
             rationale=f"repair attempt {attempt_number}",
+        )
+
+
+class RerouteRepairPlanner:
+    def __init__(self):
+        self.calls = 0
+
+    def repair(self, request, route_decision, schema_context, previous_plan, attempt_number, max_attempts, failure_context):
+        self.calls += 1
+        return QueryPlan(
+            service_name=schema_context["service_name"],
+            entity_set="UNKNOWN_ENTITY",
+            select_fields=[],
+            plan_kind="reroute_required",
+            rationale="current API cannot satisfy the request",
+            planner_diagnostics={
+                "llm_dynamic_path_planner": {
+                    "reason": "repair_requested_reroute",
+                    "raw": {
+                        "plan_kind": "reroute_required",
+                        "service_name": "API_REROUTED",
+                    },
+                }
+            },
         )
 
 
@@ -179,7 +238,17 @@ class UnusedOldComponent:
         raise AssertionError("old constraint extractor should not be called")
 
 
-def _orchestrator(tmp_path: Path, *, repairer=None, executor=None, max_attempts=3, result_verifier=None):
+def _orchestrator(
+    tmp_path: Path,
+    *,
+    repairer=None,
+    executor=None,
+    max_attempts=3,
+    result_verifier=None,
+    api_catalog_provider=None,
+    api_router=None,
+    api_specific_planner=None,
+):
     orch = AgentOrchestrator(
         retriever=None,
         planner=InitialPlanner(),
@@ -189,10 +258,10 @@ def _orchestrator(tmp_path: Path, *, repairer=None, executor=None, max_attempts=
         repair_engine=None,
         result_presenter=StaticPresenter(),
         case_repository=JsonlCaseRepository(str(tmp_path / "cases.jsonl")),
-        api_catalog_provider=StaticCatalogProvider(),
-        api_router=StaticRouter(),
+        api_catalog_provider=api_catalog_provider or StaticCatalogProvider(),
+        api_router=api_router or StaticRouter(),
         schema_context_provider=StaticSchemaContextProvider(),
-        api_specific_planner=InitialPlanner(),
+        api_specific_planner=api_specific_planner or InitialPlanner(),
         plan_repairer=repairer or RepairPlanner(),
         failure_diagnoser=StaticFailureDiagnoser(),
         schema_research_agent=StaticSchemaResearchAgent(),
@@ -245,3 +314,54 @@ def test_llm_first_pipeline_repairs_after_result_verifier_rejects_semantics(tmp_
     assert len(response.attempts) == 2
     assert repairer.calls == 1
     assert result_verifier.calls == 2
+
+
+def test_llm_first_pipeline_fails_fast_when_router_selects_no_api(tmp_path: Path) -> None:
+    response = _orchestrator(tmp_path, api_router=EmptyRouter()).run(
+        AgentRequest(user_input="query something unsupported")
+    )
+
+    assert response.success is False
+    assert response.attempts == []
+    assert response.plan.service_name == "UNKNOWN_SERVICE"
+    assert response.failure_attribution is not None
+    assert response.failure_attribution.category == "api_routing_failed"
+
+
+def test_llm_first_pipeline_reroutes_after_repair_request(tmp_path: Path) -> None:
+    planner = ServiceAwarePlanner()
+    repairer = RerouteRepairPlanner()
+    response = _orchestrator(
+        tmp_path,
+        api_catalog_provider=MultiCatalogProvider(),
+        api_specific_planner=planner,
+        repairer=repairer,
+        max_attempts=3,
+    ).run(AgentRequest(user_input="query data that requires another API"))
+
+    assert response.success is True
+    assert response.plan.service_name == "API_REROUTED"
+    assert response.plan.entity_set == "A_Good"
+    assert planner.calls == 2
+    assert repairer.calls == 1
+
+
+class MalformedJsonClient:
+    def complete_json(self, system_prompt: str, user_prompt: str, max_tokens: int = 900) -> str:
+        return '{"category": "unknown", "root_cause": "unterminated'
+
+
+def test_failure_diagnoser_preserves_fallback_when_llm_json_is_malformed() -> None:
+    diagnoser = LlmFailureDiagnoser(llm_client=MalformedJsonClient(), enabled=True)
+
+    diagnosis = diagnoser.diagnose(
+        {
+            "fallback_category": "schema_planner_failed",
+            "fallback_root_cause": "Planner requested reroute but no reroute succeeded.",
+            "fallback_evidence": ["repair_requested_reroute"],
+        }
+    )
+
+    assert diagnosis.category == "schema_planner_failed"
+    assert diagnosis.root_cause == "Planner requested reroute but no reroute succeeded."
+    assert any(item.startswith("failure_diagnosis_llm_error:") for item in diagnosis.evidence)
