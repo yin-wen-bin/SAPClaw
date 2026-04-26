@@ -40,6 +40,8 @@ from sap_odata_agent.infrastructure.llm.plan_repairer import (
     dataclass_list_to_dicts,
     execution_attempt_to_debug,
 )
+from sap_odata_agent.infrastructure.llm.result_verifier_agent import LlmResultVerifierAgent
+from sap_odata_agent.infrastructure.llm.schema_research_agent import LlmSchemaResearchAgent
 from sap_odata_agent.domain.ports import (
     CaseRepository,
     IntentPlanner,
@@ -79,6 +81,8 @@ class AgentOrchestrator:
         api_specific_planner=None,
         plan_repairer=None,
         failure_diagnoser: LlmFailureDiagnoser | None = None,
+        schema_research_agent: LlmSchemaResearchAgent | None = None,
+        result_verifier_agent: LlmResultVerifierAgent | None = None,
         llm_planning_max_attempts: int = 3,
         use_llm_first_pipeline: bool = False,
     ) -> None:
@@ -102,6 +106,8 @@ class AgentOrchestrator:
         self.api_specific_planner = api_specific_planner
         self.plan_repairer = plan_repairer
         self.failure_diagnoser = failure_diagnoser or LlmFailureDiagnoser(enabled=False)
+        self.schema_research_agent = schema_research_agent or LlmSchemaResearchAgent(enabled=False)
+        self.result_verifier_agent = result_verifier_agent or LlmResultVerifierAgent(enabled=False)
         self.llm_planning_max_attempts = max(1, llm_planning_max_attempts)
         self.use_llm_first_pipeline = use_llm_first_pipeline
         self.multi_step_executor = MultiStepSapExecutor(compiler=compiler, executor=executor)
@@ -557,7 +563,22 @@ class AgentOrchestrator:
             [],
             feedback_memories,
         )
+        schema_research = self._timed_call(
+            timings,
+            "llm.schema_research",
+            "LLM Schema Research",
+            self.schema_research_agent.research,
+            effective_request,
+            route_decision,
+            schema_context,
+            feedback_memories,
+        )
+        schema_context = {
+            **schema_context,
+            "schema_research": schema_research,
+        }
         schema_context_summary = self.schema_context_provider.summarize(schema_context)
+        schema_context_summary["schema_research"] = self.schema_research_agent.summarize(schema_research)
 
         attempts = []
         planning_attempts: list[PlanningAttemptRecord] = []
@@ -678,6 +699,20 @@ class AgentOrchestrator:
                         self.schema_feasibility_validator.to_critic_findings(feasibility_result)
                     )
 
+            latest_critic_findings.extend(
+                self._timed_call(
+                    timings,
+                    "llm.plan_critic",
+                    "LLM Plan Critic",
+                    self.llm_plan_critic.review,
+                    effective_request,
+                    context,
+                    current_plan,
+                    existing_findings=latest_critic_findings,
+                    schema_research=schema_research,
+                )
+            )
+
             blocked = (
                 not latest_guardrail_decision.accepted
                 or any(item.blocking for item in latest_critic_findings)
@@ -727,6 +762,67 @@ class AgentOrchestrator:
             if execution_result["success"]:
                 final_plan = execution_result["plan"]
                 final_data = execution_result["data"]
+                result_verification = self._timed_call(
+                    timings,
+                    "llm.result_verify",
+                    "LLM Result Verifier",
+                    self.result_verifier_agent.verify,
+                    effective_request,
+                    final_plan,
+                    final_data,
+                    schema_research,
+                )
+                final_plan = replace(
+                    final_plan,
+                    planner_diagnostics={
+                        **(final_plan.planner_diagnostics or {}),
+                        "schema_research": self.schema_research_agent.summarize(schema_research),
+                        "result_verification": result_verification,
+                    },
+                )
+                if not result_verification.get("passed", True):
+                    verifier_findings = [
+                        CriticFinding(
+                            code=f"llm_result_{str(item.get('code', 'verification_failed'))}",
+                            message=str(item.get("message", "Result verifier rejected the plan output.")),
+                            severity="error" if item.get("blocking", True) else "warning",
+                            blocking=bool(item.get("blocking", True)),
+                        )
+                        for item in result_verification.get("issues", [])
+                        if isinstance(item, dict)
+                    ]
+                    if not verifier_findings:
+                        verifier_findings = [
+                            CriticFinding(
+                                code="llm_result_verification_failed",
+                                message="Result verifier rejected the plan output.",
+                                severity="error",
+                                blocking=True,
+                            )
+                        ]
+                    latest_critic_findings.extend(verifier_findings)
+                    failure_context = self._build_llm_repair_context(
+                        final_plan,
+                        latest_guardrail_decision,
+                        latest_critic_findings,
+                        latest_issues,
+                        attempts[-1] if attempts else None,
+                        failure_context,
+                    )
+                    failure_context["result_verification"] = result_verification
+                    planning_attempts.append(
+                        PlanningAttemptRecord(
+                            attempt_number=attempt_number,
+                            stage=stage,
+                            plan=final_plan,
+                            success=False,
+                            failure_reason="result_verification_failed",
+                            guardrail_reasons=list(latest_guardrail_decision.reasons if latest_guardrail_decision else []),
+                            critic_findings=dataclass_list_to_dicts(latest_critic_findings),
+                            sap_error=execution_attempt_to_debug(attempts[-1] if attempts else None),
+                        )
+                    )
+                    continue
                 planning_attempts.append(
                     PlanningAttemptRecord(
                         attempt_number=attempt_number,

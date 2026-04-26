@@ -107,6 +107,18 @@ class AlwaysFailingExecutor:
         )
 
 
+class AlwaysPassingExecutor:
+    def execute(self, compiled_request, attempt_number):
+        entity_set = "A_Bad" if "A_Bad" in compiled_request.url else "A_Good"
+        return ExecutionAttempt(
+            attempt_number=attempt_number,
+            request=compiled_request,
+            success=True,
+            status_code=200,
+            response_preview={"result_count": 1, "results": [{"EntitySet": entity_set}]},
+        )
+
+
 class StaticPresenter:
     def present(self, request, plan, data):
         return ResultPresentation(kind="text", title="查询结果", text="OK")
@@ -119,6 +131,46 @@ class StaticFailureDiagnoser:
         return FailureDiagnosis(category="invalid_field", root_cause="failed after retries")
 
 
+class StaticSchemaResearchAgent:
+    def __init__(self):
+        self.calls = 0
+
+    def research(self, request, route_decision, schema_context, feedback_memories=None):
+        self.calls += 1
+        return {
+            "available": True,
+            "business_intent": "test intent",
+            "recommended_filters": [],
+            "semantic_risks": [],
+            "planner_instructions": "test research",
+        }
+
+    @staticmethod
+    def summarize(research):
+        return {"available": research.get("available", False)}
+
+
+class SemanticResultVerifier:
+    def __init__(self):
+        self.calls = 0
+
+    def verify(self, request, plan, data, schema_research=None):
+        self.calls += 1
+        if plan.entity_set == "A_Bad":
+            return {
+                "passed": False,
+                "issues": [
+                    {
+                        "code": "wrong_business_semantics",
+                        "message": "The result does not prove the requested business condition.",
+                        "blocking": True,
+                    }
+                ],
+                "repair_hints": {"preferred_entity_set": "A_Good"},
+            }
+        return {"passed": True, "issues": [], "repair_hints": {}}
+
+
 class UnusedOldComponent:
     def classify(self, *args, **kwargs):
         raise AssertionError("old query classifier should not be called")
@@ -127,7 +179,7 @@ class UnusedOldComponent:
         raise AssertionError("old constraint extractor should not be called")
 
 
-def _orchestrator(tmp_path: Path, *, repairer=None, executor=None, max_attempts=3):
+def _orchestrator(tmp_path: Path, *, repairer=None, executor=None, max_attempts=3, result_verifier=None):
     orch = AgentOrchestrator(
         retriever=None,
         planner=InitialPlanner(),
@@ -143,6 +195,8 @@ def _orchestrator(tmp_path: Path, *, repairer=None, executor=None, max_attempts=
         api_specific_planner=InitialPlanner(),
         plan_repairer=repairer or RepairPlanner(),
         failure_diagnoser=StaticFailureDiagnoser(),
+        schema_research_agent=StaticSchemaResearchAgent(),
+        result_verifier_agent=result_verifier,
         llm_planning_max_attempts=max_attempts,
         use_llm_first_pipeline=True,
     )
@@ -174,3 +228,20 @@ def test_llm_first_pipeline_limits_planning_attempts_to_three(tmp_path: Path) ->
     assert len(response.attempts) == 3
     assert repairer.calls == 2
     assert response.final_message == "failed after retries"
+
+
+def test_llm_first_pipeline_repairs_after_result_verifier_rejects_semantics(tmp_path: Path) -> None:
+    repairer = RepairPlanner()
+    result_verifier = SemanticResultVerifier()
+    response = _orchestrator(
+        tmp_path,
+        repairer=repairer,
+        executor=AlwaysPassingExecutor(),
+        result_verifier=result_verifier,
+    ).run(AgentRequest(user_input="查询业务语义不可靠的结果"))
+
+    assert response.success is True
+    assert response.plan.entity_set == "A_Good"
+    assert len(response.attempts) == 2
+    assert repairer.calls == 1
+    assert result_verifier.calls == 2

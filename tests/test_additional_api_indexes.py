@@ -1,12 +1,8 @@
 from pathlib import Path
 
-import json
-
-from sap_odata_agent.domain.models import AgentRequest, RetrievedContext
 from sap_odata_agent.infrastructure.indexing.api_catalog_provider import ApiCatalogProvider
 from sap_odata_agent.infrastructure.indexing.index_loader import LocalIndexLoader
 from sap_odata_agent.infrastructure.indexing.schema_context_provider import SchemaContextProvider
-from sap_odata_agent.infrastructure.llm.dynamic_path_planner import LlmDynamicPathPlanner
 
 
 ADDITIONAL_APIS = {
@@ -68,80 +64,6 @@ def test_purchase_order_schema_context_loads_business_fields() -> None:
     assert ("A_PurchaseOrder", "PurchaseOrder") in fields
     assert ("A_PurchaseOrder", "Supplier") in fields
     assert ("A_PurchaseOrder", "CompanyCode") in fields
-
-
-def test_purchase_order_schema_context_guides_undelivered_filter_semantics() -> None:
-    context = SchemaContextProvider(index_root="data/index").build(
-        "API_PURCHASEORDER_PROCESS_SRV",
-        "查询供应商为17300003的未收货采购订单",
-    )
-
-    fields = {
-        (field["entity_set"], field["field_name"])
-        for field in context["candidate_fields"]
-    }
-    assert ("A_PurchaseOrderItem", "IsCompletelyDelivered") in fields
-    assert context["semantic_filter_guidance"][0]["prefer_filters"][0] == {
-        "entity_set": "A_PurchaseOrderItem",
-        "field": "IsCompletelyDelivered",
-        "operator": "eq",
-        "value": "false",
-        "value_type": "Edm.Boolean",
-    }
-
-
-class StubClient:
-    def __init__(self, response: dict) -> None:
-        self.response = response
-
-    def complete_json(self, system_prompt: str, user_prompt: str, max_tokens: int = 900) -> str:
-        return json.dumps(self.response)
-
-
-def test_dynamic_planner_replaces_receipt_expected_with_delivery_completion_filter() -> None:
-    planner = LlmDynamicPathPlanner(
-        index_root="data/index",
-        service_name="API_PURCHASEORDER_PROCESS_SRV",
-        llm_client=StubClient(
-            {
-                "plan_kind": "multi_step",
-                "target_entity_set": "A_PurchaseOrderItem",
-                "steps": [
-                    {
-                        "step_id": "step_1",
-                        "entity_set": "A_PurchaseOrder",
-                        "select_fields": ["PurchaseOrder", "Supplier"],
-                        "filters": [{"field": "Supplier", "operator": "eq", "value": "17300003"}],
-                        "top": 50,
-                    },
-                    {
-                        "step_id": "step_2",
-                        "entity_set": "A_PurchaseOrderItem",
-                        "select_fields": ["PurchaseOrder", "PurchaseOrderItem", "GoodsReceiptIsExpected"],
-                        "filters": [{"field": "GoodsReceiptIsExpected", "operator": "eq", "value": "true"}],
-                        "filter_from_previous": [
-                            {"field": "PurchaseOrder", "source_step_id": "step_1", "source_field": "PurchaseOrder"}
-                        ],
-                        "top": 50,
-                    },
-                ],
-                "presentation": {"kind": "table", "reason": "List open purchase order items."},
-                "rationale": "Wrong field on purpose to exercise semantic guardrail.",
-            }
-        ),
-    )
-
-    plan = planner.plan(
-        AgentRequest(user_input="查询供应商为17300003的未收货采购订单"),
-        RetrievedContext(),
-    )
-
-    final_filters = plan.steps[-1].filters
-    assert [(item.field, item.operator, item.value, item.value_type) for item in final_filters] == [
-        ("IsCompletelyDelivered", "eq", "false", "Edm.Boolean")
-    ]
-    assert "IsCompletelyDelivered" in plan.steps[-1].select_fields
-    assert "GoodsReceiptIsExpected" not in [item.field for item in final_filters]
 
 
 def test_product_availability_index_is_marked_as_function_style_limited() -> None:

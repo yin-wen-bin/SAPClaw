@@ -73,12 +73,6 @@ class LlmDynamicPathPlanner:
     def _build_schema_context(self, request: AgentRequest, context: RetrievedContext, snapshot) -> dict[str, Any]:
         query = request.resolved_user_input or request.user_input
         constraints = request.constraints
-        semantic_filter_guidance = self._semantic_filter_guidance(query, snapshot.fields)
-        semantic_preferred_fields = {
-            (str(item.get("entity_set", "")), str(item.get("field", "")))
-            for guidance in semantic_filter_guidance
-            for item in guidance.get("prefer_filters", [])
-        }
         schema_rerank = request.schema_rerank or {}
         required_field_names = set()
         if constraints is not None:
@@ -103,8 +97,6 @@ class LlmDynamicPathPlanner:
                 score += min(doc_fields[key], 20.0) * 0.8
             if str(field.get("field_name", "")) in required_field_names:
                 score += 30.0
-            if key in semantic_preferred_fields:
-                score += 40.0
             scored_fields.append((score, field))
 
         ranked_by_llm_key = {
@@ -150,7 +142,6 @@ class LlmDynamicPathPlanner:
             "candidate_fields": candidate_fields,
             "join_hints": self._build_join_hints(snapshot, entity_set_scope),
             "relations": self._build_relation_hints(snapshot, entity_set_scope),
-            "semantic_filter_guidance": semantic_filter_guidance,
             "retrieved_documents": self._document_payload(context.documents if context else []),
         }
 
@@ -221,7 +212,7 @@ class LlmDynamicPathPlanner:
         raw_steps = parsed.get("steps", [])
         has_explicit_steps = isinstance(raw_steps, list) and bool(raw_steps)
         if plan_kind in {"lookup", "multi_step"} or has_explicit_steps:
-            steps = self._materialize_steps(raw_steps, snapshot, schema_context)
+            steps = self._materialize_steps(raw_steps, snapshot)
             if not steps:
                 return None
             final_step = steps[-1]
@@ -274,7 +265,6 @@ class LlmDynamicPathPlanner:
         if not select_fields:
             select_fields = self._default_fields(entity, field_map)
         filters = self._materialize_filters(parsed.get("filters", []), field_map)
-        filters = self._apply_semantic_filter_guidance(filters, entity_set, field_map, schema_context)
         target_field = str(parsed.get("target_field") or "") or None
         return QueryPlan(
             service_name=str(entity.get("service_name") or self.service_name),
@@ -301,7 +291,7 @@ class LlmDynamicPathPlanner:
             target_entity_set=entity_set,
         )
 
-    def _materialize_steps(self, raw_steps: Any, snapshot, schema_context: dict[str, Any]) -> list[ExecutionStep]:
+    def _materialize_steps(self, raw_steps: Any, snapshot) -> list[ExecutionStep]:
         steps: list[ExecutionStep] = []
         raw_items = raw_steps if isinstance(raw_steps, list) else []
         for index, item in enumerate(raw_items, start=1):
@@ -313,7 +303,6 @@ class LlmDynamicPathPlanner:
                 continue
             field_map = self._field_map(snapshot, entity_set)
             filters = self._materialize_filters(item.get("filters", []), field_map)
-            filters = self._apply_semantic_filter_guidance(filters, entity_set, field_map, schema_context)
             bindings = self._materialize_bindings(item, field_map)
             if not bindings and steps:
                 shorthand_binding = self._materialize_shorthand_binding(item, field_map, steps[-1])
@@ -426,8 +415,8 @@ class LlmDynamicPathPlanner:
             "4. Every filter field must be filterable unless no filterable alternative exists in schema_context.\n"
             "5. Select all fields needed for bindings and final answer rendering.\n"
             "6. Choose presentation.kind: text for one factual answer, table for lists or multiple rows.\n"
-            "7. Follow schema_context.semantic_filter_guidance when present. Prefer its prefer_filters and avoid its avoid_filters.\n"
-            "8. For undelivered purchase order items, GoodsReceiptIsExpected only means goods receipt is expected; use IsCompletelyDelivered eq false when available.\n"
+            "7. Use schema_context.schema_research when present as the primary business-semantic analysis.\n"
+            "8. Distinguish requirement/expected flags from completion/open status fields; do not treat similarly named fields as equivalent.\n"
             "9. If the schema context is insufficient, return no_feasible_plan instead of inventing fields.\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
@@ -545,7 +534,7 @@ class LlmDynamicPathPlanner:
                 or field_name in set(entity.get("default_select_fields", []) or [])
             ):
                 fields.append(self._field_payload(field, 0.0))
-            if len(fields) >= 24:
+            if len(fields) >= 64:
                 break
         return {
             "entity_set": entity_set,
@@ -661,59 +650,6 @@ class LlmDynamicPathPlanner:
             )
         return filters
 
-    @staticmethod
-    def _apply_semantic_filter_guidance(
-        filters: list[FilterCondition],
-        entity_set: str,
-        field_map: dict[str, dict[str, Any]],
-        schema_context: dict[str, Any],
-    ) -> list[FilterCondition]:
-        semantic_guidance = schema_context.get("semantic_filter_guidance", [])
-        if not isinstance(semantic_guidance, list) or not semantic_guidance:
-            return filters
-
-        replacement_filters: list[FilterCondition] = []
-        avoid_fields: set[str] = set()
-        for guidance in semantic_guidance:
-            if not isinstance(guidance, dict):
-                continue
-            for avoid_filter in guidance.get("avoid_filters", []):
-                if not isinstance(avoid_filter, dict):
-                    continue
-                if str(avoid_filter.get("entity_set") or "") == entity_set:
-                    avoid_fields.add(str(avoid_filter.get("field") or ""))
-            for prefer_filter in guidance.get("prefer_filters", []):
-                if not isinstance(prefer_filter, dict):
-                    continue
-                if str(prefer_filter.get("entity_set") or "") != entity_set:
-                    continue
-                field_name = str(prefer_filter.get("field") or "")
-                value = prefer_filter.get("value")
-                if field_name not in field_map or value in (None, ""):
-                    continue
-                replacement_filters.append(
-                    FilterCondition(
-                        field=field_name,
-                        operator=str(prefer_filter.get("operator") or "eq"),
-                        value=str(value),
-                        value_type=LlmDynamicPathPlanner._filter_value_type(prefer_filter, field_map[field_name]),
-                    )
-                )
-
-        if not avoid_fields or not replacement_filters:
-            return filters
-        if not any(condition.field in avoid_fields for condition in filters):
-            return filters
-
-        kept_filters = [condition for condition in filters if condition.field not in avoid_fields]
-        existing_fields = {condition.field for condition in kept_filters}
-        for replacement_filter in replacement_filters:
-            if replacement_filter.field not in existing_fields:
-                kept_filters.append(replacement_filter)
-                existing_fields.add(replacement_filter.field)
-        return kept_filters
-
-    @staticmethod
     def _filter_value_type(raw_filter: dict[str, Any], field_metadata: dict[str, Any]) -> str:
         explicit_type = raw_filter.get("value_type")
         if isinstance(explicit_type, str) and explicit_type.strip():
@@ -722,58 +658,6 @@ class LlmDynamicPathPlanner:
         if isinstance(data_type, str) and data_type.strip():
             return data_type.strip()
         return "string"
-
-    @staticmethod
-    def _semantic_filter_guidance(query: str, fields: list[dict[str, Any]]) -> list[dict[str, Any]]:
-        normalized_query = LlmDynamicPathPlanner._normalize(query).replace(" ", "")
-        undelivered_terms = (
-            "未收货",
-            "未完全收货",
-            "未交货",
-            "未完全交货",
-            "尚未收货",
-            "尚未交货",
-            "undelivered",
-            "notreceived",
-            "notdelivered",
-            "openreceipt",
-            "opendelivery",
-        )
-        if not any(term in normalized_query for term in undelivered_terms):
-            return []
-
-        field_keys = {
-            (str(field.get("entity_set", "")), str(field.get("field_name", "")))
-            for field in fields
-        }
-        if ("A_PurchaseOrderItem", "IsCompletelyDelivered") not in field_keys:
-            return []
-
-        return [
-            {
-                "intent": "undelivered_purchase_order_items",
-                "reason": (
-                    "For undelivered or not fully received purchase order items, use the delivery completion flag. "
-                    "GoodsReceiptIsExpected only means goods receipt is expected/required and does not mean receipt is still open."
-                ),
-                "prefer_filters": [
-                    {
-                        "entity_set": "A_PurchaseOrderItem",
-                        "field": "IsCompletelyDelivered",
-                        "operator": "eq",
-                        "value": "false",
-                        "value_type": "Edm.Boolean",
-                    }
-                ],
-                "avoid_filters": [
-                    {
-                        "entity_set": "A_PurchaseOrderItem",
-                        "field": "GoodsReceiptIsExpected",
-                        "reason": "This is a goods-receipt-required indicator, not an open receipt/completion status.",
-                    }
-                ],
-            }
-        ]
 
     @staticmethod
     def _materialize_bindings(item: dict[str, Any], field_map: dict[str, dict[str, Any]]) -> list[StepBinding]:
@@ -952,7 +836,7 @@ class LlmDynamicPathPlanner:
                 f"{item.get('entity_set')}.{item.get('field_name')}"
                 for item in schema_context.get("candidate_fields", [])[:16]
             ],
-            "semantic_filter_guidance": schema_context.get("semantic_filter_guidance", []),
+            "schema_research": schema_context.get("schema_research", {}),
         }
 
     @staticmethod

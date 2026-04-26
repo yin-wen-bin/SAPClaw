@@ -36,12 +36,6 @@ class SchemaContextProvider:
         feedback_memories: list[dict[str, Any]] | None = None,
     ) -> dict[str, Any]:
         snapshot = self.loader.load(service_name)
-        semantic_filter_guidance = self._semantic_filter_guidance(query, snapshot.fields)
-        semantic_preferred_fields = {
-            (str(item.get("entity_set", "")), str(item.get("field", "")))
-            for guidance in semantic_filter_guidance
-            for item in guidance.get("prefer_filters", [])
-        }
         doc_entities = self._entity_sets_from_documents(retrieved_documents or [])
         doc_fields = self._field_refs_from_documents(retrieved_documents or [])
         scored_fields: list[tuple[float, dict[str, Any]]] = []
@@ -50,8 +44,6 @@ class SchemaContextProvider:
             key = (str(field.get("entity_set", "")), str(field.get("field_name", "")))
             if key in doc_fields:
                 score += min(doc_fields[key], 20.0) * 0.8
-            if key in semantic_preferred_fields:
-                score += 40.0
             scored_fields.append((score, field))
         scored_fields.sort(key=lambda item: item[0], reverse=True)
 
@@ -87,7 +79,6 @@ class SchemaContextProvider:
             "candidate_fields": candidate_fields,
             "join_hints": self._build_join_hints(snapshot, entity_set_scope),
             "relations": self._build_relation_hints(snapshot, entity_set_scope),
-            "semantic_filter_guidance": semantic_filter_guidance,
             "retrieved_documents": self._document_payload(retrieved_documents or []),
             "feedback_memories": feedback_memories or [],
         }
@@ -179,7 +170,7 @@ class SchemaContextProvider:
                 or field_name in set(entity.get("default_select_fields", []) or [])
             ):
                 fields.append(self._field_payload(field, 0.0))
-            if len(fields) >= 28:
+            if len(fields) >= 64:
                 break
         return {
             "entity_set": entity_set,
@@ -261,58 +252,6 @@ class SchemaContextProvider:
                 if best >= 0.82:
                     score += best * 3.0
         return score
-
-    @staticmethod
-    def _semantic_filter_guidance(query: str, fields: list[dict[str, Any]]) -> list[dict[str, Any]]:
-        normalized_query = SchemaContextProvider._normalize(query).replace(" ", "")
-        undelivered_terms = (
-            "未收货",
-            "未完全收货",
-            "未交货",
-            "未完全交货",
-            "尚未收货",
-            "尚未交货",
-            "undelivered",
-            "notreceived",
-            "notdelivered",
-            "openreceipt",
-            "opendelivery",
-        )
-        if not any(term in normalized_query for term in undelivered_terms):
-            return []
-
-        field_keys = {
-            (str(field.get("entity_set", "")), str(field.get("field_name", "")))
-            for field in fields
-        }
-        if ("A_PurchaseOrderItem", "IsCompletelyDelivered") not in field_keys:
-            return []
-
-        return [
-            {
-                "intent": "undelivered_purchase_order_items",
-                "reason": (
-                    "For undelivered or not fully received purchase order items, use the delivery completion flag. "
-                    "GoodsReceiptIsExpected only means goods receipt is expected/required and does not mean receipt is still open."
-                ),
-                "prefer_filters": [
-                    {
-                        "entity_set": "A_PurchaseOrderItem",
-                        "field": "IsCompletelyDelivered",
-                        "operator": "eq",
-                        "value": "false",
-                        "value_type": "Edm.Boolean",
-                    }
-                ],
-                "avoid_filters": [
-                    {
-                        "entity_set": "A_PurchaseOrderItem",
-                        "field": "GoodsReceiptIsExpected",
-                        "reason": "This is a goods-receipt-required indicator, not an open receipt/completion status.",
-                    }
-                ],
-            }
-        ]
 
     @staticmethod
     def _field_payload(field: dict[str, Any], score: float) -> dict[str, Any]:

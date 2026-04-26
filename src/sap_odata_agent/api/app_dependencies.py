@@ -17,7 +17,9 @@ from sap_odata_agent.infrastructure.llm.planner import (
     SimpleRepairEngine,
 )
 from sap_odata_agent.infrastructure.llm.feedback_summarizer import LlmFeedbackSummarizer
+from sap_odata_agent.infrastructure.llm.result_verifier_agent import LlmResultVerifierAgent
 from sap_odata_agent.infrastructure.llm.result_presenter import LlmResultPresenter
+from sap_odata_agent.infrastructure.llm.schema_research_agent import LlmSchemaResearchAgent
 from sap_odata_agent.infrastructure.repositories.file_case_repository import JsonlCaseRepository
 from sap_odata_agent.infrastructure.retrieval.local_doc_retriever import LocalDocRetriever
 from sap_odata_agent.infrastructure.sap.odata_client import (
@@ -127,6 +129,14 @@ def get_orchestrator() -> AgentOrchestrator:
             enabled=settings.llm_enabled,
         ),
         failure_diagnoser=LlmFailureDiagnoser(
+            llm_client=llm_client,
+            enabled=settings.llm_enabled,
+        ),
+        schema_research_agent=LlmSchemaResearchAgent(
+            llm_client=llm_client,
+            enabled=settings.llm_enabled,
+        ),
+        result_verifier_agent=LlmResultVerifierAgent(
             llm_client=llm_client,
             enabled=settings.llm_enabled,
         ),

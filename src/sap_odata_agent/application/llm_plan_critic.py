@@ -24,13 +24,14 @@ class LlmPlanCritic:
         context: RetrievedContext | None,
         plan: QueryPlan,
         existing_findings: list[CriticFinding] | None = None,
+        schema_research: dict[str, Any] | None = None,
     ) -> list[CriticFinding]:
         if not self.enabled or self.llm_client is None:
             return []
         try:
             raw = self.llm_client.complete_json(
                 self._system_prompt(),
-                self._user_prompt(request, context, plan, existing_findings or []),
+                self._user_prompt(request, context, plan, existing_findings or [], schema_research or {}),
                 max_tokens=900,
             )
             parsed = LlmStructuredIntentPlanner._parse_json_object(raw)
@@ -78,6 +79,7 @@ class LlmPlanCritic:
         context: RetrievedContext | None,
         plan: QueryPlan,
         existing_findings: list[CriticFinding],
+        schema_research: dict[str, Any],
     ) -> str:
         example = {
             "pass": False,
@@ -128,6 +130,7 @@ class LlmPlanCritic:
                 {"code": item.code, "message": item.message, "blocking": item.blocking}
                 for item in existing_findings
             ],
+            "schema_research": schema_research,
             "retrieved_context": [
                 {
                     "source": doc.source,
@@ -151,6 +154,7 @@ class LlmPlanCritic:
             "- Block if a stronger metadata candidate clearly maps to the requested concept and the plan selected a different concept.\n"
             "- Block if an identifier field is used as the answer when the user asked for another attribute.\n"
             "- Block if the plan cannot apply the user's requested filter.\n"
+            "- When schema_research is available, use it as the primary semantic evidence for field suitability and risks.\n"
             "- Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )
