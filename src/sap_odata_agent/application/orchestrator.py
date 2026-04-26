@@ -23,6 +23,7 @@ from sap_odata_agent.domain.models import (
     CriticFinding,
     ContextCarryDecision,
     FailureAttribution,
+    FailureDiagnosis,
     GuardrailDecision,
     PlanningAttemptRecord,
     PresentationVerification,
@@ -638,8 +639,11 @@ class AgentOrchestrator:
         }
         reroute_attempts = 0
         force_initial_plan_after_reroute = False
+        semantic_repair_extra_attempts = 0
 
-        for attempt_number in range(1, self.llm_planning_max_attempts + 1):
+        for attempt_number in range(1, self.llm_planning_max_attempts + 2):
+            if attempt_number > self.llm_planning_max_attempts + semantic_repair_extra_attempts:
+                break
             if attempt_number == 1 or force_initial_plan_after_reroute:
                 current_plan = self._timed_call(
                     timings,
@@ -909,6 +913,7 @@ class AgentOrchestrator:
                             )
                         ]
                     latest_critic_findings.extend(verifier_findings)
+                    semantic_blocked = any(item.blocking for item in verifier_findings)
                     failure_context = self._build_llm_repair_context(
                         final_plan,
                         latest_guardrail_decision,
@@ -918,6 +923,11 @@ class AgentOrchestrator:
                         failure_context,
                     )
                     failure_context["result_verification"] = result_verification
+                    failure_context["semantic_repair_required"] = {
+                        "reason": "Result verifier rejected a successful SAP response; repair the plan to satisfy the business conclusion.",
+                        "blocking_findings": dataclass_list_to_dicts(verifier_findings),
+                        "repair_hints": result_verification.get("repair_hints", {}),
+                    }
                     planning_attempts.append(
                         PlanningAttemptRecord(
                             attempt_number=attempt_number,
@@ -930,6 +940,12 @@ class AgentOrchestrator:
                             sap_error=execution_attempt_to_debug(attempts[-1] if attempts else None),
                         )
                     )
+                    if (
+                        semantic_blocked
+                        and attempt_number >= self.llm_planning_max_attempts
+                        and semantic_repair_extra_attempts < 1
+                    ):
+                        semantic_repair_extra_attempts += 1
                     continue
                 planning_attempts.append(
                     PlanningAttemptRecord(
@@ -1021,6 +1037,7 @@ class AgentOrchestrator:
                 )
             )
 
+        blocking_failure = self._first_blocking_finding(latest_critic_findings)
         diagnosis = self._timed_call(
             timings,
             "llm.failure_diagnose",
@@ -1042,11 +1059,20 @@ class AgentOrchestrator:
                     }
                     for item in planning_attempts
                 ],
-                "fallback_category": "unknown",
-                "fallback_root_cause": "Unable to produce a valid SAP OData request after LLM planning attempts.",
-                "fallback_evidence": [item.failure_reason for item in planning_attempts if item.failure_reason],
+                "blocking_findings": dataclass_list_to_dicts([blocking_failure] if blocking_failure else []),
+                "fallback_category": blocking_failure.code if blocking_failure else "unknown",
+                "fallback_root_cause": (
+                    blocking_failure.message
+                    if blocking_failure
+                    else "Unable to produce a valid SAP OData request after LLM planning attempts."
+                ),
+                "fallback_evidence": [
+                    *[item.failure_reason for item in planning_attempts if item.failure_reason],
+                    *([blocking_failure.code] if blocking_failure else []),
+                ],
             },
         )
+        diagnosis = self._diagnosis_respecting_blocking_finding(diagnosis, blocking_failure)
         failure_attribution = self.failure_attributor.attribute(
             effective_request,
             current_plan,
@@ -1212,6 +1238,35 @@ class AgentOrchestrator:
             if service_name:
                 return service_name
         return ""
+
+    def _first_blocking_finding(self, findings: list[CriticFinding]) -> CriticFinding | None:
+        blocking_findings = [finding for finding in findings if finding.blocking]
+        if not blocking_findings:
+            return None
+        return self.failure_attributor._sort_blocking_findings(blocking_findings)[0]
+
+    @staticmethod
+    def _diagnosis_respecting_blocking_finding(
+        diagnosis: FailureDiagnosis,
+        blocking_finding: CriticFinding | None,
+    ) -> FailureDiagnosis:
+        if blocking_finding is None:
+            return diagnosis
+        evidence = list(dict.fromkeys([*diagnosis.evidence, blocking_finding.code]))
+        raw_response = {
+            **(diagnosis.raw_response or {}),
+            "overridden_by_blocking_finding": {
+                "code": blocking_finding.code,
+                "message": blocking_finding.message,
+            },
+        }
+        return replace(
+            diagnosis,
+            category=blocking_finding.code,
+            root_cause=blocking_finding.message,
+            evidence=evidence,
+            raw_response=raw_response,
+        )
 
     def _execute_query_plan(
         self,

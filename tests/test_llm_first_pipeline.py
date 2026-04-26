@@ -102,6 +102,25 @@ class RepairPlanner:
         )
 
 
+class SemanticRepairPlanner:
+    def __init__(self, good_after_calls=3):
+        self.calls = 0
+        self.good_after_calls = good_after_calls
+        self.seen_semantic_repair_required = False
+
+    def repair(self, request, route_decision, schema_context, previous_plan, attempt_number, max_attempts, failure_context):
+        self.calls += 1
+        if failure_context.get("semantic_repair_required"):
+            self.seen_semantic_repair_required = True
+        entity_set = "A_Good" if self.calls >= self.good_after_calls else "A_Bad"
+        return QueryPlan(
+            service_name="API_TEST",
+            entity_set=entity_set,
+            select_fields=["GoodField" if entity_set == "A_Good" else "BadField"],
+            rationale=f"semantic repair attempt {attempt_number}",
+        )
+
+
 class RerouteRepairPlanner:
     def __init__(self):
         self.calls = 0
@@ -190,6 +209,13 @@ class StaticFailureDiagnoser:
         return FailureDiagnosis(category="invalid_field", root_cause="failed after retries")
 
 
+class ContradictingFailureDiagnoser:
+    def diagnose(self, payload):
+        from sap_odata_agent.domain.models import FailureDiagnosis
+
+        return FailureDiagnosis(category="unknown", root_cause="The query was correct and should be accepted.")
+
+
 class StaticSchemaResearchAgent:
     def __init__(self):
         self.calls = 0
@@ -230,6 +256,25 @@ class SemanticResultVerifier:
         return {"passed": True, "issues": [], "repair_hints": {}}
 
 
+class AlwaysRejectingResultVerifier:
+    def __init__(self):
+        self.calls = 0
+
+    def verify(self, request, plan, data, schema_research=None):
+        self.calls += 1
+        return {
+            "passed": False,
+            "issues": [
+                {
+                    "code": "unsupported_business_conclusion",
+                    "message": "The returned fields do not prove the requested business conclusion.",
+                    "blocking": True,
+                }
+            ],
+            "repair_hints": {"reason": "Use a field that proves the actual business status."},
+        }
+
+
 class UnusedOldComponent:
     def classify(self, *args, **kwargs):
         raise AssertionError("old query classifier should not be called")
@@ -248,6 +293,7 @@ def _orchestrator(
     api_catalog_provider=None,
     api_router=None,
     api_specific_planner=None,
+    failure_diagnoser=None,
 ):
     orch = AgentOrchestrator(
         retriever=None,
@@ -263,7 +309,7 @@ def _orchestrator(
         schema_context_provider=StaticSchemaContextProvider(),
         api_specific_planner=api_specific_planner or InitialPlanner(),
         plan_repairer=repairer or RepairPlanner(),
-        failure_diagnoser=StaticFailureDiagnoser(),
+        failure_diagnoser=failure_diagnoser or StaticFailureDiagnoser(),
         schema_research_agent=StaticSchemaResearchAgent(),
         result_verifier_agent=result_verifier,
         llm_planning_max_attempts=max_attempts,
@@ -314,6 +360,43 @@ def test_llm_first_pipeline_repairs_after_result_verifier_rejects_semantics(tmp_
     assert len(response.attempts) == 2
     assert repairer.calls == 1
     assert result_verifier.calls == 2
+
+
+def test_llm_first_pipeline_allows_extra_semantic_repair_after_final_attempt(tmp_path: Path) -> None:
+    repairer = SemanticRepairPlanner(good_after_calls=3)
+    result_verifier = SemanticResultVerifier()
+    response = _orchestrator(
+        tmp_path,
+        repairer=repairer,
+        executor=AlwaysPassingExecutor(),
+        result_verifier=result_verifier,
+        max_attempts=3,
+    ).run(AgentRequest(user_input="query data requiring semantic proof"))
+
+    assert response.success is True
+    assert response.plan.entity_set == "A_Good"
+    assert len(response.attempts) == 4
+    assert repairer.calls == 3
+    assert repairer.seen_semantic_repair_required is True
+    assert result_verifier.calls == 4
+
+
+def test_llm_first_pipeline_final_diagnosis_cannot_override_blocking_verifier_finding(tmp_path: Path) -> None:
+    result_verifier = AlwaysRejectingResultVerifier()
+    response = _orchestrator(
+        tmp_path,
+        repairer=RepairPlanner(),
+        executor=AlwaysPassingExecutor(),
+        result_verifier=result_verifier,
+        failure_diagnoser=ContradictingFailureDiagnoser(),
+        max_attempts=1,
+    ).run(AgentRequest(user_input="query data requiring semantic proof"))
+
+    assert response.success is False
+    assert response.failure_attribution is not None
+    assert response.failure_attribution.category == "llm_result_unsupported_business_conclusion"
+    assert response.final_message == "The returned fields do not prove the requested business conclusion."
+    assert response.final_message != "The query was correct and should be accepted."
 
 
 def test_llm_first_pipeline_fails_fast_when_router_selects_no_api(tmp_path: Path) -> None:

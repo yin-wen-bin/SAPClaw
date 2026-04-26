@@ -142,8 +142,10 @@ class LlmPlanRepairer(LlmApiSpecificPlanner):
             "5. Use schema_context.schema_research when present as the primary business-semantic analysis.\n"
             "6. Distinguish requirement/expected flags from completion/open status fields; do not treat similarly named fields as equivalent.\n"
             "7. Do not keep top-level filters that belong to a different entity; put each filter on the step whose entity owns that field.\n\n"
-            "8. If failure_context reports step_binding_target_not_in_entity, do not reuse that invalid target field. Insert an intermediate bridge entity that contains both the previous join field and the final target key, then bind from that bridge to the final entity.\n"
-            "9. For example, do not bind a previous BusinessPartner value directly onto an entity that only has Supplier or Customer; first read the entity that exposes BusinessPartner plus the final role key, then bind the role key to the final entity.\n\n"
+            "8. If failure_context.semantic_repair_required is present, treat its blocking_findings and repair_hints as mandatory repair requirements.\n"
+            "9. Do not repeat a plan rejected by result_verification; choose fields, filters, or steps that prove the verifier's business condition.\n"
+            "10. If failure_context reports step_binding_target_not_in_entity, do not reuse that invalid target field. Insert an intermediate bridge entity that contains both the previous join field and the final target key, then bind from that bridge to the final entity.\n"
+            "11. For example, do not bind a previous BusinessPartner value directly onto an entity that only has Supplier or Customer; first read the entity that exposes BusinessPartner plus the final role key, then bind the role key to the final entity.\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )
