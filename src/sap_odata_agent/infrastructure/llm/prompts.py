@@ -50,7 +50,7 @@ needed to explain the route. If the question may require multiple APIs, set requ
 explain why. If the API cannot be determined from the catalog and user question, return needs_clarification=true.
 
 Routing guidelines:
-1. Prefer the API whose business_scope, typical_questions, entity summaries, and known business objects best match the user's intent.
+1. Prefer the API whose short_description, primary_business_objects, and top_entities best match the user's intent.
 2. Match both business object and business process.
 3. Master data questions usually route to master data APIs.
 4. Document status, item details, quantities, values, dates, approvals, and lifecycle questions usually route to transactional APIs.

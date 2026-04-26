@@ -28,6 +28,30 @@ def test_api_catalog_discovers_additional_indexed_apis() -> None:
     assert ADDITIONAL_APIS <= service_names
 
 
+def test_api_catalog_uses_compact_router_shape() -> None:
+    catalog = ApiCatalogProvider(index_root="data/index").load()
+    purchase_order = next(
+        item for item in catalog if item["service_name"] == "API_PURCHASEORDER_PROCESS_SRV"
+    )
+
+    assert set(purchase_order) == {
+        "service_name",
+        "short_description",
+        "primary_business_objects",
+        "top_entities",
+    }
+    assert purchase_order["primary_business_objects"][:3] == [
+        "Purchase Order",
+        "Purchase Order Item",
+        "Purchase Order Schedule Line",
+    ]
+    assert purchase_order["top_entities"][:3] == [
+        "A_PurchaseOrder",
+        "A_PurchaseOrderItem",
+        "A_PurchaseOrderScheduleLine",
+    ]
+
+
 def test_purchase_order_schema_context_loads_business_fields() -> None:
     context = SchemaContextProvider(index_root="data/index").build(
         "API_PURCHASEORDER_PROCESS_SRV",

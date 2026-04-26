@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from pathlib import Path
 from typing import Any
 
@@ -45,34 +46,121 @@ class ApiCatalogProvider:
     @staticmethod
     def _catalog_entry(snapshot) -> dict[str, Any]:
         service = snapshot.services[0] if snapshot.services else {}
-        top_entities = [str(entity.get("entity_set", "")) for entity in snapshot.entities[:24] if entity.get("entity_set")]
-        business_terms = []
-        for term in snapshot.business_terms[:80]:
-            for value in (term.get("term"), term.get("label"), term.get("description")):
-                text = str(value or "").strip()
-                if text and text not in business_terms:
-                    business_terms.append(text)
-                if len(business_terms) >= 30:
-                    break
-            if len(business_terms) >= 30:
-                break
-        field_terms = []
-        for field in snapshot.fields[:200]:
-            for value in (field.get("label"), field.get("description"), field.get("field_name")):
-                text = str(value or "").strip()
-                if text and text not in field_terms:
-                    field_terms.append(text)
-                if len(field_terms) >= 50:
-                    break
-            if len(field_terms) >= 50:
-                break
+        ranked_entities = ApiCatalogProvider._rank_entities(snapshot)
+        top_entities = [
+            str(entity.get("entity_set", ""))
+            for entity in ranked_entities[:16]
+            if entity.get("entity_set")
+        ]
         return {
             "service_name": snapshot.service_name,
-            "description": service.get("description", ""),
-            "business_scope": business_terms[:30],
-            "typical_questions": service.get("typical_questions", []),
+            "short_description": ApiCatalogProvider._short_description(service),
+            "primary_business_objects": ApiCatalogProvider._primary_business_objects(ranked_entities),
             "top_entities": top_entities,
-            "field_vocabulary_sample": field_terms[:50],
-            "entity_count": len(snapshot.entities),
-            "field_count": len(snapshot.fields),
         }
+
+    @staticmethod
+    def _short_description(service: dict[str, Any], max_length: int = 700) -> str:
+        description = " ".join(str(service.get("description", "") or "").split())
+        if len(description) <= max_length:
+            return description
+        return description[: max_length - 1].rstrip() + "."
+
+    @staticmethod
+    def _rank_entities(snapshot) -> list[dict[str, Any]]:
+        entities = list(snapshot.entities or [])
+        core_tokens = ApiCatalogProvider._service_core_tokens(snapshot.service_name)
+
+        def score(entity: dict[str, Any]) -> tuple[float, str]:
+            entity_set = str(entity.get("entity_set", "") or "")
+            description = str(entity.get("description", "") or "")
+            normalized = ApiCatalogProvider._normalize(ApiCatalogProvider._humanize_entity_set(entity_set))
+            text = ApiCatalogProvider._normalize(f"{entity_set} {description}")
+            lower_text = f"{entity_set} {description}".lower()
+            value = 0.0
+            if normalized in core_tokens:
+                value += 90.0
+            if any(normalized == f"{token}item" for token in core_tokens):
+                value += 24.0
+            if any(normalized == f"{token}scheduleline" for token in core_tokens):
+                value += 16.0
+            if any(token and normalized.startswith(token) for token in core_tokens):
+                value += 30.0
+            if any(token and token in normalized for token in core_tokens):
+                value += 40.0
+            if any(token and token in text for token in core_tokens):
+                value += 12.0
+            if entity.get("runtime_available") is False:
+                value -= 12.0
+            if entity_set.startswith("Get") or entity_set in {"Cancel", "CancelItem"}:
+                value -= 10.0
+            if any(term in lower_text for term in ("note", "text", "pdf", "binary")):
+                value -= 18.0
+            if not entity.get("key_fields"):
+                value -= 2.0
+            priority_terms = {
+                "header": 9.0,
+                "item": 7.0,
+                "schedule": 6.0,
+                "account": 5.0,
+                "pricing": 4.0,
+                "component": 3.0,
+            }
+            for term, weight in priority_terms.items():
+                if term in lower_text:
+                    value += weight
+            return (-value, entity_set)
+
+        return sorted(entities, key=score)
+
+    @staticmethod
+    def _primary_business_objects(entities: list[dict[str, Any]], max_count: int = 10) -> list[str]:
+        objects: list[str] = []
+        seen: set[str] = set()
+        for entity in entities:
+            entity_set = str(entity.get("entity_set", "") or "")
+            if not entity_set:
+                continue
+            label = ApiCatalogProvider._humanize_entity_set(entity_set)
+            if not label or label in seen:
+                continue
+            seen.add(label)
+            objects.append(label)
+            if len(objects) >= max_count:
+                break
+        return objects
+
+    @staticmethod
+    def _service_core_tokens(service_name: str) -> list[str]:
+        service = str(service_name or "")
+        parts = [
+            part
+            for part in re.split(r"[_\W]+", service)
+            if part and part not in {"API", "SRV", "PROCESS", "BASIC"}
+        ]
+        return [ApiCatalogProvider._normalize(part) for part in parts]
+
+    @staticmethod
+    def _humanize_entity_set(entity_set: str) -> str:
+        name = str(entity_set or "")
+        for prefix in ("A_", "C_"):
+            if name.startswith(prefix):
+                name = name[len(prefix) :]
+        replacements = {
+            "POSubcontracting": "Purchase Order Subcontracting",
+            "PurOrd": "Purchase Order",
+            "Purg": "Purchasing",
+            "Suplr": "Supplier",
+            "Invc": "Invoice",
+            "Matl": "Material",
+            "Stk": "Stock",
+        }
+        for source, target in replacements.items():
+            name = name.replace(source, target)
+        name = re.sub(r"([a-z0-9])([A-Z])", r"\1 \2", name)
+        name = re.sub(r"\s+", " ", name).strip()
+        return name
+
+    @staticmethod
+    def _normalize(text: str) -> str:
+        return re.sub(r"[^a-z0-9]+", "", str(text or "").lower())
