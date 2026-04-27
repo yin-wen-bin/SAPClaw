@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import re
 import urllib.parse
+from datetime import datetime, timezone
 from typing import Any, Literal
 
 from fastapi import APIRouter, Depends, HTTPException, Query
@@ -154,7 +156,7 @@ def _build_page_presentation(entry: dict[str, Any], data: dict[str, Any]) -> dic
     columns = [column for column in existing_presentation.get("columns", []) if isinstance(column, str)]
     results = data.get("results") if isinstance(data.get("results"), list) else []
     clean_results = [
-        {key: value for key, value in row.items() if key != "__metadata"}
+        {key: _format_display_value(value) for key, value in row.items() if key != "__metadata"}
         for row in results
         if isinstance(row, dict)
     ]
@@ -185,6 +187,16 @@ def _safe_int(value: Any, fallback: int) -> int:
         return int(str(value))
     except (TypeError, ValueError):
         return fallback
+
+
+def _format_display_value(value: Any) -> Any:
+    if not isinstance(value, str):
+        return value
+    match = re.fullmatch(r"/?Date\((-?\d+)(?:[+-]\d+)?\)/?", value.strip())
+    if not match:
+        return value
+    milliseconds = int(match.group(1))
+    return datetime.fromtimestamp(milliseconds / 1000, tz=timezone.utc).strftime("%Y.%m.%d")
 
 
 def _history_entry_to_payload(entry: dict[str, Any] | None) -> dict[str, Any] | None:

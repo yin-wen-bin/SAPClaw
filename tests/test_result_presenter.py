@@ -149,6 +149,48 @@ def test_result_presenter_uses_total_count_separate_from_displayed_rows() -> Non
     assert len(presentation.rows) == 50
 
 
+def test_result_presenter_formats_sap_json_dates_for_display() -> None:
+    presenter = LlmResultPresenter(enabled=False)
+    plan = QueryPlan(
+        service_name="API_PURCHASEORDER_PROCESS_SRV",
+        entity_set="A_PurchaseOrderScheduleLine",
+        select_fields=[
+            "PurchasingDocument",
+            "PurchasingDocumentItem",
+            "ScheduleLine",
+            "ScheduleLineDeliveryDate",
+        ],
+        response_summary_fields=[
+            "PurchasingDocument",
+            "PurchasingDocumentItem",
+            "ScheduleLine",
+            "ScheduleLineDeliveryDate",
+        ],
+    )
+    data = {
+        "result_count": 2,
+        "results": [
+            {
+                "PurchasingDocument": "4500000468",
+                "PurchasingDocumentItem": "10",
+                "ScheduleLine": "1",
+                "ScheduleLineDeliveryDate": "/Date(1777852800000)/",
+            },
+            {
+                "PurchasingDocument": "4500000469",
+                "PurchasingDocumentItem": "10",
+                "ScheduleLine": "1",
+                "ScheduleLineDeliveryDate": "Date(1777852800000)",
+            }
+        ],
+    }
+
+    presentation = presenter.present(AgentRequest(user_input="查询采购订单交货日期"), plan, data)
+
+    assert presentation.rows[0]["ScheduleLineDeliveryDate"] == "2026.05.04"
+    assert "/Date(" not in presentation.rows[0]["ScheduleLineDeliveryDate"]
+
+
 def test_result_presenter_falls_back_to_yes_no_for_boolean_question() -> None:
     presenter = LlmResultPresenter(enabled=False)
     plan = QueryPlan(

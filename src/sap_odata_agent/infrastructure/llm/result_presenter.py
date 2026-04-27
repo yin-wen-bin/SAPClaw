@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import json
+import re
+from datetime import datetime, timezone
 from typing import Any
 
 from sap_odata_agent.domain.models import AgentRequest, QueryPlan, ResultPresentation
@@ -123,7 +125,7 @@ class LlmResultPresenter:
         for row in parsed.get("rows", []):
             if not isinstance(row, dict):
                 continue
-            clean_row = {str(key): row[key] for key in row.keys() if isinstance(key, str)}
+            clean_row = {str(key): self._format_display_value(row[key]) for key in row.keys() if isinstance(key, str)}
             if clean_row:
                 rows.append(clean_row)
 
@@ -287,14 +289,34 @@ class LlmResultPresenter:
             return []
         if isinstance(data.get("results"), list):
             return [
-                {key: value for key, value in row.items() if key != "__metadata"}
+                {
+                    key: LlmResultPresenter._format_display_value(value)
+                    for key, value in row.items()
+                    if key != "__metadata"
+                }
                 for row in data["results"]
                 if isinstance(row, dict)
             ]
         result = data.get("result")
         if isinstance(result, dict):
-            return [{key: value for key, value in result.items() if key != "__metadata"}]
+            return [
+                {
+                    key: LlmResultPresenter._format_display_value(value)
+                    for key, value in result.items()
+                    if key != "__metadata"
+                }
+            ]
         return []
+
+    @staticmethod
+    def _format_display_value(value: Any) -> Any:
+        if not isinstance(value, str):
+            return value
+        match = re.fullmatch(r"/?Date\((-?\d+)(?:[+-]\d+)?\)/?", value.strip())
+        if not match:
+            return value
+        milliseconds = int(match.group(1))
+        return datetime.fromtimestamp(milliseconds / 1000, tz=timezone.utc).strftime("%Y.%m.%d")
 
     @staticmethod
     def _total_count(data: dict[str, Any] | None, records: list[dict[str, Any]]) -> int:

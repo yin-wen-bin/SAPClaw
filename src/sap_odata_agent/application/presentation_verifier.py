@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import replace
+from datetime import datetime, timezone
 from typing import Any
 
 from sap_odata_agent.domain.models import AgentRequest, PresentationVerification, QueryPlan, ResultPresentation
@@ -118,7 +119,11 @@ class PresentationVerifier:
         if not records:
             return []
         clean_records = [
-            {key: value for key, value in record.items() if key != "__metadata"}
+            {
+                key: PresentationVerifier._format_display_value(value)
+                for key, value in record.items()
+                if key != "__metadata"
+            }
             for record in records
             if isinstance(record, dict)
         ]
@@ -147,3 +152,13 @@ class PresentationVerifier:
             for row in rows
             for value in row.values()
         )
+
+    @staticmethod
+    def _format_display_value(value: Any) -> Any:
+        if not isinstance(value, str):
+            return value
+        match = re.fullmatch(r"/?Date\((-?\d+)(?:[+-]\d+)?\)/?", value.strip())
+        if not match:
+            return value
+        milliseconds = int(match.group(1))
+        return datetime.fromtimestamp(milliseconds / 1000, tz=timezone.utc).strftime("%Y.%m.%d")
