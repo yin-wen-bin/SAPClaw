@@ -38,6 +38,91 @@ function getTotalDuration(result) {
   return result.total_duration_ms ?? result.client_duration_ms ?? null;
 }
 
+function formatDisplayValue(value) {
+  if (typeof value !== "string") {
+    return value;
+  }
+  const match = value.trim().match(/^\/?Date\((-?\d+)(?:[+-]\d+)?\)\/?$/);
+  if (!match) {
+    return value;
+  }
+  const date = new Date(Number(match[1]));
+  const year = date.getUTCFullYear();
+  const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+  const day = String(date.getUTCDate()).padStart(2, "0");
+  return `${year}.${month}.${day}`;
+}
+
+function cleanResultRow(row) {
+  if (!row || typeof row !== "object") {
+    return {};
+  }
+  return Object.fromEntries(
+    Object.entries(row)
+      .filter(([key]) => key !== "__metadata")
+      .map(([key, value]) => [key, formatDisplayValue(value)]),
+  );
+}
+
+function buildLocalDisplayPage(current, nextSkip) {
+  const data = current?.data || {};
+  const pagination = data.pagination || {};
+  const allResults = Array.isArray(data._all_results) ? data._all_results : null;
+  if (!allResults || allResults.length === 0) {
+    return null;
+  }
+
+  const displayLimit = Number(pagination.display_limit || 50);
+  const windowStart = Number(data._result_window_start ?? pagination.skip ?? 0);
+  const absoluteSkip = Number(nextSkip);
+  const localOffset = absoluteSkip - windowStart;
+  if (!Number.isFinite(displayLimit) || displayLimit <= 0 || !Number.isFinite(localOffset)) {
+    return null;
+  }
+  if (localOffset < 0 || localOffset >= allResults.length) {
+    return null;
+  }
+
+  const rawRows = allResults.slice(localOffset, localOffset + displayLimit);
+  const cleanRows = rawRows.map(cleanResultRow);
+  const existingColumns = Array.isArray(current?.presentation?.columns) ? current.presentation.columns : [];
+  const columns = existingColumns.length > 0 ? existingColumns : Object.keys(cleanRows[0] || {}).slice(0, 8);
+  const rows = cleanRows.map((row) => Object.fromEntries(columns.map((column) => [column, row[column] ?? ""])));
+  const totalCount = Number(data.result_count || allResults.length);
+  const displayedCount = rows.length;
+  const absoluteEnd = absoluteSkip + displayedCount;
+  const localHasNext = localOffset + rawRows.length < allResults.length;
+  const sapHasNext = windowStart + allResults.length < totalCount;
+  const nextLocalSkip = localHasNext ? absoluteEnd : sapHasNext ? windowStart + allResults.length : null;
+  const text =
+    absoluteSkip <= 0
+      ? `查询结果总共${totalCount}条，当前显示前${displayedCount}条`
+      : `查询结果总共${totalCount}条，当前显示第${absoluteSkip + 1}-${absoluteEnd}条`;
+
+  return {
+    ...current,
+    data: {
+      ...data,
+      results: rawRows,
+      displayed_count: displayedCount,
+      pagination: {
+        ...pagination,
+        skip: absoluteSkip,
+        page_number: Math.floor(absoluteSkip / displayLimit) + 1,
+        has_next: nextLocalSkip != null,
+        next_skip: nextLocalSkip,
+      },
+    },
+    presentation: {
+      ...(current?.presentation || {}),
+      kind: "table",
+      text,
+      columns,
+      rows,
+    },
+  };
+}
+
 function statusLabel(item) {
   if (item?.needs_clarification) {
     return "待澄清";
@@ -926,6 +1011,12 @@ export default function App() {
   async function handleNextPage() {
     const pagination = result?.data?.pagination || null;
     if (!result?.case_id || !pagination?.has_next || pagination.next_skip == null) {
+      return;
+    }
+
+    const localPage = buildLocalDisplayPage(result, pagination.next_skip);
+    if (localPage) {
+      setResult(localPage);
       return;
     }
 

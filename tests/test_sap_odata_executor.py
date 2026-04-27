@@ -57,9 +57,38 @@ def test_executor_returns_preview_for_json_results() -> None:
     assert attempt.response_preview["returned_count"] == 2
     assert attempt.response_preview["displayed_count"] == 2
     assert len(attempt.response_preview["_all_results"]) == 2
+    assert attempt.response_preview["_result_window_start"] == 0
     assert attempt.response_preview["pagination"]["has_next"] is True
     assert attempt.response_preview["pagination"]["next_skip"] == 2
     assert attempt.response_preview["results"][0]["Customer"] == "1000001"
+
+
+def test_executor_marks_next_page_when_more_rows_returned_than_display_limit() -> None:
+    class StubExecutor(SapODataExecutor):
+        def _perform_request(self, compiled_request: CompiledRequest) -> dict[str, str | int]:
+            rows = [{"ObjectId": str(index)} for index in range(71)]
+            return {
+                "status_code": 200,
+                "content_type": "application/json",
+                "body": json.dumps({"d": {"__count": "71", "results": rows}}),
+            }
+
+    executor = StubExecutor(_build_executor().config)
+    attempt = executor.execute(
+        CompiledRequest(method="GET", url="https://sap.example.com/sap/opu/odata/sap/API_TEST/A_Test?$top=100"),
+        attempt_number=1,
+    )
+
+    assert attempt.success is True
+    assert attempt.response_preview["result_count"] == 71
+    assert attempt.response_preview["returned_count"] == 71
+    assert attempt.response_preview["displayed_count"] == 50
+    assert len(attempt.response_preview["results"]) == 50
+    assert len(attempt.response_preview["_all_results"]) == 71
+    assert attempt.response_preview["pagination"]["page_size"] == 100
+    assert attempt.response_preview["pagination"]["display_limit"] == 50
+    assert attempt.response_preview["pagination"]["has_next"] is True
+    assert attempt.response_preview["pagination"]["next_skip"] == 50
 
 
 def test_executor_retries_transient_url_error() -> None:
@@ -321,6 +350,8 @@ def test_multi_step_executor_binds_all_returned_rows_not_display_preview_only() 
     assert len(attempts) == 2
     assert attempts[0].response_preview["displayed_count"] == 50
     assert attempts[0].response_preview["returned_count"] == 71
+    assert attempts[0].response_preview["pagination"]["has_next"] is True
+    assert attempts[0].response_preview["pagination"]["next_skip"] == 50
     assert len(attempts[0].response_preview["results"]) == 50
     assert len(attempts[0].response_preview["_all_results"]) == 71
     assert len(attempts[1].extracted_values["PurchaseOrder"]) == 71

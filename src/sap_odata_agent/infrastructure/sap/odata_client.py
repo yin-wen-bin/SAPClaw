@@ -348,19 +348,27 @@ class SapODataExecutor:
                 display_limit = min(page_size, self.MAX_PREVIEW_ROWS)
                 displayed_results = results[:display_limit]
                 total_count = self._parse_total_count(data.get("__count"), len(results))
+                local_has_next = len(displayed_results) < len(results)
+                sap_has_next = skip + len(results) < total_count
+                next_skip = None
+                if local_has_next:
+                    next_skip = skip + len(displayed_results)
+                elif sap_has_next:
+                    next_skip = skip + page_size
                 return {
                     "result_count": total_count,
                     "returned_count": len(results),
                     "displayed_count": len(displayed_results),
                     "results": displayed_results,
                     "_all_results": results,
+                    "_result_window_start": skip,
                     "pagination": {
                         "page_size": page_size,
                         "display_limit": display_limit,
                         "skip": skip,
-                        "page_number": (skip // page_size) + 1 if page_size > 0 else 1,
-                        "has_next": skip + len(results) < total_count,
-                        "next_skip": skip + page_size if skip + len(results) < total_count else None,
+                        "page_number": (skip // display_limit) + 1 if display_limit > 0 else 1,
+                        "has_next": next_skip is not None,
+                        "next_skip": next_skip,
                     },
                 }
             return {"result": data}
