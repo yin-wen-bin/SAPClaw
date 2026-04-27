@@ -9,6 +9,7 @@ from sap_odata_agent.domain.models import (
     QueryPlan,
     ResultPresentation,
     SelectedApi,
+    ValidationIssue,
 )
 from sap_odata_agent.infrastructure.llm.failure_diagnoser import LlmFailureDiagnoser
 from sap_odata_agent.infrastructure.repositories.file_case_repository import JsonlCaseRepository
@@ -131,6 +132,26 @@ class RepairPlanner:
         )
 
 
+class TimeoutRepairPlanner:
+    def __init__(self):
+        self.calls = 0
+
+    def repair(self, request, route_decision, schema_context, previous_plan, attempt_number, max_attempts, failure_context):
+        self.calls += 1
+        return QueryPlan(
+            service_name="API_TEST",
+            entity_set="UNKNOWN_ENTITY",
+            select_fields=[],
+            rationale="repair timed out",
+            planner_diagnostics={
+                "llm_dynamic_path_planner": {
+                    "accepted": False,
+                    "reason": "repair_llm_error:The read operation timed out",
+                }
+            },
+        )
+
+
 class SemanticRepairPlanner:
     def __init__(self, good_after_calls=3):
         self.calls = 0
@@ -240,6 +261,13 @@ class StandaloneQueryAfterClarificationRouter(ClarificationCarryRouter):
 
 class PassThroughValidator:
     def validate(self, plan):
+        return []
+
+
+class TimeoutPlanValidator:
+    def validate(self, plan):
+        if plan.entity_set == "UNKNOWN_ENTITY":
+            return [ValidationIssue(severity="error", message="Planner timeout", field=None)]
         return []
 
 
@@ -388,11 +416,12 @@ def _orchestrator(
     api_specific_planner=None,
     schema_context_provider=None,
     failure_diagnoser=None,
+    validator=None,
 ):
     orch = AgentOrchestrator(
         retriever=None,
         planner=InitialPlanner(),
-        validator=PassThroughValidator(),
+        validator=validator or PassThroughValidator(),
         compiler=SimpleCompiler(),
         executor=executor or FailingThenPassingExecutor(),
         repair_engine=None,
@@ -491,6 +520,29 @@ def test_llm_first_pipeline_final_diagnosis_cannot_override_blocking_verifier_fi
     assert response.failure_attribution.category == "llm_result_unsupported_business_conclusion"
     assert response.final_message == "The returned fields do not prove the requested business conclusion."
     assert response.final_message != "The query was correct and should be accepted."
+
+
+def test_llm_first_pipeline_preserves_successful_execution_after_repair_timeout(tmp_path: Path) -> None:
+    result_verifier = AlwaysRejectingResultVerifier()
+    repairer = TimeoutRepairPlanner()
+    response = _orchestrator(
+        tmp_path,
+        repairer=repairer,
+        executor=AlwaysPassingExecutor(),
+        result_verifier=result_verifier,
+        validator=TimeoutPlanValidator(),
+        max_attempts=1,
+    ).run(AgentRequest(user_input="query data requiring semantic repair"))
+
+    assert response.success is False
+    assert response.plan.entity_set == "A_Bad"
+    assert response.data is not None
+    assert response.data["result_count"] == 1
+    assert len(response.attempts) == 1
+    assert response.attempts[0].request.url == "https://sap.example.com/A_Bad"
+    assert "SAP request was executed successfully" in response.final_message
+    assert "No SAP request was executed" not in response.final_message
+    assert repairer.calls == 1
 
 
 def test_llm_first_pipeline_fails_fast_when_router_selects_no_api(tmp_path: Path) -> None:

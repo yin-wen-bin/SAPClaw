@@ -218,6 +218,11 @@ def _history_entry_to_payload(entry: dict[str, Any] | None) -> dict[str, Any] | 
     else:
         final_message = error_summary or "Query failed."
 
+    api_skill_used = entry.get("api_skill_used") or (entry.get("schema_context_summary") or {}).get(
+        "api_skill",
+        {},
+    )
+
     result_snapshot = {
         "case_id": entry.get("case_id"),
         "success": success,
@@ -238,6 +243,7 @@ def _history_entry_to_payload(entry: dict[str, Any] | None) -> dict[str, Any] | 
         "timing_summary": entry.get("timing_summary", {}),
         "total_duration_ms": entry.get("total_duration_ms"),
         "feedback_memories_used": entry.get("feedback_memories_used", []),
+        "api_skill_used": api_skill_used,
     }
 
     return {
@@ -262,5 +268,6 @@ def _history_entry_to_payload(entry: dict[str, Any] | None) -> dict[str, Any] | 
         "timing_summary": entry.get("timing_summary", {}),
         "total_duration_ms": entry.get("total_duration_ms"),
         "feedback_memories_used": entry.get("feedback_memories_used", []),
+        "api_skill_used": api_skill_used,
         "result_snapshot": result_snapshot,
     }

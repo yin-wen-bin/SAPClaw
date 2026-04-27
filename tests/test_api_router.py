@@ -104,11 +104,49 @@ def test_api_router_retries_transport_failure_without_business_fallback() -> Non
     assert decision.selected_apis[0].service_name == "API_PURCHASEORDER_PROCESS_SRV"
 
 
+def test_api_router_prompt_includes_api_skill_summary() -> None:
+    valid = {
+        "resolved_user_input": "query unreceived purchase orders",
+        "should_carry_context": False,
+        "selected_apis": [
+            {
+                "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+                "confidence": 0.93,
+                "reason": "The API skill says unreceived purchase orders use the PO item completion flag.",
+            }
+        ],
+        "requires_multi_api": False,
+        "intent_summary": "Unreceived purchase orders",
+        "business_domain": "Purchasing",
+        "business_object": "Purchase Order",
+        "needs_clarification": False,
+        "clarification_question": "",
+        "clarification_options": [],
+    }
+    catalog = _catalog()
+    catalog[0]["api_skill_summary"] = (
+        "For unreceived purchase orders, prefer A_PurchaseOrderItem.IsCompletelyDelivered eq false."
+    )
+    client = SequencedClient([json.dumps(valid)])
+    router = LlmApiRouter(llm_client=client, enabled=True, allow_default_fallback=False)
+
+    decision = router.route("查询未收货采购订单", catalog)
+
+    assert decision.selected_apis[0].service_name == "API_PURCHASEORDER_PROCESS_SRV"
+    assert "api_skill_summary" in client.calls[0]["user_prompt"]
+    assert "IsCompletelyDelivered" in client.calls[0]["user_prompt"]
+    assert "api_skill_summary" in client.calls[0]["system_prompt"]
+
+
 def test_history_payload_exposes_feedback_memories_used() -> None:
     memory = {
         "case_id": "feedback-case",
         "lesson": "Use IsFinallyInvoiced=false for open invoice purchase orders.",
         "preferred_fields": ["IsFinallyInvoiced"],
+    }
+    api_skill = {
+        "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+        "path": "data/api_skills/API_PURCHASEORDER_PROCESS_SRV/skill.md",
     }
 
     payload = _history_entry_to_payload(
@@ -120,8 +158,11 @@ def test_history_payload_exposes_feedback_memories_used() -> None:
             "final_plan": {"service_name": "API_PURCHASEORDER_PROCESS_SRV", "entity_set": "A_PurchaseOrderItem"},
             "final_status": "failed",
             "feedback_memories_used": [memory],
+            "schema_context_summary": {"api_skill": api_skill},
         }
     )
 
     assert payload["feedback_memories_used"] == [memory]
     assert payload["result_snapshot"]["feedback_memories_used"] == [memory]
+    assert payload["api_skill_used"] == api_skill
+    assert payload["result_snapshot"]["api_skill_used"] == api_skill

@@ -8,9 +8,11 @@ from sap_odata_agent.infrastructure.llm.schema_research_agent import LlmSchemaRe
 class StubClient:
     def __init__(self, response: dict) -> None:
         self.response = response
+        self.system_prompt = ""
         self.user_prompt = ""
 
     def complete_json(self, system_prompt: str, user_prompt: str, max_tokens: int = 900) -> str:
+        self.system_prompt = system_prompt
         self.user_prompt = user_prompt
         return json.dumps(self.response)
 
@@ -138,3 +140,57 @@ def test_result_verifier_agent_blocks_unsupported_business_conclusion() -> None:
     assert result["repair_hints"]["preferred_filters"][0]["field"] == "IsCompletelyDelivered"
     assert [item["field"] for item in result["repair_hints"]["preferred_filters"]] == ["IsCompletelyDelivered"]
     assert "available_fields" in client.user_prompt
+
+
+def test_result_verifier_agent_receives_api_skill_for_goods_receipt_combination() -> None:
+    client = StubClient({"passed": True, "issues": [], "repair_hints": {}})
+    agent = LlmResultVerifierAgent(llm_client=client)
+
+    result = agent.verify(
+        AgentRequest(user_input="查询供应商17300003的需要收货但未收货的订单"),
+        QueryPlan(
+            service_name="API_PURCHASEORDER_PROCESS_SRV",
+            entity_set="A_PurchaseOrderItem",
+            plan_kind="multi_step",
+            select_fields=["PurchaseOrder", "GoodsReceiptIsExpected", "IsCompletelyDelivered"],
+        ),
+        {
+            "result_count": 1,
+            "results": [
+                {
+                    "PurchaseOrder": "4500000468",
+                    "GoodsReceiptIsExpected": True,
+                    "IsCompletelyDelivered": False,
+                }
+            ],
+        },
+        schema_context_summary={
+            "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+            "api_skill": {
+                "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+                "summary": (
+                    "For needs goods receipt but not yet received, use "
+                    "GoodsReceiptIsExpected eq true and IsCompletelyDelivered eq false."
+                ),
+            },
+            "available_fields": [
+                {
+                    "entity_set": "A_PurchaseOrderItem",
+                    "field_name": "GoodsReceiptIsExpected",
+                    "data_type": "Edm.Boolean",
+                    "filterable": True,
+                },
+                {
+                    "entity_set": "A_PurchaseOrderItem",
+                    "field_name": "IsCompletelyDelivered",
+                    "data_type": "Edm.Boolean",
+                    "filterable": True,
+                },
+            ],
+        },
+    )
+
+    assert result["passed"] is True
+    assert "api_skill" in client.user_prompt
+    assert "GoodsReceiptIsExpected eq true and IsCompletelyDelivered eq false" in client.user_prompt
+    assert "do not reject it unless returned data contradicts it" in client.user_prompt

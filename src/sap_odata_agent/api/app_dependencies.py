@@ -7,6 +7,7 @@ from sap_odata_agent.application.orchestrator import AgentOrchestrator
 from sap_odata_agent.application.schema_feasibility_validator import SchemaFeasibilityValidator
 from sap_odata_agent.infrastructure.config.settings import get_settings
 from sap_odata_agent.infrastructure.indexing.api_catalog_provider import ApiCatalogProvider
+from sap_odata_agent.infrastructure.indexing.api_skill_provider import ApiSkillProvider
 from sap_odata_agent.infrastructure.indexing.schema_context_provider import SchemaContextProvider
 from sap_odata_agent.infrastructure.llm.api_router import LlmApiRouter
 from sap_odata_agent.infrastructure.llm.api_specific_planner import LlmApiSpecificPlanner
@@ -110,6 +111,9 @@ def get_orchestrator() -> AgentOrchestrator:
             index_root=settings.index_root,
             service_name=settings.default_index_service,
             enabled=True,
+        ),
+        api_skill_provider=ApiSkillProvider(
+            skill_root=settings.api_skill_root,
         ),
         enable_query_repair=False,
         api_catalog_provider=ApiCatalogProvider(

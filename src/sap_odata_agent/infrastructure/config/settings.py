@@ -48,6 +48,7 @@ class Settings:
     sap_timeout_ms: int = int(_get_setting("SAP_ODATA_TIMEOUT_MS", default="30000"))
     case_store_path: str = _get_setting("CASE_STORE_PATH", default="data/cases/cases.jsonl")
     index_root: str = _get_setting("LOCAL_INDEX_ROOT", default="data/index")
+    api_skill_root: str = _get_setting("API_SKILL_ROOT", default="data/api_skills")
     default_index_service: str = _get_setting("DEFAULT_INDEX_SERVICE", default="API_BUSINESS_PARTNER")
     max_attempts: int = int(_get_setting("MAX_REPAIR_ATTEMPTS", default="3"))
     llm_planning_max_attempts: int = int(_get_setting("LLM_PLANNING_MAX_ATTEMPTS", default="3"))

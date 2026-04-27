@@ -50,7 +50,7 @@ needed to explain the route. If the question may require multiple APIs, set requ
 explain why. If the API cannot be determined from the catalog and user question, return needs_clarification=true.
 
 Routing guidelines:
-1. Prefer the API whose short_description, primary_business_objects, top_entities, and top_filter_fields best match the user's intent.
+1. Prefer the API whose short_description, primary_business_objects, top_entities, top_filter_fields, and api_skill_summary best match the user's intent.
 2. Match both business object and business process.
 3. Master data questions usually route to master data APIs.
 4. Document status, item details, quantities, values, dates, approvals, and lifecycle questions usually route to transactional APIs.
@@ -64,6 +64,7 @@ Routing guidelines:
 12. When a feedback memory names a preferred field, prefer APIs whose top_filter_fields or catalog evidence expose that field on the requested business object.
 13. Use top_filter_fields to recognize filterable attributes in the user's wording. For example, purchase orders filtered by material/product should route to a purchase order API that exposes an item-level Material field, while purchase orders filtered by delivery date should route to a purchase order API that exposes a schedule-line delivery date field.
 14. If feedback_memories conflict with the API catalog, keep the route grounded in the catalog and explain the conflict in the route reason.
+15. Use api_skill_summary as API-specific learned guidance. It can explain business wording, known pitfalls, and when to use the API, but it cannot override the catalog or schema.
 """.strip()
 
 
@@ -90,6 +91,8 @@ Metadata matching rules:
 8. If a document has header and item entities, choose header for header-level questions and item for item-level questions.
 9. Include user-provided organizational context as filters if supported.
 10. If multiple similar fields exist, prefer the field whose entity and label best match the user's business level.
+11. Use schema_context.api_skill as API-specific learned guidance for business semantics, common planning patterns, and pitfalls.
+12. API skills are not schema authority. If schema_context.api_skill mentions an entity or field that is absent from schema_context, do not use it.
 """.strip()
 
 
@@ -115,6 +118,8 @@ Planning rules:
 11. If multiple organizational levels are possible, use user-provided context; otherwise ask clarification.
 12. If user asks for all/list/which objects, use table presentation.
 13. If user asks for one factual attribute, use text presentation.
+14. Follow schema_context.api_skill when it gives API-specific semantic guidance, such as which status field supports a business conclusion.
+15. If schema_context.api_skill warns against a field for the user's business meaning, do not use that field unless the user explicitly asks for that exact technical field.
 """.strip()
 
 

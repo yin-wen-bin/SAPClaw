@@ -140,6 +140,13 @@ class SchemaContextProvider:
             "candidate_field_count": len(schema_context.get("candidate_fields", [])),
             "join_hint_count": len(schema_context.get("join_hints", [])),
             "relation_count": len(schema_context.get("relations", [])),
+            "api_skill": {
+                "service_name": (schema_context.get("api_skill") or {}).get("service_name", ""),
+                "summary": (schema_context.get("api_skill") or {}).get("summary", ""),
+                "path": (schema_context.get("api_skill") or {}).get("path", ""),
+            }
+            if schema_context.get("api_skill")
+            else {},
             "top_entities": [item.get("entity_set") for item in schema_context.get("entities", [])[:8]],
             "top_fields": [
                 f"{item.get('entity_set')}.{item.get('field_name')}"

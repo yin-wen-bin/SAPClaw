@@ -76,6 +76,7 @@ class AgentOrchestrator:
         schema_reranker=None,
         llm_plan_critic: LlmPlanCritic | None = None,
         schema_feasibility_validator: SchemaFeasibilityValidator | None = None,
+        api_skill_provider=None,
         enable_query_repair: bool = True,
         api_catalog_provider=None,
         api_router=None,
@@ -101,6 +102,7 @@ class AgentOrchestrator:
         self.semantic_parser = semantic_parser
         self.schema_reranker = schema_reranker
         self.schema_feasibility_validator = schema_feasibility_validator
+        self.api_skill_provider = api_skill_provider
         self.enable_query_repair = enable_query_repair
         self.api_catalog_provider = api_catalog_provider
         self.api_router = api_router
@@ -480,6 +482,14 @@ class AgentOrchestrator:
             "加载 API Catalog",
             self.api_catalog_provider.load,
         )
+        if self.api_skill_provider is not None:
+            api_catalog = self._timed_call(
+                timings,
+                "api_skills.enrich_catalog",
+                "加载 API Skills",
+                self.api_skill_provider.enrich_catalog,
+                api_catalog,
+            )
         route_decision: ApiRouteDecision = self._timed_call(
             timings,
             "llm.api_route",
@@ -613,6 +623,12 @@ class AgentOrchestrator:
             [],
             feedback_memories,
         )
+        api_skill = self._load_api_skill(selected_service, timings)
+        if api_skill:
+            schema_context = {
+                **schema_context,
+                "api_skill": api_skill,
+            }
         schema_research = self._timed_call(
             timings,
             "llm.schema_research",
@@ -647,6 +663,8 @@ class AgentOrchestrator:
         retry_initial_plan = False
         initial_planner_timeout_retries = 0
         semantic_repair_extra_attempts = 0
+        last_successful_plan: QueryPlan | None = None
+        last_successful_data: dict | None = None
 
         for attempt_number in range(1, self.llm_planning_max_attempts + 2):
             if attempt_number > self.llm_planning_max_attempts + semantic_repair_extra_attempts:
@@ -911,6 +929,8 @@ class AgentOrchestrator:
             if execution_result["success"]:
                 final_plan = execution_result["plan"]
                 final_data = execution_result["data"]
+                last_successful_plan = final_plan
+                last_successful_data = final_data
                 result_verification = self._timed_call(
                     timings,
                     "llm.result_verify",
@@ -1076,6 +1096,17 @@ class AgentOrchestrator:
             )
 
         blocking_failure = self._first_blocking_finding(latest_critic_findings)
+        post_execution_repair_timeout = (
+            last_successful_plan is not None
+            and last_successful_data is not None
+            and (
+                self._plan_llm_timed_out(current_plan)
+                or (
+                    blocking_failure is not None
+                    and ("planner_llm_timeout" in blocking_failure.code or self._is_timeout_text(blocking_failure.message))
+                )
+            )
+        )
         diagnosis = self._timed_call(
             timings,
             "llm.failure_diagnose",
@@ -1111,9 +1142,23 @@ class AgentOrchestrator:
             },
         )
         diagnosis = self._diagnosis_respecting_blocking_finding(diagnosis, blocking_failure)
+        if post_execution_repair_timeout:
+            diagnosis = FailureDiagnosis(
+                category="post_execution_repair_timeout",
+                root_cause=(
+                    "SAP request was executed successfully, but result verification requested semantic repair "
+                    "and the repair LLM timed out before producing a replacement plan."
+                ),
+                evidence=[
+                    "sap_execution_succeeded",
+                    blocking_failure.code if blocking_failure else "planner_llm_timeout",
+                ],
+            )
+        response_plan = last_successful_plan if post_execution_repair_timeout and last_successful_plan else current_plan
+        response_data = last_successful_data if post_execution_repair_timeout else None
         failure_attribution = self.failure_attributor.attribute(
             effective_request,
-            current_plan,
+            response_plan,
             success=False,
             final_message=diagnosis.root_cause or "Unable to produce a valid SAP OData request after LLM planning attempts.",
             guardrail_decision=latest_guardrail_decision,
@@ -1122,10 +1167,10 @@ class AgentOrchestrator:
         )
         response = AgentResponse(
             success=False,
-            plan=current_plan,
+            plan=response_plan,
             validation_issues=latest_issues,
             attempts=attempts,
-            data=None,
+            data=response_data,
             presentation=None,
             final_message=(
                 diagnosis.root_cause
@@ -1142,7 +1187,7 @@ class AgentOrchestrator:
             effective_request,
             context,
             placeholder_plan,
-            current_plan,
+            response_plan,
             attempts,
             response,
             guardrail_decision=latest_guardrail_decision,
@@ -1190,6 +1235,20 @@ class AgentOrchestrator:
             "Use explicit IDs, suppliers, customers, dates, and document numbers from the previous question when the clarification refers to them.",
         ]
         return "\n".join(section for section in sections if section.strip())
+
+    def _load_api_skill(self, service_name: str, timings: list[dict]) -> dict | None:
+        if self.api_skill_provider is None:
+            return None
+        skill = self._timed_call(
+            timings,
+            "api_skills.load",
+            "加载 API Skill",
+            self.api_skill_provider.load,
+            service_name,
+        )
+        if skill is None:
+            return None
+        return skill.as_prompt_payload()
 
     @staticmethod
     def _looks_like_standalone_query(user_input: str) -> bool:

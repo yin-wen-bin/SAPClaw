@@ -102,6 +102,7 @@ class LlmResultVerifierAgent:
             "schema_research": schema_research,
             "schema_context_summary": {
                 "service_name": schema_context_summary.get("service_name", ""),
+                "api_skill": schema_context_summary.get("api_skill", {}),
                 "top_entities": schema_context_summary.get("top_entities", []),
                 "available_fields": schema_context_summary.get("available_fields", [])[:120],
             },
@@ -119,10 +120,12 @@ class LlmResultVerifierAgent:
             "2. Do not infer status from fields whose meaning only says expected/required/configured.\n"
             "3. For list questions, verify the result set is filtered by the requested business condition, not merely by a related control flag.\n"
             "4. If schema_research flagged semantic risks, verify the final plan addressed them.\n"
-            "5. If the result is semantically unreliable, set passed=false and give repair_hints.\n"
-            "6. Do not block for presentation wording; only block data/plan support issues.\n"
-            "7. repair_hints must only recommend fields listed in schema_context_summary.available_fields; do not invent field names.\n"
-            "8. For unreceived/undelivered/open receipt questions, prefer actual completion/status or received/open quantity fields over expected/required/configuration flags.\n\n"
+            "5. Use schema_context_summary.api_skill as API-specific guidance for whether a field combination supports the user's business conclusion.\n"
+            "6. If api_skill defines a field combination for the user's intent and the executed plan uses that combination, do not reject it unless returned data contradicts it.\n"
+            "7. If the result is semantically unreliable, set passed=false and give repair_hints.\n"
+            "8. Do not block for presentation wording; only block data/plan support issues.\n"
+            "9. repair_hints must only recommend fields listed in schema_context_summary.available_fields; do not invent field names.\n"
+            "10. For unreceived/undelivered/open receipt questions, prefer actual completion/status or received/open quantity fields over expected/required/configuration flags. If the user explicitly asks for orders that need goods receipt but are not yet received, the API skill may define expected=true plus completion=false as the correct combination.\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )
