@@ -62,6 +62,9 @@ class CaseRepository(Protocol):
     def list_recent(self, limit: int = 20, conversation_id: str | None = None) -> list[dict[str, Any]]:
         ...
 
+    def get_by_case_id(self, case_id: str) -> dict[str, Any] | None:
+        ...
+
     def update_feedback(
         self,
         case_id: str,

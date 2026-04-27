@@ -120,12 +120,33 @@ def test_result_presenter_filters_target_object_rows_and_recovers_from_empty_llm
     presentation = presenter.present(request, plan, data)
 
     assert presentation.kind == "table"
-    assert presentation.text == "\u5171\u627e\u52302\u6761\u4f9b\u5e94\u5546\u8bb0\u5f55\u3002"
+    assert presentation.text == "\u67e5\u8be2\u7ed3\u679c\u603b\u51712\u6761\uff0c\u5f53\u524d\u663e\u793a\u524d2\u6761"
     assert presentation.columns == ["BusinessPartner", "Supplier", "BusinessPartnerFullName"]
     assert presentation.rows == [
         {"BusinessPartner": "10300006", "Supplier": "10300006", "BusinessPartnerFullName": "Vendor A"},
         {"BusinessPartner": "10386301", "Supplier": "10386301", "BusinessPartnerFullName": "Vendor B"},
     ]
+
+
+def test_result_presenter_uses_total_count_separate_from_displayed_rows() -> None:
+    presenter = LlmResultPresenter(enabled=False)
+    plan = QueryPlan(
+        service_name="API_TEST",
+        entity_set="A_Test",
+        select_fields=["ObjectId"],
+        response_summary_fields=["ObjectId"],
+    )
+    data = {
+        "result_count": 80,
+        "displayed_count": 50,
+        "results": [{"ObjectId": str(index)} for index in range(50)],
+        "pagination": {"skip": 0, "page_size": 50, "has_next": True, "next_skip": 50},
+    }
+
+    presentation = presenter.present(AgentRequest(user_input="查询对象列表"), plan, data)
+
+    assert presentation.text == "查询结果总共80条，当前显示前50条"
+    assert len(presentation.rows) == 50
 
 
 def test_result_presenter_falls_back_to_yes_no_for_boolean_question() -> None:

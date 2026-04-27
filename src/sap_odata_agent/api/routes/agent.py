@@ -1,12 +1,13 @@
 from __future__ import annotations
 
+import urllib.parse
 from typing import Any, Literal
 
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel, Field
 
-from sap_odata_agent.api.app_dependencies import get_case_repository, get_feedback_summarizer, get_orchestrator
-from sap_odata_agent.domain.models import AgentRequest, ExecutionMode
+from sap_odata_agent.api.app_dependencies import get_case_repository, get_feedback_summarizer, get_orchestrator, get_sap_executor
+from sap_odata_agent.domain.models import AgentRequest, CompiledRequest, ExecutionMode
 
 router = APIRouter(prefix="/api/v1/agent", tags=["agent"])
 
@@ -22,6 +23,11 @@ class FeedbackRequestModel(BaseModel):
     status: Literal["correct", "incorrect"] = Field(..., description="Whether the result is correct.")
     comment: str = Field(default="", description="What is wrong with the current result.")
     expected_result: str = Field(default="", description="What result the user expected.")
+
+
+class PageRequestModel(BaseModel):
+    case_id: str = Field(..., description="Case id returned by the query API.")
+    skip: int = Field(default=0, ge=0, description="OData skip offset for the requested page.")
 
 
 @router.post("/query")
@@ -51,6 +57,38 @@ def run_query(payload: QueryRequestModel, orchestrator=Depends(get_orchestrator)
         "timings": response.timings,
         "timing_summary": response.timing_summary,
         "total_duration_ms": response.total_duration_ms,
+    }
+
+
+@router.post("/page")
+def read_page(
+    payload: PageRequestModel,
+    case_repository=Depends(get_case_repository),
+    sap_executor=Depends(get_sap_executor),
+) -> dict[str, Any]:
+    entry = case_repository.get_by_case_id(payload.case_id)
+    if entry is None:
+        raise HTTPException(status_code=404, detail="Case not found.")
+
+    base_url = entry.get("final_query_url") or (((entry.get("attempts") or [{}])[-1].get("request") or {}).get("url"))
+    if not base_url:
+        raise HTTPException(status_code=400, detail="Case does not contain a pageable query URL.")
+
+    page_size = _page_size_from_entry(entry)
+    page_url = _replace_query_params(base_url, {"$top": str(page_size), "$skip": str(payload.skip)})
+    attempt = sap_executor.execute(CompiledRequest(method="GET", url=page_url), attempt_number=1)
+    if not attempt.success:
+        raise HTTPException(status_code=502, detail=attempt.error_message or "SAP page request failed.")
+
+    data = attempt.response_preview or {}
+    presentation = _build_page_presentation(entry, data)
+    return {
+        "case_id": payload.case_id,
+        "success": True,
+        "data": data,
+        "presentation": presentation,
+        "attempts": [attempt],
+        "final_message": "Page loaded.",
     }
 
 
@@ -85,6 +123,68 @@ def read_history(
     return {
         "items": [_history_entry_to_payload(entry) for entry in entries],
     }
+
+
+def _replace_query_params(url: str, replacements: dict[str, str]) -> str:
+    split = urllib.parse.urlsplit(url)
+    params = dict(urllib.parse.parse_qsl(split.query, keep_blank_values=True))
+    params.update(replacements)
+    query = urllib.parse.urlencode(params, safe="$(),'/")
+    return urllib.parse.urlunsplit((split.scheme, split.netloc, split.path, query, split.fragment))
+
+
+def _page_size_from_entry(entry: dict[str, Any]) -> int:
+    data = entry.get("response_preview") or {}
+    pagination = data.get("pagination") if isinstance(data, dict) else {}
+    for raw_value in [
+        (pagination or {}).get("page_size") if isinstance(pagination, dict) else None,
+        (entry.get("final_plan") or {}).get("top"),
+    ]:
+        try:
+            value = int(str(raw_value))
+        except (TypeError, ValueError):
+            continue
+        if value > 0:
+            return value
+    return 50
+
+
+def _build_page_presentation(entry: dict[str, Any], data: dict[str, Any]) -> dict[str, Any]:
+    existing_presentation = entry.get("presentation") or {}
+    columns = [column for column in existing_presentation.get("columns", []) if isinstance(column, str)]
+    results = data.get("results") if isinstance(data.get("results"), list) else []
+    clean_results = [
+        {key: value for key, value in row.items() if key != "__metadata"}
+        for row in results
+        if isinstance(row, dict)
+    ]
+    if not columns and clean_results:
+        columns = list(clean_results[0].keys())[:8]
+
+    rows = [{column: row.get(column, "") for column in columns} for row in clean_results]
+    pagination = data.get("pagination") if isinstance(data.get("pagination"), dict) else {}
+    total_count = _safe_int(data.get("result_count"), len(clean_results))
+    skip = _safe_int(pagination.get("skip"), 0)
+    displayed_count = len(rows)
+    text = (
+        f"查询结果总共{total_count}条，当前显示前{displayed_count}条"
+        if skip <= 0
+        else f"查询结果总共{total_count}条，当前显示第{skip + 1}-{skip + displayed_count}条"
+    )
+    return {
+        "kind": "table",
+        "title": existing_presentation.get("title") or "查询结果",
+        "text": text,
+        "columns": columns,
+        "rows": rows,
+    }
+
+
+def _safe_int(value: Any, fallback: int) -> int:
+    try:
+        return int(str(value))
+    except (TypeError, ValueError):
+        return fallback
 
 
 def _history_entry_to_payload(entry: dict[str, Any] | None) -> dict[str, Any] | None:

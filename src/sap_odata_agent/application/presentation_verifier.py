@@ -9,6 +9,7 @@ from sap_odata_agent.domain.models import AgentRequest, PresentationVerification
 
 class PresentationVerifier:
     COUNT_PATTERNS = (
+        re.compile(r"查询结果总共\s*(\d+)\s*条"),
         re.compile(r"共(?:找到|有)?\s*(\d+)\s*(?:条|家|个|位|名)"),
         re.compile(r"共有\s*(\d+)\s*(?:条|家|个|位|名)"),
         re.compile(r"found\s+(\d+)\s+(?:rows|records|items)", re.IGNORECASE),
@@ -31,8 +32,8 @@ class PresentationVerifier:
             actual_count = self._actual_record_count(data, request)
             row_count = len(presentation.rows or [])
             rows_have_no_values = self._rows_have_no_values(presentation.rows or [])
-            if (actual_count is not None and row_count < min(actual_count, 20)) or rows_have_no_values:
-                repaired_rows = self._rows_from_data(data, presentation.columns or [], request)[:20]
+            if (actual_count is not None and row_count < min(actual_count, 50)) or rows_have_no_values:
+                repaired_rows = self._rows_from_data(data, presentation.columns or [], request)[:50]
                 if repaired_rows:
                     if rows_have_no_values:
                         issues.append("table_rows_empty_values")
@@ -84,6 +85,10 @@ class PresentationVerifier:
     def _actual_record_count(data: dict | None, request: AgentRequest | None = None) -> int | None:
         if not data:
             return None
+        try:
+            return int(str(data.get("result_count")))
+        except (TypeError, ValueError):
+            pass
         records = PresentationVerifier._records_from_data(data, request)
         if records:
             return len(records)

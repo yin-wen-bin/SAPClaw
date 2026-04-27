@@ -52,6 +52,12 @@ class JsonlCaseRepository:
         entries.sort(key=self._entry_sort_key, reverse=True)
         return entries[: max(1, limit)]
 
+    def get_by_case_id(self, case_id: str) -> dict[str, Any] | None:
+        for entry in self._load_entries():
+            if entry.get("case_id") == case_id:
+                return entry
+        return None
+
     def update_feedback(
         self,
         case_id: str,

@@ -60,6 +60,22 @@ def get_feedback_summarizer() -> LlmFeedbackSummarizer:
 
 
 @lru_cache(maxsize=1)
+def get_sap_executor() -> SapODataExecutor:
+    settings = get_settings()
+    return SapODataExecutor(
+        SapRuntimeConfig(
+            base_url=settings.sap_base_url,
+            username=settings.sap_username,
+            password=settings.sap_password,
+            client=settings.sap_client,
+            verify_ssl=settings.sap_verify_ssl,
+            auth_type=settings.sap_auth_type,
+            timeout_seconds=max(1, settings.sap_timeout_ms // 1000),
+        )
+    )
+
+
+@lru_cache(maxsize=1)
 def get_orchestrator() -> AgentOrchestrator:
     settings = get_settings()
     llm_client = get_llm_client()
@@ -75,17 +91,7 @@ def get_orchestrator() -> AgentOrchestrator:
         ),
         validator=BasicPlanValidator(),
         compiler=BasicODataCompiler(base_url=settings.sap_base_url),
-        executor=SapODataExecutor(
-            SapRuntimeConfig(
-                base_url=settings.sap_base_url,
-                username=settings.sap_username,
-                password=settings.sap_password,
-                client=settings.sap_client,
-                verify_ssl=settings.sap_verify_ssl,
-                auth_type=settings.sap_auth_type,
-                timeout_seconds=max(1, settings.sap_timeout_ms // 1000),
-            )
-        ),
+        executor=get_sap_executor(),
         repair_engine=SimpleRepairEngine(),
         result_presenter=LlmResultPresenter(
             llm_client=llm_client,

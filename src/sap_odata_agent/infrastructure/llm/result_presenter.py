@@ -20,7 +20,7 @@ class LlmResultPresenter:
     def present(self, request: AgentRequest, plan: QueryPlan, data: dict[str, Any] | None) -> ResultPresentation:
         raw_records = self._extract_records(data)
         records = self._filter_records_for_target_object(request, raw_records)
-        fallback = self._build_fallback_presentation(request, plan, records)
+        fallback = self._build_fallback_presentation(request, plan, records, data)
         if not self.enabled or self.llm_client is None or not data:
             return fallback
 
@@ -74,13 +74,15 @@ class LlmResultPresenter:
             "target_entity_set": plan.target_entity_set,
             "response_summary_fields": plan.response_summary_fields,
             "response_directive": plan.response_directive,
-            "result_count": len(records),
-            "raw_result_count": len(raw_records),
-            "records": records[:20],
+            "result_count": self._total_count(data, records),
+            "displayed_count": len(records),
+            "raw_result_count": self._total_count(data, raw_records),
+            "records": records[:50],
             "lookup_context": (data or {}).get("lookup_context"),
             "execution_trace": (data or {}).get("execution_trace"),
             "raw_data_summary": {
                 "sap_raw_result_count": (data or {}).get("result_count"),
+                "sap_displayed_count": (data or {}).get("displayed_count"),
                 "has_results": bool(raw_records),
             },
         }
@@ -126,12 +128,20 @@ class LlmResultPresenter:
                 rows.append(clean_row)
 
         if kind == "table":
+            text = fallback.text
             if not columns and rows:
                 columns = [column for column in rows[0].keys()]
             if not rows or self._rows_have_no_values(rows):
                 fallback_columns = fallback.columns or (list(fallback.rows[0].keys()) if fallback.rows else [])
                 fallback_rows = self._build_table_rows(records, fallback_columns)
                 if fallback_rows:
+                    rows = fallback_rows
+                    columns = fallback_columns
+                    text = fallback.text
+            if rows and len(rows) < min(len(records), 50):
+                fallback_columns = fallback.columns or columns
+                fallback_rows = self._build_table_rows(records, fallback_columns)
+                if len(fallback_rows) > len(rows):
                     rows = fallback_rows
                     columns = fallback_columns
                     text = fallback.text
@@ -145,7 +155,7 @@ class LlmResultPresenter:
             title=title,
             text=text,
             columns=columns[:8],
-            rows=rows[:20],
+            rows=rows[:50],
         )
 
     def _build_fallback_presentation(
@@ -153,6 +163,7 @@ class LlmResultPresenter:
         request: AgentRequest,
         plan: QueryPlan,
         records: list[dict[str, Any]],
+        data: dict[str, Any] | None = None,
     ) -> ResultPresentation:
         if not records:
             return ResultPresentation(
@@ -191,9 +202,14 @@ class LlmResultPresenter:
         return ResultPresentation(
             kind="table",
             title="查询结果",
-            text=self._build_table_summary_text(request, len(rows)),
+            text=self._build_table_summary_text(
+                request,
+                self._total_count(data, records),
+                len(rows),
+                self._pagination_skip(data),
+            ),
             columns=columns[:8],
-            rows=rows[:20],
+            rows=rows[:50],
         )
 
     @staticmethod
@@ -237,14 +253,17 @@ class LlmResultPresenter:
         return None
 
     @staticmethod
-    def _build_table_summary_text(request: AgentRequest, row_count: int) -> str:
-        target_object = request.constraints.target_object if request.constraints else None
-        label = {
-            "supplier": "供应商",
-            "customer": "客户",
-            "business_partner": "业务伙伴",
-        }.get(target_object or "", "记录")
-        return f"共找到{row_count}条{label}记录。"
+    def _build_table_summary_text(
+        request: AgentRequest,
+        total_count: int,
+        displayed_count: int,
+        skip: int = 0,
+    ) -> str:
+        if skip <= 0:
+            return f"查询结果总共{total_count}条，当前显示前{displayed_count}条"
+        start = skip + 1
+        end = skip + displayed_count
+        return f"查询结果总共{total_count}条，当前显示第{start}-{end}条"
 
     @staticmethod
     def _normalize_boolean(value: Any) -> bool | None:
@@ -278,6 +297,28 @@ class LlmResultPresenter:
         return []
 
     @staticmethod
+    def _total_count(data: dict[str, Any] | None, records: list[dict[str, Any]]) -> int:
+        if not data:
+            return len(records)
+        raw_results = data.get("results") if isinstance(data.get("results"), list) else None
+        if raw_results is not None and len(records) != len(raw_results):
+            return len(records)
+        try:
+            return int(str(data.get("result_count")))
+        except (TypeError, ValueError):
+            return len(records)
+
+    @staticmethod
+    def _pagination_skip(data: dict[str, Any] | None) -> int:
+        pagination = data.get("pagination") if data else None
+        if not isinstance(pagination, dict):
+            return 0
+        try:
+            return max(0, int(str(pagination.get("skip") or 0)))
+        except (TypeError, ValueError):
+            return 0
+
+    @staticmethod
     def _filter_records_for_target_object(
         request: AgentRequest,
         records: list[dict[str, Any]],
@@ -301,7 +342,7 @@ class LlmResultPresenter:
     def _build_table_rows(records: list[dict[str, Any]], columns: list[str] | Any) -> list[dict[str, Any]]:
         column_list = [str(column) for column in columns]
         rows: list[dict[str, Any]] = []
-        for record in records[:20]:
+        for record in records[:50]:
             row = {column: record.get(column, "") for column in column_list}
             if any(value not in ("", None) for value in row.values()):
                 rows.append(row)

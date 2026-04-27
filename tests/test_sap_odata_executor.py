@@ -29,6 +29,7 @@ def test_prepare_runtime_url_appends_client_and_json_format() -> None:
 
     assert "sap-client=100" in prepared
     assert "$format=json" in prepared
+    assert "$inlinecount=allpages" in prepared
     assert "$top=1" in prepared
 
 
@@ -38,7 +39,7 @@ def test_executor_returns_preview_for_json_results() -> None:
             return {
                 "status_code": 200,
                 "content_type": "application/json",
-                "body": '{"d":{"results":[{"Customer":"1000001"},{"Customer":"1000002"}]}}',
+                "body": '{"d":{"__count":"12","results":[{"Customer":"1000001"},{"Customer":"1000002"}]}}',
             }
 
     executor = StubExecutor(_build_executor().config)
@@ -49,7 +50,11 @@ def test_executor_returns_preview_for_json_results() -> None:
 
     assert attempt.success is True
     assert attempt.status_code == 200
-    assert attempt.response_preview["result_count"] == 2
+    assert attempt.response_preview["result_count"] == 12
+    assert attempt.response_preview["returned_count"] == 2
+    assert attempt.response_preview["displayed_count"] == 2
+    assert attempt.response_preview["pagination"]["has_next"] is True
+    assert attempt.response_preview["pagination"]["next_skip"] == 2
     assert attempt.response_preview["results"][0]["Customer"] == "1000001"
 
 

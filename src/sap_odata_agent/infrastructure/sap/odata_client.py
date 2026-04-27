@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import ssl
 import time
 import urllib.error
@@ -144,14 +145,50 @@ class BasicODataCompiler:
                 return "true"
             if normalized_value in {"false", "0", "no"}:
                 return "false"
+        if normalized_type in {"date", "datetime", "edm.date", "edm.datetime"}:
+            return BasicODataCompiler._compile_datetime_literal(value, literal_type="datetime")
+        if normalized_type in {"datetimeoffset", "edm.datetimeoffset"}:
+            return BasicODataCompiler._compile_datetime_literal(value, literal_type="datetimeoffset")
         escaped = str(value).replace("'", "''")
         return f"'{escaped}'"
+
+    @staticmethod
+    def _compile_datetime_literal(value: str, literal_type: str) -> str:
+        raw_value = str(value).strip()
+        wrapper_match = re.fullmatch(r"(?i)(datetimeoffset|datetime)'(.+)'", raw_value)
+        if wrapper_match:
+            raw_value = wrapper_match.group(2).strip()
+
+        normalized_value = BasicODataCompiler._normalize_datetime_value(raw_value)
+        return f"{literal_type}'{normalized_value}'"
+
+    @staticmethod
+    def _normalize_datetime_value(value: str) -> str:
+        raw_value = value.strip().strip("'")
+        date_match = re.fullmatch(r"(\d{4})[.\-/](\d{1,2})[.\-/](\d{1,2})", raw_value)
+        if date_match:
+            year, month, day = date_match.groups()
+            return f"{year}-{int(month):02d}-{int(day):02d}T00:00:00"
+
+        datetime_match = re.fullmatch(
+            r"(\d{4})[.\-/](\d{1,2})[.\-/](\d{1,2})[T ](\d{1,2}):(\d{1,2}):(\d{1,2})(\.\d+)?",
+            raw_value,
+        )
+        if datetime_match:
+            year, month, day, hour, minute, second, fraction = datetime_match.groups()
+            suffix = fraction or ""
+            return (
+                f"{year}-{int(month):02d}-{int(day):02d}"
+                f"T{int(hour):02d}:{int(minute):02d}:{int(second):02d}{suffix}"
+            )
+
+        return raw_value
 
 
 class SapODataExecutor:
     """Runtime SAP executor for read-only GET requests."""
 
-    MAX_PREVIEW_ROWS = 20
+    MAX_PREVIEW_ROWS = 50
 
     def __init__(self, config: SapRuntimeConfig) -> None:
         self.config = config
@@ -202,7 +239,7 @@ class SapODataExecutor:
                 request=runtime_request,
                 success=True,
                 status_code=response["status_code"],
-                response_preview=self._build_preview(parsed_payload),
+                response_preview=self._build_preview(parsed_payload, runtime_request.url),
                 error_message=None,
             )
         except urllib.error.HTTPError as exc:
@@ -262,6 +299,8 @@ class SapODataExecutor:
             param_map["sap-client"] = self.config.client
         if "$format" not in param_map:
             param_map["$format"] = "json"
+        if "$top" in param_map and "$inlinecount" not in param_map:
+            param_map["$inlinecount"] = "allpages"
 
         new_query = urllib.parse.urlencode(param_map, safe="$(),'/")
         return urllib.parse.urlunsplit((split.scheme, split.netloc, split.path, new_query, split.fragment))
@@ -299,17 +338,59 @@ class SapODataExecutor:
             return json.loads(body)
         return {"raw_body": body}
 
-    def _build_preview(self, payload: dict) -> dict:
+    def _build_preview(self, payload: dict, url: str = "") -> dict:
         if "d" in payload:
             data = payload["d"]
             if isinstance(data, dict) and "results" in data and isinstance(data["results"], list):
                 results = data["results"]
+                page_size = self._requested_page_size(url)
+                skip = self._requested_skip(url)
+                display_limit = min(page_size, self.MAX_PREVIEW_ROWS)
+                displayed_results = results[:display_limit]
+                total_count = self._parse_total_count(data.get("__count"), len(results))
                 return {
-                    "result_count": len(results),
-                    "results": results[: self.MAX_PREVIEW_ROWS],
+                    "result_count": total_count,
+                    "returned_count": len(results),
+                    "displayed_count": len(displayed_results),
+                    "results": displayed_results,
+                    "pagination": {
+                        "page_size": page_size,
+                        "display_limit": display_limit,
+                        "skip": skip,
+                        "page_number": (skip // page_size) + 1 if page_size > 0 else 1,
+                        "has_next": skip + len(results) < total_count,
+                        "next_skip": skip + page_size if skip + len(results) < total_count else None,
+                    },
                 }
             return {"result": data}
         return payload
+
+    @staticmethod
+    def _requested_page_size(url: str) -> int:
+        split = urllib.parse.urlsplit(url)
+        params = dict(urllib.parse.parse_qsl(split.query, keep_blank_values=True))
+        try:
+            value = int(params.get("$top", "") or 0)
+        except ValueError:
+            value = 0
+        return value if value > 0 else SapODataExecutor.MAX_PREVIEW_ROWS
+
+    @staticmethod
+    def _requested_skip(url: str) -> int:
+        split = urllib.parse.urlsplit(url)
+        params = dict(urllib.parse.parse_qsl(split.query, keep_blank_values=True))
+        try:
+            value = int(params.get("$skip", "") or 0)
+        except ValueError:
+            value = 0
+        return max(0, value)
+
+    @staticmethod
+    def _parse_total_count(raw_count: object, fallback: int) -> int:
+        try:
+            return int(str(raw_count))
+        except (TypeError, ValueError):
+            return fallback
 
     @staticmethod
     def _extract_error_message(body: str, content_type: str) -> str:

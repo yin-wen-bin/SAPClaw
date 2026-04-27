@@ -412,7 +412,8 @@ button:disabled {
 }
 
 .summary-strip,
-.clarification-options {
+.clarification-options,
+.pagination-bar {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -420,12 +421,17 @@ button:disabled {
 }
 
 .summary-strip span,
-.summary-chip {
+.summary-chip,
+.pagination-bar span {
   padding: 8px 10px;
   border-radius: 999px;
   background: #f5eee4;
   color: var(--accent-strong);
   font-size: 0.84rem;
+}
+
+.pagination-bar {
+  align-items: center;
 }
 
 .summary-row {

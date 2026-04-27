@@ -137,10 +137,17 @@ function HistoryList({ history, historyError, onRefresh, onSelect }) {
   );
 }
 
-function QueryResultCard({ presentation }) {
+function QueryResultCard({ result, onNextPage, pageLoading }) {
+  const presentation = result?.presentation;
   if (!presentation) {
     return null;
   }
+  const pagination = result?.data?.pagination || null;
+  const pageNumber = pagination?.page_number || 1;
+  const pageSize = pagination?.page_size || presentation.rows?.length || 0;
+  const displayedCount = result?.data?.displayed_count || presentation.rows?.length || 0;
+  const totalCount = result?.data?.result_count || displayedCount;
+  const hasNext = Boolean(pagination?.has_next && pagination?.next_skip != null);
 
   return (
     <article className="card card-wide result-answer-card">
@@ -150,6 +157,17 @@ function QueryResultCard({ presentation }) {
 
       {presentation.title ? <p className="result-title">{presentation.title}</p> : null}
       {presentation.text ? <p className="answer-text">{presentation.text}</p> : null}
+      {pagination ? (
+        <div className="pagination-bar">
+          <span>第 {pageNumber} 页</span>
+          <span>每页 {pageSize} 条</span>
+          <span>本页显示 {displayedCount} 条</span>
+          <span>总计 {totalCount} 条</span>
+          <button type="button" className="secondary-button compact-button" onClick={onNextPage} disabled={!hasNext || pageLoading}>
+            {pageLoading ? "加载中..." : "查看下一页"}
+          </button>
+        </div>
+      ) : null}
 
       {presentation.kind === "table" && Array.isArray(presentation.columns) && presentation.columns.length > 0 ? (
         <div className="table-wrap">
@@ -662,7 +680,7 @@ function DetailSection({ title, children, defaultOpen = false }) {
   );
 }
 
-function ResultPanel({ result, selectedHistory, feedbackProps }) {
+function ResultPanel({ result, selectedHistory, feedbackProps, onNextPage, pageLoading }) {
   const summaryRows = useMemo(
     () => summarizeResultData(result?.data, result?.plan?.response_summary_fields || []),
     [result],
@@ -691,7 +709,7 @@ function ResultPanel({ result, selectedHistory, feedbackProps }) {
       </div>
 
       <div className="result-main-stack">
-        <QueryResultCard presentation={result.presentation} />
+        <QueryResultCard result={result} onNextPage={onNextPage} pageLoading={pageLoading} />
         <ClarificationCard result={result} />
       </div>
 
@@ -760,6 +778,7 @@ export default function App() {
   const [feedbackSaving, setFeedbackSaving] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [lastDurationMs, setLastDurationMs] = useState(null);
+  const [pageLoading, setPageLoading] = useState(false);
   const [feedbackForm, setFeedbackForm] = useState({
     status: "",
     comment: "",
@@ -852,6 +871,47 @@ export default function App() {
       setError(submitError.message || "查询失败");
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function handleNextPage() {
+    const pagination = result?.data?.pagination || null;
+    if (!result?.case_id || !pagination?.has_next || pagination.next_skip == null) {
+      return;
+    }
+
+    setPageLoading(true);
+    setError("");
+    try {
+      const response = await fetch("/api/v1/agent/page", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          case_id: result.case_id,
+          skip: pagination.next_skip,
+        }),
+      });
+      const payload = await response.json();
+      if (!response.ok || !payload.success) {
+        throw new Error(payload.detail || "下一页加载失败");
+      }
+      setResult((current) =>
+        current
+          ? {
+              ...current,
+              data: payload.data,
+              presentation: payload.presentation,
+              attempts: [...(current.attempts || []), ...(payload.attempts || [])],
+              final_message: payload.final_message || current.final_message,
+            }
+          : current,
+      );
+    } catch (pageError) {
+      setError(pageError.message || "下一页加载失败");
+    } finally {
+      setPageLoading(false);
     }
   }
 
@@ -1002,6 +1062,8 @@ export default function App() {
           <ResultPanel
             result={result}
             selectedHistory={selectedHistory}
+            onNextPage={handleNextPage}
+            pageLoading={pageLoading}
             feedbackProps={{
               feedbackForm,
               feedbackSaving,
