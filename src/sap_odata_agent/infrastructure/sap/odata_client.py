@@ -353,6 +353,7 @@ class SapODataExecutor:
                     "returned_count": len(results),
                     "displayed_count": len(displayed_results),
                     "results": displayed_results,
+                    "_all_results": results,
                     "pagination": {
                         "page_size": page_size,
                         "display_limit": display_limit,
@@ -513,6 +514,7 @@ class MultiStepSapExecutor:
             }
             for attempt in attempts
         ]
+        merged_data["source_step_summaries"] = self._build_source_step_summaries(plan, attempts)
         merged_data["lookup_context"] = {
             "path_id": plan.path_id,
             "anchor_object": plan.anchor_object,
@@ -526,7 +528,9 @@ class MultiStepSapExecutor:
     def _extract_values(data: dict | None, field_name: str) -> list[object]:
         if not data:
             return []
-        results = data.get("results")
+        results = data.get("_all_results")
+        if not isinstance(results, list) or not results:
+            results = data.get("results")
         if isinstance(results, list) and results:
             values = [row.get(field_name) for row in results if isinstance(row, dict) and row.get(field_name) not in (None, "")]
             return list(dict.fromkeys(values))
@@ -535,6 +539,34 @@ class MultiStepSapExecutor:
             value = result.get(field_name)
             return [value] if value not in (None, "") else []
         return []
+
+    @staticmethod
+    def _build_source_step_summaries(plan: QueryPlan, attempts: list[ExecutionAttempt]) -> list[dict]:
+        summaries: list[dict] = []
+        step_by_id = {step.step_id: step for step in plan.steps}
+        for attempt in attempts:
+            step = step_by_id.get(attempt.step_id or "")
+            preview = attempt.response_preview or {}
+            summaries.append(
+                {
+                    "step_id": attempt.step_id,
+                    "entity_set": step.entity_set if step else "",
+                    "select_fields": list(step.select_fields) if step else [],
+                    "filters": [
+                        {
+                            "field": item.field,
+                            "operator": item.operator,
+                            "value": item.value,
+                            "value_type": item.value_type,
+                        }
+                        for item in (step.filters if step else [])
+                    ],
+                    "result_count": preview.get("result_count"),
+                    "returned_count": preview.get("returned_count"),
+                    "displayed_count": preview.get("displayed_count"),
+                }
+            )
+        return summaries
 
 
 class SapExecutorStub:

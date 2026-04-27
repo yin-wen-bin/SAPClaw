@@ -148,8 +148,11 @@ def test_schema_feasibility_reports_planner_failure_for_unknown_placeholder(tmp_
     codes = {violation.code for violation in result.violations}
 
     assert result.passed is False
-    assert "planner_failed" in codes
+    assert "planner_llm_timeout" in codes
     assert "entity_not_found" not in codes
+    findings = validator.to_critic_findings(result)
+    assert findings[0].code == "planner_llm_timeout"
+    assert findings[0].message == "Planner LLM timed out before producing an executable query plan. No SAP request was executed."
 
 
 def test_schema_feasibility_accepts_direct_entity_covering_answer_and_filter(tmp_path: Path) -> None:

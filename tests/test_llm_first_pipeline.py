@@ -47,7 +47,11 @@ class EmptyRouter:
 
 
 class StaticSchemaContextProvider:
+    def __init__(self):
+        self.last_query = None
+
     def build(self, service_name, query, route_decision=None, retrieved_documents=None, feedback_memories=None):
+        self.last_query = query
         return {"service_name": service_name, "entities": [{"entity_set": "A_Good"}], "candidate_fields": []}
 
     @staticmethod
@@ -66,6 +70,31 @@ class InitialPlanner:
             entity_set="A_Bad",
             select_fields=["BadField"],
             rationale="first plan intentionally fails",
+        )
+
+
+class TimeoutThenGoodPlanner:
+    def __init__(self):
+        self.calls = 0
+
+    def plan_for_api(self, request, route_decision, schema_context):
+        self.calls += 1
+        if self.calls == 1:
+            return QueryPlan(
+                service_name="API_TEST",
+                entity_set="UNKNOWN_ENTITY",
+                planner_diagnostics={
+                    "llm_dynamic_path_planner": {
+                        "accepted": False,
+                        "reason": "llm_error:The read operation timed out",
+                    }
+                },
+            )
+        return QueryPlan(
+            service_name="API_TEST",
+            entity_set="A_Good",
+            select_fields=["GoodField"],
+            rationale="retry after initial planner timeout",
         )
 
 
@@ -141,6 +170,70 @@ class RerouteRepairPlanner:
                         "service_name": "API_REROUTED",
                     },
                 }
+            },
+        )
+
+
+class ClarificationCarryRouter:
+    def __init__(self):
+        self.calls = 0
+
+    def route(self, user_input, api_catalog, recent_cases=None, latest_clarification_case=None, feedback_memories=None):
+        self.calls += 1
+        if self.calls == 1:
+            return ApiRouteDecision(
+                resolved_user_input=user_input,
+                should_carry_context=False,
+                selected_apis=[
+                    SelectedApi(service_name="API_TEST", confidence=0.5, reason="ambiguous clarification")
+                ],
+                needs_clarification=True,
+                clarification_question=(
+                    "Do you want open purchase orders or open supplier invoices for this supplier?"
+                ),
+                clarification_options=["open purchase orders", "open supplier invoices"],
+                raw_response={
+                    "needs_clarification": True,
+                    "clarification_question": (
+                        "Do you want open purchase orders or open supplier invoices for this supplier?"
+                    ),
+                },
+            )
+        assert latest_clarification_case is not None
+        return ApiRouteDecision(
+            resolved_user_input="open supplier invoices (unpaid bills) for this supplier",
+            should_carry_context=True,
+            selected_apis=[SelectedApi(service_name="API_TEST", confidence=0.95, reason="clarified supplier invoices")],
+            intent_summary="Query open supplier invoices",
+            raw_response={
+                "resolved_user_input": "open supplier invoices (unpaid bills) for this supplier",
+                "should_carry_context": True,
+                "selected_apis": [{"service_name": "API_TEST"}],
+            },
+        )
+
+
+class StandaloneQueryAfterClarificationRouter(ClarificationCarryRouter):
+    def route(self, user_input, api_catalog, recent_cases=None, latest_clarification_case=None, feedback_memories=None):
+        if self.calls == 0:
+            return super().route(
+                user_input,
+                api_catalog,
+                recent_cases=recent_cases,
+                latest_clarification_case=latest_clarification_case,
+                feedback_memories=feedback_memories,
+            )
+        self.calls += 1
+        assert latest_clarification_case is not None
+        return ApiRouteDecision(
+            resolved_user_input=user_input,
+            should_carry_context=True,
+            selected_apis=[SelectedApi(service_name="API_TEST", confidence=0.95, reason="standalone purchase orders")],
+            intent_summary="Query purchase orders by material",
+            raw_response={
+                "resolved_user_input": user_input,
+                "should_carry_context": True,
+                "selected_apis": [{"service_name": "API_TEST"}],
             },
         )
 
@@ -293,6 +386,7 @@ def _orchestrator(
     api_catalog_provider=None,
     api_router=None,
     api_specific_planner=None,
+    schema_context_provider=None,
     failure_diagnoser=None,
 ):
     orch = AgentOrchestrator(
@@ -306,7 +400,7 @@ def _orchestrator(
         case_repository=JsonlCaseRepository(str(tmp_path / "cases.jsonl")),
         api_catalog_provider=api_catalog_provider or StaticCatalogProvider(),
         api_router=api_router or StaticRouter(),
-        schema_context_provider=StaticSchemaContextProvider(),
+        schema_context_provider=schema_context_provider or StaticSchemaContextProvider(),
         api_specific_planner=api_specific_planner or InitialPlanner(),
         plan_repairer=repairer or RepairPlanner(),
         failure_diagnoser=failure_diagnoser or StaticFailureDiagnoser(),
@@ -427,6 +521,106 @@ def test_llm_first_pipeline_reroutes_after_repair_request(tmp_path: Path) -> Non
     assert response.plan.entity_set == "A_Good"
     assert planner.calls == 2
     assert repairer.calls == 1
+
+
+def test_llm_first_pipeline_composes_clarification_context_for_followup(tmp_path: Path) -> None:
+    router = ClarificationCarryRouter()
+    schema_provider = StaticSchemaContextProvider()
+    orchestrator = _orchestrator(
+        tmp_path,
+        api_router=router,
+        schema_context_provider=schema_provider,
+        api_specific_planner=ServiceAwarePlanner(),
+        executor=AlwaysPassingExecutor(),
+    )
+    conversation_id = "conv-clarification"
+
+    clarification = orchestrator.run(
+        AgentRequest(
+            user_input="\u67e5\u8be2\u4f9b\u5e94\u554617300003\u7684\u672a\u6e05\u53d1\u7968\u8ba2\u5355",
+            conversation_id=conversation_id,
+        )
+    )
+    assert clarification.needs_clarification is True
+
+    response = orchestrator.run(
+        AgentRequest(
+            user_input="open supplier invoices (unpaid bills) for this supplier",
+            conversation_id=conversation_id,
+        )
+    )
+
+    assert response.success is True
+    assert response.case_id is not None
+    assert schema_provider.last_query is not None
+    assert "Previous user question:" in schema_provider.last_query
+    assert "17300003" in schema_provider.last_query
+    assert "User clarification: open supplier invoices (unpaid bills) for this supplier" in schema_provider.last_query
+    assert "Resolved intent: open supplier invoices (unpaid bills) for this supplier" in schema_provider.last_query
+
+    latest = orchestrator.case_repository.get_by_case_id(response.case_id)
+    assert latest is not None
+    assert "17300003" in latest["effective_user_input"]
+    assert "Previous user question:" in latest["effective_user_input"]
+
+
+def test_llm_first_pipeline_does_not_carry_clarification_into_standalone_query(tmp_path: Path) -> None:
+    router = StandaloneQueryAfterClarificationRouter()
+    schema_provider = StaticSchemaContextProvider()
+    orchestrator = _orchestrator(
+        tmp_path,
+        api_router=router,
+        schema_context_provider=schema_provider,
+        api_specific_planner=ServiceAwarePlanner(),
+        executor=AlwaysPassingExecutor(),
+    )
+    conversation_id = "conv-standalone-after-clarification"
+
+    clarification = orchestrator.run(
+        AgentRequest(
+            user_input="查询供应商17300003的未清发票订单",
+            conversation_id=conversation_id,
+        )
+    )
+    assert clarification.needs_clarification is True
+
+    response = orchestrator.run(
+        AgentRequest(
+            user_input="查询物料TG0011的采购订单",
+            conversation_id=conversation_id,
+        )
+    )
+
+    assert response.success is True
+    assert schema_provider.last_query == "查询物料TG0011的采购订单"
+    assert response.case_id is not None
+    latest = orchestrator.case_repository.get_by_case_id(response.case_id)
+    assert latest is not None
+    assert latest["effective_user_input"] == "查询物料TG0011的采购订单"
+
+
+def test_llm_first_pipeline_retries_initial_planner_after_timeout(tmp_path: Path) -> None:
+    planner = TimeoutThenGoodPlanner()
+    repairer = RepairPlanner()
+    orchestrator = _orchestrator(
+        tmp_path,
+        api_specific_planner=planner,
+        repairer=repairer,
+        executor=AlwaysPassingExecutor(),
+    )
+
+    response = orchestrator.run(AgentRequest(user_input="query data after transient planner timeout"))
+
+    assert response.success is True
+    assert response.plan.entity_set == "A_Good"
+    assert planner.calls == 2
+    assert repairer.calls == 0
+    assert response.case_id is not None
+    latest = orchestrator.case_repository.get_by_case_id(response.case_id)
+    assert [item["failure_reason"] for item in latest["planning_attempts"]] == [
+        "planner_llm_timeout",
+        "",
+    ]
 
 
 class MalformedJsonClient:

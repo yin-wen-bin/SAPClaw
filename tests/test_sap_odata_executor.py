@@ -1,5 +1,8 @@
-from sap_odata_agent.domain.models import CompiledRequest, ExecutionStep, FilterCondition, QueryPlan, StepBinding
+import json
 import urllib.error
+import urllib.parse
+
+from sap_odata_agent.domain.models import CompiledRequest, ExecutionStep, FilterCondition, QueryPlan, StepBinding
 
 from sap_odata_agent.infrastructure.sap.odata_client import (
     BasicODataCompiler,
@@ -53,6 +56,7 @@ def test_executor_returns_preview_for_json_results() -> None:
     assert attempt.response_preview["result_count"] == 12
     assert attempt.response_preview["returned_count"] == 2
     assert attempt.response_preview["displayed_count"] == 2
+    assert len(attempt.response_preview["_all_results"]) == 2
     assert attempt.response_preview["pagination"]["has_next"] is True
     assert attempt.response_preview["pagination"]["next_skip"] == 2
     assert attempt.response_preview["results"][0]["Customer"] == "1000001"
@@ -242,3 +246,85 @@ def test_multi_step_executor_expands_multiple_previous_values_into_in_filter() -
     assert attempts[1].extracted_values["BusinessPartner"] == ["9000000024", "9000000025"]
     assert data is not None
     assert data["result_count"] == 2
+
+
+def test_multi_step_executor_binds_all_returned_rows_not_display_preview_only() -> None:
+    purchase_order_items = [
+        {"PurchaseOrder": f"450000{index:04d}", "Material": "TG0011"}
+        for index in range(1, 72)
+    ]
+
+    class StubExecutor(SapODataExecutor):
+        def _perform_request(self, compiled_request: CompiledRequest) -> dict[str, str | int]:
+            decoded_url = urllib.parse.unquote_plus(compiled_request.url)
+            if "A_PurchaseOrderItem?" in compiled_request.url:
+                assert "Material eq 'TG0011'" in decoded_url
+                return {
+                    "status_code": 200,
+                    "content_type": "application/json",
+                    "body": json.dumps({"d": {"__count": "71", "results": purchase_order_items}}),
+                }
+
+            assert "A_PurchaseOrder?" in compiled_request.url
+            assert "PurchaseOrder eq '4500000001'" in decoded_url
+            assert "PurchaseOrder eq '4500000071'" in decoded_url
+            return {
+                "status_code": 200,
+                "content_type": "application/json",
+                "body": json.dumps(
+                    {
+                        "d": {
+                            "__count": "71",
+                            "results": [
+                                {"PurchaseOrder": item["PurchaseOrder"], "Supplier": "17300003"}
+                                for item in purchase_order_items
+                            ],
+                        }
+                    }
+                ),
+            }
+
+    executor = StubExecutor(_build_executor().config)
+    compiler = BasicODataCompiler(base_url="https://sap.example.com")
+    multi_step = MultiStepSapExecutor(compiler=compiler, executor=executor)
+    plan = QueryPlan(
+        service_name="API_PURCHASEORDER_PROCESS_SRV",
+        entity_set="A_PurchaseOrder",
+        plan_kind="multi_step",
+        path_id="material_to_purchase_orders",
+        steps=[
+            ExecutionStep(
+                step_id="filter_items_by_material",
+                entity_set="A_PurchaseOrderItem",
+                select_fields=["PurchaseOrder", "Material"],
+                filters=[FilterCondition(field="Material", operator="eq", value="TG0011")],
+                top=200,
+            ),
+            ExecutionStep(
+                step_id="fetch_purchase_orders",
+                entity_set="A_PurchaseOrder",
+                select_fields=["PurchaseOrder", "Supplier"],
+                filter_from_previous=[
+                    StepBinding(
+                        field="PurchaseOrder",
+                        source_step_id="filter_items_by_material",
+                        source_field="PurchaseOrder",
+                    )
+                ],
+                top=200,
+            ),
+        ],
+    )
+
+    attempts, data = multi_step.execute_plan(plan, starting_attempt_number=1)
+
+    assert len(attempts) == 2
+    assert attempts[0].response_preview["displayed_count"] == 50
+    assert attempts[0].response_preview["returned_count"] == 71
+    assert len(attempts[0].response_preview["results"]) == 50
+    assert len(attempts[0].response_preview["_all_results"]) == 71
+    assert len(attempts[1].extracted_values["PurchaseOrder"]) == 71
+    assert attempts[1].extracted_values["PurchaseOrder"][-1] == "4500000071"
+    assert data is not None
+    assert data["result_count"] == 71
+    assert data["source_step_summaries"][0]["result_count"] == 71

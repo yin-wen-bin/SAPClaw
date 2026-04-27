@@ -51,10 +51,15 @@ class SchemaFeasibilityValidator:
         entity_sets = {entity.get("entity_set", "") for entity in snapshot.entities}
         planner_failure_reason = self._planner_failure_reason(plan)
         if planner_failure_reason:
+            planner_timed_out = self._is_timeout_text(planner_failure_reason)
             violations.append(
                 FeasibilityViolation(
-                    code="planner_failed",
-                    message=f"Planner did not produce an executable schema plan: {planner_failure_reason}",
+                    code="planner_llm_timeout" if planner_timed_out else "planner_failed",
+                    message=(
+                        "Planner LLM timed out before producing an executable query plan. No SAP request was executed."
+                        if planner_timed_out
+                        else f"Planner did not produce an executable schema plan: {planner_failure_reason}"
+                    ),
                     entity_set=plan.entity_set,
                 )
             )
@@ -145,10 +150,19 @@ class SchemaFeasibilityValidator:
             return reason
         return ""
 
+    @staticmethod
+    def _is_timeout_text(text: str) -> bool:
+        value = str(text or "").lower()
+        return "timed out" in value or "timeout" in value
+
     def to_critic_findings(self, result: FeasibilityResult) -> list[CriticFinding]:
         return [
             CriticFinding(
-                code=f"schema_{violation.code}",
+                code=(
+                    "planner_llm_timeout"
+                    if violation.code == "planner_llm_timeout"
+                    else f"schema_{violation.code}"
+                ),
                 message=violation.message,
                 severity="error",
                 blocking=True,

@@ -492,9 +492,14 @@ class AgentOrchestrator:
             feedback_memories=feedback_memories,
         )
         selected_service = route_decision.selected_apis[0].service_name if route_decision.selected_apis else ""
+        resolved_user_input = self._compose_llm_first_resolved_input(
+            request.user_input,
+            route_decision,
+            clarification_case,
+        )
         effective_request = replace(
             request,
-            resolved_user_input=route_decision.resolved_user_input or request.user_input,
+            resolved_user_input=resolved_user_input,
             feedback_memories=feedback_memories,
             semantic_frame={
                 "route_decision": route_decision.raw_response,
@@ -639,12 +644,14 @@ class AgentOrchestrator:
         }
         reroute_attempts = 0
         force_initial_plan_after_reroute = False
+        retry_initial_plan = False
+        initial_planner_timeout_retries = 0
         semantic_repair_extra_attempts = 0
 
         for attempt_number in range(1, self.llm_planning_max_attempts + 2):
             if attempt_number > self.llm_planning_max_attempts + semantic_repair_extra_attempts:
                 break
-            if attempt_number == 1 or force_initial_plan_after_reroute:
+            if attempt_number == 1 or force_initial_plan_after_reroute or retry_initial_plan:
                 current_plan = self._timed_call(
                     timings,
                     "llm.api_specific_plan",
@@ -656,6 +663,7 @@ class AgentOrchestrator:
                 )
                 stage = "plan"
                 force_initial_plan_after_reroute = False
+                retry_initial_plan = False
             else:
                 current_plan = self._timed_call(
                     timings,
@@ -671,6 +679,35 @@ class AgentOrchestrator:
                     failure_context,
                 )
                 stage = "repair"
+
+            if (
+                stage == "plan"
+                and self._plan_llm_timed_out(current_plan)
+                and initial_planner_timeout_retries < 1
+            ):
+                initial_planner_timeout_retries += 1
+                retry_initial_plan = True
+                planning_attempts.append(
+                    PlanningAttemptRecord(
+                        attempt_number=attempt_number,
+                        stage=stage,
+                        plan=current_plan,
+                        success=False,
+                        failure_reason="planner_llm_timeout",
+                    )
+                )
+                failure_context = {
+                    **failure_context,
+                    "previous_failures": [
+                        *list(failure_context.get("previous_failures", [])),
+                        {
+                            "stage": stage,
+                            "failure_reason": "planner_llm_timeout",
+                            "message": self._planner_failure_reason(current_plan),
+                        },
+                    ],
+                }
+                continue
 
             if self._plan_requests_reroute(current_plan) and reroute_attempts < 1:
                 previous_service = selected_service
@@ -1119,6 +1156,61 @@ class AgentOrchestrator:
         )
         return response
 
+    def _compose_llm_first_resolved_input(
+        self,
+        user_input: str,
+        route_decision: ApiRouteDecision,
+        clarification_case: dict | None,
+    ) -> str:
+        resolved = (route_decision.resolved_user_input or user_input or "").strip()
+        if not route_decision.should_carry_context or not clarification_case:
+            return resolved or user_input
+        if self._looks_like_standalone_query(user_input):
+            return resolved or user_input
+
+        previous_input = (
+            str(clarification_case.get("effective_user_input") or "")
+            or str((clarification_case.get("request") or {}).get("user_input") or "")
+        ).strip()
+        if not previous_input:
+            return resolved or user_input
+
+        clarification_question = (
+            str((clarification_case.get("route_decision") or {}).get("clarification_question") or "")
+            or str(clarification_case.get("error_summary") or "")
+        ).strip()
+        user_clarification = (user_input or "").strip()
+        resolved_intent = resolved or user_clarification or previous_input
+
+        sections = [
+            f"Previous user question: {previous_input}",
+            f"Clarification question: {clarification_question}" if clarification_question else "",
+            f"User clarification: {user_clarification}" if user_clarification else "",
+            f"Resolved intent: {resolved_intent}",
+            "Use explicit IDs, suppliers, customers, dates, and document numbers from the previous question when the clarification refers to them.",
+        ]
+        return "\n".join(section for section in sections if section.strip())
+
+    @staticmethod
+    def _looks_like_standalone_query(user_input: str) -> bool:
+        text = (user_input or "").strip().lower()
+        if not text:
+            return False
+        standalone_markers = (
+            "查询",
+            "查找",
+            "检索",
+            "列出",
+            "显示",
+            "给我",
+            "query",
+            "find",
+            "list",
+            "show",
+            "search",
+        )
+        return any(marker in text for marker in standalone_markers)
+
     def _build_llm_schema_context(
         self,
         effective_request: AgentRequest,
@@ -1167,6 +1259,23 @@ class AgentOrchestrator:
             or str(dynamic.get("reason") if isinstance(dynamic, dict) else "") == "repair_requested_reroute"
             or str((raw or {}).get("plan_kind") if isinstance(raw, dict) else "") == "reroute_required"
         )
+
+    @classmethod
+    def _plan_llm_timed_out(cls, plan: QueryPlan) -> bool:
+        return cls._is_timeout_text(cls._planner_failure_reason(plan))
+
+    @staticmethod
+    def _planner_failure_reason(plan: QueryPlan) -> str:
+        diagnostics = plan.planner_diagnostics or {}
+        dynamic = diagnostics.get("llm_dynamic_path_planner") or {}
+        if not isinstance(dynamic, dict):
+            return ""
+        return str(dynamic.get("reason") or "").strip()
+
+    @staticmethod
+    def _is_timeout_text(text: str) -> bool:
+        value = str(text or "").lower()
+        return "timed out" in value or "timeout" in value
 
     def _build_reroute_decision(
         self,
