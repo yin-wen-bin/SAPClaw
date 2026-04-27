@@ -60,7 +60,10 @@ Routing guidelines:
 8. Equipment, functional location, maintenance notification/order questions usually route to maintenance APIs.
 9. If multiple APIs use similar terms, prefer the API that contains the user's requested business object as a primary object, not only as a reference field.
 10. If the question asks to relate objects across domains, select multiple APIs or indicate multi_api_required.
-11. Use top_filter_fields to recognize filterable attributes in the user's wording. For example, purchase orders filtered by material/product should route to a purchase order API that exposes an item-level Material field, while purchase orders filtered by delivery date should route to a purchase order API that exposes a schedule-line delivery date field.
+11. Use feedback_memories as high-priority learned guidance when they are relevant to the current user wording. Combine them with top_filter_fields before deciding the route.
+12. When a feedback memory names a preferred field, prefer APIs whose top_filter_fields or catalog evidence expose that field on the requested business object.
+13. Use top_filter_fields to recognize filterable attributes in the user's wording. For example, purchase orders filtered by material/product should route to a purchase order API that exposes an item-level Material field, while purchase orders filtered by delivery date should route to a purchase order API that exposes a schedule-line delivery date field.
+14. If feedback_memories conflict with the API catalog, keep the route grounded in the catalog and explain the conflict in the route reason.
 """.strip()
 
 

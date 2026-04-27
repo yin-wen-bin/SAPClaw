@@ -330,6 +330,90 @@ button:disabled {
   gap: 20px;
 }
 
+.loading-result-panel {
+  min-height: 360px;
+  place-items: center;
+  text-align: center;
+}
+
+.loading-result-panel h2 {
+  margin: 0;
+}
+
+.loading-result-panel p {
+  max-width: 520px;
+  margin: 12px 0 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.loading-orbit {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: 3px solid rgba(143, 61, 37, 0.14);
+}
+
+.loading-orbit::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  border: 3px solid transparent;
+  border-top-color: var(--accent);
+  border-right-color: rgba(143, 61, 37, 0.48);
+  animation: spin 0.9s linear infinite;
+}
+
+.loading-orbit span {
+  position: absolute;
+  inset: 24px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 8px rgba(143, 61, 37, 0.1);
+}
+
+.loading-steps {
+  display: flex;
+  gap: 8px;
+}
+
+.loading-steps span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.35;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.loading-steps span:nth-child(2) {
+  animation-delay: 0.16s;
+}
+
+.loading-steps span:nth-child(3) {
+  animation-delay: 0.32s;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.28;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-4px);
+  }
+}
+
 .result-header {
   margin-bottom: 0;
 }
@@ -622,6 +706,31 @@ button:disabled {
 .history-review-block {
   display: grid;
   gap: 8px;
+}
+
+.feedback-memory-list {
+  display: grid;
+  gap: 10px;
+}
+
+.feedback-memory-item {
+  display: grid;
+  gap: 6px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: #f5f0e7;
+  min-width: 0;
+}
+
+.feedback-memory-item strong,
+.feedback-memory-item span {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.feedback-memory-item span {
+  color: var(--muted);
+  font-size: 0.9rem;
 }
 
 pre {

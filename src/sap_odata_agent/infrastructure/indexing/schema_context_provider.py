@@ -38,12 +38,19 @@ class SchemaContextProvider:
         snapshot = self.loader.load(service_name)
         doc_entities = self._entity_sets_from_documents(retrieved_documents or [])
         doc_fields = self._field_refs_from_documents(retrieved_documents or [])
+        feedback_field_matches = self._feedback_field_matches(snapshot, feedback_memories or [], route_decision)
+        feedback_field_scores = {
+            (str(match["entity_set"]), str(match["field_name"])): float(match["score"])
+            for match in feedback_field_matches
+        }
         scored_fields: list[tuple[float, dict[str, Any]]] = []
         for field in snapshot.fields:
             score = self._score_field(query, field)
             key = (str(field.get("entity_set", "")), str(field.get("field_name", "")))
             if key in doc_fields:
                 score += min(doc_fields[key], 20.0) * 0.8
+            if key in feedback_field_scores:
+                score += feedback_field_scores[key]
             scored_fields.append((score, field))
         scored_fields.sort(key=lambda item: item[0], reverse=True)
 
@@ -81,6 +88,10 @@ class SchemaContextProvider:
             "relations": self._build_relation_hints(snapshot, entity_set_scope),
             "retrieved_documents": self._document_payload(retrieved_documents or []),
             "feedback_memories": feedback_memories or [],
+            "feedback_field_matches": [
+                {key: value for key, value in match.items() if key != "score"}
+                for match in feedback_field_matches
+            ],
         }
 
     @staticmethod
@@ -135,6 +146,7 @@ class SchemaContextProvider:
                 for item in schema_context.get("candidate_fields", [])[:16]
             ],
             "available_fields": available_fields,
+            "feedback_field_matches": schema_context.get("feedback_field_matches", []),
         }
 
     @staticmethod
@@ -305,6 +317,98 @@ class SchemaContextProvider:
             "filterable": field.get("filterable", False),
             "score": round(score, 3),
         }
+
+    @staticmethod
+    def _feedback_field_matches(
+        snapshot,
+        feedback_memories: list[dict[str, Any]],
+        route_decision: ApiRouteDecision | None = None,
+    ) -> list[dict[str, Any]]:
+        if not feedback_memories:
+            return []
+
+        by_qualified: dict[tuple[str, str], dict[str, Any]] = {}
+        fields = list(snapshot.fields or [])
+        route_text = " ".join(
+            [
+                str((route_decision.business_object if route_decision else "") or ""),
+                str((route_decision.intent_summary if route_decision else "") or ""),
+                str((route_decision.business_domain if route_decision else "") or ""),
+            ]
+        )
+        normalized_route_text = SchemaContextProvider._normalize(route_text)
+
+        for memory in feedback_memories:
+            preferred_fields = [
+                str(item or "").strip()
+                for item in memory.get("preferred_fields", []) or []
+                if str(item or "").strip()
+            ]
+            if not preferred_fields:
+                continue
+            preferred_entities = [
+                str(item or "").strip()
+                for item in memory.get("preferred_entities", []) or []
+                if str(item or "").strip()
+            ]
+            for preferred_field in preferred_fields:
+                for field in fields:
+                    entity_set = str(field.get("entity_set", "") or "")
+                    field_name = str(field.get("field_name", "") or "")
+                    if not entity_set or not field_name:
+                        continue
+                    if not SchemaContextProvider._preferred_field_matches(preferred_field, entity_set, field_name):
+                        continue
+                    score = 80.0 + SchemaContextProvider._feedback_entity_affinity(
+                        entity_set,
+                        preferred_entities,
+                        normalized_route_text,
+                    )
+                    key = (entity_set, field_name)
+                    existing = by_qualified.get(key)
+                    if existing is not None and float(existing.get("score", 0.0)) >= score:
+                        continue
+                    by_qualified[key] = {
+                        "memory_case_id": memory.get("case_id", ""),
+                        "memory_type": memory.get("memory_type", ""),
+                        "preferred_field": preferred_field,
+                        "matched_field": f"{entity_set}.{field_name}",
+                        "entity_set": entity_set,
+                        "field_name": field_name,
+                        "reason": "preferred field from feedback memory matched current API schema",
+                        "score": score,
+                    }
+
+        return sorted(
+            by_qualified.values(),
+            key=lambda item: (-float(item.get("score", 0.0)), str(item.get("matched_field", ""))),
+        )
+
+    @staticmethod
+    def _preferred_field_matches(preferred_field: str, entity_set: str, field_name: str) -> bool:
+        normalized_preferred = SchemaContextProvider._normalize(preferred_field).replace(" ", "")
+        normalized_field = SchemaContextProvider._normalize(field_name).replace(" ", "")
+        normalized_qualified = SchemaContextProvider._normalize(f"{entity_set}.{field_name}").replace(" ", "")
+        return normalized_preferred in {normalized_field, normalized_qualified}
+
+    @staticmethod
+    def _feedback_entity_affinity(
+        entity_set: str,
+        preferred_entities: list[str],
+        normalized_route_text: str,
+    ) -> float:
+        normalized_entity = SchemaContextProvider._normalize(entity_set).replace(" ", "")
+        score = 0.0
+        for preferred_entity in preferred_entities:
+            normalized_preferred = SchemaContextProvider._normalize(preferred_entity).replace(" ", "")
+            if normalized_preferred and normalized_preferred in normalized_entity:
+                score += 15.0
+        if normalized_route_text:
+            for token in SchemaContextProvider._tokens(normalized_route_text):
+                normalized_token = SchemaContextProvider._normalize(token).replace(" ", "")
+                if normalized_token and normalized_token in normalized_entity:
+                    score += 5.0
+        return score
 
     @staticmethod
     def _is_business_status_field(field: dict[str, Any]) -> bool:

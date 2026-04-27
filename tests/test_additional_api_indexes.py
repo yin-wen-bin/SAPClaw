@@ -48,6 +48,7 @@ def test_api_catalog_uses_compact_router_shape() -> None:
         "A_PurchaseOrderScheduleLine",
     ]
     assert len(purchase_order["top_filter_fields"]) <= 18
+    assert "A_PurchaseOrderItem.IsFinallyInvoiced" in purchase_order["top_filter_fields"]
     assert "A_PurchaseOrderItem.Material" in purchase_order["top_filter_fields"]
     assert "A_PurchaseOrderScheduleLine.ScheduleLineDeliveryDate" in purchase_order["top_filter_fields"]
 
@@ -84,6 +85,48 @@ def test_purchase_order_schema_summary_keeps_receipt_completion_fields() -> None
     }
     assert ("A_PurchaseOrderItem", "IsCompletelyDelivered") in available_fields
     assert ("A_PurchaseOrderItem", "GoodsReceiptIsExpected") in available_fields
+
+
+def test_purchase_order_schema_context_grounds_feedback_preferred_fields() -> None:
+    provider = SchemaContextProvider(index_root="data/index")
+    context = provider.build(
+        "API_PURCHASEORDER_PROCESS_SRV",
+        "\u67e5\u8be2\u4f9b\u5e94\u554617300003\u7684\u672a\u6e05\u53d1\u7968\u8ba2\u5355",
+        feedback_memories=[
+            {
+                "case_id": "feedback-case",
+                "memory_type": "field_disambiguation",
+                "lesson": "Use IsFinallyInvoiced=false for open invoice purchase orders.",
+                "preferred_fields": ["IsFinallyInvoiced"],
+                "preferred_entities": ["PurchaseOrder"],
+            }
+        ],
+    )
+    summary = provider.summarize(context)
+
+    candidate_fields = {
+        (field["entity_set"], field["field_name"])
+        for field in context["candidate_fields"]
+    }
+    available_fields = {
+        (field["entity_set"], field["field_name"])
+        for field in summary["available_fields"]
+    }
+
+    assert ("A_PurchaseOrderItem", "IsFinallyInvoiced") in candidate_fields
+    assert ("A_PurchaseOrderItem", "IsFinallyInvoiced") in available_fields
+    assert context["feedback_field_matches"] == [
+        {
+            "memory_case_id": "feedback-case",
+            "memory_type": "field_disambiguation",
+            "preferred_field": "IsFinallyInvoiced",
+            "matched_field": "A_PurchaseOrderItem.IsFinallyInvoiced",
+            "entity_set": "A_PurchaseOrderItem",
+            "field_name": "IsFinallyInvoiced",
+            "reason": "preferred field from feedback memory matched current API schema",
+        }
+    ]
+    assert summary["feedback_field_matches"] == context["feedback_field_matches"]
 
 
 def test_product_availability_index_is_marked_as_function_style_limited() -> None:

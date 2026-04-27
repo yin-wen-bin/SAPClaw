@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import time
 from typing import Any
 
 from sap_odata_agent.domain.models import ApiRouteDecision, SelectedApi
@@ -56,17 +57,23 @@ class LlmApiRouter:
             "clarification_question": "",
             "clarification_options": [],
         }
+        user_prompt = (
+            f"Input:\n{json.dumps(payload, ensure_ascii=False, indent=2)}\n\n"
+            "Return JSON with this shape:\n"
+            f"{json.dumps(example, ensure_ascii=False, indent=2)}"
+        )
         try:
-            raw = self.llm_client.complete_json(
-                self._system_prompt(),
-                (
-                    f"Input:\n{json.dumps(payload, ensure_ascii=False, indent=2)}\n\n"
-                    "Return JSON with this shape:\n"
-                    f"{json.dumps(example, ensure_ascii=False, indent=2)}"
-                ),
-                max_tokens=1100,
-            )
-            parsed = LlmStructuredIntentPlanner._parse_json_object(raw)
+            raw = self._complete_nonempty_json_text(self._system_prompt(), user_prompt, max_tokens=1100)
+            try:
+                parsed = LlmStructuredIntentPlanner._parse_json_object(raw)
+            except json.JSONDecodeError:
+                repaired_raw = self._complete_nonempty_json_text(
+                    self._json_repair_system_prompt(),
+                    self._json_repair_prompt(raw, example),
+                    max_tokens=900,
+                    attempts=1,
+                )
+                parsed = LlmStructuredIntentPlanner._parse_json_object(repaired_raw)
         except Exception as exc:
             fallback = self._unavailable_route(api_catalog)
             fallback.raw_response = {"accepted": False, "reason": f"api_router_failed:{exc}"}
@@ -76,6 +83,51 @@ class LlmApiRouter:
     @staticmethod
     def _system_prompt() -> str:
         return f"{GLOBAL_SAP_ODATA_PROMPT}\n\n{API_ROUTER_TASK_PROMPT}"
+
+    @staticmethod
+    def _json_repair_system_prompt() -> str:
+        return (
+            f"{GLOBAL_SAP_ODATA_PROMPT}\n\n"
+            "You repair malformed JSON emitted by the SAP OData API router. "
+            "Return only one valid JSON object. Do not add prose. Do not change the API routing decision, "
+            "business reasoning, selected APIs, or clarification intent except as required to make the JSON valid."
+        )
+
+    @staticmethod
+    def _json_repair_prompt(raw_response: str, example: dict[str, Any]) -> str:
+        return (
+            "The previous API router response was not valid JSON. Repair only the JSON syntax and preserve the "
+            "original routing content.\n\n"
+            "Expected JSON shape:\n"
+            f"{json.dumps(example, ensure_ascii=False, indent=2)}\n\n"
+            "Malformed response:\n"
+            f"{raw_response}"
+        )
+
+    def _complete_nonempty_json_text(
+        self,
+        system_prompt: str,
+        user_prompt: str,
+        max_tokens: int = 1100,
+        attempts: int = 2,
+    ) -> str:
+        last_response = ""
+        last_error: Exception | None = None
+        for attempt in range(max(1, attempts)):
+            try:
+                response = self.llm_client.complete_json(system_prompt, user_prompt, max_tokens=max_tokens)
+            except Exception as exc:
+                last_error = exc
+                if attempt + 1 < max(1, attempts):
+                    time.sleep(0.2)
+                    continue
+                break
+            if response and response.strip():
+                return response
+            last_response = response
+        if last_error is not None:
+            raise last_error
+        raise ValueError(f"LLM returned empty content after {max(1, attempts)} attempts: {last_response!r}")
 
     def _materialize(
         self,

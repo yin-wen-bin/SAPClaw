@@ -644,6 +644,7 @@ function HistoryContextCard({ item }) {
   if (!item) {
     return <p className="helper-text">当前没有选中的历史记录。</p>;
   }
+  const feedbackMemories = Array.isArray(item.feedback_memories_used) ? item.feedback_memories_used : [];
 
   return (
     <div className="history-review">
@@ -667,6 +668,28 @@ function HistoryContextCard({ item }) {
           <pre>{formatJson(item.feedback)}</pre>
         </div>
       ) : null}
+      <div className="history-review-block">
+        <span>本次使用的 feedback memory</span>
+        {feedbackMemories.length > 0 ? (
+          <div className="feedback-memory-list">
+            {feedbackMemories.map((memory, index) => (
+              <article key={`${memory.case_id || "memory"}-${index}`} className="feedback-memory-item">
+                <strong>{memory.lesson || memory.memory_type || `Memory ${index + 1}`}</strong>
+                {Array.isArray(memory.preferred_fields) && memory.preferred_fields.length > 0 ? (
+                  <span>字段：{memory.preferred_fields.join(", ")}</span>
+                ) : null}
+                {Array.isArray(memory.preferred_entities) && memory.preferred_entities.length > 0 ? (
+                  <span>实体：{memory.preferred_entities.join(", ")}</span>
+                ) : null}
+                {memory.condition ? <span>条件：{memory.condition}</span> : null}
+                {memory.case_id ? <span>来源 case：{memory.case_id}</span> : null}
+              </article>
+            ))}
+          </div>
+        ) : (
+          <p className="helper-text">本次没有匹配到可用的 feedback memory。</p>
+        )}
+      </div>
     </div>
   );
 }
@@ -680,12 +703,35 @@ function DetailSection({ title, children, defaultOpen = false }) {
   );
 }
 
-function ResultPanel({ result, selectedHistory, feedbackProps, onNextPage, pageLoading }) {
+function LoadingResultPanel() {
+  return (
+    <section className="panel result-panel loading-result-panel" aria-live="polite" aria-busy="true">
+      <div className="loading-orbit" aria-hidden="true">
+        <span />
+      </div>
+      <div>
+        <h2>正在执行查询</h2>
+        <p>系统正在选择 API、生成查询计划并请求 SAP。结果返回前，旧查询结果已清除。</p>
+      </div>
+      <div className="loading-steps">
+        <span />
+        <span />
+        <span />
+      </div>
+    </section>
+  );
+}
+
+function ResultPanel({ result, selectedHistory, feedbackProps, onNextPage, pageLoading, loading }) {
   const summaryRows = useMemo(
     () => summarizeResultData(result?.data, result?.plan?.response_summary_fields || []),
     [result],
   );
   const totalDurationMs = getTotalDuration(result);
+
+  if (loading) {
+    return <LoadingResultPanel />;
+  }
 
   if (!result) {
     return (
@@ -842,6 +888,9 @@ export default function App() {
     const startedAt = performance.now();
     setLoading(true);
     setError("");
+    setResult(null);
+    setSelectedHistory(null);
+    setFeedbackMessage("");
     setLastDurationMs(null);
 
     try {
@@ -1064,6 +1113,7 @@ export default function App() {
             selectedHistory={selectedHistory}
             onNextPage={handleNextPage}
             pageLoading={pageLoading}
+            loading={loading}
             feedbackProps={{
               feedbackForm,
               feedbackSaving,

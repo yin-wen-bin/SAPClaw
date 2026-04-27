@@ -1827,6 +1827,7 @@ class AgentOrchestrator:
             planning_attempts=planning_attempts or [],
             schema_context_summary=schema_context_summary or {},
             final_failure_diagnosis=final_failure_diagnosis,
+            feedback_memories_used=effective_request.feedback_memories,
             feedback=None,
             error_summary=None if response.success else response.final_message,
         )

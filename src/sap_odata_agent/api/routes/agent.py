@@ -237,6 +237,7 @@ def _history_entry_to_payload(entry: dict[str, Any] | None) -> dict[str, Any] | 
         "timings": entry.get("timings", []),
         "timing_summary": entry.get("timing_summary", {}),
         "total_duration_ms": entry.get("total_duration_ms"),
+        "feedback_memories_used": entry.get("feedback_memories_used", []),
     }
 
     return {
@@ -260,5 +261,6 @@ def _history_entry_to_payload(entry: dict[str, Any] | None) -> dict[str, Any] | 
         "timings": entry.get("timings", []),
         "timing_summary": entry.get("timing_summary", {}),
         "total_duration_ms": entry.get("total_duration_ms"),
+        "feedback_memories_used": entry.get("feedback_memories_used", []),
         "result_snapshot": result_snapshot,
     }

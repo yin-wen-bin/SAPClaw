@@ -363,6 +363,7 @@ class CaseRecord:
     planning_attempts: list[PlanningAttemptRecord] = field(default_factory=list)
     schema_context_summary: dict[str, Any] = field(default_factory=dict)
     final_failure_diagnosis: FailureDiagnosis | None = None
+    feedback_memories_used: list[dict[str, Any]] = field(default_factory=list)
     feedback: QueryFeedback | None = None
     error_summary: str | None = None
 

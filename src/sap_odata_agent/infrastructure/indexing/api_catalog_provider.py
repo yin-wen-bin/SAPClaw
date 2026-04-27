@@ -160,10 +160,12 @@ class ApiCatalogProvider:
             "fiscalyear": 18.0,
             "postingdate": 18.0,
             "documentdate": 18.0,
+            "isfinallyinvoiced": 34.0,
         }
 
         ranked: list[tuple[float, str]] = []
         seen: set[str] = set()
+        available: set[str] = set()
         for field in snapshot.fields or []:
             if field.get("filterable") is False:
                 continue
@@ -172,6 +174,7 @@ class ApiCatalogProvider:
             if not entity_set or not field_name:
                 continue
             qualified = f"{entity_set}.{field_name}"
+            available.add(qualified)
             if qualified in seen:
                 continue
             seen.add(qualified)
@@ -204,7 +207,30 @@ class ApiCatalogProvider:
             ranked.append((-score, qualified))
 
         ranked.sort()
-        return [qualified for _, qualified in ranked[:max_count]]
+        pinned = [
+            field
+            for field in ApiCatalogProvider._pinned_filter_fields(snapshot.service_name)
+            if field in available
+        ]
+        result = list(dict.fromkeys(pinned))
+        for _, qualified in ranked:
+            if qualified in result:
+                continue
+            result.append(qualified)
+            if len(result) >= max_count:
+                break
+        return result[:max_count]
+
+    @staticmethod
+    def _pinned_filter_fields(service_name: str) -> list[str]:
+        if service_name == "API_PURCHASEORDER_PROCESS_SRV":
+            return [
+                "A_PurchaseOrderItem.IsFinallyInvoiced",
+                "A_PurchaseOrderItem.Material",
+                "A_PurchaseOrderScheduleLine.ScheduleLineDeliveryDate",
+                "A_PurchaseOrder.Supplier",
+            ]
+        return []
 
     @staticmethod
     def _service_core_tokens(service_name: str) -> list[str]:
