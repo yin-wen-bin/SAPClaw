@@ -191,6 +191,34 @@ def test_result_presenter_formats_sap_json_dates_for_display() -> None:
     assert "/Date(" not in presentation.rows[0]["ScheduleLineDeliveryDate"]
 
 
+def test_result_presenter_does_not_crash_on_large_sap_json_dates() -> None:
+    presenter = LlmResultPresenter(enabled=False)
+    plan = QueryPlan(
+        service_name="API_INFORECORD_PROCESS_SRV",
+        entity_set="A_PurInfoRecdPrcgCndnValidity",
+        select_fields=["ConditionRecord", "ConditionValidityEndDate"],
+        response_summary_fields=["ConditionRecord", "ConditionValidityEndDate"],
+    )
+    data = {
+        "result_count": 2,
+        "results": [
+            {
+                "ConditionRecord": "100",
+                "ConditionValidityEndDate": "/Date(253402214400000)/",
+            },
+            {
+                "ConditionRecord": "101",
+                "ConditionValidityEndDate": "/Date(999999999999999999999)/",
+            }
+        ],
+    }
+
+    presentation = presenter.present(AgentRequest(user_input="query condition validity"), plan, data)
+
+    assert presentation.rows[0]["ConditionValidityEndDate"] == "9999.12.31"
+    assert presentation.rows[1]["ConditionValidityEndDate"] == "/Date(999999999999999999999)/"
+
+
 def test_result_presenter_falls_back_to_yes_no_for_boolean_question() -> None:
     presenter = LlmResultPresenter(enabled=False)
     plan = QueryPlan(

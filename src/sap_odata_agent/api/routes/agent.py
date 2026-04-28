@@ -1,8 +1,6 @@
 from __future__ import annotations
 
-import re
 import urllib.parse
-from datetime import datetime, timezone
 from typing import Any, Literal
 
 from fastapi import APIRouter, Depends, HTTPException, Query
@@ -10,6 +8,7 @@ from pydantic import BaseModel, Field
 
 from sap_odata_agent.api.app_dependencies import get_case_repository, get_feedback_summarizer, get_orchestrator, get_sap_executor
 from sap_odata_agent.domain.models import AgentRequest, CompiledRequest, ExecutionMode
+from sap_odata_agent.infrastructure.sap.date_formatting import format_sap_json_date_for_display
 
 router = APIRouter(prefix="/api/v1/agent", tags=["agent"])
 
@@ -190,13 +189,7 @@ def _safe_int(value: Any, fallback: int) -> int:
 
 
 def _format_display_value(value: Any) -> Any:
-    if not isinstance(value, str):
-        return value
-    match = re.fullmatch(r"/?Date\((-?\d+)(?:[+-]\d+)?\)/?", value.strip())
-    if not match:
-        return value
-    milliseconds = int(match.group(1))
-    return datetime.fromtimestamp(milliseconds / 1000, tz=timezone.utc).strftime("%Y.%m.%d")
+    return format_sap_json_date_for_display(value)
 
 
 def _history_entry_to_payload(entry: dict[str, Any] | None) -> dict[str, Any] | None:

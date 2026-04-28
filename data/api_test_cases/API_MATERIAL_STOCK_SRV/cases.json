@@ -1,0 +1,52 @@
+[
+  {
+    "id": "STOCK-001",
+    "api": "API_MATERIAL_STOCK_SRV",
+    "scenario": "material_stock_list",
+    "user_input": "查询物料库存列表",
+    "expected_api": "API_MATERIAL_STOCK_SRV",
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {"steps": [{"id": "stock", "url": "/sap/opu/odata/sap/API_MATERIAL_STOCK_SRV/A_MatlStkInAcctMod?$select=Material,Plant,StorageLocation,Batch,InventoryStockType,MatlWrhsStkQtyInMatlBaseUnit&$top=5", "key_fields": ["Material", "Plant", "StorageLocation", "Batch", "InventoryStockType"]}]},
+    "comparison": {"type": "count_only", "keys": ["Material", "Plant", "StorageLocation", "Batch", "InventoryStockType"], "required_fields": ["Material", "MatlWrhsStkQtyInMatlBaseUnit"]}
+  },
+  {
+    "id": "STOCK-002",
+    "api": "API_MATERIAL_STOCK_SRV",
+    "scenario": "material_stock_by_material",
+    "user_input": "查询物料TG0011的库存",
+    "expected_api": "API_MATERIAL_STOCK_SRV",
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {"steps": [{"id": "stock", "url": "/sap/opu/odata/sap/API_MATERIAL_STOCK_SRV/A_MatlStkInAcctMod?$select=Material,Plant,StorageLocation,Batch,InventoryStockType,MatlWrhsStkQtyInMatlBaseUnit&$filter=Material eq 'TG0011'&$top=5", "key_fields": ["Material", "Plant", "StorageLocation", "Batch", "InventoryStockType"]}]},
+    "comparison": {"type": "key_set", "keys": ["Material", "Plant", "StorageLocation", "Batch", "InventoryStockType"], "required_fields": ["Material"]}
+  },
+  {
+    "id": "STOCK-003",
+    "api": "API_MATERIAL_STOCK_SRV",
+    "scenario": "stock_by_plant_storage_location",
+    "user_input": "查询按工厂和库存地点区分的库存",
+    "expected_api": "API_MATERIAL_STOCK_SRV",
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {"steps": [{"id": "stock", "url": "/sap/opu/odata/sap/API_MATERIAL_STOCK_SRV/A_MatlStkInAcctMod?$select=Material,Plant,StorageLocation,InventoryStockType,MatlWrhsStkQtyInMatlBaseUnit&$top=5", "key_fields": ["Material", "Plant", "StorageLocation", "InventoryStockType"]}]},
+    "comparison": {"type": "count_only", "keys": ["Material", "Plant", "StorageLocation", "InventoryStockType"], "required_fields": ["Material", "Plant"]}
+  },
+  {
+    "id": "STOCK-004",
+    "api": "API_MATERIAL_STOCK_SRV",
+    "scenario": "serial_number_stock_list",
+    "user_input": "查询序列号库存列表",
+    "expected_api": "API_MATERIAL_STOCK_SRV",
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {"steps": [{"id": "serials", "url": "/sap/opu/odata/sap/API_MATERIAL_STOCK_SRV/A_MaterialSerialNumber?$select=Material,SerialNumber,Plant,StorageLocation,InventoryStockType&$top=5", "key_fields": ["Material", "SerialNumber"]}]},
+    "comparison": {"type": "count_only", "keys": ["Material", "SerialNumber"], "required_fields": ["Material", "SerialNumber"]}
+  },
+  {
+    "id": "STOCK-005",
+    "api": "API_MATERIAL_STOCK_SRV",
+    "scenario": "material_base_unit_stock",
+    "user_input": "查询物料TG0011的库存基本单位",
+    "expected_api": "API_MATERIAL_STOCK_SRV",
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {"steps": [{"id": "stock", "url": "/sap/opu/odata/sap/API_MATERIAL_STOCK_SRV/A_MaterialStock?$select=Material,MaterialBaseUnit&$filter=Material eq 'TG0011'&$top=5", "key_fields": ["Material"]}]},
+    "comparison": {"type": "key_set", "keys": ["Material"], "required_fields": ["Material", "MaterialBaseUnit"]}
+  }
+]

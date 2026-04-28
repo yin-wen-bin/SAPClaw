@@ -11,6 +11,7 @@ Keep `data/index/API_INFORECORD_PROCESS_SRV` as the schema ground truth. This sk
 - The user asks for purchasing info records, supplier-material purchasing terms, planned purchase prices, purchasing organization or plant-specific info record data.
 - The user asks for pricing conditions, condition validity, condition scales, or supplementary pricing conditions tied to an info record.
 - The user asks for purchasing text maintained on an info record.
+- Use this API when the user says "采购信息记录", "信息记录", "info record", "supplier-material purchasing record", "采购价格条件", "价格条件", or "价格条件有效期".
 
 ## When Not To Use
 
@@ -33,18 +34,30 @@ Keep `data/index/API_INFORECORD_PROCESS_SRV` as the schema ground truth. This sk
 - A supplier-material question about maintained purchasing terms belongs here; a question about actual purchase orders belongs to the purchase order API.
 - Pricing conditions and condition validity may require reading condition entities after identifying the relevant info record or condition record.
 - Preserve supplier IDs, material IDs, purchasing organizations, plants, condition records, and dates exactly.
+- "采购信息记录列表" means list `A_PurchasingInfoRecord`.
+- "供应商的采购信息记录" should filter `A_PurchasingInfoRecord.Supplier`.
+- "物料的采购信息记录" should filter `A_PurchasingInfoRecord.Material`.
+- If the user only asks for "采购信息记录" without saying price, condition, validity, scale, or text, stop at `A_PurchasingInfoRecord`. Do not enrich to pricing condition entities by default.
+- "价格条件" should use `A_PurInfoRecdPrcgCndn` and should return actual pricing values, not only condition metadata.
+- For price condition results, include value and unit fields such as `A_PurInfoRecdPrcgCndn.ConditionRateAmount`, `A_PurInfoRecdPrcgCndn.ConditionCurrency`, `A_PurInfoRecdPrcgCndn.ConditionRateValue`, `A_PurInfoRecdPrcgCndn.ConditionRateValueUnit`, `A_PurInfoRecdPrcgCndn.ConditionQuantity`, and `A_PurInfoRecdPrcgCndn.ConditionQuantityUnit` when available.
+- "价格条件有效期" should use `A_PurInfoRecdPrcgCndnValidity`.
 
 ## Common Planning Patterns
 
 ### Supplier And Material Info Record
 
 - Query `A_PurchasingInfoRecord` when the user asks for the info record itself.
+- Filter `A_PurchasingInfoRecord.Supplier` when a supplier is provided.
+- Filter `A_PurchasingInfoRecord.Material` when a material is provided.
 - Use `A_PurgInfoRecdOrgPlantData` when the user asks for purchasing organization or plant-specific data.
+- Do not add pricing condition or validity steps unless the user explicitly asks for price, condition, validity, scale, or pricing details.
 
 ### Info Record Pricing
 
 - Query `A_PurInfoRecdPrcgCndn` for condition records.
+- Select `A_PurInfoRecdPrcgCndn.ConditionRecord`, `A_PurInfoRecdPrcgCndn.ConditionSequentialNumber`, `A_PurInfoRecdPrcgCndn.ConditionType`, `A_PurInfoRecdPrcgCndn.ConditionRateAmount`, `A_PurInfoRecdPrcgCndn.ConditionCurrency`, `A_PurInfoRecdPrcgCndn.ConditionRateValue`, `A_PurInfoRecdPrcgCndn.ConditionRateValueUnit`, `A_PurInfoRecdPrcgCndn.ConditionQuantity`, and `A_PurInfoRecdPrcgCndn.ConditionQuantityUnit` for price condition list questions.
 - Query `A_PurInfoRecdPrcgCndnValidity` when the user asks for validity dates.
+- Filter `A_PurInfoRecdPrcgCndnValidity.Material` or `A_PurInfoRecdPrcgCndnValidity.Supplier` when the question includes material or supplier.
 - Query `A_PurInfoRecdPrcgCndnScale` when the user asks for scales or quantity breaks.
 
 ### Info Record Text

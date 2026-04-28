@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from sap_odata_agent.infrastructure.indexing.api_catalog_provider import ApiCatalogProvider
+from sap_odata_agent.infrastructure.indexing.api_skill_provider import ApiSkillProvider
 from sap_odata_agent.infrastructure.indexing.index_loader import LocalIndexLoader
 from sap_odata_agent.infrastructure.indexing.schema_context_provider import SchemaContextProvider
 
@@ -51,6 +52,29 @@ def test_api_catalog_uses_compact_router_shape() -> None:
     assert "A_PurchaseOrderItem.IsFinallyInvoiced" in purchase_order["top_filter_fields"]
     assert "A_PurchaseOrderItem.Material" in purchase_order["top_filter_fields"]
     assert "A_PurchaseOrderScheduleLine.ScheduleLineDeliveryDate" in purchase_order["top_filter_fields"]
+
+
+def test_api_catalog_pins_info_record_router_fields() -> None:
+    catalog = ApiCatalogProvider(index_root="data/index").load()
+    info_record = next(item for item in catalog if item["service_name"] == "API_INFORECORD_PROCESS_SRV")
+
+    assert "A_PurchasingInfoRecord.Supplier" in info_record["top_filter_fields"]
+    assert "A_PurchasingInfoRecord.Material" in info_record["top_filter_fields"]
+    assert "A_PurInfoRecdPrcgCndn.ConditionRecord" in info_record["top_filter_fields"]
+    assert "A_PurInfoRecdPrcgCndn.ConditionRateAmount" in info_record["top_filter_fields"]
+    assert "A_PurInfoRecdPrcgCndn.ConditionCurrency" in info_record["top_filter_fields"]
+    assert "A_PurInfoRecdPrcgCndnValidity.Material" in info_record["top_filter_fields"]
+
+
+def test_api_catalog_pins_material_stock_router_fields() -> None:
+    catalog = ApiCatalogProvider(index_root="data/index").load()
+    stock = next(item for item in catalog if item["service_name"] == "API_MATERIAL_STOCK_SRV")
+
+    assert "A_MaterialStock.Material" in stock["top_filter_fields"]
+    assert "A_MaterialStock.MaterialBaseUnit" in stock["top_filter_fields"]
+    assert "A_MatlStkInAcctMod.Material" in stock["top_filter_fields"]
+    assert "A_MatlStkInAcctMod.Plant" in stock["top_filter_fields"]
+    assert "A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit" in stock["top_filter_fields"]
 
 
 def test_purchase_order_schema_context_loads_business_fields() -> None:
@@ -127,6 +151,35 @@ def test_purchase_order_schema_context_grounds_feedback_preferred_fields() -> No
         }
     ]
     assert summary["feedback_field_matches"] == context["feedback_field_matches"]
+
+
+def test_schema_context_grounds_api_skill_referenced_stock_quantity_field() -> None:
+    provider = SchemaContextProvider(index_root="data/index")
+    skill = ApiSkillProvider(skill_root="data/api_skills").load("API_MATERIAL_STOCK_SRV")
+    assert skill is not None
+
+    context = provider.build(
+        "API_MATERIAL_STOCK_SRV",
+        "\u67e5\u8be2\u7269\u6599\u5e93\u5b58\u5217\u8868",
+    )
+    context = provider.enrich_with_api_skill(context, skill.as_prompt_payload())
+    summary = provider.summarize(context)
+
+    candidate_fields = {
+        (field["entity_set"], field["field_name"])
+        for field in context["candidate_fields"]
+    }
+    available_fields = {
+        (field["entity_set"], field["field_name"])
+        for field in summary["available_fields"]
+    }
+
+    assert ("A_MatlStkInAcctMod", "MatlWrhsStkQtyInMatlBaseUnit") in candidate_fields
+    assert ("A_MatlStkInAcctMod", "MatlWrhsStkQtyInMatlBaseUnit") in available_fields
+    assert any(
+        match["matched_field"] == "A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit"
+        for match in summary["skill_field_matches"]
+    )
 
 
 def test_product_availability_index_is_marked_as_function_style_limited() -> None:

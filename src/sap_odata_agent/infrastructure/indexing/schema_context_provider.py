@@ -81,6 +81,7 @@ class SchemaContextProvider:
 
         return {
             "service_name": service_name,
+            "query": query,
             "route_decision": self._route_payload(route_decision),
             "entities": entities,
             "candidate_fields": candidate_fields,
@@ -91,6 +92,75 @@ class SchemaContextProvider:
             "feedback_field_matches": [
                 {key: value for key, value in match.items() if key != "score"}
                 for match in feedback_field_matches
+            ],
+        }
+
+    def enrich_with_api_skill(self, schema_context: dict[str, Any], api_skill: dict[str, Any] | None) -> dict[str, Any]:
+        if not api_skill:
+            return schema_context
+        service_name = str(schema_context.get("service_name") or api_skill.get("service_name") or "")
+        if not service_name:
+            return schema_context
+
+        snapshot = self.loader.load(service_name)
+        skill_field_matches = self._skill_field_matches(snapshot, api_skill)
+        if not skill_field_matches:
+            return {
+                **schema_context,
+                "skill_field_matches": [],
+            }
+
+        field_by_key = {
+            (str(field.get("entity_set", "")), str(field.get("field_name", ""))): field
+            for field in snapshot.fields
+        }
+        enriched_fields: list[dict[str, Any]] = []
+        seen: set[tuple[str, str]] = set()
+
+        for match in skill_field_matches:
+            key = (str(match["entity_set"]), str(match["field_name"]))
+            field = field_by_key.get(key)
+            if field is None or key in seen:
+                continue
+            seen.add(key)
+            enriched_fields.append(self._field_payload(field, float(match["score"])))
+
+        for field in schema_context.get("candidate_fields", []):
+            key = (str(field.get("entity_set", "")), str(field.get("field_name", "")))
+            if not key[0] or not key[1] or key in seen:
+                continue
+            seen.add(key)
+            enriched_fields.append(field)
+            if len(enriched_fields) >= self.max_candidate_fields:
+                break
+
+        candidate_entity_order: list[str] = []
+
+        def add_entity(entity_set: str) -> None:
+            if entity_set and entity_set not in candidate_entity_order:
+                candidate_entity_order.append(entity_set)
+
+        for field in enriched_fields:
+            add_entity(str(field.get("entity_set", "")))
+        for entity in schema_context.get("entities", []):
+            add_entity(str(entity.get("entity_set", "")))
+
+        entities = [
+            self._entity_payload(snapshot, entity_set, enriched_fields)
+            for entity_set in candidate_entity_order[: self.max_candidate_entities]
+        ]
+        entities = [item for item in entities if item]
+        entity_set_scope = {item["entity_set"] for item in entities}
+
+        return {
+            **schema_context,
+            "candidate_fields": enriched_fields[: self.max_candidate_fields],
+            "entities": entities,
+            "join_hints": self._build_join_hints(snapshot, entity_set_scope),
+            "relations": self._build_relation_hints(snapshot, entity_set_scope),
+            "skill_field_matches": [
+                {key: value for key, value in match.items() if key != "score"}
+                for match in skill_field_matches
             ],
         }
 
@@ -154,6 +224,7 @@ class SchemaContextProvider:
             ],
             "available_fields": available_fields,
             "feedback_field_matches": schema_context.get("feedback_field_matches", []),
+            "skill_field_matches": schema_context.get("skill_field_matches", []),
         }
 
     @staticmethod
@@ -416,6 +487,45 @@ class SchemaContextProvider:
                 if normalized_token and normalized_token in normalized_entity:
                     score += 5.0
         return score
+
+    @staticmethod
+    def _skill_field_matches(snapshot, api_skill: dict[str, Any]) -> list[dict[str, Any]]:
+        content = "\n".join(
+            [
+                str(api_skill.get("summary") or ""),
+                str(api_skill.get("content") or ""),
+            ]
+        )
+        if not content.strip():
+            return []
+
+        available = {
+            (str(field.get("entity_set", "")), str(field.get("field_name", "")))
+            for field in snapshot.fields or []
+        }
+        by_qualified: dict[tuple[str, str], dict[str, Any]] = {}
+        field_ref_pattern = re.compile(r"\b([A-Za-z][A-Za-z0-9_]*)\.([A-Za-z][A-Za-z0-9_]*)\b")
+        for line_number, line in enumerate(content.splitlines(), start=1):
+            for entity_set, field_name in field_ref_pattern.findall(line):
+                key = (entity_set, field_name)
+                if key not in available:
+                    continue
+                existing = by_qualified.get(key)
+                if existing is not None:
+                    continue
+                by_qualified[key] = {
+                    "matched_field": f"{entity_set}.{field_name}",
+                    "entity_set": entity_set,
+                    "field_name": field_name,
+                    "line_number": line_number,
+                    "reason": "field referenced by API skill matched current API schema",
+                    "score": 55.0,
+                }
+
+        return sorted(
+            by_qualified.values(),
+            key=lambda item: (-float(item.get("score", 0.0)), str(item.get("matched_field", ""))),
+        )
 
     @staticmethod
     def _is_business_status_field(field: dict[str, Any]) -> bool:

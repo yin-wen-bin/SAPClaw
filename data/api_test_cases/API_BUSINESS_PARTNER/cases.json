@@ -1,0 +1,157 @@
+[
+  {
+    "id": "BP-001",
+    "api": "API_BUSINESS_PARTNER",
+    "scenario": "supplier_master_by_id",
+    "user_input": "查询供应商17300003的主数据",
+    "expected_api": "API_BUSINESS_PARTNER",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "supplier",
+          "url": "/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_Supplier?$select=Supplier,SupplierName,SupplierFullName,SupplierAccountGroup,CreationDate&$filter=Supplier eq '17300003'&$top=50",
+          "key_fields": ["Supplier"]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_set",
+      "keys": ["Supplier"],
+      "required_fields": ["Supplier"]
+    }
+  },
+  {
+    "id": "BP-002",
+    "api": "API_BUSINESS_PARTNER",
+    "scenario": "supplier_company_data",
+    "user_input": "查询供应商17300003的公司代码数据",
+    "expected_api": "API_BUSINESS_PARTNER",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "supplier_company",
+          "url": "/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_SupplierCompany?$select=Supplier,CompanyCode,CompanyCodeName,PaymentTerms,ReconciliationAccount&$filter=Supplier eq '17300003'&$top=50",
+          "key_fields": ["Supplier", "CompanyCode"]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_set",
+      "keys": ["Supplier", "CompanyCode"],
+      "required_fields": ["Supplier", "CompanyCode"]
+    }
+  },
+  {
+    "id": "BP-003",
+    "api": "API_BUSINESS_PARTNER",
+    "scenario": "supplier_purchasing_org_data",
+    "user_input": "查询供应商17300003的采购组织数据",
+    "expected_api": "API_BUSINESS_PARTNER",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "supplier_purchasing_org",
+          "url": "/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_SupplierPurchasingOrg?$select=Supplier,PurchasingOrganization,PurchaseOrderCurrency,PaymentTerms,InvoiceIsGoodsReceiptBased,IsOrderAcknRqd&$filter=Supplier eq '17300003'&$top=50",
+          "key_fields": ["Supplier", "PurchasingOrganization"]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_set",
+      "keys": ["Supplier", "PurchasingOrganization"],
+      "required_fields": ["Supplier", "PurchasingOrganization"]
+    }
+  },
+  {
+    "id": "BP-004",
+    "api": "API_BUSINESS_PARTNER",
+    "scenario": "supplier_business_partner_address",
+    "user_input": "查询供应商17300003的地址信息",
+    "expected_api": "API_BUSINESS_PARTNER",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "business_partner",
+          "url": "/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartner?$select=BusinessPartner,Supplier&$filter=Supplier eq '17300003'&$top=50",
+          "key_fields": ["BusinessPartner"]
+        },
+        {
+          "id": "address",
+          "url": "/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartnerAddress?$select=BusinessPartner,AddressID,Country,CityName,StreetName,PostalCode&$top=50",
+          "bind": {
+            "source_step": "business_partner",
+            "source_field": "BusinessPartner",
+            "target_field": "BusinessPartner"
+          },
+          "key_fields": ["BusinessPartner", "AddressID"]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_set",
+      "keys": ["BusinessPartner", "AddressID"],
+      "required_fields": ["BusinessPartner", "AddressID"]
+    }
+  },
+  {
+    "id": "BP-005",
+    "api": "API_BUSINESS_PARTNER",
+    "scenario": "customer_master_list",
+    "user_input": "查询客户主数据列表",
+    "expected_api": "API_BUSINESS_PARTNER",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "customers",
+          "url": "/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_Customer?$select=Customer,CustomerName,CustomerFullName,CustomerAccountGroup&$top=50",
+          "key_fields": ["Customer"]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": ["Customer"],
+      "required_fields": ["Customer"]
+    }
+  }
+]

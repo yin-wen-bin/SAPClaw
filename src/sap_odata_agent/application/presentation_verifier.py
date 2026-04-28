@@ -2,10 +2,10 @@ from __future__ import annotations
 
 import re
 from dataclasses import replace
-from datetime import datetime, timezone
 from typing import Any
 
 from sap_odata_agent.domain.models import AgentRequest, PresentationVerification, QueryPlan, ResultPresentation
+from sap_odata_agent.infrastructure.sap.date_formatting import format_sap_json_date_for_display
 
 
 class PresentationVerifier:
@@ -155,10 +155,4 @@ class PresentationVerifier:
 
     @staticmethod
     def _format_display_value(value: Any) -> Any:
-        if not isinstance(value, str):
-            return value
-        match = re.fullmatch(r"/?Date\((-?\d+)(?:[+-]\d+)?\)/?", value.strip())
-        if not match:
-            return value
-        milliseconds = int(match.group(1))
-        return datetime.fromtimestamp(milliseconds / 1000, tz=timezone.utc).strftime("%Y.%m.%d")
+        return format_sap_json_date_for_display(value)

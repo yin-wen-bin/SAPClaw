@@ -1,0 +1,52 @@
+[
+  {
+    "id": "INV-001",
+    "api": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "scenario": "supplier_invoice_header_list",
+    "user_input": "查询供应商发票列表",
+    "expected_api": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {"steps": [{"id": "invoices", "url": "/sap/opu/odata/sap/API_SUPPLIERINVOICE_PROCESS_SRV/A_SupplierInvoice?$select=SupplierInvoice,FiscalYear,CompanyCode,DocumentDate,PostingDate,InvoicingParty&$top=5", "key_fields": ["SupplierInvoice", "FiscalYear"]}]},
+    "comparison": {"type": "count_only", "keys": ["SupplierInvoice", "FiscalYear"], "required_fields": ["SupplierInvoice"]}
+  },
+  {
+    "id": "INV-002",
+    "api": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "scenario": "supplier_invoice_by_supplier",
+    "user_input": "查询供应商17300003的供应商发票",
+    "expected_api": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {"steps": [{"id": "invoices", "url": "/sap/opu/odata/sap/API_SUPPLIERINVOICE_PROCESS_SRV/A_SupplierInvoice?$select=SupplierInvoice,FiscalYear,CompanyCode,DocumentDate,PostingDate,InvoicingParty&$filter=InvoicingParty eq '17300003'&$top=5", "key_fields": ["SupplierInvoice", "FiscalYear"]}]},
+    "comparison": {"type": "key_set", "keys": ["SupplierInvoice", "FiscalYear"], "required_fields": ["SupplierInvoice"]}
+  },
+  {
+    "id": "INV-003",
+    "api": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "scenario": "invoice_items_with_purchase_order_reference",
+    "user_input": "查询带采购订单参考的供应商发票行项目",
+    "expected_api": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {"steps": [{"id": "items", "url": "/sap/opu/odata/sap/API_SUPPLIERINVOICE_PROCESS_SRV/A_SuplrInvcItemPurOrdRef?$select=SupplierInvoice,FiscalYear,SupplierInvoiceItem,PurchaseOrder,PurchaseOrderItem,Plant&$top=5", "key_fields": ["SupplierInvoice", "FiscalYear", "SupplierInvoiceItem"]}]},
+    "comparison": {"type": "count_only", "keys": ["SupplierInvoice", "FiscalYear", "SupplierInvoiceItem"], "required_fields": ["SupplierInvoice"]}
+  },
+  {
+    "id": "INV-004",
+    "api": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "scenario": "supplier_invoice_tax",
+    "user_input": "查询2017年的供应商发票税额信息",
+    "expected_api": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {"steps": [{"id": "tax", "url": "/sap/opu/odata/sap/API_SUPPLIERINVOICE_PROCESS_SRV/A_SupplierInvoiceTax?$select=SupplierInvoice,FiscalYear,SupplierInvoiceTaxCounter,TaxCode,TaxAmount&$filter=FiscalYear eq '2017'&$top=5", "key_fields": ["SupplierInvoice", "FiscalYear", "SupplierInvoiceTaxCounter", "TaxCode"]}]},
+    "comparison": {"type": "count_only", "keys": ["SupplierInvoice", "FiscalYear", "SupplierInvoiceTaxCounter", "TaxCode"], "required_fields": ["SupplierInvoice"]}
+  },
+  {
+    "id": "INV-005",
+    "api": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "scenario": "supplier_invoice_material_items",
+    "user_input": "查询供应商发票中的物料行项目",
+    "expected_api": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {"steps": [{"id": "material_items", "url": "/sap/opu/odata/sap/API_SUPPLIERINVOICE_PROCESS_SRV/A_SupplierInvoiceItemMaterial?$select=SupplierInvoice,FiscalYear,SupplierInvoiceItem,Material,Plant,Quantity&$top=5", "key_fields": ["SupplierInvoice", "FiscalYear", "SupplierInvoiceItem"]}]},
+    "comparison": {"type": "count_only", "keys": ["SupplierInvoice", "FiscalYear", "SupplierInvoiceItem"], "required_fields": ["SupplierInvoice"]}
+  }
+]

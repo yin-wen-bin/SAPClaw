@@ -625,6 +625,15 @@ class AgentOrchestrator:
         )
         api_skill = self._load_api_skill(selected_service, timings)
         if api_skill:
+            if hasattr(self.schema_context_provider, "enrich_with_api_skill"):
+                schema_context = self._timed_call(
+                    timings,
+                    "schema_context.enrich_with_api_skill",
+                    "使用 API Skill 增强 Schema Context",
+                    self.schema_context_provider.enrich_with_api_skill,
+                    schema_context,
+                    api_skill,
+                )
             schema_context = {
                 **schema_context,
                 "api_skill": api_skill,
@@ -1289,6 +1298,21 @@ class AgentOrchestrator:
             [],
             feedback_memories,
         )
+        api_skill = self._load_api_skill(selected_service, timings)
+        if api_skill:
+            if hasattr(self.schema_context_provider, "enrich_with_api_skill"):
+                schema_context = self._timed_call(
+                    timings,
+                    "schema_context.enrich_with_api_skill",
+                    "使用 API Skill 增强 Schema Context",
+                    self.schema_context_provider.enrich_with_api_skill,
+                    schema_context,
+                    api_skill,
+                )
+            schema_context = {
+                **schema_context,
+                "api_skill": api_skill,
+            }
         schema_research = self._timed_call(
             timings,
             "llm.schema_research",

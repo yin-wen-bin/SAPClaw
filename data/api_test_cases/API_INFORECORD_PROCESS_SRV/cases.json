@@ -1,0 +1,52 @@
+[
+  {
+    "id": "INFO-001",
+    "api": "API_INFORECORD_PROCESS_SRV",
+    "scenario": "purchasing_info_record_list",
+    "user_input": "查询采购信息记录列表",
+    "expected_api": "API_INFORECORD_PROCESS_SRV",
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {"steps": [{"id": "records", "url": "/sap/opu/odata/sap/API_INFORECORD_PROCESS_SRV/A_PurchasingInfoRecord?$select=PurchasingInfoRecord,Supplier,Material,MaterialGroup,CreationDate&$top=5", "key_fields": ["PurchasingInfoRecord"]}]},
+    "comparison": {"type": "count_only", "keys": ["PurchasingInfoRecord"], "required_fields": ["PurchasingInfoRecord"]}
+  },
+  {
+    "id": "INFO-002",
+    "api": "API_INFORECORD_PROCESS_SRV",
+    "scenario": "supplier_info_records",
+    "user_input": "查询供应商17300003的采购信息记录",
+    "expected_api": "API_INFORECORD_PROCESS_SRV",
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {"steps": [{"id": "records", "url": "/sap/opu/odata/sap/API_INFORECORD_PROCESS_SRV/A_PurchasingInfoRecord?$select=PurchasingInfoRecord,Supplier,Material,MaterialGroup&$filter=Supplier eq '17300003'&$top=5", "key_fields": ["PurchasingInfoRecord"]}]},
+    "comparison": {"type": "count_only", "keys": ["PurchasingInfoRecord"], "required_fields": ["PurchasingInfoRecord"]}
+  },
+  {
+    "id": "INFO-003",
+    "api": "API_INFORECORD_PROCESS_SRV",
+    "scenario": "material_info_records",
+    "user_input": "查询物料TG0011的采购信息记录",
+    "expected_api": "API_INFORECORD_PROCESS_SRV",
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {"steps": [{"id": "records", "url": "/sap/opu/odata/sap/API_INFORECORD_PROCESS_SRV/A_PurchasingInfoRecord?$select=PurchasingInfoRecord,Supplier,Material,MaterialGroup&$filter=Material eq 'TG0011'&$top=5", "key_fields": ["PurchasingInfoRecord"]}]},
+    "comparison": {"type": "count_only", "keys": ["PurchasingInfoRecord"], "required_fields": ["PurchasingInfoRecord"]}
+  },
+  {
+    "id": "INFO-004",
+    "api": "API_INFORECORD_PROCESS_SRV",
+    "scenario": "pricing_condition_validity_list",
+    "user_input": "查询物料TG0011的采购信息记录价格条件有效期",
+    "expected_api": "API_INFORECORD_PROCESS_SRV",
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {"steps": [{"id": "validity", "url": "/sap/opu/odata/sap/API_INFORECORD_PROCESS_SRV/A_PurInfoRecdPrcgCndnValidity?$select=ConditionRecord,ConditionValidityEndDate,ConditionValidityStartDate,PurchasingInfoRecord,Supplier,Material,Plant,PurchasingOrganization&$filter=Material eq 'TG0011'&$top=5", "key_fields": ["ConditionRecord", "ConditionValidityEndDate"]}]},
+    "comparison": {"type": "count_only", "keys": ["ConditionRecord", "ConditionValidityEndDate"], "required_fields": ["ConditionRecord"]}
+  },
+  {
+    "id": "INFO-005",
+    "api": "API_INFORECORD_PROCESS_SRV",
+    "scenario": "pricing_condition_list",
+    "user_input": "查询采购信息记录的价格条件",
+    "expected_api": "API_INFORECORD_PROCESS_SRV",
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {"steps": [{"id": "conditions", "url": "/sap/opu/odata/sap/API_INFORECORD_PROCESS_SRV/A_PurInfoRecdPrcgCndn?$select=ConditionRecord,ConditionSequentialNumber,ConditionApplication,ConditionType,ConditionRateAmount,ConditionCurrency,ConditionRateValue,ConditionRateValueUnit,ConditionQuantity,ConditionQuantityUnit&$top=5", "key_fields": ["ConditionRecord"]}]},
+    "comparison": {"type": "count_only", "keys": ["ConditionRecord"], "required_fields": ["ConditionRecord"]}
+  }
+]

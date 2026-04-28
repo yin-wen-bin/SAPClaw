@@ -8,6 +8,8 @@ env/
 *.pyd
 *.log
 data/cases/*.jsonl
+data/api_test_cases/*/baselines/
+data/api_test_runs/
 frontend/node_modules/
 frontend/dist/
 data/cases/

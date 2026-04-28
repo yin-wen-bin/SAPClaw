@@ -1,0 +1,52 @@
+[
+  {
+    "id": "PROD-001",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_master_list",
+    "user_input": "查询产品主数据列表",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {"steps": [{"id": "products", "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_Product?$select=Product,ProductType,BaseUnit,CreationDate&$top=5", "key_fields": ["Product"]}]},
+    "comparison": {"type": "count_only", "keys": ["Product"], "required_fields": ["Product"]}
+  },
+  {
+    "id": "PROD-002",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_master_by_id",
+    "user_input": "查询物料TG0011的产品主数据",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {"steps": [{"id": "products", "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_Product?$select=Product,ProductType,BaseUnit,CreationDate&$filter=Product eq 'TG0011'&$top=5", "key_fields": ["Product"]}]},
+    "comparison": {"type": "key_set", "keys": ["Product"], "required_fields": ["Product"]}
+  },
+  {
+    "id": "PROD-003",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_description",
+    "user_input": "查询物料TG0011的产品描述",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {"steps": [{"id": "descriptions", "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductDescription?$select=Product,Language,ProductDescription&$filter=Product eq 'TG0011'&$top=5", "key_fields": ["Product", "Language"]}]},
+    "comparison": {"type": "count_only", "keys": ["Product", "Language"], "required_fields": ["Product", "ProductDescription"]}
+  },
+  {
+    "id": "PROD-004",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_plant_data",
+    "user_input": "查询所有产品的工厂视图数据",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {"steps": [{"id": "plant", "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductPlant?$select=Product,Plant,PurchasingGroup,CountryOfOrigin&$top=5", "key_fields": ["Product", "Plant"]}]},
+    "comparison": {"type": "count_only", "keys": ["Product", "Plant"], "required_fields": ["Product", "Plant"]}
+  },
+  {
+    "id": "PROD-005",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_units_of_measure",
+    "user_input": "查询所有产品的计量单位",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {"steps": [{"id": "uom", "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductUnitsOfMeasure?$select=Product,AlternativeUnit,QuantityNumerator,QuantityDenominator&$top=5", "key_fields": ["Product", "AlternativeUnit"]}]},
+    "comparison": {"type": "count_only", "keys": ["Product", "AlternativeUnit"], "required_fields": ["Product", "AlternativeUnit"]}
+  }
+]

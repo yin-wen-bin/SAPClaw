@@ -230,6 +230,37 @@ class ApiCatalogProvider:
                 "A_PurchaseOrderScheduleLine.ScheduleLineDeliveryDate",
                 "A_PurchaseOrder.Supplier",
             ]
+        if service_name == "API_INFORECORD_PROCESS_SRV":
+            return [
+                "A_PurchasingInfoRecord.PurchasingInfoRecord",
+                "A_PurchasingInfoRecord.Supplier",
+                "A_PurchasingInfoRecord.Material",
+                "A_PurchasingInfoRecord.MaterialGroup",
+                "A_PurInfoRecdPrcgCndn.ConditionRecord",
+                "A_PurInfoRecdPrcgCndn.ConditionType",
+                "A_PurInfoRecdPrcgCndn.ConditionRateAmount",
+                "A_PurInfoRecdPrcgCndn.ConditionCurrency",
+                "A_PurInfoRecdPrcgCndn.ConditionRateValue",
+                "A_PurInfoRecdPrcgCndn.ConditionRateValueUnit",
+                "A_PurInfoRecdPrcgCndn.ConditionQuantity",
+                "A_PurInfoRecdPrcgCndn.ConditionQuantityUnit",
+                "A_PurInfoRecdPrcgCndnValidity.ConditionRecord",
+                "A_PurInfoRecdPrcgCndnValidity.Material",
+                "A_PurInfoRecdPrcgCndnValidity.Supplier",
+                "A_PurInfoRecdPrcgCndnValidity.PurchasingInfoRecord",
+            ]
+        if service_name == "API_MATERIAL_STOCK_SRV":
+            return [
+                "A_MaterialStock.Material",
+                "A_MaterialStock.MaterialBaseUnit",
+                "A_MatlStkInAcctMod.Material",
+                "A_MatlStkInAcctMod.Plant",
+                "A_MatlStkInAcctMod.StorageLocation",
+                "A_MatlStkInAcctMod.InventoryStockType",
+                "A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit",
+                "A_MaterialSerialNumber.Material",
+                "A_MaterialSerialNumber.SerialNumber",
+            ]
         return []
 
     @staticmethod

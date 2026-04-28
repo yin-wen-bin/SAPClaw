@@ -1,0 +1,52 @@
+[
+  {
+    "id": "MD-001",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "material_document_header_list",
+    "user_input": "查询物料凭证列表",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {"steps": [{"id": "headers", "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentHeader?$select=MaterialDocumentYear,MaterialDocument,DocumentDate,PostingDate,InventoryTransactionType&$top=5", "key_fields": ["MaterialDocumentYear", "MaterialDocument"]}]},
+    "comparison": {"type": "count_only", "keys": ["MaterialDocumentYear", "MaterialDocument"], "required_fields": ["MaterialDocument"]}
+  },
+  {
+    "id": "MD-002",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "material_document_item_list",
+    "user_input": "查询物料凭证行项目列表",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {"steps": [{"id": "items", "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentItem?$select=MaterialDocumentYear,MaterialDocument,MaterialDocumentItem,Material,Plant,StorageLocation,GoodsMovementType&$top=5", "key_fields": ["MaterialDocumentYear", "MaterialDocument", "MaterialDocumentItem"]}]},
+    "comparison": {"type": "count_only", "keys": ["MaterialDocumentYear", "MaterialDocument", "MaterialDocumentItem"], "required_fields": ["MaterialDocument"]}
+  },
+  {
+    "id": "MD-003",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "material_movement_by_material",
+    "user_input": "查询物料TG0011的物料移动记录",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {"steps": [{"id": "items", "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentItem?$select=MaterialDocumentYear,MaterialDocument,MaterialDocumentItem,Material,Plant,GoodsMovementType&$filter=Material eq 'TG0011'&$top=5", "key_fields": ["MaterialDocumentYear", "MaterialDocument", "MaterialDocumentItem"]}]},
+    "comparison": {"type": "count_only", "keys": ["MaterialDocumentYear", "MaterialDocument", "MaterialDocumentItem"], "required_fields": ["MaterialDocument"]}
+  },
+  {
+    "id": "MD-004",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "posting_date_after",
+    "user_input": "查询过账日期大于2020.01.01的物料凭证",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {"steps": [{"id": "headers", "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentHeader?$select=MaterialDocumentYear,MaterialDocument,PostingDate,DocumentDate&$filter=PostingDate gt datetime'2020-01-01T00:00:00'&$top=5", "key_fields": ["MaterialDocumentYear", "MaterialDocument"]}]},
+    "comparison": {"type": "count_only", "keys": ["MaterialDocumentYear", "MaterialDocument"], "required_fields": ["MaterialDocument", "PostingDate"]}
+  },
+  {
+    "id": "MD-005",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "serial_number_material_documents",
+    "user_input": "查询物料凭证的序列号记录",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {"steps": [{"id": "serials", "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_SerialNumberMaterialDocument?$select=Material,SerialNumber,MaterialDocument,MaterialDocumentItem,MaterialDocumentYear&$top=5", "key_fields": ["Material", "SerialNumber", "MaterialDocument", "MaterialDocumentItem", "MaterialDocumentYear"]}]},
+    "comparison": {"type": "count_only", "keys": ["Material", "SerialNumber", "MaterialDocument", "MaterialDocumentItem", "MaterialDocumentYear"], "required_fields": ["MaterialDocument", "SerialNumber"]}
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "ATP-001",
+    "api": "API_PRODUCT_AVAILY_INFO_BASIC",
+    "scenario": "availability_at_date",
+    "user_input": "查询物料TG0011今天是否可用",
+    "expected_api": "API_PRODUCT_AVAILY_INFO_BASIC",
+    "expected_capability": {"route": true, "plan": true, "execute": false, "present": true, "clarify": false, "unsupported": true},
+    "baseline": {"steps": []},
+    "comparison": {"type": "unsupported", "keys": [], "required_fields": []}
+  },
+  {
+    "id": "ATP-002",
+    "api": "API_PRODUCT_AVAILY_INFO_BASIC",
+    "scenario": "availability_of_quantity",
+    "user_input": "查询物料TG0011在工厂1000是否能满足10件需求",
+    "expected_api": "API_PRODUCT_AVAILY_INFO_BASIC",
+    "expected_capability": {"route": true, "plan": true, "execute": false, "present": true, "clarify": false, "unsupported": true},
+    "baseline": {"steps": []},
+    "comparison": {"type": "unsupported", "keys": [], "required_fields": []}
+  },
+  {
+    "id": "ATP-003",
+    "api": "API_PRODUCT_AVAILY_INFO_BASIC",
+    "scenario": "availability_timeseries",
+    "user_input": "查询物料TG0011未来一周的可用量变化",
+    "expected_api": "API_PRODUCT_AVAILY_INFO_BASIC",
+    "expected_capability": {"route": true, "plan": true, "execute": false, "present": true, "clarify": false, "unsupported": true},
+    "baseline": {"steps": []},
+    "comparison": {"type": "unsupported", "keys": [], "required_fields": []}
+  }
+]

@@ -1,0 +1,167 @@
+[
+  {
+    "id": "PO-001",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "supplier_purchase_order_headers",
+    "user_input": "查询供应商17300003的采购订单",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "orders",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder?$select=PurchaseOrder,Supplier&$filter=Supplier eq '17300003'&$top=100",
+          "key_fields": ["PurchaseOrder"]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_set",
+      "keys": ["PurchaseOrder"],
+      "required_fields": ["PurchaseOrder", "Supplier"]
+    }
+  },
+  {
+    "id": "PO-002",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "material_purchase_order_items",
+    "user_input": "查询物料TG0011的采购订单",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "items",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem?$select=PurchaseOrder,PurchaseOrderItem,Material&$filter=Material eq 'TG0011'&$top=100",
+          "key_fields": ["PurchaseOrder"]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_and_key_subset",
+      "keys": ["PurchaseOrder"],
+      "required_fields": ["PurchaseOrder"]
+    }
+  },
+  {
+    "id": "PO-003",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "supplier_needs_goods_receipt_not_delivered",
+    "user_input": "查询供应商17300003的需要收货但未收货的订单",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "orders",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder?$select=PurchaseOrder,Supplier&$filter=Supplier eq '17300003'&$top=100",
+          "key_fields": ["PurchaseOrder"]
+        },
+        {
+          "id": "items",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem?$select=PurchaseOrder,PurchaseOrderItem,Material,Plant,OrderQuantity,GoodsReceiptIsExpected,IsCompletelyDelivered&$filter=GoodsReceiptIsExpected eq true and IsCompletelyDelivered eq false&$top=100",
+          "bind": {
+            "source_step": "orders",
+            "source_field": "PurchaseOrder",
+            "target_field": "PurchaseOrder"
+          },
+          "key_fields": ["PurchaseOrder", "PurchaseOrderItem"]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_set",
+      "keys": ["PurchaseOrder", "PurchaseOrderItem"],
+      "required_fields": ["PurchaseOrder", "PurchaseOrderItem", "GoodsReceiptIsExpected", "IsCompletelyDelivered"]
+    }
+  },
+  {
+    "id": "PO-004",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "delivery_date_after",
+    "user_input": "查询交货日期大于2018.11.23的采购订单",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "schedule_lines",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine?$select=PurchasingDocument,PurchasingDocumentItem,ScheduleLine,ScheduleLineDeliveryDate&$filter=ScheduleLineDeliveryDate gt datetime'2018-11-23T00:00:00'&$top=100",
+          "key_fields": ["PurchasingDocument", "PurchasingDocumentItem", "ScheduleLine"]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_and_key_subset",
+      "keys": ["PurchasingDocument", "PurchasingDocumentItem", "ScheduleLine"],
+      "required_fields": ["PurchasingDocument", "PurchasingDocumentItem", "ScheduleLineDeliveryDate"]
+    }
+  },
+  {
+    "id": "PO-005",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "supplier_open_invoice_purchase_orders",
+    "user_input": "查询供应商17300003的未清发票采购订单",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "orders",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder?$select=PurchaseOrder,Supplier&$filter=Supplier eq '17300003'&$top=100",
+          "key_fields": ["PurchaseOrder"]
+        },
+        {
+          "id": "items",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem?$select=PurchaseOrder,PurchaseOrderItem,Material,IsFinallyInvoiced&$filter=IsFinallyInvoiced eq false&$top=100",
+          "bind": {
+            "source_step": "orders",
+            "source_field": "PurchaseOrder",
+            "target_field": "PurchaseOrder"
+          },
+          "key_fields": ["PurchaseOrder", "PurchaseOrderItem"]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_set",
+      "keys": ["PurchaseOrder", "PurchaseOrderItem"],
+      "required_fields": ["PurchaseOrder", "PurchaseOrderItem", "IsFinallyInvoiced"]
+    }
+  }
+]
