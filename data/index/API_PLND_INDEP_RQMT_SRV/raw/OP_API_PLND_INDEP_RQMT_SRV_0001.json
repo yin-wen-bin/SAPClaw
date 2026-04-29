@@ -1,0 +1,1944 @@
+﻿{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Planned Independent Requirement",
+    "version": "1.0.0",
+    "description": "The PIRs are read, updated, and/or created on header and item level. You can also send batch requests. Use this API if you want to work with the Change PIR or Maintain PIR apps."
+  },
+  "externalDocs": {
+    "description": "Business Documentation",
+    "url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/c8/1d1718b16147b5811acce3f1888054/frameset.htm"
+  },
+  "x-sap-api-type": "ODATA",
+  "x-sap-shortText": "Use this synchronous inbound service to read, create, and update planned independent requirements (PIRs) for your demand forecast planning",
+  "x-sap-software-min-version": "2025",
+  "x-sap-ext-overview": [
+    {
+      "name": "Authentication Methods",
+      "values": [
+        {
+          "text": "x509",
+          "format": "plain"
+        }
+      ]
+    },
+    {
+      "name": "Business Object",
+      "values": [
+        {
+          "text": "Planned Independent Requirement",
+          "format": "plain"
+        }
+      ]
+    }
+  ],
+  "servers": [
+    {
+      "url": "https://{host}:{port}/sap/opu/odata/sap/API_PLND_INDEP_RQMT_SRV",
+      "variables": {
+        "host": {
+          "default": ""
+        },
+        "port": {
+          "default": ""
+        }
+      }
+    }
+  ],
+  "x-sap-extensible": {
+    "supported": "no"
+  },
+  "tags": [
+    {
+      "name": "Planned Independent Requirement"
+    },
+    {
+      "name": "Planned Independent Requirement Item"
+    }
+  ],
+  "paths": {
+    "/PlannedIndepRqmt": {
+      "get": {
+        "summary": "Reads Planned Independent Requirements.",
+        "description": "Retrieves information about header data.",
+        "tags": [
+          "Planned Independent Requirement"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Product",
+                  "Product desc",
+                  "Plant",
+                  "Plant desc",
+                  "MRPArea",
+                  "MRPArea desc",
+                  "PlndIndepRqmtType",
+                  "PlndIndepRqmtType desc",
+                  "PlndIndepRqmtVersion",
+                  "PlndIndepRqmtVersion desc",
+                  "RequirementPlan",
+                  "RequirementPlan desc",
+                  "RequirementSegment",
+                  "RequirementSegment desc",
+                  "RequirementPlanIsExternal",
+                  "RequirementPlanIsExternal desc",
+                  "PlndIndepRqmtInternalID",
+                  "PlndIndepRqmtInternalID desc",
+                  "PlndIndepRqmtIsActive",
+                  "PlndIndepRqmtIsActive desc",
+                  "WBSElement",
+                  "WBSElement desc",
+                  "PlndIndepRqmtAcctAssgmtCat",
+                  "PlndIndepRqmtAcctAssgmtCat desc",
+                  "PlndIndepRqmtLastChgdDateTime",
+                  "PlndIndepRqmtLastChgdDateTime desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Update_mc",
+                  "to_PlndIndepRqmtItem_oc",
+                  "Product",
+                  "Plant",
+                  "MRPArea",
+                  "PlndIndepRqmtType",
+                  "PlndIndepRqmtVersion",
+                  "RequirementPlan",
+                  "RequirementSegment",
+                  "RequirementPlanIsExternal",
+                  "PlndIndepRqmtInternalID",
+                  "PlndIndepRqmtIsActive",
+                  "WBSElement",
+                  "PlndIndepRqmtAcctAssgmtCat",
+                  "PlndIndepRqmtLastChgdDateTime",
+                  "to_PlndIndepRqmtItem"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_PlndIndepRqmtItem"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of PlannedIndepRqmtType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_PLND_INDEP_RQMT_SRV.PlannedIndepRqmtType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a Planned Independent Requirement.",
+        "description": "Creates a Planned Independent Requirement with all the respective header attributes.",
+        "tags": [
+          "Planned Independent Requirement"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/API_PLND_INDEP_RQMT_SRV.PlannedIndepRqmtType-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "PlannedIndepRqmtType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_PLND_INDEP_RQMT_SRV.PlannedIndepRqmtType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/PlannedIndepRqmt(Product='{Product}',Plant='{Plant}',MRPArea='{MRPArea}',PlndIndepRqmtType='{PlndIndepRqmtType}',PlndIndepRqmtVersion='{PlndIndepRqmtVersion}',RequirementPlan='{RequirementPlan}',RequirementSegment='{RequirementSegment}')": {
+      "parameters": [
+        {
+          "name": "Product",
+          "in": "path",
+          "required": true,
+          "description": "Material Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "Plant",
+          "in": "path",
+          "required": true,
+          "description": "Plant",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "MRPArea",
+          "in": "path",
+          "required": true,
+          "description": "MRP Area",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "PlndIndepRqmtType",
+          "in": "path",
+          "required": true,
+          "description": "Requirements type",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "PlndIndepRqmtVersion",
+          "in": "path",
+          "required": true,
+          "description": "Version Number for Independent Requirements",
+          "schema": {
+            "type": "string",
+            "maxLength": 2
+          }
+        },
+        {
+          "name": "RequirementPlan",
+          "in": "path",
+          "required": true,
+          "description": "Requirements Plan",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "RequirementSegment",
+          "in": "path",
+          "required": true,
+          "description": "Requirement Segment",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        }
+      ],
+      "get": {
+        "summary": "Reads a Planned Independent Requirement Header by its key.",
+        "description": "Reads a Planned Independent Requirement Header by its key fields material, plant, MRParea, requirement type, version, plan, segment.",
+        "tags": [
+          "Planned Independent Requirement"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Update_mc",
+                  "to_PlndIndepRqmtItem_oc",
+                  "Product",
+                  "Plant",
+                  "MRPArea",
+                  "PlndIndepRqmtType",
+                  "PlndIndepRqmtVersion",
+                  "RequirementPlan",
+                  "RequirementSegment",
+                  "RequirementPlanIsExternal",
+                  "PlndIndepRqmtInternalID",
+                  "PlndIndepRqmtIsActive",
+                  "WBSElement",
+                  "PlndIndepRqmtAcctAssgmtCat",
+                  "PlndIndepRqmtLastChgdDateTime",
+                  "to_PlndIndepRqmtItem"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_PlndIndepRqmtItem"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "PlannedIndepRqmtType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_PLND_INDEP_RQMT_SRV.PlannedIndepRqmtType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Updates a Planned Independent Requirement.",
+        "description": "Update the active indicator for a Planned Independent Requirement.",
+        "tags": [
+          "Planned Independent Requirement"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New property values",
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "Modified PlannedIndepRqmtType",
+                "type": "object",
+                "properties": {
+                  "d": {
+                    "$ref": "#/components/schemas/API_PLND_INDEP_RQMT_SRV.PlannedIndepRqmtType-update"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/PlannedIndepRqmt(Product='{Product}',Plant='{Plant}',MRPArea='{MRPArea}',PlndIndepRqmtType='{PlndIndepRqmtType}',PlndIndepRqmtVersion='{PlndIndepRqmtVersion}',RequirementPlan='{RequirementPlan}',RequirementSegment='{RequirementSegment}')/to_PlndIndepRqmtItem": {
+      "parameters": [
+        {
+          "name": "Product",
+          "in": "path",
+          "required": true,
+          "description": "Material Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "Plant",
+          "in": "path",
+          "required": true,
+          "description": "Plant",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "MRPArea",
+          "in": "path",
+          "required": true,
+          "description": "MRP Area",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "PlndIndepRqmtType",
+          "in": "path",
+          "required": true,
+          "description": "Requirements type",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "PlndIndepRqmtVersion",
+          "in": "path",
+          "required": true,
+          "description": "Version Number for Independent Requirements",
+          "schema": {
+            "type": "string",
+            "maxLength": 2
+          }
+        },
+        {
+          "name": "RequirementPlan",
+          "in": "path",
+          "required": true,
+          "description": "Requirements Plan",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "RequirementSegment",
+          "in": "path",
+          "required": true,
+          "description": "Requirement Segment",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        }
+      ],
+      "get": {
+        "summary": "Reads Items of a Planned Independent Requirement.",
+        "description": "Retrieves all items of a single Planned Independent Requirement.",
+        "tags": [
+          "Planned Independent Requirement",
+          "Planned Independent Requirement Item"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Product",
+                  "Product desc",
+                  "Plant",
+                  "Plant desc",
+                  "MRPArea",
+                  "MRPArea desc",
+                  "PlndIndepRqmtType",
+                  "PlndIndepRqmtType desc",
+                  "PlndIndepRqmtVersion",
+                  "PlndIndepRqmtVersion desc",
+                  "RequirementPlan",
+                  "RequirementPlan desc",
+                  "RequirementSegment",
+                  "RequirementSegment desc",
+                  "PlndIndepRqmtPeriod",
+                  "PlndIndepRqmtPeriod desc",
+                  "PeriodType",
+                  "PeriodType desc",
+                  "PlndIndepRqmtPeriodStartDate",
+                  "PlndIndepRqmtPeriodStartDate desc",
+                  "PlndIndepRqmtInternalID",
+                  "PlndIndepRqmtInternalID desc",
+                  "WorkingDayDate",
+                  "WorkingDayDate desc",
+                  "PlannedQuantity",
+                  "PlannedQuantity desc",
+                  "WithdrawalQuantity",
+                  "WithdrawalQuantity desc",
+                  "UnitOfMeasure",
+                  "UnitOfMeasure desc",
+                  "LastChangedByUser",
+                  "LastChangedByUser desc",
+                  "LastChangeDate",
+                  "LastChangeDate desc",
+                  "PlndIndepRqmtLastChgdDateTime",
+                  "PlndIndepRqmtLastChgdDateTime desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Update_mc",
+                  "Product",
+                  "Plant",
+                  "MRPArea",
+                  "PlndIndepRqmtType",
+                  "PlndIndepRqmtVersion",
+                  "RequirementPlan",
+                  "RequirementSegment",
+                  "PlndIndepRqmtPeriod",
+                  "PeriodType",
+                  "PlndIndepRqmtPeriodStartDate",
+                  "PlndIndepRqmtInternalID",
+                  "WorkingDayDate",
+                  "PlannedQuantity",
+                  "WithdrawalQuantity",
+                  "UnitOfMeasure",
+                  "LastChangedByUser",
+                  "LastChangeDate",
+                  "PlndIndepRqmtLastChgdDateTime",
+                  "to_PlndIndepRqmt"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_PlndIndepRqmt"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of PlannedIndepRqmtItemType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_PLND_INDEP_RQMT_SRV.PlannedIndepRqmtItemType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add Items to a Planned Independent Requirement.",
+        "description": "Add or update items of a single Planned Independent Requirement.",
+        "tags": [
+          "Planned Independent Requirement",
+          "Planned Independent Requirement Item"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/API_PLND_INDEP_RQMT_SRV.PlannedIndepRqmtItemType-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "PlannedIndepRqmtItemType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_PLND_INDEP_RQMT_SRV.PlannedIndepRqmtItemType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/PlannedIndepRqmtItem": {
+      "get": {
+        "summary": "Reads Planned Independent Requirement Items.",
+        "description": "Retrieves information about periods created for some Planned Independent Requirement.",
+        "tags": [
+          "Planned Independent Requirement Item"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Product",
+                  "Product desc",
+                  "Plant",
+                  "Plant desc",
+                  "MRPArea",
+                  "MRPArea desc",
+                  "PlndIndepRqmtType",
+                  "PlndIndepRqmtType desc",
+                  "PlndIndepRqmtVersion",
+                  "PlndIndepRqmtVersion desc",
+                  "RequirementPlan",
+                  "RequirementPlan desc",
+                  "RequirementSegment",
+                  "RequirementSegment desc",
+                  "PlndIndepRqmtPeriod",
+                  "PlndIndepRqmtPeriod desc",
+                  "PeriodType",
+                  "PeriodType desc",
+                  "PlndIndepRqmtPeriodStartDate",
+                  "PlndIndepRqmtPeriodStartDate desc",
+                  "PlndIndepRqmtInternalID",
+                  "PlndIndepRqmtInternalID desc",
+                  "WorkingDayDate",
+                  "WorkingDayDate desc",
+                  "PlannedQuantity",
+                  "PlannedQuantity desc",
+                  "WithdrawalQuantity",
+                  "WithdrawalQuantity desc",
+                  "UnitOfMeasure",
+                  "UnitOfMeasure desc",
+                  "LastChangedByUser",
+                  "LastChangedByUser desc",
+                  "LastChangeDate",
+                  "LastChangeDate desc",
+                  "PlndIndepRqmtLastChgdDateTime",
+                  "PlndIndepRqmtLastChgdDateTime desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Update_mc",
+                  "Product",
+                  "Plant",
+                  "MRPArea",
+                  "PlndIndepRqmtType",
+                  "PlndIndepRqmtVersion",
+                  "RequirementPlan",
+                  "RequirementSegment",
+                  "PlndIndepRqmtPeriod",
+                  "PeriodType",
+                  "PlndIndepRqmtPeriodStartDate",
+                  "PlndIndepRqmtInternalID",
+                  "WorkingDayDate",
+                  "PlannedQuantity",
+                  "WithdrawalQuantity",
+                  "UnitOfMeasure",
+                  "LastChangedByUser",
+                  "LastChangeDate",
+                  "PlndIndepRqmtLastChgdDateTime",
+                  "to_PlndIndepRqmt"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_PlndIndepRqmt"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of PlannedIndepRqmtItemType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_PLND_INDEP_RQMT_SRV.PlannedIndepRqmtItemType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a Planned Independent Requirement Item.",
+        "description": "Creates a Planned Independent Requirement Item with a quantity.",
+        "tags": [
+          "Planned Independent Requirement Item"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/API_PLND_INDEP_RQMT_SRV.PlannedIndepRqmtItemType-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "PlannedIndepRqmtItemType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_PLND_INDEP_RQMT_SRV.PlannedIndepRqmtItemType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/PlannedIndepRqmtItem(Product='{Product}',Plant='{Plant}',MRPArea='{MRPArea}',PlndIndepRqmtType='{PlndIndepRqmtType}',PlndIndepRqmtVersion='{PlndIndepRqmtVersion}',RequirementPlan='{RequirementPlan}',RequirementSegment='{RequirementSegment}',PlndIndepRqmtPeriod='{PlndIndepRqmtPeriod}',PeriodType='{PeriodType}')": {
+      "parameters": [
+        {
+          "name": "Product",
+          "in": "path",
+          "required": true,
+          "description": "Material Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "Plant",
+          "in": "path",
+          "required": true,
+          "description": "Plant",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "MRPArea",
+          "in": "path",
+          "required": true,
+          "description": "MRP Area",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "PlndIndepRqmtType",
+          "in": "path",
+          "required": true,
+          "description": "Requirements type",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "PlndIndepRqmtVersion",
+          "in": "path",
+          "required": true,
+          "description": "Version Number for Independent Requirements",
+          "schema": {
+            "type": "string",
+            "maxLength": 2
+          }
+        },
+        {
+          "name": "RequirementPlan",
+          "in": "path",
+          "required": true,
+          "description": "Requirements Plan",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "RequirementSegment",
+          "in": "path",
+          "required": true,
+          "description": "Requirement Segment",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "PlndIndepRqmtPeriod",
+          "in": "path",
+          "required": true,
+          "description": "Period Text",
+          "schema": {
+            "type": "string",
+            "maxLength": 8
+          }
+        },
+        {
+          "name": "PeriodType",
+          "in": "path",
+          "required": true,
+          "description": "Type of a Period",
+          "schema": {
+            "type": "string",
+            "maxLength": 1
+          }
+        }
+      ],
+      "get": {
+        "summary": "Reads a single Planned Independent Requirement Items by its key.",
+        "description": "Retrieves a single Planned Independent Requirement Item by its key fields (Planned Independent Requirement key and period).",
+        "tags": [
+          "Planned Independent Requirement Item"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Update_mc",
+                  "Product",
+                  "Plant",
+                  "MRPArea",
+                  "PlndIndepRqmtType",
+                  "PlndIndepRqmtVersion",
+                  "RequirementPlan",
+                  "RequirementSegment",
+                  "PlndIndepRqmtPeriod",
+                  "PeriodType",
+                  "PlndIndepRqmtPeriodStartDate",
+                  "PlndIndepRqmtInternalID",
+                  "WorkingDayDate",
+                  "PlannedQuantity",
+                  "WithdrawalQuantity",
+                  "UnitOfMeasure",
+                  "LastChangedByUser",
+                  "LastChangeDate",
+                  "PlndIndepRqmtLastChgdDateTime",
+                  "to_PlndIndepRqmt"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_PlndIndepRqmt"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "PlannedIndepRqmtItemType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_PLND_INDEP_RQMT_SRV.PlannedIndepRqmtItemType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Updates a Planned Independent Requirement Item.",
+        "description": "Update the quantity for a Planned Independent Requirement Item.",
+        "tags": [
+          "Planned Independent Requirement Item"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New property values",
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "Modified PlannedIndepRqmtItemType",
+                "type": "object",
+                "properties": {
+                  "d": {
+                    "$ref": "#/components/schemas/API_PLND_INDEP_RQMT_SRV.PlannedIndepRqmtItemType-update"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/PlannedIndepRqmtItem(Product='{Product}',Plant='{Plant}',MRPArea='{MRPArea}',PlndIndepRqmtType='{PlndIndepRqmtType}',PlndIndepRqmtVersion='{PlndIndepRqmtVersion}',RequirementPlan='{RequirementPlan}',RequirementSegment='{RequirementSegment}',PlndIndepRqmtPeriod='{PlndIndepRqmtPeriod}',PeriodType='{PeriodType}')/to_PlndIndepRqmt": {
+      "parameters": [
+        {
+          "name": "Product",
+          "in": "path",
+          "required": true,
+          "description": "Material Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "Plant",
+          "in": "path",
+          "required": true,
+          "description": "Plant",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "MRPArea",
+          "in": "path",
+          "required": true,
+          "description": "MRP Area",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "PlndIndepRqmtType",
+          "in": "path",
+          "required": true,
+          "description": "Requirements type",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "PlndIndepRqmtVersion",
+          "in": "path",
+          "required": true,
+          "description": "Version Number for Independent Requirements",
+          "schema": {
+            "type": "string",
+            "maxLength": 2
+          }
+        },
+        {
+          "name": "RequirementPlan",
+          "in": "path",
+          "required": true,
+          "description": "Requirements Plan",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "RequirementSegment",
+          "in": "path",
+          "required": true,
+          "description": "Requirement Segment",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "PlndIndepRqmtPeriod",
+          "in": "path",
+          "required": true,
+          "description": "Period Text",
+          "schema": {
+            "type": "string",
+            "maxLength": 8
+          }
+        },
+        {
+          "name": "PeriodType",
+          "in": "path",
+          "required": true,
+          "description": "Type of a Period",
+          "schema": {
+            "type": "string",
+            "maxLength": 1
+          }
+        }
+      ],
+      "get": {
+        "summary": "Reads Header Info of Planned Independent Requirement Items.",
+        "description": "Retrieves the header info of a Planned Independent Requirement Item.",
+        "tags": [
+          "Planned Independent Requirement Item",
+          "Planned Independent Requirement"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Update_mc",
+                  "to_PlndIndepRqmtItem_oc",
+                  "Product",
+                  "Plant",
+                  "MRPArea",
+                  "PlndIndepRqmtType",
+                  "PlndIndepRqmtVersion",
+                  "RequirementPlan",
+                  "RequirementSegment",
+                  "RequirementPlanIsExternal",
+                  "PlndIndepRqmtInternalID",
+                  "PlndIndepRqmtIsActive",
+                  "WBSElement",
+                  "PlndIndepRqmtAcctAssgmtCat",
+                  "PlndIndepRqmtLastChgdDateTime",
+                  "to_PlndIndepRqmtItem"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_PlndIndepRqmtItem"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "PlannedIndepRqmtType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_PLND_INDEP_RQMT_SRV.PlannedIndepRqmtType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/$batch": {
+      "post": {
+        "summary": "Send a group of requests",
+        "description": "Group multiple requests into a single request payload, see [Batch Requests](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=152).\n\n*Please note that \"Try it out\" is not supported for this request.*",
+        "tags": [
+          "Batch Requests"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Batch request",
+          "content": {
+            "multipart/mixed;boundary=request-separator": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "--request-separator\nContent-Type: application/http\nContent-Transfer-Encoding: binary\n\nGET PlannedIndepRqmt HTTP/1.1\nAccept: application/json\n\n\n--request-separator--"
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Batch response",
+            "content": {
+              "multipart/mixed": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "--response-separator\nContent-Type: application/http\n\nHTTP/1.1 200 OK\nContent-Type: application/json\n\n{...}\n--response-separator--"
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "API_PLND_INDEP_RQMT_SRV.PlannedIndepRqmtType": {
+        "type": "object",
+        "properties": {
+          "Update_mc": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Dyn. Method Control"
+          },
+          "to_PlndIndepRqmtItem_oc": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Dynamic CbA-Control"
+          },
+          "Product": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "Plant": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "MRPArea": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "MRP Area"
+          },
+          "PlndIndepRqmtType": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Requirements type"
+          },
+          "PlndIndepRqmtVersion": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Version",
+            "description": "Version Number for Independent Requirements"
+          },
+          "RequirementPlan": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Requirements Plan"
+          },
+          "RequirementSegment": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Requirement Segment"
+          },
+          "RequirementPlanIsExternal": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "External Plan",
+            "description": "Indicates that the Requirement Plan is external"
+          },
+          "PlndIndepRqmtInternalID": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "PIR Pointer",
+            "description": "Independent Requirements Pointer"
+          },
+          "PlndIndepRqmtIsActive": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Active",
+            "description": "Indicator: Version Active"
+          },
+          "WBSElement": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 24,
+            "title": "WBS Element"
+          },
+          "PlndIndepRqmtAcctAssgmtCat": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Acct Assignment Cat.",
+            "description": "Account Assignment Category"
+          },
+          "PlndIndepRqmtLastChgdDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp",
+            "description": "UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)"
+          },
+          "to_PlndIndepRqmtItem": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/API_PLND_INDEP_RQMT_SRV.PlannedIndepRqmtItemType"
+                }
+              }
+            }
+          }
+        },
+        "title": "Planned Independent Requirement"
+      },
+      "API_PLND_INDEP_RQMT_SRV.PlannedIndepRqmtType-create": {
+        "type": "object",
+        "properties": {
+          "RequirementPlanIsExternal": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "External Plan",
+            "description": "Indicates that the Requirement Plan is external"
+          },
+          "PlndIndepRqmtInternalID": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "PIR Pointer",
+            "description": "Independent Requirements Pointer"
+          },
+          "PlndIndepRqmtIsActive": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Active",
+            "description": "Indicator: Version Active"
+          },
+          "WBSElement": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 24,
+            "title": "WBS Element"
+          },
+          "PlndIndepRqmtAcctAssgmtCat": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Acct Assignment Cat.",
+            "description": "Account Assignment Category"
+          },
+          "PlndIndepRqmtLastChgdDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp",
+            "description": "UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)"
+          },
+          "to_PlndIndepRqmtItem": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/API_PLND_INDEP_RQMT_SRV.PlannedIndepRqmtItemType-create"
+                }
+              }
+            }
+          }
+        },
+        "title": "Planned Independent Requirement (for create)"
+      },
+      "API_PLND_INDEP_RQMT_SRV.PlannedIndepRqmtType-update": {
+        "type": "object",
+        "properties": {
+          "RequirementPlanIsExternal": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "External Plan",
+            "description": "Indicates that the Requirement Plan is external"
+          },
+          "PlndIndepRqmtInternalID": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "PIR Pointer",
+            "description": "Independent Requirements Pointer"
+          },
+          "PlndIndepRqmtIsActive": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Active",
+            "description": "Indicator: Version Active"
+          },
+          "WBSElement": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 24,
+            "title": "WBS Element"
+          },
+          "PlndIndepRqmtAcctAssgmtCat": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Acct Assignment Cat.",
+            "description": "Account Assignment Category"
+          },
+          "PlndIndepRqmtLastChgdDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp",
+            "description": "UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)"
+          }
+        },
+        "title": "Planned Independent Requirement (for update)"
+      },
+      "API_PLND_INDEP_RQMT_SRV.PlannedIndepRqmtItemType": {
+        "type": "object",
+        "properties": {
+          "Update_mc": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Dyn. Method Control"
+          },
+          "Product": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "Plant": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "MRPArea": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "MRP Area"
+          },
+          "PlndIndepRqmtType": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Requirements type"
+          },
+          "PlndIndepRqmtVersion": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Version",
+            "description": "Version Number for Independent Requirements"
+          },
+          "RequirementPlan": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Requirements Plan"
+          },
+          "RequirementSegment": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Requirement Segment"
+          },
+          "PlndIndepRqmtPeriod": {
+            "type": "string",
+            "maxLength": 8,
+            "title": "Period",
+            "description": "Period Text"
+          },
+          "PeriodType": {
+            "type": "string",
+            "maxLength": 1,
+            "title": "Period Type",
+            "description": "Type of a Period"
+          },
+          "PlndIndepRqmtPeriodStartDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Working Day Date",
+            "description": "Date of a Working Day"
+          },
+          "PlndIndepRqmtInternalID": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "PIR Pointer",
+            "description": "Independent Requirements Pointer"
+          },
+          "WorkingDayDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Working Day Date",
+            "description": "Date of a Working Day"
+          },
+          "PlannedQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Planned quantity"
+          },
+          "WithdrawalQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Withdrawal Quantity"
+          },
+          "UnitOfMeasure": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Base Unit of Measure"
+          },
+          "LastChangedByUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Changed By",
+            "description": "Name of Person Who Changed Object"
+          },
+          "LastChangeDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Last Change",
+            "description": "Date of Last Change"
+          },
+          "PlndIndepRqmtLastChgdDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp",
+            "description": "UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)"
+          },
+          "to_PlndIndepRqmt": {
+            "$ref": "#/components/schemas/API_PLND_INDEP_RQMT_SRV.PlannedIndepRqmtType"
+          }
+        },
+        "title": "Planned Independent Requirement Item"
+      },
+      "API_PLND_INDEP_RQMT_SRV.PlannedIndepRqmtItemType-create": {
+        "type": "object",
+        "properties": {
+          "PlndIndepRqmtPeriodStartDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Working Day Date",
+            "description": "Date of a Working Day"
+          },
+          "PlndIndepRqmtInternalID": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "PIR Pointer",
+            "description": "Independent Requirements Pointer"
+          },
+          "WorkingDayDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Working Day Date",
+            "description": "Date of a Working Day"
+          },
+          "PlannedQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Planned quantity"
+          },
+          "WithdrawalQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Withdrawal Quantity"
+          },
+          "UnitOfMeasure": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Base Unit of Measure"
+          },
+          "LastChangedByUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Changed By",
+            "description": "Name of Person Who Changed Object"
+          },
+          "LastChangeDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Last Change",
+            "description": "Date of Last Change"
+          },
+          "PlndIndepRqmtLastChgdDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp",
+            "description": "UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)"
+          },
+          "to_PlndIndepRqmt": {
+            "$ref": "#/components/schemas/API_PLND_INDEP_RQMT_SRV.PlannedIndepRqmtType-create"
+          }
+        },
+        "title": "Planned Independent Requirement Item (for create)"
+      },
+      "API_PLND_INDEP_RQMT_SRV.PlannedIndepRqmtItemType-update": {
+        "type": "object",
+        "properties": {
+          "PlndIndepRqmtPeriodStartDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Working Day Date",
+            "description": "Date of a Working Day"
+          },
+          "PlndIndepRqmtInternalID": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "PIR Pointer",
+            "description": "Independent Requirements Pointer"
+          },
+          "WorkingDayDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Working Day Date",
+            "description": "Date of a Working Day"
+          },
+          "PlannedQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Planned quantity"
+          },
+          "WithdrawalQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Withdrawal Quantity"
+          },
+          "UnitOfMeasure": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Base Unit of Measure"
+          },
+          "LastChangedByUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Changed By",
+            "description": "Name of Person Who Changed Object"
+          },
+          "LastChangeDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Last Change",
+            "description": "Date of Last Change"
+          },
+          "PlndIndepRqmtLastChgdDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp",
+            "description": "UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)"
+          }
+        },
+        "title": "Planned Independent Requirement Item (for update)"
+      },
+      "count": {
+        "type": "string",
+        "description": "The number of entities in the collection. Available when using the [$inlinecount](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=67) query option."
+      },
+      "error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "code",
+              "message"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "object",
+                "required": [
+                  "lang",
+                  "value"
+                ],
+                "properties": {
+                  "lang": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              },
+              "innererror": {
+                "type": "object",
+                "description": "The structure of this object is service-specific"
+              }
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "top": {
+        "name": "$top",
+        "in": "query",
+        "description": "Show only the first n items, see [Paging - Top](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=66)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "example": 50
+      },
+      "skip": {
+        "name": "$skip",
+        "in": "query",
+        "description": "Skip the first n items, see [Paging - Skip](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "count": {
+        "name": "$inlinecount",
+        "in": "query",
+        "description": "Include count of items, see [Inlinecount](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=67)",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "allpages",
+            "none"
+          ]
+        }
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/error"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "OAuth2Auth": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "scopes": {},
+            "refreshUrl": "https://{host}:{port}",
+            "authorizationUrl": "https://{host}:{port}",
+            "tokenUrl": "https://{host}:{port}"
+          }
+        }
+      },
+      "BasicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "OAuth2Auth": []
+    },
+    {
+      "BasicAuth": []
+    }
+  ]
+}

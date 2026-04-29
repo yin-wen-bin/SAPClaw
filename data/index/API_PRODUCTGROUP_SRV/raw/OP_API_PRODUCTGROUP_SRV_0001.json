@@ -1,0 +1,958 @@
+﻿{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Product Group - Read",
+    "version": "1.0.0",
+    "description": "It contains product group and product group text nodes.\r\n\r\nThis service is based on the OData protocol and can be consumed in Fiori apps and on other user interfaces."
+  },
+  "externalDocs": {
+    "description": "Business Documentation",
+    "url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/9e/784f0993264356b10ae4c6897204c0/frameset.htm"
+  },
+  "x-sap-api-type": "ODATA",
+  "x-sap-shortText": "Read product group master data synchronously using this inbound service",
+  "x-sap-software-min-version": "2025",
+  "x-sap-ext-overview": [
+    {
+      "name": "Authentication Methods",
+      "values": [
+        {
+          "text": "x509",
+          "format": "plain"
+        }
+      ]
+    },
+    {
+      "name": "Business Object",
+      "values": [
+        {
+          "text": "Product Group",
+          "format": "plain"
+        }
+      ]
+    }
+  ],
+  "servers": [
+    {
+      "url": "https://{host}:{port}/sap/opu/odata/sap/API_PRODUCTGROUP_SRV",
+      "variables": {
+        "host": {
+          "default": ""
+        },
+        "port": {
+          "default": ""
+        }
+      }
+    }
+  ],
+  "x-sap-extensible": {
+    "supported": "no"
+  },
+  "tags": [
+    {
+      "name": "Product Group"
+    },
+    {
+      "name": "Product Group Text"
+    }
+  ],
+  "paths": {
+    "/A_ProductGroup": {
+      "get": {
+        "summary": "Get entities from A_ProductGroup",
+        "tags": [
+          "Product Group"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MaterialGroup",
+                  "MaterialGroup desc",
+                  "AuthorizationGroup",
+                  "AuthorizationGroup desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MaterialGroup",
+                  "AuthorizationGroup",
+                  "to_Text"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_Text"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of A_ProductGroupType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_PRODUCTGROUP_SRV.A_ProductGroupType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_ProductGroup('{MaterialGroup}')": {
+      "parameters": [
+        {
+          "name": "MaterialGroup",
+          "in": "path",
+          "required": true,
+          "description": "Product Group",
+          "schema": {
+            "type": "string",
+            "maxLength": 9
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entity from A_ProductGroup by key",
+        "tags": [
+          "Product Group"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MaterialGroup",
+                  "AuthorizationGroup",
+                  "to_Text"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_Text"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_ProductGroupType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_PRODUCTGROUP_SRV.A_ProductGroupType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_ProductGroup('{MaterialGroup}')/to_Text": {
+      "parameters": [
+        {
+          "name": "MaterialGroup",
+          "in": "path",
+          "required": true,
+          "description": "Product Group",
+          "schema": {
+            "type": "string",
+            "maxLength": 9
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entities from related to_Text",
+        "tags": [
+          "Product Group",
+          "Product Group Text"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MaterialGroup",
+                  "MaterialGroup desc",
+                  "Language",
+                  "Language desc",
+                  "MaterialGroupName",
+                  "MaterialGroupName desc",
+                  "MaterialGroupText",
+                  "MaterialGroupText desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MaterialGroup",
+                  "Language",
+                  "MaterialGroupName",
+                  "MaterialGroupText",
+                  "to_MaterialGroup"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_MaterialGroup"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of A_ProductGroupTextType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_PRODUCTGROUP_SRV.A_ProductGroupTextType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_ProductGroupText": {
+      "get": {
+        "summary": "Get entities from A_ProductGroupText",
+        "tags": [
+          "Product Group Text"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MaterialGroup",
+                  "MaterialGroup desc",
+                  "Language",
+                  "Language desc",
+                  "MaterialGroupName",
+                  "MaterialGroupName desc",
+                  "MaterialGroupText",
+                  "MaterialGroupText desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MaterialGroup",
+                  "Language",
+                  "MaterialGroupName",
+                  "MaterialGroupText",
+                  "to_MaterialGroup"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_MaterialGroup"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of A_ProductGroupTextType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_PRODUCTGROUP_SRV.A_ProductGroupTextType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_ProductGroupText(MaterialGroup='{MaterialGroup}',Language='{Language}')": {
+      "parameters": [
+        {
+          "name": "MaterialGroup",
+          "in": "path",
+          "required": true,
+          "description": "Product Group",
+          "schema": {
+            "type": "string",
+            "maxLength": 9
+          }
+        },
+        {
+          "name": "Language",
+          "in": "path",
+          "required": true,
+          "description": "Language Key",
+          "schema": {
+            "type": "string",
+            "maxLength": 2
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entity from A_ProductGroupText by key",
+        "tags": [
+          "Product Group Text"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MaterialGroup",
+                  "Language",
+                  "MaterialGroupName",
+                  "MaterialGroupText",
+                  "to_MaterialGroup"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_MaterialGroup"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_ProductGroupTextType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_PRODUCTGROUP_SRV.A_ProductGroupTextType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_ProductGroupText(MaterialGroup='{MaterialGroup}',Language='{Language}')/to_MaterialGroup": {
+      "parameters": [
+        {
+          "name": "MaterialGroup",
+          "in": "path",
+          "required": true,
+          "description": "Product Group",
+          "schema": {
+            "type": "string",
+            "maxLength": 9
+          }
+        },
+        {
+          "name": "Language",
+          "in": "path",
+          "required": true,
+          "description": "Language Key",
+          "schema": {
+            "type": "string",
+            "maxLength": 2
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get related to_MaterialGroup",
+        "tags": [
+          "Product Group Text",
+          "Product Group"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MaterialGroup",
+                  "AuthorizationGroup",
+                  "to_Text"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_Text"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_ProductGroupType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_PRODUCTGROUP_SRV.A_ProductGroupType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/$batch": {}
+  },
+  "components": {
+    "schemas": {
+      "API_PRODUCTGROUP_SRV.A_ProductGroupType": {
+        "type": "object",
+        "properties": {
+          "MaterialGroup": {
+            "type": "string",
+            "maxLength": 9,
+            "title": "Product Group"
+          },
+          "AuthorizationGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Authorization Group"
+          },
+          "to_Text": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/API_PRODUCTGROUP_SRV.A_ProductGroupTextType"
+                }
+              }
+            }
+          }
+        },
+        "title": "Product Group"
+      },
+      "API_PRODUCTGROUP_SRV.A_ProductGroupType-create": {
+        "type": "object",
+        "properties": {
+          "MaterialGroup": {
+            "type": "string",
+            "maxLength": 9,
+            "title": "Product Group"
+          },
+          "AuthorizationGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Authorization Group"
+          },
+          "to_Text": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/API_PRODUCTGROUP_SRV.A_ProductGroupTextType-create"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "MaterialGroup"
+        ],
+        "title": "Product Group (for create)"
+      },
+      "API_PRODUCTGROUP_SRV.A_ProductGroupType-update": {
+        "type": "object",
+        "properties": {
+          "AuthorizationGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Authorization Group"
+          }
+        },
+        "title": "Product Group (for update)"
+      },
+      "API_PRODUCTGROUP_SRV.A_ProductGroupTextType": {
+        "type": "object",
+        "properties": {
+          "MaterialGroup": {
+            "type": "string",
+            "maxLength": 9,
+            "title": "Product Group"
+          },
+          "Language": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Language Key"
+          },
+          "MaterialGroupName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 20,
+            "title": "Prod Grp Desc.",
+            "description": "Product Group Description"
+          },
+          "MaterialGroupText": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 60,
+            "title": "Mat.Grp Desc. 2",
+            "description": "Description of the Material Group"
+          },
+          "to_MaterialGroup": {
+            "$ref": "#/components/schemas/API_PRODUCTGROUP_SRV.A_ProductGroupType"
+          }
+        },
+        "title": "Product Group Text"
+      },
+      "API_PRODUCTGROUP_SRV.A_ProductGroupTextType-create": {
+        "type": "object",
+        "properties": {
+          "MaterialGroup": {
+            "type": "string",
+            "maxLength": 9,
+            "title": "Product Group"
+          },
+          "Language": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Language Key"
+          },
+          "MaterialGroupName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 20,
+            "title": "Prod Grp Desc.",
+            "description": "Product Group Description"
+          },
+          "MaterialGroupText": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 60,
+            "title": "Mat.Grp Desc. 2",
+            "description": "Description of the Material Group"
+          },
+          "to_MaterialGroup": {
+            "$ref": "#/components/schemas/API_PRODUCTGROUP_SRV.A_ProductGroupType-create"
+          }
+        },
+        "required": [
+          "MaterialGroup",
+          "Language"
+        ],
+        "title": "Product Group Text (for create)"
+      },
+      "API_PRODUCTGROUP_SRV.A_ProductGroupTextType-update": {
+        "type": "object",
+        "properties": {
+          "MaterialGroupName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 20,
+            "title": "Prod Grp Desc.",
+            "description": "Product Group Description"
+          },
+          "MaterialGroupText": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 60,
+            "title": "Mat.Grp Desc. 2",
+            "description": "Description of the Material Group"
+          }
+        },
+        "title": "Product Group Text (for update)"
+      },
+      "count": {
+        "type": "string",
+        "description": "The number of entities in the collection. Available when using the [$inlinecount](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=67) query option."
+      },
+      "error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "code",
+              "message"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "object",
+                "required": [
+                  "lang",
+                  "value"
+                ],
+                "properties": {
+                  "lang": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              },
+              "innererror": {
+                "type": "object",
+                "description": "The structure of this object is service-specific"
+              }
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "top": {
+        "name": "$top",
+        "in": "query",
+        "description": "Show only the first n items, see [Paging - Top](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=66)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "example": 50
+      },
+      "skip": {
+        "name": "$skip",
+        "in": "query",
+        "description": "Skip the first n items, see [Paging - Skip](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "count": {
+        "name": "$inlinecount",
+        "in": "query",
+        "description": "Include count of items, see [Inlinecount](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=67)",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "allpages",
+            "none"
+          ]
+        }
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/error"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "OAuth2Auth": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "scopes": {},
+            "refreshUrl": "https://{host}:{port}",
+            "authorizationUrl": "https://{host}:{port}",
+            "tokenUrl": "https://{host}:{port}"
+          }
+        }
+      },
+      "BasicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "OAuth2Auth": []
+    },
+    {
+      "BasicAuth": []
+    }
+  ]
+}

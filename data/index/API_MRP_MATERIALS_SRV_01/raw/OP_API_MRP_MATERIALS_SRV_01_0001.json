@@ -1,0 +1,3456 @@
+﻿{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Material Planning Data - Read",
+    "version": "1.0.0",
+    "description": "The service contains entities for material master data, supply and demand information, and information about the coverage of materials. You can read master data for one or more materials. You can read supply and demand information over a certain time period, or you can aggregate the quantities on category group level. You can read material coverage information."
+  },
+  "externalDocs": {
+    "description": "Business Documentation",
+    "url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/ca/111d6ed0004ac088b68f1360cf24fc/frameset.htm"
+  },
+  "x-sap-api-type": "ODATA",
+  "x-sap-shortText": "Read planning data for materials in Material Requirements Planning (MRP) using this synchronous inbound service",
+  "x-sap-software-min-version": "2025",
+  "x-sap-ext-overview": [
+    {
+      "name": "Authentication Methods",
+      "values": [
+        {
+          "text": "x509",
+          "format": "plain"
+        }
+      ]
+    },
+    {
+      "name": "Business Object",
+      "values": [
+        {
+          "text": "Product",
+          "format": "plain"
+        }
+      ]
+    }
+  ],
+  "servers": [
+    {
+      "url": "https://{host}:{port}/sap/opu/odata/sap/API_MRP_MATERIALS_SRV_01",
+      "variables": {
+        "host": {
+          "default": ""
+        },
+        "port": {
+          "default": ""
+        }
+      }
+    }
+  ],
+  "x-sap-extensible": {
+    "supported": "manual",
+    "description": "If you are working with key user extensibility, the API can be extended by custom fields on the following business contexts (field usage for this API needs to be selected):\r\n* Master Data: Product General (PRODUCT)\r\n* Master Data: Product Plant (PRODUCT_PLANT)\r\n\r\n[How to add an extension field to an API](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b5670aaaa2364a29935f40b16499972d/ce819b8557194ae0aa180ba4ac6a04de.html)\r\n\r\nNote: Please make sure to match the release selected in SAP Business Accelerator Hub with the Feature Pack (FPS) on help page."
+  },
+  "tags": [
+    {
+      "name": "Material Coverages"
+    },
+    {
+      "name": "Supply and Demand"
+    },
+    {
+      "name": "Master Data"
+    }
+  ],
+  "paths": {
+    "/MaterialCoverages": {
+      "get": {
+        "summary": "Reads information on material coverages.",
+        "description": "Reads material coverage information to get an overview of the current stock and requirements situation.",
+        "tags": [
+          "Material Coverages"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "MaterialShortageProfile",
+                  "MaterialShortageProfileCount",
+                  "MRPArea",
+                  "MRPPlanningSegmentNumber",
+                  "MRPPlanningSegmentType",
+                  "MRPPlant",
+                  "HasAcceptedShortage",
+                  "TimeHorizonInDays",
+                  "MaterialShortageDuration",
+                  "MaterialShortageDurnInWorkdays",
+                  "MRPController",
+                  "MRPSafetyDuration",
+                  "DaysOfSupplyDuration",
+                  "MaterialBaseUnit",
+                  "MaterialExternalID",
+                  "MaterialName",
+                  "MaterialReplnmtLeadDurnEndDate",
+                  "MaterialShortageDefinitionName",
+                  "MaterialShortageEndDate",
+                  "MaterialShortageQuantity",
+                  "MaterialShortageStartDate",
+                  "MRPAreaText",
+                  "MRPControllerName",
+                  "MRPPlanningSegmentTypeDesc",
+                  "MRPPlantName",
+                  "MRPSafetyDurationEndDate",
+                  "VltdUnrestrictedUseStkQty",
+                  "QualityInspectionStockQuantity",
+                  "MaterialLastMRPDateTime"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of MaterialCoverage",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_MRP_MATERIALS_SRV_01.MaterialCoverage"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/MaterialCoverages(Material='{Material}',MaterialShortageProfile='{MaterialShortageProfile}',MaterialShortageProfileCount='{MaterialShortageProfileCount}',MRPArea='{MRPArea}',MRPPlanningSegmentNumber='{MRPPlanningSegmentNumber}',MRPPlanningSegmentType='{MRPPlanningSegmentType}',MRPPlant='{MRPPlant}')": {
+      "parameters": [
+        {
+          "name": "Material",
+          "in": "path",
+          "required": true,
+          "description": "key: Material",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "MaterialShortageProfile",
+          "in": "path",
+          "required": true,
+          "description": "key: MaterialShortageProfile",
+          "schema": {
+            "type": "string",
+            "maxLength": 12
+          }
+        },
+        {
+          "name": "MaterialShortageProfileCount",
+          "in": "path",
+          "required": true,
+          "description": "key: MaterialShortageProfileCount",
+          "schema": {
+            "type": "string",
+            "maxLength": 3
+          }
+        },
+        {
+          "name": "MRPArea",
+          "in": "path",
+          "required": true,
+          "description": "key: MRPArea",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "MRPPlanningSegmentNumber",
+          "in": "path",
+          "required": true,
+          "description": "key: MRPPlanningSegmentNumber",
+          "schema": {
+            "type": "string",
+            "maxLength": 20
+          }
+        },
+        {
+          "name": "MRPPlanningSegmentType",
+          "in": "path",
+          "required": true,
+          "description": "key: MRPPlanningSegmentType",
+          "schema": {
+            "type": "string",
+            "maxLength": 2
+          }
+        },
+        {
+          "name": "MRPPlant",
+          "in": "path",
+          "required": true,
+          "description": "key: MRPPlant",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        }
+      ],
+      "get": {
+        "summary": "Reads information on a specific coverage situation.",
+        "description": "Reads information on a specific coverage situation you define by using the key properties.",
+        "tags": [
+          "Material Coverages"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "MaterialShortageProfile",
+                  "MaterialShortageProfileCount",
+                  "MRPArea",
+                  "MRPPlanningSegmentNumber",
+                  "MRPPlanningSegmentType",
+                  "MRPPlant",
+                  "HasAcceptedShortage",
+                  "TimeHorizonInDays",
+                  "MaterialShortageDuration",
+                  "MaterialShortageDurnInWorkdays",
+                  "MRPController",
+                  "MRPSafetyDuration",
+                  "DaysOfSupplyDuration",
+                  "MaterialBaseUnit",
+                  "MaterialExternalID",
+                  "MaterialName",
+                  "MaterialReplnmtLeadDurnEndDate",
+                  "MaterialShortageDefinitionName",
+                  "MaterialShortageEndDate",
+                  "MaterialShortageQuantity",
+                  "MaterialShortageStartDate",
+                  "MRPAreaText",
+                  "MRPControllerName",
+                  "MRPPlanningSegmentTypeDesc",
+                  "MRPPlantName",
+                  "MRPSafetyDurationEndDate",
+                  "VltdUnrestrictedUseStkQty",
+                  "QualityInspectionStockQuantity",
+                  "MaterialLastMRPDateTime"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "MaterialCoverage",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_MRP_MATERIALS_SRV_01.MaterialCoverage"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/SupplyDemandItems": {
+      "get": {
+        "summary": "Reads information on the supply and demand for an MRP material.",
+        "description": "Reads supply and demand information for materials in Material Requirements Planning (MRP) over a certain time period.",
+        "tags": [
+          "Supply and Demand"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "MRPArea",
+                  "MRPPlant",
+                  "MRPPlanningSegment",
+                  "MRPPlanningSegmentType",
+                  "MaterialShortageProfile",
+                  "DemandCategoryGroup",
+                  "DemandCategoryGroupName",
+                  "ReceiptCategoryGroup",
+                  "ReceiptCategoryGroupName",
+                  "MaterialBaseUnit",
+                  "UnitOfMeasureName",
+                  "UnitOfMeasureText",
+                  "MaterialExternalID",
+                  "MRPAvailability",
+                  "MaterialSafetyStockQty",
+                  "MRPElementOpenQuantity",
+                  "MRPAvailableQuantity",
+                  "MRPElement",
+                  "MRPElementAvailyOrRqmtDate",
+                  "MRPElementBusinessPartner",
+                  "MRPElementBusinessPartnerName",
+                  "MRPElementBusinessPartnerType",
+                  "MRPElementCategory",
+                  "MRPElementCategoryShortName",
+                  "MRPElementCategoryName",
+                  "MRPElementDocumentType",
+                  "MRPElementDocumentTypeName",
+                  "MRPElementIsPartiallyDelivered",
+                  "MRPElementIsReleased",
+                  "MRPElementItem",
+                  "MRPElementQuantityIsFirm",
+                  "MRPElementScheduleLine",
+                  "ProductionVersion",
+                  "SourceMRPElement",
+                  "SourceMRPElementCategory",
+                  "SourceMRPElementItem",
+                  "SourceMRPElementScheduleLine",
+                  "StorageLocation",
+                  "TimeHorizonCode",
+                  "ExceptionMessageNumber",
+                  "ExceptionMessageText",
+                  "ExceptionMessageNumber2",
+                  "ExceptionMessageText2",
+                  "PeriodType",
+                  "PeriodOrSegment",
+                  "NumberOfWorkdaysPerPeriod",
+                  "NumberOfAggregatedItems",
+                  "MRPController",
+                  "MRPElementReschedulingDate",
+                  "PlndIndepRqmtVersion",
+                  "MaterialShortageProfileCount"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of SupplyDemandItem",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_MRP_MATERIALS_SRV_01.SupplyDemandItem"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_MRPMaterial": {
+      "get": {
+        "summary": "Reads master data for MRP materials.",
+        "description": "Reads master data for MRP materials. You can use the standard OData system query options to filter a collection of MRP materials.",
+        "tags": [
+          "Master Data"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "Material desc",
+                  "MRPPlant",
+                  "MRPPlant desc",
+                  "MRPArea",
+                  "MRPArea desc",
+                  "MaterialName",
+                  "MaterialName desc",
+                  "PlantName",
+                  "PlantName desc",
+                  "MRPAreaText",
+                  "MRPAreaText desc",
+                  "MRPAreaCategory",
+                  "MRPAreaCategory desc",
+                  "MRPAreaCategoryName",
+                  "MRPAreaCategoryName desc",
+                  "MaterialGroup",
+                  "MaterialGroup desc",
+                  "MaterialGroupName",
+                  "MaterialGroupName desc",
+                  "MaterialIsMarkedForDeletion",
+                  "MaterialIsMarkedForDeletion desc",
+                  "PlntMatlIsMarkedForDeletion",
+                  "PlntMatlIsMarkedForDeletion desc",
+                  "CrossPlantStatus",
+                  "CrossPlantStatus desc",
+                  "CrossPlantStatusName",
+                  "CrossPlantStatusName desc",
+                  "BaseUnit",
+                  "BaseUnit desc",
+                  "UnitOfMeasureName",
+                  "UnitOfMeasureName desc",
+                  "LowLevelCode",
+                  "LowLevelCode desc",
+                  "MaterialIsConfigurable",
+                  "MaterialIsConfigurable desc",
+                  "MaterialUsabilityProfile",
+                  "MaterialUsabilityProfile desc",
+                  "MaterialUsabilityProfileName",
+                  "MaterialUsabilityProfileName desc",
+                  "MaterialABCClassification",
+                  "MaterialABCClassification desc",
+                  "MaterialABCClassificationDesc",
+                  "MaterialABCClassificationDesc desc",
+                  "PurchasingGroup",
+                  "PurchasingGroup desc",
+                  "PurchasingGroupName",
+                  "PurchasingGroupName desc",
+                  "MaterialProcurementCategory",
+                  "MaterialProcurementCategory desc",
+                  "MaterialProcurementCatName",
+                  "MaterialProcurementCatName desc",
+                  "DependentRequirementsType",
+                  "DependentRequirementsType desc",
+                  "DependentRequirementsTypeName",
+                  "DependentRequirementsTypeName desc",
+                  "MatlCompDiscontinuationType",
+                  "MatlCompDiscontinuationType desc",
+                  "MatlCompDscontnTypeName",
+                  "MatlCompDscontnTypeName desc",
+                  "EffectiveOutDate",
+                  "EffectiveOutDate desc",
+                  "MaterialType",
+                  "MaterialType desc",
+                  "MaterialTypeName",
+                  "MaterialTypeName desc",
+                  "MRPGroup",
+                  "MRPGroup desc",
+                  "MRPGroupName",
+                  "MRPGroupName desc",
+                  "MRPController",
+                  "MRPController desc",
+                  "MRPControllerName",
+                  "MRPControllerName desc",
+                  "RangeOfCvrgPrflCode",
+                  "RangeOfCvrgPrflCode desc",
+                  "SchedulingFloatProfile",
+                  "SchedulingFloatProfile desc",
+                  "ConfigurableProduct",
+                  "ConfigurableProduct desc",
+                  "ConfigurableProductName",
+                  "ConfigurableProductName desc",
+                  "ProcessingTime",
+                  "ProcessingTime desc",
+                  "SetupAndTeardownTime",
+                  "SetupAndTeardownTime desc",
+                  "TransitionTime",
+                  "TransitionTime desc",
+                  "GoodsReceiptDuration",
+                  "GoodsReceiptDuration desc",
+                  "MaterialPlannedDeliveryDurn",
+                  "MaterialPlannedDeliveryDurn desc",
+                  "MaterialPlannedProductionDurn",
+                  "MaterialPlannedProductionDurn desc",
+                  "TotalReplenishmentLeadDuration",
+                  "TotalReplenishmentLeadDuration desc",
+                  "IsSafetyTime",
+                  "IsSafetyTime desc",
+                  "MRPSafetyDuration",
+                  "MRPSafetyDuration desc",
+                  "PerdPrflForSftyTme",
+                  "PerdPrflForSftyTme desc",
+                  "ReorderThresholdQuantity",
+                  "ReorderThresholdQuantity desc",
+                  "SafetyStockQuantity",
+                  "SafetyStockQuantity desc",
+                  "LotSizingProcedure",
+                  "LotSizingProcedure desc",
+                  "MaterialLotSizingProcedureName",
+                  "MaterialLotSizingProcedureName desc",
+                  "MinimumLotSizeQuantity",
+                  "MinimumLotSizeQuantity desc",
+                  "MaximumLotSizeQuantity",
+                  "MaximumLotSizeQuantity desc",
+                  "FixedLotSizeQuantity",
+                  "FixedLotSizeQuantity desc",
+                  "MaterialMaxStockLevelQuantity",
+                  "MaterialMaxStockLevelQuantity desc",
+                  "LotSizeIndependentCosts",
+                  "LotSizeIndependentCosts desc",
+                  "Currency",
+                  "Currency desc",
+                  "StorageCostsPercentageCode",
+                  "StorageCostsPercentageCode desc",
+                  "AssemblyScrapPercent",
+                  "AssemblyScrapPercent desc",
+                  "TaktTime",
+                  "TaktTime desc",
+                  "PurOrderQtyRoundingQty",
+                  "PurOrderQtyRoundingQty desc",
+                  "RoundingProfile",
+                  "RoundingProfile desc",
+                  "PlanningStrategyGroup",
+                  "PlanningStrategyGroup desc",
+                  "DfltStorageLocationExtProcmt",
+                  "DfltStorageLocationExtProcmt desc",
+                  "MRPPlanningCalendar",
+                  "MRPPlanningCalendar desc",
+                  "RepetitiveManufacturingIsAllwd",
+                  "RepetitiveManufacturingIsAllwd desc",
+                  "RepetitiveManufacturingProfile",
+                  "RepetitiveManufacturingProfile desc",
+                  "PlanningTimeFenceInDays",
+                  "PlanningTimeFenceInDays desc",
+                  "MRPType",
+                  "MRPType desc",
+                  "MRPTypeName",
+                  "MRPTypeName desc",
+                  "MaterialProcurementProfile",
+                  "MaterialProcurementProfile desc",
+                  "MaterialProcurementProfileName",
+                  "MaterialProcurementProfileName desc",
+                  "ProductionSupervisor",
+                  "ProductionSupervisor desc",
+                  "ProductionSupervisorName",
+                  "ProductionSupervisorName desc",
+                  "MaterialBaseQuantity",
+                  "MaterialBaseQuantity desc",
+                  "ProductionInvtryManagedLoc",
+                  "ProductionInvtryManagedLoc desc",
+                  "StorageLocationName",
+                  "StorageLocationName desc",
+                  "AuthorizationGroup",
+                  "AuthorizationGroup desc",
+                  "MRPSafetyStockMethod",
+                  "MRPSafetyStockMethod desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "MRPPlant",
+                  "MRPArea",
+                  "MaterialName",
+                  "PlantName",
+                  "MRPAreaText",
+                  "MRPAreaCategory",
+                  "MRPAreaCategoryName",
+                  "MaterialGroup",
+                  "MaterialGroupName",
+                  "MaterialIsMarkedForDeletion",
+                  "PlntMatlIsMarkedForDeletion",
+                  "CrossPlantStatus",
+                  "CrossPlantStatusName",
+                  "BaseUnit",
+                  "UnitOfMeasureName",
+                  "LowLevelCode",
+                  "MaterialIsConfigurable",
+                  "MaterialUsabilityProfile",
+                  "MaterialUsabilityProfileName",
+                  "MaterialABCClassification",
+                  "MaterialABCClassificationDesc",
+                  "PurchasingGroup",
+                  "PurchasingGroupName",
+                  "MaterialProcurementCategory",
+                  "MaterialProcurementCatName",
+                  "DependentRequirementsType",
+                  "DependentRequirementsTypeName",
+                  "MatlCompDiscontinuationType",
+                  "MatlCompDscontnTypeName",
+                  "EffectiveOutDate",
+                  "MaterialType",
+                  "MaterialTypeName",
+                  "MRPGroup",
+                  "MRPGroupName",
+                  "MRPController",
+                  "MRPControllerName",
+                  "RangeOfCvrgPrflCode",
+                  "SchedulingFloatProfile",
+                  "ConfigurableProduct",
+                  "ConfigurableProductName",
+                  "ProcessingTime",
+                  "SetupAndTeardownTime",
+                  "TransitionTime",
+                  "GoodsReceiptDuration",
+                  "MaterialPlannedDeliveryDurn",
+                  "MaterialPlannedProductionDurn",
+                  "TotalReplenishmentLeadDuration",
+                  "IsSafetyTime",
+                  "MRPSafetyDuration",
+                  "PerdPrflForSftyTme",
+                  "ReorderThresholdQuantity",
+                  "SafetyStockQuantity",
+                  "LotSizingProcedure",
+                  "MaterialLotSizingProcedureName",
+                  "MinimumLotSizeQuantity",
+                  "MaximumLotSizeQuantity",
+                  "FixedLotSizeQuantity",
+                  "MaterialMaxStockLevelQuantity",
+                  "LotSizeIndependentCosts",
+                  "Currency",
+                  "StorageCostsPercentageCode",
+                  "AssemblyScrapPercent",
+                  "TaktTime",
+                  "PurOrderQtyRoundingQty",
+                  "RoundingProfile",
+                  "PlanningStrategyGroup",
+                  "DfltStorageLocationExtProcmt",
+                  "MRPPlanningCalendar",
+                  "RepetitiveManufacturingIsAllwd",
+                  "RepetitiveManufacturingProfile",
+                  "PlanningTimeFenceInDays",
+                  "MRPType",
+                  "MRPTypeName",
+                  "MaterialProcurementProfile",
+                  "MaterialProcurementProfileName",
+                  "ProductionSupervisor",
+                  "ProductionSupervisorName",
+                  "MaterialBaseQuantity",
+                  "ProductionInvtryManagedLoc",
+                  "StorageLocationName",
+                  "AuthorizationGroup",
+                  "MRPSafetyStockMethod"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of A_MRPMaterialType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_MRP_MATERIALS_SRV_01.A_MRPMaterialType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_MRPMaterial(Material='{Material}',MRPPlant='{MRPPlant}',MRPArea='{MRPArea}')": {
+      "parameters": [
+        {
+          "name": "Material",
+          "in": "path",
+          "required": true,
+          "description": "Material Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "MRPPlant",
+          "in": "path",
+          "required": true,
+          "description": "Plant",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "MRPArea",
+          "in": "path",
+          "required": true,
+          "description": "MRP Area",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        }
+      ],
+      "get": {
+        "summary": "Reads master data for a specific MRP material.",
+        "description": "Reads master data for a specific MRP material you define by using the material number, MRP plant number, and MRP area.",
+        "tags": [
+          "Master Data"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "MRPPlant",
+                  "MRPArea",
+                  "MaterialName",
+                  "PlantName",
+                  "MRPAreaText",
+                  "MRPAreaCategory",
+                  "MRPAreaCategoryName",
+                  "MaterialGroup",
+                  "MaterialGroupName",
+                  "MaterialIsMarkedForDeletion",
+                  "PlntMatlIsMarkedForDeletion",
+                  "CrossPlantStatus",
+                  "CrossPlantStatusName",
+                  "BaseUnit",
+                  "UnitOfMeasureName",
+                  "LowLevelCode",
+                  "MaterialIsConfigurable",
+                  "MaterialUsabilityProfile",
+                  "MaterialUsabilityProfileName",
+                  "MaterialABCClassification",
+                  "MaterialABCClassificationDesc",
+                  "PurchasingGroup",
+                  "PurchasingGroupName",
+                  "MaterialProcurementCategory",
+                  "MaterialProcurementCatName",
+                  "DependentRequirementsType",
+                  "DependentRequirementsTypeName",
+                  "MatlCompDiscontinuationType",
+                  "MatlCompDscontnTypeName",
+                  "EffectiveOutDate",
+                  "MaterialType",
+                  "MaterialTypeName",
+                  "MRPGroup",
+                  "MRPGroupName",
+                  "MRPController",
+                  "MRPControllerName",
+                  "RangeOfCvrgPrflCode",
+                  "SchedulingFloatProfile",
+                  "ConfigurableProduct",
+                  "ConfigurableProductName",
+                  "ProcessingTime",
+                  "SetupAndTeardownTime",
+                  "TransitionTime",
+                  "GoodsReceiptDuration",
+                  "MaterialPlannedDeliveryDurn",
+                  "MaterialPlannedProductionDurn",
+                  "TotalReplenishmentLeadDuration",
+                  "IsSafetyTime",
+                  "MRPSafetyDuration",
+                  "PerdPrflForSftyTme",
+                  "ReorderThresholdQuantity",
+                  "SafetyStockQuantity",
+                  "LotSizingProcedure",
+                  "MaterialLotSizingProcedureName",
+                  "MinimumLotSizeQuantity",
+                  "MaximumLotSizeQuantity",
+                  "FixedLotSizeQuantity",
+                  "MaterialMaxStockLevelQuantity",
+                  "LotSizeIndependentCosts",
+                  "Currency",
+                  "StorageCostsPercentageCode",
+                  "AssemblyScrapPercent",
+                  "TaktTime",
+                  "PurOrderQtyRoundingQty",
+                  "RoundingProfile",
+                  "PlanningStrategyGroup",
+                  "DfltStorageLocationExtProcmt",
+                  "MRPPlanningCalendar",
+                  "RepetitiveManufacturingIsAllwd",
+                  "RepetitiveManufacturingProfile",
+                  "PlanningTimeFenceInDays",
+                  "MRPType",
+                  "MRPTypeName",
+                  "MaterialProcurementProfile",
+                  "MaterialProcurementProfileName",
+                  "ProductionSupervisor",
+                  "ProductionSupervisorName",
+                  "MaterialBaseQuantity",
+                  "ProductionInvtryManagedLoc",
+                  "StorageLocationName",
+                  "AuthorizationGroup",
+                  "MRPSafetyStockMethod"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_MRPMaterialType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_MRP_MATERIALS_SRV_01.A_MRPMaterialType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/$batch": {
+      "post": {
+        "summary": "Send a group of requests",
+        "description": "Group multiple requests into a single request payload, see [Batch Requests](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=152).\n\n*Please note that \"Try it out\" is not supported for this request.*",
+        "tags": [
+          "Batch Requests"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Batch request",
+          "content": {
+            "multipart/mixed;boundary=request-separator": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "--request-separator\nContent-Type: application/http\nContent-Transfer-Encoding: binary\n\nGET MaterialCoverages HTTP/1.1\nAccept: application/json\n\n\n--request-separator--"
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Batch response",
+            "content": {
+              "multipart/mixed": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "--response-separator\nContent-Type: application/http\n\nHTTP/1.1 200 OK\nContent-Type: application/json\n\n{...}\n--response-separator--"
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "API_MRP_MATERIALS_SRV_01.MaterialCoverage": {
+        "type": "object",
+        "properties": {
+          "Material": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "MaterialShortageProfile": {
+            "type": "string",
+            "maxLength": 12
+          },
+          "MaterialShortageProfileCount": {
+            "type": "string",
+            "maxLength": 3
+          },
+          "MRPArea": {
+            "type": "string",
+            "maxLength": 10
+          },
+          "MRPPlanningSegmentNumber": {
+            "type": "string",
+            "maxLength": 20
+          },
+          "MRPPlanningSegmentType": {
+            "type": "string",
+            "maxLength": 2
+          },
+          "MRPPlant": {
+            "type": "string",
+            "maxLength": 4
+          },
+          "HasAcceptedShortage": {
+            "type": "string",
+            "maxLength": 1
+          },
+          "TimeHorizonInDays": {
+            "type": "integer",
+            "nullable": true,
+            "format": "int16",
+            "title": "Signed INT2 / int16"
+          },
+          "MaterialShortageDuration": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "MaterialShortageDurnInWorkdays": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "MRPController": {
+            "type": "string",
+            "maxLength": 3
+          },
+          "MRPSafetyDuration": {
+            "type": "string",
+            "maxLength": 2
+          },
+          "DaysOfSupplyDuration": {
+            "type": "integer",
+            "nullable": true,
+            "format": "int32"
+          },
+          "MaterialBaseUnit": {
+            "type": "string",
+            "maxLength": 3
+          },
+          "MaterialExternalID": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "MaterialName": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "MaterialReplnmtLeadDurnEndDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp"
+          },
+          "MaterialShortageDefinitionName": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "MaterialShortageEndDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp"
+          },
+          "MaterialShortageQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 21,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "example": "0"
+          },
+          "MaterialShortageStartDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp"
+          },
+          "MRPAreaText": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "MRPControllerName": {
+            "type": "string",
+            "maxLength": 18
+          },
+          "MRPPlanningSegmentTypeDesc": {
+            "type": "string",
+            "maxLength": 6
+          },
+          "MRPPlantName": {
+            "type": "string",
+            "maxLength": 30
+          },
+          "MRPSafetyDurationEndDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp"
+          },
+          "VltdUnrestrictedUseStkQty": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0"
+          },
+          "QualityInspectionStockQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0"
+          },
+          "MaterialLastMRPDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp"
+          }
+        },
+        "title": "Material Coverages"
+      },
+      "API_MRP_MATERIALS_SRV_01.MaterialCoverage-create": {
+        "type": "object",
+        "title": "Material Coverages (for create)"
+      },
+      "API_MRP_MATERIALS_SRV_01.MaterialCoverage-update": {
+        "type": "object",
+        "title": "Material Coverages (for update)"
+      },
+      "API_MRP_MATERIALS_SRV_01.SupplyDemandItem": {
+        "type": "object",
+        "properties": {
+          "Material": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "MRPArea": {
+            "type": "string",
+            "maxLength": 10
+          },
+          "MRPPlant": {
+            "type": "string",
+            "maxLength": 4
+          },
+          "MRPPlanningSegment": {
+            "type": "string",
+            "maxLength": 20
+          },
+          "MRPPlanningSegmentType": {
+            "type": "string",
+            "maxLength": 2
+          },
+          "MaterialShortageProfile": {
+            "type": "string",
+            "maxLength": 12
+          },
+          "DemandCategoryGroup": {
+            "type": "string",
+            "maxLength": 1
+          },
+          "DemandCategoryGroupName": {
+            "type": "string",
+            "maxLength": 60
+          },
+          "ReceiptCategoryGroup": {
+            "type": "string",
+            "maxLength": 1
+          },
+          "ReceiptCategoryGroupName": {
+            "type": "string",
+            "maxLength": 60
+          },
+          "MaterialBaseUnit": {
+            "type": "string",
+            "maxLength": 3
+          },
+          "UnitOfMeasureName": {
+            "type": "string",
+            "maxLength": 6
+          },
+          "UnitOfMeasureText": {
+            "type": "string",
+            "maxLength": 30
+          },
+          "MaterialExternalID": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "MRPAvailability": {
+            "type": "string",
+            "maxLength": 1
+          },
+          "MaterialSafetyStockQty": {
+            "type": "string",
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0"
+          },
+          "MRPElementOpenQuantity": {
+            "type": "string",
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0"
+          },
+          "MRPAvailableQuantity": {
+            "type": "string",
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0"
+          },
+          "MRPElement": {
+            "type": "string",
+            "maxLength": 12
+          },
+          "MRPElementAvailyOrRqmtDate": {
+            "type": "string",
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp"
+          },
+          "MRPElementBusinessPartner": {
+            "type": "string",
+            "maxLength": 10
+          },
+          "MRPElementBusinessPartnerName": {
+            "type": "string",
+            "maxLength": 35
+          },
+          "MRPElementBusinessPartnerType": {
+            "type": "string",
+            "maxLength": 1
+          },
+          "MRPElementCategory": {
+            "type": "string",
+            "maxLength": 2
+          },
+          "MRPElementCategoryShortName": {
+            "type": "string",
+            "maxLength": 10
+          },
+          "MRPElementCategoryName": {
+            "type": "string",
+            "maxLength": 60
+          },
+          "MRPElementDocumentType": {
+            "type": "string",
+            "maxLength": 4
+          },
+          "MRPElementDocumentTypeName": {
+            "type": "string",
+            "maxLength": 60
+          },
+          "MRPElementIsPartiallyDelivered": {
+            "type": "boolean",
+            "title": "Indicator"
+          },
+          "MRPElementIsReleased": {
+            "type": "boolean",
+            "title": "Indicator"
+          },
+          "MRPElementItem": {
+            "type": "string",
+            "maxLength": 6
+          },
+          "MRPElementQuantityIsFirm": {
+            "type": "boolean",
+            "title": "Indicator"
+          },
+          "MRPElementScheduleLine": {
+            "type": "string",
+            "maxLength": 4
+          },
+          "ProductionVersion": {
+            "type": "string",
+            "maxLength": 4
+          },
+          "SourceMRPElement": {
+            "type": "string",
+            "maxLength": 12
+          },
+          "SourceMRPElementCategory": {
+            "type": "string",
+            "maxLength": 2
+          },
+          "SourceMRPElementItem": {
+            "type": "string",
+            "maxLength": 6
+          },
+          "SourceMRPElementScheduleLine": {
+            "type": "string",
+            "maxLength": 4
+          },
+          "StorageLocation": {
+            "type": "string",
+            "maxLength": 4
+          },
+          "TimeHorizonCode": {
+            "type": "string",
+            "maxLength": 1
+          },
+          "ExceptionMessageNumber": {
+            "type": "string",
+            "maxLength": 2
+          },
+          "ExceptionMessageText": {
+            "type": "string",
+            "maxLength": 60
+          },
+          "ExceptionMessageNumber2": {
+            "type": "string",
+            "maxLength": 2
+          },
+          "ExceptionMessageText2": {
+            "type": "string",
+            "maxLength": 60
+          },
+          "PeriodType": {
+            "type": "string",
+            "maxLength": 1
+          },
+          "PeriodOrSegment": {
+            "type": "string",
+            "maxLength": 22,
+            "title": "Period/Segment"
+          },
+          "NumberOfWorkdaysPerPeriod": {
+            "type": "integer",
+            "format": "int16",
+            "title": "Signed INT2 / int16"
+          },
+          "NumberOfAggregatedItems": {
+            "type": "integer",
+            "format": "int16",
+            "title": "Signed INT2 / int16"
+          },
+          "MRPController": {
+            "type": "string",
+            "maxLength": 3
+          },
+          "MRPElementReschedulingDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp"
+          },
+          "PlndIndepRqmtVersion": {
+            "type": "string",
+            "maxLength": 2
+          },
+          "MaterialShortageProfileCount": {
+            "type": "string",
+            "maxLength": 3
+          }
+        },
+        "title": "Supply and Demand"
+      },
+      "API_MRP_MATERIALS_SRV_01.SupplyDemandItem-create": {
+        "type": "object",
+        "title": "Supply and Demand (for create)"
+      },
+      "API_MRP_MATERIALS_SRV_01.SupplyDemandItem-update": {
+        "type": "object",
+        "title": "Supply and Demand (for update)"
+      },
+      "API_MRP_MATERIALS_SRV_01.A_MRPMaterialType": {
+        "type": "object",
+        "properties": {
+          "Material": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "MRPPlant": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "MRPArea": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "MRP Area"
+          },
+          "MaterialName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Product Description"
+          },
+          "PlantName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 30,
+            "title": "Plant Name"
+          },
+          "MRPAreaText": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "MRP Area Text"
+          },
+          "MRPAreaCategory": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "MRP Area Category"
+          },
+          "MRPAreaCategoryName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 60,
+            "title": "Category Name",
+            "description": "MRP Area Category Name"
+          },
+          "MaterialGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 9,
+            "title": "Product Group"
+          },
+          "MaterialGroupName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 20,
+            "title": "Prod Grp Desc.",
+            "description": "Product Group Description"
+          },
+          "MaterialIsMarkedForDeletion": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Marked for Deletion",
+            "description": "Deletion Indicator"
+          },
+          "PlntMatlIsMarkedForDeletion": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "DF at plant level",
+            "description": "Flag Material for Deletion at Plant Level"
+          },
+          "CrossPlantStatus": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "CrossPlantProdStatus",
+            "description": "Cross-Plant Product Status"
+          },
+          "CrossPlantStatusName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 25,
+            "title": "Cross Plant Status Text"
+          },
+          "BaseUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Base Unit of Measure"
+          },
+          "UnitOfMeasureName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Meas. Unit Text",
+            "description": "Unit of Measurement Text (Maximum 10 Characters)"
+          },
+          "LowLevelCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Low-Level Code"
+          },
+          "MaterialIsConfigurable": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Configurable",
+            "description": "Product is Configurable"
+          },
+          "MaterialUsabilityProfile": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "P-S Mat. Status",
+            "description": "Plant-Specific Material Status"
+          },
+          "MaterialUsabilityProfileName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 25,
+            "title": "Cross Plant Status Text"
+          },
+          "MaterialABCClassification": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "ABC Indicator"
+          },
+          "MaterialABCClassificationDesc": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 30,
+            "title": "Consumption Value Category Text"
+          },
+          "PurchasingGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Purchasing Group"
+          },
+          "PurchasingGroupName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 18,
+            "title": "Purchasing Grp. Name",
+            "description": "Purchasing Group Name"
+          },
+          "MaterialProcurementCategory": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Procurement Type"
+          },
+          "MaterialProcurementCatName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 60,
+            "title": "Category Name",
+            "description": "Material Procurement Category Name"
+          },
+          "DependentRequirementsType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Indiv./ Coll.",
+            "description": "Indicator for Individual and Collective Requirements"
+          },
+          "DependentRequirementsTypeName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 60,
+            "title": "Short Description",
+            "description": "Short Text for Fixed Values"
+          },
+          "MatlCompDiscontinuationType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1
+          },
+          "MatlCompDscontnTypeName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 60,
+            "title": "Short Description",
+            "description": "Short Text for Fixed Values"
+          },
+          "EffectiveOutDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Effective-Out Date"
+          },
+          "MaterialType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Product Type"
+          },
+          "MaterialTypeName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 25,
+            "title": "Product Type Description",
+            "description": "Description of product type"
+          },
+          "MRPGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "MRP Group"
+          },
+          "MRPGroupName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "MRP Group Name",
+            "description": "MRP Group Description"
+          },
+          "MRPController": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "MRP Controller"
+          },
+          "MRPControllerName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 18,
+            "title": "MRP Controller Name"
+          },
+          "RangeOfCvrgPrflCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Coverage Profile",
+            "description": "Range-of-Coverage Profile"
+          },
+          "SchedulingFloatProfile": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Margin Key",
+            "description": "Scheduling Margin Key for Floats"
+          },
+          "ConfigurableProduct": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Conf. Material",
+            "description": "Configurable Material"
+          },
+          "ConfigurableProductName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Product Description"
+          },
+          "ProcessingTime": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 5,
+            "x-sap-scale": 2,
+            "multipleOf": 1.0e-2,
+            "minimum": -999.99,
+            "maximum": 999.99,
+            "example": "0",
+            "title": "Processing time"
+          },
+          "SetupAndTeardownTime": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 5,
+            "x-sap-scale": 2,
+            "multipleOf": 1.0e-2,
+            "minimum": -999.99,
+            "maximum": 999.99,
+            "example": "0",
+            "title": "Setup time",
+            "description": "Setup and teardown time"
+          },
+          "TransitionTime": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 5,
+            "x-sap-scale": 2,
+            "multipleOf": 1.0e-2,
+            "minimum": -999.99,
+            "maximum": 999.99,
+            "example": "0",
+            "title": "Interoperation",
+            "description": "Interoperation time"
+          },
+          "GoodsReceiptDuration": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 3,
+            "x-sap-scale": 0,
+            "multipleOf": 1,
+            "minimum": -999,
+            "maximum": 999,
+            "example": "0",
+            "title": "GR processing time",
+            "description": "Goods receipt processing time in days"
+          },
+          "MaterialPlannedDeliveryDurn": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 3,
+            "x-sap-scale": 0,
+            "multipleOf": 1,
+            "minimum": -999,
+            "maximum": 999,
+            "example": "0",
+            "title": "Planned Deliv. Time",
+            "description": "Planned Delivery Time in Days"
+          },
+          "MaterialPlannedProductionDurn": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 3,
+            "x-sap-scale": 0,
+            "multipleOf": 1,
+            "minimum": -999,
+            "maximum": 999,
+            "example": "0",
+            "title": "In-house production",
+            "description": "In-house production time"
+          },
+          "TotalReplenishmentLeadDuration": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 3,
+            "x-sap-scale": 0,
+            "multipleOf": 1,
+            "minimum": -999,
+            "maximum": 999,
+            "example": "0",
+            "title": "Tot. repl. lead time",
+            "description": "Total replenishment lead time (in workdays)"
+          },
+          "IsSafetyTime": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Safety Time Ind",
+            "description": "Safety Time Indicator (with or Without Safety Time)"
+          },
+          "MRPSafetyDuration": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Safety Time",
+            "description": "Safety Time (in Workdays)"
+          },
+          "PerdPrflForSftyTme": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Time Profile",
+            "description": "Period Profile for Safety Time"
+          },
+          "ReorderThresholdQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Reorder Point"
+          },
+          "SafetyStockQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0"
+          },
+          "LotSizingProcedure": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Lot Sizing Procedure",
+            "description": "Lot Sizing Procedure in Materials Planning"
+          },
+          "MaterialLotSizingProcedureName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Lot-Sizing Name",
+            "description": "Name of Lot-Sizing Procedure"
+          },
+          "MinimumLotSizeQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Minimum Lot Size"
+          },
+          "MaximumLotSizeQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Maximum Lot Size"
+          },
+          "FixedLotSizeQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Fixed lot size"
+          },
+          "MaterialMaxStockLevelQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Maximum Stock Level"
+          },
+          "LotSizeIndependentCosts": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 12,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -999999999.999,
+            "maximum": 999999999.999,
+            "example": "0",
+            "title": "LS-Independent Costs",
+            "description": "Lot-Size-Independent Costs"
+          },
+          "Currency": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "title": "Currency",
+            "description": "Currency Key"
+          },
+          "StorageCostsPercentageCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Storage Costs Code",
+            "description": "Storage Costs Percentage Code"
+          },
+          "AssemblyScrapPercent": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 5,
+            "x-sap-scale": 2,
+            "multipleOf": 1.0e-2,
+            "minimum": -999.99,
+            "maximum": 999.99,
+            "example": "0",
+            "title": "Assembly scrap (%)",
+            "description": "Assembly scrap in percent"
+          },
+          "TaktTime": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 3,
+            "x-sap-scale": 0,
+            "multipleOf": 1,
+            "minimum": -999,
+            "maximum": 999,
+            "example": "0",
+            "title": "Takt time"
+          },
+          "PurOrderQtyRoundingQty": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Rounding value",
+            "description": "Rounding value for purchase order quantity"
+          },
+          "RoundingProfile": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Rounding Profile"
+          },
+          "PlanningStrategyGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Strategy Group",
+            "description": "Planning Strategy Group"
+          },
+          "DfltStorageLocationExtProcmt": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Storage Location",
+            "description": "Default Storage Location for External Procurement"
+          },
+          "MRPPlanningCalendar": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Planning Calendar"
+          },
+          "RepetitiveManufacturingIsAllwd": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Repet. Manufacturing",
+            "description": "Indicator: Repetitive Manufacturing Allowed"
+          },
+          "RepetitiveManufacturingProfile": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "REM Profile",
+            "description": "Repetitive Manufacturing Profile"
+          },
+          "PlanningTimeFenceInDays": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Planning time fence"
+          },
+          "MRPType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "MRP Type"
+          },
+          "MRPTypeName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 60,
+            "title": "MRP Type Name",
+            "description": "Material Requirements Planning Type Description"
+          },
+          "MaterialProcurementProfile": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Special Procurement",
+            "description": "Special Procurement Type"
+          },
+          "MaterialProcurementProfileName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Profile Name",
+            "description": "Material Procurement Profile Name"
+          },
+          "ProductionSupervisor": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Prodn Supervisor",
+            "description": "Production Supervisor"
+          },
+          "ProductionSupervisorName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 30,
+            "title": "Prod. Superv. Name",
+            "description": "Production Supervisor Name"
+          },
+          "MaterialBaseQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Base quantity"
+          },
+          "ProductionInvtryManagedLoc": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Prod. Stor. Loc.",
+            "description": "Storage Location"
+          },
+          "StorageLocationName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 16,
+            "title": "Storage Loc. Name",
+            "description": "Storage Location Name"
+          },
+          "AuthorizationGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Authorization Group"
+          },
+          "MRPSafetyStockMethod": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Safety Stock Method",
+            "description": "MRP Safety Stock Method"
+          }
+        },
+        "title": "Master Data"
+      },
+      "API_MRP_MATERIALS_SRV_01.A_MRPMaterialType-create": {
+        "type": "object",
+        "properties": {
+          "Material": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "MRPPlant": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "MRPArea": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "MRP Area"
+          },
+          "MaterialName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Product Description"
+          },
+          "PlantName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 30,
+            "title": "Plant Name"
+          },
+          "MRPAreaText": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "MRP Area Text"
+          },
+          "MRPAreaCategory": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "MRP Area Category"
+          },
+          "MRPAreaCategoryName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 60,
+            "title": "Category Name",
+            "description": "MRP Area Category Name"
+          },
+          "MaterialGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 9,
+            "title": "Product Group"
+          },
+          "MaterialGroupName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 20,
+            "title": "Prod Grp Desc.",
+            "description": "Product Group Description"
+          },
+          "MaterialIsMarkedForDeletion": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Marked for Deletion",
+            "description": "Deletion Indicator"
+          },
+          "PlntMatlIsMarkedForDeletion": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "DF at plant level",
+            "description": "Flag Material for Deletion at Plant Level"
+          },
+          "CrossPlantStatus": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "CrossPlantProdStatus",
+            "description": "Cross-Plant Product Status"
+          },
+          "CrossPlantStatusName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 25,
+            "title": "Cross Plant Status Text"
+          },
+          "BaseUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Base Unit of Measure"
+          },
+          "UnitOfMeasureName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Meas. Unit Text",
+            "description": "Unit of Measurement Text (Maximum 10 Characters)"
+          },
+          "LowLevelCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Low-Level Code"
+          },
+          "MaterialIsConfigurable": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Configurable",
+            "description": "Product is Configurable"
+          },
+          "MaterialUsabilityProfile": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "P-S Mat. Status",
+            "description": "Plant-Specific Material Status"
+          },
+          "MaterialUsabilityProfileName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 25,
+            "title": "Cross Plant Status Text"
+          },
+          "MaterialABCClassification": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "ABC Indicator"
+          },
+          "MaterialABCClassificationDesc": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 30,
+            "title": "Consumption Value Category Text"
+          },
+          "PurchasingGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Purchasing Group"
+          },
+          "PurchasingGroupName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 18,
+            "title": "Purchasing Grp. Name",
+            "description": "Purchasing Group Name"
+          },
+          "MaterialProcurementCategory": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Procurement Type"
+          },
+          "MaterialProcurementCatName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 60,
+            "title": "Category Name",
+            "description": "Material Procurement Category Name"
+          },
+          "DependentRequirementsType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Indiv./ Coll.",
+            "description": "Indicator for Individual and Collective Requirements"
+          },
+          "DependentRequirementsTypeName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 60,
+            "title": "Short Description",
+            "description": "Short Text for Fixed Values"
+          },
+          "MatlCompDiscontinuationType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1
+          },
+          "MatlCompDscontnTypeName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 60,
+            "title": "Short Description",
+            "description": "Short Text for Fixed Values"
+          },
+          "EffectiveOutDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Effective-Out Date"
+          },
+          "MaterialType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Product Type"
+          },
+          "MaterialTypeName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 25,
+            "title": "Product Type Description",
+            "description": "Description of product type"
+          },
+          "MRPGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "MRP Group"
+          },
+          "MRPGroupName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "MRP Group Name",
+            "description": "MRP Group Description"
+          },
+          "MRPController": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "MRP Controller"
+          },
+          "MRPControllerName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 18,
+            "title": "MRP Controller Name"
+          },
+          "RangeOfCvrgPrflCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Coverage Profile",
+            "description": "Range-of-Coverage Profile"
+          },
+          "SchedulingFloatProfile": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Margin Key",
+            "description": "Scheduling Margin Key for Floats"
+          },
+          "ConfigurableProduct": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Conf. Material",
+            "description": "Configurable Material"
+          },
+          "ConfigurableProductName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Product Description"
+          },
+          "ProcessingTime": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 5,
+            "x-sap-scale": 2,
+            "multipleOf": 1.0e-2,
+            "minimum": -999.99,
+            "maximum": 999.99,
+            "example": "0",
+            "title": "Processing time"
+          },
+          "SetupAndTeardownTime": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 5,
+            "x-sap-scale": 2,
+            "multipleOf": 1.0e-2,
+            "minimum": -999.99,
+            "maximum": 999.99,
+            "example": "0",
+            "title": "Setup time",
+            "description": "Setup and teardown time"
+          },
+          "TransitionTime": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 5,
+            "x-sap-scale": 2,
+            "multipleOf": 1.0e-2,
+            "minimum": -999.99,
+            "maximum": 999.99,
+            "example": "0",
+            "title": "Interoperation",
+            "description": "Interoperation time"
+          },
+          "GoodsReceiptDuration": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 3,
+            "x-sap-scale": 0,
+            "multipleOf": 1,
+            "minimum": -999,
+            "maximum": 999,
+            "example": "0",
+            "title": "GR processing time",
+            "description": "Goods receipt processing time in days"
+          },
+          "MaterialPlannedDeliveryDurn": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 3,
+            "x-sap-scale": 0,
+            "multipleOf": 1,
+            "minimum": -999,
+            "maximum": 999,
+            "example": "0",
+            "title": "Planned Deliv. Time",
+            "description": "Planned Delivery Time in Days"
+          },
+          "MaterialPlannedProductionDurn": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 3,
+            "x-sap-scale": 0,
+            "multipleOf": 1,
+            "minimum": -999,
+            "maximum": 999,
+            "example": "0",
+            "title": "In-house production",
+            "description": "In-house production time"
+          },
+          "TotalReplenishmentLeadDuration": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 3,
+            "x-sap-scale": 0,
+            "multipleOf": 1,
+            "minimum": -999,
+            "maximum": 999,
+            "example": "0",
+            "title": "Tot. repl. lead time",
+            "description": "Total replenishment lead time (in workdays)"
+          },
+          "IsSafetyTime": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Safety Time Ind",
+            "description": "Safety Time Indicator (with or Without Safety Time)"
+          },
+          "MRPSafetyDuration": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Safety Time",
+            "description": "Safety Time (in Workdays)"
+          },
+          "PerdPrflForSftyTme": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Time Profile",
+            "description": "Period Profile for Safety Time"
+          },
+          "ReorderThresholdQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Reorder Point"
+          },
+          "SafetyStockQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0"
+          },
+          "LotSizingProcedure": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Lot Sizing Procedure",
+            "description": "Lot Sizing Procedure in Materials Planning"
+          },
+          "MaterialLotSizingProcedureName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Lot-Sizing Name",
+            "description": "Name of Lot-Sizing Procedure"
+          },
+          "MinimumLotSizeQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Minimum Lot Size"
+          },
+          "MaximumLotSizeQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Maximum Lot Size"
+          },
+          "FixedLotSizeQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Fixed lot size"
+          },
+          "MaterialMaxStockLevelQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Maximum Stock Level"
+          },
+          "LotSizeIndependentCosts": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 12,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -999999999.999,
+            "maximum": 999999999.999,
+            "example": "0",
+            "title": "LS-Independent Costs",
+            "description": "Lot-Size-Independent Costs"
+          },
+          "Currency": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "title": "Currency",
+            "description": "Currency Key"
+          },
+          "StorageCostsPercentageCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Storage Costs Code",
+            "description": "Storage Costs Percentage Code"
+          },
+          "AssemblyScrapPercent": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 5,
+            "x-sap-scale": 2,
+            "multipleOf": 1.0e-2,
+            "minimum": -999.99,
+            "maximum": 999.99,
+            "example": "0",
+            "title": "Assembly scrap (%)",
+            "description": "Assembly scrap in percent"
+          },
+          "TaktTime": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 3,
+            "x-sap-scale": 0,
+            "multipleOf": 1,
+            "minimum": -999,
+            "maximum": 999,
+            "example": "0",
+            "title": "Takt time"
+          },
+          "PurOrderQtyRoundingQty": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Rounding value",
+            "description": "Rounding value for purchase order quantity"
+          },
+          "RoundingProfile": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Rounding Profile"
+          },
+          "PlanningStrategyGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Strategy Group",
+            "description": "Planning Strategy Group"
+          },
+          "DfltStorageLocationExtProcmt": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Storage Location",
+            "description": "Default Storage Location for External Procurement"
+          },
+          "MRPPlanningCalendar": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Planning Calendar"
+          },
+          "RepetitiveManufacturingIsAllwd": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Repet. Manufacturing",
+            "description": "Indicator: Repetitive Manufacturing Allowed"
+          },
+          "RepetitiveManufacturingProfile": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "REM Profile",
+            "description": "Repetitive Manufacturing Profile"
+          },
+          "PlanningTimeFenceInDays": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Planning time fence"
+          },
+          "MRPType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "MRP Type"
+          },
+          "MRPTypeName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 60,
+            "title": "MRP Type Name",
+            "description": "Material Requirements Planning Type Description"
+          },
+          "MaterialProcurementProfile": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Special Procurement",
+            "description": "Special Procurement Type"
+          },
+          "MaterialProcurementProfileName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Profile Name",
+            "description": "Material Procurement Profile Name"
+          },
+          "ProductionSupervisor": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Prodn Supervisor",
+            "description": "Production Supervisor"
+          },
+          "ProductionSupervisorName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 30,
+            "title": "Prod. Superv. Name",
+            "description": "Production Supervisor Name"
+          },
+          "MaterialBaseQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Base quantity"
+          },
+          "ProductionInvtryManagedLoc": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Prod. Stor. Loc.",
+            "description": "Storage Location"
+          },
+          "StorageLocationName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 16,
+            "title": "Storage Loc. Name",
+            "description": "Storage Location Name"
+          },
+          "AuthorizationGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Authorization Group"
+          },
+          "MRPSafetyStockMethod": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Safety Stock Method",
+            "description": "MRP Safety Stock Method"
+          }
+        },
+        "required": [
+          "Material",
+          "MRPPlant",
+          "MRPArea"
+        ],
+        "title": "Master Data (for create)"
+      },
+      "API_MRP_MATERIALS_SRV_01.A_MRPMaterialType-update": {
+        "type": "object",
+        "properties": {
+          "MaterialName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Product Description"
+          },
+          "PlantName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 30,
+            "title": "Plant Name"
+          },
+          "MRPAreaText": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "MRP Area Text"
+          },
+          "MRPAreaCategory": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "MRP Area Category"
+          },
+          "MRPAreaCategoryName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 60,
+            "title": "Category Name",
+            "description": "MRP Area Category Name"
+          },
+          "MaterialGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 9,
+            "title": "Product Group"
+          },
+          "MaterialGroupName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 20,
+            "title": "Prod Grp Desc.",
+            "description": "Product Group Description"
+          },
+          "MaterialIsMarkedForDeletion": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Marked for Deletion",
+            "description": "Deletion Indicator"
+          },
+          "PlntMatlIsMarkedForDeletion": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "DF at plant level",
+            "description": "Flag Material for Deletion at Plant Level"
+          },
+          "CrossPlantStatus": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "CrossPlantProdStatus",
+            "description": "Cross-Plant Product Status"
+          },
+          "CrossPlantStatusName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 25,
+            "title": "Cross Plant Status Text"
+          },
+          "BaseUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Base Unit of Measure"
+          },
+          "UnitOfMeasureName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Meas. Unit Text",
+            "description": "Unit of Measurement Text (Maximum 10 Characters)"
+          },
+          "LowLevelCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Low-Level Code"
+          },
+          "MaterialIsConfigurable": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Configurable",
+            "description": "Product is Configurable"
+          },
+          "MaterialUsabilityProfile": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "P-S Mat. Status",
+            "description": "Plant-Specific Material Status"
+          },
+          "MaterialUsabilityProfileName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 25,
+            "title": "Cross Plant Status Text"
+          },
+          "MaterialABCClassification": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "ABC Indicator"
+          },
+          "MaterialABCClassificationDesc": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 30,
+            "title": "Consumption Value Category Text"
+          },
+          "PurchasingGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Purchasing Group"
+          },
+          "PurchasingGroupName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 18,
+            "title": "Purchasing Grp. Name",
+            "description": "Purchasing Group Name"
+          },
+          "MaterialProcurementCategory": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Procurement Type"
+          },
+          "MaterialProcurementCatName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 60,
+            "title": "Category Name",
+            "description": "Material Procurement Category Name"
+          },
+          "DependentRequirementsType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Indiv./ Coll.",
+            "description": "Indicator for Individual and Collective Requirements"
+          },
+          "DependentRequirementsTypeName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 60,
+            "title": "Short Description",
+            "description": "Short Text for Fixed Values"
+          },
+          "MatlCompDiscontinuationType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1
+          },
+          "MatlCompDscontnTypeName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 60,
+            "title": "Short Description",
+            "description": "Short Text for Fixed Values"
+          },
+          "EffectiveOutDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Effective-Out Date"
+          },
+          "MaterialType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Product Type"
+          },
+          "MaterialTypeName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 25,
+            "title": "Product Type Description",
+            "description": "Description of product type"
+          },
+          "MRPGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "MRP Group"
+          },
+          "MRPGroupName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "MRP Group Name",
+            "description": "MRP Group Description"
+          },
+          "MRPController": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "MRP Controller"
+          },
+          "MRPControllerName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 18,
+            "title": "MRP Controller Name"
+          },
+          "RangeOfCvrgPrflCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Coverage Profile",
+            "description": "Range-of-Coverage Profile"
+          },
+          "SchedulingFloatProfile": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Margin Key",
+            "description": "Scheduling Margin Key for Floats"
+          },
+          "ConfigurableProduct": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Conf. Material",
+            "description": "Configurable Material"
+          },
+          "ConfigurableProductName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Product Description"
+          },
+          "ProcessingTime": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 5,
+            "x-sap-scale": 2,
+            "multipleOf": 1.0e-2,
+            "minimum": -999.99,
+            "maximum": 999.99,
+            "example": "0",
+            "title": "Processing time"
+          },
+          "SetupAndTeardownTime": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 5,
+            "x-sap-scale": 2,
+            "multipleOf": 1.0e-2,
+            "minimum": -999.99,
+            "maximum": 999.99,
+            "example": "0",
+            "title": "Setup time",
+            "description": "Setup and teardown time"
+          },
+          "TransitionTime": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 5,
+            "x-sap-scale": 2,
+            "multipleOf": 1.0e-2,
+            "minimum": -999.99,
+            "maximum": 999.99,
+            "example": "0",
+            "title": "Interoperation",
+            "description": "Interoperation time"
+          },
+          "GoodsReceiptDuration": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 3,
+            "x-sap-scale": 0,
+            "multipleOf": 1,
+            "minimum": -999,
+            "maximum": 999,
+            "example": "0",
+            "title": "GR processing time",
+            "description": "Goods receipt processing time in days"
+          },
+          "MaterialPlannedDeliveryDurn": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 3,
+            "x-sap-scale": 0,
+            "multipleOf": 1,
+            "minimum": -999,
+            "maximum": 999,
+            "example": "0",
+            "title": "Planned Deliv. Time",
+            "description": "Planned Delivery Time in Days"
+          },
+          "MaterialPlannedProductionDurn": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 3,
+            "x-sap-scale": 0,
+            "multipleOf": 1,
+            "minimum": -999,
+            "maximum": 999,
+            "example": "0",
+            "title": "In-house production",
+            "description": "In-house production time"
+          },
+          "TotalReplenishmentLeadDuration": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 3,
+            "x-sap-scale": 0,
+            "multipleOf": 1,
+            "minimum": -999,
+            "maximum": 999,
+            "example": "0",
+            "title": "Tot. repl. lead time",
+            "description": "Total replenishment lead time (in workdays)"
+          },
+          "IsSafetyTime": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Safety Time Ind",
+            "description": "Safety Time Indicator (with or Without Safety Time)"
+          },
+          "MRPSafetyDuration": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Safety Time",
+            "description": "Safety Time (in Workdays)"
+          },
+          "PerdPrflForSftyTme": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Time Profile",
+            "description": "Period Profile for Safety Time"
+          },
+          "ReorderThresholdQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Reorder Point"
+          },
+          "SafetyStockQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0"
+          },
+          "LotSizingProcedure": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Lot Sizing Procedure",
+            "description": "Lot Sizing Procedure in Materials Planning"
+          },
+          "MaterialLotSizingProcedureName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Lot-Sizing Name",
+            "description": "Name of Lot-Sizing Procedure"
+          },
+          "MinimumLotSizeQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Minimum Lot Size"
+          },
+          "MaximumLotSizeQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Maximum Lot Size"
+          },
+          "FixedLotSizeQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Fixed lot size"
+          },
+          "MaterialMaxStockLevelQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Maximum Stock Level"
+          },
+          "LotSizeIndependentCosts": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 12,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -999999999.999,
+            "maximum": 999999999.999,
+            "example": "0",
+            "title": "LS-Independent Costs",
+            "description": "Lot-Size-Independent Costs"
+          },
+          "Currency": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "title": "Currency",
+            "description": "Currency Key"
+          },
+          "StorageCostsPercentageCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Storage Costs Code",
+            "description": "Storage Costs Percentage Code"
+          },
+          "AssemblyScrapPercent": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 5,
+            "x-sap-scale": 2,
+            "multipleOf": 1.0e-2,
+            "minimum": -999.99,
+            "maximum": 999.99,
+            "example": "0",
+            "title": "Assembly scrap (%)",
+            "description": "Assembly scrap in percent"
+          },
+          "TaktTime": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 3,
+            "x-sap-scale": 0,
+            "multipleOf": 1,
+            "minimum": -999,
+            "maximum": 999,
+            "example": "0",
+            "title": "Takt time"
+          },
+          "PurOrderQtyRoundingQty": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Rounding value",
+            "description": "Rounding value for purchase order quantity"
+          },
+          "RoundingProfile": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Rounding Profile"
+          },
+          "PlanningStrategyGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Strategy Group",
+            "description": "Planning Strategy Group"
+          },
+          "DfltStorageLocationExtProcmt": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Storage Location",
+            "description": "Default Storage Location for External Procurement"
+          },
+          "MRPPlanningCalendar": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Planning Calendar"
+          },
+          "RepetitiveManufacturingIsAllwd": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Repet. Manufacturing",
+            "description": "Indicator: Repetitive Manufacturing Allowed"
+          },
+          "RepetitiveManufacturingProfile": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "REM Profile",
+            "description": "Repetitive Manufacturing Profile"
+          },
+          "PlanningTimeFenceInDays": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Planning time fence"
+          },
+          "MRPType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "MRP Type"
+          },
+          "MRPTypeName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 60,
+            "title": "MRP Type Name",
+            "description": "Material Requirements Planning Type Description"
+          },
+          "MaterialProcurementProfile": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Special Procurement",
+            "description": "Special Procurement Type"
+          },
+          "MaterialProcurementProfileName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Profile Name",
+            "description": "Material Procurement Profile Name"
+          },
+          "ProductionSupervisor": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Prodn Supervisor",
+            "description": "Production Supervisor"
+          },
+          "ProductionSupervisorName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 30,
+            "title": "Prod. Superv. Name",
+            "description": "Production Supervisor Name"
+          },
+          "MaterialBaseQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Base quantity"
+          },
+          "ProductionInvtryManagedLoc": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Prod. Stor. Loc.",
+            "description": "Storage Location"
+          },
+          "StorageLocationName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 16,
+            "title": "Storage Loc. Name",
+            "description": "Storage Location Name"
+          },
+          "AuthorizationGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Authorization Group"
+          },
+          "MRPSafetyStockMethod": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Safety Stock Method",
+            "description": "MRP Safety Stock Method"
+          }
+        },
+        "title": "Master Data (for update)"
+      },
+      "count": {
+        "type": "string",
+        "description": "The number of entities in the collection. Available when using the [$inlinecount](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=67) query option."
+      },
+      "error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "code",
+              "message"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "object",
+                "required": [
+                  "lang",
+                  "value"
+                ],
+                "properties": {
+                  "lang": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              },
+              "innererror": {
+                "type": "object",
+                "description": "The structure of this object is service-specific"
+              }
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "top": {
+        "name": "$top",
+        "in": "query",
+        "description": "Show only the first n items, see [Paging - Top](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=66)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "example": 50
+      },
+      "skip": {
+        "name": "$skip",
+        "in": "query",
+        "description": "Skip the first n items, see [Paging - Skip](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "count": {
+        "name": "$inlinecount",
+        "in": "query",
+        "description": "Include count of items, see [Inlinecount](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=67)",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "allpages",
+            "none"
+          ]
+        }
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/error"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "OAuth2Auth": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "scopes": {},
+            "refreshUrl": "https://{host}:{port}",
+            "authorizationUrl": "https://{host}:{port}",
+            "tokenUrl": "https://{host}:{port}"
+          }
+        }
+      },
+      "BasicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "OAuth2Auth": []
+    },
+    {
+      "BasicAuth": []
+    }
+  ]
+}

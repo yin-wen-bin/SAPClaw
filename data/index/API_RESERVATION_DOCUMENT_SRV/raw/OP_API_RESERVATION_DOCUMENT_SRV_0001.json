@@ -1,0 +1,2159 @@
+﻿{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Reservation Document",
+    "version": "1.0.0",
+    "description": "For example, user might create a reservation for a material with some quantity and assign that reserved material to a cost center, a sales order or an asset. A reservation can also be created for a transfer posting from one plant to another. For an existing reservation, you can change the updatable fields of the items. The service also allows to delete existing reservation documents. It can be consumed by external systems and user interfaces."
+  },
+  "externalDocs": {
+    "description": "Business Documentation",
+    "url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/51/86af9bebab426984f5c399a5b2664b/frameset.htm"
+  },
+  "x-sap-api-type": "ODATA",
+  "x-sap-shortText": "Retrieve, create, update and delete reservation documents using this synchronous inbound service",
+  "x-sap-software-min-version": "2025",
+  "x-sap-ext-overview": [
+    {
+      "name": "Authentication Methods",
+      "values": [
+        {
+          "text": "x509",
+          "format": "plain"
+        }
+      ]
+    },
+    {
+      "name": "Business Object",
+      "values": [
+        {
+          "text": "Reservation Document",
+          "format": "plain"
+        }
+      ]
+    }
+  ],
+  "servers": [
+    {
+      "url": "https://{host}:{port}/sap/opu/odata/sap/API_RESERVATION_DOCUMENT_SRV",
+      "variables": {
+        "host": {
+          "default": ""
+        },
+        "port": {
+          "default": ""
+        }
+      }
+    }
+  ],
+  "x-sap-extensible": {
+    "supported": "no"
+  },
+  "tags": [
+    {
+      "name": "Document Header"
+    },
+    {
+      "name": "Document Items"
+    }
+  ],
+  "paths": {
+    "/A_ReservationDocumentHeader": {
+      "get": {
+        "summary": "Reads information on reservation document header level",
+        "description": "Reads reservation document header information to get an overview of the reservation document postings.",
+        "tags": [
+          "Document Header"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Reservation",
+                  "Reservation desc",
+                  "OrderID",
+                  "OrderID desc",
+                  "GoodsMovementType",
+                  "GoodsMovementType desc",
+                  "CostCenter",
+                  "CostCenter desc",
+                  "GoodsRecipientName",
+                  "GoodsRecipientName desc",
+                  "ReservationDate",
+                  "ReservationDate desc",
+                  "IsCheckedAgainstFactoryCal",
+                  "IsCheckedAgainstFactoryCal desc",
+                  "Customer",
+                  "Customer desc",
+                  "WBSElement",
+                  "WBSElement desc",
+                  "ControllingArea",
+                  "ControllingArea desc",
+                  "SalesOrder",
+                  "SalesOrder desc",
+                  "SalesOrderItem",
+                  "SalesOrderItem desc",
+                  "SalesOrderScheduleLine",
+                  "SalesOrderScheduleLine desc",
+                  "AssetNumber",
+                  "AssetNumber desc",
+                  "AssetSubNumber",
+                  "AssetSubNumber desc",
+                  "NetworkNumberForAcctAssgmt",
+                  "NetworkNumberForAcctAssgmt desc",
+                  "IssuingOrReceivingPlant",
+                  "IssuingOrReceivingPlant desc",
+                  "IssuingOrReceivingStorageLoc",
+                  "IssuingOrReceivingStorageLoc desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Reservation",
+                  "OrderID",
+                  "GoodsMovementType",
+                  "CostCenter",
+                  "GoodsRecipientName",
+                  "ReservationDate",
+                  "IsCheckedAgainstFactoryCal",
+                  "Customer",
+                  "WBSElement",
+                  "ControllingArea",
+                  "SalesOrder",
+                  "SalesOrderItem",
+                  "SalesOrderScheduleLine",
+                  "AssetNumber",
+                  "AssetSubNumber",
+                  "NetworkNumberForAcctAssgmt",
+                  "IssuingOrReceivingPlant",
+                  "IssuingOrReceivingStorageLoc",
+                  "to_ReservationDocumentItem"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_ReservationDocumentItem"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of A_ReservationDocumentHeaderType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_RESERVATION_DOCUMENT_SRV.A_ReservationDocumentHeaderType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a reservation document",
+        "description": "Creates a reservation document compost by header and items for a specific business process.",
+        "tags": [
+          "Document Header"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/API_RESERVATION_DOCUMENT_SRV.A_ReservationDocumentHeaderType-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_ReservationDocumentHeaderType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_RESERVATION_DOCUMENT_SRV.A_ReservationDocumentHeaderType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_ReservationDocumentHeader('{Reservation}')": {
+      "parameters": [
+        {
+          "name": "Reservation",
+          "in": "path",
+          "required": true,
+          "description": "Number of reservation/dependent requirements",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        }
+      ],
+      "get": {
+        "summary": "Reads information for a specific reservation document header",
+        "description": "Reads reservation document header information for a specific reservation document to get an overview of the reservation document posting.",
+        "tags": [
+          "Document Header"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Reservation",
+                  "OrderID",
+                  "GoodsMovementType",
+                  "CostCenter",
+                  "GoodsRecipientName",
+                  "ReservationDate",
+                  "IsCheckedAgainstFactoryCal",
+                  "Customer",
+                  "WBSElement",
+                  "ControllingArea",
+                  "SalesOrder",
+                  "SalesOrderItem",
+                  "SalesOrderScheduleLine",
+                  "AssetNumber",
+                  "AssetSubNumber",
+                  "NetworkNumberForAcctAssgmt",
+                  "IssuingOrReceivingPlant",
+                  "IssuingOrReceivingStorageLoc",
+                  "to_ReservationDocumentItem"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_ReservationDocumentItem"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_ReservationDocumentHeaderType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_RESERVATION_DOCUMENT_SRV.A_ReservationDocumentHeaderType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a reservation document",
+        "description": "Deletes a reservation document that you specify by the reservation document number.",
+        "tags": [
+          "Document Header"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_ReservationDocumentHeader('{Reservation}')/to_ReservationDocumentItem": {
+      "parameters": [
+        {
+          "name": "Reservation",
+          "in": "path",
+          "required": true,
+          "description": "Number of reservation/dependent requirements",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        }
+      ],
+      "get": {
+        "summary": "Reads information for a specific reservation document and reservation document items",
+        "description": "Reads reservation document header and reservation documents items information for a specific reservation document to get an overview of the reservation document posting.",
+        "tags": [
+          "Document Header",
+          "Document Items"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Reservation",
+                  "Reservation desc",
+                  "ReservationItem",
+                  "ReservationItem desc",
+                  "RecordType",
+                  "RecordType desc",
+                  "Product",
+                  "Product desc",
+                  "RequirementType",
+                  "RequirementType desc",
+                  "MatlCompRequirementDate",
+                  "MatlCompRequirementDate desc",
+                  "Plant",
+                  "Plant desc",
+                  "ManufacturingOrderOperation",
+                  "ManufacturingOrderOperation desc",
+                  "GoodsMovementIsAllowed",
+                  "GoodsMovementIsAllowed desc",
+                  "StorageLocation",
+                  "StorageLocation desc",
+                  "Batch",
+                  "Batch desc",
+                  "DebitCreditCode",
+                  "DebitCreditCode desc",
+                  "BaseUnit",
+                  "BaseUnit desc",
+                  "GLAccount",
+                  "GLAccount desc",
+                  "ResvnAccountIsEnteredManually",
+                  "ResvnAccountIsEnteredManually desc",
+                  "GoodsMovementType",
+                  "GoodsMovementType desc",
+                  "EntryUnit",
+                  "EntryUnit desc",
+                  "QuantityIsFixed",
+                  "QuantityIsFixed desc",
+                  "CompanyCodeCurrency",
+                  "CompanyCodeCurrency desc",
+                  "IssuingOrReceivingPlant",
+                  "IssuingOrReceivingPlant desc",
+                  "IssuingOrReceivingStorageLoc",
+                  "IssuingOrReceivingStorageLoc desc",
+                  "PurchasingDocument",
+                  "PurchasingDocument desc",
+                  "PurchasingDocumentItem",
+                  "PurchasingDocumentItem desc",
+                  "Supplier",
+                  "Supplier desc",
+                  "ResvnItmRequiredQtyInBaseUnit",
+                  "ResvnItmRequiredQtyInBaseUnit desc",
+                  "ReservationItemIsFinallyIssued",
+                  "ReservationItemIsFinallyIssued desc",
+                  "ReservationItmIsMarkedForDeltn",
+                  "ReservationItmIsMarkedForDeltn desc",
+                  "ResvnItmRequiredQtyInEntryUnit",
+                  "ResvnItmRequiredQtyInEntryUnit desc",
+                  "ResvnItmWithdrawnQtyInBaseUnit",
+                  "ResvnItmWithdrawnQtyInBaseUnit desc",
+                  "ResvnItmWithdrawnAmtInCCCrcy",
+                  "ResvnItmWithdrawnAmtInCCCrcy desc",
+                  "GoodsRecipientName",
+                  "GoodsRecipientName desc",
+                  "UnloadingPointName",
+                  "UnloadingPointName desc",
+                  "ReservationItemText",
+                  "ReservationItemText desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Reservation",
+                  "ReservationItem",
+                  "RecordType",
+                  "Product",
+                  "RequirementType",
+                  "MatlCompRequirementDate",
+                  "Plant",
+                  "ManufacturingOrderOperation",
+                  "GoodsMovementIsAllowed",
+                  "StorageLocation",
+                  "Batch",
+                  "DebitCreditCode",
+                  "BaseUnit",
+                  "GLAccount",
+                  "ResvnAccountIsEnteredManually",
+                  "GoodsMovementType",
+                  "EntryUnit",
+                  "QuantityIsFixed",
+                  "CompanyCodeCurrency",
+                  "IssuingOrReceivingPlant",
+                  "IssuingOrReceivingStorageLoc",
+                  "PurchasingDocument",
+                  "PurchasingDocumentItem",
+                  "Supplier",
+                  "ResvnItmRequiredQtyInBaseUnit",
+                  "ReservationItemIsFinallyIssued",
+                  "ReservationItmIsMarkedForDeltn",
+                  "ResvnItmRequiredQtyInEntryUnit",
+                  "ResvnItmWithdrawnQtyInBaseUnit",
+                  "ResvnItmWithdrawnAmtInCCCrcy",
+                  "GoodsRecipientName",
+                  "UnloadingPointName",
+                  "ReservationItemText"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of A_ReservationDocumentItemType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_RESERVATION_DOCUMENT_SRV.A_ReservationDocumentItemType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_ReservationDocumentItem": {
+      "get": {
+        "summary": "Reads information on reservation document items level",
+        "description": "Reads reservation document items information to get an overview of the reservation document postings.",
+        "tags": [
+          "Document Items"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Reservation",
+                  "Reservation desc",
+                  "ReservationItem",
+                  "ReservationItem desc",
+                  "RecordType",
+                  "RecordType desc",
+                  "Product",
+                  "Product desc",
+                  "RequirementType",
+                  "RequirementType desc",
+                  "MatlCompRequirementDate",
+                  "MatlCompRequirementDate desc",
+                  "Plant",
+                  "Plant desc",
+                  "ManufacturingOrderOperation",
+                  "ManufacturingOrderOperation desc",
+                  "GoodsMovementIsAllowed",
+                  "GoodsMovementIsAllowed desc",
+                  "StorageLocation",
+                  "StorageLocation desc",
+                  "Batch",
+                  "Batch desc",
+                  "DebitCreditCode",
+                  "DebitCreditCode desc",
+                  "BaseUnit",
+                  "BaseUnit desc",
+                  "GLAccount",
+                  "GLAccount desc",
+                  "ResvnAccountIsEnteredManually",
+                  "ResvnAccountIsEnteredManually desc",
+                  "GoodsMovementType",
+                  "GoodsMovementType desc",
+                  "EntryUnit",
+                  "EntryUnit desc",
+                  "QuantityIsFixed",
+                  "QuantityIsFixed desc",
+                  "CompanyCodeCurrency",
+                  "CompanyCodeCurrency desc",
+                  "IssuingOrReceivingPlant",
+                  "IssuingOrReceivingPlant desc",
+                  "IssuingOrReceivingStorageLoc",
+                  "IssuingOrReceivingStorageLoc desc",
+                  "PurchasingDocument",
+                  "PurchasingDocument desc",
+                  "PurchasingDocumentItem",
+                  "PurchasingDocumentItem desc",
+                  "Supplier",
+                  "Supplier desc",
+                  "ResvnItmRequiredQtyInBaseUnit",
+                  "ResvnItmRequiredQtyInBaseUnit desc",
+                  "ReservationItemIsFinallyIssued",
+                  "ReservationItemIsFinallyIssued desc",
+                  "ReservationItmIsMarkedForDeltn",
+                  "ReservationItmIsMarkedForDeltn desc",
+                  "ResvnItmRequiredQtyInEntryUnit",
+                  "ResvnItmRequiredQtyInEntryUnit desc",
+                  "ResvnItmWithdrawnQtyInBaseUnit",
+                  "ResvnItmWithdrawnQtyInBaseUnit desc",
+                  "ResvnItmWithdrawnAmtInCCCrcy",
+                  "ResvnItmWithdrawnAmtInCCCrcy desc",
+                  "GoodsRecipientName",
+                  "GoodsRecipientName desc",
+                  "UnloadingPointName",
+                  "UnloadingPointName desc",
+                  "ReservationItemText",
+                  "ReservationItemText desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Reservation",
+                  "ReservationItem",
+                  "RecordType",
+                  "Product",
+                  "RequirementType",
+                  "MatlCompRequirementDate",
+                  "Plant",
+                  "ManufacturingOrderOperation",
+                  "GoodsMovementIsAllowed",
+                  "StorageLocation",
+                  "Batch",
+                  "DebitCreditCode",
+                  "BaseUnit",
+                  "GLAccount",
+                  "ResvnAccountIsEnteredManually",
+                  "GoodsMovementType",
+                  "EntryUnit",
+                  "QuantityIsFixed",
+                  "CompanyCodeCurrency",
+                  "IssuingOrReceivingPlant",
+                  "IssuingOrReceivingStorageLoc",
+                  "PurchasingDocument",
+                  "PurchasingDocumentItem",
+                  "Supplier",
+                  "ResvnItmRequiredQtyInBaseUnit",
+                  "ReservationItemIsFinallyIssued",
+                  "ReservationItmIsMarkedForDeltn",
+                  "ResvnItmRequiredQtyInEntryUnit",
+                  "ResvnItmWithdrawnQtyInBaseUnit",
+                  "ResvnItmWithdrawnAmtInCCCrcy",
+                  "GoodsRecipientName",
+                  "UnloadingPointName",
+                  "ReservationItemText"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of A_ReservationDocumentItemType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_RESERVATION_DOCUMENT_SRV.A_ReservationDocumentItemType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_ReservationDocumentItem(Reservation='{Reservation}',ReservationItem='{ReservationItem}',RecordType='{RecordType}')": {
+      "parameters": [
+        {
+          "name": "Reservation",
+          "in": "path",
+          "required": true,
+          "description": "Number of reservation/dependent requirements",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "ReservationItem",
+          "in": "path",
+          "required": true,
+          "description": "Item Number of Reservation / Dependent Requirements",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "RecordType",
+          "in": "path",
+          "required": true,
+          "description": "Record type",
+          "schema": {
+            "type": "string",
+            "maxLength": 1
+          }
+        }
+      ],
+      "get": {
+        "summary": "Reads information on reservation document items level for a specific reservation document",
+        "description": "Reads reservation document items information for a specific reservation document, item and record type to get an overview of the reservation document postings.",
+        "tags": [
+          "Document Items"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Reservation",
+                  "ReservationItem",
+                  "RecordType",
+                  "Product",
+                  "RequirementType",
+                  "MatlCompRequirementDate",
+                  "Plant",
+                  "ManufacturingOrderOperation",
+                  "GoodsMovementIsAllowed",
+                  "StorageLocation",
+                  "Batch",
+                  "DebitCreditCode",
+                  "BaseUnit",
+                  "GLAccount",
+                  "ResvnAccountIsEnteredManually",
+                  "GoodsMovementType",
+                  "EntryUnit",
+                  "QuantityIsFixed",
+                  "CompanyCodeCurrency",
+                  "IssuingOrReceivingPlant",
+                  "IssuingOrReceivingStorageLoc",
+                  "PurchasingDocument",
+                  "PurchasingDocumentItem",
+                  "Supplier",
+                  "ResvnItmRequiredQtyInBaseUnit",
+                  "ReservationItemIsFinallyIssued",
+                  "ReservationItmIsMarkedForDeltn",
+                  "ResvnItmRequiredQtyInEntryUnit",
+                  "ResvnItmWithdrawnQtyInBaseUnit",
+                  "ResvnItmWithdrawnAmtInCCCrcy",
+                  "GoodsRecipientName",
+                  "UnloadingPointName",
+                  "ReservationItemText"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_ReservationDocumentItemType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_RESERVATION_DOCUMENT_SRV.A_ReservationDocumentItemType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/$batch": {
+      "post": {
+        "summary": "Send a group of requests",
+        "description": "Group multiple requests into a single request payload, see [Batch Requests](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=152).\n\n*Please note that \"Try it out\" is not supported for this request.*",
+        "tags": [
+          "Batch Requests"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Batch request",
+          "content": {
+            "multipart/mixed;boundary=request-separator": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "--request-separator\nContent-Type: application/http\nContent-Transfer-Encoding: binary\n\nGET A_ReservationDocumentHeader HTTP/1.1\nAccept: application/json\n\n\n--request-separator--"
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Batch response",
+            "content": {
+              "multipart/mixed": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "--response-separator\nContent-Type: application/http\n\nHTTP/1.1 200 OK\nContent-Type: application/json\n\n{...}\n--response-separator--"
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "API_RESERVATION_DOCUMENT_SRV.A_ReservationDocumentHeaderType": {
+        "type": "object",
+        "properties": {
+          "Reservation": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Reservation",
+            "description": "Number of reservation/dependent requirements"
+          },
+          "OrderID": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Order",
+            "description": "Order Number"
+          },
+          "GoodsMovementType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "GoodsMovementType",
+            "title": "Movement Type",
+            "description": "Movement Type (Inventory Management)"
+          },
+          "CostCenter": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Cost Center"
+          },
+          "GoodsRecipientName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Goods Recipient"
+          },
+          "ReservationDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Base date",
+            "description": "Base date for reservation"
+          },
+          "IsCheckedAgainstFactoryCal": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Check against cal.",
+            "description": "Check date against factory calendar"
+          },
+          "Customer": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Customer",
+            "description": "Account number of customer"
+          },
+          "WBSElement": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 24,
+            "title": "WBS Element",
+            "description": "Work Breakdown Structure Element (WBS Element)"
+          },
+          "ControllingArea": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Controlling Area"
+          },
+          "SalesOrder": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Sales Order",
+            "description": "Sales Order Number"
+          },
+          "SalesOrderItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 6,
+            "title": "Sales Order Item",
+            "description": "Item Number in Sales Order"
+          },
+          "SalesOrderScheduleLine": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Sales order schedule",
+            "description": "Delivery schedule for sales order"
+          },
+          "AssetNumber": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Asset",
+            "description": "Main Asset Number"
+          },
+          "AssetSubNumber": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Subnumber",
+            "description": "Asset Subnumber"
+          },
+          "NetworkNumberForAcctAssgmt": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Network",
+            "description": "Network Number for Account Assignment"
+          },
+          "IssuingOrReceivingPlant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Receiving plant",
+            "description": "Receiving plant/issuing plant"
+          },
+          "IssuingOrReceivingStorageLoc": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Receiving stor. loc.",
+            "description": "Receiving/issuing storage location"
+          },
+          "to_ReservationDocumentItem": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/API_RESERVATION_DOCUMENT_SRV.A_ReservationDocumentItemType"
+                }
+              }
+            }
+          }
+        },
+        "title": "Document Header"
+      },
+      "API_RESERVATION_DOCUMENT_SRV.A_ReservationDocumentHeaderType-create": {
+        "type": "object",
+        "properties": {
+          "Reservation": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Reservation",
+            "description": "Number of reservation/dependent requirements"
+          },
+          "OrderID": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Order",
+            "description": "Order Number"
+          },
+          "GoodsMovementType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "GoodsMovementType",
+            "title": "Movement Type",
+            "description": "Movement Type (Inventory Management)"
+          },
+          "CostCenter": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Cost Center"
+          },
+          "GoodsRecipientName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Goods Recipient"
+          },
+          "ReservationDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Base date",
+            "description": "Base date for reservation"
+          },
+          "IsCheckedAgainstFactoryCal": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Check against cal.",
+            "description": "Check date against factory calendar"
+          },
+          "Customer": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Customer",
+            "description": "Account number of customer"
+          },
+          "WBSElement": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 24,
+            "title": "WBS Element",
+            "description": "Work Breakdown Structure Element (WBS Element)"
+          },
+          "ControllingArea": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Controlling Area"
+          },
+          "SalesOrder": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Sales Order",
+            "description": "Sales Order Number"
+          },
+          "SalesOrderItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 6,
+            "title": "Sales Order Item",
+            "description": "Item Number in Sales Order"
+          },
+          "SalesOrderScheduleLine": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Sales order schedule",
+            "description": "Delivery schedule for sales order"
+          },
+          "AssetNumber": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Asset",
+            "description": "Main Asset Number"
+          },
+          "AssetSubNumber": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Subnumber",
+            "description": "Asset Subnumber"
+          },
+          "NetworkNumberForAcctAssgmt": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Network",
+            "description": "Network Number for Account Assignment"
+          },
+          "IssuingOrReceivingPlant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Receiving plant",
+            "description": "Receiving plant/issuing plant"
+          },
+          "IssuingOrReceivingStorageLoc": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Receiving stor. loc.",
+            "description": "Receiving/issuing storage location"
+          },
+          "to_ReservationDocumentItem": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/API_RESERVATION_DOCUMENT_SRV.A_ReservationDocumentItemType-create"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "Reservation"
+        ],
+        "title": "Document Header (for create)"
+      },
+      "API_RESERVATION_DOCUMENT_SRV.A_ReservationDocumentHeaderType-update": {
+        "type": "object",
+        "properties": {
+          "OrderID": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Order",
+            "description": "Order Number"
+          },
+          "GoodsMovementType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "GoodsMovementType",
+            "title": "Movement Type",
+            "description": "Movement Type (Inventory Management)"
+          },
+          "CostCenter": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Cost Center"
+          },
+          "GoodsRecipientName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Goods Recipient"
+          },
+          "ReservationDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Base date",
+            "description": "Base date for reservation"
+          },
+          "IsCheckedAgainstFactoryCal": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Check against cal.",
+            "description": "Check date against factory calendar"
+          },
+          "Customer": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Customer",
+            "description": "Account number of customer"
+          },
+          "WBSElement": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 24,
+            "title": "WBS Element",
+            "description": "Work Breakdown Structure Element (WBS Element)"
+          },
+          "ControllingArea": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Controlling Area"
+          },
+          "SalesOrder": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Sales Order",
+            "description": "Sales Order Number"
+          },
+          "SalesOrderItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 6,
+            "title": "Sales Order Item",
+            "description": "Item Number in Sales Order"
+          },
+          "SalesOrderScheduleLine": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Sales order schedule",
+            "description": "Delivery schedule for sales order"
+          },
+          "AssetNumber": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Asset",
+            "description": "Main Asset Number"
+          },
+          "AssetSubNumber": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Subnumber",
+            "description": "Asset Subnumber"
+          },
+          "NetworkNumberForAcctAssgmt": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Network",
+            "description": "Network Number for Account Assignment"
+          },
+          "IssuingOrReceivingPlant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Receiving plant",
+            "description": "Receiving plant/issuing plant"
+          },
+          "IssuingOrReceivingStorageLoc": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Receiving stor. loc.",
+            "description": "Receiving/issuing storage location"
+          }
+        },
+        "title": "Document Header (for update)"
+      },
+      "API_RESERVATION_DOCUMENT_SRV.A_ReservationDocumentItemType": {
+        "type": "object",
+        "properties": {
+          "Reservation": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Reservation",
+            "description": "Number of reservation/dependent requirements"
+          },
+          "ReservationItem": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Item no.",
+            "description": "Item Number of Reservation / Dependent Requirements"
+          },
+          "RecordType": {
+            "type": "string",
+            "maxLength": 1,
+            "title": "Record type"
+          },
+          "Product": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "RequirementType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Requirement type"
+          },
+          "MatlCompRequirementDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Requirements date",
+            "description": "Requirements date for the component"
+          },
+          "Plant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "ManufacturingOrderOperation": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Activity",
+            "description": "Activity Number"
+          },
+          "GoodsMovementIsAllowed": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Movement Allowed",
+            "description": "Goods Movement for Reservation Allowed"
+          },
+          "StorageLocation": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "StorageLocation",
+            "title": "Storage Location"
+          },
+          "Batch": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Batch",
+            "description": "Batch Number"
+          },
+          "DebitCreditCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "DebitCreditCode",
+            "title": "Debit/Credit Ind.",
+            "description": "Debit/Credit Indicator"
+          },
+          "BaseUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Base Unit of Measure"
+          },
+          "GLAccount": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "G/L Account",
+            "description": "G/L Account Number"
+          },
+          "ResvnAccountIsEnteredManually": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Acct manually",
+            "description": "Acct entered manually"
+          },
+          "GoodsMovementType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "GoodsMovementType",
+            "title": "Movement Type",
+            "description": "Movement Type (Inventory Management)"
+          },
+          "EntryUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Unit of Entry",
+            "description": "Unit of entry"
+          },
+          "QuantityIsFixed": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Quantity is fixed"
+          },
+          "CompanyCodeCurrency": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Currency Key"
+          },
+          "IssuingOrReceivingPlant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Receiving plant",
+            "description": "Receiving plant/issuing plant"
+          },
+          "IssuingOrReceivingStorageLoc": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Receiving stor. loc.",
+            "description": "Receiving/issuing storage location"
+          },
+          "PurchasingDocument": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Purchasing Document",
+            "description": "Purchasing Document Number"
+          },
+          "PurchasingDocumentItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "title": "Item",
+            "description": "Item Number of Purchasing Document"
+          },
+          "Supplier": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Supplier",
+            "description": "Account Number of Supplier"
+          },
+          "ResvnItmRequiredQtyInBaseUnit": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Requirement Quantity"
+          },
+          "ReservationItemIsFinallyIssued": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Final Issue",
+            "description": "Final Issue for Reservation"
+          },
+          "ReservationItmIsMarkedForDeltn": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Item Deleted",
+            "description": "Item is Deleted"
+          },
+          "ResvnItmRequiredQtyInEntryUnit": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Qty in unit of entry",
+            "description": "Quantity in unit of entry"
+          },
+          "ResvnItmWithdrawnQtyInBaseUnit": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Quantity withdrawn"
+          },
+          "ResvnItmWithdrawnAmtInCCCrcy": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 14,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -99999999999.999,
+            "maximum": 99999999999.999,
+            "example": "0",
+            "title": "Value Withdrawn"
+          },
+          "GoodsRecipientName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Goods Recipient"
+          },
+          "UnloadingPointName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 25,
+            "title": "Unloading Point"
+          },
+          "ReservationItemText": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 50,
+            "title": "Text",
+            "description": "Item Text"
+          }
+        },
+        "title": "Document Items"
+      },
+      "API_RESERVATION_DOCUMENT_SRV.A_ReservationDocumentItemType-create": {
+        "type": "object",
+        "properties": {
+          "Reservation": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Reservation",
+            "description": "Number of reservation/dependent requirements"
+          },
+          "ReservationItem": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Item no.",
+            "description": "Item Number of Reservation / Dependent Requirements"
+          },
+          "RecordType": {
+            "type": "string",
+            "maxLength": 1,
+            "title": "Record type"
+          },
+          "Product": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "RequirementType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Requirement type"
+          },
+          "MatlCompRequirementDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Requirements date",
+            "description": "Requirements date for the component"
+          },
+          "Plant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "ManufacturingOrderOperation": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Activity",
+            "description": "Activity Number"
+          },
+          "GoodsMovementIsAllowed": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Movement Allowed",
+            "description": "Goods Movement for Reservation Allowed"
+          },
+          "StorageLocation": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "StorageLocation",
+            "title": "Storage Location"
+          },
+          "Batch": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Batch",
+            "description": "Batch Number"
+          },
+          "DebitCreditCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "DebitCreditCode",
+            "title": "Debit/Credit Ind.",
+            "description": "Debit/Credit Indicator"
+          },
+          "BaseUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Base Unit of Measure"
+          },
+          "GLAccount": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "G/L Account",
+            "description": "G/L Account Number"
+          },
+          "ResvnAccountIsEnteredManually": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Acct manually",
+            "description": "Acct entered manually"
+          },
+          "GoodsMovementType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "GoodsMovementType",
+            "title": "Movement Type",
+            "description": "Movement Type (Inventory Management)"
+          },
+          "EntryUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Unit of Entry",
+            "description": "Unit of entry"
+          },
+          "QuantityIsFixed": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Quantity is fixed"
+          },
+          "CompanyCodeCurrency": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Currency Key"
+          },
+          "IssuingOrReceivingPlant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Receiving plant",
+            "description": "Receiving plant/issuing plant"
+          },
+          "IssuingOrReceivingStorageLoc": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Receiving stor. loc.",
+            "description": "Receiving/issuing storage location"
+          },
+          "PurchasingDocument": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Purchasing Document",
+            "description": "Purchasing Document Number"
+          },
+          "PurchasingDocumentItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "title": "Item",
+            "description": "Item Number of Purchasing Document"
+          },
+          "Supplier": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Supplier",
+            "description": "Account Number of Supplier"
+          },
+          "ResvnItmRequiredQtyInBaseUnit": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Requirement Quantity"
+          },
+          "ReservationItemIsFinallyIssued": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Final Issue",
+            "description": "Final Issue for Reservation"
+          },
+          "ReservationItmIsMarkedForDeltn": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Item Deleted",
+            "description": "Item is Deleted"
+          },
+          "ResvnItmRequiredQtyInEntryUnit": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Qty in unit of entry",
+            "description": "Quantity in unit of entry"
+          },
+          "ResvnItmWithdrawnQtyInBaseUnit": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Quantity withdrawn"
+          },
+          "ResvnItmWithdrawnAmtInCCCrcy": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 14,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -99999999999.999,
+            "maximum": 99999999999.999,
+            "example": "0",
+            "title": "Value Withdrawn"
+          },
+          "GoodsRecipientName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Goods Recipient"
+          },
+          "UnloadingPointName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 25,
+            "title": "Unloading Point"
+          },
+          "ReservationItemText": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 50,
+            "title": "Text",
+            "description": "Item Text"
+          }
+        },
+        "required": [
+          "Reservation",
+          "ReservationItem",
+          "RecordType"
+        ],
+        "title": "Document Items (for create)"
+      },
+      "API_RESERVATION_DOCUMENT_SRV.A_ReservationDocumentItemType-update": {
+        "type": "object",
+        "properties": {
+          "Product": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "RequirementType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Requirement type"
+          },
+          "MatlCompRequirementDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Requirements date",
+            "description": "Requirements date for the component"
+          },
+          "Plant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "ManufacturingOrderOperation": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Activity",
+            "description": "Activity Number"
+          },
+          "GoodsMovementIsAllowed": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Movement Allowed",
+            "description": "Goods Movement for Reservation Allowed"
+          },
+          "StorageLocation": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "StorageLocation",
+            "title": "Storage Location"
+          },
+          "Batch": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Batch",
+            "description": "Batch Number"
+          },
+          "DebitCreditCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "DebitCreditCode",
+            "title": "Debit/Credit Ind.",
+            "description": "Debit/Credit Indicator"
+          },
+          "BaseUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Base Unit of Measure"
+          },
+          "GLAccount": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "G/L Account",
+            "description": "G/L Account Number"
+          },
+          "ResvnAccountIsEnteredManually": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Acct manually",
+            "description": "Acct entered manually"
+          },
+          "GoodsMovementType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "GoodsMovementType",
+            "title": "Movement Type",
+            "description": "Movement Type (Inventory Management)"
+          },
+          "EntryUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Unit of Entry",
+            "description": "Unit of entry"
+          },
+          "QuantityIsFixed": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Quantity is fixed"
+          },
+          "CompanyCodeCurrency": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Currency Key"
+          },
+          "IssuingOrReceivingPlant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Receiving plant",
+            "description": "Receiving plant/issuing plant"
+          },
+          "IssuingOrReceivingStorageLoc": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Receiving stor. loc.",
+            "description": "Receiving/issuing storage location"
+          },
+          "PurchasingDocument": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Purchasing Document",
+            "description": "Purchasing Document Number"
+          },
+          "PurchasingDocumentItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "title": "Item",
+            "description": "Item Number of Purchasing Document"
+          },
+          "Supplier": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Supplier",
+            "description": "Account Number of Supplier"
+          },
+          "ResvnItmRequiredQtyInBaseUnit": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Requirement Quantity"
+          },
+          "ReservationItemIsFinallyIssued": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Final Issue",
+            "description": "Final Issue for Reservation"
+          },
+          "ReservationItmIsMarkedForDeltn": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Item Deleted",
+            "description": "Item is Deleted"
+          },
+          "ResvnItmRequiredQtyInEntryUnit": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Qty in unit of entry",
+            "description": "Quantity in unit of entry"
+          },
+          "ResvnItmWithdrawnQtyInBaseUnit": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Quantity withdrawn"
+          },
+          "ResvnItmWithdrawnAmtInCCCrcy": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 14,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -99999999999.999,
+            "maximum": 99999999999.999,
+            "example": "0",
+            "title": "Value Withdrawn"
+          },
+          "GoodsRecipientName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Goods Recipient"
+          },
+          "UnloadingPointName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 25,
+            "title": "Unloading Point"
+          },
+          "ReservationItemText": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 50,
+            "title": "Text",
+            "description": "Item Text"
+          }
+        },
+        "title": "Document Items (for update)"
+      },
+      "count": {
+        "type": "string",
+        "description": "The number of entities in the collection. Available when using the [$inlinecount](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=67) query option."
+      },
+      "error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "code",
+              "message"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "object",
+                "required": [
+                  "lang",
+                  "value"
+                ],
+                "properties": {
+                  "lang": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              },
+              "innererror": {
+                "type": "object",
+                "description": "The structure of this object is service-specific"
+              }
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "top": {
+        "name": "$top",
+        "in": "query",
+        "description": "Show only the first n items, see [Paging - Top](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=66)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "example": 50
+      },
+      "skip": {
+        "name": "$skip",
+        "in": "query",
+        "description": "Skip the first n items, see [Paging - Skip](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "count": {
+        "name": "$inlinecount",
+        "in": "query",
+        "description": "Include count of items, see [Inlinecount](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=67)",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "allpages",
+            "none"
+          ]
+        }
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/error"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "OAuth2Auth": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "scopes": {},
+            "refreshUrl": "https://{host}:{port}",
+            "authorizationUrl": "https://{host}:{port}",
+            "tokenUrl": "https://{host}:{port}"
+          }
+        }
+      },
+      "BasicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "OAuth2Auth": []
+    },
+    {
+      "BasicAuth": []
+    }
+  ]
+}

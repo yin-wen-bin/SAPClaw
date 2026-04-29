@@ -1,0 +1,4511 @@
+﻿{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Service Entry Sheet",
+    "version": "1.2.1",
+    "description": "This service enables a remote system to read, create and update service entry sheets from or in the SAP S/4HANA system. It also provides service nodes to submit a service entry sheet for approval, withdraw a service entry sheet from approval or revoke approval of an already approved service entry sheet."
+  },
+  "externalDocs": {
+    "description": "Business Documentation",
+    "url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/0f/17c815dc784fa39b4fc7c0fe9f72b5/frameset.htm"
+  },
+  "x-sap-api-type": "ODATA",
+  "x-sap-shortText": "Create, read and update service entry sheets from or in the SAP S/4HANA system using this synchronous inbound service",
+  "x-sap-software-min-version": "2025",
+  "x-sap-ext-overview": [
+    {
+      "name": "Authentication Methods",
+      "values": [
+        {
+          "text": "x509",
+          "format": "plain"
+        }
+      ]
+    },
+    {
+      "name": "Business Object",
+      "values": [
+        {
+          "text": "Service Entry Sheet",
+          "format": "plain"
+        }
+      ]
+    }
+  ],
+  "servers": [
+    {
+      "url": "https://{host}:{port}/sap/opu/odata/sap/API_SERVICE_ENTRY_SHEET_SRV",
+      "variables": {
+        "host": {
+          "default": ""
+        },
+        "port": {
+          "default": ""
+        }
+      }
+    }
+  ],
+  "x-sap-extensible": {
+    "supported": "manual",
+    "description": "If you are working with key user extensibility, the API can be extended by custom fields on the following business contexts (field usage for this API needs to be selected):\r\n* Procurement: Service Entry Sheet Header (MMPUR_SES_HEADER)\r\n* Procurement: Service Entry Sheet Item (MMPUR_SES_ITEM)\r\n\r\n[How to add an extension field to an API](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b5670aaaa2364a29935f40b16499972d/ce819b8557194ae0aa180ba4ac6a04de.html)\r\n\r\nNote: Please make sure to match the release selected in SAP Business Accelerator Hub with the Feature Pack (FPS) on help page."
+  },
+  "tags": [
+    {
+      "name": "Service Entry Sheet"
+    },
+    {
+      "name": "Item"
+    },
+    {
+      "name": "Account Assignment"
+    }
+  ],
+  "paths": {
+    "/A_ServiceEntrySheet": {
+      "get": {
+        "summary": "Reads the header data from all service entry sheets.",
+        "description": "Reads the header data from all service entry sheets. You can show or skip a defined number of entries, filter and order entries by property values, include a count of entries, select properties to be returned, and expand related entities.",
+        "tags": [
+          "Service Entry Sheet"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ServiceEntrySheet",
+                  "ServiceEntrySheet desc",
+                  "ApprovalDateTime",
+                  "ApprovalDateTime desc",
+                  "ApprovalStatus",
+                  "ApprovalStatus desc",
+                  "SESWorkflowStatus",
+                  "SESWorkflowStatus desc",
+                  "CreatedByUser",
+                  "CreatedByUser desc",
+                  "CreationDateTime",
+                  "CreationDateTime desc",
+                  "PurchasingOrganization",
+                  "PurchasingOrganization desc",
+                  "PurchasingGroup",
+                  "PurchasingGroup desc",
+                  "IsEndOfPurposeBlocked",
+                  "IsEndOfPurposeBlocked desc",
+                  "Currency",
+                  "Currency desc",
+                  "IsDeleted",
+                  "IsDeleted desc",
+                  "LastChangeDateTime",
+                  "LastChangeDateTime desc",
+                  "LastChangedByUser",
+                  "LastChangedByUser desc",
+                  "MaterialDocument",
+                  "MaterialDocument desc",
+                  "MaterialDocumentYear",
+                  "MaterialDocumentYear desc",
+                  "OriginObjectType",
+                  "OriginObjectType desc",
+                  "PurchaseOrder",
+                  "PurchaseOrder desc",
+                  "ResponsiblePerson",
+                  "ResponsiblePerson desc",
+                  "ServiceEntrySheetName",
+                  "ServiceEntrySheetName desc",
+                  "ServiceEntrySheetUUID",
+                  "ServiceEntrySheetUUID desc",
+                  "Supplier",
+                  "Supplier desc",
+                  "PurgDocExternalSystem",
+                  "PurgDocExternalSystem desc",
+                  "PurgDocExternalReference",
+                  "PurgDocExternalReference desc",
+                  "ExternalRevisionDateTime",
+                  "ExternalRevisionDateTime desc",
+                  "PostingDate",
+                  "PostingDate desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ServiceEntrySheet",
+                  "ApprovalDateTime",
+                  "ApprovalStatus",
+                  "SESWorkflowStatus",
+                  "CreatedByUser",
+                  "CreationDateTime",
+                  "PurchasingOrganization",
+                  "PurchasingGroup",
+                  "IsEndOfPurposeBlocked",
+                  "Currency",
+                  "IsDeleted",
+                  "LastChangeDateTime",
+                  "LastChangedByUser",
+                  "MaterialDocument",
+                  "MaterialDocumentYear",
+                  "OriginObjectType",
+                  "PurchaseOrder",
+                  "ResponsiblePerson",
+                  "ServiceEntrySheetName",
+                  "ServiceEntrySheetUUID",
+                  "Supplier",
+                  "PurgDocExternalSystem",
+                  "PurgDocExternalReference",
+                  "ExternalRevisionDateTime",
+                  "PostingDate",
+                  "to_ServiceEntrySheetItem"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_ServiceEntrySheetItem"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of A_ServiceEntrySheetType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_SERVICE_ENTRY_SHEET_SRV.A_ServiceEntrySheetType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a service entry sheet.",
+        "description": "Creates a service entry sheet with your own data. You can include values such as purchase order, performance date, and service performer.",
+        "tags": [
+          "Service Entry Sheet"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/API_SERVICE_ENTRY_SHEET_SRV.A_ServiceEntrySheetType-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_ServiceEntrySheetType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_SERVICE_ENTRY_SHEET_SRV.A_ServiceEntrySheetType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_ServiceEntrySheet('{ServiceEntrySheet}')": {
+      "parameters": [
+        {
+          "name": "ServiceEntrySheet",
+          "in": "path",
+          "required": true,
+          "description": "Service Entry Sheet",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        }
+      ],
+      "get": {
+        "summary": "Reads a specified service entry sheet.",
+        "description": "Reads the specified service entry sheet. You can select properties to be returned and expand related entities.",
+        "tags": [
+          "Service Entry Sheet"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ServiceEntrySheet",
+                  "ApprovalDateTime",
+                  "ApprovalStatus",
+                  "SESWorkflowStatus",
+                  "CreatedByUser",
+                  "CreationDateTime",
+                  "PurchasingOrganization",
+                  "PurchasingGroup",
+                  "IsEndOfPurposeBlocked",
+                  "Currency",
+                  "IsDeleted",
+                  "LastChangeDateTime",
+                  "LastChangedByUser",
+                  "MaterialDocument",
+                  "MaterialDocumentYear",
+                  "OriginObjectType",
+                  "PurchaseOrder",
+                  "ResponsiblePerson",
+                  "ServiceEntrySheetName",
+                  "ServiceEntrySheetUUID",
+                  "Supplier",
+                  "PurgDocExternalSystem",
+                  "PurgDocExternalReference",
+                  "ExternalRevisionDateTime",
+                  "PostingDate",
+                  "to_ServiceEntrySheetItem"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_ServiceEntrySheetItem"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_ServiceEntrySheetType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_SERVICE_ENTRY_SHEET_SRV.A_ServiceEntrySheetType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Updates a specified service entry sheet.",
+        "description": "Updates the specified service entry sheet. You can update values such as service entry sheet name, performance date, service performer, and quantity.",
+        "tags": [
+          "Service Entry Sheet"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New property values",
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "Modified A_ServiceEntrySheetType",
+                "type": "object",
+                "properties": {
+                  "d": {
+                    "$ref": "#/components/schemas/API_SERVICE_ENTRY_SHEET_SRV.A_ServiceEntrySheetType-update"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_ServiceEntrySheet('{ServiceEntrySheet}')/to_ServiceEntrySheetItem": {
+      "parameters": [
+        {
+          "name": "ServiceEntrySheet",
+          "in": "path",
+          "required": true,
+          "description": "Service Entry Sheet",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        }
+      ],
+      "get": {
+        "summary": "Reads the items from a specified service entry sheet.",
+        "description": "Reads the items from the specified service entry sheet. You can show only or skip the first n items, filter items by property values, include a count of items, order items by property values, select properties to be returned, and expand related entities.",
+        "tags": [
+          "Service Entry Sheet",
+          "Item"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ServiceEntrySheet",
+                  "ServiceEntrySheet desc",
+                  "ServiceEntrySheetItem",
+                  "ServiceEntrySheetItem desc",
+                  "AccountAssignmentCategory",
+                  "AccountAssignmentCategory desc",
+                  "ConfirmedQuantity",
+                  "ConfirmedQuantity desc",
+                  "CreatedByUser",
+                  "CreatedByUser desc",
+                  "CreationDateTime",
+                  "CreationDateTime desc",
+                  "PurchasingOrganization",
+                  "PurchasingOrganization desc",
+                  "PurchasingGroup",
+                  "PurchasingGroup desc",
+                  "Plant",
+                  "Plant desc",
+                  "Currency",
+                  "Currency desc",
+                  "IsDeleted",
+                  "IsDeleted desc",
+                  "LastChangeDateTime",
+                  "LastChangeDateTime desc",
+                  "LastChangedByUser",
+                  "LastChangedByUser desc",
+                  "SESItemMaterialGroupIsInitial",
+                  "SESItemMaterialGroupIsInitial desc",
+                  "MaterialGroup",
+                  "MaterialGroup desc",
+                  "MultipleAcctAssgmtDistribution",
+                  "MultipleAcctAssgmtDistribution desc",
+                  "NetAmount",
+                  "NetAmount desc",
+                  "NetPriceAmount",
+                  "NetPriceAmount desc",
+                  "OriginObject",
+                  "OriginObject desc",
+                  "PurchaseOrder",
+                  "PurchaseOrder desc",
+                  "PurchaseOrderItem",
+                  "PurchaseOrderItem desc",
+                  "PurchaseContract",
+                  "PurchaseContract desc",
+                  "PurchaseContractItem",
+                  "PurchaseContractItem desc",
+                  "QuantityUnit",
+                  "QuantityUnit desc",
+                  "Service",
+                  "Service desc",
+                  "ServiceEntrySheetItemDesc",
+                  "ServiceEntrySheetItemDesc desc",
+                  "ServiceEntrySheetItemUUID",
+                  "ServiceEntrySheetItemUUID desc",
+                  "ServiceEntrySheetUUID",
+                  "ServiceEntrySheetUUID desc",
+                  "ServicePerformanceDate",
+                  "ServicePerformanceDate desc",
+                  "ServicePerformanceEndDate",
+                  "ServicePerformanceEndDate desc",
+                  "ServicePerformer",
+                  "ServicePerformer desc",
+                  "WorkItem",
+                  "WorkItem desc",
+                  "PurgDocItemExternalReference",
+                  "PurgDocItemExternalReference desc",
+                  "SESItemIsFinalEntry",
+                  "SESItemIsFinalEntry desc",
+                  "SESItemTaxCodeIsInitial",
+                  "SESItemTaxCodeIsInitial desc",
+                  "TaxCode",
+                  "TaxCode desc",
+                  "SESItemTaxCountryCodeIsInitial",
+                  "SESItemTaxCountryCodeIsInitial desc",
+                  "TaxCountry",
+                  "TaxCountry desc",
+                  "SESItmTaxJurisdictionIsInitial",
+                  "SESItmTaxJurisdictionIsInitial desc",
+                  "TaxJurisdiction",
+                  "TaxJurisdiction desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ServiceEntrySheet",
+                  "ServiceEntrySheetItem",
+                  "AccountAssignmentCategory",
+                  "ConfirmedQuantity",
+                  "CreatedByUser",
+                  "CreationDateTime",
+                  "PurchasingOrganization",
+                  "PurchasingGroup",
+                  "Plant",
+                  "Currency",
+                  "IsDeleted",
+                  "LastChangeDateTime",
+                  "LastChangedByUser",
+                  "SESItemMaterialGroupIsInitial",
+                  "MaterialGroup",
+                  "MultipleAcctAssgmtDistribution",
+                  "NetAmount",
+                  "NetPriceAmount",
+                  "OriginObject",
+                  "PurchaseOrder",
+                  "PurchaseOrderItem",
+                  "PurchaseContract",
+                  "PurchaseContractItem",
+                  "QuantityUnit",
+                  "Service",
+                  "ServiceEntrySheetItemDesc",
+                  "ServiceEntrySheetItemUUID",
+                  "ServiceEntrySheetUUID",
+                  "ServicePerformanceDate",
+                  "ServicePerformanceEndDate",
+                  "ServicePerformer",
+                  "WorkItem",
+                  "PurgDocItemExternalReference",
+                  "SESItemIsFinalEntry",
+                  "SESItemTaxCodeIsInitial",
+                  "TaxCode",
+                  "SESItemTaxCountryCodeIsInitial",
+                  "TaxCountry",
+                  "SESItmTaxJurisdictionIsInitial",
+                  "TaxJurisdiction",
+                  "to_AccountAssignment"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_AccountAssignment"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of A_ServiceEntrySheetItemType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_SERVICE_ENTRY_SHEET_SRV.A_ServiceEntrySheetItemType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_ServiceEntrySheetItem": {
+      "get": {
+        "summary": "Reads all service entry sheet items.",
+        "description": "Reads all service entry sheet items. You can show only the first n items, skip the first n items, filter items by property values, include a count of items, order items by property values, select properties to be returned, and expand related entities.",
+        "tags": [
+          "Item"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ServiceEntrySheet",
+                  "ServiceEntrySheet desc",
+                  "ServiceEntrySheetItem",
+                  "ServiceEntrySheetItem desc",
+                  "AccountAssignmentCategory",
+                  "AccountAssignmentCategory desc",
+                  "ConfirmedQuantity",
+                  "ConfirmedQuantity desc",
+                  "CreatedByUser",
+                  "CreatedByUser desc",
+                  "CreationDateTime",
+                  "CreationDateTime desc",
+                  "PurchasingOrganization",
+                  "PurchasingOrganization desc",
+                  "PurchasingGroup",
+                  "PurchasingGroup desc",
+                  "Plant",
+                  "Plant desc",
+                  "Currency",
+                  "Currency desc",
+                  "IsDeleted",
+                  "IsDeleted desc",
+                  "LastChangeDateTime",
+                  "LastChangeDateTime desc",
+                  "LastChangedByUser",
+                  "LastChangedByUser desc",
+                  "SESItemMaterialGroupIsInitial",
+                  "SESItemMaterialGroupIsInitial desc",
+                  "MaterialGroup",
+                  "MaterialGroup desc",
+                  "MultipleAcctAssgmtDistribution",
+                  "MultipleAcctAssgmtDistribution desc",
+                  "NetAmount",
+                  "NetAmount desc",
+                  "NetPriceAmount",
+                  "NetPriceAmount desc",
+                  "OriginObject",
+                  "OriginObject desc",
+                  "PurchaseOrder",
+                  "PurchaseOrder desc",
+                  "PurchaseOrderItem",
+                  "PurchaseOrderItem desc",
+                  "PurchaseContract",
+                  "PurchaseContract desc",
+                  "PurchaseContractItem",
+                  "PurchaseContractItem desc",
+                  "QuantityUnit",
+                  "QuantityUnit desc",
+                  "Service",
+                  "Service desc",
+                  "ServiceEntrySheetItemDesc",
+                  "ServiceEntrySheetItemDesc desc",
+                  "ServiceEntrySheetItemUUID",
+                  "ServiceEntrySheetItemUUID desc",
+                  "ServiceEntrySheetUUID",
+                  "ServiceEntrySheetUUID desc",
+                  "ServicePerformanceDate",
+                  "ServicePerformanceDate desc",
+                  "ServicePerformanceEndDate",
+                  "ServicePerformanceEndDate desc",
+                  "ServicePerformer",
+                  "ServicePerformer desc",
+                  "WorkItem",
+                  "WorkItem desc",
+                  "PurgDocItemExternalReference",
+                  "PurgDocItemExternalReference desc",
+                  "SESItemIsFinalEntry",
+                  "SESItemIsFinalEntry desc",
+                  "SESItemTaxCodeIsInitial",
+                  "SESItemTaxCodeIsInitial desc",
+                  "TaxCode",
+                  "TaxCode desc",
+                  "SESItemTaxCountryCodeIsInitial",
+                  "SESItemTaxCountryCodeIsInitial desc",
+                  "TaxCountry",
+                  "TaxCountry desc",
+                  "SESItmTaxJurisdictionIsInitial",
+                  "SESItmTaxJurisdictionIsInitial desc",
+                  "TaxJurisdiction",
+                  "TaxJurisdiction desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ServiceEntrySheet",
+                  "ServiceEntrySheetItem",
+                  "AccountAssignmentCategory",
+                  "ConfirmedQuantity",
+                  "CreatedByUser",
+                  "CreationDateTime",
+                  "PurchasingOrganization",
+                  "PurchasingGroup",
+                  "Plant",
+                  "Currency",
+                  "IsDeleted",
+                  "LastChangeDateTime",
+                  "LastChangedByUser",
+                  "SESItemMaterialGroupIsInitial",
+                  "MaterialGroup",
+                  "MultipleAcctAssgmtDistribution",
+                  "NetAmount",
+                  "NetPriceAmount",
+                  "OriginObject",
+                  "PurchaseOrder",
+                  "PurchaseOrderItem",
+                  "PurchaseContract",
+                  "PurchaseContractItem",
+                  "QuantityUnit",
+                  "Service",
+                  "ServiceEntrySheetItemDesc",
+                  "ServiceEntrySheetItemUUID",
+                  "ServiceEntrySheetUUID",
+                  "ServicePerformanceDate",
+                  "ServicePerformanceEndDate",
+                  "ServicePerformer",
+                  "WorkItem",
+                  "PurgDocItemExternalReference",
+                  "SESItemIsFinalEntry",
+                  "SESItemTaxCodeIsInitial",
+                  "TaxCode",
+                  "SESItemTaxCountryCodeIsInitial",
+                  "TaxCountry",
+                  "SESItmTaxJurisdictionIsInitial",
+                  "TaxJurisdiction",
+                  "to_AccountAssignment"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_AccountAssignment"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of A_ServiceEntrySheetItemType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_SERVICE_ENTRY_SHEET_SRV.A_ServiceEntrySheetItemType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_ServiceEntrySheetItem(ServiceEntrySheet='{ServiceEntrySheet}',ServiceEntrySheetItem='{ServiceEntrySheetItem}')": {
+      "parameters": [
+        {
+          "name": "ServiceEntrySheet",
+          "in": "path",
+          "required": true,
+          "description": "Service Entry Sheet",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "ServiceEntrySheetItem",
+          "in": "path",
+          "required": true,
+          "description": "Item Number of Service Entry Sheet",
+          "schema": {
+            "type": "string",
+            "maxLength": 5
+          }
+        }
+      ],
+      "get": {
+        "summary": "Reads a specified service entry sheet item.",
+        "description": "Reads the specified item from the specified service entry sheet. You can select properties to be returned and expand related entities.",
+        "tags": [
+          "Item"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ServiceEntrySheet",
+                  "ServiceEntrySheetItem",
+                  "AccountAssignmentCategory",
+                  "ConfirmedQuantity",
+                  "CreatedByUser",
+                  "CreationDateTime",
+                  "PurchasingOrganization",
+                  "PurchasingGroup",
+                  "Plant",
+                  "Currency",
+                  "IsDeleted",
+                  "LastChangeDateTime",
+                  "LastChangedByUser",
+                  "SESItemMaterialGroupIsInitial",
+                  "MaterialGroup",
+                  "MultipleAcctAssgmtDistribution",
+                  "NetAmount",
+                  "NetPriceAmount",
+                  "OriginObject",
+                  "PurchaseOrder",
+                  "PurchaseOrderItem",
+                  "PurchaseContract",
+                  "PurchaseContractItem",
+                  "QuantityUnit",
+                  "Service",
+                  "ServiceEntrySheetItemDesc",
+                  "ServiceEntrySheetItemUUID",
+                  "ServiceEntrySheetUUID",
+                  "ServicePerformanceDate",
+                  "ServicePerformanceEndDate",
+                  "ServicePerformer",
+                  "WorkItem",
+                  "PurgDocItemExternalReference",
+                  "SESItemIsFinalEntry",
+                  "SESItemTaxCodeIsInitial",
+                  "TaxCode",
+                  "SESItemTaxCountryCodeIsInitial",
+                  "TaxCountry",
+                  "SESItmTaxJurisdictionIsInitial",
+                  "TaxJurisdiction",
+                  "to_AccountAssignment"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_AccountAssignment"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_ServiceEntrySheetItemType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_SERVICE_ENTRY_SHEET_SRV.A_ServiceEntrySheetItemType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Updates a specified service entry sheet item.",
+        "description": "Updates the specified item from the specified service entry sheet. You can select properties to be returned and expand related entities.",
+        "tags": [
+          "Item"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New property values",
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "Modified A_ServiceEntrySheetItemType",
+                "type": "object",
+                "properties": {
+                  "d": {
+                    "$ref": "#/components/schemas/API_SERVICE_ENTRY_SHEET_SRV.A_ServiceEntrySheetItemType-update"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_ServiceEntrySheetItem(ServiceEntrySheet='{ServiceEntrySheet}',ServiceEntrySheetItem='{ServiceEntrySheetItem}')/to_AccountAssignment": {
+      "parameters": [
+        {
+          "name": "ServiceEntrySheet",
+          "in": "path",
+          "required": true,
+          "description": "Service Entry Sheet",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "ServiceEntrySheetItem",
+          "in": "path",
+          "required": true,
+          "description": "Item Number of Service Entry Sheet",
+          "schema": {
+            "type": "string",
+            "maxLength": 5
+          }
+        }
+      ],
+      "get": {
+        "summary": "Reads the account assignment(s) from a specified service entry sheet item.",
+        "description": "Reads the account assignment(s) of the specified item from the specified service entry sheet. You can show only or skip the first n account assignments, filter and order by property values, include a count, and select properties to be returned.",
+        "tags": [
+          "Item",
+          "Account Assignment"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ServiceEntrySheet",
+                  "ServiceEntrySheet desc",
+                  "ServiceEntrySheetItem",
+                  "ServiceEntrySheetItem desc",
+                  "AccountAssignment",
+                  "AccountAssignment desc",
+                  "AccountAssignmentUUID",
+                  "AccountAssignmentUUID desc",
+                  "PurchasingOrganization",
+                  "PurchasingOrganization desc",
+                  "PurchasingGroup",
+                  "PurchasingGroup desc",
+                  "Plant",
+                  "Plant desc",
+                  "BusinessArea",
+                  "BusinessArea desc",
+                  "CommitmentItem",
+                  "CommitmentItem desc",
+                  "ControllingArea",
+                  "ControllingArea desc",
+                  "CostCenter",
+                  "CostCenter desc",
+                  "CostObject",
+                  "CostObject desc",
+                  "CreatedByUser",
+                  "CreatedByUser desc",
+                  "CreationDateTime",
+                  "CreationDateTime desc",
+                  "EarmarkedFundsDocument",
+                  "EarmarkedFundsDocument desc",
+                  "FixedAsset",
+                  "FixedAsset desc",
+                  "FunctionalArea",
+                  "FunctionalArea desc",
+                  "Fund",
+                  "Fund desc",
+                  "FundsCenter",
+                  "FundsCenter desc",
+                  "GLAccount",
+                  "GLAccount desc",
+                  "IsDeleted",
+                  "IsDeleted desc",
+                  "LastChangeDateTime",
+                  "LastChangeDateTime desc",
+                  "LastChangedByUser",
+                  "LastChangedByUser desc",
+                  "MasterFixedAsset",
+                  "MasterFixedAsset desc",
+                  "MultipleAcctAssgmtDistrPercent",
+                  "MultipleAcctAssgmtDistrPercent desc",
+                  "NetworkActivity",
+                  "NetworkActivity desc",
+                  "NetworkActivityInternalID",
+                  "NetworkActivityInternalID desc",
+                  "OrderID",
+                  "OrderID desc",
+                  "PartnerAccountNumber",
+                  "PartnerAccountNumber desc",
+                  "ProfitCenter",
+                  "ProfitCenter desc",
+                  "ProfitabilitySegment",
+                  "ProfitabilitySegment desc",
+                  "ProjectNetwork",
+                  "ProjectNetwork desc",
+                  "ProjectNetworkInternalID",
+                  "ProjectNetworkInternalID desc",
+                  "Quantity",
+                  "Quantity desc",
+                  "QuantityUnit",
+                  "QuantityUnit desc",
+                  "RealEstateObject",
+                  "RealEstateObject desc",
+                  "RefDocAccountAssignment",
+                  "RefDocAccountAssignment desc",
+                  "SalesOrder",
+                  "SalesOrder desc",
+                  "SalesOrderItem",
+                  "SalesOrderItem desc",
+                  "SalesOrderScheduleLine",
+                  "SalesOrderScheduleLine desc",
+                  "ServiceEntrySheetItemUUID",
+                  "ServiceEntrySheetItemUUID desc",
+                  "ServiceEntrySheetUUID",
+                  "ServiceEntrySheetUUID desc",
+                  "WBSElementInternalID",
+                  "WBSElementInternalID desc",
+                  "WBSElement",
+                  "WBSElement desc",
+                  "ServiceDocumentType",
+                  "ServiceDocumentType desc",
+                  "ServiceDocument",
+                  "ServiceDocument desc",
+                  "ServiceDocumentItem",
+                  "ServiceDocumentItem desc",
+                  "Currency",
+                  "Currency desc",
+                  "NetAmount",
+                  "NetAmount desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ServiceEntrySheet",
+                  "ServiceEntrySheetItem",
+                  "AccountAssignment",
+                  "AccountAssignmentUUID",
+                  "PurchasingOrganization",
+                  "PurchasingGroup",
+                  "Plant",
+                  "BusinessArea",
+                  "CommitmentItem",
+                  "ControllingArea",
+                  "CostCenter",
+                  "CostObject",
+                  "CreatedByUser",
+                  "CreationDateTime",
+                  "EarmarkedFundsDocument",
+                  "FixedAsset",
+                  "FunctionalArea",
+                  "Fund",
+                  "FundsCenter",
+                  "GLAccount",
+                  "IsDeleted",
+                  "LastChangeDateTime",
+                  "LastChangedByUser",
+                  "MasterFixedAsset",
+                  "MultipleAcctAssgmtDistrPercent",
+                  "NetworkActivity",
+                  "NetworkActivityInternalID",
+                  "OrderID",
+                  "PartnerAccountNumber",
+                  "ProfitCenter",
+                  "ProfitabilitySegment",
+                  "ProjectNetwork",
+                  "ProjectNetworkInternalID",
+                  "Quantity",
+                  "QuantityUnit",
+                  "RealEstateObject",
+                  "RefDocAccountAssignment",
+                  "SalesOrder",
+                  "SalesOrderItem",
+                  "SalesOrderScheduleLine",
+                  "ServiceEntrySheetItemUUID",
+                  "ServiceEntrySheetUUID",
+                  "WBSElementInternalID",
+                  "WBSElement",
+                  "ServiceDocumentType",
+                  "ServiceDocument",
+                  "ServiceDocumentItem",
+                  "Currency",
+                  "NetAmount"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of A_SrvcEntrShtAcctAssignmentType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_SERVICE_ENTRY_SHEET_SRV.A_SrvcEntrShtAcctAssignmentType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_SrvcEntrShtAcctAssignment": {
+      "get": {
+        "summary": "Reads all account assignments of service entry sheets.",
+        "description": "Reads all account assignments of service entry sheets. You can show only or skip the first n account assignments, filter and order account assignments by property values, include a count of account assignments, and select properties to be returned.",
+        "tags": [
+          "Account Assignment"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ServiceEntrySheet",
+                  "ServiceEntrySheet desc",
+                  "ServiceEntrySheetItem",
+                  "ServiceEntrySheetItem desc",
+                  "AccountAssignment",
+                  "AccountAssignment desc",
+                  "AccountAssignmentUUID",
+                  "AccountAssignmentUUID desc",
+                  "PurchasingOrganization",
+                  "PurchasingOrganization desc",
+                  "PurchasingGroup",
+                  "PurchasingGroup desc",
+                  "Plant",
+                  "Plant desc",
+                  "BusinessArea",
+                  "BusinessArea desc",
+                  "CommitmentItem",
+                  "CommitmentItem desc",
+                  "ControllingArea",
+                  "ControllingArea desc",
+                  "CostCenter",
+                  "CostCenter desc",
+                  "CostObject",
+                  "CostObject desc",
+                  "CreatedByUser",
+                  "CreatedByUser desc",
+                  "CreationDateTime",
+                  "CreationDateTime desc",
+                  "EarmarkedFundsDocument",
+                  "EarmarkedFundsDocument desc",
+                  "FixedAsset",
+                  "FixedAsset desc",
+                  "FunctionalArea",
+                  "FunctionalArea desc",
+                  "Fund",
+                  "Fund desc",
+                  "FundsCenter",
+                  "FundsCenter desc",
+                  "GLAccount",
+                  "GLAccount desc",
+                  "IsDeleted",
+                  "IsDeleted desc",
+                  "LastChangeDateTime",
+                  "LastChangeDateTime desc",
+                  "LastChangedByUser",
+                  "LastChangedByUser desc",
+                  "MasterFixedAsset",
+                  "MasterFixedAsset desc",
+                  "MultipleAcctAssgmtDistrPercent",
+                  "MultipleAcctAssgmtDistrPercent desc",
+                  "NetworkActivity",
+                  "NetworkActivity desc",
+                  "NetworkActivityInternalID",
+                  "NetworkActivityInternalID desc",
+                  "OrderID",
+                  "OrderID desc",
+                  "PartnerAccountNumber",
+                  "PartnerAccountNumber desc",
+                  "ProfitCenter",
+                  "ProfitCenter desc",
+                  "ProfitabilitySegment",
+                  "ProfitabilitySegment desc",
+                  "ProjectNetwork",
+                  "ProjectNetwork desc",
+                  "ProjectNetworkInternalID",
+                  "ProjectNetworkInternalID desc",
+                  "Quantity",
+                  "Quantity desc",
+                  "QuantityUnit",
+                  "QuantityUnit desc",
+                  "RealEstateObject",
+                  "RealEstateObject desc",
+                  "RefDocAccountAssignment",
+                  "RefDocAccountAssignment desc",
+                  "SalesOrder",
+                  "SalesOrder desc",
+                  "SalesOrderItem",
+                  "SalesOrderItem desc",
+                  "SalesOrderScheduleLine",
+                  "SalesOrderScheduleLine desc",
+                  "ServiceEntrySheetItemUUID",
+                  "ServiceEntrySheetItemUUID desc",
+                  "ServiceEntrySheetUUID",
+                  "ServiceEntrySheetUUID desc",
+                  "WBSElementInternalID",
+                  "WBSElementInternalID desc",
+                  "WBSElement",
+                  "WBSElement desc",
+                  "ServiceDocumentType",
+                  "ServiceDocumentType desc",
+                  "ServiceDocument",
+                  "ServiceDocument desc",
+                  "ServiceDocumentItem",
+                  "ServiceDocumentItem desc",
+                  "Currency",
+                  "Currency desc",
+                  "NetAmount",
+                  "NetAmount desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ServiceEntrySheet",
+                  "ServiceEntrySheetItem",
+                  "AccountAssignment",
+                  "AccountAssignmentUUID",
+                  "PurchasingOrganization",
+                  "PurchasingGroup",
+                  "Plant",
+                  "BusinessArea",
+                  "CommitmentItem",
+                  "ControllingArea",
+                  "CostCenter",
+                  "CostObject",
+                  "CreatedByUser",
+                  "CreationDateTime",
+                  "EarmarkedFundsDocument",
+                  "FixedAsset",
+                  "FunctionalArea",
+                  "Fund",
+                  "FundsCenter",
+                  "GLAccount",
+                  "IsDeleted",
+                  "LastChangeDateTime",
+                  "LastChangedByUser",
+                  "MasterFixedAsset",
+                  "MultipleAcctAssgmtDistrPercent",
+                  "NetworkActivity",
+                  "NetworkActivityInternalID",
+                  "OrderID",
+                  "PartnerAccountNumber",
+                  "ProfitCenter",
+                  "ProfitabilitySegment",
+                  "ProjectNetwork",
+                  "ProjectNetworkInternalID",
+                  "Quantity",
+                  "QuantityUnit",
+                  "RealEstateObject",
+                  "RefDocAccountAssignment",
+                  "SalesOrder",
+                  "SalesOrderItem",
+                  "SalesOrderScheduleLine",
+                  "ServiceEntrySheetItemUUID",
+                  "ServiceEntrySheetUUID",
+                  "WBSElementInternalID",
+                  "WBSElement",
+                  "ServiceDocumentType",
+                  "ServiceDocument",
+                  "ServiceDocumentItem",
+                  "Currency",
+                  "NetAmount"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of A_SrvcEntrShtAcctAssignmentType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_SERVICE_ENTRY_SHEET_SRV.A_SrvcEntrShtAcctAssignmentType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_SrvcEntrShtAcctAssignment(ServiceEntrySheet='{ServiceEntrySheet}',ServiceEntrySheetItem='{ServiceEntrySheetItem}',AccountAssignment='{AccountAssignment}')": {
+      "parameters": [
+        {
+          "name": "ServiceEntrySheet",
+          "in": "path",
+          "required": true,
+          "description": "Service Entry Sheet",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "ServiceEntrySheetItem",
+          "in": "path",
+          "required": true,
+          "description": "Item Number of Service Entry Sheet",
+          "schema": {
+            "type": "string",
+            "maxLength": 5
+          }
+        },
+        {
+          "name": "AccountAssignment",
+          "in": "path",
+          "required": true,
+          "description": "Sequential Number of Account Assignment",
+          "schema": {
+            "type": "string",
+            "maxLength": 2
+          }
+        }
+      ],
+      "get": {
+        "summary": "Reads a specified account assignment.",
+        "description": "Reads the specified account assignment of the specified item from the specified service entry sheet. You can select the properties to be returned.",
+        "tags": [
+          "Account Assignment"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ServiceEntrySheet",
+                  "ServiceEntrySheetItem",
+                  "AccountAssignment",
+                  "AccountAssignmentUUID",
+                  "PurchasingOrganization",
+                  "PurchasingGroup",
+                  "Plant",
+                  "BusinessArea",
+                  "CommitmentItem",
+                  "ControllingArea",
+                  "CostCenter",
+                  "CostObject",
+                  "CreatedByUser",
+                  "CreationDateTime",
+                  "EarmarkedFundsDocument",
+                  "FixedAsset",
+                  "FunctionalArea",
+                  "Fund",
+                  "FundsCenter",
+                  "GLAccount",
+                  "IsDeleted",
+                  "LastChangeDateTime",
+                  "LastChangedByUser",
+                  "MasterFixedAsset",
+                  "MultipleAcctAssgmtDistrPercent",
+                  "NetworkActivity",
+                  "NetworkActivityInternalID",
+                  "OrderID",
+                  "PartnerAccountNumber",
+                  "ProfitCenter",
+                  "ProfitabilitySegment",
+                  "ProjectNetwork",
+                  "ProjectNetworkInternalID",
+                  "Quantity",
+                  "QuantityUnit",
+                  "RealEstateObject",
+                  "RefDocAccountAssignment",
+                  "SalesOrder",
+                  "SalesOrderItem",
+                  "SalesOrderScheduleLine",
+                  "ServiceEntrySheetItemUUID",
+                  "ServiceEntrySheetUUID",
+                  "WBSElementInternalID",
+                  "WBSElement",
+                  "ServiceDocumentType",
+                  "ServiceDocument",
+                  "ServiceDocumentItem",
+                  "Currency",
+                  "NetAmount"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_SrvcEntrShtAcctAssignmentType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_SERVICE_ENTRY_SHEET_SRV.A_SrvcEntrShtAcctAssignmentType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Updates a specified account assignment.",
+        "description": "Updates the specified account assignment of the specified item from the specified service entry sheet. You can update values such as G/L account, cost center, functional area, service order, and WBS element.",
+        "tags": [
+          "Account Assignment"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New property values",
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "Modified A_SrvcEntrShtAcctAssignmentType",
+                "type": "object",
+                "properties": {
+                  "d": {
+                    "$ref": "#/components/schemas/API_SERVICE_ENTRY_SHEET_SRV.A_SrvcEntrShtAcctAssignmentType-update"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/SubmitForApproval": {
+      "post": {
+        "summary": "Submits a service entry sheet for approval.",
+        "description": "Submits a service entry sheet for approval, triggering an approval workflow process.",
+        "tags": [
+          "Service Operations"
+        ],
+        "parameters": [
+          {
+            "name": "ServiceEntrySheet",
+            "in": "query",
+            "required": true,
+            "description": "Service Entry Sheet  \n(Value needs to be enclosed in single quotes)",
+            "schema": {
+              "type": "string",
+              "maxLength": 12,
+              "pattern": "^'[^']*(''[^']*)*'$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "ChangeStatusExportParameters",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "type": "object",
+                      "properties": {
+                        "SubmitForApproval": {
+                          "$ref": "#/components/schemas/API_SERVICE_ENTRY_SHEET_SRV.ChangeStatusExportParameters"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/RevokeApproval": {
+      "post": {
+        "summary": "Revokes the approval of a service entry sheet.",
+        "description": "Revokes approval of a service entry sheet that has already been approved and cancels the goods receipt. The service entry sheet then has the status In Process, allowing you to change it.",
+        "tags": [
+          "Service Operations"
+        ],
+        "parameters": [
+          {
+            "name": "ServiceEntrySheet",
+            "in": "query",
+            "required": true,
+            "description": "Service Entry Sheet  \n(Value needs to be enclosed in single quotes)",
+            "schema": {
+              "type": "string",
+              "maxLength": 12,
+              "pattern": "^'[^']*(''[^']*)*'$"
+            }
+          },
+          {
+            "name": "PostingDate",
+            "in": "query",
+            "required": true,
+            "description": "Posting Date  \n(Value needs to be enclosed in single quotes)",
+            "schema": {
+              "type": "string",
+              "maxLength": 10,
+              "pattern": "^'[^']*(''[^']*)*'$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "ChangeStatusExportParameters",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "type": "object",
+                      "properties": {
+                        "RevokeApproval": {
+                          "$ref": "#/components/schemas/API_SERVICE_ENTRY_SHEET_SRV.ChangeStatusExportParameters"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/WithdrawFromApproval": {
+      "post": {
+        "summary": "Withdraws a service entry sheet from the approval process.",
+        "description": "Withdraws a service entry sheet from the approval process. The service entry sheet then has the status In Process, allowing you to change it.",
+        "tags": [
+          "Service Operations"
+        ],
+        "parameters": [
+          {
+            "name": "ServiceEntrySheet",
+            "in": "query",
+            "required": true,
+            "description": "Service Entry Sheet  \n(Value needs to be enclosed in single quotes)",
+            "schema": {
+              "type": "string",
+              "maxLength": 12,
+              "pattern": "^'[^']*(''[^']*)*'$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "ChangeStatusExportParameters",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "type": "object",
+                      "properties": {
+                        "WithdrawFromApproval": {
+                          "$ref": "#/components/schemas/API_SERVICE_ENTRY_SHEET_SRV.ChangeStatusExportParameters"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/$batch": {
+      "post": {
+        "summary": "Send a group of requests",
+        "description": "Group multiple requests into a single request payload, see [Batch Requests](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=152).\n\n*Please note that \"Try it out\" is not supported for this request.*",
+        "tags": [
+          "Batch Requests"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Batch request",
+          "content": {
+            "multipart/mixed;boundary=request-separator": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "--request-separator\nContent-Type: application/http\nContent-Transfer-Encoding: binary\n\nGET A_ServiceEntrySheet HTTP/1.1\nAccept: application/json\n\n\n--request-separator--"
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Batch response",
+            "content": {
+              "multipart/mixed": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "--response-separator\nContent-Type: application/http\n\nHTTP/1.1 200 OK\nContent-Type: application/json\n\n{...}\n--response-separator--"
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "API_SERVICE_ENTRY_SHEET_SRV.A_ServiceEntrySheetType": {
+        "type": "object",
+        "properties": {
+          "ServiceEntrySheet": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Service Entry Sheet"
+          },
+          "ApprovalDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Approval Date",
+            "description": "Date and Time of SES Approval (UTC)"
+          },
+          "ApprovalStatus": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Document Status",
+            "description": "Document Status for Service Entry Sheet"
+          },
+          "SESWorkflowStatus": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Approval Status",
+            "description": "Approval Status for Service Entry Sheet"
+          },
+          "CreatedByUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "User Name"
+          },
+          "CreationDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp",
+            "description": "UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)"
+          },
+          "PurchasingOrganization": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Purch. Organization",
+            "description": "Purchasing Organization"
+          },
+          "PurchasingGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Purchasing Group"
+          },
+          "IsEndOfPurposeBlocked": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Busin. Purp. Cmpltd.",
+            "description": "Business Purpose Completed"
+          },
+          "Currency": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Currency Key"
+          },
+          "IsDeleted": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Deletion Indicator",
+            "description": "Deletion Indicator in Purchasing Document"
+          },
+          "LastChangeDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp",
+            "description": "UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)"
+          },
+          "LastChangedByUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "User Name"
+          },
+          "MaterialDocument": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Material Document",
+            "description": "Number of Material Document"
+          },
+          "MaterialDocumentYear": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Material Doc. Year",
+            "description": "Material Document Year"
+          },
+          "OriginObjectType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Origin",
+            "description": "Origin of Service Entry Sheet"
+          },
+          "PurchaseOrder": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Reference PO",
+            "description": "Reference Purchase Order"
+          },
+          "ResponsiblePerson": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 8,
+            "title": "Personnel Number"
+          },
+          "ServiceEntrySheetName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "SES Name",
+            "description": "Name of Service Entry Sheet"
+          },
+          "ServiceEntrySheetUUID": {
+            "type": "string",
+            "nullable": true,
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "title": "Key",
+            "description": "UUID serving as key (parent key, root key)"
+          },
+          "Supplier": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Supplier",
+            "description": "Account Number of Supplier"
+          },
+          "PurgDocExternalSystem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 60,
+            "title": "Ext. Ref. System",
+            "description": "ID of External Reference System"
+          },
+          "PurgDocExternalReference": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 70,
+            "title": "Ext. Reference ID",
+            "description": "External Reference ID"
+          },
+          "ExternalRevisionDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "External Revision",
+            "description": "Timestamp for Revision of External Calls"
+          },
+          "PostingDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Posting Date for GR",
+            "description": "GR Posting Date"
+          },
+          "to_ServiceEntrySheetItem": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/API_SERVICE_ENTRY_SHEET_SRV.A_ServiceEntrySheetItemType"
+                }
+              }
+            }
+          }
+        },
+        "title": "Service Entry Sheet"
+      },
+      "API_SERVICE_ENTRY_SHEET_SRV.A_ServiceEntrySheetType-create": {
+        "type": "object",
+        "properties": {
+          "ServiceEntrySheet": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Service Entry Sheet"
+          },
+          "ApprovalDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Approval Date",
+            "description": "Date and Time of SES Approval (UTC)"
+          },
+          "ApprovalStatus": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Document Status",
+            "description": "Document Status for Service Entry Sheet"
+          },
+          "SESWorkflowStatus": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Approval Status",
+            "description": "Approval Status for Service Entry Sheet"
+          },
+          "CreatedByUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "User Name"
+          },
+          "CreationDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp",
+            "description": "UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)"
+          },
+          "PurchasingOrganization": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Purch. Organization",
+            "description": "Purchasing Organization"
+          },
+          "PurchasingGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Purchasing Group"
+          },
+          "IsEndOfPurposeBlocked": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Busin. Purp. Cmpltd.",
+            "description": "Business Purpose Completed"
+          },
+          "Currency": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Currency Key"
+          },
+          "IsDeleted": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Deletion Indicator",
+            "description": "Deletion Indicator in Purchasing Document"
+          },
+          "LastChangeDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp",
+            "description": "UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)"
+          },
+          "LastChangedByUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "User Name"
+          },
+          "MaterialDocument": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Material Document",
+            "description": "Number of Material Document"
+          },
+          "MaterialDocumentYear": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Material Doc. Year",
+            "description": "Material Document Year"
+          },
+          "OriginObjectType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Origin",
+            "description": "Origin of Service Entry Sheet"
+          },
+          "PurchaseOrder": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Reference PO",
+            "description": "Reference Purchase Order"
+          },
+          "ResponsiblePerson": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 8,
+            "title": "Personnel Number"
+          },
+          "ServiceEntrySheetName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "SES Name",
+            "description": "Name of Service Entry Sheet"
+          },
+          "ServiceEntrySheetUUID": {
+            "type": "string",
+            "nullable": true,
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "title": "Key",
+            "description": "UUID serving as key (parent key, root key)"
+          },
+          "Supplier": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Supplier",
+            "description": "Account Number of Supplier"
+          },
+          "PurgDocExternalSystem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 60,
+            "title": "Ext. Ref. System",
+            "description": "ID of External Reference System"
+          },
+          "PurgDocExternalReference": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 70,
+            "title": "Ext. Reference ID",
+            "description": "External Reference ID"
+          },
+          "ExternalRevisionDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "External Revision",
+            "description": "Timestamp for Revision of External Calls"
+          },
+          "PostingDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Posting Date for GR",
+            "description": "GR Posting Date"
+          },
+          "to_ServiceEntrySheetItem": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/API_SERVICE_ENTRY_SHEET_SRV.A_ServiceEntrySheetItemType-create"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "ServiceEntrySheet"
+        ],
+        "title": "Service Entry Sheet (for create)"
+      },
+      "API_SERVICE_ENTRY_SHEET_SRV.A_ServiceEntrySheetType-update": {
+        "type": "object",
+        "properties": {
+          "ApprovalDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Approval Date",
+            "description": "Date and Time of SES Approval (UTC)"
+          },
+          "ApprovalStatus": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Document Status",
+            "description": "Document Status for Service Entry Sheet"
+          },
+          "SESWorkflowStatus": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Approval Status",
+            "description": "Approval Status for Service Entry Sheet"
+          },
+          "CreatedByUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "User Name"
+          },
+          "CreationDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp",
+            "description": "UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)"
+          },
+          "PurchasingOrganization": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Purch. Organization",
+            "description": "Purchasing Organization"
+          },
+          "PurchasingGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Purchasing Group"
+          },
+          "IsEndOfPurposeBlocked": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Busin. Purp. Cmpltd.",
+            "description": "Business Purpose Completed"
+          },
+          "Currency": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Currency Key"
+          },
+          "IsDeleted": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Deletion Indicator",
+            "description": "Deletion Indicator in Purchasing Document"
+          },
+          "LastChangeDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp",
+            "description": "UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)"
+          },
+          "LastChangedByUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "User Name"
+          },
+          "MaterialDocument": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Material Document",
+            "description": "Number of Material Document"
+          },
+          "MaterialDocumentYear": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Material Doc. Year",
+            "description": "Material Document Year"
+          },
+          "OriginObjectType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Origin",
+            "description": "Origin of Service Entry Sheet"
+          },
+          "PurchaseOrder": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Reference PO",
+            "description": "Reference Purchase Order"
+          },
+          "ResponsiblePerson": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 8,
+            "title": "Personnel Number"
+          },
+          "ServiceEntrySheetName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "SES Name",
+            "description": "Name of Service Entry Sheet"
+          },
+          "ServiceEntrySheetUUID": {
+            "type": "string",
+            "nullable": true,
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "title": "Key",
+            "description": "UUID serving as key (parent key, root key)"
+          },
+          "Supplier": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Supplier",
+            "description": "Account Number of Supplier"
+          },
+          "PurgDocExternalSystem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 60,
+            "title": "Ext. Ref. System",
+            "description": "ID of External Reference System"
+          },
+          "PurgDocExternalReference": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 70,
+            "title": "Ext. Reference ID",
+            "description": "External Reference ID"
+          },
+          "ExternalRevisionDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "External Revision",
+            "description": "Timestamp for Revision of External Calls"
+          },
+          "PostingDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Posting Date for GR",
+            "description": "GR Posting Date"
+          }
+        },
+        "title": "Service Entry Sheet (for update)"
+      },
+      "API_SERVICE_ENTRY_SHEET_SRV.A_ServiceEntrySheetItemType": {
+        "type": "object",
+        "properties": {
+          "ServiceEntrySheet": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Service Entry Sheet"
+          },
+          "ServiceEntrySheetItem": {
+            "type": "string",
+            "maxLength": 5,
+            "title": "Item Number of SES",
+            "description": "Item Number of Service Entry Sheet"
+          },
+          "AccountAssignmentCategory": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "AccountAssignmentCategory",
+            "title": "Acct Assignment Cat.",
+            "description": "Account Assignment Category"
+          },
+          "ConfirmedQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Stated Quantity"
+          },
+          "CreatedByUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Created By (User)",
+            "description": "Created By (User Name) for Service Entry Sheet"
+          },
+          "CreationDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp",
+            "description": "UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)"
+          },
+          "PurchasingOrganization": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Purch. Organization",
+            "description": "Purchasing Organization"
+          },
+          "PurchasingGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Purchasing Group"
+          },
+          "Plant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "Currency": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Currency Key"
+          },
+          "IsDeleted": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Deletion Indicator",
+            "description": "Deletion Indicator in Purchasing Document"
+          },
+          "LastChangeDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp",
+            "description": "UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)"
+          },
+          "LastChangedByUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Last Changed (User)",
+            "description": "Last Changed (User Name) for Service Entry Sheet"
+          },
+          "SESItemMaterialGroupIsInitial": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Is MatlGrp Initial",
+            "description": "Is Material Group Initial"
+          },
+          "MaterialGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 9,
+            "title": "Product Group"
+          },
+          "MultipleAcctAssgmtDistribution": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Distrib. Indicator",
+            "description": "Distribution Indicator for Multiple Account Assignment"
+          },
+          "NetAmount": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 14,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -99999999999.999,
+            "maximum": 99999999999.999,
+            "example": "0",
+            "title": "Stated Amount"
+          },
+          "NetPriceAmount": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 14,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -99999999999.999,
+            "maximum": 99999999999.999,
+            "example": "0",
+            "title": "Price per Unit",
+            "description": "Price per Unit for an SES Item"
+          },
+          "OriginObject": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Reference Document",
+            "description": "External Reference Document"
+          },
+          "PurchaseOrder": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Reference PO",
+            "description": "Reference Purchase Order"
+          },
+          "PurchaseOrderItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "title": "Ref. PO Item",
+            "description": "Referenced Purchase Order Item"
+          },
+          "PurchaseContract": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Contract For Limit",
+            "description": "Purchase Contract for Enhanced Limit"
+          },
+          "PurchaseContractItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "title": "Purchase Contract Item"
+          },
+          "QuantityUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Unit of Measure",
+            "description": "Unit of Measure for Service Entry Statement"
+          },
+          "Service": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Product"
+          },
+          "ServiceEntrySheetItemDesc": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Item Description",
+            "description": "Item Description for Service Entry Sheet"
+          },
+          "ServiceEntrySheetItemUUID": {
+            "type": "string",
+            "nullable": true,
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "title": "Key",
+            "description": "UUID serving as key (parent key, root key)"
+          },
+          "ServiceEntrySheetUUID": {
+            "type": "string",
+            "nullable": true,
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "title": "Key",
+            "description": "UUID serving as key (parent key, root key)"
+          },
+          "ServicePerformanceDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Performance Date",
+            "description": "Date of Service Performance"
+          },
+          "ServicePerformanceEndDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Performance End Date",
+            "description": "End Date of Performance Period"
+          },
+          "ServicePerformer": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Service Performer"
+          },
+          "WorkItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Work Item ID"
+          },
+          "PurgDocItemExternalReference": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 70,
+            "title": "Ext. Reference ID",
+            "description": "External Reference ID"
+          },
+          "SESItemIsFinalEntry": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Final Entry"
+          },
+          "SESItemTaxCodeIsInitial": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Is Tax Code Initial"
+          },
+          "TaxCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Tax Code",
+            "description": "Tax on sales/purchases code"
+          },
+          "SESItemTaxCountryCodeIsInitial": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Is TaxCtrCde Initial",
+            "description": "Is Tax Country Code Initial"
+          },
+          "TaxCountry": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Tax Ctry/Reg.",
+            "description": "Tax Reporting Country/Region"
+          },
+          "SESItmTaxJurisdictionIsInitial": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Is TaxJurCde Initial",
+            "description": "Is Tax Jurisdiction Code Initial"
+          },
+          "TaxJurisdiction": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 15,
+            "title": "Tax Jurisdiction"
+          },
+          "to_AccountAssignment": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/API_SERVICE_ENTRY_SHEET_SRV.A_SrvcEntrShtAcctAssignmentType"
+                }
+              }
+            }
+          }
+        },
+        "title": "Item"
+      },
+      "API_SERVICE_ENTRY_SHEET_SRV.A_ServiceEntrySheetItemType-create": {
+        "type": "object",
+        "properties": {
+          "ServiceEntrySheet": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Service Entry Sheet"
+          },
+          "ServiceEntrySheetItem": {
+            "type": "string",
+            "maxLength": 5,
+            "title": "Item Number of SES",
+            "description": "Item Number of Service Entry Sheet"
+          },
+          "AccountAssignmentCategory": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "AccountAssignmentCategory",
+            "title": "Acct Assignment Cat.",
+            "description": "Account Assignment Category"
+          },
+          "ConfirmedQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Stated Quantity"
+          },
+          "CreatedByUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Created By (User)",
+            "description": "Created By (User Name) for Service Entry Sheet"
+          },
+          "CreationDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp",
+            "description": "UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)"
+          },
+          "PurchasingOrganization": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Purch. Organization",
+            "description": "Purchasing Organization"
+          },
+          "PurchasingGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Purchasing Group"
+          },
+          "Plant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "Currency": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Currency Key"
+          },
+          "IsDeleted": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Deletion Indicator",
+            "description": "Deletion Indicator in Purchasing Document"
+          },
+          "LastChangeDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp",
+            "description": "UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)"
+          },
+          "LastChangedByUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Last Changed (User)",
+            "description": "Last Changed (User Name) for Service Entry Sheet"
+          },
+          "SESItemMaterialGroupIsInitial": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Is MatlGrp Initial",
+            "description": "Is Material Group Initial"
+          },
+          "MaterialGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 9,
+            "title": "Product Group"
+          },
+          "MultipleAcctAssgmtDistribution": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Distrib. Indicator",
+            "description": "Distribution Indicator for Multiple Account Assignment"
+          },
+          "NetAmount": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 14,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -99999999999.999,
+            "maximum": 99999999999.999,
+            "example": "0",
+            "title": "Stated Amount"
+          },
+          "NetPriceAmount": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 14,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -99999999999.999,
+            "maximum": 99999999999.999,
+            "example": "0",
+            "title": "Price per Unit",
+            "description": "Price per Unit for an SES Item"
+          },
+          "OriginObject": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Reference Document",
+            "description": "External Reference Document"
+          },
+          "PurchaseOrder": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Reference PO",
+            "description": "Reference Purchase Order"
+          },
+          "PurchaseOrderItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "title": "Ref. PO Item",
+            "description": "Referenced Purchase Order Item"
+          },
+          "PurchaseContract": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Contract For Limit",
+            "description": "Purchase Contract for Enhanced Limit"
+          },
+          "PurchaseContractItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "title": "Purchase Contract Item"
+          },
+          "QuantityUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Unit of Measure",
+            "description": "Unit of Measure for Service Entry Statement"
+          },
+          "Service": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Product"
+          },
+          "ServiceEntrySheetItemDesc": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Item Description",
+            "description": "Item Description for Service Entry Sheet"
+          },
+          "ServiceEntrySheetItemUUID": {
+            "type": "string",
+            "nullable": true,
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "title": "Key",
+            "description": "UUID serving as key (parent key, root key)"
+          },
+          "ServiceEntrySheetUUID": {
+            "type": "string",
+            "nullable": true,
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "title": "Key",
+            "description": "UUID serving as key (parent key, root key)"
+          },
+          "ServicePerformanceDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Performance Date",
+            "description": "Date of Service Performance"
+          },
+          "ServicePerformanceEndDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Performance End Date",
+            "description": "End Date of Performance Period"
+          },
+          "ServicePerformer": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Service Performer"
+          },
+          "WorkItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Work Item ID"
+          },
+          "PurgDocItemExternalReference": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 70,
+            "title": "Ext. Reference ID",
+            "description": "External Reference ID"
+          },
+          "SESItemIsFinalEntry": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Final Entry"
+          },
+          "SESItemTaxCodeIsInitial": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Is Tax Code Initial"
+          },
+          "TaxCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Tax Code",
+            "description": "Tax on sales/purchases code"
+          },
+          "SESItemTaxCountryCodeIsInitial": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Is TaxCtrCde Initial",
+            "description": "Is Tax Country Code Initial"
+          },
+          "TaxCountry": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Tax Ctry/Reg.",
+            "description": "Tax Reporting Country/Region"
+          },
+          "SESItmTaxJurisdictionIsInitial": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Is TaxJurCde Initial",
+            "description": "Is Tax Jurisdiction Code Initial"
+          },
+          "TaxJurisdiction": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 15,
+            "title": "Tax Jurisdiction"
+          },
+          "to_AccountAssignment": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/API_SERVICE_ENTRY_SHEET_SRV.A_SrvcEntrShtAcctAssignmentType-create"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "ServiceEntrySheet",
+          "ServiceEntrySheetItem"
+        ],
+        "title": "Item (for create)"
+      },
+      "API_SERVICE_ENTRY_SHEET_SRV.A_ServiceEntrySheetItemType-update": {
+        "type": "object",
+        "properties": {
+          "AccountAssignmentCategory": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "AccountAssignmentCategory",
+            "title": "Acct Assignment Cat.",
+            "description": "Account Assignment Category"
+          },
+          "ConfirmedQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Stated Quantity"
+          },
+          "CreatedByUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Created By (User)",
+            "description": "Created By (User Name) for Service Entry Sheet"
+          },
+          "CreationDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp",
+            "description": "UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)"
+          },
+          "PurchasingOrganization": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Purch. Organization",
+            "description": "Purchasing Organization"
+          },
+          "PurchasingGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Purchasing Group"
+          },
+          "Plant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "Currency": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Currency Key"
+          },
+          "IsDeleted": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Deletion Indicator",
+            "description": "Deletion Indicator in Purchasing Document"
+          },
+          "LastChangeDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp",
+            "description": "UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)"
+          },
+          "LastChangedByUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Last Changed (User)",
+            "description": "Last Changed (User Name) for Service Entry Sheet"
+          },
+          "SESItemMaterialGroupIsInitial": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Is MatlGrp Initial",
+            "description": "Is Material Group Initial"
+          },
+          "MaterialGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 9,
+            "title": "Product Group"
+          },
+          "MultipleAcctAssgmtDistribution": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Distrib. Indicator",
+            "description": "Distribution Indicator for Multiple Account Assignment"
+          },
+          "NetAmount": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 14,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -99999999999.999,
+            "maximum": 99999999999.999,
+            "example": "0",
+            "title": "Stated Amount"
+          },
+          "NetPriceAmount": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 14,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -99999999999.999,
+            "maximum": 99999999999.999,
+            "example": "0",
+            "title": "Price per Unit",
+            "description": "Price per Unit for an SES Item"
+          },
+          "OriginObject": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Reference Document",
+            "description": "External Reference Document"
+          },
+          "PurchaseOrder": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Reference PO",
+            "description": "Reference Purchase Order"
+          },
+          "PurchaseOrderItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "title": "Ref. PO Item",
+            "description": "Referenced Purchase Order Item"
+          },
+          "PurchaseContract": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Contract For Limit",
+            "description": "Purchase Contract for Enhanced Limit"
+          },
+          "PurchaseContractItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "title": "Purchase Contract Item"
+          },
+          "QuantityUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Unit of Measure",
+            "description": "Unit of Measure for Service Entry Statement"
+          },
+          "Service": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Product"
+          },
+          "ServiceEntrySheetItemDesc": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Item Description",
+            "description": "Item Description for Service Entry Sheet"
+          },
+          "ServiceEntrySheetItemUUID": {
+            "type": "string",
+            "nullable": true,
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "title": "Key",
+            "description": "UUID serving as key (parent key, root key)"
+          },
+          "ServiceEntrySheetUUID": {
+            "type": "string",
+            "nullable": true,
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "title": "Key",
+            "description": "UUID serving as key (parent key, root key)"
+          },
+          "ServicePerformanceDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Performance Date",
+            "description": "Date of Service Performance"
+          },
+          "ServicePerformanceEndDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Performance End Date",
+            "description": "End Date of Performance Period"
+          },
+          "ServicePerformer": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Service Performer"
+          },
+          "WorkItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Work Item ID"
+          },
+          "PurgDocItemExternalReference": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 70,
+            "title": "Ext. Reference ID",
+            "description": "External Reference ID"
+          },
+          "SESItemIsFinalEntry": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Final Entry"
+          },
+          "SESItemTaxCodeIsInitial": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Is Tax Code Initial"
+          },
+          "TaxCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Tax Code",
+            "description": "Tax on sales/purchases code"
+          },
+          "SESItemTaxCountryCodeIsInitial": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Is TaxCtrCde Initial",
+            "description": "Is Tax Country Code Initial"
+          },
+          "TaxCountry": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Tax Ctry/Reg.",
+            "description": "Tax Reporting Country/Region"
+          },
+          "SESItmTaxJurisdictionIsInitial": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Is TaxJurCde Initial",
+            "description": "Is Tax Jurisdiction Code Initial"
+          },
+          "TaxJurisdiction": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 15,
+            "title": "Tax Jurisdiction"
+          }
+        },
+        "title": "Item (for update)"
+      },
+      "API_SERVICE_ENTRY_SHEET_SRV.A_SrvcEntrShtAcctAssignmentType": {
+        "type": "object",
+        "properties": {
+          "ServiceEntrySheet": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Service Entry Sheet"
+          },
+          "ServiceEntrySheetItem": {
+            "type": "string",
+            "maxLength": 5,
+            "title": "Item Number of SES",
+            "description": "Item Number of Service Entry Sheet"
+          },
+          "AccountAssignment": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Account Assgmt No.",
+            "description": "Sequential Number of Account Assignment"
+          },
+          "AccountAssignmentUUID": {
+            "type": "string",
+            "nullable": true,
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "title": "Key",
+            "description": "UUID serving as key (parent key, root key)"
+          },
+          "PurchasingOrganization": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Purch. Organization",
+            "description": "Purchasing Organization"
+          },
+          "PurchasingGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Purchasing Group"
+          },
+          "Plant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "BusinessArea": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Business Area"
+          },
+          "CommitmentItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 24,
+            "title": "Commitment item",
+            "description": "Commitment Item"
+          },
+          "ControllingArea": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Controlling Area"
+          },
+          "CostCenter": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Cost Center"
+          },
+          "CostObject": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Cost Object"
+          },
+          "CreatedByUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "User Name"
+          },
+          "CreationDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp",
+            "description": "UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)"
+          },
+          "EarmarkedFundsDocument": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Earmarked Funds",
+            "description": "Document Number for Earmarked Funds"
+          },
+          "FixedAsset": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Subnumber",
+            "description": "Asset Subnumber"
+          },
+          "FunctionalArea": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 16,
+            "title": "Functional Area"
+          },
+          "Fund": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Fund"
+          },
+          "FundsCenter": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 16,
+            "title": "Funds Center"
+          },
+          "GLAccount": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "G/L Account",
+            "description": "G/L Account Number"
+          },
+          "IsDeleted": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Deletion Indicator",
+            "description": "Deletion Indicator: Purchasing Document Account Assignment"
+          },
+          "LastChangeDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp",
+            "description": "UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)"
+          },
+          "LastChangedByUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "User Name"
+          },
+          "MasterFixedAsset": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Asset",
+            "description": "Main Asset Number"
+          },
+          "MultipleAcctAssgmtDistrPercent": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 3,
+            "x-sap-scale": 1,
+            "multipleOf": 1.0e-1,
+            "minimum": -99.9,
+            "maximum": 99.9,
+            "example": "0",
+            "title": "Distribution (%)",
+            "description": "Distribution percentage in the case of multiple acct assgt"
+          },
+          "NetworkActivity": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Oper./Act.",
+            "description": "Operation/Activity Number"
+          },
+          "NetworkActivityInternalID": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 8,
+            "title": "Counter",
+            "description": "Internal counter"
+          },
+          "OrderID": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Order",
+            "description": "Order Number"
+          },
+          "PartnerAccountNumber": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Partner",
+            "description": "Partner account number"
+          },
+          "ProfitCenter": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Profit Center"
+          },
+          "ProfitabilitySegment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Profitab. Segmt No.",
+            "description": "Profitability Segment Number (CO-PA)"
+          },
+          "ProjectNetwork": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Network",
+            "description": "Network Number for Account Assignment"
+          },
+          "ProjectNetworkInternalID": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Opertn task list no.",
+            "description": "Routing number of operations in the order"
+          },
+          "Quantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Quantity"
+          },
+          "QuantityUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Unit of Measure",
+            "description": "Unit of Measure for Service Entry Statement"
+          },
+          "RealEstateObject": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Real Estate Key",
+            "description": "Internal Key for Real Estate Object"
+          },
+          "RefDocAccountAssignment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "PO Item Acc Ass",
+            "description": "Account Assignment Number of the Referenced PO Item"
+          },
+          "SalesOrder": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "SD Document",
+            "description": "Sales and Distribution Document Number"
+          },
+          "SalesOrderItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 6,
+            "title": "Item",
+            "description": "Sales Document Item"
+          },
+          "SalesOrderScheduleLine": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Schedule Line Number"
+          },
+          "ServiceEntrySheetItemUUID": {
+            "type": "string",
+            "nullable": true,
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "title": "Key",
+            "description": "UUID serving as key (parent key, root key)"
+          },
+          "ServiceEntrySheetUUID": {
+            "type": "string",
+            "nullable": true,
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "title": "Key",
+            "description": "UUID serving as key (parent key, root key)"
+          },
+          "WBSElementInternalID": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 8,
+            "title": "WBS Internal ID",
+            "description": "WBS Element"
+          },
+          "WBSElement": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 24,
+            "title": "WBS Element",
+            "description": "Work Breakdown Structure Element (WBS Element)"
+          },
+          "ServiceDocumentType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "ServiceDocumentType",
+            "title": "Service Doc. Type",
+            "description": "Service Document Type"
+          },
+          "ServiceDocument": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Service Document",
+            "description": "Service Document ID"
+          },
+          "ServiceDocumentItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 6,
+            "title": "Service Doc. Item",
+            "description": "Service Document Item ID"
+          },
+          "Currency": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Currency Key"
+          },
+          "NetAmount": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 14,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -99999999999.999,
+            "maximum": 99999999999.999,
+            "example": "0",
+            "title": "Net Amount",
+            "description": "Net Amount in Transaction Currency"
+          }
+        },
+        "title": "Account Assignment"
+      },
+      "API_SERVICE_ENTRY_SHEET_SRV.A_SrvcEntrShtAcctAssignmentType-create": {
+        "type": "object",
+        "properties": {
+          "ServiceEntrySheet": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Service Entry Sheet"
+          },
+          "ServiceEntrySheetItem": {
+            "type": "string",
+            "maxLength": 5,
+            "title": "Item Number of SES",
+            "description": "Item Number of Service Entry Sheet"
+          },
+          "AccountAssignment": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Account Assgmt No.",
+            "description": "Sequential Number of Account Assignment"
+          },
+          "AccountAssignmentUUID": {
+            "type": "string",
+            "nullable": true,
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "title": "Key",
+            "description": "UUID serving as key (parent key, root key)"
+          },
+          "PurchasingOrganization": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Purch. Organization",
+            "description": "Purchasing Organization"
+          },
+          "PurchasingGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Purchasing Group"
+          },
+          "Plant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "BusinessArea": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Business Area"
+          },
+          "CommitmentItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 24,
+            "title": "Commitment item",
+            "description": "Commitment Item"
+          },
+          "ControllingArea": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Controlling Area"
+          },
+          "CostCenter": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Cost Center"
+          },
+          "CostObject": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Cost Object"
+          },
+          "CreatedByUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "User Name"
+          },
+          "CreationDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp",
+            "description": "UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)"
+          },
+          "EarmarkedFundsDocument": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Earmarked Funds",
+            "description": "Document Number for Earmarked Funds"
+          },
+          "FixedAsset": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Subnumber",
+            "description": "Asset Subnumber"
+          },
+          "FunctionalArea": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 16,
+            "title": "Functional Area"
+          },
+          "Fund": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Fund"
+          },
+          "FundsCenter": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 16,
+            "title": "Funds Center"
+          },
+          "GLAccount": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "G/L Account",
+            "description": "G/L Account Number"
+          },
+          "IsDeleted": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Deletion Indicator",
+            "description": "Deletion Indicator: Purchasing Document Account Assignment"
+          },
+          "LastChangeDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp",
+            "description": "UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)"
+          },
+          "LastChangedByUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "User Name"
+          },
+          "MasterFixedAsset": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Asset",
+            "description": "Main Asset Number"
+          },
+          "MultipleAcctAssgmtDistrPercent": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 3,
+            "x-sap-scale": 1,
+            "multipleOf": 1.0e-1,
+            "minimum": -99.9,
+            "maximum": 99.9,
+            "example": "0",
+            "title": "Distribution (%)",
+            "description": "Distribution percentage in the case of multiple acct assgt"
+          },
+          "NetworkActivity": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Oper./Act.",
+            "description": "Operation/Activity Number"
+          },
+          "NetworkActivityInternalID": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 8,
+            "title": "Counter",
+            "description": "Internal counter"
+          },
+          "OrderID": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Order",
+            "description": "Order Number"
+          },
+          "PartnerAccountNumber": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Partner",
+            "description": "Partner account number"
+          },
+          "ProfitCenter": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Profit Center"
+          },
+          "ProfitabilitySegment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Profitab. Segmt No.",
+            "description": "Profitability Segment Number (CO-PA)"
+          },
+          "ProjectNetwork": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Network",
+            "description": "Network Number for Account Assignment"
+          },
+          "ProjectNetworkInternalID": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Opertn task list no.",
+            "description": "Routing number of operations in the order"
+          },
+          "Quantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Quantity"
+          },
+          "QuantityUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Unit of Measure",
+            "description": "Unit of Measure for Service Entry Statement"
+          },
+          "RealEstateObject": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Real Estate Key",
+            "description": "Internal Key for Real Estate Object"
+          },
+          "RefDocAccountAssignment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "PO Item Acc Ass",
+            "description": "Account Assignment Number of the Referenced PO Item"
+          },
+          "SalesOrder": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "SD Document",
+            "description": "Sales and Distribution Document Number"
+          },
+          "SalesOrderItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 6,
+            "title": "Item",
+            "description": "Sales Document Item"
+          },
+          "SalesOrderScheduleLine": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Schedule Line Number"
+          },
+          "ServiceEntrySheetItemUUID": {
+            "type": "string",
+            "nullable": true,
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "title": "Key",
+            "description": "UUID serving as key (parent key, root key)"
+          },
+          "ServiceEntrySheetUUID": {
+            "type": "string",
+            "nullable": true,
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "title": "Key",
+            "description": "UUID serving as key (parent key, root key)"
+          },
+          "WBSElementInternalID": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 8,
+            "title": "WBS Internal ID",
+            "description": "WBS Element"
+          },
+          "WBSElement": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 24,
+            "title": "WBS Element",
+            "description": "Work Breakdown Structure Element (WBS Element)"
+          },
+          "ServiceDocumentType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "ServiceDocumentType",
+            "title": "Service Doc. Type",
+            "description": "Service Document Type"
+          },
+          "ServiceDocument": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Service Document",
+            "description": "Service Document ID"
+          },
+          "ServiceDocumentItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 6,
+            "title": "Service Doc. Item",
+            "description": "Service Document Item ID"
+          },
+          "Currency": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Currency Key"
+          },
+          "NetAmount": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 14,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -99999999999.999,
+            "maximum": 99999999999.999,
+            "example": "0",
+            "title": "Net Amount",
+            "description": "Net Amount in Transaction Currency"
+          }
+        },
+        "required": [
+          "ServiceEntrySheet",
+          "ServiceEntrySheetItem",
+          "AccountAssignment"
+        ],
+        "title": "Account Assignment (for create)"
+      },
+      "API_SERVICE_ENTRY_SHEET_SRV.A_SrvcEntrShtAcctAssignmentType-update": {
+        "type": "object",
+        "properties": {
+          "AccountAssignmentUUID": {
+            "type": "string",
+            "nullable": true,
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "title": "Key",
+            "description": "UUID serving as key (parent key, root key)"
+          },
+          "PurchasingOrganization": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Purch. Organization",
+            "description": "Purchasing Organization"
+          },
+          "PurchasingGroup": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Purchasing Group"
+          },
+          "Plant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "BusinessArea": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Business Area"
+          },
+          "CommitmentItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 24,
+            "title": "Commitment item",
+            "description": "Commitment Item"
+          },
+          "ControllingArea": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Controlling Area"
+          },
+          "CostCenter": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Cost Center"
+          },
+          "CostObject": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Cost Object"
+          },
+          "CreatedByUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "User Name"
+          },
+          "CreationDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp",
+            "description": "UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)"
+          },
+          "EarmarkedFundsDocument": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Earmarked Funds",
+            "description": "Document Number for Earmarked Funds"
+          },
+          "FixedAsset": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Subnumber",
+            "description": "Asset Subnumber"
+          },
+          "FunctionalArea": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 16,
+            "title": "Functional Area"
+          },
+          "Fund": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Fund"
+          },
+          "FundsCenter": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 16,
+            "title": "Funds Center"
+          },
+          "GLAccount": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "G/L Account",
+            "description": "G/L Account Number"
+          },
+          "IsDeleted": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Deletion Indicator",
+            "description": "Deletion Indicator: Purchasing Document Account Assignment"
+          },
+          "LastChangeDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp",
+            "description": "UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)"
+          },
+          "LastChangedByUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "User Name"
+          },
+          "MasterFixedAsset": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Asset",
+            "description": "Main Asset Number"
+          },
+          "MultipleAcctAssgmtDistrPercent": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 3,
+            "x-sap-scale": 1,
+            "multipleOf": 1.0e-1,
+            "minimum": -99.9,
+            "maximum": 99.9,
+            "example": "0",
+            "title": "Distribution (%)",
+            "description": "Distribution percentage in the case of multiple acct assgt"
+          },
+          "NetworkActivity": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Oper./Act.",
+            "description": "Operation/Activity Number"
+          },
+          "NetworkActivityInternalID": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 8,
+            "title": "Counter",
+            "description": "Internal counter"
+          },
+          "OrderID": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Order",
+            "description": "Order Number"
+          },
+          "PartnerAccountNumber": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Partner",
+            "description": "Partner account number"
+          },
+          "ProfitCenter": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Profit Center"
+          },
+          "ProfitabilitySegment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Profitab. Segmt No.",
+            "description": "Profitability Segment Number (CO-PA)"
+          },
+          "ProjectNetwork": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Network",
+            "description": "Network Number for Account Assignment"
+          },
+          "ProjectNetworkInternalID": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Opertn task list no.",
+            "description": "Routing number of operations in the order"
+          },
+          "Quantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Quantity"
+          },
+          "QuantityUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Unit of Measure",
+            "description": "Unit of Measure for Service Entry Statement"
+          },
+          "RealEstateObject": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Real Estate Key",
+            "description": "Internal Key for Real Estate Object"
+          },
+          "RefDocAccountAssignment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "PO Item Acc Ass",
+            "description": "Account Assignment Number of the Referenced PO Item"
+          },
+          "SalesOrder": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "SD Document",
+            "description": "Sales and Distribution Document Number"
+          },
+          "SalesOrderItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 6,
+            "title": "Item",
+            "description": "Sales Document Item"
+          },
+          "SalesOrderScheduleLine": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Schedule Line Number"
+          },
+          "ServiceEntrySheetItemUUID": {
+            "type": "string",
+            "nullable": true,
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "title": "Key",
+            "description": "UUID serving as key (parent key, root key)"
+          },
+          "ServiceEntrySheetUUID": {
+            "type": "string",
+            "nullable": true,
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "title": "Key",
+            "description": "UUID serving as key (parent key, root key)"
+          },
+          "WBSElementInternalID": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 8,
+            "title": "WBS Internal ID",
+            "description": "WBS Element"
+          },
+          "WBSElement": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 24,
+            "title": "WBS Element",
+            "description": "Work Breakdown Structure Element (WBS Element)"
+          },
+          "ServiceDocumentType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "ServiceDocumentType",
+            "title": "Service Doc. Type",
+            "description": "Service Document Type"
+          },
+          "ServiceDocument": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Service Document",
+            "description": "Service Document ID"
+          },
+          "ServiceDocumentItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 6,
+            "title": "Service Doc. Item",
+            "description": "Service Document Item ID"
+          },
+          "Currency": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Currency Key"
+          },
+          "NetAmount": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 14,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -99999999999.999,
+            "maximum": 99999999999.999,
+            "example": "0",
+            "title": "Net Amount",
+            "description": "Net Amount in Transaction Currency"
+          }
+        },
+        "title": "Account Assignment (for update)"
+      },
+      "API_SERVICE_ENTRY_SHEET_SRV.ChangeStatusExportParameters": {
+        "type": "object",
+        "properties": {
+          "Approvalstatus": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Approval Status"
+          }
+        },
+        "title": "ChangeStatusExportParameters"
+      },
+      "API_SERVICE_ENTRY_SHEET_SRV.ChangeStatusExportParameters-create": {
+        "type": "object",
+        "title": "ChangeStatusExportParameters (for create)"
+      },
+      "API_SERVICE_ENTRY_SHEET_SRV.ChangeStatusExportParameters-update": {
+        "type": "object",
+        "title": "ChangeStatusExportParameters (for update)"
+      },
+      "count": {
+        "type": "string",
+        "description": "The number of entities in the collection. Available when using the [$inlinecount](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=67) query option."
+      },
+      "error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "code",
+              "message"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "object",
+                "required": [
+                  "lang",
+                  "value"
+                ],
+                "properties": {
+                  "lang": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              },
+              "innererror": {
+                "type": "object",
+                "description": "The structure of this object is service-specific"
+              }
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "top": {
+        "name": "$top",
+        "in": "query",
+        "description": "Show only the first n items, see [Paging - Top](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=66)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "example": 50
+      },
+      "skip": {
+        "name": "$skip",
+        "in": "query",
+        "description": "Skip the first n items, see [Paging - Skip](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "count": {
+        "name": "$inlinecount",
+        "in": "query",
+        "description": "Include count of items, see [Inlinecount](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=67)",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "allpages",
+            "none"
+          ]
+        }
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/error"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "OAuth2Auth": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "scopes": {},
+            "refreshUrl": "https://{host}:{port}",
+            "authorizationUrl": "https://{host}:{port}",
+            "tokenUrl": "https://{host}:{port}"
+          }
+        }
+      },
+      "BasicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "OAuth2Auth": []
+    },
+    {
+      "BasicAuth": []
+    }
+  ]
+}

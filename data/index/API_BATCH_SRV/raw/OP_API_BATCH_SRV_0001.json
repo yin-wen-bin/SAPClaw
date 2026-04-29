@@ -1,0 +1,4839 @@
+﻿{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Batch Master Record",
+    "version": "1.1.1",
+    "description": "This OData API enables you to create, change and read batches. Additionally, it is possible to retrieve and to edit the related classification data. The service is based on the OData protocol, and can be consumed by external systems and user interfaces."
+  },
+  "externalDocs": {
+    "description": "Business Documentation",
+    "url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/48/b3c2ac60154137bb1d6411c7047e16/frameset.htm"
+  },
+  "x-sap-api-type": "ODATA",
+  "x-sap-shortText": "Use this service to create, change and read batches with classification data",
+  "x-sap-software-min-version": "2025",
+  "x-sap-ext-overview": [
+    {
+      "name": "Authentication Methods",
+      "values": [
+        {
+          "text": "x509",
+          "format": "plain"
+        }
+      ]
+    },
+    {
+      "name": "Business Object",
+      "values": [
+        {
+          "text": "Batch",
+          "format": "plain"
+        }
+      ]
+    }
+  ],
+  "servers": [
+    {
+      "url": "https://{host}:{port}/sap/opu/odata/sap/API_BATCH_SRV",
+      "variables": {
+        "host": {
+          "default": ""
+        },
+        "port": {
+          "default": ""
+        }
+      }
+    }
+  ],
+  "x-sap-extensible": {
+    "supported": "no"
+  },
+  "tags": [
+    {
+      "name": "Batches"
+    },
+    {
+      "name": "Batch Characteristics"
+    },
+    {
+      "name": "Batch Characteristics Valuation"
+    },
+    {
+      "name": "Batch Class Assignments"
+    },
+    {
+      "name": "Plant-specific Batch Information"
+    },
+    {
+      "name": "Batch Texts"
+    }
+  ],
+  "paths": {
+    "/Batch": {
+      "get": {
+        "summary": "Get entities from Batch",
+        "tags": [
+          "Batches"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "Material desc",
+                  "BatchIdentifyingPlant",
+                  "BatchIdentifyingPlant desc",
+                  "Batch",
+                  "Batch desc",
+                  "BatchIsMarkedForDeletion",
+                  "BatchIsMarkedForDeletion desc",
+                  "MatlBatchIsInRstrcdUseStock",
+                  "MatlBatchIsInRstrcdUseStock desc",
+                  "Supplier",
+                  "Supplier desc",
+                  "BatchBySupplier",
+                  "BatchBySupplier desc",
+                  "CountryOfOrigin",
+                  "CountryOfOrigin desc",
+                  "RegionOfOrigin",
+                  "RegionOfOrigin desc",
+                  "MatlBatchAvailabilityDate",
+                  "MatlBatchAvailabilityDate desc",
+                  "ShelfLifeExpirationDate",
+                  "ShelfLifeExpirationDate desc",
+                  "ManufactureDate",
+                  "ManufactureDate desc",
+                  "FreeDefinedDate1",
+                  "FreeDefinedDate1 desc",
+                  "FreeDefinedDate2",
+                  "FreeDefinedDate2 desc",
+                  "FreeDefinedDate3",
+                  "FreeDefinedDate3 desc",
+                  "FreeDefinedDate4",
+                  "FreeDefinedDate4 desc",
+                  "FreeDefinedDate5",
+                  "FreeDefinedDate5 desc",
+                  "FreeDefinedDate6",
+                  "FreeDefinedDate6 desc",
+                  "CreationDateTime",
+                  "CreationDateTime desc",
+                  "LastChangeDateTime",
+                  "LastChangeDateTime desc",
+                  "BatchExtWhseMgmtInternalId",
+                  "BatchExtWhseMgmtInternalId desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "BatchIdentifyingPlant",
+                  "Batch",
+                  "BatchIsMarkedForDeletion",
+                  "MatlBatchIsInRstrcdUseStock",
+                  "Supplier",
+                  "BatchBySupplier",
+                  "CountryOfOrigin",
+                  "RegionOfOrigin",
+                  "MatlBatchAvailabilityDate",
+                  "ShelfLifeExpirationDate",
+                  "ManufactureDate",
+                  "FreeDefinedDate1",
+                  "FreeDefinedDate2",
+                  "FreeDefinedDate3",
+                  "FreeDefinedDate4",
+                  "FreeDefinedDate5",
+                  "FreeDefinedDate6",
+                  "CreationDateTime",
+                  "LastChangeDateTime",
+                  "BatchExtWhseMgmtInternalId",
+                  "to_BatchCharc",
+                  "to_BatchClass",
+                  "to_BatchPlant",
+                  "to_BatchText"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_BatchCharc",
+                  "to_BatchClass",
+                  "to_BatchPlant",
+                  "to_BatchText"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of BatchType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/cds_api_batch_srv.BatchType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add new entity to Batch",
+        "tags": [
+          "Batches"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cds_api_batch_srv.BatchType-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "BatchType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/cds_api_batch_srv.BatchType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Batch(Material='{Material}',BatchIdentifyingPlant='{BatchIdentifyingPlant}',Batch='{Batch}')": {
+      "parameters": [
+        {
+          "name": "Material",
+          "in": "path",
+          "required": true,
+          "description": "Material Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "BatchIdentifyingPlant",
+          "in": "path",
+          "required": true,
+          "description": "Plant",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "Batch",
+          "in": "path",
+          "required": true,
+          "description": "Batch Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entity from Batch by key",
+        "tags": [
+          "Batches"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "BatchIdentifyingPlant",
+                  "Batch",
+                  "BatchIsMarkedForDeletion",
+                  "MatlBatchIsInRstrcdUseStock",
+                  "Supplier",
+                  "BatchBySupplier",
+                  "CountryOfOrigin",
+                  "RegionOfOrigin",
+                  "MatlBatchAvailabilityDate",
+                  "ShelfLifeExpirationDate",
+                  "ManufactureDate",
+                  "FreeDefinedDate1",
+                  "FreeDefinedDate2",
+                  "FreeDefinedDate3",
+                  "FreeDefinedDate4",
+                  "FreeDefinedDate5",
+                  "FreeDefinedDate6",
+                  "CreationDateTime",
+                  "LastChangeDateTime",
+                  "BatchExtWhseMgmtInternalId",
+                  "to_BatchCharc",
+                  "to_BatchClass",
+                  "to_BatchPlant",
+                  "to_BatchText"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_BatchCharc",
+                  "to_BatchClass",
+                  "to_BatchPlant",
+                  "to_BatchText"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "BatchType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/cds_api_batch_srv.BatchType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update entity in Batch",
+        "tags": [
+          "Batches"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New property values",
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "Modified BatchType",
+                "type": "object",
+                "properties": {
+                  "d": {
+                    "$ref": "#/components/schemas/cds_api_batch_srv.BatchType-update"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Batch(Material='{Material}',BatchIdentifyingPlant='{BatchIdentifyingPlant}',Batch='{Batch}')/to_BatchCharc": {
+      "parameters": [
+        {
+          "name": "Material",
+          "in": "path",
+          "required": true,
+          "description": "Material Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "BatchIdentifyingPlant",
+          "in": "path",
+          "required": true,
+          "description": "Plant",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "Batch",
+          "in": "path",
+          "required": true,
+          "description": "Batch Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entities from related to_BatchCharc",
+        "tags": [
+          "Batches",
+          "Batch Characteristics"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "Material desc",
+                  "BatchIdentifyingPlant",
+                  "BatchIdentifyingPlant desc",
+                  "Batch",
+                  "Batch desc",
+                  "CharcInternalID",
+                  "CharcInternalID desc",
+                  "LastChangeDateTime",
+                  "LastChangeDateTime desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "BatchIdentifyingPlant",
+                  "Batch",
+                  "CharcInternalID",
+                  "LastChangeDateTime",
+                  "to_Batch",
+                  "to_BatchCharcValue"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_Batch",
+                  "to_BatchCharcValue"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of BatchCharcType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/cds_api_batch_srv.BatchCharcType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Batch(Material='{Material}',BatchIdentifyingPlant='{BatchIdentifyingPlant}',Batch='{Batch}')/to_BatchClass": {
+      "parameters": [
+        {
+          "name": "Material",
+          "in": "path",
+          "required": true,
+          "description": "Material Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "BatchIdentifyingPlant",
+          "in": "path",
+          "required": true,
+          "description": "Plant",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "Batch",
+          "in": "path",
+          "required": true,
+          "description": "Batch Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get related to_BatchClass",
+        "tags": [
+          "Batches",
+          "Batch Class Assignments"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "BatchIdentifyingPlant",
+                  "Batch",
+                  "ClassInternalID",
+                  "LastChangeDateTime",
+                  "to_Batch"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_Batch"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "BatchClassType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/cds_api_batch_srv.BatchClassType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Batch(Material='{Material}',BatchIdentifyingPlant='{BatchIdentifyingPlant}',Batch='{Batch}')/to_BatchPlant": {
+      "parameters": [
+        {
+          "name": "Material",
+          "in": "path",
+          "required": true,
+          "description": "Material Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "BatchIdentifyingPlant",
+          "in": "path",
+          "required": true,
+          "description": "Plant",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "Batch",
+          "in": "path",
+          "required": true,
+          "description": "Batch Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entities from related to_BatchPlant",
+        "tags": [
+          "Batches",
+          "Plant-specific Batch Information"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "Material desc",
+                  "Batch",
+                  "Batch desc",
+                  "Plant",
+                  "Plant desc",
+                  "BatchIdentifyingPlant",
+                  "BatchIdentifyingPlant desc",
+                  "InventoryValuationType",
+                  "InventoryValuationType desc",
+                  "LastChangeDateTime",
+                  "LastChangeDateTime desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "Batch",
+                  "Plant",
+                  "BatchIdentifyingPlant",
+                  "InventoryValuationType",
+                  "LastChangeDateTime",
+                  "to_Batch"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_Batch"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of BatchPlantType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/cds_api_batch_srv.BatchPlantType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Batch(Material='{Material}',BatchIdentifyingPlant='{BatchIdentifyingPlant}',Batch='{Batch}')/to_BatchText": {
+      "parameters": [
+        {
+          "name": "Material",
+          "in": "path",
+          "required": true,
+          "description": "Material Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "BatchIdentifyingPlant",
+          "in": "path",
+          "required": true,
+          "description": "Plant",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "Batch",
+          "in": "path",
+          "required": true,
+          "description": "Batch Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entities from related to_BatchText",
+        "tags": [
+          "Batches",
+          "Batch Texts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "Material desc",
+                  "BatchIdentifyingPlant",
+                  "BatchIdentifyingPlant desc",
+                  "Batch",
+                  "Batch desc",
+                  "Language",
+                  "Language desc",
+                  "BatchDescription",
+                  "BatchDescription desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "BatchIdentifyingPlant",
+                  "Batch",
+                  "Language",
+                  "BatchDescription",
+                  "to_Batch"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_Batch"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of BatchText_Type",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/cds_api_batch_srv.BatchText_Type"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/BatchCharc": {
+      "get": {
+        "summary": "Get entities from BatchCharc",
+        "tags": [
+          "Batch Characteristics"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "Material desc",
+                  "BatchIdentifyingPlant",
+                  "BatchIdentifyingPlant desc",
+                  "Batch",
+                  "Batch desc",
+                  "CharcInternalID",
+                  "CharcInternalID desc",
+                  "LastChangeDateTime",
+                  "LastChangeDateTime desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "BatchIdentifyingPlant",
+                  "Batch",
+                  "CharcInternalID",
+                  "LastChangeDateTime",
+                  "to_Batch",
+                  "to_BatchCharcValue"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_Batch",
+                  "to_BatchCharcValue"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of BatchCharcType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/cds_api_batch_srv.BatchCharcType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/BatchCharc(Material='{Material}',BatchIdentifyingPlant='{BatchIdentifyingPlant}',Batch='{Batch}',CharcInternalID='{CharcInternalID}')": {
+      "parameters": [
+        {
+          "name": "Material",
+          "in": "path",
+          "required": true,
+          "description": "Material Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "BatchIdentifyingPlant",
+          "in": "path",
+          "required": true,
+          "description": "Plant",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "Batch",
+          "in": "path",
+          "required": true,
+          "description": "Batch Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "CharcInternalID",
+          "in": "path",
+          "required": true,
+          "description": "Characteristic Internal ID",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entity from BatchCharc by key",
+        "tags": [
+          "Batch Characteristics"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "BatchIdentifyingPlant",
+                  "Batch",
+                  "CharcInternalID",
+                  "LastChangeDateTime",
+                  "to_Batch",
+                  "to_BatchCharcValue"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_Batch",
+                  "to_BatchCharcValue"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "BatchCharcType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/cds_api_batch_srv.BatchCharcType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/BatchCharc(Material='{Material}',BatchIdentifyingPlant='{BatchIdentifyingPlant}',Batch='{Batch}',CharcInternalID='{CharcInternalID}')/to_Batch": {
+      "parameters": [
+        {
+          "name": "Material",
+          "in": "path",
+          "required": true,
+          "description": "Material Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "BatchIdentifyingPlant",
+          "in": "path",
+          "required": true,
+          "description": "Plant",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "Batch",
+          "in": "path",
+          "required": true,
+          "description": "Batch Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "CharcInternalID",
+          "in": "path",
+          "required": true,
+          "description": "Characteristic Internal ID",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get related to_Batch",
+        "tags": [
+          "Batch Characteristics",
+          "Batches"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "BatchIdentifyingPlant",
+                  "Batch",
+                  "BatchIsMarkedForDeletion",
+                  "MatlBatchIsInRstrcdUseStock",
+                  "Supplier",
+                  "BatchBySupplier",
+                  "CountryOfOrigin",
+                  "RegionOfOrigin",
+                  "MatlBatchAvailabilityDate",
+                  "ShelfLifeExpirationDate",
+                  "ManufactureDate",
+                  "FreeDefinedDate1",
+                  "FreeDefinedDate2",
+                  "FreeDefinedDate3",
+                  "FreeDefinedDate4",
+                  "FreeDefinedDate5",
+                  "FreeDefinedDate6",
+                  "CreationDateTime",
+                  "LastChangeDateTime",
+                  "BatchExtWhseMgmtInternalId",
+                  "to_BatchCharc",
+                  "to_BatchClass",
+                  "to_BatchPlant",
+                  "to_BatchText"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_BatchCharc",
+                  "to_BatchClass",
+                  "to_BatchPlant",
+                  "to_BatchText"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "BatchType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/cds_api_batch_srv.BatchType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/BatchCharc(Material='{Material}',BatchIdentifyingPlant='{BatchIdentifyingPlant}',Batch='{Batch}',CharcInternalID='{CharcInternalID}')/to_BatchCharcValue": {
+      "parameters": [
+        {
+          "name": "Material",
+          "in": "path",
+          "required": true,
+          "description": "Material Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "BatchIdentifyingPlant",
+          "in": "path",
+          "required": true,
+          "description": "Plant",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "Batch",
+          "in": "path",
+          "required": true,
+          "description": "Batch Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "CharcInternalID",
+          "in": "path",
+          "required": true,
+          "description": "Characteristic Internal ID",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entities from related to_BatchCharcValue",
+        "tags": [
+          "Batch Characteristics",
+          "Batch Characteristics Valuation"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "Material desc",
+                  "BatchIdentifyingPlant",
+                  "BatchIdentifyingPlant desc",
+                  "Batch",
+                  "Batch desc",
+                  "CharcInternalID",
+                  "CharcInternalID desc",
+                  "CharcValuePositionNumber",
+                  "CharcValuePositionNumber desc",
+                  "CharcValueDependency",
+                  "CharcValueDependency desc",
+                  "CharcValue",
+                  "CharcValue desc",
+                  "CharcFromNumericValue",
+                  "CharcFromNumericValue desc",
+                  "CharcFromNumericValueUnit",
+                  "CharcFromNumericValueUnit desc",
+                  "CharcToNumericValue",
+                  "CharcToNumericValue desc",
+                  "CharcToNumericValueUnit",
+                  "CharcToNumericValueUnit desc",
+                  "CharcFromDecimalValue",
+                  "CharcFromDecimalValue desc",
+                  "CharcToDecimalValue",
+                  "CharcToDecimalValue desc",
+                  "CharcFromAmount",
+                  "CharcFromAmount desc",
+                  "CharcToAmount",
+                  "CharcToAmount desc",
+                  "Currency",
+                  "Currency desc",
+                  "CharcFromDate",
+                  "CharcFromDate desc",
+                  "CharcToDate",
+                  "CharcToDate desc",
+                  "CharcFromTime",
+                  "CharcFromTime desc",
+                  "CharcToTime",
+                  "CharcToTime desc",
+                  "CharacteristicAuthor",
+                  "CharacteristicAuthor desc",
+                  "LastChangeDateTime",
+                  "LastChangeDateTime desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "BatchIdentifyingPlant",
+                  "Batch",
+                  "CharcInternalID",
+                  "CharcValuePositionNumber",
+                  "CharcValueDependency",
+                  "CharcValue",
+                  "CharcFromNumericValue",
+                  "CharcFromNumericValueUnit",
+                  "CharcToNumericValue",
+                  "CharcToNumericValueUnit",
+                  "CharcFromDecimalValue",
+                  "CharcToDecimalValue",
+                  "CharcFromAmount",
+                  "CharcToAmount",
+                  "Currency",
+                  "CharcFromDate",
+                  "CharcToDate",
+                  "CharcFromTime",
+                  "CharcToTime",
+                  "CharacteristicAuthor",
+                  "LastChangeDateTime",
+                  "to_BatchCharc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_BatchCharc"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of BatchCharcValueType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/cds_api_batch_srv.BatchCharcValueType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add new entity to related to_BatchCharcValue",
+        "tags": [
+          "Batch Characteristics",
+          "Batch Characteristics Valuation"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cds_api_batch_srv.BatchCharcValueType-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "BatchCharcValueType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/cds_api_batch_srv.BatchCharcValueType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/BatchCharcValue": {
+      "get": {
+        "summary": "Get entities from BatchCharcValue",
+        "tags": [
+          "Batch Characteristics Valuation"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "Material desc",
+                  "BatchIdentifyingPlant",
+                  "BatchIdentifyingPlant desc",
+                  "Batch",
+                  "Batch desc",
+                  "CharcInternalID",
+                  "CharcInternalID desc",
+                  "CharcValuePositionNumber",
+                  "CharcValuePositionNumber desc",
+                  "CharcValueDependency",
+                  "CharcValueDependency desc",
+                  "CharcValue",
+                  "CharcValue desc",
+                  "CharcFromNumericValue",
+                  "CharcFromNumericValue desc",
+                  "CharcFromNumericValueUnit",
+                  "CharcFromNumericValueUnit desc",
+                  "CharcToNumericValue",
+                  "CharcToNumericValue desc",
+                  "CharcToNumericValueUnit",
+                  "CharcToNumericValueUnit desc",
+                  "CharcFromDecimalValue",
+                  "CharcFromDecimalValue desc",
+                  "CharcToDecimalValue",
+                  "CharcToDecimalValue desc",
+                  "CharcFromAmount",
+                  "CharcFromAmount desc",
+                  "CharcToAmount",
+                  "CharcToAmount desc",
+                  "Currency",
+                  "Currency desc",
+                  "CharcFromDate",
+                  "CharcFromDate desc",
+                  "CharcToDate",
+                  "CharcToDate desc",
+                  "CharcFromTime",
+                  "CharcFromTime desc",
+                  "CharcToTime",
+                  "CharcToTime desc",
+                  "CharacteristicAuthor",
+                  "CharacteristicAuthor desc",
+                  "LastChangeDateTime",
+                  "LastChangeDateTime desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "BatchIdentifyingPlant",
+                  "Batch",
+                  "CharcInternalID",
+                  "CharcValuePositionNumber",
+                  "CharcValueDependency",
+                  "CharcValue",
+                  "CharcFromNumericValue",
+                  "CharcFromNumericValueUnit",
+                  "CharcToNumericValue",
+                  "CharcToNumericValueUnit",
+                  "CharcFromDecimalValue",
+                  "CharcToDecimalValue",
+                  "CharcFromAmount",
+                  "CharcToAmount",
+                  "Currency",
+                  "CharcFromDate",
+                  "CharcToDate",
+                  "CharcFromTime",
+                  "CharcToTime",
+                  "CharacteristicAuthor",
+                  "LastChangeDateTime",
+                  "to_BatchCharc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_BatchCharc"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of BatchCharcValueType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/cds_api_batch_srv.BatchCharcValueType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add new entity to BatchCharcValue",
+        "tags": [
+          "Batch Characteristics Valuation"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cds_api_batch_srv.BatchCharcValueType-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "BatchCharcValueType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/cds_api_batch_srv.BatchCharcValueType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/BatchCharcValue(Material='{Material}',BatchIdentifyingPlant='{BatchIdentifyingPlant}',Batch='{Batch}',CharcInternalID='{CharcInternalID}',CharcValuePositionNumber='{CharcValuePositionNumber}')": {
+      "parameters": [
+        {
+          "name": "Material",
+          "in": "path",
+          "required": true,
+          "description": "Material Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "BatchIdentifyingPlant",
+          "in": "path",
+          "required": true,
+          "description": "Plant",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "Batch",
+          "in": "path",
+          "required": true,
+          "description": "Batch Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "CharcInternalID",
+          "in": "path",
+          "required": true,
+          "description": "Characteristic Internal ID",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "CharcValuePositionNumber",
+          "in": "path",
+          "required": true,
+          "description": "Characteristic value counter",
+          "schema": {
+            "type": "string",
+            "maxLength": 3
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entity from BatchCharcValue by key",
+        "tags": [
+          "Batch Characteristics Valuation"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "BatchIdentifyingPlant",
+                  "Batch",
+                  "CharcInternalID",
+                  "CharcValuePositionNumber",
+                  "CharcValueDependency",
+                  "CharcValue",
+                  "CharcFromNumericValue",
+                  "CharcFromNumericValueUnit",
+                  "CharcToNumericValue",
+                  "CharcToNumericValueUnit",
+                  "CharcFromDecimalValue",
+                  "CharcToDecimalValue",
+                  "CharcFromAmount",
+                  "CharcToAmount",
+                  "Currency",
+                  "CharcFromDate",
+                  "CharcToDate",
+                  "CharcFromTime",
+                  "CharcToTime",
+                  "CharacteristicAuthor",
+                  "LastChangeDateTime",
+                  "to_BatchCharc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_BatchCharc"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "BatchCharcValueType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/cds_api_batch_srv.BatchCharcValueType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update entity in BatchCharcValue",
+        "tags": [
+          "Batch Characteristics Valuation"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New property values",
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "Modified BatchCharcValueType",
+                "type": "object",
+                "properties": {
+                  "d": {
+                    "$ref": "#/components/schemas/cds_api_batch_srv.BatchCharcValueType-update"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete entity from BatchCharcValue",
+        "tags": [
+          "Batch Characteristics Valuation"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/BatchCharcValue(Material='{Material}',BatchIdentifyingPlant='{BatchIdentifyingPlant}',Batch='{Batch}',CharcInternalID='{CharcInternalID}',CharcValuePositionNumber='{CharcValuePositionNumber}')/to_BatchCharc": {
+      "parameters": [
+        {
+          "name": "Material",
+          "in": "path",
+          "required": true,
+          "description": "Material Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "BatchIdentifyingPlant",
+          "in": "path",
+          "required": true,
+          "description": "Plant",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "Batch",
+          "in": "path",
+          "required": true,
+          "description": "Batch Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "CharcInternalID",
+          "in": "path",
+          "required": true,
+          "description": "Characteristic Internal ID",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "CharcValuePositionNumber",
+          "in": "path",
+          "required": true,
+          "description": "Characteristic value counter",
+          "schema": {
+            "type": "string",
+            "maxLength": 3
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get related to_BatchCharc",
+        "tags": [
+          "Batch Characteristics Valuation",
+          "Batch Characteristics"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "BatchIdentifyingPlant",
+                  "Batch",
+                  "CharcInternalID",
+                  "LastChangeDateTime",
+                  "to_Batch",
+                  "to_BatchCharcValue"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_Batch",
+                  "to_BatchCharcValue"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "BatchCharcType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/cds_api_batch_srv.BatchCharcType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/BatchClass": {
+      "get": {
+        "summary": "Get entities from BatchClass",
+        "tags": [
+          "Batch Class Assignments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "Material desc",
+                  "BatchIdentifyingPlant",
+                  "BatchIdentifyingPlant desc",
+                  "Batch",
+                  "Batch desc",
+                  "ClassInternalID",
+                  "ClassInternalID desc",
+                  "LastChangeDateTime",
+                  "LastChangeDateTime desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "BatchIdentifyingPlant",
+                  "Batch",
+                  "ClassInternalID",
+                  "LastChangeDateTime",
+                  "to_Batch"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_Batch"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of BatchClassType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/cds_api_batch_srv.BatchClassType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add new entity to BatchClass",
+        "tags": [
+          "Batch Class Assignments"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cds_api_batch_srv.BatchClassType-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "BatchClassType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/cds_api_batch_srv.BatchClassType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/BatchClass(Material='{Material}',BatchIdentifyingPlant='{BatchIdentifyingPlant}',Batch='{Batch}')": {
+      "parameters": [
+        {
+          "name": "Material",
+          "in": "path",
+          "required": true,
+          "description": "Material Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "BatchIdentifyingPlant",
+          "in": "path",
+          "required": true,
+          "description": "Plant",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "Batch",
+          "in": "path",
+          "required": true,
+          "description": "Batch Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entity from BatchClass by key",
+        "tags": [
+          "Batch Class Assignments"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "BatchIdentifyingPlant",
+                  "Batch",
+                  "ClassInternalID",
+                  "LastChangeDateTime",
+                  "to_Batch"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_Batch"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "BatchClassType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/cds_api_batch_srv.BatchClassType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete entity from BatchClass",
+        "tags": [
+          "Batch Class Assignments"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/BatchClass(Material='{Material}',BatchIdentifyingPlant='{BatchIdentifyingPlant}',Batch='{Batch}')/to_Batch": {
+      "parameters": [
+        {
+          "name": "Material",
+          "in": "path",
+          "required": true,
+          "description": "Material Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "BatchIdentifyingPlant",
+          "in": "path",
+          "required": true,
+          "description": "Plant",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "Batch",
+          "in": "path",
+          "required": true,
+          "description": "Batch Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get related to_Batch",
+        "tags": [
+          "Batch Class Assignments",
+          "Batches"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "BatchIdentifyingPlant",
+                  "Batch",
+                  "BatchIsMarkedForDeletion",
+                  "MatlBatchIsInRstrcdUseStock",
+                  "Supplier",
+                  "BatchBySupplier",
+                  "CountryOfOrigin",
+                  "RegionOfOrigin",
+                  "MatlBatchAvailabilityDate",
+                  "ShelfLifeExpirationDate",
+                  "ManufactureDate",
+                  "FreeDefinedDate1",
+                  "FreeDefinedDate2",
+                  "FreeDefinedDate3",
+                  "FreeDefinedDate4",
+                  "FreeDefinedDate5",
+                  "FreeDefinedDate6",
+                  "CreationDateTime",
+                  "LastChangeDateTime",
+                  "BatchExtWhseMgmtInternalId",
+                  "to_BatchCharc",
+                  "to_BatchClass",
+                  "to_BatchPlant",
+                  "to_BatchText"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_BatchCharc",
+                  "to_BatchClass",
+                  "to_BatchPlant",
+                  "to_BatchText"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "BatchType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/cds_api_batch_srv.BatchType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/BatchPlant": {
+      "get": {
+        "summary": "Get entities from BatchPlant",
+        "tags": [
+          "Plant-specific Batch Information"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "Material desc",
+                  "Batch",
+                  "Batch desc",
+                  "Plant",
+                  "Plant desc",
+                  "BatchIdentifyingPlant",
+                  "BatchIdentifyingPlant desc",
+                  "InventoryValuationType",
+                  "InventoryValuationType desc",
+                  "LastChangeDateTime",
+                  "LastChangeDateTime desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "Batch",
+                  "Plant",
+                  "BatchIdentifyingPlant",
+                  "InventoryValuationType",
+                  "LastChangeDateTime",
+                  "to_Batch"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_Batch"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of BatchPlantType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/cds_api_batch_srv.BatchPlantType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/BatchPlant(Material='{Material}',Batch='{Batch}',Plant='{Plant}')": {
+      "parameters": [
+        {
+          "name": "Material",
+          "in": "path",
+          "required": true,
+          "description": "Material Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "Batch",
+          "in": "path",
+          "required": true,
+          "description": "Batch Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "Plant",
+          "in": "path",
+          "required": true,
+          "description": "Plant",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entity from BatchPlant by key",
+        "tags": [
+          "Plant-specific Batch Information"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "Batch",
+                  "Plant",
+                  "BatchIdentifyingPlant",
+                  "InventoryValuationType",
+                  "LastChangeDateTime",
+                  "to_Batch"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_Batch"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "BatchPlantType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/cds_api_batch_srv.BatchPlantType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update entity in BatchPlant",
+        "tags": [
+          "Plant-specific Batch Information"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New property values",
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "Modified BatchPlantType",
+                "type": "object",
+                "properties": {
+                  "d": {
+                    "$ref": "#/components/schemas/cds_api_batch_srv.BatchPlantType-update"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/BatchPlant(Material='{Material}',Batch='{Batch}',Plant='{Plant}')/to_Batch": {
+      "parameters": [
+        {
+          "name": "Material",
+          "in": "path",
+          "required": true,
+          "description": "Material Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "Batch",
+          "in": "path",
+          "required": true,
+          "description": "Batch Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "Plant",
+          "in": "path",
+          "required": true,
+          "description": "Plant",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get related to_Batch",
+        "tags": [
+          "Plant-specific Batch Information",
+          "Batches"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "BatchIdentifyingPlant",
+                  "Batch",
+                  "BatchIsMarkedForDeletion",
+                  "MatlBatchIsInRstrcdUseStock",
+                  "Supplier",
+                  "BatchBySupplier",
+                  "CountryOfOrigin",
+                  "RegionOfOrigin",
+                  "MatlBatchAvailabilityDate",
+                  "ShelfLifeExpirationDate",
+                  "ManufactureDate",
+                  "FreeDefinedDate1",
+                  "FreeDefinedDate2",
+                  "FreeDefinedDate3",
+                  "FreeDefinedDate4",
+                  "FreeDefinedDate5",
+                  "FreeDefinedDate6",
+                  "CreationDateTime",
+                  "LastChangeDateTime",
+                  "BatchExtWhseMgmtInternalId",
+                  "to_BatchCharc",
+                  "to_BatchClass",
+                  "to_BatchPlant",
+                  "to_BatchText"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_BatchCharc",
+                  "to_BatchClass",
+                  "to_BatchPlant",
+                  "to_BatchText"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "BatchType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/cds_api_batch_srv.BatchType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/BatchText": {
+      "get": {
+        "summary": "Get entities from BatchText",
+        "tags": [
+          "Batch Texts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "Material desc",
+                  "BatchIdentifyingPlant",
+                  "BatchIdentifyingPlant desc",
+                  "Batch",
+                  "Batch desc",
+                  "Language",
+                  "Language desc",
+                  "BatchDescription",
+                  "BatchDescription desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "BatchIdentifyingPlant",
+                  "Batch",
+                  "Language",
+                  "BatchDescription",
+                  "to_Batch"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_Batch"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of BatchText_Type",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/cds_api_batch_srv.BatchText_Type"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/BatchText(Material='{Material}',BatchIdentifyingPlant='{BatchIdentifyingPlant}',Batch='{Batch}',Language='{Language}')": {
+      "parameters": [
+        {
+          "name": "Material",
+          "in": "path",
+          "required": true,
+          "description": "Material Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "BatchIdentifyingPlant",
+          "in": "path",
+          "required": true,
+          "description": "Plant",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "Batch",
+          "in": "path",
+          "required": true,
+          "description": "Batch Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "Language",
+          "in": "path",
+          "required": true,
+          "description": "Language Key",
+          "schema": {
+            "type": "string",
+            "maxLength": 2
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entity from BatchText by key",
+        "tags": [
+          "Batch Texts"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "BatchIdentifyingPlant",
+                  "Batch",
+                  "Language",
+                  "BatchDescription",
+                  "to_Batch"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_Batch"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "BatchText_Type",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/cds_api_batch_srv.BatchText_Type"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update entity in BatchText",
+        "tags": [
+          "Batch Texts"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New property values",
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "Modified BatchText_Type",
+                "type": "object",
+                "properties": {
+                  "d": {
+                    "$ref": "#/components/schemas/cds_api_batch_srv.BatchText_Type-update"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete entity from BatchText",
+        "tags": [
+          "Batch Texts"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/BatchText(Material='{Material}',BatchIdentifyingPlant='{BatchIdentifyingPlant}',Batch='{Batch}',Language='{Language}')/to_Batch": {
+      "parameters": [
+        {
+          "name": "Material",
+          "in": "path",
+          "required": true,
+          "description": "Material Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "BatchIdentifyingPlant",
+          "in": "path",
+          "required": true,
+          "description": "Plant",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "Batch",
+          "in": "path",
+          "required": true,
+          "description": "Batch Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "Language",
+          "in": "path",
+          "required": true,
+          "description": "Language Key",
+          "schema": {
+            "type": "string",
+            "maxLength": 2
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get related to_Batch",
+        "tags": [
+          "Batch Texts",
+          "Batches"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "BatchIdentifyingPlant",
+                  "Batch",
+                  "BatchIsMarkedForDeletion",
+                  "MatlBatchIsInRstrcdUseStock",
+                  "Supplier",
+                  "BatchBySupplier",
+                  "CountryOfOrigin",
+                  "RegionOfOrigin",
+                  "MatlBatchAvailabilityDate",
+                  "ShelfLifeExpirationDate",
+                  "ManufactureDate",
+                  "FreeDefinedDate1",
+                  "FreeDefinedDate2",
+                  "FreeDefinedDate3",
+                  "FreeDefinedDate4",
+                  "FreeDefinedDate5",
+                  "FreeDefinedDate6",
+                  "CreationDateTime",
+                  "LastChangeDateTime",
+                  "BatchExtWhseMgmtInternalId",
+                  "to_BatchCharc",
+                  "to_BatchClass",
+                  "to_BatchPlant",
+                  "to_BatchText"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_BatchCharc",
+                  "to_BatchClass",
+                  "to_BatchPlant",
+                  "to_BatchText"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "BatchType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/cds_api_batch_srv.BatchType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/$batch": {
+      "post": {
+        "summary": "Send a group of requests",
+        "description": "Group multiple requests into a single request payload, see [Batch Requests](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=152).\n\n*Please note that \"Try it out\" is not supported for this request.*",
+        "tags": [
+          "Batch Requests"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Batch request",
+          "content": {
+            "multipart/mixed;boundary=request-separator": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "--request-separator\nContent-Type: application/http\nContent-Transfer-Encoding: binary\n\nGET Batch HTTP/1.1\nAccept: application/json\n\n\n--request-separator--"
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Batch response",
+            "content": {
+              "multipart/mixed": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "--response-separator\nContent-Type: application/http\n\nHTTP/1.1 200 OK\nContent-Type: application/json\n\n{...}\n--response-separator--"
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "cds_api_batch_srv.BatchType": {
+        "type": "object",
+        "x-sap-object-node-type": "Batch",
+        "properties": {
+          "Material": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "BatchIdentifyingPlant": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "Batch": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Batch",
+            "description": "Batch Number"
+          },
+          "BatchIsMarkedForDeletion": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Batch Deletion Flag",
+            "description": "Deletion Flag for All Data in a Batch"
+          },
+          "MatlBatchIsInRstrcdUseStock": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Batch Restricted",
+            "description": "Batch in Restricted-Use Stock"
+          },
+          "Supplier": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Supplier",
+            "description": "Supplier's Account Number"
+          },
+          "BatchBySupplier": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 15,
+            "title": "Supplier Batch",
+            "description": "Supplier Batch Number"
+          },
+          "CountryOfOrigin": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Cntry/Reg of Origin",
+            "description": "Country/Region of Origin of Material (Non-Preferential Ori.)"
+          },
+          "RegionOfOrigin": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Region of Origin",
+            "description": "Region of Origin of Material (Non-Preferential Origin)"
+          },
+          "MatlBatchAvailabilityDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Available from",
+            "description": "Availability date"
+          },
+          "ShelfLifeExpirationDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "SLED/BBD",
+            "description": "Shelf Life Expiration or Best-Before Date"
+          },
+          "ManufactureDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Date of Manufacture"
+          },
+          "FreeDefinedDate1": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Date for Free Use 1"
+          },
+          "FreeDefinedDate2": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Date for Free Use 2"
+          },
+          "FreeDefinedDate3": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Date for Free Use 3"
+          },
+          "FreeDefinedDate4": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Date for Free Use 4"
+          },
+          "FreeDefinedDate5": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Date for Free Use 5"
+          },
+          "FreeDefinedDate6": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Date for Free Use 6"
+          },
+          "CreationDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Created On",
+            "description": "Created On Timestamp"
+          },
+          "LastChangeDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Last Change",
+            "description": "Last Change Timestamp"
+          },
+          "BatchExtWhseMgmtInternalId": {
+            "type": "string",
+            "nullable": true,
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "title": "Batch ID"
+          },
+          "to_BatchCharc": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/cds_api_batch_srv.BatchCharcType"
+                }
+              }
+            }
+          },
+          "to_BatchClass": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/cds_api_batch_srv.BatchClassType"
+              }
+            ]
+          },
+          "to_BatchPlant": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/cds_api_batch_srv.BatchPlantType"
+                }
+              }
+            }
+          },
+          "to_BatchText": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/cds_api_batch_srv.BatchText_Type"
+                }
+              }
+            }
+          }
+        },
+        "title": "Batches"
+      },
+      "cds_api_batch_srv.BatchType-create": {
+        "type": "object",
+        "x-sap-object-node-type": "Batch",
+        "properties": {
+          "Material": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "BatchIdentifyingPlant": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "Batch": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Batch",
+            "description": "Batch Number"
+          },
+          "BatchIsMarkedForDeletion": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Batch Deletion Flag",
+            "description": "Deletion Flag for All Data in a Batch"
+          },
+          "MatlBatchIsInRstrcdUseStock": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Batch Restricted",
+            "description": "Batch in Restricted-Use Stock"
+          },
+          "Supplier": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Supplier",
+            "description": "Supplier's Account Number"
+          },
+          "BatchBySupplier": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 15,
+            "title": "Supplier Batch",
+            "description": "Supplier Batch Number"
+          },
+          "CountryOfOrigin": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Cntry/Reg of Origin",
+            "description": "Country/Region of Origin of Material (Non-Preferential Ori.)"
+          },
+          "RegionOfOrigin": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Region of Origin",
+            "description": "Region of Origin of Material (Non-Preferential Origin)"
+          },
+          "MatlBatchAvailabilityDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Available from",
+            "description": "Availability date"
+          },
+          "ShelfLifeExpirationDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "SLED/BBD",
+            "description": "Shelf Life Expiration or Best-Before Date"
+          },
+          "ManufactureDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Date of Manufacture"
+          },
+          "FreeDefinedDate1": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Date for Free Use 1"
+          },
+          "FreeDefinedDate2": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Date for Free Use 2"
+          },
+          "FreeDefinedDate3": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Date for Free Use 3"
+          },
+          "FreeDefinedDate4": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Date for Free Use 4"
+          },
+          "FreeDefinedDate5": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Date for Free Use 5"
+          },
+          "FreeDefinedDate6": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Date for Free Use 6"
+          },
+          "to_BatchCharc": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/cds_api_batch_srv.BatchCharcType-create"
+                }
+              }
+            }
+          },
+          "to_BatchClass": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/cds_api_batch_srv.BatchClassType-create"
+              }
+            ]
+          },
+          "to_BatchPlant": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/cds_api_batch_srv.BatchPlantType-create"
+                }
+              }
+            }
+          },
+          "to_BatchText": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/cds_api_batch_srv.BatchText_Type-create"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "Material",
+          "BatchIdentifyingPlant",
+          "Batch"
+        ],
+        "title": "Batches (for create)"
+      },
+      "cds_api_batch_srv.BatchType-update": {
+        "type": "object",
+        "x-sap-object-node-type": "Batch",
+        "properties": {
+          "BatchIsMarkedForDeletion": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Batch Deletion Flag",
+            "description": "Deletion Flag for All Data in a Batch"
+          },
+          "MatlBatchIsInRstrcdUseStock": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Batch Restricted",
+            "description": "Batch in Restricted-Use Stock"
+          },
+          "Supplier": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Supplier",
+            "description": "Supplier's Account Number"
+          },
+          "BatchBySupplier": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 15,
+            "title": "Supplier Batch",
+            "description": "Supplier Batch Number"
+          },
+          "CountryOfOrigin": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Cntry/Reg of Origin",
+            "description": "Country/Region of Origin of Material (Non-Preferential Ori.)"
+          },
+          "RegionOfOrigin": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Region of Origin",
+            "description": "Region of Origin of Material (Non-Preferential Origin)"
+          },
+          "MatlBatchAvailabilityDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Available from",
+            "description": "Availability date"
+          },
+          "ShelfLifeExpirationDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "SLED/BBD",
+            "description": "Shelf Life Expiration or Best-Before Date"
+          },
+          "ManufactureDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Date of Manufacture"
+          },
+          "FreeDefinedDate1": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Date for Free Use 1"
+          },
+          "FreeDefinedDate2": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Date for Free Use 2"
+          },
+          "FreeDefinedDate3": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Date for Free Use 3"
+          },
+          "FreeDefinedDate4": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Date for Free Use 4"
+          },
+          "FreeDefinedDate5": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Date for Free Use 5"
+          },
+          "FreeDefinedDate6": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Date for Free Use 6"
+          }
+        },
+        "title": "Batches (for update)"
+      },
+      "cds_api_batch_srv.BatchCharcType": {
+        "type": "object",
+        "properties": {
+          "Material": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "BatchIdentifyingPlant": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "Batch": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Batch",
+            "description": "Batch Number"
+          },
+          "CharcInternalID": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Characteristic Internal ID"
+          },
+          "LastChangeDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Last Change",
+            "description": "Last Change Timestamp"
+          },
+          "to_Batch": {
+            "$ref": "#/components/schemas/cds_api_batch_srv.BatchType"
+          },
+          "to_BatchCharcValue": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/cds_api_batch_srv.BatchCharcValueType"
+                }
+              }
+            }
+          }
+        },
+        "title": "Batch Characteristics"
+      },
+      "cds_api_batch_srv.BatchCharcType-create": {
+        "type": "object",
+        "properties": {
+          "Material": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "BatchIdentifyingPlant": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "Batch": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Batch",
+            "description": "Batch Number"
+          },
+          "CharcInternalID": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Characteristic Internal ID"
+          },
+          "LastChangeDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Last Change",
+            "description": "Last Change Timestamp"
+          },
+          "to_Batch": {
+            "$ref": "#/components/schemas/cds_api_batch_srv.BatchType-create"
+          },
+          "to_BatchCharcValue": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/cds_api_batch_srv.BatchCharcValueType-create"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "Material",
+          "BatchIdentifyingPlant",
+          "Batch",
+          "CharcInternalID"
+        ],
+        "title": "Batch Characteristics (for create)"
+      },
+      "cds_api_batch_srv.BatchCharcType-update": {
+        "type": "object",
+        "properties": {
+          "LastChangeDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Last Change",
+            "description": "Last Change Timestamp"
+          }
+        },
+        "title": "Batch Characteristics (for update)"
+      },
+      "cds_api_batch_srv.BatchCharcValueType": {
+        "type": "object",
+        "properties": {
+          "Material": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "BatchIdentifyingPlant": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "Batch": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Batch",
+            "description": "Batch Number"
+          },
+          "CharcInternalID": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Characteristic Internal ID"
+          },
+          "CharcValuePositionNumber": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Counter",
+            "description": "Characteristic value counter"
+          },
+          "CharcValueDependency": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Code",
+            "description": "Code for value dependency"
+          },
+          "CharcValue": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 70,
+            "title": "Characteristic Value"
+          },
+          "CharcFromNumericValue": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "nullable": true,
+            "format": "double",
+            "example": 3.14,
+            "title": "Value from",
+            "description": "Internal floating point from"
+          },
+          "CharcFromNumericValueUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Internal UoM",
+            "description": "Unit of Measurement"
+          },
+          "CharcToNumericValue": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "nullable": true,
+            "format": "double",
+            "example": 3.14,
+            "title": "Value to",
+            "description": "Internal floating point value to"
+          },
+          "CharcToNumericValueUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Internal UoM",
+            "description": "Unit of Measurement"
+          },
+          "CharcFromDecimalValue": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 31,
+            "x-sap-scale": 14,
+            "multipleOf": 1.0e-14,
+            "example": "0",
+            "title": "LowrBndry Nmrc",
+            "description": "Lower Boundary for Numeric Field"
+          },
+          "CharcToDecimalValue": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 31,
+            "x-sap-scale": 14,
+            "multipleOf": 1.0e-14,
+            "example": "0",
+            "title": "UprBndry Nmrc",
+            "description": "Upper Boundary for Numeric Field"
+          },
+          "CharcFromAmount": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "example": "0",
+            "title": "LowrBndry Crcy",
+            "description": "Lower Boundary for Currency Field"
+          },
+          "CharcToAmount": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "example": "0",
+            "title": "UprBndry Crcy",
+            "description": "Upper Boundary for Currency Field"
+          },
+          "Currency": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "title": "Currency",
+            "description": "Currency Key"
+          },
+          "CharcFromDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "LowrBndry Date",
+            "description": "Lower Boundary for Date-Interval"
+          },
+          "CharcToDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "UprBndry Date",
+            "description": "Upper Boundary for Date-Interval"
+          },
+          "CharcFromTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "PT15H51M04S",
+            "title": "LowrBndry Time",
+            "description": "Lower Boundary for Time-Interval"
+          },
+          "CharcToTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "PT15H51M04S",
+            "title": "UprBndry Time",
+            "description": "Upper Boundary for Time-Interval"
+          },
+          "CharacteristicAuthor": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Author",
+            "description": "Classification: Author"
+          },
+          "LastChangeDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Last Change",
+            "description": "Last Change Timestamp"
+          },
+          "to_BatchCharc": {
+            "$ref": "#/components/schemas/cds_api_batch_srv.BatchCharcType"
+          }
+        },
+        "title": "Batch Characteristics Valuation"
+      },
+      "cds_api_batch_srv.BatchCharcValueType-create": {
+        "type": "object",
+        "properties": {
+          "Material": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "BatchIdentifyingPlant": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "Batch": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Batch",
+            "description": "Batch Number"
+          },
+          "CharcInternalID": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Characteristic Internal ID"
+          },
+          "CharcValueDependency": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Code",
+            "description": "Code for value dependency"
+          },
+          "CharcValue": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 70,
+            "title": "Characteristic Value"
+          },
+          "CharcFromNumericValue": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "nullable": true,
+            "format": "double",
+            "example": 3.14,
+            "title": "Value from",
+            "description": "Internal floating point from"
+          },
+          "CharcFromNumericValueUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Internal UoM",
+            "description": "Unit of Measurement"
+          },
+          "CharcToNumericValue": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "nullable": true,
+            "format": "double",
+            "example": 3.14,
+            "title": "Value to",
+            "description": "Internal floating point value to"
+          },
+          "CharcToNumericValueUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Internal UoM",
+            "description": "Unit of Measurement"
+          },
+          "CharcFromDecimalValue": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 31,
+            "x-sap-scale": 14,
+            "multipleOf": 1.0e-14,
+            "example": "0",
+            "title": "LowrBndry Nmrc",
+            "description": "Lower Boundary for Numeric Field"
+          },
+          "CharcToDecimalValue": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 31,
+            "x-sap-scale": 14,
+            "multipleOf": 1.0e-14,
+            "example": "0",
+            "title": "UprBndry Nmrc",
+            "description": "Upper Boundary for Numeric Field"
+          },
+          "CharcFromAmount": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "example": "0",
+            "title": "LowrBndry Crcy",
+            "description": "Lower Boundary for Currency Field"
+          },
+          "CharcToAmount": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "example": "0",
+            "title": "UprBndry Crcy",
+            "description": "Upper Boundary for Currency Field"
+          },
+          "Currency": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "title": "Currency",
+            "description": "Currency Key"
+          },
+          "CharcFromDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "LowrBndry Date",
+            "description": "Lower Boundary for Date-Interval"
+          },
+          "CharcToDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "UprBndry Date",
+            "description": "Upper Boundary for Date-Interval"
+          },
+          "CharcFromTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "PT15H51M04S",
+            "title": "LowrBndry Time",
+            "description": "Lower Boundary for Time-Interval"
+          },
+          "CharcToTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "PT15H51M04S",
+            "title": "UprBndry Time",
+            "description": "Upper Boundary for Time-Interval"
+          },
+          "to_BatchCharc": {
+            "$ref": "#/components/schemas/cds_api_batch_srv.BatchCharcType-create"
+          }
+        },
+        "required": [
+          "Material",
+          "BatchIdentifyingPlant",
+          "Batch",
+          "CharcInternalID"
+        ],
+        "title": "Batch Characteristics Valuation (for create)"
+      },
+      "cds_api_batch_srv.BatchCharcValueType-update": {
+        "type": "object",
+        "properties": {
+          "CharcValueDependency": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Code",
+            "description": "Code for value dependency"
+          },
+          "CharcValue": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 70,
+            "title": "Characteristic Value"
+          },
+          "CharcFromNumericValue": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "nullable": true,
+            "format": "double",
+            "example": 3.14,
+            "title": "Value from",
+            "description": "Internal floating point from"
+          },
+          "CharcFromNumericValueUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Internal UoM",
+            "description": "Unit of Measurement"
+          },
+          "CharcToNumericValue": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "nullable": true,
+            "format": "double",
+            "example": 3.14,
+            "title": "Value to",
+            "description": "Internal floating point value to"
+          },
+          "CharcToNumericValueUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Internal UoM",
+            "description": "Unit of Measurement"
+          },
+          "CharcFromDecimalValue": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 31,
+            "x-sap-scale": 14,
+            "multipleOf": 1.0e-14,
+            "example": "0",
+            "title": "LowrBndry Nmrc",
+            "description": "Lower Boundary for Numeric Field"
+          },
+          "CharcToDecimalValue": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 31,
+            "x-sap-scale": 14,
+            "multipleOf": 1.0e-14,
+            "example": "0",
+            "title": "UprBndry Nmrc",
+            "description": "Upper Boundary for Numeric Field"
+          },
+          "CharcFromAmount": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "example": "0",
+            "title": "LowrBndry Crcy",
+            "description": "Lower Boundary for Currency Field"
+          },
+          "CharcToAmount": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "example": "0",
+            "title": "UprBndry Crcy",
+            "description": "Upper Boundary for Currency Field"
+          },
+          "Currency": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "title": "Currency",
+            "description": "Currency Key"
+          },
+          "CharcFromDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "LowrBndry Date",
+            "description": "Lower Boundary for Date-Interval"
+          },
+          "CharcToDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "UprBndry Date",
+            "description": "Upper Boundary for Date-Interval"
+          },
+          "CharcFromTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "PT15H51M04S",
+            "title": "LowrBndry Time",
+            "description": "Lower Boundary for Time-Interval"
+          },
+          "CharcToTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "PT15H51M04S",
+            "title": "UprBndry Time",
+            "description": "Upper Boundary for Time-Interval"
+          }
+        },
+        "title": "Batch Characteristics Valuation (for update)"
+      },
+      "cds_api_batch_srv.BatchClassType": {
+        "type": "object",
+        "properties": {
+          "Material": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "BatchIdentifyingPlant": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "Batch": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Batch",
+            "description": "Batch Number"
+          },
+          "ClassInternalID": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Int. Class No.",
+            "description": "Internal Class Number"
+          },
+          "LastChangeDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Last Change",
+            "description": "Last Change Timestamp"
+          },
+          "to_Batch": {
+            "$ref": "#/components/schemas/cds_api_batch_srv.BatchType"
+          }
+        },
+        "title": "Batch Class Assignments"
+      },
+      "cds_api_batch_srv.BatchClassType-create": {
+        "type": "object",
+        "properties": {
+          "Material": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "BatchIdentifyingPlant": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "Batch": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Batch",
+            "description": "Batch Number"
+          },
+          "ClassInternalID": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Int. Class No.",
+            "description": "Internal Class Number"
+          },
+          "to_Batch": {
+            "$ref": "#/components/schemas/cds_api_batch_srv.BatchType-create"
+          }
+        },
+        "required": [
+          "Material",
+          "BatchIdentifyingPlant",
+          "Batch"
+        ],
+        "title": "Batch Class Assignments (for create)"
+      },
+      "cds_api_batch_srv.BatchClassType-update": {
+        "type": "object",
+        "properties": {
+          "ClassInternalID": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Int. Class No.",
+            "description": "Internal Class Number"
+          }
+        },
+        "title": "Batch Class Assignments (for update)"
+      },
+      "cds_api_batch_srv.BatchPlantType": {
+        "type": "object",
+        "properties": {
+          "Material": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "Batch": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Batch",
+            "description": "Batch Number"
+          },
+          "Plant": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "BatchIdentifyingPlant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "InventoryValuationType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Valuation Type"
+          },
+          "LastChangeDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Last Change",
+            "description": "Last Change Timestamp"
+          },
+          "to_Batch": {
+            "$ref": "#/components/schemas/cds_api_batch_srv.BatchType"
+          }
+        },
+        "title": "Plant-specific Batch Information"
+      },
+      "cds_api_batch_srv.BatchPlantType-create": {
+        "type": "object",
+        "properties": {
+          "Material": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "Batch": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Batch",
+            "description": "Batch Number"
+          },
+          "Plant": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "InventoryValuationType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Valuation Type"
+          },
+          "to_Batch": {
+            "$ref": "#/components/schemas/cds_api_batch_srv.BatchType-create"
+          }
+        },
+        "required": [
+          "Material",
+          "Batch",
+          "Plant"
+        ],
+        "title": "Plant-specific Batch Information (for create)"
+      },
+      "cds_api_batch_srv.BatchPlantType-update": {
+        "type": "object",
+        "properties": {
+          "InventoryValuationType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Valuation Type"
+          }
+        },
+        "title": "Plant-specific Batch Information (for update)"
+      },
+      "cds_api_batch_srv.BatchText_Type": {
+        "type": "object",
+        "properties": {
+          "Material": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "BatchIdentifyingPlant": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "Batch": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Batch",
+            "description": "Batch Number"
+          },
+          "Language": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Language Key"
+          },
+          "BatchDescription": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Batch Description"
+          },
+          "to_Batch": {
+            "$ref": "#/components/schemas/cds_api_batch_srv.BatchType"
+          }
+        },
+        "title": "Batch Texts"
+      },
+      "cds_api_batch_srv.BatchText_Type-create": {
+        "type": "object",
+        "properties": {
+          "Material": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "BatchIdentifyingPlant": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "Batch": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Batch",
+            "description": "Batch Number"
+          },
+          "Language": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Language Key"
+          },
+          "BatchDescription": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Batch Description"
+          },
+          "to_Batch": {
+            "$ref": "#/components/schemas/cds_api_batch_srv.BatchType-create"
+          }
+        },
+        "required": [
+          "Material",
+          "BatchIdentifyingPlant",
+          "Batch",
+          "Language"
+        ],
+        "title": "Batch Texts (for create)"
+      },
+      "cds_api_batch_srv.BatchText_Type-update": {
+        "type": "object",
+        "properties": {
+          "BatchDescription": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Batch Description"
+          }
+        },
+        "title": "Batch Texts (for update)"
+      },
+      "count": {
+        "type": "string",
+        "description": "The number of entities in the collection. Available when using the [$inlinecount](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=67) query option."
+      },
+      "error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "code",
+              "message"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "object",
+                "required": [
+                  "lang",
+                  "value"
+                ],
+                "properties": {
+                  "lang": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              },
+              "innererror": {
+                "type": "object",
+                "description": "The structure of this object is service-specific"
+              }
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "top": {
+        "name": "$top",
+        "in": "query",
+        "description": "Show only the first n items, see [Paging - Top](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=66)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "example": 50
+      },
+      "skip": {
+        "name": "$skip",
+        "in": "query",
+        "description": "Skip the first n items, see [Paging - Skip](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "count": {
+        "name": "$inlinecount",
+        "in": "query",
+        "description": "Include count of items, see [Inlinecount](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=67)",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "allpages",
+            "none"
+          ]
+        }
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/error"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "OAuth2Auth": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "scopes": {},
+            "refreshUrl": "https://{host}:{port}",
+            "authorizationUrl": "https://{host}:{port}",
+            "tokenUrl": "https://{host}:{port}"
+          }
+        }
+      },
+      "BasicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "OAuth2Auth": []
+    },
+    {
+      "BasicAuth": []
+    }
+  ]
+}

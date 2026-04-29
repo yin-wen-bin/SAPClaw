@@ -1,0 +1,2009 @@
+﻿{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Quota Arrangement",
+    "version": "1.0.0",
+    "description": "This service helps you to create, read, update, and delete quota arrangements through an API call from a source system outside SAP S/4HANA Cloud or SAP S/4HANA. The service contains quota arrangement header and item. The information is sent in the request as a payload. The information is used when creating, reading or updating a quota arrangement, with appropriate checks for restricted values and authorizations."
+  },
+  "externalDocs": {
+    "description": "Business Documentation",
+    "url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD/2602.latest/EN/4a/a0343345884bd2bf7195f1072d9679/frameset.htm"
+  },
+  "x-sap-api-type": "ODATA",
+  "x-sap-shortText": "Create, read, update, and delete quota arrangements through an API call from a source system outside SAP S/4HANA Cloud or SAP S/4HANA",
+  "x-sap-software-min-version": "2602",
+  "x-sap-ext-overview": [
+    {
+      "name": "Communication Scenario",
+      "values": [
+        {
+          "text": "Purchasing Quota Arrangement Integration (SAP_COM_0166)",
+          "format": "plain"
+        }
+      ]
+    },
+    {
+      "name": "Scope Items",
+      "values": [
+        {
+          "text": "[Physical Inventory – Inventory Count and Adjustment (OML)](https://me.sap.com/processnavigator/SolP/OML \" Link To BP \")",
+          "format": "markdown"
+        },
+        {
+          "text": "[Scheduling Agreements in Procurement (OMR)](https://me.sap.com/processnavigator/SolP/OMR \" Link To BP \")",
+          "format": "markdown"
+        },
+        {
+          "text": "[Scheduling Agreements in Procurement (BMR)](https://me.sap.com/processnavigator/SolP/BMR \" Link To BP \")",
+          "format": "markdown"
+        }
+      ]
+    },
+    {
+      "name": "Authentication Methods",
+      "values": [
+        {
+          "text": "x509",
+          "format": "plain"
+        }
+      ]
+    },
+    {
+      "name": "Business Object",
+      "values": [
+        {
+          "text": "Purchasing Quota Arrangement",
+          "format": "plain"
+        }
+      ]
+    }
+  ],
+  "servers": [
+    {
+      "url": "https://{host}:{port}/sap/opu/odata/sap/API_PUR_QUOTA_ARRANGEMENT_SRV",
+      "variables": {
+        "host": {
+          "default": ""
+        },
+        "port": {
+          "default": ""
+        }
+      }
+    },
+    {
+      "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_PUR_QUOTA_ARRANGEMENT_SRV"
+    }
+  ],
+  "x-sap-extensible": {
+    "supported": "no"
+  },
+  "tags": [
+    {
+      "name": "Quota Arrangement"
+    },
+    {
+      "name": "Item"
+    }
+  ],
+  "paths": {
+    "/A_PurchasingQuotaArrangement": {
+      "get": {
+        "summary": "Gets the header details of all the quota arrangements in the system",
+        "description": "Gets the header details of all the quota arrangements in the system. Note that if there are many quota arrangements in the system, this operation might take a while.",
+        "tags": [
+          "Quota Arrangement"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "QuotaArrangement",
+                  "QuotaArrangement desc",
+                  "Material",
+                  "Material desc",
+                  "Plant",
+                  "Plant desc",
+                  "ValidityEndDate",
+                  "ValidityEndDate desc",
+                  "ValidityStartDate",
+                  "ValidityStartDate desc",
+                  "CreationDate",
+                  "CreationDate desc",
+                  "CreatedByUser",
+                  "CreatedByUser desc",
+                  "MinQtyForSpltQuota",
+                  "MinQtyForSpltQuota desc",
+                  "LastChangeDateTime",
+                  "LastChangeDateTime desc",
+                  "UserDescription",
+                  "UserDescription desc",
+                  "MaterialBaseUnit",
+                  "MaterialBaseUnit desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "QuotaArrangement",
+                  "Material",
+                  "Plant",
+                  "ValidityEndDate",
+                  "ValidityStartDate",
+                  "CreationDate",
+                  "CreatedByUser",
+                  "MinQtyForSpltQuota",
+                  "LastChangeDateTime",
+                  "UserDescription",
+                  "MaterialBaseUnit",
+                  "to_PurgQuotaArrangementItem"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_PurgQuotaArrangementItem"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of A_PurchasingQuotaArrangementType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_PUR_QUOTA_ARRANGEMENT_SRV.A_PurchasingQuotaArrangementType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a quota arrangement header",
+        "description": "Creates a quota arrangement header with non-overlapping validity periods for a material, plant combination.",
+        "tags": [
+          "Quota Arrangement"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/API_PUR_QUOTA_ARRANGEMENT_SRV.A_PurchasingQuotaArrangementType-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_PurchasingQuotaArrangementType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_PUR_QUOTA_ARRANGEMENT_SRV.A_PurchasingQuotaArrangementType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_PurchasingQuotaArrangement('{QuotaArrangement}')": {
+      "parameters": [
+        {
+          "name": "QuotaArrangement",
+          "in": "path",
+          "required": true,
+          "description": "Number of quota arrangement",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        }
+      ],
+      "get": {
+        "summary": "Gets the header details of a quota arrangement",
+        "description": "Gets the header details of a quota arrangement using quota arrangement number provided.",
+        "tags": [
+          "Quota Arrangement"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "QuotaArrangement",
+                  "Material",
+                  "Plant",
+                  "ValidityEndDate",
+                  "ValidityStartDate",
+                  "CreationDate",
+                  "CreatedByUser",
+                  "MinQtyForSpltQuota",
+                  "LastChangeDateTime",
+                  "UserDescription",
+                  "MaterialBaseUnit",
+                  "to_PurgQuotaArrangementItem"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_PurgQuotaArrangementItem"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_PurchasingQuotaArrangementType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_PUR_QUOTA_ARRANGEMENT_SRV.A_PurchasingQuotaArrangementType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Updates the header details of a quota arrangement",
+        "description": "Updates the header details of a quota arrangement, using the quota arrangement number provided. You can update the validity period only if the quota base quantity, \"QuotaBaseQuantity\", and allocated quantity \"QuotaAllocatedQuantity\" is \"0\".",
+        "tags": [
+          "Quota Arrangement"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New property values",
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "Modified A_PurchasingQuotaArrangementType",
+                "type": "object",
+                "properties": {
+                  "d": {
+                    "$ref": "#/components/schemas/API_PUR_QUOTA_ARRANGEMENT_SRV.A_PurchasingQuotaArrangementType-update"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes the header of a quota arrangement",
+        "description": "Deletes the header of a quota arrangement using the quota arrangement number provided. You can delete a quota arrangement header only if there are no items in it.",
+        "tags": [
+          "Quota Arrangement"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_PurchasingQuotaArrangement('{QuotaArrangement}')/to_PurgQuotaArrangementItem": {
+      "parameters": [
+        {
+          "name": "QuotaArrangement",
+          "in": "path",
+          "required": true,
+          "description": "Number of quota arrangement",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        }
+      ],
+      "get": {
+        "summary": "Gets the item details of all the items in a quota arrangement",
+        "description": "Gets the item details of all the items in a quota arrangement, using the quota arrangement number provided.",
+        "tags": [
+          "Quota Arrangement",
+          "Item"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "QuotaArrangement",
+                  "QuotaArrangement desc",
+                  "QuotaArrangementItem",
+                  "QuotaArrangementItem desc",
+                  "MaterialProcurementCategory",
+                  "MaterialProcurementCategory desc",
+                  "MaterialProcurementType",
+                  "MaterialProcurementType desc",
+                  "Supplier",
+                  "Supplier desc",
+                  "SupplyingPlant",
+                  "SupplyingPlant desc",
+                  "PurchasingSourceQuota",
+                  "PurchasingSourceQuota desc",
+                  "QuotaBaseQuantity",
+                  "QuotaBaseQuantity desc",
+                  "QuotaAllocatedQuantity",
+                  "QuotaAllocatedQuantity desc",
+                  "QuotaMaximumQuantity",
+                  "QuotaMaximumQuantity desc",
+                  "ProductionVersion",
+                  "ProductionVersion desc",
+                  "MaterialMaxLotSizeQuantity",
+                  "MaterialMaxLotSizeQuantity desc",
+                  "MaterialMinLotSizeQuantity",
+                  "MaterialMinLotSizeQuantity desc",
+                  "MaterialRoundingProfile",
+                  "MaterialRoundingProfile desc",
+                  "SourceOfSupplyIsAssignedOnce",
+                  "SourceOfSupplyIsAssignedOnce desc",
+                  "MaximumReleaseQuantity",
+                  "MaximumReleaseQuantity desc",
+                  "QuotaReleasePeriodType",
+                  "QuotaReleasePeriodType desc",
+                  "NumberOfPeriodsPerRelQuantity",
+                  "NumberOfPeriodsPerRelQuantity desc",
+                  "QuotaDeterminationPriority",
+                  "QuotaDeterminationPriority desc",
+                  "ManufacturerMaterial",
+                  "ManufacturerMaterial desc",
+                  "PlannedDeliveryDurationInDays",
+                  "PlannedDeliveryDurationInDays desc",
+                  "MaterialBaseUnit",
+                  "MaterialBaseUnit desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "QuotaArrangement",
+                  "QuotaArrangementItem",
+                  "MaterialProcurementCategory",
+                  "MaterialProcurementType",
+                  "Supplier",
+                  "SupplyingPlant",
+                  "PurchasingSourceQuota",
+                  "QuotaBaseQuantity",
+                  "QuotaAllocatedQuantity",
+                  "QuotaMaximumQuantity",
+                  "ProductionVersion",
+                  "MaterialMaxLotSizeQuantity",
+                  "MaterialMinLotSizeQuantity",
+                  "MaterialRoundingProfile",
+                  "SourceOfSupplyIsAssignedOnce",
+                  "MaximumReleaseQuantity",
+                  "QuotaReleasePeriodType",
+                  "NumberOfPeriodsPerRelQuantity",
+                  "QuotaDeterminationPriority",
+                  "ManufacturerMaterial",
+                  "PlannedDeliveryDurationInDays",
+                  "MaterialBaseUnit",
+                  "to_PurchasingQuotaArrangement"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_PurchasingQuotaArrangement"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of A_PurgQuotaArrangementItemType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_PUR_QUOTA_ARRANGEMENT_SRV.A_PurgQuotaArrangementItemType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Adds an item to a Quota Arrangement",
+        "description": "Adds an item to a Quota Arrangement using the Quota Arrangement number provided. It is mandatory to pass the Quota Arrangement number, \" Quota Arrangement \", in the request URL.",
+        "tags": [
+          "Quota Arrangement",
+          "Item"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/API_PUR_QUOTA_ARRANGEMENT_SRV.A_PurgQuotaArrangementItemType-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_PurgQuotaArrangementItemType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_PUR_QUOTA_ARRANGEMENT_SRV.A_PurgQuotaArrangementItemType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_PurgQuotaArrangementItem": {
+      "get": {
+        "summary": "Gets the item details of all the items, in all the quota arrangements in the system.",
+        "description": "Gets the item details of all the items, in all the quota arrangements in the system. Note that if there are many quota arrangements in the system, this operation might take a while.",
+        "tags": [
+          "Item"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "QuotaArrangement",
+                  "QuotaArrangement desc",
+                  "QuotaArrangementItem",
+                  "QuotaArrangementItem desc",
+                  "MaterialProcurementCategory",
+                  "MaterialProcurementCategory desc",
+                  "MaterialProcurementType",
+                  "MaterialProcurementType desc",
+                  "Supplier",
+                  "Supplier desc",
+                  "SupplyingPlant",
+                  "SupplyingPlant desc",
+                  "PurchasingSourceQuota",
+                  "PurchasingSourceQuota desc",
+                  "QuotaBaseQuantity",
+                  "QuotaBaseQuantity desc",
+                  "QuotaAllocatedQuantity",
+                  "QuotaAllocatedQuantity desc",
+                  "QuotaMaximumQuantity",
+                  "QuotaMaximumQuantity desc",
+                  "ProductionVersion",
+                  "ProductionVersion desc",
+                  "MaterialMaxLotSizeQuantity",
+                  "MaterialMaxLotSizeQuantity desc",
+                  "MaterialMinLotSizeQuantity",
+                  "MaterialMinLotSizeQuantity desc",
+                  "MaterialRoundingProfile",
+                  "MaterialRoundingProfile desc",
+                  "SourceOfSupplyIsAssignedOnce",
+                  "SourceOfSupplyIsAssignedOnce desc",
+                  "MaximumReleaseQuantity",
+                  "MaximumReleaseQuantity desc",
+                  "QuotaReleasePeriodType",
+                  "QuotaReleasePeriodType desc",
+                  "NumberOfPeriodsPerRelQuantity",
+                  "NumberOfPeriodsPerRelQuantity desc",
+                  "QuotaDeterminationPriority",
+                  "QuotaDeterminationPriority desc",
+                  "ManufacturerMaterial",
+                  "ManufacturerMaterial desc",
+                  "PlannedDeliveryDurationInDays",
+                  "PlannedDeliveryDurationInDays desc",
+                  "MaterialBaseUnit",
+                  "MaterialBaseUnit desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "QuotaArrangement",
+                  "QuotaArrangementItem",
+                  "MaterialProcurementCategory",
+                  "MaterialProcurementType",
+                  "Supplier",
+                  "SupplyingPlant",
+                  "PurchasingSourceQuota",
+                  "QuotaBaseQuantity",
+                  "QuotaAllocatedQuantity",
+                  "QuotaMaximumQuantity",
+                  "ProductionVersion",
+                  "MaterialMaxLotSizeQuantity",
+                  "MaterialMinLotSizeQuantity",
+                  "MaterialRoundingProfile",
+                  "SourceOfSupplyIsAssignedOnce",
+                  "MaximumReleaseQuantity",
+                  "QuotaReleasePeriodType",
+                  "NumberOfPeriodsPerRelQuantity",
+                  "QuotaDeterminationPriority",
+                  "ManufacturerMaterial",
+                  "PlannedDeliveryDurationInDays",
+                  "MaterialBaseUnit",
+                  "to_PurchasingQuotaArrangement"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_PurchasingQuotaArrangement"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of A_PurgQuotaArrangementItemType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_PUR_QUOTA_ARRANGEMENT_SRV.A_PurgQuotaArrangementItemType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Adds an item to a Quota Arrangement",
+        "description": "Adds an item to a Quota Arrangement using the Quota Arrangement number provided. It is mandatory to pass the Quota Arrangement number, \" Quota Arrangement \", in the request body.",
+        "tags": [
+          "Item"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/API_PUR_QUOTA_ARRANGEMENT_SRV.A_PurgQuotaArrangementItemType-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_PurgQuotaArrangementItemType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_PUR_QUOTA_ARRANGEMENT_SRV.A_PurgQuotaArrangementItemType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_PurgQuotaArrangementItem(QuotaArrangement='{QuotaArrangement}',QuotaArrangementItem='{QuotaArrangementItem}')": {
+      "parameters": [
+        {
+          "name": "QuotaArrangement",
+          "in": "path",
+          "required": true,
+          "description": "Number of quota arrangement",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "QuotaArrangementItem",
+          "in": "path",
+          "required": true,
+          "description": "Quota arrangement item",
+          "schema": {
+            "type": "string",
+            "maxLength": 3
+          }
+        }
+      ],
+      "get": {
+        "summary": "Gets the item details of an item in a quota arrangement.",
+        "description": "Gets the item details of an item in a quota arrangement, using the quota arrangement number, and item number provided.",
+        "tags": [
+          "Item"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "QuotaArrangement",
+                  "QuotaArrangementItem",
+                  "MaterialProcurementCategory",
+                  "MaterialProcurementType",
+                  "Supplier",
+                  "SupplyingPlant",
+                  "PurchasingSourceQuota",
+                  "QuotaBaseQuantity",
+                  "QuotaAllocatedQuantity",
+                  "QuotaMaximumQuantity",
+                  "ProductionVersion",
+                  "MaterialMaxLotSizeQuantity",
+                  "MaterialMinLotSizeQuantity",
+                  "MaterialRoundingProfile",
+                  "SourceOfSupplyIsAssignedOnce",
+                  "MaximumReleaseQuantity",
+                  "QuotaReleasePeriodType",
+                  "NumberOfPeriodsPerRelQuantity",
+                  "QuotaDeterminationPriority",
+                  "ManufacturerMaterial",
+                  "PlannedDeliveryDurationInDays",
+                  "MaterialBaseUnit",
+                  "to_PurchasingQuotaArrangement"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_PurchasingQuotaArrangement"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_PurgQuotaArrangementItemType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_PUR_QUOTA_ARRANGEMENT_SRV.A_PurgQuotaArrangementItemType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Updates the item details of an item in a quota arrangement.",
+        "description": "Updates the item details of an item in a quota arrangement, using the quota arrangement number, and item number provided.",
+        "tags": [
+          "Item"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New property values",
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "Modified A_PurgQuotaArrangementItemType",
+                "type": "object",
+                "properties": {
+                  "d": {
+                    "$ref": "#/components/schemas/API_PUR_QUOTA_ARRANGEMENT_SRV.A_PurgQuotaArrangementItemType-update"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes an item in a quota arrangement.",
+        "description": "Deletes an item in a quota arrangement, using the quota arrangement number, and item number provided.",
+        "tags": [
+          "Item"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_PurgQuotaArrangementItem(QuotaArrangement='{QuotaArrangement}',QuotaArrangementItem='{QuotaArrangementItem}')/to_PurchasingQuotaArrangement": {
+      "parameters": [
+        {
+          "name": "QuotaArrangement",
+          "in": "path",
+          "required": true,
+          "description": "Number of quota arrangement",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "QuotaArrangementItem",
+          "in": "path",
+          "required": true,
+          "description": "Quota arrangement item",
+          "schema": {
+            "type": "string",
+            "maxLength": 3
+          }
+        }
+      ],
+      "get": {
+        "summary": "Gets the header details of an item in a quota arrangement",
+        "description": "Gets the header details of an item in a quota arrangement, using the quota arrangement number, and item number provided.",
+        "tags": [
+          "Item",
+          "Quota Arrangement"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "QuotaArrangement",
+                  "Material",
+                  "Plant",
+                  "ValidityEndDate",
+                  "ValidityStartDate",
+                  "CreationDate",
+                  "CreatedByUser",
+                  "MinQtyForSpltQuota",
+                  "LastChangeDateTime",
+                  "UserDescription",
+                  "MaterialBaseUnit",
+                  "to_PurgQuotaArrangementItem"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_PurgQuotaArrangementItem"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_PurchasingQuotaArrangementType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_PUR_QUOTA_ARRANGEMENT_SRV.A_PurchasingQuotaArrangementType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/$batch": {
+      "post": {
+        "summary": "Send a group of requests",
+        "description": "Group multiple requests into a single request payload, see [Batch Requests](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=152).\n\n*Please note that \"Try it out\" is not supported for this request.*",
+        "tags": [
+          "Batch Requests"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Batch request",
+          "content": {
+            "multipart/mixed;boundary=request-separator": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "--request-separator\nContent-Type: application/http\nContent-Transfer-Encoding: binary\n\nGET A_PurchasingQuotaArrangement HTTP/1.1\nAccept: application/json\n\n\n--request-separator--"
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Batch response",
+            "content": {
+              "multipart/mixed": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "--response-separator\nContent-Type: application/http\n\nHTTP/1.1 200 OK\nContent-Type: application/json\n\n{...}\n--response-separator--"
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "API_PUR_QUOTA_ARRANGEMENT_SRV.A_PurchasingQuotaArrangementType": {
+        "type": "object",
+        "properties": {
+          "QuotaArrangement": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Quota arrangement",
+            "description": "Number of quota arrangement"
+          },
+          "Material": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "Plant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "ValidityEndDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Valid to",
+            "description": "Quota arrangement period valid until"
+          },
+          "ValidityStartDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Valid from",
+            "description": "Quota arrangement period valid from"
+          },
+          "CreationDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Created On",
+            "description": "Record Creation Date"
+          },
+          "CreatedByUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Created By",
+            "description": "Name of Person Responsible for Creating the Object"
+          },
+          "MinQtyForSpltQuota": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 15,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -999999999999.999,
+            "maximum": 999999999999.999,
+            "example": "0",
+            "title": "Minimum Qty",
+            "description": "Minimum Quantity for Splitting Quota"
+          },
+          "LastChangeDateTime": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/",
+            "title": "Time Stamp",
+            "description": "UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)"
+          },
+          "UserDescription": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 80,
+            "title": "Description",
+            "description": "Description of the Technical User Account"
+          },
+          "MaterialBaseUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Base Unit of Measure"
+          },
+          "to_PurgQuotaArrangementItem": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/API_PUR_QUOTA_ARRANGEMENT_SRV.A_PurgQuotaArrangementItemType"
+                }
+              }
+            }
+          }
+        },
+        "title": "Quota Arrangement"
+      },
+      "API_PUR_QUOTA_ARRANGEMENT_SRV.A_PurchasingQuotaArrangementType-create": {
+        "type": "object",
+        "properties": {
+          "Material": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "Plant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "ValidityEndDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Valid to",
+            "description": "Quota arrangement period valid until"
+          },
+          "ValidityStartDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Valid from",
+            "description": "Quota arrangement period valid from"
+          },
+          "MinQtyForSpltQuota": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 15,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -999999999999.999,
+            "maximum": 999999999999.999,
+            "example": "0",
+            "title": "Minimum Qty",
+            "description": "Minimum Quantity for Splitting Quota"
+          },
+          "to_PurgQuotaArrangementItem": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/API_PUR_QUOTA_ARRANGEMENT_SRV.A_PurgQuotaArrangementItemType-create"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "Material",
+          "Plant",
+          "ValidityEndDate",
+          "ValidityStartDate"
+        ],
+        "title": "Quota Arrangement (for create)"
+      },
+      "API_PUR_QUOTA_ARRANGEMENT_SRV.A_PurchasingQuotaArrangementType-update": {
+        "type": "object",
+        "properties": {
+          "Material": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "Plant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "ValidityEndDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Valid to",
+            "description": "Quota arrangement period valid until"
+          },
+          "ValidityStartDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Valid from",
+            "description": "Quota arrangement period valid from"
+          },
+          "MinQtyForSpltQuota": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 15,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -999999999999.999,
+            "maximum": 999999999999.999,
+            "example": "0",
+            "title": "Minimum Qty",
+            "description": "Minimum Quantity for Splitting Quota"
+          }
+        },
+        "title": "Quota Arrangement (for update)"
+      },
+      "API_PUR_QUOTA_ARRANGEMENT_SRV.A_PurgQuotaArrangementItemType": {
+        "type": "object",
+        "properties": {
+          "QuotaArrangement": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Quota arrangement",
+            "description": "Number of quota arrangement"
+          },
+          "QuotaArrangementItem": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Quota arrangemt.item",
+            "description": "Quota arrangement item"
+          },
+          "MaterialProcurementCategory": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "MaterialProcurementCategory",
+            "title": "Procurement Type"
+          },
+          "MaterialProcurementType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "MaterialProcurementType",
+            "title": "Special procurement",
+            "description": "Special procurement type"
+          },
+          "Supplier": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Supplier",
+            "description": "Supplier's Account Number"
+          },
+          "SupplyingPlant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Procurement Plant",
+            "description": "Plant from Which Material is Procured"
+          },
+          "PurchasingSourceQuota": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 3,
+            "x-sap-scale": 0,
+            "multipleOf": 1,
+            "minimum": -999,
+            "maximum": 999,
+            "example": "0",
+            "title": "Quota"
+          },
+          "QuotaBaseQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 15,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -999999999999.999,
+            "maximum": 999999999999.999,
+            "example": "0",
+            "title": "Quota Base Quantity",
+            "description": "Quota Base Quantity of Quota Arrangement Item"
+          },
+          "QuotaAllocatedQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 15,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -999999999999.999,
+            "maximum": 999999999999.999,
+            "example": "0",
+            "title": "Allocated Quantity",
+            "description": "Allocated Quantity of Quota Arrangement Item"
+          },
+          "QuotaMaximumQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 15,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -999999999999.999,
+            "maximum": 999999999999.999,
+            "example": "0",
+            "title": "Maximum quantity",
+            "description": "Maximum Quantity of Quota Arrangement Item"
+          },
+          "ProductionVersion": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Production Version"
+          },
+          "MaterialMaxLotSizeQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Maximum Lot Size",
+            "description": "Maximum Lot Size per Quota Item"
+          },
+          "MaterialMinLotSizeQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Minimum Lot Size",
+            "description": "Minimum Lot Size per Quota Item"
+          },
+          "MaterialRoundingProfile": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Rounding Profile"
+          },
+          "SourceOfSupplyIsAssignedOnce": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "\"1x Only\" Ind.",
+            "description": "Indicator: \"Once-Only\""
+          },
+          "MaximumReleaseQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Max. Release Qty",
+            "description": "Maximum Release Quantity per Period"
+          },
+          "QuotaReleasePeriodType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Per. Rel. Qty",
+            "description": "Period to Which the Release Quantity Relates"
+          },
+          "NumberOfPeriodsPerRelQuantity": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Number of Periods",
+            "description": "Number of Periods to Which the Release Quantity Relates"
+          },
+          "QuotaDeterminationPriority": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Priority",
+            "description": "Priority for Determination of Sequence"
+          },
+          "ManufacturerMaterial": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "MPN: Material",
+            "description": "Material Number Corresponding to Manufacturer Part Number"
+          },
+          "PlannedDeliveryDurationInDays": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 3,
+            "x-sap-scale": 0,
+            "multipleOf": 1,
+            "minimum": -999,
+            "maximum": 999,
+            "example": "0",
+            "title": "Planned Deliv. Time",
+            "description": "Planned Delivery Time in Days"
+          },
+          "MaterialBaseUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Base Unit of Measure"
+          },
+          "to_PurchasingQuotaArrangement": {
+            "$ref": "#/components/schemas/API_PUR_QUOTA_ARRANGEMENT_SRV.A_PurchasingQuotaArrangementType"
+          }
+        },
+        "title": "Item"
+      },
+      "API_PUR_QUOTA_ARRANGEMENT_SRV.A_PurgQuotaArrangementItemType-create": {
+        "type": "object",
+        "properties": {
+          "MaterialProcurementCategory": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "MaterialProcurementCategory",
+            "title": "Procurement Type"
+          },
+          "MaterialProcurementType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "MaterialProcurementType",
+            "title": "Special procurement",
+            "description": "Special procurement type"
+          },
+          "Supplier": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Supplier",
+            "description": "Supplier's Account Number"
+          },
+          "SupplyingPlant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Procurement Plant",
+            "description": "Plant from Which Material is Procured"
+          },
+          "PurchasingSourceQuota": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 3,
+            "x-sap-scale": 0,
+            "multipleOf": 1,
+            "minimum": -999,
+            "maximum": 999,
+            "example": "0",
+            "title": "Quota"
+          },
+          "QuotaBaseQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 15,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -999999999999.999,
+            "maximum": 999999999999.999,
+            "example": "0",
+            "title": "Quota Base Quantity",
+            "description": "Quota Base Quantity of Quota Arrangement Item"
+          },
+          "QuotaMaximumQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 15,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -999999999999.999,
+            "maximum": 999999999999.999,
+            "example": "0",
+            "title": "Maximum quantity",
+            "description": "Maximum Quantity of Quota Arrangement Item"
+          },
+          "ProductionVersion": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Production Version"
+          },
+          "MaterialMaxLotSizeQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Maximum Lot Size",
+            "description": "Maximum Lot Size per Quota Item"
+          },
+          "MaterialMinLotSizeQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Minimum Lot Size",
+            "description": "Minimum Lot Size per Quota Item"
+          },
+          "MaterialRoundingProfile": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Rounding Profile"
+          },
+          "SourceOfSupplyIsAssignedOnce": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "\"1x Only\" Ind.",
+            "description": "Indicator: \"Once-Only\""
+          },
+          "MaximumReleaseQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Max. Release Qty",
+            "description": "Maximum Release Quantity per Period"
+          },
+          "QuotaReleasePeriodType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Per. Rel. Qty",
+            "description": "Period to Which the Release Quantity Relates"
+          },
+          "NumberOfPeriodsPerRelQuantity": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Number of Periods",
+            "description": "Number of Periods to Which the Release Quantity Relates"
+          },
+          "QuotaDeterminationPriority": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Priority",
+            "description": "Priority for Determination of Sequence"
+          },
+          "ManufacturerMaterial": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "MPN: Material",
+            "description": "Material Number Corresponding to Manufacturer Part Number"
+          },
+          "PlannedDeliveryDurationInDays": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 3,
+            "x-sap-scale": 0,
+            "multipleOf": 1,
+            "minimum": -999,
+            "maximum": 999,
+            "example": "0",
+            "title": "Planned Deliv. Time",
+            "description": "Planned Delivery Time in Days"
+          },
+          "MaterialBaseUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Base Unit of Measure"
+          },
+          "to_PurchasingQuotaArrangement": {
+            "$ref": "#/components/schemas/API_PUR_QUOTA_ARRANGEMENT_SRV.A_PurchasingQuotaArrangementType-create"
+          }
+        },
+        "required": [
+          "MaterialProcurementCategory",
+          "MaterialProcurementType"
+        ],
+        "title": "Item (for create)"
+      },
+      "API_PUR_QUOTA_ARRANGEMENT_SRV.A_PurgQuotaArrangementItemType-update": {
+        "type": "object",
+        "properties": {
+          "MaterialProcurementCategory": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "MaterialProcurementCategory",
+            "title": "Procurement Type"
+          },
+          "MaterialProcurementType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "MaterialProcurementType",
+            "title": "Special procurement",
+            "description": "Special procurement type"
+          },
+          "Supplier": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Supplier",
+            "description": "Supplier's Account Number"
+          },
+          "SupplyingPlant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Procurement Plant",
+            "description": "Plant from Which Material is Procured"
+          },
+          "PurchasingSourceQuota": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 3,
+            "x-sap-scale": 0,
+            "multipleOf": 1,
+            "minimum": -999,
+            "maximum": 999,
+            "example": "0",
+            "title": "Quota"
+          },
+          "QuotaBaseQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 15,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -999999999999.999,
+            "maximum": 999999999999.999,
+            "example": "0",
+            "title": "Quota Base Quantity",
+            "description": "Quota Base Quantity of Quota Arrangement Item"
+          },
+          "QuotaMaximumQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 15,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -999999999999.999,
+            "maximum": 999999999999.999,
+            "example": "0",
+            "title": "Maximum quantity",
+            "description": "Maximum Quantity of Quota Arrangement Item"
+          },
+          "ProductionVersion": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Production Version"
+          },
+          "MaterialMaxLotSizeQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Maximum Lot Size",
+            "description": "Maximum Lot Size per Quota Item"
+          },
+          "MaterialMinLotSizeQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Minimum Lot Size",
+            "description": "Minimum Lot Size per Quota Item"
+          },
+          "MaterialRoundingProfile": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Rounding Profile"
+          },
+          "SourceOfSupplyIsAssignedOnce": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "\"1x Only\" Ind.",
+            "description": "Indicator: \"Once-Only\""
+          },
+          "MaximumReleaseQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "x-sap-scale": 3,
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Max. Release Qty",
+            "description": "Maximum Release Quantity per Period"
+          },
+          "QuotaReleasePeriodType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Per. Rel. Qty",
+            "description": "Period to Which the Release Quantity Relates"
+          },
+          "NumberOfPeriodsPerRelQuantity": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Number of Periods",
+            "description": "Number of Periods to Which the Release Quantity Relates"
+          },
+          "QuotaDeterminationPriority": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Priority",
+            "description": "Priority for Determination of Sequence"
+          },
+          "ManufacturerMaterial": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "MPN: Material",
+            "description": "Material Number Corresponding to Manufacturer Part Number"
+          },
+          "PlannedDeliveryDurationInDays": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "x-sap-precision": 3,
+            "x-sap-scale": 0,
+            "multipleOf": 1,
+            "minimum": -999,
+            "maximum": 999,
+            "example": "0",
+            "title": "Planned Deliv. Time",
+            "description": "Planned Delivery Time in Days"
+          },
+          "MaterialBaseUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Base Unit of Measure"
+          }
+        },
+        "title": "Item (for update)"
+      },
+      "count": {
+        "type": "string",
+        "description": "The number of entities in the collection. Available when using the [$inlinecount](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=67) query option."
+      },
+      "error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "code",
+              "message"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "object",
+                "required": [
+                  "lang",
+                  "value"
+                ],
+                "properties": {
+                  "lang": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              },
+              "innererror": {
+                "type": "object",
+                "description": "The structure of this object is service-specific"
+              }
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "top": {
+        "name": "$top",
+        "in": "query",
+        "description": "Show only the first n items, see [Paging - Top](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=66)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "example": 50
+      },
+      "skip": {
+        "name": "$skip",
+        "in": "query",
+        "description": "Skip the first n items, see [Paging - Skip](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "count": {
+        "name": "$inlinecount",
+        "in": "query",
+        "description": "Include count of items, see [Inlinecount](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=67)",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "allpages",
+            "none"
+          ]
+        }
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/error"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "BasicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "BasicAuth": []
+    }
+  ]
+}
