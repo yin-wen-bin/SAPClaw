@@ -1,0 +1,6718 @@
+[
+  {
+    "term": "Header Partner",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Header Preceding Process Flow",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Header Pricing Element",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Header Related Object",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Header Subsequent Process Flow",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Header Text",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "SD 凭证货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "TransactionCurrency"
+    ],
+    "synonyms": [
+      "凭证货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Sales Quotation Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Sales Quotation Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "上次更改日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "LastChangeDate"
+    ],
+    "synonyms": [
+      "更改日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交货冻结",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "DeliveryBlockReason"
+    ],
+    "synonyms": [
+      "交货冻结（凭证抬头）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交货冻结（凭证抬头）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "DeliveryBlockReason"
+    ],
+    "synonyms": [
+      "交货冻结"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "产品组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "OrganizationDivision"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款方式",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "PaymentMethod"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "CustomerPaymentTerms"
+    ],
+    "synonyms": [
+      "付款条件代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款条件代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "CustomerPaymentTerms"
+    ],
+    "synonyms": [
+      "付款条件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "价格清单类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "PriceListType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "信用检查的总体状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "TotalCreditCheckStatus"
+    ],
+    "synonyms": [
+      "信用状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "信用状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "TotalCreditCheckStatus"
+    ],
+    "synonyms": [
+      "信用检查的总体状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "先前凭证类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "ReferenceSDDocumentCategory"
+    ],
+    "synonyms": [
+      "先前销售和分销凭证的凭证类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "先前销售和分销凭证的凭证类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "ReferenceSDDocumentCategory"
+    ],
+    "synonyms": [
+      "先前凭证类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "全部交货",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "CompleteDeliveryIsDefined"
+    ],
+    "synonyms": [
+      "针对每个销售订单定义的完整交货"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "净值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "TotalNetAmount"
+    ],
+    "synonyms": [
+      "销售凭证的凭证货币净值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证审批状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "SalesDocApprovalStatus"
+    ],
+    "synonyms": [
+      "审批状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "SalesQuotationDate"
+    ],
+    "synonyms": [
+      "凭证日期 (接收/发送日期)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证日期 (接收/发送日期)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "SalesQuotationDate"
+    ],
+    "synonyms": [
+      "凭证日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "TransactionCurrency"
+    ],
+    "synonyms": [
+      "SD 凭证货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分销渠道",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "DistributionChannel"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建人",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "CreatedByUser"
+    ],
+    "synonyms": [
+      "负责创建对象的人员姓名"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "CreationDate"
+    ],
+    "synonyms": [
+      "记录创建日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "ReferenceSDDocument"
+    ],
+    "synonyms": [
+      "参考凭证的凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考凭证的凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "ReferenceSDDocument"
+    ],
+    "synonyms": [
+      "参考凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "可能性",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "HdrOrderProbabilityInPercent"
+    ],
+    "synonyms": [
+      "销售可能性"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "售达方",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "SoldToParty"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "IncotermsClassification"
+    ],
+    "synonyms": [
+      "国际贸易条款（第 1 部分）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款(部分2)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "IncotermsTransferLocation"
+    ],
+    "synonyms": [
+      "国际贸易条款（第 2 部分）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款位置 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "IncotermsLocation1"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款位置 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "IncotermsLocation2"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款版本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "IncotermsVersion"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款（第 1 部分）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "IncotermsClassification"
+    ],
+    "synonyms": [
+      "国际贸易条款"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款（第 2 部分）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "IncotermsTransferLocation"
+    ],
+    "synonyms": [
+      "国际贸易条款(部分2)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "备选税收分类",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "CustomerTaxClassification1"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "定价和汇率的日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "PricingDate"
+    ],
+    "synonyms": [
+      "定价日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "定价日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "PricingDate"
+    ],
+    "synonyms": [
+      "定价和汇率的日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "审批状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "SalesDocApprovalStatus"
+    ],
+    "synonyms": [
+      "凭证审批状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "审批请求原因",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "SalesQuotationApprovalReason"
+    ],
+    "synonyms": [
+      "审批请求原因标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "审批请求原因标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "SalesQuotationApprovalReason"
+    ],
+    "synonyms": [
+      "审批请求原因"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户价格组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "CustomerPriceGroup"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "PurchaseOrderByCustomer"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户参考日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "CustomerPurchaseOrderDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户的税收分类 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "CustomerTaxClassification2"
+    ],
+    "synonyms": [
+      "客户税收分类 2"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户的税收分类 5",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "CustomerTaxClassification5"
+    ],
+    "synonyms": [
+      "客户税收分类 5"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户的税收分类 6",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "CustomerTaxClassification6"
+    ],
+    "synonyms": [
+      "客户税收分类 6"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户的税收分类 7",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "CustomerTaxClassification7"
+    ],
+    "synonyms": [
+      "客户税收分类 7"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户的税收分类 8",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "CustomerTaxClassification8"
+    ],
+    "synonyms": [
+      "客户税收分类 8"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户的税收分类 9",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "CustomerTaxClassification9"
+    ],
+    "synonyms": [
+      "客户税收分类 9"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户税分类 3",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "CustomerTaxClassification3"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户税收分类 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "CustomerTaxClassification2"
+    ],
+    "synonyms": [
+      "客户的税收分类 2"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户税收分类 4",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "CustomerTaxClassification4"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户税收分类 5",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "CustomerTaxClassification5"
+    ],
+    "synonyms": [
+      "客户的税收分类 5"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户税收分类 6",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "CustomerTaxClassification6"
+    ],
+    "synonyms": [
+      "客户的税收分类 6"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户税收分类 7",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "CustomerTaxClassification7"
+    ],
+    "synonyms": [
+      "客户的税收分类 7"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户税收分类 8",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "CustomerTaxClassification8"
+    ],
+    "synonyms": [
+      "客户的税收分类 8"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户税收分类 9",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "CustomerTaxClassification9"
+    ],
+    "synonyms": [
+      "客户的税收分类 9"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户采购订单类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "CustomerPurchaseOrderType"
+    ],
+    "synonyms": [
+      "采购订单类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "开票冻结",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "HeaderBillingBlockReason"
+    ],
+    "synonyms": [
+      "销售与分销凭证中的开票冻结"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总体处理状态（抬头/所有项目）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "OverallSDProcessStatus"
+    ],
+    "synonyms": [
+      "总体状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总体状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "OverallSDProcessStatus"
+    ],
+    "synonyms": [
+      "总体处理状态（抬头/所有项目）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "报价/询价的有效起始日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "BindingPeriodValidityStartDate"
+    ],
+    "synonyms": [
+      "报价有效期自"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "报价有效期自",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "BindingPeriodValidityStartDate"
+    ],
+    "synonyms": [
+      "报价/询价的有效起始日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "报价有效期至",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "BindingPeriodValidityEndDate"
+    ],
+    "synonyms": [
+      "绑定投标/报价的截止日期（有效期截止日期）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "拒绝状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "OverallSDDocumentRejectionSts"
+    ],
+    "synonyms": [
+      "拒绝状态（所有项目）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "拒绝状态（所有项目）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "OverallSDDocumentRejectionSts"
+    ],
+    "synonyms": [
+      "拒绝状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "更改日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "LastChangeDate"
+    ],
+    "synonyms": [
+      "上次更改日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "绑定投标/报价的截止日期（有效期截止日期）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "BindingPeriodValidityEndDate"
+    ],
+    "synonyms": [
+      "报价有效期至"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "装运条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "ShippingCondition"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "装运类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "ShippingType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "要求的交货日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "RequestedDeliveryDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单原因",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "SDDocumentReason"
+    ],
+    "synonyms": [
+      "订单原因（业务交易原因）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单原因（业务交易原因）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "SDDocumentReason"
+    ],
+    "synonyms": [
+      "订单原因"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "记录创建日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "CreationDate"
+    ],
+    "synonyms": [
+      "创建日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "负责创建对象的人员姓名",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "CreatedByUser"
+    ],
+    "synonyms": [
+      "创建人"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购订单类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "CustomerPurchaseOrderType"
+    ],
+    "synonyms": [
+      "客户采购订单类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "针对每个销售订单定义的完整交货",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "CompleteDeliveryIsDefined"
+    ],
+    "synonyms": [
+      "全部交货"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售与分销凭证中的开票冻结",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "HeaderBillingBlockReason"
+    ],
+    "synonyms": [
+      "开票冻结"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售凭证的凭证货币净值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "TotalNetAmount"
+    ],
+    "synonyms": [
+      "净值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售凭证类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "SalesQuotationType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售办事处",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "SalesOffice"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售可能性",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "HdrOrderProbabilityInPercent"
+    ],
+    "synonyms": [
+      "可能性"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "SalesDistrict"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售报价",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "SalesQuotation"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "SalesGroup"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售组织",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "SalesOrganization"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "时戳"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "预期订单净金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotation",
+    "mapped_fields": [
+      "ExpectedOrderNetAmount"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Characteristic Value 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ProductCharacteristic1"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Characteristic Value 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ProductCharacteristic2"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Characteristic Value 3",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ProductCharacteristic3"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Cross-Plant Configurable Material",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "CrossPlantConfigurableProduct"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Fashion Collection",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ProductCollection"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Fashion Theme",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ProductTheme"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "ISO 代码请求数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "RequestedQuantityISOUnit"
+    ],
+    "synonyms": [
+      "请求数量的 ISO 单位代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "ISO 单位项目体积",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ItemVolumeISOUnit"
+    ],
+    "synonyms": [
+      "项目体积的 ISO 单位代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "ISO 单位项目权重",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ItemWeightISOUnit"
+    ],
+    "synonyms": [
+      "项目权重的 ISO 单位代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item Partner",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Item Preceding Process Flow",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Item Pricing Element",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Item Related Object",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Item Subsequent Process Flow",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Item Text",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Item Value Added Service",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "SAP 代码请求数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "RequestedQuantitySAPUnit"
+    ],
+    "synonyms": [
+      "请求数量的 SAP 单位代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "SAP 代码项目权重",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ItemWeightSAPUnit"
+    ],
+    "synonyms": [
+      "项目权重的 SAP 单位代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "SD 凭证货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "TransactionCurrency"
+    ],
+    "synonyms": [
+      "凭证货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Sales Quotation Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Sales Quotation Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Season Completeness Indicator",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "SeasonCompletenessStatus"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "WBS 元素",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "WBSElement"
+    ],
+    "synonyms": [
+      "工作分解结构要素（WBS 要素）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "上级项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "HigherLevelItem"
+    ],
+    "synonyms": [
+      "物料清单结构中的上级项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "产品价格组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "MaterialPricingGroup"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "CustomerPaymentTerms"
+    ],
+    "synonyms": [
+      "付款条件代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款条件代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "CustomerPaymentTerms"
+    ],
+    "synonyms": [
+      "付款条件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "体积",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ItemVolume"
+    ],
+    "synonyms": [
+      "项目体积"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "体积单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ItemVolumeUnit"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "净值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "NetAmount"
+    ],
+    "synonyms": [
+      "凭证项目的凭证货币净值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "净重",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ItemNetWeight"
+    ],
+    "synonyms": [
+      "项目净重"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "TransactionCurrency"
+    ],
+    "synonyms": [
+      "SD 凭证货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证项目的凭证货币净值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "NetAmount"
+    ],
+    "synonyms": [
+      "净值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "利润中心",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ProfitCenter"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ReferenceSDDocument"
+    ],
+    "synonyms": [
+      "参考凭证的凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考凭证的凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ReferenceSDDocument"
+    ],
+    "synonyms": [
+      "参考凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ReferenceSDDocumentItem"
+    ],
+    "synonyms": [
+      "参考项目的项目号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考项目的项目号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ReferenceSDDocumentItem"
+    ],
+    "synonyms": [
+      "参考项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "可选项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "AlternativeToItem"
+    ],
+    "synonyms": [
+      "将此项目作为备选的项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "IncotermsClassification"
+    ],
+    "synonyms": [
+      "国际贸易条款（第 1 部分）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款(部分2)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "IncotermsTransferLocation"
+    ],
+    "synonyms": [
+      "国际贸易条款（第 2 部分）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款位置 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "IncotermsLocation1"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款位置 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "IncotermsLocation2"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款（第 1 部分）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "IncotermsClassification"
+    ],
+    "synonyms": [
+      "国际贸易条款"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款（第 2 部分）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "IncotermsTransferLocation"
+    ],
+    "synonyms": [
+      "国际贸易条款(部分2)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "定价参考物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "PricingReferenceMaterial"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "PurchaseOrderByCustomer"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户所用的物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "MaterialByCustomer"
+    ],
+    "synonyms": [
+      "客户物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "MaterialByCustomer"
+    ],
+    "synonyms": [
+      "客户所用的物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "将此项目作为备选的项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "AlternativeToItem"
+    ],
+    "synonyms": [
+      "可选项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工作分解结构要素（WBS 要素）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "WBSElement"
+    ],
+    "synonyms": [
+      "WBS 元素"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "Plant"
+    ],
+    "synonyms": [
+      "工厂(自有或外部)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂(自有或外部)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "Plant"
+    ],
+    "synonyms": [
+      "工厂"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已请求数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "RequestedQuantity"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已请求数量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "RequestedQuantityUnit"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总体处理状态（项目）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "SDProcessStatus"
+    ],
+    "synonyms": [
+      "总体状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总体状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "SDProcessStatus"
+    ],
+    "synonyms": [
+      "总体处理状态（项目）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批次",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "Batch"
+    ],
+    "synonyms": [
+      "批次编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批次编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "Batch"
+    ],
+    "synonyms": [
+      "批次"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "拒绝原因",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "SalesDocumentRjcnReason"
+    ],
+    "synonyms": [
+      "销售凭证的拒绝原因"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "毛重",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ItemGrossWeight"
+    ],
+    "synonyms": [
+      "项目的毛重"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料清单结构中的上级项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "HigherLevelItem"
+    ],
+    "synonyms": [
+      "上级项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料的税分类",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ProductTaxClassification1"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料的税分类",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ProductTaxClassification2"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料的税分类",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ProductTaxClassification3"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料的税分类",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ProductTaxClassification4"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料的税分类",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ProductTaxClassification5"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料的税分类",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ProductTaxClassification6"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料的税分类",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ProductTaxClassification7"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料的税分类",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ProductTaxClassification8"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料的税分类",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ProductTaxClassification9"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "MaterialGroup"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单可能性",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ItemOrderProbabilityInPercent"
+    ],
+    "synonyms": [
+      "项目订单概率"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "请求数量的 ISO 单位代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "RequestedQuantityISOUnit"
+    ],
+    "synonyms": [
+      "ISO 代码请求数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "请求数量的 SAP 单位代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "RequestedQuantitySAPUnit"
+    ],
+    "synonyms": [
+      "SAP 代码请求数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "重量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ItemWeightUnit"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售凭证的拒绝原因",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "SalesDocumentRjcnReason"
+    ],
+    "synonyms": [
+      "拒绝原因"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售凭证项目类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "SalesQuotationItemCategory"
+    ],
+    "synonyms": [
+      "项目类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售报价",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "SalesQuotation"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售报价项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "SalesQuotationItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售订单项目短文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "SalesQuotationItemText"
+    ],
+    "synonyms": [
+      "项目描述"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "需求细分",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "RequirementSegment"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目体积",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ItemVolume"
+    ],
+    "synonyms": [
+      "体积"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目体积 SAP 单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ItemVolumeSAPUnit"
+    ],
+    "synonyms": [
+      "项目体积的 SAP 单位代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目体积的 ISO 单位代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ItemVolumeISOUnit"
+    ],
+    "synonyms": [
+      "ISO 单位项目体积"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目体积的 SAP 单位代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ItemVolumeSAPUnit"
+    ],
+    "synonyms": [
+      "项目体积 SAP 单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目净重",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ItemNetWeight"
+    ],
+    "synonyms": [
+      "净重"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目描述",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "SalesQuotationItemText"
+    ],
+    "synonyms": [
+      "销售订单项目短文本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目权重的 ISO 单位代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ItemWeightISOUnit"
+    ],
+    "synonyms": [
+      "ISO 单位项目权重"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目权重的 SAP 单位代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ItemWeightSAPUnit"
+    ],
+    "synonyms": [
+      "SAP 代码项目权重"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目的毛重",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ItemGrossWeight"
+    ],
+    "synonyms": [
+      "毛重"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "SalesQuotationItemCategory"
+    ],
+    "synonyms": [
+      "销售凭证项目类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目订单概率",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItem",
+    "mapped_fields": [
+      "ItemOrderProbabilityInPercent"
+    ],
+    "synonyms": [
+      "订单可能性"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item Partner",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPartner",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Sales Quotation Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPartner",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Sales Quotation Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPartner",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "供应商",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPartner",
+    "mapped_fields": [
+      "Supplier"
+    ],
+    "synonyms": [
+      "供应商科目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商科目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPartner",
+    "mapped_fields": [
+      "Supplier"
+    ],
+    "synonyms": [
+      "供应商"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "合作伙伴职能",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPartner",
+    "mapped_fields": [
+      "PartnerFunction"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "员工号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPartner",
+    "mapped_fields": [
+      "Personnel"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPartner",
+    "mapped_fields": [
+      "Customer"
+    ],
+    "synonyms": [
+      "客户编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPartner",
+    "mapped_fields": [
+      "Customer"
+    ],
+    "synonyms": [
+      "客户"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "联系人",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPartner",
+    "mapped_fields": [
+      "ContactPerson"
+    ],
+    "synonyms": [
+      "联系人编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "联系人编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPartner",
+    "mapped_fields": [
+      "ContactPerson"
+    ],
+    "synonyms": [
+      "联系人"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售和分销凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPartner",
+    "mapped_fields": [
+      "SalesQuotation"
+    ],
+    "synonyms": [
+      "销售和分销凭证号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售和分销凭证号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPartner",
+    "mapped_fields": [
+      "SalesQuotation"
+    ],
+    "synonyms": [
+      "销售和分销凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售和分销凭证的项目号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPartner",
+    "mapped_fields": [
+      "SalesQuotationItem"
+    ],
+    "synonyms": [
+      "项目(SD)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目(SD)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPartner",
+    "mapped_fields": [
+      "SalesQuotationItem"
+    ],
+    "synonyms": [
+      "销售和分销凭证的项目号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "ISO 条件数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionQuantityISOUnit"
+    ],
+    "synonyms": [
+      "条件数量的 ISO 单位代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item Pricing Element",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "SAP 条件数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionQuantitySAPUnit"
+    ],
+    "synonyms": [
+      "条件数量的 SAP 单位代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "SD 凭证货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "TransactionCurrency"
+    ],
+    "synonyms": [
+      "凭证货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Sales Quotation Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Sales Quotation Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "代扣税代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "WithholdingTaxCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "公司间开票",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "CndnIsRelevantForIntcoBilling"
+    ],
+    "synonyms": [
+      "公司间开票的条件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "公司间开票的条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "CndnIsRelevantForIntcoBilling"
+    ],
+    "synonyms": [
+      "公司间开票"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证中的条件单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionQuantityUnit"
+    ],
+    "synonyms": [
+      "条件单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "TransactionCurrency"
+    ],
+    "synonyms": [
+      "SD 凭证货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发票清单条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "CndnIsRelevantForInvoiceList"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "变式条件键值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "VariantCondition"
+    ],
+    "synonyms": [
+      "变式键值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "变式键值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "VariantCondition"
+    ],
+    "synonyms": [
+      "变式条件键值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "定价与应计有关  (例如, 运费)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "IsRelevantForAccrual"
+    ],
+    "synonyms": [
+      "应计项"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "定价单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionQuantity"
+    ],
+    "synonyms": [
+      "条件定价单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "定价控制",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionControl"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "定价时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "PricingDateTime"
+    ],
+    "synonyms": [
+      "有效期自"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已手动更改",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionIsManuallyChanged"
+    ],
+    "synonyms": [
+      "已手动更改条件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已手动更改条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionIsManuallyChanged"
+    ],
+    "synonyms": [
+      "已手动更改"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "应计项",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "IsRelevantForAccrual"
+    ],
+    "synonyms": [
+      "定价与应计有关  (例如, 运费)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效期自",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "PricingDateTime"
+    ],
+    "synonyms": [
+      "定价时戳"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "未激活条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionInactiveReason"
+    ],
+    "synonyms": [
+      "条件未激活"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionAmount"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionQuantityUnit"
+    ],
+    "synonyms": [
+      "凭证中的条件单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件因子",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "FactorForConditionBasisValue"
+    ],
+    "synonyms": [
+      "条件基本值的因子"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件因子",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "PeriodFactorForCndnBasisValue"
+    ],
+    "synonyms": [
+      "条件基础因子（期间）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件基准",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionBaseValue"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件基本值的因子",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "FactorForConditionBasisValue"
+    ],
+    "synonyms": [
+      "条件因子"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件基础因子（期间）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "PeriodFactorForCndnBasisValue"
+    ],
+    "synonyms": [
+      "条件因子"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件定价单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionQuantity"
+    ],
+    "synonyms": [
+      "定价单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件定价日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "PriceConditionDeterminationDte"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件数量的 ISO 单位代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionQuantityISOUnit"
+    ],
+    "synonyms": [
+      "ISO 条件数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件数量的 SAP 单位代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionQuantitySAPUnit"
+    ],
+    "synonyms": [
+      "SAP 条件数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件未激活",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionInactiveReason"
+    ],
+    "synonyms": [
+      "未激活条件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件来源",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionOrigin"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件用作统计",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionIsForStatistics"
+    ],
+    "synonyms": [
+      "统计"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件的序号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionSequentialNumber"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件的计算类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionCalculationType"
+    ],
+    "synonyms": [
+      "计算类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件等级计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionScaleBasisUnit"
+    ],
+    "synonyms": [
+      "等级计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件类",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionClass"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionCategory"
+    ],
+    "synonyms": [
+      "条件类别（示例：税收、运费、价格、成本）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件类别（示例：税收、运费、价格、成本）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionCategory"
+    ],
+    "synonyms": [
+      "条件类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件舍入差额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "CndnRoundingOffDiffAmount"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "PricingProcedureCounter"
+    ],
+    "synonyms": [
+      "计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件计数器 (抬头)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "PrcgProcedureCounterForHeader"
+    ],
+    "synonyms": [
+      "计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件记录编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionRecord"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件金额或百分比",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionRateValue"
+    ],
+    "synonyms": [
+      "金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件项目号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "SalesQuotationItem"
+    ],
+    "synonyms": [
+      "项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "步骤编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "PricingProcedureStep"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "用于变式配置",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionIsForConfiguration"
+    ],
+    "synonyms": [
+      "用于变式配置的条件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "用于变式配置的条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionIsForConfiguration"
+    ],
+    "synonyms": [
+      "用于变式配置"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "TaxCode"
+    ],
+    "synonyms": [
+      "销售/购买税代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "等级基本值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionScaleBasisValue"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "等级基础",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "PricingScaleBasis"
+    ],
+    "synonyms": [
+      "等级基础标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "等级基础标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "PricingScaleBasis"
+    ],
+    "synonyms": [
+      "等级基础"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "等级类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "PricingScaleType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "等级计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionScaleBasisUnit"
+    ],
+    "synonyms": [
+      "条件等级计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "等级货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionScaleBasisCurrency"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "组条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "IsGroupCondition"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "结构条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "StructureCondition"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "统计",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionIsForStatistics"
+    ],
+    "synonyms": [
+      "条件用作统计"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "PricingProcedureCounter"
+    ],
+    "synonyms": [
+      "条件计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "PrcgProcedureCounterForHeader"
+    ],
+    "synonyms": [
+      "条件计数器 (抬头)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计算类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionCalculationType"
+    ],
+    "synonyms": [
+      "条件的计算类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionCurrency"
+    ],
+    "synonyms": [
+      "货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionCurrency"
+    ],
+    "synonyms": [
+      "货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionRateValue"
+    ],
+    "synonyms": [
+      "条件金额或百分比"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售/购买税代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "TaxCode"
+    ],
+    "synonyms": [
+      "税码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "SalesQuotation"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "mapped_fields": [
+      "SalesQuotationItem"
+    ],
+    "synonyms": [
+      "条件项目号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item Text",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemText",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Sales Quotation Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemText",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Sales Quotation Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemText",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "字符串",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemText",
+    "mapped_fields": [
+      "LongText"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "文本标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemText",
+    "mapped_fields": [
+      "LongTextID"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "语言代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemText",
+    "mapped_fields": [
+      "Language"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售报价",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemText",
+    "mapped_fields": [
+      "SalesQuotation"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售报价项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationItemText",
+    "mapped_fields": [
+      "SalesQuotationItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Header Partner",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPartner",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Sales Quotation Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPartner",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "供应商",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPartner",
+    "mapped_fields": [
+      "Supplier"
+    ],
+    "synonyms": [
+      "供应商科目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商科目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPartner",
+    "mapped_fields": [
+      "Supplier"
+    ],
+    "synonyms": [
+      "供应商"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "合作伙伴职能",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPartner",
+    "mapped_fields": [
+      "PartnerFunction"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "员工号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPartner",
+    "mapped_fields": [
+      "Personnel"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPartner",
+    "mapped_fields": [
+      "Customer"
+    ],
+    "synonyms": [
+      "客户编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPartner",
+    "mapped_fields": [
+      "Customer"
+    ],
+    "synonyms": [
+      "客户"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "联系人",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPartner",
+    "mapped_fields": [
+      "ContactPerson"
+    ],
+    "synonyms": [
+      "联系人编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "联系人编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPartner",
+    "mapped_fields": [
+      "ContactPerson"
+    ],
+    "synonyms": [
+      "联系人"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售和分销凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPartner",
+    "mapped_fields": [
+      "SalesQuotation"
+    ],
+    "synonyms": [
+      "销售和分销凭证号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售和分销凭证号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPartner",
+    "mapped_fields": [
+      "SalesQuotation"
+    ],
+    "synonyms": [
+      "销售和分销凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Header Pricing Element",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "ISO 条件数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionQuantityISOUnit"
+    ],
+    "synonyms": [
+      "条件数量的 ISO 单位代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "SAP 条件数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionQuantitySAPUnit"
+    ],
+    "synonyms": [
+      "条件数量的 SAP 单位代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "SD 凭证货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "TransactionCurrency"
+    ],
+    "synonyms": [
+      "凭证货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Sales Quotation Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "代扣税代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "WithholdingTaxCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "公司间开票",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "CndnIsRelevantForIntcoBilling"
+    ],
+    "synonyms": [
+      "公司间开票的条件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "公司间开票的条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "CndnIsRelevantForIntcoBilling"
+    ],
+    "synonyms": [
+      "公司间开票"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证中的条件单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionQuantityUnit"
+    ],
+    "synonyms": [
+      "条件单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "TransactionCurrency"
+    ],
+    "synonyms": [
+      "SD 凭证货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "变式条件键值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "VariantCondition"
+    ],
+    "synonyms": [
+      "变式键值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "变式键值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "VariantCondition"
+    ],
+    "synonyms": [
+      "变式条件键值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "定价单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionQuantity"
+    ],
+    "synonyms": [
+      "条件定价单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "定价控制",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionControl"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "定价时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "PricingDateTime"
+    ],
+    "synonyms": [
+      "有效期自"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已手动更改",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionIsManuallyChanged"
+    ],
+    "synonyms": [
+      "已手动更改条件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已手动更改条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionIsManuallyChanged"
+    ],
+    "synonyms": [
+      "已手动更改"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效期自",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "PricingDateTime"
+    ],
+    "synonyms": [
+      "定价时戳"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "未激活条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionInactiveReason"
+    ],
+    "synonyms": [
+      "条件未激活"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionAmount"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionQuantityUnit"
+    ],
+    "synonyms": [
+      "凭证中的条件单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件因子",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "FactorForConditionBasisValue"
+    ],
+    "synonyms": [
+      "条件基本值的因子"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件因子",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "PeriodFactorForCndnBasisValue"
+    ],
+    "synonyms": [
+      "条件基础因子（期间）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件基准",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionBaseValue"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件基本值的因子",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "FactorForConditionBasisValue"
+    ],
+    "synonyms": [
+      "条件因子"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件基础因子（期间）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "PeriodFactorForCndnBasisValue"
+    ],
+    "synonyms": [
+      "条件因子"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件定价单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionQuantity"
+    ],
+    "synonyms": [
+      "定价单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件定价日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "PriceConditionDeterminationDte"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件数量的 ISO 单位代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionQuantityISOUnit"
+    ],
+    "synonyms": [
+      "ISO 条件数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件数量的 SAP 单位代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionQuantitySAPUnit"
+    ],
+    "synonyms": [
+      "SAP 条件数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件未激活",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionInactiveReason"
+    ],
+    "synonyms": [
+      "未激活条件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件来源",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionOrigin"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件用作统计",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionIsForStatistics"
+    ],
+    "synonyms": [
+      "统计"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件的序号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionSequentialNumber"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件的计算类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionCalculationType"
+    ],
+    "synonyms": [
+      "计算类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件等级计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionScaleBasisUnit"
+    ],
+    "synonyms": [
+      "等级计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件类",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionClass"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionCategory"
+    ],
+    "synonyms": [
+      "条件类别（示例：税收、运费、价格、成本）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件类别（示例：税收、运费、价格、成本）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionCategory"
+    ],
+    "synonyms": [
+      "条件类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件舍入差额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "CndnRoundingOffDiffAmount"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "PricingProcedureCounter"
+    ],
+    "synonyms": [
+      "计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件计数器 (抬头)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "PrcgProcedureCounterForHeader"
+    ],
+    "synonyms": [
+      "计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件记录编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionRecord"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件金额或百分比",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionRateValue"
+    ],
+    "synonyms": [
+      "金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "步骤编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "PricingProcedureStep"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "用于变式配置",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionIsForConfiguration"
+    ],
+    "synonyms": [
+      "用于变式配置的条件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "用于变式配置的条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionIsForConfiguration"
+    ],
+    "synonyms": [
+      "用于变式配置"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "TaxCode"
+    ],
+    "synonyms": [
+      "销售/购买税代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "等级基本值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionScaleBasisValue"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "等级基础",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "PricingScaleBasis"
+    ],
+    "synonyms": [
+      "等级基础标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "等级基础标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "PricingScaleBasis"
+    ],
+    "synonyms": [
+      "等级基础"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "等级类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "PricingScaleType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "等级计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionScaleBasisUnit"
+    ],
+    "synonyms": [
+      "条件等级计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "等级货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionScaleBasisCurrency"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "组条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "IsGroupCondition"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "结构条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "StructureCondition"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "统计",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionIsForStatistics"
+    ],
+    "synonyms": [
+      "条件用作统计"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "PricingProcedureCounter"
+    ],
+    "synonyms": [
+      "条件计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "PrcgProcedureCounterForHeader"
+    ],
+    "synonyms": [
+      "条件计数器 (抬头)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计算类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionCalculationType"
+    ],
+    "synonyms": [
+      "条件的计算类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionCurrency"
+    ],
+    "synonyms": [
+      "货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionCurrency"
+    ],
+    "synonyms": [
+      "货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "ConditionRateValue"
+    ],
+    "synonyms": [
+      "条件金额或百分比"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售/购买税代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "TaxCode"
+    ],
+    "synonyms": [
+      "税码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationPrcgElmnt",
+    "mapped_fields": [
+      "SalesQuotation"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Header Related Object",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationRelatedObject",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "SD 凭证的相关对象参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationRelatedObject",
+    "mapped_fields": [
+      "SDDocRelatedObjectReference1"
+    ],
+    "synonyms": [
+      "相关对象参考"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "SD 凭证的相关对象参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationRelatedObject",
+    "mapped_fields": [
+      "SDDocRelatedObjectReference2"
+    ],
+    "synonyms": [
+      "相关对象参考"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "SD 凭证的相关对象类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationRelatedObject",
+    "mapped_fields": [
+      "SDDocumentRelatedObjectType"
+    ],
+    "synonyms": [
+      "相关对象类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "SD 凭证的相关对象系统",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationRelatedObject",
+    "mapped_fields": [
+      "SDDocRelatedObjectSystem"
+    ],
+    "synonyms": [
+      "相关对象系统"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "SD 凭证相关对象的序号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationRelatedObject",
+    "mapped_fields": [
+      "SDDocRelatedObjectSequenceNmbr"
+    ],
+    "synonyms": [
+      "序号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Sales Quotation Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationRelatedObject",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "序号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationRelatedObject",
+    "mapped_fields": [
+      "SDDocRelatedObjectSequenceNmbr"
+    ],
+    "synonyms": [
+      "SD 凭证相关对象的序号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "相关对象参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationRelatedObject",
+    "mapped_fields": [
+      "SDDocRelatedObjectReference1"
+    ],
+    "synonyms": [
+      "SD 凭证的相关对象参考"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "相关对象参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationRelatedObject",
+    "mapped_fields": [
+      "SDDocRelatedObjectReference2"
+    ],
+    "synonyms": [
+      "SD 凭证的相关对象参考"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "相关对象类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationRelatedObject",
+    "mapped_fields": [
+      "SDDocumentRelatedObjectType"
+    ],
+    "synonyms": [
+      "SD 凭证的相关对象类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "相关对象系统",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationRelatedObject",
+    "mapped_fields": [
+      "SDDocRelatedObjectSystem"
+    ],
+    "synonyms": [
+      "SD 凭证的相关对象系统"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售报价",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationRelatedObject",
+    "mapped_fields": [
+      "SalesQuotation"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Header Text",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationText",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Sales Quotation Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationText",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "字符串",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationText",
+    "mapped_fields": [
+      "LongText"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "文本标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationText",
+    "mapped_fields": [
+      "LongTextID"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "语言代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationText",
+    "mapped_fields": [
+      "Language"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售报价",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationText",
+    "mapped_fields": [
+      "SalesQuotation"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Document Number of Reference Document",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationValAddedSrvc",
+    "mapped_fields": [
+      "SalesQuotation"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item Value Added Service",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationValAddedSrvc",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Item number of the reference item",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationValAddedSrvc",
+    "mapped_fields": [
+      "SalesQuotationItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Manual Entry Indicator",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationValAddedSrvc",
+    "mapped_fields": [
+      "ValAddedSrvcIsCreatedManually"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Procurement Relevant for VAS Material",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationValAddedSrvc",
+    "mapped_fields": [
+      "ValAddedSrvcIsRlvtForProcmt"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Requirement Relevancy Flag for VAS Material",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationValAddedSrvc",
+    "mapped_fields": [
+      "ValAddedSrvcHasToBeOrdered"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "VAS Charge Codes",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationValAddedSrvc",
+    "mapped_fields": [
+      "ValueAddedServiceChargeCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "VAS Field 1 for Free Use by Customer",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationValAddedSrvc",
+    "mapped_fields": [
+      "ValueAddedServiceText1"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "VAS Field 2 for Free Use by Customer",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationValAddedSrvc",
+    "mapped_fields": [
+      "ValueAddedServiceText2"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "VAS Field 3 for Free Use by Customer",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationValAddedSrvc",
+    "mapped_fields": [
+      "ValueAddedServiceText3"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "VAS Increment",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationValAddedSrvc",
+    "mapped_fields": [
+      "ValAddedSrvcIncrement"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "VAS Item Number in SD",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationValAddedSrvc",
+    "mapped_fields": [
+      "ValAddedSrvcItemNumberInSD"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "VAS Material Number",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SalesQuotationValAddedSrvc",
+    "mapped_fields": [
+      "ValueAddedServiceProduct"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item Related Object",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItemRelatedObject",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "SD 凭证的相关对象参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItemRelatedObject",
+    "mapped_fields": [
+      "SDDocRelatedObjectReference1"
+    ],
+    "synonyms": [
+      "相关对象参考"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "SD 凭证的相关对象参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItemRelatedObject",
+    "mapped_fields": [
+      "SDDocRelatedObjectReference2"
+    ],
+    "synonyms": [
+      "相关对象参考"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "SD 凭证的相关对象类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItemRelatedObject",
+    "mapped_fields": [
+      "SDDocumentRelatedObjectType"
+    ],
+    "synonyms": [
+      "相关对象类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "SD 凭证的相关对象系统",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItemRelatedObject",
+    "mapped_fields": [
+      "SDDocRelatedObjectSystem"
+    ],
+    "synonyms": [
+      "相关对象系统"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "SD 凭证相关对象的序号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItemRelatedObject",
+    "mapped_fields": [
+      "SDDocRelatedObjectSequenceNmbr"
+    ],
+    "synonyms": [
+      "序号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Sales Quotation Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItemRelatedObject",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Sales Quotation Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItemRelatedObject",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "序号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItemRelatedObject",
+    "mapped_fields": [
+      "SDDocRelatedObjectSequenceNmbr"
+    ],
+    "synonyms": [
+      "SD 凭证相关对象的序号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "相关对象参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItemRelatedObject",
+    "mapped_fields": [
+      "SDDocRelatedObjectReference1"
+    ],
+    "synonyms": [
+      "SD 凭证的相关对象参考"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "相关对象参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItemRelatedObject",
+    "mapped_fields": [
+      "SDDocRelatedObjectReference2"
+    ],
+    "synonyms": [
+      "SD 凭证的相关对象参考"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "相关对象类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItemRelatedObject",
+    "mapped_fields": [
+      "SDDocumentRelatedObjectType"
+    ],
+    "synonyms": [
+      "SD 凭证的相关对象类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "相关对象系统",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItemRelatedObject",
+    "mapped_fields": [
+      "SDDocRelatedObjectSystem"
+    ],
+    "synonyms": [
+      "SD 凭证的相关对象系统"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售报价",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItemRelatedObject",
+    "mapped_fields": [
+      "SalesQuotation"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售报价项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItemRelatedObject",
+    "mapped_fields": [
+      "SalesQuotationItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item Preceding Process Flow",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmPrecdgProcFlow",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Sales Quotation Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmPrecdgProcFlow",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Sales Quotation Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmPrecdgProcFlow",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "上次更改日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmPrecdgProcFlow",
+    "mapped_fields": [
+      "LastChangeDate"
+    ],
+    "synonyms": [
+      "更改日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "先前凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmPrecdgProcFlow",
+    "mapped_fields": [
+      "PrecedingDocument"
+    ],
+    "synonyms": [
+      "先前的销售和分销凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "先前凭证类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmPrecdgProcFlow",
+    "mapped_fields": [
+      "PrecedingDocumentCategory"
+    ],
+    "synonyms": [
+      "先前销售和分销凭证的凭证类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "先前的销售和分销凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmPrecdgProcFlow",
+    "mapped_fields": [
+      "PrecedingDocument"
+    ],
+    "synonyms": [
+      "先前凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "先前销售和分销凭证的凭证类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmPrecdgProcFlow",
+    "mapped_fields": [
+      "PrecedingDocumentCategory"
+    ],
+    "synonyms": [
+      "先前凭证类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "先前项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmPrecdgProcFlow",
+    "mapped_fields": [
+      "PrecedingDocumentItem"
+    ],
+    "synonyms": [
+      "销售与分销售凭证的先前项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证关系 UUID",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmPrecdgProcFlow",
+    "mapped_fields": [
+      "DocRelationshipUUID"
+    ],
+    "synonyms": [
+      "销售和分销唯一凭证关系标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证流记录层",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmPrecdgProcFlow",
+    "mapped_fields": [
+      "ProcessFlowLevel"
+    ],
+    "synonyms": [
+      "层次"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmPrecdgProcFlow",
+    "mapped_fields": [
+      "CreationDate"
+    ],
+    "synonyms": [
+      "记录创建日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "后续凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmPrecdgProcFlow",
+    "mapped_fields": [
+      "SalesQuotation"
+    ],
+    "synonyms": [
+      "后续销售和分销凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "后续销售和分销凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmPrecdgProcFlow",
+    "mapped_fields": [
+      "SalesQuotation"
+    ],
+    "synonyms": [
+      "后续凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "后续项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmPrecdgProcFlow",
+    "mapped_fields": [
+      "SalesQuotationItem"
+    ],
+    "synonyms": [
+      "销售与分销凭证的后续项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "层次",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmPrecdgProcFlow",
+    "mapped_fields": [
+      "ProcessFlowLevel"
+    ],
+    "synonyms": [
+      "凭证流记录层"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "描述",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmPrecdgProcFlow",
+    "mapped_fields": [
+      "SDDocumentStatusDesc"
+    ],
+    "synonyms": [
+      "状态说明"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmPrecdgProcFlow",
+    "mapped_fields": [
+      "CreationTime"
+    ],
+    "synonyms": [
+      "输入时间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "更改日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmPrecdgProcFlow",
+    "mapped_fields": [
+      "LastChangeDate"
+    ],
+    "synonyms": [
+      "上次更改日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmPrecdgProcFlow",
+    "mapped_fields": [
+      "StatusCode"
+    ],
+    "synonyms": [
+      "通用SD状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "状态说明",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmPrecdgProcFlow",
+    "mapped_fields": [
+      "SDDocumentStatusDesc"
+    ],
+    "synonyms": [
+      "描述"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "记录创建日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmPrecdgProcFlow",
+    "mapped_fields": [
+      "CreationDate"
+    ],
+    "synonyms": [
+      "创建日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "输入时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmPrecdgProcFlow",
+    "mapped_fields": [
+      "CreationTime"
+    ],
+    "synonyms": [
+      "时间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "通用SD状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmPrecdgProcFlow",
+    "mapped_fields": [
+      "StatusCode"
+    ],
+    "synonyms": [
+      "状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售与分销凭证的后续项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmPrecdgProcFlow",
+    "mapped_fields": [
+      "SalesQuotationItem"
+    ],
+    "synonyms": [
+      "后续项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售与分销售凭证的先前项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmPrecdgProcFlow",
+    "mapped_fields": [
+      "PrecedingDocumentItem"
+    ],
+    "synonyms": [
+      "先前项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售和分销唯一凭证关系标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmPrecdgProcFlow",
+    "mapped_fields": [
+      "DocRelationshipUUID"
+    ],
+    "synonyms": [
+      "凭证关系 UUID"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item Subsequent Process Flow",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmSubsqntProcFlow",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Sales Quotation Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmSubsqntProcFlow",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Sales Quotation Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmSubsqntProcFlow",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "上次更改日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmSubsqntProcFlow",
+    "mapped_fields": [
+      "LastChangeDate"
+    ],
+    "synonyms": [
+      "更改日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "先前凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmSubsqntProcFlow",
+    "mapped_fields": [
+      "SalesQuotation"
+    ],
+    "synonyms": [
+      "先前的销售和分销凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "先前的销售和分销凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmSubsqntProcFlow",
+    "mapped_fields": [
+      "SalesQuotation"
+    ],
+    "synonyms": [
+      "先前凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "先前项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmSubsqntProcFlow",
+    "mapped_fields": [
+      "SalesQuotationItem"
+    ],
+    "synonyms": [
+      "销售与分销售凭证的先前项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证关系 UUID",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmSubsqntProcFlow",
+    "mapped_fields": [
+      "DocRelationshipUUID"
+    ],
+    "synonyms": [
+      "销售和分销唯一凭证关系标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证流记录层",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmSubsqntProcFlow",
+    "mapped_fields": [
+      "ProcessFlowLevel"
+    ],
+    "synonyms": [
+      "层次"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmSubsqntProcFlow",
+    "mapped_fields": [
+      "CreationDate"
+    ],
+    "synonyms": [
+      "记录创建日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "后续凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmSubsqntProcFlow",
+    "mapped_fields": [
+      "SubsequentDocument"
+    ],
+    "synonyms": [
+      "后续销售和分销凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "后续凭证的凭证类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmSubsqntProcFlow",
+    "mapped_fields": [
+      "SubsequentDocumentCategory"
+    ],
+    "synonyms": [
+      "后续凭证类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "后续凭证类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmSubsqntProcFlow",
+    "mapped_fields": [
+      "SubsequentDocumentCategory"
+    ],
+    "synonyms": [
+      "后续凭证的凭证类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "后续销售和分销凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmSubsqntProcFlow",
+    "mapped_fields": [
+      "SubsequentDocument"
+    ],
+    "synonyms": [
+      "后续凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "后续项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmSubsqntProcFlow",
+    "mapped_fields": [
+      "SubsequentDocumentItem"
+    ],
+    "synonyms": [
+      "销售与分销凭证的后续项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "层次",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmSubsqntProcFlow",
+    "mapped_fields": [
+      "ProcessFlowLevel"
+    ],
+    "synonyms": [
+      "凭证流记录层"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "描述",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmSubsqntProcFlow",
+    "mapped_fields": [
+      "SDDocumentStatusDesc"
+    ],
+    "synonyms": [
+      "状态说明"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmSubsqntProcFlow",
+    "mapped_fields": [
+      "CreationTime"
+    ],
+    "synonyms": [
+      "输入时间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "更改日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmSubsqntProcFlow",
+    "mapped_fields": [
+      "LastChangeDate"
+    ],
+    "synonyms": [
+      "上次更改日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmSubsqntProcFlow",
+    "mapped_fields": [
+      "StatusCode"
+    ],
+    "synonyms": [
+      "通用SD状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "状态说明",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmSubsqntProcFlow",
+    "mapped_fields": [
+      "SDDocumentStatusDesc"
+    ],
+    "synonyms": [
+      "描述"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "记录创建日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmSubsqntProcFlow",
+    "mapped_fields": [
+      "CreationDate"
+    ],
+    "synonyms": [
+      "创建日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "输入时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmSubsqntProcFlow",
+    "mapped_fields": [
+      "CreationTime"
+    ],
+    "synonyms": [
+      "时间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "通用SD状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmSubsqntProcFlow",
+    "mapped_fields": [
+      "StatusCode"
+    ],
+    "synonyms": [
+      "状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售与分销凭证的后续项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmSubsqntProcFlow",
+    "mapped_fields": [
+      "SubsequentDocumentItem"
+    ],
+    "synonyms": [
+      "后续项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售与分销售凭证的先前项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmSubsqntProcFlow",
+    "mapped_fields": [
+      "SalesQuotationItem"
+    ],
+    "synonyms": [
+      "先前项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售和分销唯一凭证关系标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanItmSubsqntProcFlow",
+    "mapped_fields": [
+      "DocRelationshipUUID"
+    ],
+    "synonyms": [
+      "凭证关系 UUID"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Header Preceding Process Flow",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanPrecdgProcFlow",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Sales Quotation Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanPrecdgProcFlow",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "上次更改日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanPrecdgProcFlow",
+    "mapped_fields": [
+      "LastChangeDate"
+    ],
+    "synonyms": [
+      "更改日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "先前凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanPrecdgProcFlow",
+    "mapped_fields": [
+      "PrecedingDocument"
+    ],
+    "synonyms": [
+      "先前的销售和分销凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "先前凭证类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanPrecdgProcFlow",
+    "mapped_fields": [
+      "PrecedingDocumentCategory"
+    ],
+    "synonyms": [
+      "先前销售和分销凭证的凭证类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "先前的销售和分销凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanPrecdgProcFlow",
+    "mapped_fields": [
+      "PrecedingDocument"
+    ],
+    "synonyms": [
+      "先前凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "先前销售和分销凭证的凭证类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanPrecdgProcFlow",
+    "mapped_fields": [
+      "PrecedingDocumentCategory"
+    ],
+    "synonyms": [
+      "先前凭证类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证关系 UUID",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanPrecdgProcFlow",
+    "mapped_fields": [
+      "DocRelationshipUUID"
+    ],
+    "synonyms": [
+      "销售和分销唯一凭证关系标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证流记录层",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanPrecdgProcFlow",
+    "mapped_fields": [
+      "ProcessFlowLevel"
+    ],
+    "synonyms": [
+      "层次"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanPrecdgProcFlow",
+    "mapped_fields": [
+      "CreationDate"
+    ],
+    "synonyms": [
+      "记录创建日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "后续凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanPrecdgProcFlow",
+    "mapped_fields": [
+      "SalesQuotation"
+    ],
+    "synonyms": [
+      "后续销售和分销凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "后续销售和分销凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanPrecdgProcFlow",
+    "mapped_fields": [
+      "SalesQuotation"
+    ],
+    "synonyms": [
+      "后续凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "层次",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanPrecdgProcFlow",
+    "mapped_fields": [
+      "ProcessFlowLevel"
+    ],
+    "synonyms": [
+      "凭证流记录层"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "描述",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanPrecdgProcFlow",
+    "mapped_fields": [
+      "SDDocumentStatusDesc"
+    ],
+    "synonyms": [
+      "状态说明"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanPrecdgProcFlow",
+    "mapped_fields": [
+      "CreationTime"
+    ],
+    "synonyms": [
+      "输入时间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "更改日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanPrecdgProcFlow",
+    "mapped_fields": [
+      "LastChangeDate"
+    ],
+    "synonyms": [
+      "上次更改日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanPrecdgProcFlow",
+    "mapped_fields": [
+      "StatusCode"
+    ],
+    "synonyms": [
+      "通用SD状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "状态说明",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanPrecdgProcFlow",
+    "mapped_fields": [
+      "SDDocumentStatusDesc"
+    ],
+    "synonyms": [
+      "描述"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "记录创建日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanPrecdgProcFlow",
+    "mapped_fields": [
+      "CreationDate"
+    ],
+    "synonyms": [
+      "创建日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "输入时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanPrecdgProcFlow",
+    "mapped_fields": [
+      "CreationTime"
+    ],
+    "synonyms": [
+      "时间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "通用SD状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanPrecdgProcFlow",
+    "mapped_fields": [
+      "StatusCode"
+    ],
+    "synonyms": [
+      "状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售和分销唯一凭证关系标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanPrecdgProcFlow",
+    "mapped_fields": [
+      "DocRelationshipUUID"
+    ],
+    "synonyms": [
+      "凭证关系 UUID"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Header Subsequent Process Flow",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanSubsqntProcFlow",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Sales Quotation Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanSubsqntProcFlow",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "上次更改日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanSubsqntProcFlow",
+    "mapped_fields": [
+      "LastChangeDate"
+    ],
+    "synonyms": [
+      "更改日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "先前凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanSubsqntProcFlow",
+    "mapped_fields": [
+      "SalesQuotation"
+    ],
+    "synonyms": [
+      "先前的销售和分销凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "先前的销售和分销凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanSubsqntProcFlow",
+    "mapped_fields": [
+      "SalesQuotation"
+    ],
+    "synonyms": [
+      "先前凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证关系 UUID",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanSubsqntProcFlow",
+    "mapped_fields": [
+      "DocRelationshipUUID"
+    ],
+    "synonyms": [
+      "销售和分销唯一凭证关系标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证流记录层",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanSubsqntProcFlow",
+    "mapped_fields": [
+      "ProcessFlowLevel"
+    ],
+    "synonyms": [
+      "层次"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanSubsqntProcFlow",
+    "mapped_fields": [
+      "CreationDate"
+    ],
+    "synonyms": [
+      "记录创建日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "后续凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanSubsqntProcFlow",
+    "mapped_fields": [
+      "SubsequentDocument"
+    ],
+    "synonyms": [
+      "后续销售和分销凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "后续凭证的凭证类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanSubsqntProcFlow",
+    "mapped_fields": [
+      "SubsequentDocumentCategory"
+    ],
+    "synonyms": [
+      "后续凭证类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "后续凭证类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanSubsqntProcFlow",
+    "mapped_fields": [
+      "SubsequentDocumentCategory"
+    ],
+    "synonyms": [
+      "后续凭证的凭证类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "后续销售和分销凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanSubsqntProcFlow",
+    "mapped_fields": [
+      "SubsequentDocument"
+    ],
+    "synonyms": [
+      "后续凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "层次",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanSubsqntProcFlow",
+    "mapped_fields": [
+      "ProcessFlowLevel"
+    ],
+    "synonyms": [
+      "凭证流记录层"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "描述",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanSubsqntProcFlow",
+    "mapped_fields": [
+      "SDDocumentStatusDesc"
+    ],
+    "synonyms": [
+      "状态说明"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanSubsqntProcFlow",
+    "mapped_fields": [
+      "CreationTime"
+    ],
+    "synonyms": [
+      "输入时间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "更改日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanSubsqntProcFlow",
+    "mapped_fields": [
+      "LastChangeDate"
+    ],
+    "synonyms": [
+      "上次更改日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanSubsqntProcFlow",
+    "mapped_fields": [
+      "StatusCode"
+    ],
+    "synonyms": [
+      "通用SD状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "状态说明",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanSubsqntProcFlow",
+    "mapped_fields": [
+      "SDDocumentStatusDesc"
+    ],
+    "synonyms": [
+      "描述"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "记录创建日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanSubsqntProcFlow",
+    "mapped_fields": [
+      "CreationDate"
+    ],
+    "synonyms": [
+      "创建日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "输入时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanSubsqntProcFlow",
+    "mapped_fields": [
+      "CreationTime"
+    ],
+    "synonyms": [
+      "时间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "通用SD状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanSubsqntProcFlow",
+    "mapped_fields": [
+      "StatusCode"
+    ],
+    "synonyms": [
+      "状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售和分销唯一凭证关系标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "A_SlsQtanSubsqntProcFlow",
+    "mapped_fields": [
+      "DocRelationshipUUID"
+    ],
+    "synonyms": [
+      "凭证关系 UUID"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Service Operations",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "rejectApprovalRequest",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Service Operations",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SALES_QUOTATION_SRV",
+    "mapped_entity_set": "releaseApprovalRequest",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  }
+]

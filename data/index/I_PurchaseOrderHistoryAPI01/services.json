@@ -1,0 +1,26 @@
+[
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "service_version": null,
+    "base_path": "cds://I_PurchaseOrderHistoryAPI01",
+    "service_kind": "CDS_VIEW_ONLY",
+    "runtime_path_template": "",
+    "description": "<p>This CDS view helps to retrieve a history of all the transactions that have occurred referring to a purchase order item to date (for example, goods and invoice receipts relating to the item, incurrence of delivery costs, down-payments, and so on).</p> <p>To help you decide which CDS view to use for your purposes, SAP has introduced the annotation ObjectModel.supportedCapabilities that indicates the most appropriate use cases for each CDS view. To find out what use cases are best supported by this CDS view, access the entry of the CDS view in the View Browser app and find the values for this annotation under the Annotation tab. For more information, see Supported Capabilities for CDS Views.</p>",
+    "entity_sets": [
+      "I_PurchaseOrderHistoryAPI01"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "data\\index\\I_PurchaseOrderHistoryAPI01\\raw\\I_PurchaseOrderHistoryAPI01.json",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "odata_runtime_available": false,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/viewer/c0c54048d35849128be8e872df5bea6d/latest/en-US/1c5ef1f414f74b1bba6967346c59c1d6.html",
+    "openapi_version": "cds-json",
+    "runtime_notes": "CDS API view only. Do not call it as /sap/opu/odata/sap/I_PurchaseOrderHistoryAPI01; execution requires a backend CDS/ABAP SQL-capable channel or an explicitly exposed OData service binding."
+  }
+]

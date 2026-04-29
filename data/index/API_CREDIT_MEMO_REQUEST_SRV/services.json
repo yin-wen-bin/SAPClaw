@@ -1,0 +1,41 @@
+[
+  {
+    "service_name": "API_CREDIT_MEMO_REQUEST_SRV",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_CREDIT_MEMO_REQUEST_SRV",
+    "description": "In every API call, you can make use of the following operations:\r\n\r\nYou can read entire credit memo requests or only parts of the data, using the provided filters.\r\n\r\nYou can create credit memo requests. Note that you must use “deep insert” requests (a header plus the following entities: header partner, header pricing element, item, item partner, and item pricing element). You cannot create entities without including any related entities.\r\n\r\nFor existing credit memo requests, you can create new items. Note that you must use “deep insert” requests (with the following entities: item partner and item pricing element). You cannot create entities without including any related entities.\r\n\r\nFor existing credit memo requests, you can update the following entities (that is, you can change the content of their properties): the header, header partner, header pricing element, item, item partner, and item pricing element.\r\n\r\nFor existing credit memo requests, you can delete the header, header partner, header pricing element, item, item partner, and item pricing element.\r\n\r\nYou can accept or deny approval requests for credit memo requests that cannot be processed without the consent of an approver.\r\n\r\nNote: Certain elements and entities can only be used if you activate the business function ISR_RETAILSYSTEM. For more information, see Business Documentation.",
+    "entity_sets": [
+      "A_CrdMmReqItemSubsqntProcFlow",
+      "A_CreditMemoReqItemPartner",
+      "A_CreditMemoReqItemPrcgElmnt",
+      "A_CreditMemoReqItemText",
+      "A_CreditMemoReqPartner",
+      "A_CreditMemoReqPrcgElmnt",
+      "A_CreditMemoReqSubsqntProcFlow",
+      "A_CreditMemoReqText",
+      "A_CreditMemoRequest",
+      "A_CreditMemoRequestItem",
+      "I_BusinessAreaStdVH",
+      "I_CompanyCodeStdVH",
+      "I_ControllingAreaStdVH",
+      "I_ControllingObjectStdVH",
+      "I_CreditControlAreaStdVH",
+      "I_Customer_VH",
+      "I_MaterialStdVH",
+      "I_ProductStdVH",
+      "I_SalesDealStdVH"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_CREDIT_MEMO_REQUEST_SRV/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/19/1531b7e2e048d9bddffab772f1788b/frameset.htm",
+    "openapi_version": "1.0.0"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "service_name": "API_PROCESS_ORDER_2_SRV",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_PROCESS_ORDER_2_SRV",
+    "description": "In addition to create, read, and update process orders, you can also release orders and operations. Besides updating header data of the order including the scheduling type, you can also update some properties of the order components. This service enables you to convert planned orders to process orders, schedule process order operations, and set further statuses for the order such as technically completed, closed, discarded by MES, or released by MES. In addition, you can set the deletion flag, deletion indicator, and delivery completed indicator.",
+    "entity_sets": [
+      "A_ProcessOrderComponent_2",
+      "A_ProcessOrderItem_2",
+      "A_ProcessOrderOperation_2",
+      "A_ProcessOrderProdnRsceTools_2",
+      "A_ProcessOrderStatus_2",
+      "A_ProcessOrder_2"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PROCESS_ORDER_2_SRV/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/c4/e613a7bf9c40a39cda9ae048e5e2b7/frameset.htm",
+    "openapi_version": "1.3.0"
+  }
+]

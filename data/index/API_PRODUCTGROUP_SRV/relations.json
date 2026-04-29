@@ -1,0 +1,22 @@
+[
+  {
+    "service_name": "API_PRODUCTGROUP_SRV",
+    "from_entity_set": "A_ProductGroup",
+    "navigation_name": "to_Text",
+    "to_entity_set": "ToRole_assoc_70508036371EBAADFDE9FF3C8A220DB6",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_PRODUCTGROUP_SRV",
+    "from_entity_set": "A_ProductGroupText",
+    "navigation_name": "to_MaterialGroup",
+    "to_entity_set": "ToRole_assoc_6010E6BD1065752B4AA5D9C50103C96E",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  }
+]

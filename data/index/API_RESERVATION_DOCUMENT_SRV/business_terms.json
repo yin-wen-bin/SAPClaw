@@ -1,0 +1,1188 @@
+[
+  {
+    "term": "Document Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Document Items",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "WBS 要素",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "WBSElement"
+    ],
+    "synonyms": [
+      "工作分解结构要素（WBS 要素）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "主要资产编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "AssetNumber"
+    ],
+    "synonyms": [
+      "资产"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "基准日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "ReservationDate"
+    ],
+    "synonyms": [
+      "预订基准日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "子编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "AssetSubNumber"
+    ],
+    "synonyms": [
+      "资产子编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "Customer"
+    ],
+    "synonyms": [
+      "客户的帐户编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户的帐户编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "Customer"
+    ],
+    "synonyms": [
+      "客户"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工作分解结构要素（WBS 要素）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "WBSElement"
+    ],
+    "synonyms": [
+      "WBS 要素"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本中心",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "CostCenter"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本控制范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "ControllingArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "按工厂日历计算的检查日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "IsCheckedAgainstFactoryCal"
+    ],
+    "synonyms": [
+      "计算日历"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "接收工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "IssuingOrReceivingPlant"
+    ],
+    "synonyms": [
+      "收货工厂/发货工厂"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收货/发货库存地点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "IssuingOrReceivingStorageLoc"
+    ],
+    "synonyms": [
+      "收货库存地点"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收货工厂/发货工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "IssuingOrReceivingPlant"
+    ],
+    "synonyms": [
+      "接收工厂"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收货库存地点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "IssuingOrReceivingStorageLoc"
+    ],
+    "synonyms": [
+      "收货/发货库存地点"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收货方",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "GoodsRecipientName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "科目分配的网络号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "NetworkNumberForAcctAssgmt"
+    ],
+    "synonyms": [
+      "网络"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "移动类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "GoodsMovementType"
+    ],
+    "synonyms": [
+      "移动类型(库存管理)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "移动类型(库存管理)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "GoodsMovementType"
+    ],
+    "synonyms": [
+      "移动类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "网络",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "NetworkNumberForAcctAssgmt"
+    ],
+    "synonyms": [
+      "科目分配的网络号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计算日历",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "IsCheckedAgainstFactoryCal"
+    ],
+    "synonyms": [
+      "按工厂日历计算的检查日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "OrderID"
+    ],
+    "synonyms": [
+      "订单编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "OrderID"
+    ],
+    "synonyms": [
+      "订单"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "资产",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "AssetNumber"
+    ],
+    "synonyms": [
+      "主要资产编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "资产子编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "AssetSubNumber"
+    ],
+    "synonyms": [
+      "子编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售订单",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "SalesOrder"
+    ],
+    "synonyms": [
+      "销售订单数"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售订单中的项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "SalesOrderItem"
+    ],
+    "synonyms": [
+      "销售订单项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售订单交货计划",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "SalesOrderScheduleLine"
+    ],
+    "synonyms": [
+      "销售订单计划"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售订单数",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "SalesOrder"
+    ],
+    "synonyms": [
+      "销售订单"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售订单计划",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "SalesOrderScheduleLine"
+    ],
+    "synonyms": [
+      "销售订单交货计划"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售订单项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "SalesOrderItem"
+    ],
+    "synonyms": [
+      "销售订单中的项目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "预留",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "Reservation"
+    ],
+    "synonyms": [
+      "预留/相关需求的编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "预留/相关需求的编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "Reservation"
+    ],
+    "synonyms": [
+      "预留"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "预订基准日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentHeader",
+    "mapped_fields": [
+      "ReservationDate"
+    ],
+    "synonyms": [
+      "基准日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Document Items",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "以录入单位表示的数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "ResvnItmRequiredQtyInEntryUnit"
+    ],
+    "synonyms": [
+      "以录入项单位表示的数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "以录入项单位表示的数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "ResvnItmRequiredQtyInEntryUnit"
+    ],
+    "synonyms": [
+      "以录入单位表示的数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "Supplier"
+    ],
+    "synonyms": [
+      "供应商科目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商科目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "Supplier"
+    ],
+    "synonyms": [
+      "供应商"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "借/贷标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "DebitCreditCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "允许的移动",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "GoodsMovementIsAllowed"
+    ],
+    "synonyms": [
+      "允许预留的货物移动"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "允许预留的货物移动",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "GoodsMovementIsAllowed"
+    ],
+    "synonyms": [
+      "允许的移动"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "卸货点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "UnloadingPointName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "基本计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "BaseUnit"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "存储地点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "StorageLocation"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "Plant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "录入单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "EntryUnit"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总账科目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "GLAccount"
+    ],
+    "synonyms": [
+      "总账科目号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总账科目号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "GLAccount"
+    ],
+    "synonyms": [
+      "总账科目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "手工帐户",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "ResvnAccountIsEnteredManually"
+    ],
+    "synonyms": [
+      "手工输入帐户"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "手工输入帐户",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "ResvnAccountIsEnteredManually"
+    ],
+    "synonyms": [
+      "手工帐户"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批次",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "Batch"
+    ],
+    "synonyms": [
+      "批次编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批次编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "Batch"
+    ],
+    "synonyms": [
+      "批次"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "接收工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "IssuingOrReceivingPlant"
+    ],
+    "synonyms": [
+      "收货工厂/发货工厂"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "提货价值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "ResvnItmWithdrawnAmtInCCCrcy"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "提货数",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "ResvnItmWithdrawnQtyInBaseUnit"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收货/发货库存地点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "IssuingOrReceivingStorageLoc"
+    ],
+    "synonyms": [
+      "收货库存地点"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收货工厂/发货工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "IssuingOrReceivingPlant"
+    ],
+    "synonyms": [
+      "接收工厂"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收货库存地点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "IssuingOrReceivingStorageLoc"
+    ],
+    "synonyms": [
+      "收货/发货库存地点"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收货方",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "GoodsRecipientName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "数量固定",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "QuantityIsFixed"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "ReservationItemText"
+    ],
+    "synonyms": [
+      "项目文本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "最后发货",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "ReservationItemIsFinallyIssued"
+    ],
+    "synonyms": [
+      "预定的最后发货"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "活动",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "ManufacturingOrderOperation"
+    ],
+    "synonyms": [
+      "活动编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "活动编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "ManufacturingOrderOperation"
+    ],
+    "synonyms": [
+      "活动"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "Product"
+    ],
+    "synonyms": [
+      "物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "Product"
+    ],
+    "synonyms": [
+      "物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "移动类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "GoodsMovementType"
+    ],
+    "synonyms": [
+      "移动类型(库存管理)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "移动类型(库存管理)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "GoodsMovementType"
+    ],
+    "synonyms": [
+      "移动类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "组件的需求日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "MatlCompRequirementDate"
+    ],
+    "synonyms": [
+      "需求日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "记录类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "RecordType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "CompanyCodeCurrency"
+    ],
+    "synonyms": [
+      "货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "CompanyCodeCurrency"
+    ],
+    "synonyms": [
+      "货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "PurchasingDocument"
+    ],
+    "synonyms": [
+      "采购凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证的项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "PurchasingDocumentItem"
+    ],
+    "synonyms": [
+      "项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "PurchasingDocument"
+    ],
+    "synonyms": [
+      "采购凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "需求数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "ResvnItmRequiredQtyInBaseUnit"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "需求日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "MatlCompRequirementDate"
+    ],
+    "synonyms": [
+      "组件的需求日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "需求类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "RequirementType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "PurchasingDocumentItem"
+    ],
+    "synonyms": [
+      "采购凭证的项目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目已删除",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "ReservationItmIsMarkedForDeltn"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "ReservationItemText"
+    ],
+    "synonyms": [
+      "文本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "ReservationItem"
+    ],
+    "synonyms": [
+      "预留 / 相关需求的项目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "预定的最后发货",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "ReservationItemIsFinallyIssued"
+    ],
+    "synonyms": [
+      "最后发货"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "预留",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "Reservation"
+    ],
+    "synonyms": [
+      "预留/相关需求的编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "预留 / 相关需求的项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "ReservationItem"
+    ],
+    "synonyms": [
+      "项目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "预留/相关需求的编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_RESERVATION_DOCUMENT_SRV",
+    "mapped_entity_set": "A_ReservationDocumentItem",
+    "mapped_fields": [
+      "Reservation"
+    ],
+    "synonyms": [
+      "预留"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  }
+]

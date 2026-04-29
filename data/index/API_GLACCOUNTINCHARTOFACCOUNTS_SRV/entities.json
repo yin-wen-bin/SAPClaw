@@ -1,0 +1,73 @@
+[
+  {
+    "service_name": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "entity_set": "A_GLAccountInChartOfAccounts",
+    "entity_type": "A_GLAccountInChartOfAccountsType",
+    "key_fields": [
+      "ChartOfAccounts",
+      "GLAccount"
+    ],
+    "default_select_fields": [
+      "ChartOfAccounts",
+      "GLAccount",
+      "IsBalanceSheetAccount",
+      "GLAccountGroup",
+      "CorporateGroupAccount",
+      "ProfitLossAccountType",
+      "SampleGLAccount",
+      "AccountIsMarkedForDeletion",
+      "AccountIsBlockedForCreation",
+      "AccountIsBlockedForPosting"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Text"
+    ],
+    "description": "Reads the items of all G/L accounts.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "entity_set": "A_GLAccountText",
+    "entity_type": "A_GLAccountTextType",
+    "key_fields": [
+      "ChartOfAccounts",
+      "GLAccount",
+      "Language"
+    ],
+    "default_select_fields": [
+      "ChartOfAccounts",
+      "GLAccount",
+      "Language",
+      "GLAccountName",
+      "GLAccountLongName",
+      "LastChangeDateTime"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_GLAccountInChartOfAccounts"
+    ],
+    "description": "Reads the texts of all G/L accounts.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  }
+]

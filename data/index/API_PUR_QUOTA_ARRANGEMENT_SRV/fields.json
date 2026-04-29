@@ -1,0 +1,1010 @@
+[
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurchasingQuotaArrangement",
+    "field_name": "CreatedByUser",
+    "label": "创建人",
+    "business_aliases": [
+      "创建人",
+      "负责创建对象的人员姓名"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "负责创建对象的人员姓名",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurchasingQuotaArrangement",
+    "field_name": "CreationDate",
+    "label": "创建日期",
+    "business_aliases": [
+      "创建日期",
+      "记录创建日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "记录创建日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurchasingQuotaArrangement",
+    "field_name": "LastChangeDateTime",
+    "label": "时戳",
+    "business_aliases": [
+      "时戳",
+      "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)"
+    ],
+    "data_type": "Edm.DateTimeOffset",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurchasingQuotaArrangement",
+    "field_name": "Material",
+    "label": "物料",
+    "business_aliases": [
+      "物料",
+      "物料编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurchasingQuotaArrangement",
+    "field_name": "MaterialBaseUnit",
+    "label": "基本计量单位",
+    "business_aliases": [
+      "基本计量单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "基本计量单位",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurchasingQuotaArrangement",
+    "field_name": "MinQtyForSpltQuota",
+    "label": "最小数量",
+    "business_aliases": [
+      "最小数量",
+      "拆分配额的最小数量"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "拆分配额的最小数量",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurchasingQuotaArrangement",
+    "field_name": "Plant",
+    "label": "工厂",
+    "business_aliases": [
+      "工厂"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "工厂",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurchasingQuotaArrangement",
+    "field_name": "QuotaArrangement",
+    "label": "配额协议",
+    "business_aliases": [
+      "配额协议",
+      "配额的协议号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "配额的协议号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurchasingQuotaArrangement",
+    "field_name": "UserDescription",
+    "label": "描述",
+    "business_aliases": [
+      "描述",
+      "业务用户描述"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "业务用户描述",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurchasingQuotaArrangement",
+    "field_name": "ValidityEndDate",
+    "label": "有效至",
+    "business_aliases": [
+      "有效至",
+      "配额协议有效期截止于"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "配额协议有效期截止于",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurchasingQuotaArrangement",
+    "field_name": "ValidityStartDate",
+    "label": "有效起始日期",
+    "business_aliases": [
+      "有效起始日期",
+      "配额协议生效期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "配额协议生效期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurgQuotaArrangementItem",
+    "field_name": "ManufacturerMaterial",
+    "label": "MPN：物料",
+    "business_aliases": [
+      "MPN：物料",
+      "按照制造商零件编号的物料编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "按照制造商零件编号的物料编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurgQuotaArrangementItem",
+    "field_name": "MaterialBaseUnit",
+    "label": "基本计量单位",
+    "business_aliases": [
+      "基本计量单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "基本计量单位",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurgQuotaArrangementItem",
+    "field_name": "MaterialMaxLotSizeQuantity",
+    "label": "最大批量大小",
+    "business_aliases": [
+      "最大批量大小",
+      "每个配额项目的最大批量"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "每个配额项目的最大批量",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurgQuotaArrangementItem",
+    "field_name": "MaterialMinLotSizeQuantity",
+    "label": "最小批量",
+    "business_aliases": [
+      "最小批量",
+      "每个配额项目的最小批量"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "每个配额项目的最小批量",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurgQuotaArrangementItem",
+    "field_name": "MaterialProcurementCategory",
+    "label": "采购类型",
+    "business_aliases": [
+      "采购类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购类型",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurgQuotaArrangementItem",
+    "field_name": "MaterialProcurementType",
+    "label": "特殊获取",
+    "business_aliases": [
+      "特殊获取",
+      "特别采购类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "特别采购类型",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurgQuotaArrangementItem",
+    "field_name": "MaterialRoundingProfile",
+    "label": "舍入参数文件",
+    "business_aliases": [
+      "舍入参数文件"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "舍入参数文件",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurgQuotaArrangementItem",
+    "field_name": "MaximumReleaseQuantity",
+    "label": "最大批准数量",
+    "business_aliases": [
+      "最大批准数量",
+      "每个期间的最大批准数量"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "每个期间的最大批准数量",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurgQuotaArrangementItem",
+    "field_name": "NumberOfPeriodsPerRelQuantity",
+    "label": "期间编号",
+    "business_aliases": [
+      "期间编号",
+      "批准数量相关的期间数量"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "批准数量相关的期间数量",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurgQuotaArrangementItem",
+    "field_name": "PlannedDeliveryDurationInDays",
+    "label": "计划交货时间",
+    "business_aliases": [
+      "计划交货时间",
+      "计划交货时间（天）"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "计划交货时间（天）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurgQuotaArrangementItem",
+    "field_name": "ProductionVersion",
+    "label": "生产版本",
+    "business_aliases": [
+      "生产版本"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "生产版本",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurgQuotaArrangementItem",
+    "field_name": "PurchasingSourceQuota",
+    "label": "配额",
+    "business_aliases": [
+      "配额"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "配额",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurgQuotaArrangementItem",
+    "field_name": "QuotaAllocatedQuantity",
+    "label": "分配的数量",
+    "business_aliases": [
+      "分配的数量",
+      "配额协议项目的已分配数量"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "配额协议项目的已分配数量",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurgQuotaArrangementItem",
+    "field_name": "QuotaArrangement",
+    "label": "配额协议",
+    "business_aliases": [
+      "配额协议",
+      "配额的协议号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "配额的协议号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurgQuotaArrangementItem",
+    "field_name": "QuotaArrangementItem",
+    "label": "配额协议项目",
+    "business_aliases": [
+      "配额协议项目"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "配额协议项目",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurgQuotaArrangementItem",
+    "field_name": "QuotaBaseQuantity",
+    "label": "配额基本数量",
+    "business_aliases": [
+      "配额基本数量",
+      "配额协议项目的配额基本数量"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "配额协议项目的配额基本数量",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurgQuotaArrangementItem",
+    "field_name": "QuotaDeterminationPriority",
+    "label": "优先级",
+    "business_aliases": [
+      "优先级",
+      "顺序确定的优先级"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "顺序确定的优先级",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurgQuotaArrangementItem",
+    "field_name": "QuotaMaximumQuantity",
+    "label": "最大数量",
+    "business_aliases": [
+      "最大数量",
+      "配额协议项目的最大数量"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "配额协议项目的最大数量",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurgQuotaArrangementItem",
+    "field_name": "QuotaReleasePeriodType",
+    "label": "批准数量的期间",
+    "business_aliases": [
+      "批准数量的期间",
+      "批准数量相关的期间"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "批准数量相关的期间",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurgQuotaArrangementItem",
+    "field_name": "SourceOfSupplyIsAssignedOnce",
+    "label": "\"仅 1x\" 标识",
+    "business_aliases": [
+      "\"仅 1x\" 标识",
+      "标识：“仅一次”"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "标识：“仅一次”",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurgQuotaArrangementItem",
+    "field_name": "Supplier",
+    "label": "供应商",
+    "business_aliases": [
+      "供应商",
+      "供应商科目编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "供应商科目编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entity_set": "A_PurgQuotaArrangementItem",
+    "field_name": "SupplyingPlant",
+    "label": "采购工厂",
+    "business_aliases": [
+      "采购工厂",
+      "物料采购工厂"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料采购工厂",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  }
+]

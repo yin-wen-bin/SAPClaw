@@ -1,0 +1,24 @@
+[
+  {
+    "service_name": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "description": "The service enables you to retrieve G/L account master data. It contains a header and nodes with business information. You can read G/L accounts in a chart of accounts and their names in the respective language.",
+    "entity_sets": [
+      "A_GLAccountInChartOfAccounts",
+      "A_GLAccountText"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_GLACCOUNTINCHARTOFACCOUNTS_SRV/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/5f/4d16d6a031437fbfd1f61937c6b3fd/frameset.htm",
+    "openapi_version": "1.0.0"
+  }
+]

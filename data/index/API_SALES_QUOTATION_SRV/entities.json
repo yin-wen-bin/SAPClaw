@@ -1,0 +1,607 @@
+[
+  {
+    "service_name": "API_SALES_QUOTATION_SRV",
+    "entity_set": "A_SalesQuotation",
+    "entity_type": "A_SalesQuotationType",
+    "key_fields": [
+      "SalesQuotation"
+    ],
+    "default_select_fields": [
+      "SalesQuotation",
+      "SalesQuotationType",
+      "SalesOrganization",
+      "DistributionChannel",
+      "OrganizationDivision",
+      "SalesGroup",
+      "SalesOffice",
+      "SalesDistrict",
+      "SoldToParty",
+      "CreationDate"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Item",
+      "to_Partner",
+      "to_PrecedingProcFlowDoc",
+      "to_PricingElement",
+      "to_RelatedObject",
+      "to_SubsequentProcFlowDoc",
+      "to_Text"
+    ],
+    "description": "Reads all sales quotation headers.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_QUOTATION_SRV",
+    "entity_set": "A_SalesQuotationItem",
+    "entity_type": "A_SalesQuotationItemType",
+    "key_fields": [
+      "SalesQuotation",
+      "SalesQuotationItem"
+    ],
+    "default_select_fields": [
+      "SalesQuotation",
+      "SalesQuotationItem",
+      "HigherLevelItem",
+      "SalesQuotationItemCategory",
+      "SalesQuotationItemText",
+      "PurchaseOrderByCustomer",
+      "Material",
+      "MaterialByCustomer",
+      "PricingReferenceMaterial",
+      "RequestedQuantity"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Partner",
+      "to_PrecedingProcFlowDocItem",
+      "to_PricingElement",
+      "to_RelatedObject",
+      "to_SalesQuotation",
+      "to_SubsequentProcFlowDocItem",
+      "to_Text"
+    ],
+    "description": "Reads all sales quotation items.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_QUOTATION_SRV",
+    "entity_set": "A_SalesQuotationItemPartner",
+    "entity_type": "A_SalesQuotationItemPartnerType",
+    "key_fields": [
+      "PartnerFunction",
+      "SalesQuotation",
+      "SalesQuotationItem"
+    ],
+    "default_select_fields": [
+      "SalesQuotation",
+      "SalesQuotationItem",
+      "PartnerFunction",
+      "Customer",
+      "Supplier",
+      "Personnel",
+      "ContactPerson"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SalesQuotation",
+      "to_SalesQuotationItem"
+    ],
+    "description": "Reads the item partners for all sales quotations.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_QUOTATION_SRV",
+    "entity_set": "A_SalesQuotationItemPrcgElmnt",
+    "entity_type": "A_SalesQuotationItemPrcgElmntType",
+    "key_fields": [
+      "PricingProcedureCounter",
+      "PricingProcedureStep",
+      "SalesQuotation",
+      "SalesQuotationItem"
+    ],
+    "default_select_fields": [
+      "SalesQuotation",
+      "SalesQuotationItem",
+      "PricingProcedureStep",
+      "PricingProcedureCounter",
+      "ConditionType",
+      "PricingDateTime",
+      "PriceConditionDeterminationDte",
+      "ConditionCalculationType",
+      "ConditionBaseValue",
+      "ConditionRateValue"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SalesQuotation",
+      "to_SalesQuotationItem"
+    ],
+    "description": "Reads the item pricing elements of all sales quotations.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_QUOTATION_SRV",
+    "entity_set": "A_SalesQuotationItemText",
+    "entity_type": "A_SalesQuotationItemTextType",
+    "key_fields": [
+      "Language",
+      "LongTextID",
+      "SalesQuotation",
+      "SalesQuotationItem"
+    ],
+    "default_select_fields": [
+      "SalesQuotation",
+      "SalesQuotationItem",
+      "Language",
+      "LongTextID",
+      "LongText"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SalesQuotation",
+      "to_SalesQuotationItem"
+    ],
+    "description": "Reads item texts of all sales quotations.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_QUOTATION_SRV",
+    "entity_set": "A_SalesQuotationPartner",
+    "entity_type": "A_SalesQuotationPartnerType",
+    "key_fields": [
+      "PartnerFunction",
+      "SalesQuotation"
+    ],
+    "default_select_fields": [
+      "SalesQuotation",
+      "PartnerFunction",
+      "Customer",
+      "Supplier",
+      "Personnel",
+      "ContactPerson"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SalesQuotation"
+    ],
+    "description": "Reads the header partners of all sales quotations.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_QUOTATION_SRV",
+    "entity_set": "A_SalesQuotationPrcgElmnt",
+    "entity_type": "A_SalesQuotationPrcgElmntType",
+    "key_fields": [
+      "PricingProcedureCounter",
+      "PricingProcedureStep",
+      "SalesQuotation"
+    ],
+    "default_select_fields": [
+      "SalesQuotation",
+      "PricingProcedureStep",
+      "PricingProcedureCounter",
+      "ConditionType",
+      "PricingDateTime",
+      "PriceConditionDeterminationDte",
+      "ConditionCalculationType",
+      "ConditionBaseValue",
+      "ConditionRateValue",
+      "ConditionCurrency"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SalesQuotation"
+    ],
+    "description": "Reads the header pricing elements of all sales quotations.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_QUOTATION_SRV",
+    "entity_set": "A_SalesQuotationRelatedObject",
+    "entity_type": "A_SalesQuotationRelatedObjectType",
+    "key_fields": [
+      "SDDocRelatedObjectSequenceNmbr",
+      "SalesQuotation"
+    ],
+    "default_select_fields": [
+      "SalesQuotation",
+      "SDDocRelatedObjectSequenceNmbr",
+      "SDDocumentRelatedObjectType",
+      "SDDocRelatedObjectSystem",
+      "SDDocRelatedObjectReference1",
+      "SDDocRelatedObjectReference2"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SalesQuotation"
+    ],
+    "description": "Reads the related objects of all sales quotations.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_QUOTATION_SRV",
+    "entity_set": "A_SalesQuotationText",
+    "entity_type": "A_SalesQuotationTextType",
+    "key_fields": [
+      "Language",
+      "LongTextID",
+      "SalesQuotation"
+    ],
+    "default_select_fields": [
+      "SalesQuotation",
+      "Language",
+      "LongTextID",
+      "LongText"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SalesQuotation"
+    ],
+    "description": "Reads the header texts of all sales quotations.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_QUOTATION_SRV",
+    "entity_set": "A_SalesQuotationValAddedSrvc",
+    "entity_type": "A_SalesQuotationValAddedSrvcType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads the value-added services data of all sales quotation items.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_QUOTATION_SRV",
+    "entity_set": "A_SlsQtanItemRelatedObject",
+    "entity_type": "A_SlsQtanItemRelatedObjectType",
+    "key_fields": [
+      "SDDocRelatedObjectSequenceNmbr",
+      "SalesQuotation",
+      "SalesQuotationItem"
+    ],
+    "default_select_fields": [
+      "SalesQuotation",
+      "SalesQuotationItem",
+      "SDDocRelatedObjectSequenceNmbr",
+      "SDDocumentRelatedObjectType",
+      "SDDocRelatedObjectSystem",
+      "SDDocRelatedObjectReference1",
+      "SDDocRelatedObjectReference2"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SalesQuotation",
+      "to_SalesQuotationItem"
+    ],
+    "description": "Reads related objects from all sales quotation items.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_QUOTATION_SRV",
+    "entity_set": "A_SlsQtanItmPrecdgProcFlow",
+    "entity_type": "A_SlsQtanItmPrecdgProcFlowType",
+    "key_fields": [
+      "DocRelationshipUUID",
+      "SalesQuotation",
+      "SalesQuotationItem"
+    ],
+    "default_select_fields": [
+      "SalesQuotation",
+      "SalesQuotationItem",
+      "DocRelationshipUUID",
+      "PrecedingDocument",
+      "PrecedingDocumentItem",
+      "PrecedingDocumentCategory",
+      "ProcessFlowLevel",
+      "StatusCode",
+      "SDDocumentStatusDesc",
+      "CreationDate"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SalesQuotation",
+      "to_SalesQuotationItem"
+    ],
+    "description": "Reads the preceding items of all sales quotation items.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_QUOTATION_SRV",
+    "entity_set": "A_SlsQtanItmSubsqntProcFlow",
+    "entity_type": "A_SlsQtanItmSubsqntProcFlowType",
+    "key_fields": [
+      "DocRelationshipUUID",
+      "SalesQuotation",
+      "SalesQuotationItem"
+    ],
+    "default_select_fields": [
+      "SalesQuotation",
+      "SalesQuotationItem",
+      "DocRelationshipUUID",
+      "SubsequentDocument",
+      "SubsequentDocumentItem",
+      "SubsequentDocumentCategory",
+      "ProcessFlowLevel",
+      "StatusCode",
+      "SDDocumentStatusDesc",
+      "CreationDate"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SalesQuotation",
+      "to_SalesQuotationItem"
+    ],
+    "description": "Reads the subsequent items of all sales quotation items.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_QUOTATION_SRV",
+    "entity_set": "A_SlsQtanPrecdgProcFlow",
+    "entity_type": "A_SlsQtanPrecdgProcFlowType",
+    "key_fields": [
+      "DocRelationshipUUID",
+      "SalesQuotation"
+    ],
+    "default_select_fields": [
+      "SalesQuotation",
+      "DocRelationshipUUID",
+      "PrecedingDocument",
+      "PrecedingDocumentCategory",
+      "ProcessFlowLevel",
+      "StatusCode",
+      "SDDocumentStatusDesc",
+      "CreationDate",
+      "CreationTime",
+      "LastChangeDate"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SalesQuotation"
+    ],
+    "description": "Reads the preceding documents of all sales quotations.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_QUOTATION_SRV",
+    "entity_set": "A_SlsQtanSubsqntProcFlow",
+    "entity_type": "A_SlsQtanSubsqntProcFlowType",
+    "key_fields": [
+      "DocRelationshipUUID",
+      "SalesQuotation"
+    ],
+    "default_select_fields": [
+      "SalesQuotation",
+      "DocRelationshipUUID",
+      "SubsequentDocument",
+      "SubsequentDocumentCategory",
+      "ProcessFlowLevel",
+      "StatusCode",
+      "SDDocumentStatusDesc",
+      "CreationDate",
+      "CreationTime",
+      "LastChangeDate"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SalesQuotation"
+    ],
+    "description": "Reads the subsequent documents of all sales quotations.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_QUOTATION_SRV",
+    "entity_set": "rejectApprovalRequest",
+    "entity_type": "rejectApprovalRequestType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Invoke action rejectApprovalRequest",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_QUOTATION_SRV",
+    "entity_set": "releaseApprovalRequest",
+    "entity_type": "releaseApprovalRequestType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Invoke action releaseApprovalRequest",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  }
+]

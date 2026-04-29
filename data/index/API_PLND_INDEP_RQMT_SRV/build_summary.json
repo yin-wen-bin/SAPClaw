@@ -1,0 +1,15 @@
+{
+  "service_name": "API_PLND_INDEP_RQMT_SRV",
+  "sap_metadata_entity_count": 2,
+  "sap_metadata_field_count": 34,
+  "openapi_documented_entity_count": 2,
+  "openapi_documented_entity_type_count": 4,
+  "merged_entity_count": 2,
+  "merged_field_count": 34,
+  "relation_count": 2,
+  "entity_graph_edge_count": 2,
+  "lookup_path_count": 0,
+  "business_term_count": 53,
+  "vector_document_count": 34,
+  "doc_chunk_count": 64
+}

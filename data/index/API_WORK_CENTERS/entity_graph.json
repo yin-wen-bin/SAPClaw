@@ -1,0 +1,233 @@
+[
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenterAllCapacity",
+    "to_entity_set": "ToRole_assoc_15184A32172C9C411E5886317BB0C15B",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_WorkCenterQueuingOp",
+    "description": "Navigation `to_WorkCenterQueuingOp` from `A_WorkCenterAllCapacity` to `ToRole_assoc_15184A32172C9C411E5886317BB0C15B`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenterAllCapacity",
+    "to_entity_set": "ToRole_assoc_36D188603BC25EFF729496A9753B5AB0",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_WorkCenterTodayOp",
+    "description": "Navigation `to_WorkCenterTodayOp` from `A_WorkCenterAllCapacity` to `ToRole_assoc_36D188603BC25EFF729496A9753B5AB0`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenterAllCapacity",
+    "to_entity_set": "ToRole_assoc_9B53956F7B29082A7C9D51E0DF3ABDB2",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_WorkCenterInterval",
+    "description": "Navigation `to_WorkCenterInterval` from `A_WorkCenterAllCapacity` to `ToRole_assoc_9B53956F7B29082A7C9D51E0DF3ABDB2`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenterAllCapacity_2",
+    "to_entity_set": "ToRole_assoc_622A261507162EFACD569F55E10A8C2D",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_Capacity",
+    "description": "Navigation `to_Capacity` from `A_WorkCenterAllCapacity_2` to `ToRole_assoc_622A261507162EFACD569F55E10A8C2D`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenterAllCapacity_2",
+    "to_entity_set": "ToRole_assoc_C2588583F0431F5935EACF0F64511F6B",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_WorkCenterQueuingOp",
+    "description": "Navigation `to_WorkCenterQueuingOp` from `A_WorkCenterAllCapacity_2` to `ToRole_assoc_C2588583F0431F5935EACF0F64511F6B`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenterAllCapacity_2",
+    "to_entity_set": "ToRole_assoc_FABE12D6A56D900E35AF32743DE2D61E",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_WorkCenterTodayOp",
+    "description": "Navigation `to_WorkCenterTodayOp` from `A_WorkCenterAllCapacity_2` to `ToRole_assoc_FABE12D6A56D900E35AF32743DE2D61E`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenterCapOrderPerBucket",
+    "to_entity_set": "ToRole_assoc_E4D4495AC751441F8212AF42495D35A7",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "Set",
+    "description": "Navigation `Set` from `A_WorkCenterCapOrderPerBucket` to `ToRole_assoc_E4D4495AC751441F8212AF42495D35A7`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenterCapOrderPerBucketSet",
+    "to_entity_set": "FromRole_assoc_E4D4495AC751441F8212AF42495D35A7",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "Parameters",
+    "description": "Navigation `Parameters` from `A_WorkCenterCapOrderPerBucketSet` to `FromRole_assoc_E4D4495AC751441F8212AF42495D35A7`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenterCapPerBucket",
+    "to_entity_set": "ToRole_assoc_037DA702719DCE66CB64BAD22626D84C",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "Set",
+    "description": "Navigation `Set` from `A_WorkCenterCapPerBucket` to `ToRole_assoc_037DA702719DCE66CB64BAD22626D84C`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenterCapPerBucketSet",
+    "to_entity_set": "FromRole_assoc_037DA702719DCE66CB64BAD22626D84C",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "Parameters",
+    "description": "Navigation `Parameters` from `A_WorkCenterCapPerBucketSet` to `FromRole_assoc_037DA702719DCE66CB64BAD22626D84C`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenterCapacity",
+    "to_entity_set": "ToRole_assoc_A6F6A5F01FB09EC02FA2ED9666E2324A",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_CapacityText",
+    "description": "Navigation `to_CapacityText` from `A_WorkCenterCapacity` to `ToRole_assoc_A6F6A5F01FB09EC02FA2ED9666E2324A`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenterCapacity",
+    "to_entity_set": "ToRole_assoc_B89F2A532DE7A556D5500361ED8D6B13",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_CapacityInterval",
+    "description": "Navigation `to_CapacityInterval` from `A_WorkCenterCapacity` to `ToRole_assoc_B89F2A532DE7A556D5500361ED8D6B13`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenterCapacityInterval",
+    "to_entity_set": "ToRole_assoc_00E9622BB359B012AC3A0B6EF98A79B4",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_WorkCenterShift",
+    "description": "Navigation `to_WorkCenterShift` from `A_WorkCenterCapacityInterval` to `ToRole_assoc_00E9622BB359B012AC3A0B6EF98A79B4`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenterCapacityInterval_2",
+    "to_entity_set": "ToRole_assoc_BC7D5DBBDB9BEBF16C25FCC953FA9032",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_CapacityShift",
+    "description": "Navigation `to_CapacityShift` from `A_WorkCenterCapacityInterval_2` to `ToRole_assoc_BC7D5DBBDB9BEBF16C25FCC953FA9032`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenters",
+    "to_entity_set": "ToRole_assoc_341AEBC458BC8F46D736FE0875B647E2",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_WorkCenterCapacity",
+    "description": "Navigation `to_WorkCenterCapacity` from `A_WorkCenters` to `ToRole_assoc_341AEBC458BC8F46D736FE0875B647E2`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenters",
+    "to_entity_set": "ToRole_assoc_7C5F115EC007E342BA08466EC587AE6E",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_WorkCenterQueuingOp",
+    "description": "Navigation `to_WorkCenterQueuingOp` from `A_WorkCenters` to `ToRole_assoc_7C5F115EC007E342BA08466EC587AE6E`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenters",
+    "to_entity_set": "ToRole_assoc_C3A7EF83AA2CDB52F204220FC5380E92",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_WorkCenterTodayOp",
+    "description": "Navigation `to_WorkCenterTodayOp` from `A_WorkCenters` to `ToRole_assoc_C3A7EF83AA2CDB52F204220FC5380E92`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenters",
+    "to_entity_set": "ToRole_assoc_CAE175172F178DDEA25DBDF194F0A4BF",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_WorkCenterDescription",
+    "description": "Navigation `to_WorkCenterDescription` from `A_WorkCenters` to `ToRole_assoc_CAE175172F178DDEA25DBDF194F0A4BF`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenters",
+    "to_entity_set": "ToRole_assoc_CC626E4678AFE7FFF01435CC0D142089",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_WorkCenterCostCenter",
+    "description": "Navigation `to_WorkCenterCostCenter` from `A_WorkCenters` to `ToRole_assoc_CC626E4678AFE7FFF01435CC0D142089`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenters",
+    "to_entity_set": "ToRole_assoc_CFAF371FFE0BB0F11C2FE9536F9FD1CC",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_WorkCenterAllCapacity",
+    "description": "Navigation `to_WorkCenterAllCapacity` from `A_WorkCenters` to `ToRole_assoc_CFAF371FFE0BB0F11C2FE9536F9FD1CC`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenters",
+    "to_entity_set": "ToRole_assoc_F65DE234BB0FFA554DB48EE0CEA90DE3",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_Capacity",
+    "description": "Navigation `to_Capacity` from `A_WorkCenters` to `ToRole_assoc_F65DE234BB0FFA554DB48EE0CEA90DE3`.",
+    "confidence": 0.8
+  }
+]

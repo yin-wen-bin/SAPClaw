@@ -1,0 +1,36 @@
+[
+  {
+    "service_name": "API_SALES_QUOTATION_SRV",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_SALES_QUOTATION_SRV",
+    "description": "In every API call, you can make use of the following operations:\r\n - You can read entire sales quotations or only parts of the data, using the provided filters.\r\n - You can create sales quotations. You can use “deep insert” requests to create a header together with one or more related entities (for example, header partners or items).\r\n - For existing sales quotations, you can create new items. You can use “deep insert” requests to create an item together with one or more related entities (for example, item partners).\r\n - For existing sales quotations, you can update the header, header partner, header pricing element, header text, item, item partner, item pricing element, and item text.\r\n - For existing sales quotations, you can delete the header, header partner, header pricing element, header text, header related object, item, item partner, item pricing element, item text, and item related object.\r\n - You can accept or deny approval requests for sales quotations that cannot be processed without the consent of an approver.\r\n\r\nNote: Certain elements and entities can only be used if you activate the business function ISR_RETAILSYSTEM. For more information, see Business Documentation.",
+    "entity_sets": [
+      "A_SalesQuotation",
+      "A_SalesQuotationItem",
+      "A_SalesQuotationItemPartner",
+      "A_SalesQuotationItemPrcgElmnt",
+      "A_SalesQuotationItemText",
+      "A_SalesQuotationPartner",
+      "A_SalesQuotationPrcgElmnt",
+      "A_SalesQuotationRelatedObject",
+      "A_SalesQuotationText",
+      "A_SlsQtanItemRelatedObject",
+      "A_SlsQtanItmPrecdgProcFlow",
+      "A_SlsQtanItmSubsqntProcFlow",
+      "A_SlsQtanPrecdgProcFlow",
+      "A_SlsQtanSubsqntProcFlow"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_SALES_QUOTATION_SRV/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/bc/fea10daf7241aea335dab3bc70ea8e/frameset.htm",
+    "openapi_version": "1.0.0"
+  }
+]

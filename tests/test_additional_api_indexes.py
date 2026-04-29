@@ -33,11 +33,17 @@ def test_api_catalog_uses_compact_router_shape() -> None:
 
     assert set(purchase_order) == {
         "service_name",
+        "service_kind",
+        "runtime_available",
+        "odata_runtime_available",
+        "runtime_notes",
         "short_description",
         "primary_business_objects",
         "top_entities",
         "top_filter_fields",
     }
+    assert purchase_order["service_kind"] == "ODATA"
+    assert purchase_order["odata_runtime_available"] is True
     assert purchase_order["primary_business_objects"][:3] == [
         "Purchase Order",
         "Purchase Order Item",
@@ -75,6 +81,18 @@ def test_api_catalog_pins_material_stock_router_fields() -> None:
     assert "A_MatlStkInAcctMod.Material" in stock["top_filter_fields"]
     assert "A_MatlStkInAcctMod.Plant" in stock["top_filter_fields"]
     assert "A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit" in stock["top_filter_fields"]
+
+
+def test_purchase_order_history_index_is_cds_view_only() -> None:
+    snapshot = LocalIndexLoader(index_root="data/index").load("I_PurchaseOrderHistoryAPI01")
+    service = snapshot.services[0]
+
+    assert service["service_kind"] == "CDS_VIEW_ONLY"
+    assert service["base_path"] == "cds://I_PurchaseOrderHistoryAPI01"
+    assert service["runtime_available"] is False
+    assert service["odata_runtime_available"] is False
+    assert not service["runtime_path_template"]
+    assert all(entity.get("runtime_kind") == "CDS_VIEW_ONLY" for entity in snapshot.entities)
 
 
 def test_purchase_order_schema_context_loads_business_fields() -> None:

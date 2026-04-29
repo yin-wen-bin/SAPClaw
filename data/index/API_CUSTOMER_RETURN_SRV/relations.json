@@ -1,0 +1,302 @@
+[
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturn",
+    "navigation_name": "to_CustomerReturnOverviewStatus",
+    "to_entity_set": "ToRole_assoc_9F0C5547BE2317C505D4749683F1123D",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturn",
+    "navigation_name": "to_Item",
+    "to_entity_set": "ToRole_assoc_B91DDBA68D26D9A7F415A38FAF152550",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturn",
+    "navigation_name": "to_Partner",
+    "to_entity_set": "ToRole_assoc_5F643D81BCC453AD3995DE56DCD55895",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturn",
+    "navigation_name": "to_PricingElement",
+    "to_entity_set": "ToRole_assoc_847900754D96D698FC690C1D069D3AA0",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturn",
+    "navigation_name": "to_RelatedObject",
+    "to_entity_set": "ToRole_assoc_9C010D4290FEE77E658491D0E04354EE",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturn",
+    "navigation_name": "to_Text",
+    "to_entity_set": "ToRole_assoc_3146EC463D3BD26E519348D7C6BD4883",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturnItem",
+    "navigation_name": "to_CustomerReturn",
+    "to_entity_set": "ToRole_assoc_63C6B224C658DD5ABC183F8ECB48F27B",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturnItem",
+    "navigation_name": "to_Partner",
+    "to_entity_set": "ToRole_assoc_D4A6058930D3FE0A420383C4C0C5B463",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturnItem",
+    "navigation_name": "to_PricingElement",
+    "to_entity_set": "ToRole_assoc_188386ADA1B674C978B9B9EC9167A7D3",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturnItem",
+    "navigation_name": "to_ProcessStep",
+    "to_entity_set": "ToRole_assoc_1974AD2C2BA1EA9F667DBC1B7C1DA889",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturnItem",
+    "navigation_name": "to_RelatedObject",
+    "to_entity_set": "ToRole_assoc_9C2ED09ACA8D2E5387E599AF0EDB0A6B",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturnItem",
+    "navigation_name": "to_ScheduleLine",
+    "to_entity_set": "ToRole_assoc_2E9C63EEF85E45883E326943ECC15ABB",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturnItem",
+    "navigation_name": "to_SerialNumber",
+    "to_entity_set": "ToRole_assoc_6D0FEF8A0BC17637CCC9E894F19BF404",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturnItem",
+    "navigation_name": "to_Text",
+    "to_entity_set": "ToRole_assoc_5BDF138CC7C390CC98FCAB761CF5C8B2",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturnItemPartner",
+    "navigation_name": "to_CustomerReturn",
+    "to_entity_set": "ToRole_assoc_307578848ABB89DA5DE854CDC67795F4",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturnItemPartner",
+    "navigation_name": "to_CustomerReturnItem",
+    "to_entity_set": "ToRole_assoc_24AAC3B7AB6874135E0FC154A88E8013",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "navigation_name": "to_CustomerReturn",
+    "to_entity_set": "ToRole_assoc_86E62B2E3922285BCE98621D398BFF83",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "navigation_name": "to_CustomerReturnItem",
+    "to_entity_set": "ToRole_assoc_CB3F8316AFE6657A86156BEA120A4060",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturnItemRelatedObj",
+    "navigation_name": "to_CustomerReturn",
+    "to_entity_set": "ToRole_assoc_D10A312DD5021901D478740D62F16CEA",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturnItemRelatedObj",
+    "navigation_name": "to_CustomerReturnItem",
+    "to_entity_set": "ToRole_assoc_2CB8656DC08E0C98097E50C3B072449D",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturnItemText",
+    "navigation_name": "to_CustomerReturn",
+    "to_entity_set": "ToRole_assoc_49EC9AB8034F7924BD8A7C60FC6F0CC0",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturnItemText",
+    "navigation_name": "to_CustomerReturnItem",
+    "to_entity_set": "ToRole_assoc_C6EFCBDCA2059578B079FD74389DFDAC",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturnPartner",
+    "navigation_name": "to_CustomerReturn",
+    "to_entity_set": "ToRole_assoc_2C262575262AEBF832D12F0E4734FD78",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturnPrcgElmnt",
+    "navigation_name": "to_CustomerReturn",
+    "to_entity_set": "ToRole_assoc_D3F613D637B25EECC389717410D276A8",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturnProcessStep",
+    "navigation_name": "to_CustomerReturn",
+    "to_entity_set": "ToRole_assoc_70820E695D07C593DE1F6E8B1DC49CC5",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturnProcessStep",
+    "navigation_name": "to_CustomerReturnItem",
+    "to_entity_set": "ToRole_assoc_7C729AE7F35DF4ACE6BB37213834244A",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturnRelatedObject",
+    "navigation_name": "to_CustomerReturn",
+    "to_entity_set": "ToRole_assoc_482DE3F6A20574408725F0421C463EC2",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturnScheduleLine",
+    "navigation_name": "to_CustomerReturn",
+    "to_entity_set": "ToRole_assoc_10817576A645703051C97977594B8297",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturnScheduleLine",
+    "navigation_name": "to_CustomerReturnItem",
+    "to_entity_set": "ToRole_assoc_B9208A88D7936954F2DD84EC980D6964",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "from_entity_set": "A_CustomerReturnText",
+    "navigation_name": "to_CustomerReturn",
+    "to_entity_set": "ToRole_assoc_35FA6571D0E7267CCEEF6F3590897D94",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  }
+]

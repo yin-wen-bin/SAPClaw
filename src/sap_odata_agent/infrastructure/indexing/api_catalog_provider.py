@@ -46,6 +46,12 @@ class ApiCatalogProvider:
     @staticmethod
     def _catalog_entry(snapshot) -> dict[str, Any]:
         service = snapshot.services[0] if snapshot.services else {}
+        service_kind = str(service.get("service_kind") or "ODATA")
+        runtime_available = service.get("runtime_available", True)
+        odata_runtime_available = service.get(
+            "odata_runtime_available",
+            runtime_available is not False and service_kind != "CDS_VIEW_ONLY",
+        )
         ranked_entities = ApiCatalogProvider._rank_entities(snapshot)
         top_entities = [
             str(entity.get("entity_set", ""))
@@ -54,6 +60,10 @@ class ApiCatalogProvider:
         ]
         return {
             "service_name": snapshot.service_name,
+            "service_kind": service_kind,
+            "runtime_available": runtime_available,
+            "odata_runtime_available": odata_runtime_available,
+            "runtime_notes": str(service.get("runtime_notes") or ""),
             "short_description": ApiCatalogProvider._short_description(service),
             "primary_business_objects": ApiCatalogProvider._primary_business_objects(ranked_entities),
             "top_entities": top_entities,

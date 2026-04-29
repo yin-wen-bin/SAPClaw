@@ -1,0 +1,1602 @@
+[
+  {
+    "term": "Document Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Document Items",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "会计年度",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "FiscalYear"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证中的凭证日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "DocumentDate"
+    ],
+    "synonyms": [
+      "凭证日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证中的过账日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "PostingDate"
+    ],
+    "synonyms": [
+      "过账日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "DocumentDate"
+    ],
+    "synonyms": [
+      "凭证中的凭证日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分组条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "PhysicalInventoryGroup"
+    ],
+    "synonyms": [
+      "库存盘点凭证项目的分组条件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分组条件类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "PhysicalInventoryGroupType"
+    ],
+    "synonyms": [
+      "分组类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分组类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "PhysicalInventoryGroupType"
+    ],
+    "synonyms": [
+      "分组条件类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建人",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "CreatedByUser"
+    ],
+    "synonyms": [
+      "库存盘点创建用户"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "删除状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "PhysInvtryDeletionStatus"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "存储地点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "StorageLocation"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "Plant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "库存交易类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "InventoryTransactionType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "库存盘点凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "PhysicalInventoryDocument"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "库存盘点凭证的描述",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "PhysicalInventoryDocumentDesc"
+    ],
+    "synonyms": [
+      "描述"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "库存盘点凭证项目的分组条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "PhysicalInventoryGroup"
+    ],
+    "synonyms": [
+      "分组条件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "库存盘点创建用户",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "CreatedByUser"
+    ],
+    "synonyms": [
+      "创建人"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "库存盘点参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "PhysInventoryReferenceNumber"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "库存盘点的计划日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "PhysInventoryPlannedCountDate"
+    ],
+    "synonyms": [
+      "计划盘点日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "库存盘点类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "PhysicalInventoryType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "库存盘点编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "PhysicalInventoryNumber"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "描述",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "PhysicalInventoryDocumentDesc"
+    ],
+    "synonyms": [
+      "库存盘点凭证的描述"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "最后更改",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "最后更改时戳"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "最后更改时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "最后更改"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "最新计算的日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "PhysicalInventoryLastCountDate"
+    ],
+    "synonyms": [
+      "盘点日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "特殊库存",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "InventorySpecialStockType"
+    ],
+    "synonyms": [
+      "特殊库存标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "特殊库存标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "InventorySpecialStockType"
+    ],
+    "synonyms": [
+      "特殊库存"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "由于库存盘点而冻结过账",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "PostingIsBlockedForPhysInvtry"
+    ],
+    "synonyms": [
+      "记帐冻结"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "盘点日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "PhysicalInventoryLastCountDate"
+    ],
+    "synonyms": [
+      "最新计算的日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "盘点状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "PhysicalInventoryCountStatus"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划盘点日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "PhysInventoryPlannedCountDate"
+    ],
+    "synonyms": [
+      "库存盘点的计划日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "记帐冻结",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "PostingIsBlockedForPhysInvtry"
+    ],
+    "synonyms": [
+      "由于库存盘点而冻结过账"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "调整状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "PhysInvtryAdjustmentPostingSts"
+    ],
+    "synonyms": [
+      "调整过账的状态（库存差异）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "调整过账的状态（库存差异）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "PhysInvtryAdjustmentPostingSts"
+    ],
+    "synonyms": [
+      "调整状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "账面库存冻结",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "PhysInvtryDocHasQtySnapshot"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "过账日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "PostingDate"
+    ],
+    "synonyms": [
+      "凭证中的过账日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "过账期间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocHeader",
+    "mapped_fields": [
+      "FiscalPeriod"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Document Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Document Items",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Document Serial Number",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "WBS 要素",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "WBSElement"
+    ],
+    "synonyms": [
+      "工作分解结构要素（WBS 要素）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "上次更改日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "LastChangeDate"
+    ],
+    "synonyms": [
+      "更改日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "不含计量单位建议",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "IsHandledInAltvUnitOfMsr"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "仅值物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "IsValueOnlyMaterial"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "会计年度",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "FiscalYear"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "Supplier"
+    ],
+    "synonyms": [
+      "供应商科目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商科目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "Supplier"
+    ],
+    "synonyms": [
+      "供应商"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "公司代码货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "Currency"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证中的过账日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "PostingDate"
+    ],
+    "synonyms": [
+      "过账日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "周期盘点类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "CycleCountType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "基于销售价格的外部输入值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "EnteredSlsAmtInCoCodeCrcy"
+    ],
+    "synonyms": [
+      "销售价格盘点值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "基本计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "MaterialBaseUnit"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "存储地点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "StorageLocation"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "Customer"
+    ],
+    "synonyms": [
+      "客户的帐户编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户的帐户编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "Customer"
+    ],
+    "synonyms": [
+      "客户"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工作分解结构要素（WBS 要素）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "WBSElement"
+    ],
+    "synonyms": [
+      "WBS 要素"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "Plant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "差异值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "DifferenceAmountInCoCodeCrcy"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "差异原因",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "ReasonForPhysInvtryDifference"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "差异已过账",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "PhysInvtryDifferenceIsPosted"
+    ],
+    "synonyms": [
+      "项目差异已过账"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已删除",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "PhysInvtryItemIsDeleted"
+    ],
+    "synonyms": [
+      "项目已删除"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已盘点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "PhysicalInventoryItemIsCounted"
+    ],
+    "synonyms": [
+      "项目已盘点"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已盘点数量值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "PhysInvtryCtAmtInCoCodeCrcy"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已盘点数量（录入单位）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "QuantityInUnitOfEntry"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已重新盘点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "PhysInvtryItemIsRecounted"
+    ],
+    "synonyms": [
+      "重新盘点项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "库存盘点凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "PhysicalInventoryDocument"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "库存盘点凭证项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "PhysicalInventoryDocumentItem"
+    ],
+    "synonyms": [
+      "库存盘点项目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "库存盘点参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "PhysInventoryReferenceNumber"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "库存盘点项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "PhysicalInventoryDocumentItem"
+    ],
+    "synonyms": [
+      "库存盘点凭证项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "库存类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "PhysicalInventoryStockType"
+    ],
+    "synonyms": [
+      "库存类型（库存盘点"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "库存类型（库存盘点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "PhysicalInventoryStockType"
+    ],
+    "synonyms": [
+      "库存类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "录入单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "UnitOfEntry"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批次",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "Batch"
+    ],
+    "synonyms": [
+      "批次编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批次编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "Batch"
+    ],
+    "synonyms": [
+      "批次"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "更改人",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "LastChangeUser"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "更改日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "LastChangeDate"
+    ],
+    "synonyms": [
+      "上次更改日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "最后更改",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "最后更改时戳"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "最后更改时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "最后更改"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "最新计算的日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "PhysicalInventoryLastCountDate"
+    ],
+    "synonyms": [
+      "盘点日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "MaterialDocument"
+    ],
+    "synonyms": [
+      "物料凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料凭证年度",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "MaterialDocumentYear"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "MaterialDocument"
+    ],
+    "synonyms": [
+      "物料凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料凭证项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "MaterialDocumentItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "特殊库存类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "InventorySpecialStockType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "盘点前的账面数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "BookQtyBfrCountInMatlBaseUnit"
+    ],
+    "synonyms": [
+      "账面数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "盘点员",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "CountedByUser"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "盘点数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "Quantity"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "盘点日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "PhysicalInventoryLastCountDate"
+    ],
+    "synonyms": [
+      "最新计算的日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "调整过账执行人",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "AdjustmentPostingMadeByUser"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "账面价值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "BookQtyAmountInCoCodeCrcy"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "账面数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "BookQtyBfrCountInMatlBaseUnit"
+    ],
+    "synonyms": [
+      "盘点前的账面数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "过账日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "PostingDate"
+    ],
+    "synonyms": [
+      "凭证中的过账日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "重新盘点凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "PhysInvtryRecountDocument"
+    ],
+    "synonyms": [
+      "重盘点凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "重新盘点项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "PhysInvtryItemIsRecounted"
+    ],
+    "synonyms": [
+      "已重新盘点"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "重盘点凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "PhysInvtryRecountDocument"
+    ],
+    "synonyms": [
+      "重新盘点凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售价格盘点值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "EnteredSlsAmtInCoCodeCrcy"
+    ],
+    "synonyms": [
+      "基于销售价格的外部输入值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售价格账面价值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "SlsPriceAmountInCoCodeCrcy"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售订单",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "SalesOrder"
+    ],
+    "synonyms": [
+      "销售订单数"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售订单中的项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "SalesOrderItem"
+    ],
+    "synonyms": [
+      "销售订单项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售订单数",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "SalesOrder"
+    ],
+    "synonyms": [
+      "销售订单"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售订单项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "SalesOrderItem"
+    ],
+    "synonyms": [
+      "销售订单中的项目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "零盘点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "PhysicalInventoryItemIsZero"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目差异已过账",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "PhysInvtryDifferenceIsPosted"
+    ],
+    "synonyms": [
+      "差异已过账"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目已删除",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "PhysInvtryItemIsDeleted"
+    ],
+    "synonyms": [
+      "已删除"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目已盘点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_PhysInventoryDocItem",
+    "mapped_fields": [
+      "PhysicalInventoryItemIsCounted"
+    ],
+    "synonyms": [
+      "已盘点"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Document Serial Number",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_SerialNumberPhysInventoryDoc",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "会计年度",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_SerialNumberPhysInventoryDoc",
+    "mapped_fields": [
+      "FiscalYear"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "序列号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_SerialNumberPhysInventoryDoc",
+    "mapped_fields": [
+      "SerialNumber"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "序列号库存盘点类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_SerialNumberPhysInventoryDoc",
+    "mapped_fields": [
+      "SerialNumberPhysicalInvtryType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "库存盘点凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_SerialNumberPhysInventoryDoc",
+    "mapped_fields": [
+      "PhysicalInventoryDocument"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_SerialNumberPhysInventoryDoc",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_SerialNumberPhysInventoryDoc",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "行号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_SerialNumberPhysInventoryDoc",
+    "mapped_fields": [
+      "PhysicalInventoryDocumentItem"
+    ],
+    "synonyms": [
+      "项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "设备",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_SerialNumberPhysInventoryDoc",
+    "mapped_fields": [
+      "Equipment"
+    ],
+    "synonyms": [
+      "设备号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "设备号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_SerialNumberPhysInventoryDoc",
+    "mapped_fields": [
+      "Equipment"
+    ],
+    "synonyms": [
+      "设备"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "A_SerialNumberPhysInventoryDoc",
+    "mapped_fields": [
+      "PhysicalInventoryDocumentItem"
+    ],
+    "synonyms": [
+      "行号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Document Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "InitiateRecount",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Document Items",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "InitiateRecountOnItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Document Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "PostDifferences",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Document Items",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "mapped_entity_set": "PostDifferencesOnItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  }
+]

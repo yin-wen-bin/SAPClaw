@@ -1,0 +1,15 @@
+{
+  "service_name": "API_PLANNED_ORDERS",
+  "sap_metadata_entity_count": 3,
+  "sap_metadata_field_count": 136,
+  "openapi_documented_entity_count": 5,
+  "openapi_documented_entity_type_count": 6,
+  "merged_entity_count": 5,
+  "merged_field_count": 136,
+  "relation_count": 2,
+  "entity_graph_edge_count": 2,
+  "lookup_path_count": 59,
+  "business_term_count": 205,
+  "vector_document_count": 195,
+  "doc_chunk_count": 223
+}

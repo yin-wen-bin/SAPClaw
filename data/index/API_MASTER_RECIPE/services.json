@@ -1,0 +1,31 @@
+[
+  {
+    "service_name": "API_MASTER_RECIPE",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_MASTER_RECIPE",
+    "description": "Master recipes are used for planning the manufacture of products. It is used as a reference for process orders and in calculating the costs of products.\r\nMaster recipe is a description of the operations or phases (steps in a process) that must be carried out in a certain order to manufacture a product.",
+    "entity_sets": [
+      "MasterRecipeHeader",
+      "MasterRecipeMatlAssgmt",
+      "MasterRecipeOpCompAlloc",
+      "MasterRecipeOpSecdryRsce",
+      "MasterRecipeOperation",
+      "MasterRecipePhase",
+      "MasterRecipePhseCompAlloc",
+      "MasterRecipePhseRelshp",
+      "MasterRecipePhseSecdryRsce"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_MASTER_RECIPE/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/4d/9ed891a8c547c493e70dbfdcbea7bb/frameset.htm",
+    "openapi_version": "1.0.4"
+  }
+]

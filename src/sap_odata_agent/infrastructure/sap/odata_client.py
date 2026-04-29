@@ -9,6 +9,7 @@ import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
+from pathlib import Path
 
 from sap_odata_agent.domain.models import (
     CompiledRequest,
@@ -18,6 +19,9 @@ from sap_odata_agent.domain.models import (
     QueryPlan,
     ValidationIssue,
 )
+
+
+CDS_VIEW_ONLY_SERVICES = frozenset({"I_PurchaseOrderHistoryAPI01"})
 
 
 @dataclass(slots=True)
@@ -34,8 +38,24 @@ class SapRuntimeConfig:
 
 
 class BasicPlanValidator:
+    def __init__(self, cds_view_only_services: frozenset[str] | set[str] | None = None) -> None:
+        self.cds_view_only_services = set(cds_view_only_services or CDS_VIEW_ONLY_SERVICES)
+
     def validate(self, plan: QueryPlan) -> list[ValidationIssue]:
         issues: list[ValidationIssue] = []
+
+        if str(plan.service_name or "") in self.cds_view_only_services:
+            issues.append(
+                ValidationIssue(
+                    severity="error",
+                    message=(
+                        f"{plan.service_name} is marked CDS_VIEW_ONLY. It is a CDS view/API view, "
+                        "not a SAP Gateway OData service, so it cannot be executed through "
+                        "/sap/opu/odata/sap/..."
+                    ),
+                    field="service_name",
+                )
+            )
 
         if plan.service_name.startswith("UNKNOWN"):
             issues.append(
@@ -104,10 +124,22 @@ class BasicPlanValidator:
 
 
 class BasicODataCompiler:
-    def __init__(self, base_url: str) -> None:
+    def __init__(
+        self,
+        base_url: str,
+        cds_view_only_services: frozenset[str] | set[str] | None = None,
+        index_root: str | Path | None = None,
+        service_runtime_overrides: dict[str, str] | None = None,
+    ) -> None:
         self.base_url = base_url.rstrip("/")
+        self.cds_view_only_services = set(cds_view_only_services or CDS_VIEW_ONLY_SERVICES)
+        self.index_root = Path(index_root) if index_root is not None else None
+        self.service_runtime_overrides = dict(service_runtime_overrides or {})
+        self._index_runtime_overrides: dict[str, str] | None = None
 
     def compile(self, plan: QueryPlan) -> CompiledRequest:
+        self._ensure_odata_runtime_service(plan.service_name)
+
         if plan.plan_kind == "function_import":
             return self._compile_function_import(plan)
 
@@ -127,12 +159,19 @@ class BasicODataCompiler:
             query_parts.append(f"$top={plan.top}")
 
         query_string = "&".join(query_parts)
-        path = f"/sap/opu/odata/sap/{plan.service_name}/{plan.entity_set}"
+        path = f"/sap/opu/odata/sap/{self._runtime_service_name(plan.service_name)}/{plan.entity_set}"
         url = f"{self.base_url}{path}"
         if query_string:
             url = f"{url}?{query_string}"
 
         return CompiledRequest(method=plan.http_method, url=url, payload=plan.payload)
+
+    def _ensure_odata_runtime_service(self, service_name: str) -> None:
+        if str(service_name or "") in self.cds_view_only_services:
+            raise ValueError(
+                f"{service_name} is marked CDS_VIEW_ONLY and cannot be compiled as "
+                "a /sap/opu/odata/sap/... request."
+            )
 
     def _compile_function_import(self, plan: QueryPlan) -> CompiledRequest:
         query_params = {
@@ -141,11 +180,60 @@ class BasicODataCompiler:
             if parameter.name
         }
         query_string = urllib.parse.urlencode(query_params, safe="$(),'/:")
-        path = f"/sap/opu/odata/sap/{plan.service_name}/{plan.entity_set}"
+        path = f"/sap/opu/odata/sap/{self._runtime_service_name(plan.service_name)}/{plan.entity_set}"
         url = f"{self.base_url}{path}"
         if query_string:
             url = f"{url}?{query_string}"
         return CompiledRequest(method=plan.http_method, url=url, payload=plan.payload)
+
+    def _runtime_service_name(self, service_name: str) -> str:
+        normalized = str(service_name or "")
+        if normalized in self.service_runtime_overrides:
+            return self.service_runtime_overrides[normalized]
+
+        index_overrides = self._load_index_runtime_overrides()
+        if normalized in index_overrides:
+            return index_overrides[normalized]
+
+        match = re.fullmatch(r"(.+_SRV)_(\d{4})", str(service_name or ""))
+        if match:
+            return f"{match.group(1)};v={match.group(2)}"
+        return service_name
+
+    def _load_index_runtime_overrides(self) -> dict[str, str]:
+        if self._index_runtime_overrides is not None:
+            return self._index_runtime_overrides
+        if self.index_root is None or not self.index_root.exists():
+            self._index_runtime_overrides = {}
+            return self._index_runtime_overrides
+
+        overrides: dict[str, str] = {}
+        for services_path in self.index_root.glob("*/services.json"):
+            try:
+                records = json.loads(services_path.read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError):
+                continue
+            if not isinstance(records, list) or not records:
+                continue
+            record = records[0]
+            if not isinstance(record, dict):
+                continue
+            index_service_name = str(record.get("service_name") or services_path.parent.name)
+            runtime_service_name = self._extract_runtime_service_name(
+                str(record.get("source") or "") or str(record.get("base_path") or "")
+            )
+            if runtime_service_name and runtime_service_name != index_service_name:
+                overrides[index_service_name] = runtime_service_name
+
+        self._index_runtime_overrides = overrides
+        return overrides
+
+    @staticmethod
+    def _extract_runtime_service_name(value: str) -> str:
+        match = re.search(r"/sap/opu/odata/sap/([^/?#]+)", str(value or "").replace("\\", "/"))
+        if not match:
+            return ""
+        return match.group(1)
 
     @staticmethod
     def _compile_function_parameter(parameter: FunctionParameter) -> str:

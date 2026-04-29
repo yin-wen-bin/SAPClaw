@@ -1,0 +1,762 @@
+[
+  {
+    "service_name": "API_OUTBOUND_DELIVERY_SRV",
+    "entity_set": "A_HandlingUnitHeaderDelivery",
+    "entity_type": "A_HandlingUnitHeaderDeliveryType",
+    "key_fields": [
+      "HandlingUnitInternalId"
+    ],
+    "default_select_fields": [
+      "CreatedByUser",
+      "CreationDate",
+      "CreationTime",
+      "DeliveryDocument",
+      "GrossVolume",
+      "GrossWeight",
+      "HandlingUnitBaseUnitOfMeasure",
+      "HandlingUnitContentDescription",
+      "HandlingUnitExternalId",
+      "HandlingUnitExternalIdType"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_HandlingUnitItemDelivery"
+    ],
+    "description": "Creates handling unit headers.",
+    "supported_methods": [
+      "GET",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_OUTBOUND_DELIVERY_SRV",
+    "entity_set": "A_HandlingUnitItemDelivery",
+    "entity_type": "A_HandlingUnitItemDeliveryType",
+    "key_fields": [
+      "HandlingUnitInternalId",
+      "HandlingUnitItem"
+    ],
+    "default_select_fields": [
+      "Batch",
+      "DeliveryDocument",
+      "DeliveryDocumentItem",
+      "HandlingUnitExternalId",
+      "HandlingUnitInternalId",
+      "HandlingUnitItem",
+      "HandlingUnitNestedInternalId",
+      "HandlingUnitNrOfAuxPackgMat",
+      "HandlingUnitNumberOfSerialnumb",
+      "HandlingUnitQuantity"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Creates handling unit items.",
+    "supported_methods": [
+      "GET",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_OUTBOUND_DELIVERY_SRV",
+    "entity_set": "A_MaintenanceItemObject",
+    "entity_type": "A_MaintenanceItemObjectType",
+    "key_fields": [
+      "MaintenanceItemObject",
+      "MaintenanceItemObjectList"
+    ],
+    "default_select_fields": [
+      "Assembly",
+      "Equipment",
+      "FunctionalLocation",
+      "MaintenanceItemObject",
+      "MaintenanceItemObjectList",
+      "MaintenanceNotification",
+      "MaintObjectLocAcctAssgmtNmbr",
+      "Material",
+      "SerialNumber"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "A_MaintenanceItemObjectType",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_OUTBOUND_DELIVERY_SRV",
+    "entity_set": "A_OutbDeliveryAddress",
+    "entity_type": "A_OutbDeliveryAddressType",
+    "key_fields": [
+      "AddressID",
+      "POBox",
+      "POBoxDeviatingCountry"
+    ],
+    "default_select_fields": [
+      "AdditionalStreetPrefixName",
+      "AdditionalStreetSuffixName",
+      "AddressID",
+      "AddressTimeZone",
+      "Building",
+      "BusinessPartnerName1",
+      "BusinessPartnerName2",
+      "BusinessPartnerName3",
+      "BusinessPartnerName4",
+      "CareOfName"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "A_OutbDeliveryAddressType",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_OUTBOUND_DELIVERY_SRV",
+    "entity_set": "A_OutbDeliveryAddress2",
+    "entity_type": "A_OutbDeliveryAddress2Type",
+    "key_fields": [
+      "DeliveryDocument",
+      "PartnerFunction"
+    ],
+    "default_select_fields": [
+      "DeliveryDocument",
+      "PartnerFunction",
+      "DeliveryVersion",
+      "AdditionalStreetPrefixName",
+      "AddressID",
+      "AdditionalStreetSuffixName",
+      "AddressTimeZone",
+      "Building",
+      "BusinessPartnerName1",
+      "BusinessPartnerName2"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads outbound delivery partner addresses.",
+    "supported_methods": [
+      "GET",
+      "PATCH"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_OUTBOUND_DELIVERY_SRV",
+    "entity_set": "A_OutbDeliveryDocFlow",
+    "entity_type": "A_OutbDeliveryDocFlowType",
+    "key_fields": [
+      "PrecedingDocument",
+      "PrecedingDocumentItem",
+      "SubsequentDocumentCategory"
+    ],
+    "default_select_fields": [
+      "Deliveryversion",
+      "PrecedingDocument",
+      "PrecedingDocumentCategory",
+      "PrecedingDocumentItem",
+      "Subsequentdocument",
+      "QuantityInBaseUnit",
+      "SubsequentDocumentItem",
+      "SDFulfillmentCalculationRule",
+      "SubsequentDocumentCategory",
+      "TransferOrderInWrhsMgmtIsConfd"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads outbound delivery document flows by key.",
+    "supported_methods": [
+      "GET",
+      "PATCH"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_OUTBOUND_DELIVERY_SRV",
+    "entity_set": "A_OutbDeliveryHeader",
+    "entity_type": "A_OutbDeliveryHeaderType",
+    "key_fields": [
+      "DeliveryDocument"
+    ],
+    "default_select_fields": [
+      "ActualDeliveryRoute",
+      "Shippinglocationtimezone",
+      "ActualGoodsMovementDate",
+      "Receivinglocationtimezone",
+      "ActualGoodsMovementTime",
+      "BillingDocumentDate",
+      "BillOfLading",
+      "CompleteDeliveryIsDefined",
+      "ConfirmationTime",
+      "CreatedByUser"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_DeliveryDocumentText",
+      "to_HandlingUnitHeaderDelivery",
+      "to_DeliveryDocumentPartner",
+      "to_DeliveryDocumentItem"
+    ],
+    "description": "Reads outbound delivery headers.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_OUTBOUND_DELIVERY_SRV",
+    "entity_set": "A_OutbDeliveryHeaderText",
+    "entity_type": "A_OutbDeliveryHeaderTextType",
+    "key_fields": [
+      "DeliveryDocument",
+      "Language",
+      "TextElement"
+    ],
+    "default_select_fields": [
+      "DeliveryDocument",
+      "TextElement",
+      "Language",
+      "TextElementDescription",
+      "TextElementText",
+      "DeliveryLongTextIsFormatted"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Creates outbound delivery header texts.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_OUTBOUND_DELIVERY_SRV",
+    "entity_set": "A_OutbDeliveryItem",
+    "entity_type": "A_OutbDeliveryItemType",
+    "key_fields": [
+      "DeliveryDocument",
+      "DeliveryDocumentItem"
+    ],
+    "default_select_fields": [
+      "ActualDeliveredQtyInBaseUnit",
+      "ActualDeliveryQuantity",
+      "AdditionalCustomerGroup1",
+      "AdditionalCustomerGroup2",
+      "AdditionalCustomerGroup3",
+      "AdditionalCustomerGroup4",
+      "AdditionalCustomerGroup5",
+      "AdditionalMaterialGroup1",
+      "AdditionalMaterialGroup2",
+      "AdditionalMaterialGroup3"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SerialDeliveryItem",
+      "to_DocumentFlow",
+      "to_HandlingUnitItemDelivery",
+      "to_DeliveryDocumentItemText"
+    ],
+    "description": "Reads outbound delivery items.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_OUTBOUND_DELIVERY_SRV",
+    "entity_set": "A_OutbDeliveryItemText",
+    "entity_type": "A_OutbDeliveryItemTextType",
+    "key_fields": [
+      "DeliveryDocument",
+      "DeliveryDocumentItem",
+      "Language",
+      "TextElement"
+    ],
+    "default_select_fields": [
+      "DeliveryDocument",
+      "DeliveryDocumentItem",
+      "TextElement",
+      "Language",
+      "TextElementDescription",
+      "TextElementText",
+      "DeliveryLongTextIsFormatted"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Creates outbound delivery item texts.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_OUTBOUND_DELIVERY_SRV",
+    "entity_set": "A_OutbDeliveryPartner",
+    "entity_type": "A_OutbDeliveryPartnerType",
+    "key_fields": [
+      "PartnerFunction",
+      "SDDocument"
+    ],
+    "default_select_fields": [
+      "AddressID",
+      "BusinessPartnerAddressUUID",
+      "RefBusinessPartnerAddressUUID",
+      "ContactPerson",
+      "Customer",
+      "PartnerFunction",
+      "Personnel",
+      "SDDocument",
+      "SDDocumentItem",
+      "Supplier"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Address2",
+      "to_Address"
+    ],
+    "description": "Reads addresses of specific outbound delivery partner.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_OUTBOUND_DELIVERY_SRV",
+    "entity_set": "A_SerialNmbrDelivery",
+    "entity_type": "A_SerialNmbrDeliveryType",
+    "key_fields": [
+      "MaintenanceItemObjectList"
+    ],
+    "default_select_fields": [
+      "DeliveryDate",
+      "DeliveryDocument",
+      "DeliveryDocumentItem",
+      "MaintenanceItemObjectList",
+      "SDDocumentCategory"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_MaintenanceItemObject"
+    ],
+    "description": "Reads maintenance item object lists of specific outbound delivery maintenance item object list header.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_OUTBOUND_DELIVERY_SRV",
+    "entity_set": "AddSerialNumberToDeliveryItem",
+    "entity_type": "AddSerialNumberToDeliveryItemType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Adds serial number to outbound delivery item.",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_OUTBOUND_DELIVERY_SRV",
+    "entity_set": "AssignHandlingUnitToDelivery",
+    "entity_type": "AssignHandlingUnitToDeliveryType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Invoke action AssignHandlingUnitToDelivery",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_OUTBOUND_DELIVERY_SRV",
+    "entity_set": "ConfirmPickingAllItems",
+    "entity_type": "ConfirmPickingAllItemsType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Confirms picked quantity of outbound delivery items.",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_OUTBOUND_DELIVERY_SRV",
+    "entity_set": "ConfirmPickingOneItem",
+    "entity_type": "ConfirmPickingOneItemType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Confirms picked quantity of outbound delivery item.",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_OUTBOUND_DELIVERY_SRV",
+    "entity_set": "CreateBatchSplitItem",
+    "entity_type": "CreateBatchSplitItemType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Performs a batch split for the outbound delivery item.",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_OUTBOUND_DELIVERY_SRV",
+    "entity_set": "DeleteAllHandlingUnitsFromDelivery",
+    "entity_type": "DeleteAllHandlingUnitsFromDeliveryType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Deletes all handling units from outbound delivery.",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_OUTBOUND_DELIVERY_SRV",
+    "entity_set": "DeleteAllSerialNumbersFromDeliveryItem",
+    "entity_type": "DeleteAllSerialNumbersFromDeliveryItemType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Deletes all serial numbers from outbound delivery item.",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_OUTBOUND_DELIVERY_SRV",
+    "entity_set": "DeleteSerialNumberFromDeliveryItem",
+    "entity_type": "DeleteSerialNumberFromDeliveryItemType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Deletes serial number from outbound delivery item.",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_OUTBOUND_DELIVERY_SRV",
+    "entity_set": "PickAllItems",
+    "entity_type": "PickAllItemsType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Takes over delivery quantity as picked quantity for all outbound delivery items.",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_OUTBOUND_DELIVERY_SRV",
+    "entity_set": "PickAndBatchSplitOneItem",
+    "entity_type": "PickAndBatchSplitOneItemType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Performs batch split and sets picked quantity.",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_OUTBOUND_DELIVERY_SRV",
+    "entity_set": "PickOneItem",
+    "entity_type": "PickOneItemType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Takes over delivery quantity as picked quantity for specified outbound delivery item.",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_OUTBOUND_DELIVERY_SRV",
+    "entity_set": "PickOneItemWithBaseQuantity",
+    "entity_type": "PickOneItemWithBaseQuantityType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Sets picked quantity and delivery quantity for outbound delivery item.",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_OUTBOUND_DELIVERY_SRV",
+    "entity_set": "PickOneItemWithSalesQuantity",
+    "entity_type": "PickOneItemWithSalesQuantityType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Sets picked quantity and delivery quantity for outbound delivery item.",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_OUTBOUND_DELIVERY_SRV",
+    "entity_set": "PostGoodsIssue",
+    "entity_type": "PostGoodsIssueType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Posts goods issue for outbound delivery.",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_OUTBOUND_DELIVERY_SRV",
+    "entity_set": "ReverseGoodsIssue",
+    "entity_type": "ReverseGoodsIssueType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reverses goods issue for outbound delivery.",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_OUTBOUND_DELIVERY_SRV",
+    "entity_set": "SetPickingQuantityWithBaseQuantity",
+    "entity_type": "SetPickingQuantityWithBaseQuantityType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Sets picked quantity in base unit of measure for  delivery item.",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  }
+]

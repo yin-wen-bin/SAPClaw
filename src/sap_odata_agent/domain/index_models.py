@@ -9,15 +9,19 @@ class ServiceMetadata:
     service_name: str
     service_version: str | None = None
     base_path: str = ""
+    service_kind: str = "ODATA"
+    runtime_path_template: str = "/sap/opu/odata/sap/{service_name}"
     description: str = ""
     entity_sets: list[str] = field(default_factory=list)
     allowed_methods: list[str] = field(default_factory=lambda: ["GET"])
     source: str = ""
     source_documents: list[str] = field(default_factory=list)
     runtime_available: bool = True
+    odata_runtime_available: bool = True
     documentation_available: bool = False
     documentation_url: str = ""
     openapi_version: str = ""
+    runtime_notes: str = ""
 
 
 @dataclass(slots=True)

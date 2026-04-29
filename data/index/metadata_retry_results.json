@@ -1,0 +1,208 @@
+[
+  {
+    "api": "API_BATCH_SRV",
+    "status": "rebuilt_with_metadata",
+    "runtime_service": "API_BATCH_SRV",
+    "entities": 6,
+    "fields": 64,
+    "lookup_paths": 21,
+    "sap_metadata_entities": 6,
+    "sap_metadata_fields": 64
+  },
+  {
+    "api": "API_BILL_OF_MATERIAL_SRV_0002",
+    "status": "rebuilt_with_metadata",
+    "runtime_service": "API_BILL_OF_MATERIAL_SRV;v=0002",
+    "entities": 14,
+    "fields": 198,
+    "lookup_paths": 0,
+    "sap_metadata_entities": 8,
+    "sap_metadata_fields": 196
+  },
+  {
+    "api": "API_MASTER_RECIPE",
+    "status": "rebuilt_with_metadata",
+    "runtime_service": "API_MASTER_RECIPE",
+    "entities": 10,
+    "fields": 444,
+    "lookup_paths": 207,
+    "sap_metadata_entities": 9,
+    "sap_metadata_fields": 340
+  },
+  {
+    "api": "API_MRP_MATERIALS_SRV_01",
+    "status": "rebuilt_with_metadata",
+    "runtime_service": "API_MRP_MATERIALS_SRV_01",
+    "entities": 3,
+    "fields": 165,
+    "lookup_paths": 0,
+    "sap_metadata_entities": 3,
+    "sap_metadata_fields": 165
+  },
+  {
+    "api": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "status": "rebuilt_with_metadata",
+    "runtime_service": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "entities": 7,
+    "fields": 77,
+    "lookup_paths": 92,
+    "sap_metadata_entities": 3,
+    "sap_metadata_fields": 77
+  },
+  {
+    "api": "API_PLANNED_ORDERS",
+    "status": "rebuilt_with_metadata",
+    "runtime_service": "API_PLANNED_ORDERS",
+    "entities": 5,
+    "fields": 136,
+    "lookup_paths": 59,
+    "sap_metadata_entities": 3,
+    "sap_metadata_fields": 136
+  },
+  {
+    "api": "API_PLND_INDEP_RQMT_SRV",
+    "status": "rebuilt_with_metadata",
+    "runtime_service": "API_PLND_INDEP_RQMT_SRV",
+    "entities": 2,
+    "fields": 34,
+    "lookup_paths": 0,
+    "sap_metadata_entities": 2,
+    "sap_metadata_fields": 34
+  },
+  {
+    "api": "API_PROCESS_ORDER_2_SRV",
+    "status": "rebuilt_with_metadata",
+    "runtime_service": "API_PROCESS_ORDER_2_SRV",
+    "entities": 17,
+    "fields": 339,
+    "lookup_paths": 33,
+    "sap_metadata_entities": 6,
+    "sap_metadata_fields": 305
+  },
+  {
+    "api": "API_PRODUCTGROUP_SRV",
+    "status": "rebuilt_with_metadata",
+    "runtime_service": "API_PRODUCTGROUP_SRV",
+    "entities": 2,
+    "fields": 6,
+    "lookup_paths": 0,
+    "sap_metadata_entities": 2,
+    "sap_metadata_fields": 6
+  },
+  {
+    "api": "API_PRODUCTION_ORDER_2_SRV",
+    "status": "rebuilt_with_metadata",
+    "runtime_service": "API_PRODUCTION_ORDER_2_SRV",
+    "entities": 20,
+    "fields": 524,
+    "lookup_paths": 33,
+    "sap_metadata_entities": 9,
+    "sap_metadata_fields": 490
+  },
+  {
+    "api": "API_PRODUCTION_ROUTING",
+    "status": "rebuilt_with_metadata",
+    "runtime_service": "API_PRODUCTION_ROUTING;v=0002",
+    "entities": 25,
+    "fields": 684,
+    "lookup_paths": 221,
+    "sap_metadata_entities": 18,
+    "sap_metadata_fields": 541
+  },
+  {
+    "api": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "status": "rebuilt_with_metadata",
+    "runtime_service": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "entities": 2,
+    "fields": 33,
+    "lookup_paths": 22,
+    "sap_metadata_entities": 2,
+    "sap_metadata_fields": 33
+  },
+  {
+    "api": "API_PURCHASECONTRACT_PROCESS_SRV_0002",
+    "status": "rebuilt_with_metadata",
+    "runtime_service": "API_PURCHASECONTRACT_PROCESS_SRV;v=0002",
+    "entities": 17,
+    "fields": 397,
+    "lookup_paths": 62,
+    "sap_metadata_entities": 13,
+    "sap_metadata_fields": 386
+  },
+  {
+    "api": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "status": "rebuilt_with_metadata",
+    "runtime_service": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "entities": 4,
+    "fields": 135,
+    "lookup_paths": 45,
+    "sap_metadata_entities": 4,
+    "sap_metadata_fields": 135
+  },
+  {
+    "api": "API_QTN_PROCESS_SRV",
+    "status": "rebuilt_with_metadata",
+    "runtime_service": "API_QTN_PROCESS_SRV",
+    "entities": 7,
+    "fields": 76,
+    "lookup_paths": 37,
+    "sap_metadata_entities": 2,
+    "sap_metadata_fields": 76
+  },
+  {
+    "api": "API_RESERVATION_DOCUMENT_SRV",
+    "status": "rebuilt_with_metadata",
+    "runtime_service": "API_RESERVATION_DOCUMENT_SRV",
+    "entities": 2,
+    "fields": 51,
+    "lookup_paths": 51,
+    "sap_metadata_entities": 2,
+    "sap_metadata_fields": 51
+  },
+  {
+    "api": "API_RFQ_PROCESS_SRV",
+    "status": "rebuilt_with_metadata",
+    "runtime_service": "API_RFQ_PROCESS_SRV",
+    "entities": 6,
+    "fields": 63,
+    "lookup_paths": 4,
+    "sap_metadata_entities": 3,
+    "sap_metadata_fields": 63
+  },
+  {
+    "api": "API_SCHED_AGRMT_PROCESS_SRV",
+    "status": "rebuilt_with_metadata",
+    "runtime_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "entities": 12,
+    "fields": 244,
+    "lookup_paths": 137,
+    "sap_metadata_entities": 9,
+    "sap_metadata_fields": 244
+  },
+  {
+    "api": "API_SERVICE_ENTRY_SHEET_SRV",
+    "status": "rebuilt_with_metadata",
+    "runtime_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entities": 6,
+    "fields": 114,
+    "lookup_paths": 25,
+    "sap_metadata_entities": 3,
+    "sap_metadata_fields": 114
+  },
+  {
+    "api": "C_TRIALBALANCE_CDS",
+    "status": "rebuilt_with_metadata",
+    "runtime_service": "C_TRIALBALANCE_CDS",
+    "entities": 279,
+    "fields": 28556,
+    "lookup_paths": 56386,
+    "sap_metadata_entities": 278,
+    "sap_metadata_fields": 28547
+  },
+  {
+    "api": "I_PurchaseOrderHistoryAPI01",
+    "status": "metadata_failed",
+    "runtime_service": "I_PurchaseOrderHistoryAPI01",
+    "error": "HTTPError: HTTP Error 403: Forbidden"
+  }
+]

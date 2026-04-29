@@ -1,0 +1,22 @@
+[
+  {
+    "service_name": "API_RFQ_PROCESS_SRV",
+    "from_entity_set": "A_RequestForQuotation",
+    "navigation_name": "to_RequestForQuotationBidder",
+    "to_entity_set": "ToRole_assoc_913E0122A6F8F2C6F0A7E3ACC24119A2",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_RFQ_PROCESS_SRV",
+    "from_entity_set": "A_RequestForQuotation",
+    "navigation_name": "to_RequestForQuotationItem",
+    "to_entity_set": "ToRole_assoc_E485D7A77967AC65F1D7954F6CFACCE2",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  }
+]

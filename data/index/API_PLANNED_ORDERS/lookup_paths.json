@@ -1,0 +1,1979 @@
+[
+  {
+    "path_id": "customer_to_accountassignmentcategory_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "AccountAssignmentCategory",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "AccountAssignmentCategory"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `AccountAssignmentCategory`.",
+    "business_aliases": [
+      "账户分配类别",
+      "科目分配类别"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "AccountAssignmentCategory"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_baseunit_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "BaseUnit",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "BaseUnit"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `BaseUnit`.",
+    "business_aliases": [
+      "基本计量单位"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "BaseUnit"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_billofoperations_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "BillOfOperations",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "BillOfOperations"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `BillOfOperations`.",
+    "business_aliases": [
+      "组计数器"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "BillOfOperations"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_billofoperationsgroup_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "BillOfOperationsGroup",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "BillOfOperationsGroup"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `BillOfOperationsGroup`.",
+    "business_aliases": [
+      "组",
+      "任务清单组键值"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "BillOfOperationsGroup"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_billofoperationstype_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "BillOfOperationsType",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "BillOfOperationsType"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `BillOfOperationsType`.",
+    "business_aliases": [
+      "任务清单类型"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "BillOfOperationsType"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_capacityrequirement_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "CapacityRequirement",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "CapacityRequirement"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `CapacityRequirement`.",
+    "business_aliases": [
+      "产能需求",
+      "产能需求记录标识"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "CapacityRequirement"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_capacityrequirementorigin_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "CapacityRequirementOrigin",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "CapacityRequirementOrigin"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `CapacityRequirementOrigin`.",
+    "business_aliases": [
+      "容量需求来源"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "CapacityRequirementOrigin"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_customer_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "Customer",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Customer"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `Customer`.",
+    "business_aliases": [
+      "客户",
+      "客户编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Customer"
+        ],
+        "top": 20
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_fixedsupplier_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "FixedSupplier",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "FixedSupplier"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `FixedSupplier`.",
+    "business_aliases": [
+      "固定供应商"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "FixedSupplier"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_goodsreceiptqty_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "GoodsReceiptQty",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "GoodsReceiptQty"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `GoodsReceiptQty`.",
+    "business_aliases": [
+      "收到数量",
+      "收货数量"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "GoodsReceiptQty"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_issuedquantity_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "IssuedQuantity",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "IssuedQuantity"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `IssuedQuantity`.",
+    "business_aliases": [
+      "发货数量"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "IssuedQuantity"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_lastchangedatetime_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "LastChangeDateTime",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "LastChangeDateTime"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `LastChangeDateTime`.",
+    "business_aliases": [
+      "更改时戳",
+      "计划订单的上一次更改: 时戳"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "LastChangeDateTime"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_lastscheduleddate_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "LastScheduledDate",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "LastScheduledDate"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `LastScheduledDate`.",
+    "business_aliases": [
+      "计划于",
+      "上次计划日期"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "LastScheduledDate"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_material_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "Material",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Material"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `Material`.",
+    "business_aliases": [
+      "物料",
+      "计划物料"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Material"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_materialgoodsreceiptduration_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "MaterialGoodsReceiptDuration",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "MaterialGoodsReceiptDuration"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `MaterialGoodsReceiptDuration`.",
+    "business_aliases": [
+      "物料收货持续时间",
+      "物料收货持续时间（天）"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "MaterialGoodsReceiptDuration"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_materialname_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "MaterialName",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "MaterialName"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `MaterialName`.",
+    "business_aliases": [
+      "物料描述"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "MaterialName"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_materialprocurementcategory_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "MaterialProcurementCategory",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "MaterialProcurementCategory"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `MaterialProcurementCategory`.",
+    "business_aliases": [
+      "采购类别",
+      "物料采购类别"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "MaterialProcurementCategory"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_materialprocurementtype_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "MaterialProcurementType",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "MaterialProcurementType"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `MaterialProcurementType`.",
+    "business_aliases": [
+      "采购类型",
+      "物料采购类型"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "MaterialProcurementType"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_mrparea_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "MRPArea",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "MRPArea"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `MRPArea`.",
+    "business_aliases": [
+      "MRP 范围"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "MRPArea"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_mrpcontroller_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "MRPController",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "MRPController"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `MRPController`.",
+    "business_aliases": [
+      "MRP 控制员"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "MRPController"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_mrpplant_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "MRPPlant",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "MRPPlant"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `MRPPlant`.",
+    "business_aliases": [
+      "计划工厂"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "MRPPlant"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_plannedorder_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "PlannedOrder",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "PlannedOrder"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `PlannedOrder`.",
+    "business_aliases": [
+      "计划订单"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "PlannedOrder"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_plannedorderbomisfixed_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "PlannedOrderBOMIsFixed",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "PlannedOrderBOMIsFixed"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `PlannedOrderBOMIsFixed`.",
+    "business_aliases": [
+      "物料清单固定标识",
+      "物料清单展开的固定标识"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "PlannedOrderBOMIsFixed"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_plannedordercapacityisdsptchd_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "PlannedOrderCapacityIsDsptchd",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "PlannedOrderCapacityIsDsptchd"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `PlannedOrderCapacityIsDsptchd`.",
+    "business_aliases": [
+      "能力已分派",
+      "标识：计划订单的能力已分派"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "PlannedOrderCapacityIsDsptchd"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_plannedorderisconvertible_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "PlannedOrderIsConvertible",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "PlannedOrderIsConvertible"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `PlannedOrderIsConvertible`.",
+    "business_aliases": [
+      "转换标识",
+      "计划订单转换标识"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "PlannedOrderIsConvertible"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_plannedorderisfirm_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "PlannedOrderIsFirm",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "PlannedOrderIsFirm"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `PlannedOrderIsFirm`.",
+    "business_aliases": [
+      "固定标识",
+      "计划订单数据的固定标识"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "PlannedOrderIsFirm"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_plannedorderopeningdate_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "PlannedOrderOpeningDate",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "PlannedOrderOpeningDate"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `PlannedOrderOpeningDate`.",
+    "business_aliases": [
+      "订单期初日期",
+      "计划订单中的计划期初日期"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "PlannedOrderOpeningDate"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_plannedorderprofile_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "PlannedOrderProfile",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "PlannedOrderProfile"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `PlannedOrderProfile`.",
+    "business_aliases": [
+      "计划订单参数文件"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "PlannedOrderProfile"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_plannedordertype_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "PlannedOrderType",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "PlannedOrderType"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `PlannedOrderType`.",
+    "business_aliases": [
+      "计划订单类型"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "PlannedOrderType"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_plndorderplannedenddate_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "PlndOrderPlannedEndDate",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "PlndOrderPlannedEndDate"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `PlndOrderPlannedEndDate`.",
+    "business_aliases": [
+      "订单结束日期",
+      "计划订单结束日期"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "PlndOrderPlannedEndDate"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_plndorderplannedendtime_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "PlndOrderPlannedEndTime",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "PlndOrderPlannedEndTime"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `PlndOrderPlannedEndTime`.",
+    "business_aliases": [
+      "订单结束时间",
+      "计划订单结束时间"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "PlndOrderPlannedEndTime"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_plndorderplannedscrapqty_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "PlndOrderPlannedScrapQty",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "PlndOrderPlannedScrapQty"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `PlndOrderPlannedScrapQty`.",
+    "business_aliases": [
+      "废品数量",
+      "计划报废数量"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "PlndOrderPlannedScrapQty"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_plndorderplannedstartdate_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "PlndOrderPlannedStartDate",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "PlndOrderPlannedStartDate"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `PlndOrderPlannedStartDate`.",
+    "business_aliases": [
+      "订单开始日期",
+      "计划订单开始日期"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "PlndOrderPlannedStartDate"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_plndorderplannedstarttime_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "PlndOrderPlannedStartTime",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "PlndOrderPlannedStartTime"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `PlndOrderPlannedStartTime`.",
+    "business_aliases": [
+      "订单开始时间",
+      "计划订单开始时间"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "PlndOrderPlannedStartTime"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_productionenddate_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "ProductionEndDate",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "ProductionEndDate"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `ProductionEndDate`.",
+    "business_aliases": [
+      "生产结束日期"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "ProductionEndDate"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_productionplant_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "ProductionPlant",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "ProductionPlant"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `ProductionPlant`.",
+    "business_aliases": [
+      "生产工厂"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "ProductionPlant"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_productionstartdate_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "ProductionStartDate",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "ProductionStartDate"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `ProductionStartDate`.",
+    "business_aliases": [
+      "生产开始日期"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "ProductionStartDate"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_productionsupervisor_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "ProductionSupervisor",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "ProductionSupervisor"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `ProductionSupervisor`.",
+    "business_aliases": [
+      "生产主管"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "ProductionSupervisor"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_productionversion_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "ProductionVersion",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "ProductionVersion"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `ProductionVersion`.",
+    "business_aliases": [
+      "生产版本"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "ProductionVersion"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_purchasingdocument_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "PurchasingDocument",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "PurchasingDocument"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `PurchasingDocument`.",
+    "business_aliases": [
+      "采购协议",
+      "采购计划/框架协议"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "PurchasingDocument"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_purchasingdocumentitem_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "PurchasingDocumentItem",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "PurchasingDocumentItem"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `PurchasingDocumentItem`.",
+    "business_aliases": [
+      "协议项目",
+      "采购计划/框架协议项目"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "PurchasingDocumentItem"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_purchasinggroup_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "PurchasingGroup",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "PurchasingGroup"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `PurchasingGroup`.",
+    "business_aliases": [
+      "采购组"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "PurchasingGroup"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_purchasingorganization_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "PurchasingOrganization",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "PurchasingOrganization"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `PurchasingOrganization`.",
+    "business_aliases": [
+      "采购组织"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "PurchasingOrganization"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_quotaarrangement_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "QuotaArrangement",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "QuotaArrangement"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `QuotaArrangement`.",
+    "business_aliases": [
+      "配额安排"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "QuotaArrangement"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_quotaarrangementitem_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "QuotaArrangementItem",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "QuotaArrangementItem"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `QuotaArrangementItem`.",
+    "business_aliases": [
+      "安排项目",
+      "配额安排项目"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "QuotaArrangementItem"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_reservation_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "Reservation",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Reservation"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `Reservation`.",
+    "business_aliases": [
+      "预留",
+      "预留/相关需求的编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Reservation"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_salesorder_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "SalesOrder",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "SalesOrder"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `SalesOrder`.",
+    "business_aliases": [
+      "销售订单"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "SalesOrder"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_salesorderitem_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "SalesOrderItem",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "SalesOrderItem"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `SalesOrderItem`.",
+    "business_aliases": [
+      "销售订单项目"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "SalesOrderItem"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_scheduledbasicenddate_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "ScheduledBasicEndDate",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "ScheduledBasicEndDate"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `ScheduledBasicEndDate`.",
+    "business_aliases": [
+      "计划完成"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "ScheduledBasicEndDate"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_scheduledbasicendtime_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "ScheduledBasicEndTime",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "ScheduledBasicEndTime"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `ScheduledBasicEndTime`.",
+    "business_aliases": [
+      "最早完成",
+      "工序（时间）的最早完成"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "ScheduledBasicEndTime"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_scheduledbasicstartdate_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "ScheduledBasicStartDate",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "ScheduledBasicStartDate"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `ScheduledBasicStartDate`.",
+    "business_aliases": [
+      "排产开始"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "ScheduledBasicStartDate"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_scheduledbasicstarttime_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "ScheduledBasicStartTime",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "ScheduledBasicStartTime"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `ScheduledBasicStartTime`.",
+    "business_aliases": [
+      "最早开始时间",
+      "最早计划开始：执行(时间)"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "ScheduledBasicStartTime"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_schedulingtype_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "SchedulingType",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "SchedulingType"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `SchedulingType`.",
+    "business_aliases": [
+      "计划类型"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "SchedulingType"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_storagelocation_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "StorageLocation",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "StorageLocation"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `StorageLocation`.",
+    "business_aliases": [
+      "存储地点"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "StorageLocation"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_suppliername_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "SupplierName",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "SupplierName"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `SupplierName`.",
+    "business_aliases": [
+      "供应商名称"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "SupplierName"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_totalquantity_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "TotalQuantity",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "TotalQuantity"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `TotalQuantity`.",
+    "business_aliases": [
+      "总订单数量",
+      "计划的订单总数量"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "TotalQuantity"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_wbsdescription_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "WBSDescription",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "WBSDescription"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `WBSDescription`.",
+    "business_aliases": [
+      "WBS 要素名称",
+      "工作分解结构要素名称"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "WBSDescription"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_wbselement_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "WBSElement",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "WBSElement"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `WBSElement`.",
+    "business_aliases": [
+      "WBS 要素"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "WBSElement"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_wbselementinternalid_a_plannedorder",
+    "service_name": "API_PLANNED_ORDERS",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_PlannedOrder",
+    "target_field": "WBSElementInternalID",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "WBSElementInternalID"
+    ],
+    "description": "Resolve `Customer` directly on `A_PlannedOrder` to answer `WBSElementInternalID`.",
+    "business_aliases": [
+      "内部工作分解结构要素",
+      "工作分解结构要素内部标识"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PlannedOrder",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "WBSElementInternalID"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  }
+]

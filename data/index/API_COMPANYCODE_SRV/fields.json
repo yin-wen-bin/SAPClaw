@@ -1,0 +1,630 @@
+[
+  {
+    "service_name": "API_COMPANYCODE_SRV",
+    "entity_set": "A_CompanyCode",
+    "field_name": "AddressID",
+    "label": "地址",
+    "business_aliases": [
+      "地址"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "地址",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_COMPANYCODE_SRV",
+    "entity_set": "A_CompanyCode",
+    "field_name": "ChartOfAccounts",
+    "label": "科目表",
+    "business_aliases": [
+      "科目表"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "科目表",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_COMPANYCODE_SRV",
+    "entity_set": "A_CompanyCode",
+    "field_name": "CityName",
+    "label": "城市",
+    "business_aliases": [
+      "城市"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "城市",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_COMPANYCODE_SRV",
+    "entity_set": "A_CompanyCode",
+    "field_name": "Company",
+    "label": "公司",
+    "business_aliases": [
+      "公司"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "公司",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_COMPANYCODE_SRV",
+    "entity_set": "A_CompanyCode",
+    "field_name": "CompanyCode",
+    "label": "公司代码",
+    "business_aliases": [
+      "公司代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "公司代码",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_COMPANYCODE_SRV",
+    "entity_set": "A_CompanyCode",
+    "field_name": "CompanyCodeName",
+    "label": "公司名称",
+    "business_aliases": [
+      "公司名称",
+      "公司代码或公司的名称"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "公司代码或公司的名称",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_COMPANYCODE_SRV",
+    "entity_set": "A_CompanyCode",
+    "field_name": "ControllingArea",
+    "label": "成本控制范围",
+    "business_aliases": [
+      "成本控制范围"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "成本控制范围",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_COMPANYCODE_SRV",
+    "entity_set": "A_CompanyCode",
+    "field_name": "Country",
+    "label": "国家/地区代码",
+    "business_aliases": [
+      "国家/地区代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "国家/地区代码",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_COMPANYCODE_SRV",
+    "entity_set": "A_CompanyCode",
+    "field_name": "CountryChartOfAccounts",
+    "label": "备选科目表",
+    "business_aliases": [
+      "备选科目表"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "备选科目表",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_COMPANYCODE_SRV",
+    "entity_set": "A_CompanyCode",
+    "field_name": "CreditControlArea",
+    "label": "信用控制范围",
+    "business_aliases": [
+      "信用控制范围"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "信用控制范围",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_COMPANYCODE_SRV",
+    "entity_set": "A_CompanyCode",
+    "field_name": "Currency",
+    "label": "货币",
+    "business_aliases": [
+      "货币",
+      "货币码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "货币码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_COMPANYCODE_SRV",
+    "entity_set": "A_CompanyCode",
+    "field_name": "DocDateIsUsedForTaxDetn",
+    "label": "具有凭证日期的税收确定",
+    "business_aliases": [
+      "具有凭证日期的税收确定",
+      "标识：凭证日期作为税金确定的基础"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "标识：凭证日期作为税金确定的基础",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_COMPANYCODE_SRV",
+    "entity_set": "A_CompanyCode",
+    "field_name": "ExtendedWhldgTaxIsActive",
+    "label": "扩展代扣税已激活",
+    "business_aliases": [
+      "扩展代扣税已激活",
+      "标识：扩展代扣税已激活"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "标识：扩展代扣税已激活",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_COMPANYCODE_SRV",
+    "entity_set": "A_CompanyCode",
+    "field_name": "FieldStatusVariant",
+    "label": "字段状态变式",
+    "business_aliases": [
+      "字段状态变式"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "字段状态变式",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_COMPANYCODE_SRV",
+    "entity_set": "A_CompanyCode",
+    "field_name": "FinancialManagementArea",
+    "label": "财务管理范围",
+    "business_aliases": [
+      "财务管理范围"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "财务管理范围",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_COMPANYCODE_SRV",
+    "entity_set": "A_CompanyCode",
+    "field_name": "FiscalYearVariant",
+    "label": "会计年度变式",
+    "business_aliases": [
+      "会计年度变式"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "会计年度变式",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_COMPANYCODE_SRV",
+    "entity_set": "A_CompanyCode",
+    "field_name": "Language",
+    "label": "语言代码",
+    "business_aliases": [
+      "语言代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "语言代码",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_COMPANYCODE_SRV",
+    "entity_set": "A_CompanyCode",
+    "field_name": "NonTaxableTransactionTaxCode",
+    "label": "增值税码",
+    "business_aliases": [
+      "增值税码",
+      "非应征税业务的销项税码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "非应征税业务的销项税码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_COMPANYCODE_SRV",
+    "entity_set": "A_CompanyCode",
+    "field_name": "TaxRptgDateIsActive",
+    "label": "税收日期",
+    "business_aliases": [
+      "税收日期",
+      "凭证中活动的报税日期"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "凭证中活动的报税日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_COMPANYCODE_SRV",
+    "entity_set": "A_CompanyCode",
+    "field_name": "TaxableEntity",
+    "label": "销项/进项税组",
+    "business_aliases": [
+      "销项/进项税组",
+      "销售/购置组税"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售/购置组税",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_COMPANYCODE_SRV",
+    "entity_set": "A_CompanyCode",
+    "field_name": "VATRegistration",
+    "label": "增值税注册号",
+    "business_aliases": [
+      "增值税注册号",
+      "增值税登记号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "增值税登记号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  }
+]

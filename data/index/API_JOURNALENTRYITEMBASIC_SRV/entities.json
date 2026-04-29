@@ -1,0 +1,182 @@
+[
+  {
+    "service_name": "API_JOURNALENTRYITEMBASIC_SRV",
+    "entity_set": "A_CompanyCode",
+    "entity_type": "A_CompanyCodeType",
+    "key_fields": [
+      "CompanyCode"
+    ],
+    "default_select_fields": [
+      "CompanyCode",
+      "CompanyCodeName",
+      "CityName",
+      "Country",
+      "Currency",
+      "Language",
+      "ChartOfAccounts",
+      "FiscalYearVariant",
+      "Company",
+      "CreditControlArea"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads the items of all company codes.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_JOURNALENTRYITEMBASIC_SRV",
+    "entity_set": "A_CostCenter",
+    "entity_type": "A_CostCenterType",
+    "key_fields": [
+      "ControllingArea",
+      "CostCenter",
+      "ValidityEndDate"
+    ],
+    "default_select_fields": [
+      "ControllingArea",
+      "CostCenter",
+      "ValidityEndDate",
+      "ValidityStartDate",
+      "CompanyCode",
+      "BusinessArea",
+      "CostCtrResponsiblePersonName",
+      "CostCtrResponsibleUser",
+      "CostCenterCurrency",
+      "ProfitCenter"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads the items of all cost centers.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_JOURNALENTRYITEMBASIC_SRV",
+    "entity_set": "A_GLAccountInChartOfAccounts",
+    "entity_type": "A_GLAccountInChartOfAccountsType",
+    "key_fields": [
+      "ChartOfAccounts",
+      "GLAccount"
+    ],
+    "default_select_fields": [
+      "ChartOfAccounts",
+      "GLAccount",
+      "IsBalanceSheetAccount",
+      "GLAccountGroup",
+      "CorporateGroupAccount",
+      "ProfitLossAccountType",
+      "SampleGLAccount",
+      "AccountIsMarkedForDeletion",
+      "AccountIsBlockedForCreation",
+      "AccountIsBlockedForPosting"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads the items of all chart of accounts.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_JOURNALENTRYITEMBASIC_SRV",
+    "entity_set": "A_JournalEntryItemBasic",
+    "entity_type": "A_JournalEntryItemBasicType",
+    "key_fields": [
+      "ID"
+    ],
+    "default_select_fields": [
+      "ID",
+      "Ledger",
+      "LedgerName",
+      "SourceLedger",
+      "LedgerFiscalYear",
+      "ControllingArea",
+      "ControllingAreaName",
+      "CompanyCode",
+      "CompanyCodeName",
+      "GLAccount"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_CompanyCode",
+      "to_CurrentCostCenter",
+      "to_CurrentProfitCenter",
+      "to_GLAccountInChartOfAccounts"
+    ],
+    "description": "Reads universal journal entry items.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_JOURNALENTRYITEMBASIC_SRV",
+    "entity_set": "A_ProfitCenter",
+    "entity_type": "A_ProfitCenterType",
+    "key_fields": [
+      "ControllingArea",
+      "ProfitCenter",
+      "ValidityEndDate"
+    ],
+    "default_select_fields": [
+      "ControllingArea",
+      "ProfitCenter",
+      "ValidityEndDate",
+      "ProfitCtrResponsiblePersonName",
+      "CompanyCode",
+      "ProfitCtrResponsibleUser",
+      "ValidityStartDate",
+      "Department",
+      "ProfitCenterStandardHierarchy",
+      "Segment"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads the items of all profit centers.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  }
+]

@@ -1,0 +1,878 @@
+[
+  {
+    "path_id": "customer_to_contactperson_a_debitmemoreqitempartner",
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_DebitMemoReqItemPartner",
+    "target_field": "ContactPerson",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "ContactPerson"
+    ],
+    "description": "Resolve `Customer` directly on `A_DebitMemoReqItemPartner` to answer `ContactPerson`.",
+    "business_aliases": [
+      "联系人",
+      "联系人编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_DebitMemoReqItemPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "ContactPerson"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_contactperson_a_debitmemoreqpartner",
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_DebitMemoReqPartner",
+    "target_field": "ContactPerson",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "ContactPerson"
+    ],
+    "description": "Resolve `Customer` directly on `A_DebitMemoReqPartner` to answer `ContactPerson`.",
+    "business_aliases": [
+      "联系人",
+      "联系人编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_DebitMemoReqPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "ContactPerson"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_customer_a_debitmemoreqitempartner",
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_DebitMemoReqItemPartner",
+    "target_field": "Customer",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Customer"
+    ],
+    "description": "Resolve `Customer` directly on `A_DebitMemoReqItemPartner` to answer `Customer`.",
+    "business_aliases": [
+      "客户",
+      "客户编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_DebitMemoReqItemPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Customer"
+        ],
+        "top": 20
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_customer_a_debitmemoreqpartner",
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_DebitMemoReqPartner",
+    "target_field": "Customer",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Customer"
+    ],
+    "description": "Resolve `Customer` directly on `A_DebitMemoReqPartner` to answer `Customer`.",
+    "business_aliases": [
+      "客户",
+      "客户编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_DebitMemoReqPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Customer"
+        ],
+        "top": 20
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_debitmemorequest_a_debitmemoreqitempartner",
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_DebitMemoReqItemPartner",
+    "target_field": "DebitMemoRequest",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "DebitMemoRequest"
+    ],
+    "description": "Resolve `Customer` directly on `A_DebitMemoReqItemPartner` to answer `DebitMemoRequest`.",
+    "business_aliases": [
+      "销售和分销凭证",
+      "销售和分销凭证号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_DebitMemoReqItemPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "DebitMemoRequest"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_debitmemorequest_a_debitmemoreqpartner",
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_DebitMemoReqPartner",
+    "target_field": "DebitMemoRequest",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "DebitMemoRequest"
+    ],
+    "description": "Resolve `Customer` directly on `A_DebitMemoReqPartner` to answer `DebitMemoRequest`.",
+    "business_aliases": [
+      "销售和分销凭证",
+      "销售和分销凭证号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_DebitMemoReqPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "DebitMemoRequest"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_debitmemorequestitem_a_debitmemoreqitempartner",
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_DebitMemoReqItemPartner",
+    "target_field": "DebitMemoRequestItem",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "DebitMemoRequestItem"
+    ],
+    "description": "Resolve `Customer` directly on `A_DebitMemoReqItemPartner` to answer `DebitMemoRequestItem`.",
+    "business_aliases": [
+      "项目(SD)",
+      "销售和分销凭证的项目号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_DebitMemoReqItemPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "DebitMemoRequestItem"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_partnerfunction_a_debitmemoreqitempartner",
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_DebitMemoReqItemPartner",
+    "target_field": "PartnerFunction",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "PartnerFunction"
+    ],
+    "description": "Resolve `Customer` directly on `A_DebitMemoReqItemPartner` to answer `PartnerFunction`.",
+    "business_aliases": [
+      "合作伙伴职能"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_DebitMemoReqItemPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "PartnerFunction"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_partnerfunction_a_debitmemoreqpartner",
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_DebitMemoReqPartner",
+    "target_field": "PartnerFunction",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "PartnerFunction"
+    ],
+    "description": "Resolve `Customer` directly on `A_DebitMemoReqPartner` to answer `PartnerFunction`.",
+    "business_aliases": [
+      "合作伙伴职能"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_DebitMemoReqPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "PartnerFunction"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_personnel_a_debitmemoreqitempartner",
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_DebitMemoReqItemPartner",
+    "target_field": "Personnel",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Personnel"
+    ],
+    "description": "Resolve `Customer` directly on `A_DebitMemoReqItemPartner` to answer `Personnel`.",
+    "business_aliases": [
+      "员工号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_DebitMemoReqItemPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Personnel"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_personnel_a_debitmemoreqpartner",
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_DebitMemoReqPartner",
+    "target_field": "Personnel",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Personnel"
+    ],
+    "description": "Resolve `Customer` directly on `A_DebitMemoReqPartner` to answer `Personnel`.",
+    "business_aliases": [
+      "员工号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_DebitMemoReqPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Personnel"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_supplier_a_debitmemoreqitempartner",
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_DebitMemoReqItemPartner",
+    "target_field": "Supplier",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Supplier"
+    ],
+    "description": "Resolve `Customer` directly on `A_DebitMemoReqItemPartner` to answer `Supplier`.",
+    "business_aliases": [
+      "供应商",
+      "供应商科目编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_DebitMemoReqItemPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Supplier"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_supplier_a_debitmemoreqpartner",
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_DebitMemoReqPartner",
+    "target_field": "Supplier",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Supplier"
+    ],
+    "description": "Resolve `Customer` directly on `A_DebitMemoReqPartner` to answer `Supplier`.",
+    "business_aliases": [
+      "供应商",
+      "供应商科目编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_DebitMemoReqPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Supplier"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_contactperson_a_debitmemoreqitempartner",
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_DebitMemoReqItemPartner",
+    "target_field": "ContactPerson",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ContactPerson"
+    ],
+    "description": "Resolve `Supplier` directly on `A_DebitMemoReqItemPartner` to answer `ContactPerson`.",
+    "business_aliases": [
+      "联系人",
+      "联系人编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_DebitMemoReqItemPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ContactPerson"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_contactperson_a_debitmemoreqpartner",
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_DebitMemoReqPartner",
+    "target_field": "ContactPerson",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ContactPerson"
+    ],
+    "description": "Resolve `Supplier` directly on `A_DebitMemoReqPartner` to answer `ContactPerson`.",
+    "business_aliases": [
+      "联系人",
+      "联系人编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_DebitMemoReqPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ContactPerson"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_customer_a_debitmemoreqitempartner",
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_DebitMemoReqItemPartner",
+    "target_field": "Customer",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Customer"
+    ],
+    "description": "Resolve `Supplier` directly on `A_DebitMemoReqItemPartner` to answer `Customer`.",
+    "business_aliases": [
+      "客户",
+      "客户编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_DebitMemoReqItemPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Customer"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_customer_a_debitmemoreqpartner",
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_DebitMemoReqPartner",
+    "target_field": "Customer",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Customer"
+    ],
+    "description": "Resolve `Supplier` directly on `A_DebitMemoReqPartner` to answer `Customer`.",
+    "business_aliases": [
+      "客户",
+      "客户编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_DebitMemoReqPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Customer"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_debitmemorequest_a_debitmemoreqitempartner",
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_DebitMemoReqItemPartner",
+    "target_field": "DebitMemoRequest",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "DebitMemoRequest"
+    ],
+    "description": "Resolve `Supplier` directly on `A_DebitMemoReqItemPartner` to answer `DebitMemoRequest`.",
+    "business_aliases": [
+      "销售和分销凭证",
+      "销售和分销凭证号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_DebitMemoReqItemPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "DebitMemoRequest"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_debitmemorequest_a_debitmemoreqpartner",
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_DebitMemoReqPartner",
+    "target_field": "DebitMemoRequest",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "DebitMemoRequest"
+    ],
+    "description": "Resolve `Supplier` directly on `A_DebitMemoReqPartner` to answer `DebitMemoRequest`.",
+    "business_aliases": [
+      "销售和分销凭证",
+      "销售和分销凭证号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_DebitMemoReqPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "DebitMemoRequest"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_debitmemorequestitem_a_debitmemoreqitempartner",
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_DebitMemoReqItemPartner",
+    "target_field": "DebitMemoRequestItem",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "DebitMemoRequestItem"
+    ],
+    "description": "Resolve `Supplier` directly on `A_DebitMemoReqItemPartner` to answer `DebitMemoRequestItem`.",
+    "business_aliases": [
+      "项目(SD)",
+      "销售和分销凭证的项目号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_DebitMemoReqItemPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "DebitMemoRequestItem"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_partnerfunction_a_debitmemoreqitempartner",
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_DebitMemoReqItemPartner",
+    "target_field": "PartnerFunction",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PartnerFunction"
+    ],
+    "description": "Resolve `Supplier` directly on `A_DebitMemoReqItemPartner` to answer `PartnerFunction`.",
+    "business_aliases": [
+      "合作伙伴职能"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_DebitMemoReqItemPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PartnerFunction"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_partnerfunction_a_debitmemoreqpartner",
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_DebitMemoReqPartner",
+    "target_field": "PartnerFunction",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PartnerFunction"
+    ],
+    "description": "Resolve `Supplier` directly on `A_DebitMemoReqPartner` to answer `PartnerFunction`.",
+    "business_aliases": [
+      "合作伙伴职能"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_DebitMemoReqPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PartnerFunction"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_personnel_a_debitmemoreqitempartner",
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_DebitMemoReqItemPartner",
+    "target_field": "Personnel",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Personnel"
+    ],
+    "description": "Resolve `Supplier` directly on `A_DebitMemoReqItemPartner` to answer `Personnel`.",
+    "business_aliases": [
+      "员工号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_DebitMemoReqItemPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Personnel"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_personnel_a_debitmemoreqpartner",
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_DebitMemoReqPartner",
+    "target_field": "Personnel",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Personnel"
+    ],
+    "description": "Resolve `Supplier` directly on `A_DebitMemoReqPartner` to answer `Personnel`.",
+    "business_aliases": [
+      "员工号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_DebitMemoReqPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Personnel"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_supplier_a_debitmemoreqitempartner",
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_DebitMemoReqItemPartner",
+    "target_field": "Supplier",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Supplier"
+    ],
+    "description": "Resolve `Supplier` directly on `A_DebitMemoReqItemPartner` to answer `Supplier`.",
+    "business_aliases": [
+      "供应商",
+      "供应商科目编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_DebitMemoReqItemPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Supplier"
+        ],
+        "top": 20
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_supplier_a_debitmemoreqpartner",
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_DebitMemoReqPartner",
+    "target_field": "Supplier",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Supplier"
+    ],
+    "description": "Resolve `Supplier` directly on `A_DebitMemoReqPartner` to answer `Supplier`.",
+    "business_aliases": [
+      "供应商",
+      "供应商科目编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_DebitMemoReqPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Supplier"
+        ],
+        "top": 20
+      }
+    ],
+    "confidence": 0.72
+  }
+]

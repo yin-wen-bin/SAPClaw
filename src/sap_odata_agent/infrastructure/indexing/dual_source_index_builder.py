@@ -490,7 +490,7 @@ class DualSourceIndexBuilder:
         target_service_name = index_service_name or sap_service_name
         xml_text, metadata_url = self.fetcher.fetch(sap_config, sap_service_name)
         openapi_path = Path(openapi_json_path)
-        openapi_spec = json.loads(openapi_path.read_text(encoding="utf-8"))
+        openapi_spec = json.loads(openapi_path.read_text(encoding="utf-8-sig"))
 
         parsed_metadata = self.metadata_parser.parse(xml_text, target_service_name, metadata_url)
         parsed_openapi = self.openapi_parser.parse(openapi_spec, str(openapi_path))

@@ -1,0 +1,1776 @@
+[
+  {
+    "term": "Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Supplier Quotation",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "业务目的已完成",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "IsEndOfPurposeBlocked"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "PaymentTerms"
+    ],
+    "synonyms": [
+      "付款条件代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款条件代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "PaymentTerms"
+    ],
+    "synonyms": [
+      "付款条件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "Supplier"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商报价",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "SupplierQuotation"
+    ],
+    "synonyms": [
+      "供应商报价编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商报价凭证类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "PurchasingDocumentType"
+    ],
+    "synonyms": [
+      "报价类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商报价生命周期状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "QTNLifecycleStatus"
+    ],
+    "synonyms": [
+      "状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商报价编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "SupplierQuotation"
+    ],
+    "synonyms": [
+      "供应商报价"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "全额付款天数",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "NetPaymentDays"
+    ],
+    "synonyms": [
+      "全额付款条件期间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "全额付款条件期间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "NetPaymentDays"
+    ],
+    "synonyms": [
+      "全额付款天数"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "公司代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "CompanyCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "PurchasingDocumentOrderDate"
+    ],
+    "synonyms": [
+      "采购凭证日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证条件号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "PurchasingDocumentCondition"
+    ],
+    "synonyms": [
+      "凭证条件编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证条件编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "PurchasingDocumentCondition"
+    ],
+    "synonyms": [
+      "凭证条件号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "CreationDate"
+    ],
+    "synonyms": [
+      "采购凭证的创建日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建者",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "CreatedByUser"
+    ],
+    "synonyms": [
+      "创建采购凭证的人员的用户"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建采购凭证的人员的用户",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "CreatedByUser"
+    ],
+    "synonyms": [
+      "创建者"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "后继凭证类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "FollowOnDocumentCategory"
+    ],
+    "synonyms": [
+      "后续采购凭证类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "后续凭证类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "FollowOnDocumentType"
+    ],
+    "synonyms": [
+      "后续采购凭证类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "后续采购凭证类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "FollowOnDocumentCategory"
+    ],
+    "synonyms": [
+      "后继凭证类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "后续采购凭证类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "FollowOnDocumentType"
+    ],
+    "synonyms": [
+      "后续凭证类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "固定汇率",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "ExchangeRateIsFixed"
+    ],
+    "synonyms": [
+      "固定汇率标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "固定汇率标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "ExchangeRateIsFixed"
+    ],
+    "synonyms": [
+      "固定汇率"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "IncotermsClassification"
+    ],
+    "synonyms": [
+      "国际贸易条款（第 1 部分）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款(部分2)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "IncotermsTransferLocation"
+    ],
+    "synonyms": [
+      "国际贸易条款（第 2 部分）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款位置 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "IncotermsLocation1"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款位置 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "IncotermsLocation2"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款版本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "IncotermsVersion"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款（第 1 部分）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "IncotermsClassification"
+    ],
+    "synonyms": [
+      "国际贸易条款"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款（第 2 部分）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "IncotermsTransferLocation"
+    ],
+    "synonyms": [
+      "国际贸易条款(部分2)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "天数 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "CashDiscount1Days"
+    ],
+    "synonyms": [
+      "现金折扣天数 1"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "天数 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "CashDiscount2Days"
+    ],
+    "synonyms": [
+      "现金折扣天数 2"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "投标/报价提交限期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "QuotationLatestSubmissionDate"
+    ],
+    "synonyms": [
+      "报价截止日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "报价",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "SupplierQuotationExternalID"
+    ],
+    "synonyms": [
+      "报价单编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "报价单编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "SupplierQuotationExternalID"
+    ],
+    "synonyms": [
+      "报价"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "报价截止日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "QuotationLatestSubmissionDate"
+    ],
+    "synonyms": [
+      "投标/报价提交限期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "报价提交日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "QuotationSubmissionDate"
+    ],
+    "synonyms": [
+      "报价日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "报价日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "QuotationSubmissionDate"
+    ],
+    "synonyms": [
+      "报价提交日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "报价类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "PurchasingDocumentType"
+    ],
+    "synonyms": [
+      "供应商报价凭证类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "报价约束期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "BindingPeriodValidityEndDate"
+    ],
+    "synonyms": [
+      "约束期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "更改时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "最后更改"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "最后更改",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "更改时戳"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "QTNLifecycleStatus"
+    ],
+    "synonyms": [
+      "供应商报价生命周期状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "现金折扣天数 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "CashDiscount1Days"
+    ],
+    "synonyms": [
+      "天数 1"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "现金折扣天数 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "CashDiscount2Days"
+    ],
+    "synonyms": [
+      "天数 2"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "现金折扣百分比 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "CashDiscount1Percent"
+    ],
+    "synonyms": [
+      "现金折扣百分率1"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "现金折扣百分比 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "CashDiscount2Percent"
+    ],
+    "synonyms": [
+      "现金折扣百分比2"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "现金折扣百分比2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "CashDiscount2Percent"
+    ],
+    "synonyms": [
+      "现金折扣百分比 2"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "现金折扣百分率1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "CashDiscount1Percent"
+    ],
+    "synonyms": [
+      "现金折扣百分比 1"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "程序",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "PricingProcedure"
+    ],
+    "synonyms": [
+      "程序（定价，输出控制，科目确定，成本核算...）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "程序（定价，输出控制，科目确定，成本核算...）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "PricingProcedure"
+    ],
+    "synonyms": [
+      "程序"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "约束期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "BindingPeriodValidityEndDate"
+    ],
+    "synonyms": [
+      "报价约束期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "询价",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "RequestForQuotation"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "语言代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "Language"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "DocumentCurrency"
+    ],
+    "synonyms": [
+      "货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "DocumentCurrency"
+    ],
+    "synonyms": [
+      "货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "PurchasingDocumentOrderDate"
+    ],
+    "synonyms": [
+      "凭证日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证的创建日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "CreationDate"
+    ],
+    "synonyms": [
+      "创建日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "PurchasingDocumentCategory"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "PurchasingGroup"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购组织",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotation",
+    "mapped_fields": [
+      "PurchasingOrganization"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Supplier Quotation",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "交货日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "ScheduleLineDeliveryDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "产品类型组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "ProductType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "价格单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "NetPriceQuantity"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "价格日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "PurgDocPriceDate"
+    ],
+    "synonyms": [
+      "价格确定日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "价格确定日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "PurgDocPriceDate"
+    ],
+    "synonyms": [
+      "价格日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商使用的物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "SupplierMaterialNumber"
+    ],
+    "synonyms": [
+      "供应商物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商报价项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "SupplierQuotationItem"
+    ],
+    "synonyms": [
+      "供应商报价项目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商报价项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "SupplierQuotationItem"
+    ],
+    "synonyms": [
+      "供应商报价项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "SupplierMaterialNumber"
+    ],
+    "synonyms": [
+      "供应商使用的物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "信息记录更新",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "IsInfoRecordUpdated"
+    ],
+    "synonyms": [
+      "信息记录更新标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "信息记录更新标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "IsInfoRecordUpdated"
+    ],
+    "synonyms": [
+      "信息记录更新"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分母",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "OrderItemQtyToBaseQtyDnmntr"
+    ],
+    "synonyms": [
+      "订单单位到基本单位转换的分母"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "制造商",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "Manufacturer"
+    ],
+    "synonyms": [
+      "制造商编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "制造商编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "Manufacturer"
+    ],
+    "synonyms": [
+      "制造商"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "制造商零件编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "ManufacturerPartNmbr"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "IncotermsClassification"
+    ],
+    "synonyms": [
+      "国际贸易条款（第 1 部分）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款(部分2)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "IncotermsTransferLocation"
+    ],
+    "synonyms": [
+      "国际贸易条款（第 2 部分）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款位置 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "IncotermsLocation1"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款位置 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "IncotermsLocation2"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款（第 1 部分）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "IncotermsClassification"
+    ],
+    "synonyms": [
+      "国际贸易条款"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款（第 2 部分）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "IncotermsTransferLocation"
+    ],
+    "synonyms": [
+      "国际贸易条款(部分2)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "基本计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "BaseUnit"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "Plant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "执行期间开始",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "PerformancePeriodStartDate"
+    ],
+    "synonyms": [
+      "执行期间开始日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "执行期间开始日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "PerformancePeriodStartDate"
+    ],
+    "synonyms": [
+      "执行期间开始"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "执行期间结束",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "PerformancePeriodEndDate"
+    ],
+    "synonyms": [
+      "执行期间结束日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "执行期间结束日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "PerformancePeriodEndDate"
+    ],
+    "synonyms": [
+      "执行期间结束"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "报价净值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "NetAmount"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "授标数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "AwardedQuantity"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "数量转换",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "OrderPriceUnitToOrderUnitNmrtr"
+    ],
+    "synonyms": [
+      "订单价格单位转换为订单单位的分子"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "数量转换",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "OrdPriceUnitToOrderUnitDnmntr"
+    ],
+    "synonyms": [
+      "订单价格单位转换为订单单位的分母"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有关订货价格单位转换为基本单位的分子",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "OrderItemQtyToBaseQtyNmrtr"
+    ],
+    "synonyms": [
+      "等于"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "ManufacturerMaterial"
+    ],
+    "synonyms": [
+      "物料号码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料号码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "ManufacturerMaterial"
+    ],
+    "synonyms": [
+      "物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "MaterialGroup"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "短文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "PurchasingDocumentItemText"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "等于",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "OrderItemQtyToBaseQtyNmrtr"
+    ],
+    "synonyms": [
+      "有关订货价格单位转换为基本单位的分子"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "ScheduleLineOrderQuantity"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单价格单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "OrderPriceUnit"
+    ],
+    "synonyms": [
+      "订单价格单位(采购)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单价格单位(采购)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "OrderPriceUnit"
+    ],
+    "synonyms": [
+      "订单价格单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单价格单位转换为订单单位的分子",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "OrderPriceUnitToOrderUnitNmrtr"
+    ],
+    "synonyms": [
+      "数量转换"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单价格单位转换为订单单位的分母",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "OrdPriceUnitToOrderUnitDnmntr"
+    ],
+    "synonyms": [
+      "数量转换"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单净价",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "NetPriceAmount"
+    ],
+    "synonyms": [
+      "采购凭证中的净价（以凭证货币计）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "OrderQuantityUnit"
+    ],
+    "synonyms": [
+      "采购订单计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单单位到基本单位转换的分母",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "OrderItemQtyToBaseQtyDnmntr"
+    ],
+    "synonyms": [
+      "分母"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "询价",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "RequestForQuotation"
+    ],
+    "synonyms": [
+      "询价标识符"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "询价标识符",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "RequestForQuotation"
+    ],
+    "synonyms": [
+      "询价"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "询价项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "RequestForQuotationItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "请求的项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "PurchaseRequisitionItem"
+    ],
+    "synonyms": [
+      "采购申请的项目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "DocumentCurrency"
+    ],
+    "synonyms": [
+      "货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "DocumentCurrency"
+    ],
+    "synonyms": [
+      "货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购信息记录",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "PurchasingInfoRecord"
+    ],
+    "synonyms": [
+      "采购信息记录号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购信息记录号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "PurchasingInfoRecord"
+    ],
+    "synonyms": [
+      "采购信息记录"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "SupplierQuotation"
+    ],
+    "synonyms": [
+      "采购凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证中的净价（以凭证货币计）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "NetPriceAmount"
+    ],
+    "synonyms": [
+      "订单净价"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "PurchasingDocumentCategory"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "SupplierQuotation"
+    ],
+    "synonyms": [
+      "采购凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "PurchaseRequisition"
+    ],
+    "synonyms": [
+      "采购申请编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请的项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "PurchaseRequisitionItem"
+    ],
+    "synonyms": [
+      "请求的项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "PurchaseRequisition"
+    ],
+    "synonyms": [
+      "采购申请"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购订单计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierQuotationItem",
+    "mapped_fields": [
+      "OrderQuantityUnit"
+    ],
+    "synonyms": [
+      "订单单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Service Operations",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "Cancel",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Service Operations",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "Complete",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Service Operations",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "CreateFromRFQ",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Service Operations",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "Submit",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Service Operations",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_QTN_PROCESS_SRV",
+    "mapped_entity_set": "SubmitForApproval",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  }
+]

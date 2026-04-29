@@ -1,0 +1,614 @@
+[
+  {
+    "term": "G/L Account in Chart of Accounts",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "G/L Account in Chart of Accounts Text",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "冻结建立",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "AccountIsBlockedForCreation"
+    ],
+    "synonyms": [
+      "标识: 冻结待创建科目 ?"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "冻结计划",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "AccountIsBlockedForPlanning"
+    ],
+    "synonyms": [
+      "标识：科目已冻结，无法计划？"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建人",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "CreatedByUser"
+    ],
+    "synonyms": [
+      "创建对象的人员名称"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建对象的人员名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "CreatedByUser"
+    ],
+    "synonyms": [
+      "创建人"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "CreationDate"
+    ],
+    "synonyms": [
+      "记录创建日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "删除标志",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "AccountIsMarkedForDeletion"
+    ],
+    "synonyms": [
+      "标识: 是否标记待删除科目?"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总账科目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "GLAccount"
+    ],
+    "synonyms": [
+      "总账科目号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总账科目号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "GLAccount"
+    ],
+    "synonyms": [
+      "总账科目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总账科目号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "GLAccountExternal"
+    ],
+    "synonyms": [
+      "总账科目外部标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总账科目外部标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "GLAccountExternal"
+    ],
+    "synonyms": [
+      "总账科目号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总账科目类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "GLAccountType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总账科目组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "GLAccountGroup"
+    ],
+    "synonyms": [
+      "科目组"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "损益报表科目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "ProfitLossAccountType"
+    ],
+    "synonyms": [
+      "损益报表科目类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "损益报表科目类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "ProfitLossAccountType"
+    ],
+    "synonyms": [
+      "损益报表科目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "简短格式的 UTC 时戳 (YYYYMMDDhhmmss)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标志: 此科目是资产负债表科目吗?",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "IsBalanceSheetAccount"
+    ],
+    "synonyms": [
+      "资产负债表科目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标志: 此科目是资产负债表科目吗?",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "IsProfitLossAccount"
+    ],
+    "synonyms": [
+      "资产负债表科目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识: 冻结待创建科目 ?",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "AccountIsBlockedForCreation"
+    ],
+    "synonyms": [
+      "冻结建立"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识: 是否标记待删除科目?",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "AccountIsMarkedForDeletion"
+    ],
+    "synonyms": [
+      "删除标志"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识：科目已冻结，无法计划？",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "AccountIsBlockedForPlanning"
+    ],
+    "synonyms": [
+      "冻结计划"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识：科目是否冻结过账？",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "AccountIsBlockedForPosting"
+    ],
+    "synonyms": [
+      "过账冻结"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "样本科目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "SampleGLAccount"
+    ],
+    "synonyms": [
+      "样本科目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "样本科目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "SampleGLAccount"
+    ],
+    "synonyms": [
+      "样本科目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "科目组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "GLAccountGroup"
+    ],
+    "synonyms": [
+      "总账科目组"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "科目表",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "ChartOfAccounts"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "简短格式的 UTC 时戳 (YYYYMMDDhhmmss)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "时戳"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "组科目号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "CorporateGroupAccount"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "职能范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "FunctionalArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "记录创建日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "CreationDate"
+    ],
+    "synonyms": [
+      "创建日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "贸易伙伴编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "PartnerCompany"
+    ],
+    "synonyms": [
+      "贸易合作伙伴的公司标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "贸易合作伙伴的公司标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "PartnerCompany"
+    ],
+    "synonyms": [
+      "贸易伙伴编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "资产负债表科目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "IsBalanceSheetAccount"
+    ],
+    "synonyms": [
+      "标志: 此科目是资产负债表科目吗?"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "资产负债表科目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "IsProfitLossAccount"
+    ],
+    "synonyms": [
+      "标志: 此科目是资产负债表科目吗?"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "过账冻结",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountInChartOfAccounts",
+    "mapped_fields": [
+      "AccountIsBlockedForPosting"
+    ],
+    "synonyms": [
+      "标识：科目是否冻结过账？"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "G/L Account in Chart of Accounts",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountText",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "G/L Account in Chart of Accounts Text",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountText",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "总账科目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountText",
+    "mapped_fields": [
+      "GLAccount"
+    ],
+    "synonyms": [
+      "总账科目号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总账科目号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountText",
+    "mapped_fields": [
+      "GLAccount"
+    ],
+    "synonyms": [
+      "总账科目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总账科目名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountText",
+    "mapped_fields": [
+      "GLAccountName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总账科目长名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountText",
+    "mapped_fields": [
+      "GLAccountLongName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountText",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "简短格式的 UTC 时戳 (YYYYMMDDhhmmss)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "科目表",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountText",
+    "mapped_fields": [
+      "ChartOfAccounts"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "简短格式的 UTC 时戳 (YYYYMMDDhhmmss)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountText",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "时戳"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "语言代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "mapped_entity_set": "A_GLAccountText",
+    "mapped_fields": [
+      "Language"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  }
+]

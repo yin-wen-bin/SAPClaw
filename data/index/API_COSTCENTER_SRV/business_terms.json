@@ -1,0 +1,770 @@
+[
+  {
+    "term": "Cost Center",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Cost Center Text",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "业务范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "BusinessArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "公司代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "CompanyCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建人",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "CostCenterCreatedByUser"
+    ],
+    "synonyms": [
+      "输入者"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "CostCenterCreationDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "利润中心",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "ProfitCenter"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国家/地区代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "Country"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "Region"
+    ],
+    "synonyms": [
+      "地区（省/自治区/直辖市、市、县）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "地区（省/自治区/直辖市、市、县）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "Region"
+    ],
+    "synonyms": [
+      "地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "城市",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "CityName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "实际初级成本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "IsBlkdForPrimaryCostsPosting"
+    ],
+    "synonyms": [
+      "实际初级成本的冻结标志"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "实际初级成本的冻结标志",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "IsBlkdForPrimaryCostsPosting"
+    ],
+    "synonyms": [
+      "实际初级成本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "实际收入登记的冻结标志",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "IsBlockedForRevenuePosting"
+    ],
+    "synonyms": [
+      "实际销售收入"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "实际次级成本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "IsBlkdForSecondaryCostsPosting"
+    ],
+    "synonyms": [
+      "实际次级成本的冻结标志"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "实际次级成本的冻结标志",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "IsBlkdForSecondaryCostsPosting"
+    ],
+    "synonyms": [
+      "实际次级成本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "实际销售收入",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "IsBlockedForRevenuePosting"
+    ],
+    "synonyms": [
+      "实际收入登记的冻结标志"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "层次结构范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "CostCenterStandardHierArea"
+    ],
+    "synonyms": [
+      "标准层次结构区域"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "开始生效日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "ValidityStartDate"
+    ],
+    "synonyms": [
+      "有效期自"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本中心",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "CostCenter"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本中心类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "CostCenterCategory"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本控制范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "ControllingArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本核算表",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "CostingSheet"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效期自",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "ValidityStartDate"
+    ],
+    "synonyms": [
+      "开始生效日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效期至",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "ValidityEndDate"
+    ],
+    "synonyms": [
+      "有效期至日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效期至日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "ValidityEndDate"
+    ],
+    "synonyms": [
+      "有效期至"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "未清项更新",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "IsBlockedForCommitmentPosting"
+    ],
+    "synonyms": [
+      "未清项的冻结标志"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "未清项的冻结标志",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "IsBlockedForCommitmentPosting"
+    ],
+    "synonyms": [
+      "未清项更新"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标准层次结构区域",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "CostCenterStandardHierArea"
+    ],
+    "synonyms": [
+      "层次结构范围"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "职能范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "FunctionalArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "街道",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "StreetAddressName"
+    ],
+    "synonyms": [
+      "街道和房屋号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "街道和房屋号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "StreetAddressName"
+    ],
+    "synonyms": [
+      "街道"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划初级成本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "IsBlockedForPlanPrimaryCosts"
+    ],
+    "synonyms": [
+      "计划初级成本冻结标志"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划初级成本冻结标志",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "IsBlockedForPlanPrimaryCosts"
+    ],
+    "synonyms": [
+      "计划初级成本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划收入的锁定标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "IsBlockedForPlanRevenues"
+    ],
+    "synonyms": [
+      "锁定计划收入"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划次级成本的锁定标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "IsBlockedForPlanSecondaryCosts"
+    ],
+    "synonyms": [
+      "锁定计划次级成本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "记录数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "ConsumptionQtyIsRecorded"
+    ],
+    "synonyms": [
+      "记录消耗数量的标志"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "记录消耗数量的标志",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "ConsumptionQtyIsRecorded"
+    ],
+    "synonyms": [
+      "记录数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "语言代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "Language"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "负责人",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "CostCtrResponsiblePersonName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "负责用户",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "CostCtrResponsibleUser"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "CostCenterCurrency"
+    ],
+    "synonyms": [
+      "货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "CostCenterCurrency"
+    ],
+    "synonyms": [
+      "货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "输入者",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "CostCenterCreatedByUser"
+    ],
+    "synonyms": [
+      "创建人"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "邮政编码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "PostalCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "部门",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "Department"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "锁定计划收入",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "IsBlockedForPlanRevenues"
+    ],
+    "synonyms": [
+      "计划收入的锁定标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "锁定计划次级成本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenter",
+    "mapped_fields": [
+      "IsBlockedForPlanSecondaryCosts"
+    ],
+    "synonyms": [
+      "计划次级成本的锁定标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Cost Center",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenterText",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Cost Center Text",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenterText",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "开始生效日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenterText",
+    "mapped_fields": [
+      "ValidityStartDate"
+    ],
+    "synonyms": [
+      "有效期自"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本中心",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenterText",
+    "mapped_fields": [
+      "CostCenter"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本中心名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenterText",
+    "mapped_fields": [
+      "CostCenterName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本中心描述",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenterText",
+    "mapped_fields": [
+      "CostCenterDescription"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本控制范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenterText",
+    "mapped_fields": [
+      "ControllingArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效期自",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenterText",
+    "mapped_fields": [
+      "ValidityStartDate"
+    ],
+    "synonyms": [
+      "开始生效日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效期至",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenterText",
+    "mapped_fields": [
+      "ValidityEndDate"
+    ],
+    "synonyms": [
+      "有效期至日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效期至日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenterText",
+    "mapped_fields": [
+      "ValidityEndDate"
+    ],
+    "synonyms": [
+      "有效期至"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "语言代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_COSTCENTER_SRV",
+    "mapped_entity_set": "A_CostCenterText",
+    "mapped_fields": [
+      "Language"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  }
+]

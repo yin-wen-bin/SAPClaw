@@ -1,0 +1,426 @@
+[
+  {
+    "service_name": "API_BILL_OF_MATERIAL_SRV_0002",
+    "entity_set": "A_BOMItemCategory",
+    "entity_type": "A_BOMItemCategoryType",
+    "key_fields": [
+      "BillOfMaterialItemCategory"
+    ],
+    "default_select_fields": [
+      "BillOfMaterialItemCategory",
+      "FixedItemCategory",
+      "BillOfMaterialItemCategoryDesc"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_BOMItemCategoryText"
+    ],
+    "description": "Get entities from A_BOMItemCategory",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_BILL_OF_MATERIAL_SRV_0002",
+    "entity_set": "A_BOMItemCategoryText",
+    "entity_type": "A_BOMItemCategoryTextType",
+    "key_fields": [
+      "BillOfMaterialItemCategory",
+      "Language"
+    ],
+    "default_select_fields": [
+      "Language",
+      "BillOfMaterialItemCategory",
+      "BillOfMaterialItemCategoryDesc"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Get entities from A_BOMItemCategoryText",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_BILL_OF_MATERIAL_SRV_0002",
+    "entity_set": "A_BillOfMaterialUsage",
+    "entity_type": "A_BillOfMaterialUsageType",
+    "key_fields": [
+      "BillOfMaterialVariantUsage"
+    ],
+    "default_select_fields": [
+      "BillOfMaterialVariantUsage",
+      "BillOfMaterialVariantUsageDesc"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_BillOfMaterialUsageText"
+    ],
+    "description": "Get entities from A_BillOfMaterialUsage",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_BILL_OF_MATERIAL_SRV_0002",
+    "entity_set": "A_BillOfMaterialUsageText",
+    "entity_type": "A_BillOfMaterialUsageTextType",
+    "key_fields": [
+      "BillOfMaterialVariantUsage",
+      "Language"
+    ],
+    "default_select_fields": [
+      "Language",
+      "BillOfMaterialVariantUsage",
+      "BillOfMaterialVariantUsageDesc"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Get entities from A_BillOfMaterialUsageText",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_BILL_OF_MATERIAL_SRV_0002",
+    "entity_set": "ConvertItem",
+    "entity_type": "ConvertItemType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Invoke action ConvertItem",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_BILL_OF_MATERIAL_SRV_0002",
+    "entity_set": "DeleteBOMHeaderWithECN",
+    "entity_type": "DeleteBOMHeaderWithECNType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Invoke action DeleteBOMHeaderWithECN",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_BILL_OF_MATERIAL_SRV_0002",
+    "entity_set": "DeleteBOMItemWithECN",
+    "entity_type": "DeleteBOMItemWithECNType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Invoke action DeleteBOMItemWithECN",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_BILL_OF_MATERIAL_SRV_0002",
+    "entity_set": "ExplodeBOM",
+    "entity_type": "ExplodeBOMType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Invoke function ExplodeBOM",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_BILL_OF_MATERIAL_SRV_0002",
+    "entity_set": "MBOMItmObjDpnAssignment",
+    "entity_type": "MBOMItmObjDpnAssignmentType",
+    "key_fields": [
+      "BillOfMaterial",
+      "BillOfMaterialCategory",
+      "BillOfMaterialItemNodeNumber",
+      "BillOfMaterialVariant",
+      "BillOfMaterialVersion",
+      "HeaderChangeDocument",
+      "Material",
+      "ObjectDependencyName",
+      "Plant"
+    ],
+    "default_select_fields": [
+      "Delete_mc",
+      "Update_mc",
+      "BillOfMaterial",
+      "BillOfMaterialCategory",
+      "BillOfMaterialVariant",
+      "BillOfMaterialVersion",
+      "HeaderChangeDocument",
+      "Material",
+      "Plant",
+      "BillOfMaterialItemNodeNumber"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_BillOfMaterialItem",
+      "to_BillOfMaterial"
+    ],
+    "description": "Get entities from MBOMItmObjDpnAssignment",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_BILL_OF_MATERIAL_SRV_0002",
+    "entity_set": "MaterialBOM",
+    "entity_type": "MaterialBOMType",
+    "key_fields": [
+      "BillOfMaterial",
+      "BillOfMaterialCategory",
+      "BillOfMaterialVariant",
+      "BillOfMaterialVersion",
+      "EngineeringChangeDocument",
+      "Material",
+      "Plant"
+    ],
+    "default_select_fields": [
+      "DeleteBOMHeaderWithECN_ac",
+      "ReleaseVersionBOM_ac",
+      "Delete_mc",
+      "Update_mc",
+      "to_BillOfMaterialItem_oc",
+      "BillOfMaterial",
+      "BillOfMaterialCategory",
+      "BillOfMaterialVariant",
+      "BillOfMaterialVersion",
+      "EngineeringChangeDocument"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_BillOfMaterialItem",
+      "to_BillOfMaterialUsage"
+    ],
+    "description": "Get entities from MaterialBOM",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_BILL_OF_MATERIAL_SRV_0002",
+    "entity_set": "MaterialBOMItem",
+    "entity_type": "MaterialBOMItemType",
+    "key_fields": [
+      "BillOfMaterial",
+      "BillOfMaterialCategory",
+      "BillOfMaterialItemNodeNumber",
+      "BillOfMaterialVariant",
+      "BillOfMaterialVersion",
+      "HeaderChangeDocument",
+      "Material",
+      "Plant"
+    ],
+    "default_select_fields": [
+      "ConvertItem_ac",
+      "DeleteBOMItemWithECN_ac",
+      "UpdateBOMItemWithECN_ac",
+      "Delete_mc",
+      "Update_mc",
+      "to_BOMItmObjDependencyAssignment_oc",
+      "to_BOMSubItems_oc",
+      "BillOfMaterial",
+      "BillOfMaterialCategory",
+      "BillOfMaterialVariant"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_BOMItemCategory",
+      "to_BOMItmObjDependencyAssignment",
+      "to_BOMSubItems",
+      "to_BillOfMaterial"
+    ],
+    "description": "Get entities from MaterialBOMItem",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_BILL_OF_MATERIAL_SRV_0002",
+    "entity_set": "MaterialBOMSubItem",
+    "entity_type": "MaterialBOMSubItemType",
+    "key_fields": [
+      "BOMItemInternalChangeCount",
+      "BOMSubItemNumberValue",
+      "BillOfMaterial",
+      "BillOfMaterialCategory",
+      "BillOfMaterialItemNodeNumber",
+      "BillOfMaterialVariant",
+      "BillOfMaterialVersion",
+      "HeaderChangeDocument",
+      "Material",
+      "Plant"
+    ],
+    "default_select_fields": [
+      "Delete_mc",
+      "Update_mc",
+      "BillOfMaterial",
+      "BillOfMaterialCategory",
+      "BillOfMaterialVariant",
+      "BillOfMaterialVersion",
+      "BillOfMaterialItemNodeNumber",
+      "HeaderChangeDocument",
+      "Material",
+      "Plant"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_BillOfMaterialItem",
+      "to_BillOfMaterial"
+    ],
+    "description": "Get entities from MaterialBOMSubItem",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_BILL_OF_MATERIAL_SRV_0002",
+    "entity_set": "ReleaseVersionBOM",
+    "entity_type": "ReleaseVersionBOMType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Invoke action ReleaseVersionBOM",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_BILL_OF_MATERIAL_SRV_0002",
+    "entity_set": "UpdateBOMItemWithECN",
+    "entity_type": "UpdateBOMItemWithECNType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Invoke action UpdateBOMItemWithECN",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  }
+]

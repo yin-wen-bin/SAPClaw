@@ -1,0 +1,44 @@
+[
+  {
+    "service_name": "API_PRODUCTION_ROUTING",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_PRODUCTION_ROUTING",
+    "service_kind": "ODATA",
+    "runtime_path_template": "/sap/opu/odata/sap/{service_name}",
+    "description": "A routing is a description of the operations (or steps in a process) that are performed to manufacture a product (or material). It is used as a reference for production orders, to run schedules and in calculating the costs of products.",
+    "entity_sets": [
+      "ProdnRtgInspCharcsAssgmt",
+      "ProductionRouting",
+      "ProductionRoutingCompAlloc",
+      "ProductionRoutingDocPRTAssgmt",
+      "ProductionRoutingHeader",
+      "ProductionRoutingMatlAssgmt",
+      "ProductionRoutingMatlPRTAssgmt",
+      "ProductionRoutingMiscPRTAssgmt",
+      "ProductionRoutingOpCtrlPrfl",
+      "ProductionRoutingOpCtrlPrflTxt",
+      "ProductionRoutingOperation",
+      "ProductionRoutingSequence",
+      "ProductionRoutingStatus",
+      "ProductionRoutingStatusText",
+      "ProductionRoutingSubordOp",
+      "ProductionRoutingUsage",
+      "ProductionRoutingUsageText",
+      "ProductionRtgEquipPRTAssgmt"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PRODUCTION_ROUTING;v=0002/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "odata_runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/2d/d233df3bc947d6b402d246ed887b5a/frameset.htm",
+    "openapi_version": "1.0.4",
+    "runtime_notes": ""
+  }
+]

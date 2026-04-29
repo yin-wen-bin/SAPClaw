@@ -1,0 +1,142 @@
+[
+  {
+    "service_name": "API_BILLING_DOCUMENT_SRV",
+    "from_entity_set": "A_BillingDocument",
+    "navigation_name": "to_Item",
+    "to_entity_set": "ToRole_assoc_35B79867633D35B2FD84F13E02610402",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_BILLING_DOCUMENT_SRV",
+    "from_entity_set": "A_BillingDocument",
+    "navigation_name": "to_Partner",
+    "to_entity_set": "ToRole_assoc_6E54000D29CFBF364A7135E2F0C09165",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_BILLING_DOCUMENT_SRV",
+    "from_entity_set": "A_BillingDocument",
+    "navigation_name": "to_PricingElement",
+    "to_entity_set": "ToRole_assoc_73708EAAEB07CAF2AD2C13A873F4C1C2",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_BILLING_DOCUMENT_SRV",
+    "from_entity_set": "A_BillingDocument",
+    "navigation_name": "to_Text",
+    "to_entity_set": "ToRole_assoc_4CFBA5FAB2A531D8441023280D33B959",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_BILLING_DOCUMENT_SRV",
+    "from_entity_set": "A_BillingDocumentItem",
+    "navigation_name": "to_BillingDocument",
+    "to_entity_set": "ToRole_assoc_9352BC647D962607B845776023DBC0EA",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_BILLING_DOCUMENT_SRV",
+    "from_entity_set": "A_BillingDocumentItem",
+    "navigation_name": "to_ItemText",
+    "to_entity_set": "ToRole_assoc_FA80A41A210F7ABB838AB436CF3EB4DC",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_BILLING_DOCUMENT_SRV",
+    "from_entity_set": "A_BillingDocumentItem",
+    "navigation_name": "to_Partner",
+    "to_entity_set": "ToRole_assoc_450B9C1DC24E46CFFB6B64C66385B17C",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_BILLING_DOCUMENT_SRV",
+    "from_entity_set": "A_BillingDocumentItem",
+    "navigation_name": "to_PricingElement",
+    "to_entity_set": "ToRole_assoc_47B39CE7FE2576A1224D37D5A7B63487",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_BILLING_DOCUMENT_SRV",
+    "from_entity_set": "A_BillingDocumentItemPartner",
+    "navigation_name": "to_BillingDocument",
+    "to_entity_set": "ToRole_assoc_6A9D517128245B38C775F9670BF1C610",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_BILLING_DOCUMENT_SRV",
+    "from_entity_set": "A_BillingDocumentItemPartner",
+    "navigation_name": "to_BillingDocumentItem",
+    "to_entity_set": "ToRole_assoc_624185724F0255C5DFCFC94191287FE3",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_BILLING_DOCUMENT_SRV",
+    "from_entity_set": "A_BillingDocumentItemPrcgElmnt",
+    "navigation_name": "to_BillingDocument",
+    "to_entity_set": "ToRole_assoc_37F1ED3FCAC4BE59F9181B82F778E793",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_BILLING_DOCUMENT_SRV",
+    "from_entity_set": "A_BillingDocumentItemPrcgElmnt",
+    "navigation_name": "to_BillingDocumentItem",
+    "to_entity_set": "ToRole_assoc_3AE5A52FB6B16026836352E2F7E76A15",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_BILLING_DOCUMENT_SRV",
+    "from_entity_set": "A_BillingDocumentPartner",
+    "navigation_name": "to_BillingDocument",
+    "to_entity_set": "ToRole_assoc_5D57658E526D1FF553BDECFEA1D9FFE8",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_BILLING_DOCUMENT_SRV",
+    "from_entity_set": "A_BillingDocumentPrcgElmnt",
+    "navigation_name": "to_BillingDocument",
+    "to_entity_set": "ToRole_assoc_857338406F9DA2FD6BADA12C966496AB",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  }
+]

@@ -1,0 +1,52 @@
+[
+  {
+    "service_name": "API_PROCESS_ORDER_2_SRV",
+    "from_entity_set": "A_ProcessOrder_2",
+    "navigation_name": "to_ProcessOrderComponent",
+    "to_entity_set": "ToRole_assoc_035E4F0079600E524506535965B98312",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_PROCESS_ORDER_2_SRV",
+    "from_entity_set": "A_ProcessOrder_2",
+    "navigation_name": "to_ProcessOrderItem",
+    "to_entity_set": "ToRole_assoc_185664DAE9C21CE020CCE72D0A5CD442",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_PROCESS_ORDER_2_SRV",
+    "from_entity_set": "A_ProcessOrder_2",
+    "navigation_name": "to_ProcessOrderOperation",
+    "to_entity_set": "ToRole_assoc_CF293E3B2CBC8BF676C0295E6C2747AB",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_PROCESS_ORDER_2_SRV",
+    "from_entity_set": "A_ProcessOrder_2",
+    "navigation_name": "to_ProcessOrderStatus",
+    "to_entity_set": "ToRole_assoc_4542FD876AC944F5B809643F2FFF1A5D",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_PROCESS_ORDER_2_SRV",
+    "from_entity_set": "A_ProcessOrder_2",
+    "navigation_name": "to_ProcessProdnRsceTools",
+    "to_entity_set": "ToRole_assoc_F6FB60B474DB0D8EACD15291283198F4",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  }
+]

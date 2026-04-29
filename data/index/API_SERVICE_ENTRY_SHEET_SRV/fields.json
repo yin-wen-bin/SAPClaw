@@ -1,0 +1,3455 @@
+[
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheet",
+    "field_name": "ApprovalDateTime",
+    "label": "审批日期",
+    "business_aliases": [
+      "审批日期",
+      "服务条目表审批的日期和时间 (UTC)"
+    ],
+    "data_type": "Edm.DateTimeOffset",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "服务条目表审批的日期和时间 (UTC)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheet",
+    "field_name": "ApprovalStatus",
+    "label": "凭证状态",
+    "business_aliases": [
+      "凭证状态",
+      "服务条目表的凭证状态"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "服务条目表的凭证状态",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheet",
+    "field_name": "CreatedByUser",
+    "label": "用户名",
+    "business_aliases": [
+      "用户名"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "用户名",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheet",
+    "field_name": "CreationDateTime",
+    "label": "时戳",
+    "business_aliases": [
+      "时戳",
+      "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)"
+    ],
+    "data_type": "Edm.DateTimeOffset",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheet",
+    "field_name": "Currency",
+    "label": "货币",
+    "business_aliases": [
+      "货币",
+      "货币码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "货币码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheet",
+    "field_name": "ExternalRevisionDateTime",
+    "label": "外部修订",
+    "business_aliases": [
+      "外部修订",
+      "外部调用修订时戳"
+    ],
+    "data_type": "Edm.DateTimeOffset",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "外部调用修订时戳",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheet",
+    "field_name": "IsDeleted",
+    "label": "删除标识",
+    "business_aliases": [
+      "删除标识",
+      "采购凭证中的删除标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购凭证中的删除标识",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheet",
+    "field_name": "IsEndOfPurposeBlocked",
+    "label": "业务目的已完成",
+    "business_aliases": [
+      "业务目的已完成"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "业务目的已完成",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheet",
+    "field_name": "LastChangeDateTime",
+    "label": "时戳",
+    "business_aliases": [
+      "时戳",
+      "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)"
+    ],
+    "data_type": "Edm.DateTimeOffset",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheet",
+    "field_name": "LastChangedByUser",
+    "label": "用户名",
+    "business_aliases": [
+      "用户名"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "用户名",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheet",
+    "field_name": "MaterialDocument",
+    "label": "物料凭证",
+    "business_aliases": [
+      "物料凭证",
+      "物料凭证编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料凭证编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheet",
+    "field_name": "MaterialDocumentYear",
+    "label": "物料凭证的年份",
+    "business_aliases": [
+      "物料凭证的年份"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料凭证的年份",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheet",
+    "field_name": "OriginObjectType",
+    "label": "来源",
+    "business_aliases": [
+      "来源",
+      "服务条目表的源"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "服务条目表的源",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheet",
+    "field_name": "PostingDate",
+    "label": "收货过账日期",
+    "business_aliases": [
+      "收货过账日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "收货过账日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheet",
+    "field_name": "PurchaseOrder",
+    "label": "参考采购订单",
+    "business_aliases": [
+      "参考采购订单"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "参考采购订单",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheet",
+    "field_name": "PurchasingGroup",
+    "label": "采购组",
+    "business_aliases": [
+      "采购组"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购组",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheet",
+    "field_name": "PurchasingOrganization",
+    "label": "采购组织",
+    "business_aliases": [
+      "采购组织"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购组织",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheet",
+    "field_name": "PurgDocExternalReference",
+    "label": "外部参考标识",
+    "business_aliases": [
+      "外部参考标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "外部参考标识",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheet",
+    "field_name": "PurgDocExternalSystem",
+    "label": "外部参考系统",
+    "business_aliases": [
+      "外部参考系统",
+      "外部参考系统标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "外部参考系统标识",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheet",
+    "field_name": "ResponsiblePerson",
+    "label": "员工号",
+    "business_aliases": [
+      "员工号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "员工号",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheet",
+    "field_name": "SESWorkflowStatus",
+    "label": "审批状态",
+    "business_aliases": [
+      "审批状态",
+      "服务条目表的审批状态"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "服务条目表的审批状态",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheet",
+    "field_name": "ServiceEntrySheet",
+    "label": "服务条目表",
+    "business_aliases": [
+      "服务条目表"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "服务条目表",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheet",
+    "field_name": "ServiceEntrySheetName",
+    "label": "服务条目表名称",
+    "business_aliases": [
+      "服务条目表名称",
+      "服务条目表的名称"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "服务条目表的名称",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheet",
+    "field_name": "ServiceEntrySheetUUID",
+    "label": "Key",
+    "business_aliases": [
+      "Key",
+      "UUID serving as key (parent key, root key)"
+    ],
+    "data_type": "Edm.Guid",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "UUID serving as key (parent key, root key)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheet",
+    "field_name": "Supplier",
+    "label": "供应商",
+    "business_aliases": [
+      "供应商",
+      "供应商科目编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "供应商科目编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "AccountAssignmentCategory",
+    "label": "科目分配类别",
+    "business_aliases": [
+      "科目分配类别"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "科目分配类别",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "ConfirmedQuantity",
+    "label": "声明数量",
+    "business_aliases": [
+      "声明数量"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "声明数量",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "CreatedByUser",
+    "label": "创建人（用户）",
+    "business_aliases": [
+      "创建人（用户）",
+      "服务条目表的创建人（用户名）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "服务条目表的创建人（用户名）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "CreationDateTime",
+    "label": "时戳",
+    "business_aliases": [
+      "时戳",
+      "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)"
+    ],
+    "data_type": "Edm.DateTimeOffset",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "Currency",
+    "label": "货币",
+    "business_aliases": [
+      "货币",
+      "货币码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "货币码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "IsDeleted",
+    "label": "删除标识",
+    "business_aliases": [
+      "删除标识",
+      "采购凭证中的删除标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购凭证中的删除标识",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "LastChangeDateTime",
+    "label": "时戳",
+    "business_aliases": [
+      "时戳",
+      "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)"
+    ],
+    "data_type": "Edm.DateTimeOffset",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "LastChangedByUser",
+    "label": "上次更改人（用户）",
+    "business_aliases": [
+      "上次更改人（用户）",
+      "服务条目表的上次更改人（用户名）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "服务条目表的上次更改人（用户名）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "MaterialGroup",
+    "label": "产品组",
+    "business_aliases": [
+      "产品组"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "产品组",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "MultipleAcctAssgmtDistribution",
+    "label": "分配标识",
+    "business_aliases": [
+      "分配标识",
+      "多重科目分配的分配指示器"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "多重科目分配的分配指示器",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "NetAmount",
+    "label": "声明金额",
+    "business_aliases": [
+      "声明金额"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "声明金额",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "NetPriceAmount",
+    "label": "每单位的价格",
+    "business_aliases": [
+      "每单位的价格",
+      "服务条目表项目的单价"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "服务条目表项目的单价",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "OriginObject",
+    "label": "参考凭证",
+    "business_aliases": [
+      "参考凭证",
+      "外部参考凭证"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "外部参考凭证",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "Plant",
+    "label": "工厂",
+    "business_aliases": [
+      "工厂"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "工厂",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "PurchaseContract",
+    "label": "限制合同",
+    "business_aliases": [
+      "限制合同",
+      "增强限制的采购合同"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "增强限制的采购合同",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "PurchaseContractItem",
+    "label": "采购合同项目",
+    "business_aliases": [
+      "采购合同项目"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购合同项目",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "PurchaseOrder",
+    "label": "参考采购订单",
+    "business_aliases": [
+      "参考采购订单"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "参考采购订单",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "PurchaseOrderItem",
+    "label": "参考采购订单项",
+    "business_aliases": [
+      "参考采购订单项",
+      "参考采购订单项目"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "参考采购订单项目",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "PurchasingGroup",
+    "label": "采购组",
+    "business_aliases": [
+      "采购组"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购组",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "PurchasingOrganization",
+    "label": "采购组织",
+    "business_aliases": [
+      "采购组织"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购组织",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "PurgDocItemExternalReference",
+    "label": "外部参考标识",
+    "business_aliases": [
+      "外部参考标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "外部参考标识",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "QuantityUnit",
+    "label": "计量单位",
+    "business_aliases": [
+      "计量单位",
+      "服务条目报表的计量单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "服务条目报表的计量单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "SESItemIsFinalEntry",
+    "label": "最后输入",
+    "business_aliases": [
+      "最后输入"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "最后输入",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "SESItemMaterialGroupIsInitial",
+    "label": "是物料组初始值",
+    "business_aliases": [
+      "是物料组初始值"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "是物料组初始值",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "SESItemTaxCodeIsInitial",
+    "label": "税收代码是否为初始值",
+    "business_aliases": [
+      "税收代码是否为初始值"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "税收代码是否为初始值",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "SESItemTaxCountryCodeIsInitial",
+    "label": "税收代码是否为初始值",
+    "business_aliases": [
+      "税收代码是否为初始值",
+      "税收国家/地区代码是否为初始值"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "税收国家/地区代码是否为初始值",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "SESItmTaxJurisdictionIsInitial",
+    "label": "代码是否为初始值",
+    "business_aliases": [
+      "代码是否为初始值",
+      "税收管辖权代码是否为初始值"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "税收管辖权代码是否为初始值",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "Service",
+    "label": "产品",
+    "business_aliases": [
+      "产品"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "产品",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "ServiceEntrySheet",
+    "label": "服务条目表",
+    "business_aliases": [
+      "服务条目表"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "服务条目表",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "ServiceEntrySheetItem",
+    "label": "服务条目表的项目编号",
+    "business_aliases": [
+      "服务条目表的项目编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "服务条目表的项目编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "ServiceEntrySheetItemDesc",
+    "label": "项目描述",
+    "business_aliases": [
+      "项目描述",
+      "服务条目表的项目描述"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "服务条目表的项目描述",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "ServiceEntrySheetItemUUID",
+    "label": "Key",
+    "business_aliases": [
+      "Key",
+      "UUID serving as key (parent key, root key)"
+    ],
+    "data_type": "Edm.Guid",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "UUID serving as key (parent key, root key)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "ServiceEntrySheetUUID",
+    "label": "Key",
+    "business_aliases": [
+      "Key",
+      "UUID serving as key (parent key, root key)"
+    ],
+    "data_type": "Edm.Guid",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "UUID serving as key (parent key, root key)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "ServicePerformanceDate",
+    "label": "执行日期",
+    "business_aliases": [
+      "执行日期",
+      "服务执行日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "服务执行日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "ServicePerformanceEndDate",
+    "label": "绩效结束日期",
+    "business_aliases": [
+      "绩效结束日期",
+      "执行期间结束日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "执行期间结束日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "ServicePerformer",
+    "label": "服务执行者",
+    "business_aliases": [
+      "服务执行者"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "服务执行者",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "TaxCode",
+    "label": "税码",
+    "business_aliases": [
+      "税码",
+      "销售/购买税代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售/购买税代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "TaxCountry",
+    "label": "税收国家/地区",
+    "business_aliases": [
+      "税收国家/地区",
+      "报税国家/地区"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "报税国家/地区",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "TaxJurisdiction",
+    "label": "税务管辖权",
+    "business_aliases": [
+      "税务管辖权"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "税务管辖权",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "field_name": "WorkItem",
+    "label": "工作项目标识",
+    "business_aliases": [
+      "工作项目标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "工作项目标识",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "AccountAssignment",
+    "label": "科目分配编号",
+    "business_aliases": [
+      "科目分配编号",
+      "科目分配的序号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "科目分配的序号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "AccountAssignmentUUID",
+    "label": "Key",
+    "business_aliases": [
+      "Key",
+      "UUID serving as key (parent key, root key)"
+    ],
+    "data_type": "Edm.Guid",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "UUID serving as key (parent key, root key)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "BusinessArea",
+    "label": "业务范围",
+    "business_aliases": [
+      "业务范围"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "业务范围",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "CommitmentItem",
+    "label": "承诺项目",
+    "business_aliases": [
+      "承诺项目"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "承诺项目",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "ControllingArea",
+    "label": "成本控制范围",
+    "business_aliases": [
+      "成本控制范围"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "成本控制范围",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "CostCenter",
+    "label": "成本中心",
+    "business_aliases": [
+      "成本中心"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "成本中心",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "CostObject",
+    "label": "成本对象",
+    "business_aliases": [
+      "成本对象"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "成本对象",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "CreatedByUser",
+    "label": "用户名",
+    "business_aliases": [
+      "用户名"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "用户名",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "CreationDateTime",
+    "label": "时戳",
+    "business_aliases": [
+      "时戳",
+      "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)"
+    ],
+    "data_type": "Edm.DateTimeOffset",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "Currency",
+    "label": "货币",
+    "business_aliases": [
+      "货币",
+      "货币码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "货币码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "EarmarkedFundsDocument",
+    "label": "专项资金",
+    "business_aliases": [
+      "专项资金",
+      "专项资金的凭证编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "专项资金的凭证编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "FixedAsset",
+    "label": "子编号",
+    "business_aliases": [
+      "子编号",
+      "资产子编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "资产子编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "FunctionalArea",
+    "label": "职能范围",
+    "business_aliases": [
+      "职能范围"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "职能范围",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "Fund",
+    "label": "基金",
+    "business_aliases": [
+      "基金"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "基金",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "FundsCenter",
+    "label": "基金中心",
+    "business_aliases": [
+      "基金中心"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "基金中心",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "GLAccount",
+    "label": "总账科目",
+    "business_aliases": [
+      "总账科目",
+      "总账科目号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "总账科目号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "IsDeleted",
+    "label": "删除标识",
+    "business_aliases": [
+      "删除标识",
+      "删除标识：采购凭证帐户分配"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "删除标识：采购凭证帐户分配",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "LastChangeDateTime",
+    "label": "时戳",
+    "business_aliases": [
+      "时戳",
+      "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)"
+    ],
+    "data_type": "Edm.DateTimeOffset",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "LastChangedByUser",
+    "label": "用户名",
+    "business_aliases": [
+      "用户名"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "用户名",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "MasterFixedAsset",
+    "label": "资产",
+    "business_aliases": [
+      "资产",
+      "主要资产编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "主要资产编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "MultipleAcctAssgmtDistrPercent",
+    "label": "分配(%)",
+    "business_aliases": [
+      "分配(%)",
+      "多帐目分配情况下的分配百分比"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "多帐目分配情况下的分配百分比",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "NetAmount",
+    "label": "净额",
+    "business_aliases": [
+      "净额",
+      "以交易货币计的净额"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "以交易货币计的净额",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "NetworkActivity",
+    "label": "工序/活动",
+    "business_aliases": [
+      "工序/活动",
+      "工序/活动编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "工序/活动编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "NetworkActivityInternalID",
+    "label": "计数器",
+    "business_aliases": [
+      "计数器",
+      "内部计数器"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "内部计数器",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "OrderID",
+    "label": "订单",
+    "business_aliases": [
+      "订单",
+      "订单编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "订单编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "PartnerAccountNumber",
+    "label": "合作伙伴",
+    "business_aliases": [
+      "合作伙伴",
+      "合伙人帐户编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "合伙人帐户编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "Plant",
+    "label": "工厂",
+    "business_aliases": [
+      "工厂"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "工厂",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "ProfitCenter",
+    "label": "利润中心",
+    "business_aliases": [
+      "利润中心"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "利润中心",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "ProfitabilitySegment",
+    "label": "获利能力段编号",
+    "business_aliases": [
+      "获利能力段编号",
+      "获利能力段编号(CO-PA)"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "获利能力段编号(CO-PA)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "ProjectNetwork",
+    "label": "网络",
+    "business_aliases": [
+      "网络",
+      "科目分配的网络号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "科目分配的网络号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "ProjectNetworkInternalID",
+    "label": "工序的任务清单号",
+    "business_aliases": [
+      "工序的任务清单号",
+      "订单中工序的工艺路线号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "订单中工序的工艺路线号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "PurchasingGroup",
+    "label": "采购组",
+    "business_aliases": [
+      "采购组"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购组",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "PurchasingOrganization",
+    "label": "采购组织",
+    "business_aliases": [
+      "采购组织"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "采购组织",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "Quantity",
+    "label": "数量",
+    "business_aliases": [
+      "数量"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "数量",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "QuantityUnit",
+    "label": "计量单位",
+    "business_aliases": [
+      "计量单位",
+      "服务条目报表的计量单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "服务条目报表的计量单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "RealEstateObject",
+    "label": "房地产代码",
+    "business_aliases": [
+      "房地产代码",
+      "房地产对象的内码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "房地产对象的内码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "RefDocAccountAssignment",
+    "label": "采购订单项目科目分配",
+    "business_aliases": [
+      "采购订单项目科目分配",
+      "参考采购订单项目的科目分配编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "参考采购订单项目的科目分配编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "SalesOrder",
+    "label": "SD 凭证",
+    "business_aliases": [
+      "SD 凭证",
+      "销售和分销凭证号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售和分销凭证号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "SalesOrderItem",
+    "label": "项目",
+    "business_aliases": [
+      "项目",
+      "销售单据项目"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售单据项目",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "SalesOrderScheduleLine",
+    "label": "计划行号",
+    "business_aliases": [
+      "计划行号",
+      "计划行编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "计划行编号",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "ServiceDocument",
+    "label": "服务凭证",
+    "business_aliases": [
+      "服务凭证",
+      "服务凭证标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "服务凭证标识",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "ServiceDocumentItem",
+    "label": "服务凭证项目",
+    "business_aliases": [
+      "服务凭证项目",
+      "服务凭证项目标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "服务凭证项目标识",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "ServiceDocumentType",
+    "label": "服务凭证类型",
+    "business_aliases": [
+      "服务凭证类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "服务凭证类型",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "ServiceEntrySheet",
+    "label": "服务条目表",
+    "business_aliases": [
+      "服务条目表"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "服务条目表",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "ServiceEntrySheetItem",
+    "label": "服务条目表的项目编号",
+    "business_aliases": [
+      "服务条目表的项目编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "服务条目表的项目编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "ServiceEntrySheetItemUUID",
+    "label": "Key",
+    "business_aliases": [
+      "Key",
+      "UUID serving as key (parent key, root key)"
+    ],
+    "data_type": "Edm.Guid",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "UUID serving as key (parent key, root key)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "ServiceEntrySheetUUID",
+    "label": "Key",
+    "business_aliases": [
+      "Key",
+      "UUID serving as key (parent key, root key)"
+    ],
+    "data_type": "Edm.Guid",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "UUID serving as key (parent key, root key)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "WBSElement",
+    "label": "WBS 要素",
+    "business_aliases": [
+      "WBS 要素",
+      "工作分解结构要素（WBS 要素）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "工作分解结构要素（WBS 要素）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "field_name": "WBSElementInternalID",
+    "label": "WBS 内部标识",
+    "business_aliases": [
+      "WBS 内部标识",
+      "WBS 要素"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "WBS 要素",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  }
+]

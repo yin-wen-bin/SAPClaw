@@ -1,0 +1,222 @@
+[
+  {
+    "service_name": "API_CREDIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_CrdMmReqItemSubsqntProcFlow",
+    "navigation_name": "to_CreditMemoRequest",
+    "to_entity_set": "ToRole_assoc_9523755F713DCB197998237B0AA34F56",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CREDIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_CrdMmReqItemSubsqntProcFlow",
+    "navigation_name": "to_CreditMemoRequestItem",
+    "to_entity_set": "ToRole_assoc_6FBC4316F00A43EC3B732CDA45234C45",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CREDIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_CreditMemoReqItemPartner",
+    "navigation_name": "to_CreditMemoRequest",
+    "to_entity_set": "ToRole_assoc_00371EA4CD17DC06C27CE803445E5732",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CREDIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_CreditMemoReqItemPartner",
+    "navigation_name": "to_CreditMemoRequestItem",
+    "to_entity_set": "ToRole_assoc_749AE5630DD8B949AE636A242410823C",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CREDIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_CreditMemoReqItemPrcgElmnt",
+    "navigation_name": "to_CreditMemoRequest",
+    "to_entity_set": "ToRole_assoc_7C4AB3790A4DA8F1CEFB3F7CE63B526A",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CREDIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_CreditMemoReqItemPrcgElmnt",
+    "navigation_name": "to_CreditMemoRequestItem",
+    "to_entity_set": "ToRole_assoc_6947515A45E0125FA4E27739FCDFB5C2",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CREDIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_CreditMemoReqItemText",
+    "navigation_name": "to_CreditMemoRequest",
+    "to_entity_set": "ToRole_assoc_8C292D5E0432D69F41701F59F639F586",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CREDIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_CreditMemoReqItemText",
+    "navigation_name": "to_CreditMemoRequestItem",
+    "to_entity_set": "ToRole_assoc_90A4D5169131C532E2010318D8576E86",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CREDIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_CreditMemoReqPartner",
+    "navigation_name": "to_CreditMemoRequest",
+    "to_entity_set": "ToRole_assoc_7C55D99A38C9DC001823A75FA1D4C91B",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CREDIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_CreditMemoReqPrcgElmnt",
+    "navigation_name": "to_CreditMemoRequest",
+    "to_entity_set": "ToRole_assoc_8056320F01D748D62F5E32ED0A51B657",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CREDIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_CreditMemoReqSubsqntProcFlow",
+    "navigation_name": "to_CreditMemoRequest",
+    "to_entity_set": "ToRole_assoc_7650DAC5CF9BB95497434B177C4F64D1",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CREDIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_CreditMemoReqText",
+    "navigation_name": "to_CreditMemoRequest",
+    "to_entity_set": "ToRole_assoc_B3BAD9C9F049C79F67B6E023A0347984",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CREDIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_CreditMemoRequest",
+    "navigation_name": "to_Item",
+    "to_entity_set": "ToRole_assoc_9C2EF80E361135EB0B13D16E6DD060E7",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CREDIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_CreditMemoRequest",
+    "navigation_name": "to_Partner",
+    "to_entity_set": "ToRole_assoc_24B55657FE6FFCE9DFEC74C8840AEA2D",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CREDIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_CreditMemoRequest",
+    "navigation_name": "to_PricingElement",
+    "to_entity_set": "ToRole_assoc_ABE1457B604910B815A70764D97A90E8",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CREDIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_CreditMemoRequest",
+    "navigation_name": "to_SubsequentProcFlowDoc",
+    "to_entity_set": "ToRole_assoc_269CA19743F786CCF98B08CC70EAF0E9",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CREDIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_CreditMemoRequest",
+    "navigation_name": "to_Text",
+    "to_entity_set": "ToRole_assoc_2AE756D9399F5A4EA5D9532FC3F51AF7",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CREDIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_CreditMemoRequestItem",
+    "navigation_name": "to_CreditMemoRequest",
+    "to_entity_set": "ToRole_assoc_03E2B2623B8CF9B118D639E3F81F57C3",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CREDIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_CreditMemoRequestItem",
+    "navigation_name": "to_ItemSubsqntProcFlow",
+    "to_entity_set": "ToRole_assoc_E693E5E59ED831F49D13EBE72188335D",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CREDIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_CreditMemoRequestItem",
+    "navigation_name": "to_Partner",
+    "to_entity_set": "ToRole_assoc_508B853BC58F16A9A807088CD39892EA",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CREDIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_CreditMemoRequestItem",
+    "navigation_name": "to_PricingElement",
+    "to_entity_set": "ToRole_assoc_F9ACAE89713660D6FDF25F28DB976C8D",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_CREDIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_CreditMemoRequestItem",
+    "navigation_name": "to_Text",
+    "to_entity_set": "ToRole_assoc_4E6A82B82FA71808C1F9D16653F00A93",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  }
+]

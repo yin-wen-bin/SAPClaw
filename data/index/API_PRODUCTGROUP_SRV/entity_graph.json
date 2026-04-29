@@ -1,0 +1,24 @@
+[
+  {
+    "service_name": "API_PRODUCTGROUP_SRV",
+    "from_entity_set": "A_ProductGroup",
+    "to_entity_set": "ToRole_assoc_70508036371EBAADFDE9FF3C8A220DB6",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_Text",
+    "description": "Navigation `to_Text` from `A_ProductGroup` to `ToRole_assoc_70508036371EBAADFDE9FF3C8A220DB6`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_PRODUCTGROUP_SRV",
+    "from_entity_set": "A_ProductGroupText",
+    "to_entity_set": "ToRole_assoc_6010E6BD1065752B4AA5D9C50103C96E",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_MaterialGroup",
+    "description": "Navigation `to_MaterialGroup` from `A_ProductGroupText` to `ToRole_assoc_6010E6BD1065752B4AA5D9C50103C96E`.",
+    "confidence": 0.8
+  }
+]

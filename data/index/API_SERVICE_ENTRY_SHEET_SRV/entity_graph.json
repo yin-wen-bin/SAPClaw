@@ -1,0 +1,24 @@
+[
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "from_entity_set": "A_ServiceEntrySheet",
+    "to_entity_set": "ToRole_assoc_ABD7D9F62FC251466E24A8E464DE6827",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_ServiceEntrySheetItem",
+    "description": "Navigation `to_ServiceEntrySheetItem` from `A_ServiceEntrySheet` to `ToRole_assoc_ABD7D9F62FC251466E24A8E464DE6827`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "from_entity_set": "A_ServiceEntrySheetItem",
+    "to_entity_set": "ToRole_assoc_6222CCC34F0A97EAE7A715F716B63ED3",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_AccountAssignment",
+    "description": "Navigation `to_AccountAssignment` from `A_ServiceEntrySheetItem` to `ToRole_assoc_6222CCC34F0A97EAE7A715F716B63ED3`.",
+    "confidence": 0.8
+  }
+]

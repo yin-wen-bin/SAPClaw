@@ -1,0 +1,953 @@
+[
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrder",
+    "entity_type": "A_SalesOrderType",
+    "key_fields": [
+      "SalesOrder"
+    ],
+    "default_select_fields": [
+      "SalesOrder",
+      "SalesOrderType",
+      "SalesOrganization",
+      "DistributionChannel",
+      "OrganizationDivision",
+      "SalesGroup",
+      "SalesOffice",
+      "SalesDistrict",
+      "SoldToParty",
+      "CreationDate"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_BillingPlan",
+      "to_Item",
+      "to_Partner",
+      "to_PaymentPlanItemDetails",
+      "to_PrecedingProcFlowDoc",
+      "to_PricingElement",
+      "to_RelatedObject",
+      "to_SubsequentProcFlowDoc",
+      "to_Text"
+    ],
+    "description": "Reads all sales order headers.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrderBillingPlan",
+    "entity_type": "A_SalesOrderBillingPlanType",
+    "key_fields": [
+      "BillingPlan",
+      "SalesOrder"
+    ],
+    "default_select_fields": [
+      "SalesOrder",
+      "BillingPlan",
+      "BillingPlanStartDate",
+      "BillingPlanStartDateRule",
+      "ReferenceBillingPlan",
+      "PaymentLinkIsRequired",
+      "BillingPlanCategory",
+      "BillingPlanType",
+      "BillingPlanEndDate",
+      "BillingPlanEndDateRule"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_BillingPlanItem",
+      "to_SalesOrder"
+    ],
+    "description": "Reads the billing plans of all sales orders.",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrderBillingPlanItem",
+    "entity_type": "A_SalesOrderBillingPlanItemType",
+    "key_fields": [
+      "BillingPlan",
+      "BillingPlanItem",
+      "SalesOrder"
+    ],
+    "default_select_fields": [
+      "SalesOrder",
+      "BillingPlan",
+      "BillingPlanItem",
+      "BillingPlanDateCategory",
+      "BillingPlanBillingDate",
+      "BillingPlanAmount",
+      "TransactionCurrency",
+      "BillingPlanAmountPercent",
+      "CustomerPaymentTerms",
+      "ProposedBillingDocumentType"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_BillingPlan",
+      "to_SalesOrder"
+    ],
+    "description": "Reads the billing plan items of all sales orders.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrderHeaderPartner",
+    "entity_type": "A_SalesOrderHeaderPartnerType",
+    "key_fields": [
+      "PartnerFunction",
+      "SalesOrder"
+    ],
+    "default_select_fields": [
+      "SalesOrder",
+      "PartnerFunction",
+      "PartnerFunctionInternalCode",
+      "Customer",
+      "Supplier",
+      "Personnel",
+      "ContactPerson",
+      "ReferenceBusinessPartner",
+      "AddressID",
+      "VATRegistration"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Address",
+      "to_SalesOrder"
+    ],
+    "description": "Reads the header partners of all sales orders.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrderHeaderPrElement",
+    "entity_type": "A_SalesOrderHeaderPrElementType",
+    "key_fields": [
+      "PricingProcedureCounter",
+      "PricingProcedureStep",
+      "SalesOrder"
+    ],
+    "default_select_fields": [
+      "SalesOrder",
+      "PricingProcedureStep",
+      "PricingProcedureCounter",
+      "ConditionType",
+      "PricingDateTime",
+      "PriceConditionDeterminationDte",
+      "ConditionCalculationType",
+      "ConditionBaseValue",
+      "ConditionRateValue",
+      "ConditionCurrency"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SalesOrder"
+    ],
+    "description": "Reads the header pricing elements of all sales orders.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrderItem",
+    "entity_type": "A_SalesOrderItemType",
+    "key_fields": [
+      "SalesOrder",
+      "SalesOrderItem"
+    ],
+    "default_select_fields": [
+      "SalesOrder",
+      "SalesOrderItem",
+      "HigherLevelItem",
+      "HigherLevelItemUsage",
+      "SalesOrderItemCategory",
+      "SalesOrderItemText",
+      "PurchaseOrderByCustomer",
+      "PurchaseOrderByShipToParty",
+      "UnderlyingPurchaseOrderItem",
+      "ExternalItemID"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_BillingPlan",
+      "to_Partner",
+      "to_PrecedingProcFlowDocItem",
+      "to_PricingElement",
+      "to_RelatedObject",
+      "to_SalesOrder",
+      "to_ScheduleLine",
+      "to_SubsequentProcFlowDocItem",
+      "to_Text"
+    ],
+    "description": "Reads all sales order items.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrderItemBillingPlan",
+    "entity_type": "A_SalesOrderItemBillingPlanType",
+    "key_fields": [
+      "BillingPlan",
+      "SalesOrder",
+      "SalesOrderItem"
+    ],
+    "default_select_fields": [
+      "SalesOrder",
+      "SalesOrderItem",
+      "BillingPlan",
+      "BillingPlanIsInHeader",
+      "BillingPlanStartDate",
+      "BillingPlanStartDateRule",
+      "ReferenceBillingPlan",
+      "BillingPlanCategory",
+      "BillingPlanType",
+      "BillingPlanEndDate"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_BillingPlanItem",
+      "to_SalesOrder",
+      "to_SalesOrderItem"
+    ],
+    "description": "Reads the billing plans of all sales order items.",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrderItemPartner",
+    "entity_type": "A_SalesOrderItemPartnerType",
+    "key_fields": [
+      "PartnerFunction",
+      "SalesOrder",
+      "SalesOrderItem"
+    ],
+    "default_select_fields": [
+      "SalesOrder",
+      "SalesOrderItem",
+      "PartnerFunction",
+      "PartnerFunctionInternalCode",
+      "Customer",
+      "Supplier",
+      "Personnel",
+      "ContactPerson",
+      "ReferenceBusinessPartner",
+      "AddressID"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Address",
+      "to_SalesOrder",
+      "to_SalesOrderItem"
+    ],
+    "description": "Reads the item partners for all sales orders.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrderItemPartnerAddress",
+    "entity_type": "A_SalesOrderItemPartnerAddressType",
+    "key_fields": [
+      "AddressRepresentationCode",
+      "PartnerFunction",
+      "SalesOrder",
+      "SalesOrderItem"
+    ],
+    "default_select_fields": [
+      "SalesOrder",
+      "SalesOrderItem",
+      "PartnerFunction",
+      "AddressRepresentationCode",
+      "CorrespondenceLanguage",
+      "AddresseeFullName",
+      "OrganizationName1",
+      "OrganizationName2",
+      "OrganizationName3",
+      "OrganizationName4"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Partner",
+      "to_SalesOrder",
+      "to_SalesOrderItem"
+    ],
+    "description": "Reads all addresses for item partners of sales orders.",
+    "supported_methods": [
+      "GET",
+      "PATCH"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrderItemPrElement",
+    "entity_type": "A_SalesOrderItemPrElementType",
+    "key_fields": [
+      "PricingProcedureCounter",
+      "PricingProcedureStep",
+      "SalesOrder",
+      "SalesOrderItem"
+    ],
+    "default_select_fields": [
+      "SalesOrder",
+      "SalesOrderItem",
+      "PricingProcedureStep",
+      "PricingProcedureCounter",
+      "ConditionType",
+      "PricingDateTime",
+      "PriceConditionDeterminationDte",
+      "ConditionCalculationType",
+      "ConditionBaseValue",
+      "ConditionRateValue"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SalesOrder",
+      "to_SalesOrderItem"
+    ],
+    "description": "Reads the item pricing elements of all sales orders.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrderItemRelatedObject",
+    "entity_type": "A_SalesOrderItemRelatedObjectType",
+    "key_fields": [
+      "SDDocRelatedObjectSequenceNmbr",
+      "SalesOrder",
+      "SalesOrderItem"
+    ],
+    "default_select_fields": [
+      "SalesOrder",
+      "SalesOrderItem",
+      "SDDocRelatedObjectSequenceNmbr",
+      "SDDocumentRelatedObjectType",
+      "SDDocRelatedObjectSystem",
+      "SDDocRelatedObjectReference1",
+      "SDDocRelatedObjectReference2"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SalesOrder",
+      "to_SalesOrderItem"
+    ],
+    "description": "Reads related objects from the items of all sales orders.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrderItemText",
+    "entity_type": "A_SalesOrderItemTextType",
+    "key_fields": [
+      "Language",
+      "LongTextID",
+      "SalesOrder",
+      "SalesOrderItem"
+    ],
+    "default_select_fields": [
+      "SalesOrder",
+      "SalesOrderItem",
+      "Language",
+      "LongTextID",
+      "LongText"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SalesOrder",
+      "to_SalesOrderItem"
+    ],
+    "description": "Reads item texts of all sales orders.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrderItmPrecdgProcFlow",
+    "entity_type": "A_SalesOrderItmPrecdgProcFlowType",
+    "key_fields": [
+      "DocRelationshipUUID",
+      "SalesOrder",
+      "SalesOrderItem"
+    ],
+    "default_select_fields": [
+      "SalesOrder",
+      "SalesOrderItem",
+      "DocRelationshipUUID",
+      "PrecedingDocument",
+      "PrecedingDocumentItem",
+      "PrecedingDocumentCategory",
+      "ProcessFlowLevel",
+      "RelatedProcFlowDocStsFieldName",
+      "SDProcessStatus",
+      "AccountingTransferStatus"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SalesOrder",
+      "to_SalesOrderItem"
+    ],
+    "description": "Reads the preceding items of all sales orders items.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrderItmSubsqntProcFlow",
+    "entity_type": "A_SalesOrderItmSubsqntProcFlowType",
+    "key_fields": [
+      "DocRelationshipUUID",
+      "SalesOrder",
+      "SalesOrderItem"
+    ],
+    "default_select_fields": [
+      "SalesOrder",
+      "SalesOrderItem",
+      "DocRelationshipUUID",
+      "SubsequentDocument",
+      "SubsequentDocumentItem",
+      "SubsequentDocumentCategory",
+      "ProcessFlowLevel",
+      "RelatedProcFlowDocStsFieldName",
+      "SDProcessStatus",
+      "AccountingTransferStatus"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SalesOrder",
+      "to_SalesOrderItem"
+    ],
+    "description": "Reads the subsequent items of all sales orders items.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrderPartnerAddress",
+    "entity_type": "A_SalesOrderPartnerAddressType",
+    "key_fields": [
+      "AddressRepresentationCode",
+      "PartnerFunction",
+      "SalesOrder"
+    ],
+    "default_select_fields": [
+      "SalesOrder",
+      "PartnerFunction",
+      "AddressRepresentationCode",
+      "CorrespondenceLanguage",
+      "AddresseeFullName",
+      "OrganizationName1",
+      "OrganizationName2",
+      "OrganizationName3",
+      "OrganizationName4",
+      "CityName"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Partner",
+      "to_SalesOrder"
+    ],
+    "description": "Reads all addresses for header partners of sales orders.",
+    "supported_methods": [
+      "GET",
+      "PATCH"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrderPrecdgProcFlow",
+    "entity_type": "A_SalesOrderPrecdgProcFlowType",
+    "key_fields": [
+      "DocRelationshipUUID",
+      "SalesOrder"
+    ],
+    "default_select_fields": [
+      "SalesOrder",
+      "DocRelationshipUUID",
+      "PrecedingDocument",
+      "PrecedingDocumentCategory",
+      "ProcessFlowLevel",
+      "OverallSDProcessStatus",
+      "CreationDate",
+      "CreationTime",
+      "LastChangeDate"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SalesOrder"
+    ],
+    "description": "Reads the preceding documents of all sales orders.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrderRelatedObject",
+    "entity_type": "A_SalesOrderRelatedObjectType",
+    "key_fields": [
+      "SDDocRelatedObjectSequenceNmbr",
+      "SalesOrder"
+    ],
+    "default_select_fields": [
+      "SalesOrder",
+      "SDDocRelatedObjectSequenceNmbr",
+      "SDDocumentRelatedObjectType",
+      "SDDocRelatedObjectSystem",
+      "SDDocRelatedObjectReference1",
+      "SDDocRelatedObjectReference2"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SalesOrder"
+    ],
+    "description": "Reads related objects from the headers of all sales orders.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrderScheduleLine",
+    "entity_type": "A_SalesOrderScheduleLineType",
+    "key_fields": [
+      "SalesOrder",
+      "SalesOrderItem",
+      "ScheduleLine"
+    ],
+    "default_select_fields": [
+      "SalesOrder",
+      "SalesOrderItem",
+      "ScheduleLine",
+      "RequestedDeliveryDate",
+      "ConfirmedDeliveryDate",
+      "OrderQuantityUnit",
+      "OrderQuantitySAPUnit",
+      "OrderQuantityISOUnit",
+      "ScheduleLineOrderQuantity",
+      "ConfdOrderQtyByMatlAvailCheck"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads the schedule lines of all sales orders.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrderSubsqntProcFlow",
+    "entity_type": "A_SalesOrderSubsqntProcFlowType",
+    "key_fields": [
+      "DocRelationshipUUID",
+      "SalesOrder"
+    ],
+    "default_select_fields": [
+      "SalesOrder",
+      "DocRelationshipUUID",
+      "SubsequentDocument",
+      "SubsequentDocumentCategory",
+      "ProcessFlowLevel",
+      "OverallSDProcessStatus",
+      "CreationDate",
+      "CreationTime",
+      "LastChangeDate"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SalesOrder"
+    ],
+    "description": "Reads the subsequent documents of all sales orders.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrderText",
+    "entity_type": "A_SalesOrderTextType",
+    "key_fields": [
+      "Language",
+      "LongTextID",
+      "SalesOrder"
+    ],
+    "default_select_fields": [
+      "SalesOrder",
+      "Language",
+      "LongTextID",
+      "LongText"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SalesOrder"
+    ],
+    "description": "Reads the header texts of all sales orders.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrderValAddedSrvc",
+    "entity_type": "A_SalesOrderValAddedSrvcType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads the value-added service data of all sales orders",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SlsOrdPaymentPlanItemDetails",
+    "entity_type": "A_SlsOrdPaymentPlanItemDetailsType",
+    "key_fields": [
+      "PaymentPlanItem",
+      "SalesOrder"
+    ],
+    "default_select_fields": [
+      "SalesOrder",
+      "PaymentPlanItem",
+      "PaymentPlan",
+      "ElectronicPaymentType",
+      "ElectronicPayment",
+      "EPaytValidityStartDate",
+      "EPaytValidityEndDate",
+      "ElectronicPaymentHolderName",
+      "AuthorizedAmountInAuthznCrcy",
+      "AuthorizationCurrency"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SalesOrder"
+    ],
+    "description": "Reads the payment plans of all sales orders.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SlsOrderItemBillingPlanItem",
+    "entity_type": "A_SlsOrderItemBillingPlanItemType",
+    "key_fields": [
+      "BillingPlan",
+      "BillingPlanItem",
+      "SalesOrder",
+      "SalesOrderItem"
+    ],
+    "default_select_fields": [
+      "SalesOrder",
+      "SalesOrderItem",
+      "BillingPlan",
+      "BillingPlanItem",
+      "BillingPlanDateCategory",
+      "BillingPlanBillingDate",
+      "BillingPlanAmount",
+      "TransactionCurrency",
+      "BillingPlanAmountPercent",
+      "CustomerPaymentTerms"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_BillingPlan",
+      "to_SalesOrder",
+      "to_SalesOrderItem"
+    ],
+    "description": "Reads the billing plan items of all sales order items.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "rejectApprovalRequest",
+    "entity_type": "rejectApprovalRequestType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Invoke action rejectApprovalRequest",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "releaseApprovalRequest",
+    "entity_type": "releaseApprovalRequestType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Invoke action releaseApprovalRequest",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  }
+]

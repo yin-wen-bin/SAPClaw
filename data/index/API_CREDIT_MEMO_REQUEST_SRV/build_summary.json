@@ -1,0 +1,15 @@
+{
+  "service_name": "API_CREDIT_MEMO_REQUEST_SRV",
+  "sap_metadata_entity_count": 19,
+  "sap_metadata_field_count": 296,
+  "openapi_documented_entity_count": 22,
+  "openapi_documented_entity_type_count": 23,
+  "merged_entity_count": 22,
+  "merged_field_count": 315,
+  "relation_count": 22,
+  "entity_graph_edge_count": 22,
+  "lookup_path_count": 86,
+  "business_term_count": 543,
+  "vector_document_count": 401,
+  "doc_chunk_count": 636
+}

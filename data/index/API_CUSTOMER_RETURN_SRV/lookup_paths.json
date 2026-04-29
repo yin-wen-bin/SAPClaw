@@ -1,0 +1,3906 @@
+[
+  {
+    "path_id": "customer_to_contactperson_a_customerreturnitempartner",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_CustomerReturnItemPartner",
+    "target_field": "ContactPerson",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "ContactPerson"
+    ],
+    "description": "Resolve `Customer` directly on `A_CustomerReturnItemPartner` to answer `ContactPerson`.",
+    "business_aliases": [
+      "联系人",
+      "联系人编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItemPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "ContactPerson"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_contactperson_a_customerreturnpartner",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_CustomerReturnPartner",
+    "target_field": "ContactPerson",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "ContactPerson"
+    ],
+    "description": "Resolve `Customer` directly on `A_CustomerReturnPartner` to answer `ContactPerson`.",
+    "business_aliases": [
+      "联系人",
+      "联系人编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "ContactPerson"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_customer_a_customerreturnitempartner",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_CustomerReturnItemPartner",
+    "target_field": "Customer",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Customer"
+    ],
+    "description": "Resolve `Customer` directly on `A_CustomerReturnItemPartner` to answer `Customer`.",
+    "business_aliases": [
+      "客户",
+      "客户编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItemPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Customer"
+        ],
+        "top": 20
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_customer_a_customerreturnpartner",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_CustomerReturnPartner",
+    "target_field": "Customer",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Customer"
+    ],
+    "description": "Resolve `Customer` directly on `A_CustomerReturnPartner` to answer `Customer`.",
+    "business_aliases": [
+      "客户",
+      "客户编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Customer"
+        ],
+        "top": 20
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_customerreturn_a_customerreturnitempartner",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_CustomerReturnItemPartner",
+    "target_field": "CustomerReturn",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "CustomerReturn"
+    ],
+    "description": "Resolve `Customer` directly on `A_CustomerReturnItemPartner` to answer `CustomerReturn`.",
+    "business_aliases": [
+      "销售和分销凭证",
+      "销售和分销凭证号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItemPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "CustomerReturn"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_customerreturn_a_customerreturnpartner",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_CustomerReturnPartner",
+    "target_field": "CustomerReturn",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "CustomerReturn"
+    ],
+    "description": "Resolve `Customer` directly on `A_CustomerReturnPartner` to answer `CustomerReturn`.",
+    "business_aliases": [
+      "销售和分销凭证",
+      "销售和分销凭证号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "CustomerReturn"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_customerreturnitem_a_customerreturnitempartner",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_CustomerReturnItemPartner",
+    "target_field": "CustomerReturnItem",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "CustomerReturnItem"
+    ],
+    "description": "Resolve `Customer` directly on `A_CustomerReturnItemPartner` to answer `CustomerReturnItem`.",
+    "business_aliases": [
+      "项目(SD)",
+      "销售和分销凭证的项目号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItemPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "CustomerReturnItem"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_partnerfunction_a_customerreturnitempartner",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_CustomerReturnItemPartner",
+    "target_field": "PartnerFunction",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "PartnerFunction"
+    ],
+    "description": "Resolve `Customer` directly on `A_CustomerReturnItemPartner` to answer `PartnerFunction`.",
+    "business_aliases": [
+      "合作伙伴职能"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItemPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "PartnerFunction"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_partnerfunction_a_customerreturnpartner",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_CustomerReturnPartner",
+    "target_field": "PartnerFunction",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "PartnerFunction"
+    ],
+    "description": "Resolve `Customer` directly on `A_CustomerReturnPartner` to answer `PartnerFunction`.",
+    "business_aliases": [
+      "合作伙伴职能"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "PartnerFunction"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_personnel_a_customerreturnitempartner",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_CustomerReturnItemPartner",
+    "target_field": "Personnel",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Personnel"
+    ],
+    "description": "Resolve `Customer` directly on `A_CustomerReturnItemPartner` to answer `Personnel`.",
+    "business_aliases": [
+      "员工号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItemPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Personnel"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_personnel_a_customerreturnpartner",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_CustomerReturnPartner",
+    "target_field": "Personnel",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Personnel"
+    ],
+    "description": "Resolve `Customer` directly on `A_CustomerReturnPartner` to answer `Personnel`.",
+    "business_aliases": [
+      "员工号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Personnel"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_supplier_a_customerreturnitempartner",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_CustomerReturnItemPartner",
+    "target_field": "Supplier",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Supplier"
+    ],
+    "description": "Resolve `Customer` directly on `A_CustomerReturnItemPartner` to answer `Supplier`.",
+    "business_aliases": [
+      "供应商",
+      "供应商科目编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItemPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Supplier"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_supplier_a_customerreturnpartner",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_CustomerReturnPartner",
+    "target_field": "Supplier",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Supplier"
+    ],
+    "description": "Resolve `Customer` directly on `A_CustomerReturnPartner` to answer `Supplier`.",
+    "business_aliases": [
+      "供应商",
+      "供应商科目编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Supplier"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_batch_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "Batch",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Batch"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `Batch`.",
+    "business_aliases": [
+      "批次",
+      "批次编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Batch"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_contactperson_a_customerreturnitempartner",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItemPartner",
+    "target_field": "ContactPerson",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ContactPerson"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItemPartner` to answer `ContactPerson`.",
+    "business_aliases": [
+      "联系人",
+      "联系人编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItemPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ContactPerson"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_contactperson_a_customerreturnpartner",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnPartner",
+    "target_field": "ContactPerson",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ContactPerson"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnPartner` to answer `ContactPerson`.",
+    "business_aliases": [
+      "联系人",
+      "联系人编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ContactPerson"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_crmlogicalsystem_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "CRMLogicalSystem",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "CRMLogicalSystem"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `CRMLogicalSystem`.",
+    "business_aliases": [
+      "CRM 逻辑系统"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "CRMLogicalSystem"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_crmobjectid_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "CRMObjectID",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "CRMObjectID"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `CRMObjectID`.",
+    "business_aliases": [
+      "CRM 对象标识"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "CRMObjectID"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_crmobjecttype_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "CRMObjectType",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "CRMObjectType"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `CRMObjectType`.",
+    "business_aliases": [
+      "CRM 对象类型"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "CRMObjectType"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_crmobjectuuid_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "CRMObjectUUID",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "CRMObjectUUID"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `CRMObjectUUID`.",
+    "business_aliases": [
+      "CRM 对象 GUID"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "CRMObjectUUID"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_crossplantconfigurableproduct_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "CrossPlantConfigurableProduct",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "CrossPlantConfigurableProduct"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `CrossPlantConfigurableProduct`.",
+    "business_aliases": [
+      "Cross-Plant Configurable Material"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "CrossPlantConfigurableProduct"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_customer_a_customerreturnitempartner",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItemPartner",
+    "target_field": "Customer",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Customer"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItemPartner` to answer `Customer`.",
+    "business_aliases": [
+      "客户",
+      "客户编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItemPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Customer"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_customer_a_customerreturnpartner",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnPartner",
+    "target_field": "Customer",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Customer"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnPartner` to answer `Customer`.",
+    "business_aliases": [
+      "客户",
+      "客户编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Customer"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_customerpaymentterms_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "CustomerPaymentTerms",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "CustomerPaymentTerms"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `CustomerPaymentTerms`.",
+    "business_aliases": [
+      "付款条件",
+      "付款条件代码"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "CustomerPaymentTerms"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_customerretmatlinspresultcode_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "CustomerRetMatlInspResultCode",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "CustomerRetMatlInspResultCode"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `CustomerRetMatlInspResultCode`.",
+    "business_aliases": [
+      "客户检验代码"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "CustomerRetMatlInspResultCode"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_customerreturn_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "CustomerReturn",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "CustomerReturn"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `CustomerReturn`.",
+    "business_aliases": [
+      "客户退货"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "CustomerReturn"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_customerreturn_a_customerreturnitempartner",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItemPartner",
+    "target_field": "CustomerReturn",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "CustomerReturn"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItemPartner` to answer `CustomerReturn`.",
+    "business_aliases": [
+      "销售和分销凭证",
+      "销售和分销凭证号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItemPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "CustomerReturn"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_customerreturn_a_customerreturnpartner",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnPartner",
+    "target_field": "CustomerReturn",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "CustomerReturn"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnPartner` to answer `CustomerReturn`.",
+    "business_aliases": [
+      "销售和分销凭证",
+      "销售和分销凭证号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "CustomerReturn"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_customerreturnitem_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "CustomerReturnItem",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "CustomerReturnItem"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `CustomerReturnItem`.",
+    "business_aliases": [
+      "客户退货项目"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "CustomerReturnItem"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_customerreturnitem_a_customerreturnitempartner",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItemPartner",
+    "target_field": "CustomerReturnItem",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "CustomerReturnItem"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItemPartner` to answer `CustomerReturnItem`.",
+    "business_aliases": [
+      "项目(SD)",
+      "销售和分销凭证的项目号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItemPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "CustomerReturnItem"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_customerreturnitemcategory_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "CustomerReturnItemCategory",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "CustomerReturnItemCategory"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `CustomerReturnItemCategory`.",
+    "business_aliases": [
+      "项目类别",
+      "销售凭证项目类别"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "CustomerReturnItemCategory"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_customerreturnitemtext_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "CustomerReturnItemText",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "CustomerReturnItemText"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `CustomerReturnItemText`.",
+    "business_aliases": [
+      "项目描述",
+      "销售订单项目短文本"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "CustomerReturnItemText"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_custretitmfollowupactivity_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "CustRetItmFollowUpActivity",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "CustRetItmFollowUpActivity"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `CustRetItmFollowUpActivity`.",
+    "business_aliases": [
+      "后续活动",
+      "后续活动代码"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "CustRetItmFollowUpActivity"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_custretmatlauthzn_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "CustRetMatlAuthzn",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "CustRetMatlAuthzn"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `CustRetMatlAuthzn`.",
+    "business_aliases": [
+      "客户 RMA 编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "CustRetMatlAuthzn"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_deliverypriority_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "DeliveryPriority",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "DeliveryPriority"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `DeliveryPriority`.",
+    "business_aliases": [
+      "交货优先级"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "DeliveryPriority"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_higherlevelitem_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "HigherLevelItem",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "HigherLevelItem"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `HigherLevelItem`.",
+    "business_aliases": [
+      "上级项目",
+      "物料清单结构中的上级项目"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "HigherLevelItem"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_incotermsclassification_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "IncotermsClassification",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "IncotermsClassification"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `IncotermsClassification`.",
+    "business_aliases": [
+      "国际贸易条款",
+      "国际贸易条款（第 1 部分）"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "IncotermsClassification"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_incotermslocation1_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "IncotermsLocation1",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "IncotermsLocation1"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `IncotermsLocation1`.",
+    "business_aliases": [
+      "国际贸易条款位置 1"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "IncotermsLocation1"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_incotermslocation2_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "IncotermsLocation2",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "IncotermsLocation2"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `IncotermsLocation2`.",
+    "business_aliases": [
+      "国际贸易条款位置 2"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "IncotermsLocation2"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_incotermstransferlocation_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "IncotermsTransferLocation",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "IncotermsTransferLocation"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `IncotermsTransferLocation`.",
+    "business_aliases": [
+      "国际贸易条款(部分2)",
+      "国际贸易条款（第 2 部分）"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "IncotermsTransferLocation"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_itembillingblockreason_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ItemBillingBlockReason",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ItemBillingBlockReason"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ItemBillingBlockReason`.",
+    "business_aliases": [
+      "开票冻结",
+      "项目的出具发票冻结"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ItemBillingBlockReason"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_itemgrossweight_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ItemGrossWeight",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ItemGrossWeight"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ItemGrossWeight`.",
+    "business_aliases": [
+      "毛重",
+      "项目的毛重"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ItemGrossWeight"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_itemnetweight_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ItemNetWeight",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ItemNetWeight"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ItemNetWeight`.",
+    "business_aliases": [
+      "净重",
+      "项目净重"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ItemNetWeight"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_itemvolume_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ItemVolume",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ItemVolume"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ItemVolume`.",
+    "business_aliases": [
+      "体积",
+      "项目体积"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ItemVolume"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_itemvolumeunit_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ItemVolumeUnit",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ItemVolumeUnit"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ItemVolumeUnit`.",
+    "business_aliases": [
+      "体积单位"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ItemVolumeUnit"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_itemweightunit_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ItemWeightUnit",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ItemWeightUnit"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ItemWeightUnit`.",
+    "business_aliases": [
+      "重量单位"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ItemWeightUnit"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_material_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "Material",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Material"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `Material`.",
+    "business_aliases": [
+      "物料",
+      "物料编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Material"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_materialbycustomer_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "MaterialByCustomer",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "MaterialByCustomer"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `MaterialByCustomer`.",
+    "business_aliases": [
+      "客户物料",
+      "客户所用的物料编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "MaterialByCustomer"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_materialgroup_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "MaterialGroup",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "MaterialGroup"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `MaterialGroup`.",
+    "business_aliases": [
+      "物料组"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "MaterialGroup"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_netamount_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "NetAmount",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "NetAmount"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `NetAmount`.",
+    "business_aliases": [
+      "净值",
+      "凭证项目的凭证货币净值"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "NetAmount"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_nextfllwupactivityformatlinsp_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "NextFllwUpActivityForMatlInsp",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "NextFllwUpActivityForMatlInsp"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `NextFllwUpActivityForMatlInsp`.",
+    "business_aliases": [
+      "下一个后续活动",
+      "物料检验中下一个后续活动的缺省值"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "NextFllwUpActivityForMatlInsp"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_nextplantforfollowupactivity_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "NextPlantForFollowUpActivity",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "NextPlantForFollowUpActivity"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `NextPlantForFollowUpActivity`.",
+    "business_aliases": [
+      "工厂"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "NextPlantForFollowUpActivity"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_partnerfunction_a_customerreturnitempartner",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItemPartner",
+    "target_field": "PartnerFunction",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PartnerFunction"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItemPartner` to answer `PartnerFunction`.",
+    "business_aliases": [
+      "合作伙伴职能"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItemPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PartnerFunction"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_partnerfunction_a_customerreturnpartner",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnPartner",
+    "target_field": "PartnerFunction",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PartnerFunction"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnPartner` to answer `PartnerFunction`.",
+    "business_aliases": [
+      "合作伙伴职能"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PartnerFunction"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_personnel_a_customerreturnitempartner",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItemPartner",
+    "target_field": "Personnel",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Personnel"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItemPartner` to answer `Personnel`.",
+    "business_aliases": [
+      "员工号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItemPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Personnel"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_personnel_a_customerreturnpartner",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnPartner",
+    "target_field": "Personnel",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Personnel"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnPartner` to answer `Personnel`.",
+    "business_aliases": [
+      "员工号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Personnel"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_prelimrefundisdetermined_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "PrelimRefundIsDetermined",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PrelimRefundIsDetermined"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `PrelimRefundIsDetermined`.",
+    "business_aliases": [],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PrelimRefundIsDetermined"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_pricingdate_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "PricingDate",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PricingDate"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `PricingDate`.",
+    "business_aliases": [
+      "Date for Pricing and Exchange Rate"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PricingDate"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_productcharacteristic1_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ProductCharacteristic1",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ProductCharacteristic1"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ProductCharacteristic1`.",
+    "business_aliases": [
+      "Characteristic Value 1"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ProductCharacteristic1"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_productcharacteristic2_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ProductCharacteristic2",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ProductCharacteristic2"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ProductCharacteristic2`.",
+    "business_aliases": [
+      "Characteristic Value 2"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ProductCharacteristic2"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_productcharacteristic3_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ProductCharacteristic3",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ProductCharacteristic3"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ProductCharacteristic3`.",
+    "business_aliases": [
+      "Characteristic Value 3"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ProductCharacteristic3"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_productcollection_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ProductCollection",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ProductCollection"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ProductCollection`.",
+    "business_aliases": [
+      "Fashion Collection"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ProductCollection"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_productionplant_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ProductionPlant",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ProductionPlant"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ProductionPlant`.",
+    "business_aliases": [
+      "工厂",
+      "工厂(自有或外部)"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ProductionPlant"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_productisinspectedatcustsite_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ProductIsInspectedAtCustSite",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ProductIsInspectedAtCustSite"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ProductIsInspectedAtCustSite`.",
+    "business_aliases": [],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ProductIsInspectedAtCustSite"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_producttaxclassification1_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ProductTaxClassification1",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ProductTaxClassification1"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ProductTaxClassification1`.",
+    "business_aliases": [
+      "物料的税分类"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ProductTaxClassification1"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_producttaxclassification2_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ProductTaxClassification2",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ProductTaxClassification2"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ProductTaxClassification2`.",
+    "business_aliases": [
+      "物料的税分类"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ProductTaxClassification2"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_producttaxclassification3_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ProductTaxClassification3",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ProductTaxClassification3"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ProductTaxClassification3`.",
+    "business_aliases": [
+      "物料的税分类"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ProductTaxClassification3"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_producttaxclassification4_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ProductTaxClassification4",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ProductTaxClassification4"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ProductTaxClassification4`.",
+    "business_aliases": [
+      "物料的税分类"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ProductTaxClassification4"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_producttaxclassification5_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ProductTaxClassification5",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ProductTaxClassification5"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ProductTaxClassification5`.",
+    "business_aliases": [
+      "物料的税分类"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ProductTaxClassification5"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_producttaxclassification6_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ProductTaxClassification6",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ProductTaxClassification6"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ProductTaxClassification6`.",
+    "business_aliases": [
+      "物料的税分类"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ProductTaxClassification6"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_producttaxclassification7_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ProductTaxClassification7",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ProductTaxClassification7"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ProductTaxClassification7`.",
+    "business_aliases": [
+      "物料的税分类"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ProductTaxClassification7"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_producttaxclassification8_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ProductTaxClassification8",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ProductTaxClassification8"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ProductTaxClassification8`.",
+    "business_aliases": [
+      "物料的税分类"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ProductTaxClassification8"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_producttaxclassification9_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ProductTaxClassification9",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ProductTaxClassification9"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ProductTaxClassification9`.",
+    "business_aliases": [
+      "物料的税分类"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ProductTaxClassification9"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_producttheme_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ProductTheme",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ProductTheme"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ProductTheme`.",
+    "business_aliases": [
+      "Fashion Theme"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ProductTheme"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_profitcenter_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ProfitCenter",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ProfitCenter"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ProfitCenter`.",
+    "business_aliases": [
+      "利润中心"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ProfitCenter"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purchaseorderbycustomer_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "PurchaseOrderByCustomer",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurchaseOrderByCustomer"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `PurchaseOrderByCustomer`.",
+    "business_aliases": [
+      "客户参考"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurchaseOrderByCustomer"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_referencesddocument_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ReferenceSDDocument",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ReferenceSDDocument"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ReferenceSDDocument`.",
+    "business_aliases": [
+      "参考凭证",
+      "参考凭证的凭证编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ReferenceSDDocument"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_referencesddocumentcategory_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ReferenceSDDocumentCategory",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ReferenceSDDocumentCategory"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ReferenceSDDocumentCategory`.",
+    "business_aliases": [
+      "参考凭证类别"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ReferenceSDDocumentCategory"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_referencesddocumentitem_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ReferenceSDDocumentItem",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ReferenceSDDocumentItem"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ReferenceSDDocumentItem`.",
+    "business_aliases": [
+      "参考项目",
+      "参考项目的项目号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ReferenceSDDocumentItem"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_replacementmaterial_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ReplacementMaterial",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ReplacementMaterial"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ReplacementMaterial`.",
+    "business_aliases": [
+      "置换物料"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ReplacementMaterial"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_replacementmaterialisrequested_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ReplacementMaterialIsRequested",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ReplacementMaterialIsRequested"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ReplacementMaterialIsRequested`.",
+    "business_aliases": [],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ReplacementMaterialIsRequested"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_replacementmaterialqtyunit_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ReplacementMaterialQtyUnit",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ReplacementMaterialQtyUnit"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ReplacementMaterialQtyUnit`.",
+    "business_aliases": [
+      "替换计量单位",
+      "替换物料计量单位"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ReplacementMaterialQtyUnit"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_replacementmaterialquantity_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ReplacementMaterialQuantity",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ReplacementMaterialQuantity"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ReplacementMaterialQuantity`.",
+    "business_aliases": [
+      "替换数量",
+      "替换物料数量"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ReplacementMaterialQuantity"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_replacementmatlsupplyingplant_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ReplacementMatlSupplyingPlant",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ReplacementMatlSupplyingPlant"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ReplacementMatlSupplyingPlant`.",
+    "business_aliases": [
+      "供货装置",
+      "替换物料的供货工厂"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ReplacementMatlSupplyingPlant"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_requestedquantity_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "RequestedQuantity",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "RequestedQuantity"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `RequestedQuantity`.",
+    "business_aliases": [
+      "已请求数量"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "RequestedQuantity"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_requestedquantityunit_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "RequestedQuantityUnit",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "RequestedQuantityUnit"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `RequestedQuantityUnit`.",
+    "business_aliases": [
+      "已请求数量单位"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "RequestedQuantityUnit"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_requirementsegment_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "RequirementSegment",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "RequirementSegment"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `RequirementSegment`.",
+    "business_aliases": [
+      "需求细分"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "RequirementSegment"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_retmatlinspresultcode_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "RetMatlInspResultCode",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "RetMatlInspResultCode"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `RetMatlInspResultCode`.",
+    "business_aliases": [
+      "检验代码"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "RetMatlInspResultCode"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_retsmgmtitmcompnprocgstatus_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "RetsMgmtItmCompnProcgStatus",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "RetsMgmtItmCompnProcgStatus"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `RetsMgmtItmCompnProcgStatus`.",
+    "business_aliases": [
+      "退款状态",
+      "退货退款确定的状态"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "RetsMgmtItmCompnProcgStatus"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_retsmgmtitmlogprocgstatus_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "RetsMgmtItmLogProcgStatus",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "RetsMgmtItmLogProcgStatus"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `RetsMgmtItmLogProcgStatus`.",
+    "business_aliases": [
+      "物流状态",
+      "退货的物流处理状态"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "RetsMgmtItmLogProcgStatus"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_retsmgmtitmprocgstatus_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "RetsMgmtItmProcgStatus",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "RetsMgmtItmProcgStatus"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `RetsMgmtItmProcgStatus`.",
+    "business_aliases": [
+      "处理状态"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "RetsMgmtItmProcgStatus"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_retsmgmtprocess_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "RetsMgmtProcess",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "RetsMgmtProcess"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `RetsMgmtProcess`.",
+    "business_aliases": [
+      "处理标识编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "RetsMgmtProcess"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_retsmgmtprocessingblock_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "RetsMgmtProcessingBlock",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "RetsMgmtProcessingBlock"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `RetsMgmtProcessingBlock`.",
+    "business_aliases": [
+      "审批",
+      "审批冻结"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "RetsMgmtProcessingBlock"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_retsmgmtprocessitem_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "RetsMgmtProcessItem",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "RetsMgmtProcessItem"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `RetsMgmtProcessItem`.",
+    "business_aliases": [
+      "项目编号处理中",
+      "项目编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "RetsMgmtProcessItem"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_retsprodvalnissuspended_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "RetsProdValnIsSuspended",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "RetsProdValnIsSuspended"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `RetsProdValnIsSuspended`.",
+    "business_aliases": [],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "RetsProdValnIsSuspended"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_returnreason_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ReturnReason",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ReturnReason"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ReturnReason`.",
+    "business_aliases": [
+      "退货原因"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ReturnReason"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_returnsdocumentapprovalstatus_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ReturnsDocumentApprovalStatus",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ReturnsDocumentApprovalStatus"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ReturnsDocumentApprovalStatus`.",
+    "business_aliases": [
+      "审批状态",
+      "退货处理的批准状态"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ReturnsDocumentApprovalStatus"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_returnsdocumentstatus_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ReturnsDocumentStatus",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ReturnsDocumentStatus"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ReturnsDocumentStatus`.",
+    "business_aliases": [
+      "项目状态",
+      "凭证项目状态"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ReturnsDocumentStatus"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_returnsmaterialhasbeenreceived_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ReturnsMaterialHasBeenReceived",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ReturnsMaterialHasBeenReceived"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ReturnsMaterialHasBeenReceived`.",
+    "business_aliases": [],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ReturnsMaterialHasBeenReceived"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_returnsrefundextent_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ReturnsRefundExtent",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ReturnsRefundExtent"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ReturnsRefundExtent`.",
+    "business_aliases": [
+      "退款代码",
+      "退货退款代码"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ReturnsRefundExtent"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_returnsrefundprocgmode_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ReturnsRefundProcgMode",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ReturnsRefundProcgMode"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ReturnsRefundProcgMode`.",
+    "business_aliases": [
+      "退款处理",
+      "退货的退款处理模式"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ReturnsRefundProcgMode"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_returnsrefundrjcnreason_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ReturnsRefundRjcnReason",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ReturnsRefundRjcnReason"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ReturnsRefundRjcnReason`.",
+    "business_aliases": [
+      "CMR 拒绝原因",
+      "贷项凭单请求的拒绝原因"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ReturnsRefundRjcnReason"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_returnsrefundtype_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ReturnsRefundType",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ReturnsRefundType"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ReturnsRefundType`.",
+    "business_aliases": [
+      "退款类型"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ReturnsRefundType"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_returnstransshipmentplant_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ReturnsTransshipmentPlant",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ReturnsTransshipmentPlant"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ReturnsTransshipmentPlant`.",
+    "business_aliases": [
+      "转运工厂"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ReturnsTransshipmentPlant"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_salesdocumentrjcnreason_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "SalesDocumentRjcnReason",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "SalesDocumentRjcnReason"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `SalesDocumentRjcnReason`.",
+    "business_aliases": [
+      "拒绝原因",
+      "销售凭证的拒绝原因"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "SalesDocumentRjcnReason"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_sddocumentrejectionstatus_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "SDDocumentRejectionStatus",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "SDDocumentRejectionStatus"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `SDDocumentRejectionStatus`.",
+    "business_aliases": [
+      "拒绝状态",
+      "拒绝状态（项目）"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "SDDocumentRejectionStatus"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_sdprocessstatus_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "SDProcessStatus",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "SDProcessStatus"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `SDProcessStatus`.",
+    "business_aliases": [
+      "总体状态",
+      "总体处理状态（项目）"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "SDProcessStatus"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_seasoncompletenessstatus_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "SeasonCompletenessStatus",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "SeasonCompletenessStatus"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `SeasonCompletenessStatus`.",
+    "business_aliases": [
+      "Season Completeness Indicator"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "SeasonCompletenessStatus"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_shippingpoint_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ShippingPoint",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ShippingPoint"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ShippingPoint`.",
+    "business_aliases": [
+      "装运点",
+      "装运点/收货点"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ShippingPoint"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_shippingtype_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "ShippingType",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ShippingType"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `ShippingType`.",
+    "business_aliases": [
+      "装运类型"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ShippingType"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_storagelocation_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "StorageLocation",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "StorageLocation"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `StorageLocation`.",
+    "business_aliases": [
+      "存储地点"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "StorageLocation"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_suplrretmatlauthznisrequired_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "SuplrRetMatlAuthznIsRequired",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "SuplrRetMatlAuthznIsRequired"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `SuplrRetMatlAuthznIsRequired`.",
+    "business_aliases": [],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "SuplrRetMatlAuthznIsRequired"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_supplier_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "Supplier",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Supplier"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `Supplier`.",
+    "business_aliases": [
+      "供应商",
+      "供应商科目编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Supplier"
+        ],
+        "top": 20
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_supplier_a_customerreturnitempartner",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItemPartner",
+    "target_field": "Supplier",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Supplier"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItemPartner` to answer `Supplier`.",
+    "business_aliases": [
+      "供应商",
+      "供应商科目编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItemPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Supplier"
+        ],
+        "top": 20
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_supplier_a_customerreturnpartner",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnPartner",
+    "target_field": "Supplier",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Supplier"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnPartner` to answer `Supplier`.",
+    "business_aliases": [
+      "供应商",
+      "供应商科目编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Supplier"
+        ],
+        "top": 20
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_supplierretmatlauthzn_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "SupplierRetMatlAuthzn",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "SupplierRetMatlAuthzn"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `SupplierRetMatlAuthzn`.",
+    "business_aliases": [
+      "供应商 RMA 编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "SupplierRetMatlAuthzn"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_transactioncurrency_a_customerreturnitem",
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_CustomerReturnItem",
+    "target_field": "TransactionCurrency",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "TransactionCurrency"
+    ],
+    "description": "Resolve `Supplier` directly on `A_CustomerReturnItem` to answer `TransactionCurrency`.",
+    "business_aliases": [
+      "凭证货币",
+      "SD 凭证货币"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_CustomerReturnItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "TransactionCurrency"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  }
+]

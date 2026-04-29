@@ -1,0 +1,24 @@
+[
+  {
+    "service_name": "API_COSTCENTER_SRV",
+    "from_entity_set": "A_CostCenter",
+    "to_entity_set": "ToRole_assoc_908EE76104E2F80C8DB8059C22542E29",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_Text",
+    "description": "Navigation `to_Text` from `A_CostCenter` to `ToRole_assoc_908EE76104E2F80C8DB8059C22542E29`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_COSTCENTER_SRV",
+    "from_entity_set": "A_CostCenterText",
+    "to_entity_set": "ToRole_assoc_BB9DB6B1ACD06A8C08DED685B5DE78B8",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_CostCenter",
+    "description": "Navigation `to_CostCenter` from `A_CostCenterText` to `ToRole_assoc_BB9DB6B1ACD06A8C08DED685B5DE78B8`.",
+    "confidence": 0.8
+  }
+]

@@ -1,0 +1,6573 @@
+[
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "ContractManualCompletion",
+    "label": "手动完成",
+    "business_aliases": [
+      "手动完成",
+      "手动完成合同"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "手动完成合同",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "CreatedByUser",
+    "label": "创建人",
+    "business_aliases": [
+      "创建人",
+      "负责创建对象的人员姓名"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "负责创建对象的人员姓名",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "CreationDate",
+    "label": "创建日期",
+    "business_aliases": [
+      "创建日期",
+      "记录创建日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "记录创建日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "CustomerPaymentTerms",
+    "label": "付款条件",
+    "business_aliases": [
+      "付款条件",
+      "付款条件代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "付款条件代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "CustomerPurchaseOrderDate",
+    "label": "客户参考日期",
+    "business_aliases": [
+      "客户参考日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户参考日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "CustomerPurchaseOrderType",
+    "label": "采购订单类型",
+    "business_aliases": [
+      "采购订单类型",
+      "客户采购订单类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户采购订单类型",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "DistributionChannel",
+    "label": "分销渠道",
+    "business_aliases": [
+      "分销渠道"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "分销渠道",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "IncotermsClassification",
+    "label": "国际贸易条款",
+    "business_aliases": [
+      "国际贸易条款",
+      "国际贸易条款（第 1 部分）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "国际贸易条款（第 1 部分）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "IncotermsLocation1",
+    "label": "国际贸易条款位置 1",
+    "business_aliases": [
+      "国际贸易条款位置 1"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "国际贸易条款位置 1",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "IncotermsLocation2",
+    "label": "国际贸易条款位置 2",
+    "business_aliases": [
+      "国际贸易条款位置 2"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "国际贸易条款位置 2",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "IncotermsTransferLocation",
+    "label": "国际贸易条款(部分2)",
+    "business_aliases": [
+      "国际贸易条款(部分2)",
+      "国际贸易条款（第 2 部分）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "国际贸易条款（第 2 部分）",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "IncotermsVersion",
+    "label": "国际贸易条款版本",
+    "business_aliases": [
+      "国际贸易条款版本"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "国际贸易条款版本",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "LastChangeDate",
+    "label": "更改日期",
+    "business_aliases": [
+      "更改日期",
+      "上次更改日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "上次更改日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "LastChangeDateTime",
+    "label": "时戳",
+    "business_aliases": [
+      "时戳",
+      "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)"
+    ],
+    "data_type": "Edm.DateTimeOffset",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "NmbrOfSalesContractValdtyPerd",
+    "label": "合同有效期",
+    "business_aliases": [
+      "合同有效期"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "合同有效期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "OrganizationDivision",
+    "label": "产品组",
+    "business_aliases": [
+      "产品组"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "产品组",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "OverallSDDocumentRejectionSts",
+    "label": "拒绝状态",
+    "business_aliases": [
+      "拒绝状态",
+      "拒绝状态（所有项目）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "拒绝状态（所有项目）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "OverallSDProcessStatus",
+    "label": "总体状态",
+    "business_aliases": [
+      "总体状态",
+      "总体处理状态（抬头/所有项目）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "总体处理状态（抬头/所有项目）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "PaymentMethod",
+    "label": "付款方式",
+    "business_aliases": [
+      "付款方式"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "付款方式",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "PricingDate",
+    "label": "定价日期",
+    "business_aliases": [
+      "定价日期",
+      "定价和汇率的日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "定价和汇率的日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "PurchaseOrderByCustomer",
+    "label": "客户参考",
+    "business_aliases": [
+      "客户参考"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户参考",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "ReferenceSDDocument",
+    "label": "参考凭证",
+    "business_aliases": [
+      "参考凭证",
+      "参考凭证的凭证编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "参考凭证的凭证编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "ReferenceSDDocumentCategory",
+    "label": "先前凭证类别",
+    "business_aliases": [
+      "先前凭证类别",
+      "先前销售和分销凭证的凭证类别"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "先前销售和分销凭证的凭证类别",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "SDDocumentReason",
+    "label": "订单原因",
+    "business_aliases": [
+      "订单原因",
+      "订单原因（业务交易原因）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "订单原因（业务交易原因）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "SalesContract",
+    "label": "销售合同",
+    "business_aliases": [
+      "销售合同"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售合同",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "SalesContractApprovalReason",
+    "label": "审批请求原因",
+    "business_aliases": [
+      "审批请求原因",
+      "审批请求原因标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "审批请求原因标识",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "SalesContractDate",
+    "label": "凭证日期",
+    "business_aliases": [
+      "凭证日期",
+      "凭证日期 (接收/发送日期)"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "凭证日期 (接收/发送日期)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "SalesContractFollowUpAction",
+    "label": "操作",
+    "business_aliases": [
+      "操作",
+      "合同终止时的活动"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "合同终止时的活动",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "SalesContractSignedDate",
+    "label": "合同已签署",
+    "business_aliases": [
+      "合同已签署",
+      "合同签订日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "合同签订日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "SalesContractType",
+    "label": "销售合同类型",
+    "business_aliases": [
+      "销售合同类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售合同类型",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "SalesContractValidityEndDate",
+    "label": "有效期截止日期",
+    "business_aliases": [
+      "有效期截止日期",
+      "有效截止日期（框架协议，产品建议）"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "有效截止日期（框架协议，产品建议）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "SalesContractValidityPerdCat",
+    "label": "有效期类别",
+    "business_aliases": [
+      "有效期类别",
+      "合同的有效期类别"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "合同的有效期类别",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "SalesContractValidityPerdUnit",
+    "label": "有效期单位",
+    "business_aliases": [
+      "有效期单位",
+      "合同有效期单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "合同有效期单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "SalesContractValidityStartDate",
+    "label": "有效期起始日期",
+    "business_aliases": [
+      "有效期起始日期",
+      "有效起始日期（框架协议，产品建议）"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "有效起始日期（框架协议，产品建议）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "SalesDistrict",
+    "label": "销售地区",
+    "business_aliases": [
+      "销售地区"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售地区",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "SalesDocApprovalStatus",
+    "label": "审批状态",
+    "business_aliases": [
+      "审批状态",
+      "凭证审批状态"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "凭证审批状态",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "SalesGroup",
+    "label": "销售组",
+    "business_aliases": [
+      "销售组"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售组",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "SalesOffice",
+    "label": "销售办事处",
+    "business_aliases": [
+      "销售办事处"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售办事处",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "SalesOrganization",
+    "label": "销售组织",
+    "business_aliases": [
+      "销售组织"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售组织",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "SlsContractFollowUpActionDate",
+    "label": "操作日期",
+    "business_aliases": [
+      "操作日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "操作日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "SoldToParty",
+    "label": "售达方",
+    "business_aliases": [
+      "售达方"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "售达方",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "TotalCreditCheckStatus",
+    "label": "信用状态",
+    "business_aliases": [
+      "信用状态",
+      "信用检查的总体状态"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "信用检查的总体状态",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "TotalNetAmount",
+    "label": "净值",
+    "business_aliases": [
+      "净值",
+      "销售凭证的凭证货币净值"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售凭证的凭证货币净值",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContract",
+    "field_name": "TransactionCurrency",
+    "label": "凭证货币",
+    "business_aliases": [
+      "凭证货币",
+      "SD 凭证货币"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "SD 凭证货币",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "Batch",
+    "label": "批次",
+    "business_aliases": [
+      "批次",
+      "批次编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "批次编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "CrossPlantConfigurableProduct",
+    "label": "",
+    "business_aliases": [
+      "Cross-Plant Configurable Material"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Cross-Plant Configurable Material",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "CustomerPaymentTerms",
+    "label": "付款条件",
+    "business_aliases": [
+      "付款条件",
+      "付款条件代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "付款条件代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "HigherLevelItem",
+    "label": "上级项目",
+    "business_aliases": [
+      "上级项目",
+      "物料清单结构中的上级项目"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料清单结构中的上级项目",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "IncotermsClassification",
+    "label": "国际贸易条款",
+    "business_aliases": [
+      "国际贸易条款",
+      "国际贸易条款（第 1 部分）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "国际贸易条款（第 1 部分）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "IncotermsLocation1",
+    "label": "国际贸易条款位置 1",
+    "business_aliases": [
+      "国际贸易条款位置 1"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "国际贸易条款位置 1",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "IncotermsLocation2",
+    "label": "国际贸易条款位置 2",
+    "business_aliases": [
+      "国际贸易条款位置 2"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "国际贸易条款位置 2",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "IncotermsTransferLocation",
+    "label": "国际贸易条款(部分2)",
+    "business_aliases": [
+      "国际贸易条款(部分2)",
+      "国际贸易条款（第 2 部分）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "国际贸易条款（第 2 部分）",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "ItemBillingBlockReason",
+    "label": "开票冻结",
+    "business_aliases": [
+      "开票冻结",
+      "项目的出具发票冻结"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "项目的出具发票冻结",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "ItemGrossWeight",
+    "label": "毛重",
+    "business_aliases": [
+      "毛重",
+      "项目的毛重"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "项目的毛重",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "ItemNetWeight",
+    "label": "净重",
+    "business_aliases": [
+      "净重",
+      "项目净重"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "项目净重",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "ItemVolume",
+    "label": "体积",
+    "business_aliases": [
+      "体积",
+      "项目体积"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "项目体积",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "ItemVolumeISOUnit",
+    "label": "ISO 单位项目体积",
+    "business_aliases": [
+      "ISO 单位项目体积",
+      "项目体积的 ISO 单位代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "项目体积的 ISO 单位代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "ItemVolumeSAPUnit",
+    "label": "项目体积 SAP 单位",
+    "business_aliases": [
+      "项目体积 SAP 单位",
+      "项目体积的 SAP 单位代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "项目体积的 SAP 单位代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "ItemVolumeUnit",
+    "label": "体积单位",
+    "business_aliases": [
+      "体积单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "体积单位",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "ItemWeightISOUnit",
+    "label": "ISO 单位项目权重",
+    "business_aliases": [
+      "ISO 单位项目权重",
+      "项目权重的 ISO 单位代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "项目权重的 ISO 单位代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "ItemWeightSAPUnit",
+    "label": "SAP 代码项目权重",
+    "business_aliases": [
+      "SAP 代码项目权重",
+      "项目权重的 SAP 单位代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "项目权重的 SAP 单位代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "ItemWeightUnit",
+    "label": "重量单位",
+    "business_aliases": [
+      "重量单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "重量单位",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "Material",
+    "label": "物料",
+    "business_aliases": [
+      "物料",
+      "物料编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "MaterialByCustomer",
+    "label": "客户物料",
+    "business_aliases": [
+      "客户物料",
+      "客户所用的物料编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户所用的物料编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "MaterialGroup",
+    "label": "物料组",
+    "business_aliases": [
+      "物料组"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料组",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "MaterialPricingGroup",
+    "label": "产品价格组",
+    "business_aliases": [
+      "产品价格组"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "产品价格组",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "NetAmount",
+    "label": "净值",
+    "business_aliases": [
+      "净值",
+      "凭证项目的凭证货币净值"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "凭证项目的凭证货币净值",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "NmbrOfSalesContractValdtyPerd",
+    "label": "合同有效期",
+    "business_aliases": [
+      "合同有效期"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "合同有效期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "OutlineAgreementTargetAmount",
+    "label": "框架协议目标值",
+    "business_aliases": [
+      "框架协议目标值",
+      "在框架协议中凭证货币的目标值"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "在框架协议中凭证货币的目标值",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "PricingDate",
+    "label": "定价日期",
+    "business_aliases": [
+      "定价日期",
+      "定价和汇率的日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "定价和汇率的日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "ProductCharacteristic1",
+    "label": "",
+    "business_aliases": [
+      "Characteristic Value 1"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Characteristic Value 1",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "ProductCharacteristic2",
+    "label": "",
+    "business_aliases": [
+      "Characteristic Value 2"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Characteristic Value 2",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "ProductCharacteristic3",
+    "label": "",
+    "business_aliases": [
+      "Characteristic Value 3"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Characteristic Value 3",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "ProductCollection",
+    "label": "",
+    "business_aliases": [
+      "Fashion Collection"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Fashion Collection",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "ProductTheme",
+    "label": "",
+    "business_aliases": [
+      "Fashion Theme"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Fashion Theme",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "ProductionPlant",
+    "label": "工厂",
+    "business_aliases": [
+      "工厂",
+      "工厂(自有或外部)"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "工厂(自有或外部)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "ProfitCenter",
+    "label": "利润中心",
+    "business_aliases": [
+      "利润中心"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "利润中心",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "PurchaseOrderByCustomer",
+    "label": "客户参考",
+    "business_aliases": [
+      "客户参考"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户参考",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "ReferenceSDDocument",
+    "label": "参考凭证",
+    "business_aliases": [
+      "参考凭证",
+      "参考凭证的凭证编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "参考凭证的凭证编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "ReferenceSDDocumentItem",
+    "label": "参考项目",
+    "business_aliases": [
+      "参考项目",
+      "参考项目的项目号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "参考项目的项目号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "RequestedQuantity",
+    "label": "已请求数量",
+    "business_aliases": [
+      "已请求数量"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "已请求数量",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "RequestedQuantityISOUnit",
+    "label": "ISO 代码请求数量",
+    "business_aliases": [
+      "ISO 代码请求数量",
+      "请求数量的 ISO 单位代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "请求数量的 ISO 单位代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "RequestedQuantitySAPUnit",
+    "label": "SAP 代码请求数量",
+    "business_aliases": [
+      "SAP 代码请求数量",
+      "请求数量的 SAP 单位代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "请求数量的 SAP 单位代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "RequestedQuantityUnit",
+    "label": "已请求数量单位",
+    "business_aliases": [
+      "已请求数量单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "已请求数量单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "RequirementSegment",
+    "label": "需求细分",
+    "business_aliases": [
+      "需求细分"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "需求细分",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "SDProcessStatus",
+    "label": "总体状态",
+    "business_aliases": [
+      "总体状态",
+      "总体处理状态（项目）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "总体处理状态（项目）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "SalesContract",
+    "label": "销售合同",
+    "business_aliases": [
+      "销售合同"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售合同",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "SalesContractFollowUpAction",
+    "label": "操作",
+    "business_aliases": [
+      "操作",
+      "合同终止时的活动"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "合同终止时的活动",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "SalesContractItem",
+    "label": "销售合同项目",
+    "business_aliases": [
+      "销售合同项目"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售合同项目",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "SalesContractItemCategory",
+    "label": "项目类别",
+    "business_aliases": [
+      "项目类别",
+      "销售凭证项目类别"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售凭证项目类别",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "SalesContractItemText",
+    "label": "项目描述",
+    "business_aliases": [
+      "项目描述",
+      "销售订单项目短文本"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售订单项目短文本",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "SalesContractSignedDate",
+    "label": "合同已签署",
+    "business_aliases": [
+      "合同已签署",
+      "合同签订日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "合同签订日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "SalesContractValidityEndDate",
+    "label": "合同终止日期",
+    "business_aliases": [
+      "合同终止日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "合同终止日期",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "SalesContractValidityPerdCat",
+    "label": "有效期类别",
+    "business_aliases": [
+      "有效期类别",
+      "合同的有效期类别"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "合同的有效期类别",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "SalesContractValidityPerdUnit",
+    "label": "有效期单位",
+    "business_aliases": [
+      "有效期单位",
+      "合同有效期单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "合同有效期单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "SalesContractValidityStartDate",
+    "label": "合同开始日期",
+    "business_aliases": [
+      "合同开始日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "合同开始日期",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "SalesDocumentRjcnReason",
+    "label": "拒绝原因",
+    "business_aliases": [
+      "拒绝原因",
+      "销售凭证的拒绝原因"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售凭证的拒绝原因",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "SeasonCompletenessStatus",
+    "label": "",
+    "business_aliases": [
+      "Season Completeness Indicator"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Season Completeness Indicator",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "ShippingPoint",
+    "label": "装运点",
+    "business_aliases": [
+      "装运点",
+      "装运点/收货点"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "装运点/收货点",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "SlsContrItemReleasedQuantity",
+    "label": "已审批的合同目标数量",
+    "business_aliases": [
+      "已审批的合同目标数量",
+      "销售合同项目的已审批数量"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": false,
+    "sortable": false,
+    "allowed_operators": [],
+    "description": "销售合同项目的已审批数量",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "SlsContrItmReldQuantityUnit",
+    "label": "已审批数量单位",
+    "business_aliases": [
+      "已审批数量单位",
+      "销售合同项目的已审批数量单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售合同项目的已审批数量单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "SlsContractFollowUpActionDate",
+    "label": "操作日期",
+    "business_aliases": [
+      "操作日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "操作日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "StorageLocation",
+    "label": "存储地点",
+    "business_aliases": [
+      "存储地点"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "存储地点",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "TransactionCurrency",
+    "label": "凭证货币",
+    "business_aliases": [
+      "凭证货币",
+      "SD 凭证货币"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "SD 凭证货币",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItem",
+    "field_name": "WBSElement",
+    "label": "WBS 元素",
+    "business_aliases": [
+      "WBS 元素",
+      "工作分解结构要素（WBS 要素）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "工作分解结构要素（WBS 要素）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPartner",
+    "field_name": "ContactPerson",
+    "label": "联系人",
+    "business_aliases": [
+      "联系人",
+      "联系人编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "联系人编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPartner",
+    "field_name": "Customer",
+    "label": "客户",
+    "business_aliases": [
+      "客户",
+      "客户编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPartner",
+    "field_name": "PartnerFunction",
+    "label": "合作伙伴职能",
+    "business_aliases": [
+      "合作伙伴职能"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "合作伙伴职能",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPartner",
+    "field_name": "Personnel",
+    "label": "员工号",
+    "business_aliases": [
+      "员工号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "员工号",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPartner",
+    "field_name": "SalesContract",
+    "label": "销售合同",
+    "business_aliases": [
+      "销售合同"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售合同",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPartner",
+    "field_name": "SalesContractItem",
+    "label": "销售合同项目",
+    "business_aliases": [
+      "销售合同项目"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售合同项目",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPartner",
+    "field_name": "Supplier",
+    "label": "供应商",
+    "business_aliases": [
+      "供应商",
+      "供应商科目编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "供应商科目编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "CndnIsRelevantForIntcoBilling",
+    "label": "公司间开票",
+    "business_aliases": [
+      "公司间开票",
+      "公司间开票的条件"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "公司间开票的条件",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "CndnIsRelevantForInvoiceList",
+    "label": "发票清单条件",
+    "business_aliases": [
+      "发票清单条件"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "发票清单条件",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "CndnRoundingOffDiffAmount",
+    "label": "条件舍入差额",
+    "business_aliases": [
+      "条件舍入差额"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件舍入差额",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "ConditionAmount",
+    "label": "条件值",
+    "business_aliases": [
+      "条件值"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件值",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "ConditionBaseValue",
+    "label": "条件基准",
+    "business_aliases": [
+      "条件基准"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件基准",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "ConditionCalculationType",
+    "label": "计算类型",
+    "business_aliases": [
+      "计算类型",
+      "条件的计算类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件的计算类型",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "ConditionCategory",
+    "label": "条件类别",
+    "business_aliases": [
+      "条件类别",
+      "条件类别（示例：税收、运费、价格、成本）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件类别（示例：税收、运费、价格、成本）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "ConditionClass",
+    "label": "条件类",
+    "business_aliases": [
+      "条件类"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件类",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "ConditionControl",
+    "label": "定价控制",
+    "business_aliases": [
+      "定价控制"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "定价控制",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "ConditionCurrency",
+    "label": "货币",
+    "business_aliases": [
+      "货币",
+      "货币码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "货币码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "ConditionInactiveReason",
+    "label": "未激活条件",
+    "business_aliases": [
+      "未激活条件",
+      "条件未激活"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件未激活",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "ConditionIsForConfiguration",
+    "label": "用于变式配置",
+    "business_aliases": [
+      "用于变式配置",
+      "用于变式配置的条件"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "用于变式配置的条件",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "ConditionIsForStatistics",
+    "label": "统计",
+    "business_aliases": [
+      "统计",
+      "条件用作统计"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件用作统计",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "ConditionIsManuallyChanged",
+    "label": "已手动更改",
+    "business_aliases": [
+      "已手动更改",
+      "已手动更改条件"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "已手动更改条件",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "ConditionOrigin",
+    "label": "条件来源",
+    "business_aliases": [
+      "条件来源"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件来源",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "ConditionQuantity",
+    "label": "定价单位",
+    "business_aliases": [
+      "定价单位",
+      "条件定价单位"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件定价单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "ConditionQuantityISOUnit",
+    "label": "ISO 条件数量",
+    "business_aliases": [
+      "ISO 条件数量",
+      "条件数量的 ISO 单位代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件数量的 ISO 单位代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "ConditionQuantitySAPUnit",
+    "label": "SAP 条件数量",
+    "business_aliases": [
+      "SAP 条件数量",
+      "条件数量的 SAP 单位代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件数量的 SAP 单位代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "ConditionQuantityUnit",
+    "label": "条件单位",
+    "business_aliases": [
+      "条件单位",
+      "凭证中的条件单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "凭证中的条件单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "ConditionRateValue",
+    "label": "金额",
+    "business_aliases": [
+      "金额",
+      "条件金额或百分比"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件金额或百分比",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "ConditionRecord",
+    "label": "条件记录编号",
+    "business_aliases": [
+      "条件记录编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件记录编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "ConditionScaleBasisCurrency",
+    "label": "等级货币",
+    "business_aliases": [
+      "等级货币"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "等级货币",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "ConditionScaleBasisUnit",
+    "label": "等级计量单位",
+    "business_aliases": [
+      "等级计量单位",
+      "条件等级计量单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件等级计量单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "ConditionScaleBasisValue",
+    "label": "等级基本值",
+    "business_aliases": [
+      "等级基本值"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "等级基本值",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "ConditionSequentialNumber",
+    "label": "条件的序号",
+    "business_aliases": [
+      "条件的序号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件的序号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "ConditionType",
+    "label": "条件类型",
+    "business_aliases": [
+      "条件类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件类型",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "FactorForConditionBasisValue",
+    "label": "条件因子",
+    "business_aliases": [
+      "条件因子",
+      "条件基本值的因子"
+    ],
+    "data_type": "Edm.Double",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件基本值的因子",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "IsGroupCondition",
+    "label": "组条件",
+    "business_aliases": [
+      "组条件"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "组条件",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "IsRelevantForAccrual",
+    "label": "应计项",
+    "business_aliases": [
+      "应计项",
+      "定价与应计有关  (例如, 运费)"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "定价与应计有关  (例如, 运费)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "PeriodFactorForCndnBasisValue",
+    "label": "条件因子",
+    "business_aliases": [
+      "条件因子",
+      "条件基础因子（期间）"
+    ],
+    "data_type": "Edm.Double",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件基础因子（期间）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "PrcgProcedureCounterForHeader",
+    "label": "计数器",
+    "business_aliases": [
+      "计数器",
+      "条件计数器 (抬头)"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件计数器 (抬头)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "PricingDateTime",
+    "label": "有效期自",
+    "business_aliases": [
+      "有效期自",
+      "定价时戳"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "定价时戳",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "PricingProcedureCounter",
+    "label": "计数器",
+    "business_aliases": [
+      "计数器",
+      "条件计数器"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件计数器",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "PricingProcedureStep",
+    "label": "步骤编号",
+    "business_aliases": [
+      "步骤编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "步骤编号",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "PricingScaleBasis",
+    "label": "等级基础",
+    "business_aliases": [
+      "等级基础",
+      "等级基础标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "等级基础标识",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "PricingScaleType",
+    "label": "等级类型",
+    "business_aliases": [
+      "等级类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "等级类型",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "SalesContract",
+    "label": "销售合同",
+    "business_aliases": [
+      "销售合同"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售合同",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "SalesContractItem",
+    "label": "销售合同项目",
+    "business_aliases": [
+      "销售合同项目"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售合同项目",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "StructureCondition",
+    "label": "结构条件",
+    "business_aliases": [
+      "结构条件"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "结构条件",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "TaxCode",
+    "label": "税码",
+    "business_aliases": [
+      "税码",
+      "销售/购买税代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售/购买税代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "TransactionCurrency",
+    "label": "凭证货币",
+    "business_aliases": [
+      "凭证货币",
+      "SD 凭证货币"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "SD 凭证货币",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "VariantCondition",
+    "label": "变式键值",
+    "business_aliases": [
+      "变式键值",
+      "变式条件键值"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "变式条件键值",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemPrcgElmnt",
+    "field_name": "WithholdingTaxCode",
+    "label": "代扣税代码",
+    "business_aliases": [
+      "代扣税代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "代扣税代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemText",
+    "field_name": "Language",
+    "label": "语言代码",
+    "business_aliases": [
+      "语言代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "语言代码",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemText",
+    "field_name": "LongText",
+    "label": "字符串",
+    "business_aliases": [
+      "字符串"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": false,
+    "sortable": false,
+    "allowed_operators": [],
+    "description": "字符串",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemText",
+    "field_name": "LongTextID",
+    "label": "文本标识",
+    "business_aliases": [
+      "文本标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "文本标识",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemText",
+    "field_name": "SalesContract",
+    "label": "销售合同",
+    "business_aliases": [
+      "销售合同"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售合同",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractItemText",
+    "field_name": "SalesContractItem",
+    "label": "销售合同项目",
+    "business_aliases": [
+      "销售合同项目"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售合同项目",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPartner",
+    "field_name": "ContactPerson",
+    "label": "联系人",
+    "business_aliases": [
+      "联系人",
+      "联系人编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "联系人编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPartner",
+    "field_name": "Customer",
+    "label": "客户",
+    "business_aliases": [
+      "客户",
+      "客户编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPartner",
+    "field_name": "PartnerFunction",
+    "label": "合作伙伴职能",
+    "business_aliases": [
+      "合作伙伴职能"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "合作伙伴职能",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPartner",
+    "field_name": "Personnel",
+    "label": "员工号",
+    "business_aliases": [
+      "员工号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "员工号",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPartner",
+    "field_name": "SalesContract",
+    "label": "销售合同",
+    "business_aliases": [
+      "销售合同"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售合同",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPartner",
+    "field_name": "Supplier",
+    "label": "供应商",
+    "business_aliases": [
+      "供应商",
+      "供应商科目编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "供应商科目编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "CndnIsRelevantForIntcoBilling",
+    "label": "公司间开票",
+    "business_aliases": [
+      "公司间开票",
+      "公司间开票的条件"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "公司间开票的条件",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "CndnRoundingOffDiffAmount",
+    "label": "条件舍入差额",
+    "business_aliases": [
+      "条件舍入差额"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件舍入差额",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "ConditionAmount",
+    "label": "条件值",
+    "business_aliases": [
+      "条件值"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件值",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "ConditionBaseValue",
+    "label": "条件基准",
+    "business_aliases": [
+      "条件基准"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件基准",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "ConditionCalculationType",
+    "label": "计算类型",
+    "business_aliases": [
+      "计算类型",
+      "条件的计算类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件的计算类型",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "ConditionCategory",
+    "label": "条件类别",
+    "business_aliases": [
+      "条件类别",
+      "条件类别（示例：税收、运费、价格、成本）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件类别（示例：税收、运费、价格、成本）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "ConditionClass",
+    "label": "条件类",
+    "business_aliases": [
+      "条件类"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件类",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "ConditionControl",
+    "label": "定价控制",
+    "business_aliases": [
+      "定价控制"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "定价控制",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "ConditionCurrency",
+    "label": "货币",
+    "business_aliases": [
+      "货币",
+      "货币码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "货币码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "ConditionInactiveReason",
+    "label": "未激活条件",
+    "business_aliases": [
+      "未激活条件",
+      "条件未激活"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件未激活",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "ConditionIsForConfiguration",
+    "label": "用于变式配置",
+    "business_aliases": [
+      "用于变式配置",
+      "用于变式配置的条件"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "用于变式配置的条件",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "ConditionIsForStatistics",
+    "label": "统计",
+    "business_aliases": [
+      "统计",
+      "条件用作统计"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件用作统计",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "ConditionIsManuallyChanged",
+    "label": "已手动更改",
+    "business_aliases": [
+      "已手动更改",
+      "已手动更改条件"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "已手动更改条件",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "ConditionOrigin",
+    "label": "条件来源",
+    "business_aliases": [
+      "条件来源"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件来源",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "ConditionQuantity",
+    "label": "定价单位",
+    "business_aliases": [
+      "定价单位",
+      "条件定价单位"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件定价单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "ConditionQuantityISOUnit",
+    "label": "ISO 条件数量",
+    "business_aliases": [
+      "ISO 条件数量",
+      "条件数量的 ISO 单位代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件数量的 ISO 单位代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "ConditionQuantitySAPUnit",
+    "label": "SAP 条件数量",
+    "business_aliases": [
+      "SAP 条件数量",
+      "条件数量的 SAP 单位代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件数量的 SAP 单位代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "ConditionQuantityUnit",
+    "label": "条件单位",
+    "business_aliases": [
+      "条件单位",
+      "凭证中的条件单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "凭证中的条件单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "ConditionRateValue",
+    "label": "金额",
+    "business_aliases": [
+      "金额",
+      "条件金额或百分比"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件金额或百分比",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "ConditionRecord",
+    "label": "条件记录编号",
+    "business_aliases": [
+      "条件记录编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件记录编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "ConditionScaleBasisCurrency",
+    "label": "等级货币",
+    "business_aliases": [
+      "等级货币"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "等级货币",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "ConditionScaleBasisUnit",
+    "label": "等级计量单位",
+    "business_aliases": [
+      "等级计量单位",
+      "条件等级计量单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件等级计量单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "ConditionScaleBasisValue",
+    "label": "等级基本值",
+    "business_aliases": [
+      "等级基本值"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "等级基本值",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "ConditionSequentialNumber",
+    "label": "条件的序号",
+    "business_aliases": [
+      "条件的序号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件的序号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "ConditionType",
+    "label": "条件类型",
+    "business_aliases": [
+      "条件类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件类型",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "FactorForConditionBasisValue",
+    "label": "条件因子",
+    "business_aliases": [
+      "条件因子",
+      "条件基本值的因子"
+    ],
+    "data_type": "Edm.Double",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件基本值的因子",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "IsGroupCondition",
+    "label": "组条件",
+    "business_aliases": [
+      "组条件"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "组条件",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "PeriodFactorForCndnBasisValue",
+    "label": "条件因子",
+    "business_aliases": [
+      "条件因子",
+      "条件基础因子（期间）"
+    ],
+    "data_type": "Edm.Double",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件基础因子（期间）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "PrcgProcedureCounterForHeader",
+    "label": "计数器",
+    "business_aliases": [
+      "计数器",
+      "条件计数器 (抬头)"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件计数器 (抬头)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "PricingDateTime",
+    "label": "有效期自",
+    "business_aliases": [
+      "有效期自",
+      "定价时戳"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "定价时戳",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "PricingProcedureCounter",
+    "label": "计数器",
+    "business_aliases": [
+      "计数器",
+      "条件计数器"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件计数器",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "PricingProcedureStep",
+    "label": "步骤编号",
+    "business_aliases": [
+      "步骤编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "步骤编号",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "PricingScaleBasis",
+    "label": "等级基础",
+    "business_aliases": [
+      "等级基础",
+      "等级基础标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "等级基础标识",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "PricingScaleType",
+    "label": "等级类型",
+    "business_aliases": [
+      "等级类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "等级类型",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "SalesContract",
+    "label": "销售合同",
+    "business_aliases": [
+      "销售合同"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售合同",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "StructureCondition",
+    "label": "结构条件",
+    "business_aliases": [
+      "结构条件"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "结构条件",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "TaxCode",
+    "label": "税码",
+    "business_aliases": [
+      "税码",
+      "销售/购买税代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售/购买税代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "TransactionCurrency",
+    "label": "凭证货币",
+    "business_aliases": [
+      "凭证货币",
+      "SD 凭证货币"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "SD 凭证货币",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "VariantCondition",
+    "label": "变式键值",
+    "business_aliases": [
+      "变式键值",
+      "变式条件键值"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "变式条件键值",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractPrcgElmnt",
+    "field_name": "WithholdingTaxCode",
+    "label": "代扣税代码",
+    "business_aliases": [
+      "代扣税代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "代扣税代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractText",
+    "field_name": "Language",
+    "label": "语言代码",
+    "business_aliases": [
+      "语言代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "语言代码",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractText",
+    "field_name": "LongText",
+    "label": "字符串",
+    "business_aliases": [
+      "字符串"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": false,
+    "sortable": false,
+    "allowed_operators": [],
+    "description": "字符串",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractText",
+    "field_name": "LongTextID",
+    "label": "文本标识",
+    "business_aliases": [
+      "文本标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "文本标识",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractText",
+    "field_name": "SalesContract",
+    "label": "销售合同",
+    "business_aliases": [
+      "销售合同"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售合同",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractValAddedSrvc",
+    "field_name": "SalesContract",
+    "label": "",
+    "business_aliases": [
+      "Document Number of Reference Document"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Document Number of Reference Document",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractValAddedSrvc",
+    "field_name": "SalesContractItem",
+    "label": "",
+    "business_aliases": [
+      "Item number of the reference item"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Item number of the reference item",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractValAddedSrvc",
+    "field_name": "ValAddedSrvcHasToBeOrdered",
+    "label": "",
+    "business_aliases": [
+      "Requirement Relevancy Flag for VAS Material"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Requirement Relevancy Flag for VAS Material",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractValAddedSrvc",
+    "field_name": "ValAddedSrvcIncrement",
+    "label": "",
+    "business_aliases": [
+      "VAS Increment"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "VAS Increment",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractValAddedSrvc",
+    "field_name": "ValAddedSrvcIsCreatedManually",
+    "label": "",
+    "business_aliases": [
+      "Manual Entry Indicator"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Manual Entry Indicator",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractValAddedSrvc",
+    "field_name": "ValAddedSrvcIsRlvtForProcmt",
+    "label": "",
+    "business_aliases": [
+      "Procurement Relevant for VAS Material"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Procurement Relevant for VAS Material",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractValAddedSrvc",
+    "field_name": "ValAddedSrvcItemNumberInSD",
+    "label": "",
+    "business_aliases": [
+      "VAS Item Number in SD"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "VAS Item Number in SD",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractValAddedSrvc",
+    "field_name": "ValueAddedServiceChargeCode",
+    "label": "",
+    "business_aliases": [
+      "VAS Charge Codes"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "VAS Charge Codes",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractValAddedSrvc",
+    "field_name": "ValueAddedServiceProduct",
+    "label": "",
+    "business_aliases": [
+      "VAS Material Number"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "VAS Material Number",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractValAddedSrvc",
+    "field_name": "ValueAddedServiceText1",
+    "label": "",
+    "business_aliases": [
+      "VAS Field 1 for Free Use by Customer"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "VAS Field 1 for Free Use by Customer",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractValAddedSrvc",
+    "field_name": "ValueAddedServiceText2",
+    "label": "",
+    "business_aliases": [
+      "VAS Field 2 for Free Use by Customer"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "VAS Field 2 for Free Use by Customer",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "entity_set": "A_SalesContractValAddedSrvc",
+    "field_name": "ValueAddedServiceText3",
+    "label": "",
+    "business_aliases": [
+      "VAS Field 3 for Free Use by Customer"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "VAS Field 3 for Free Use by Customer",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  }
+]

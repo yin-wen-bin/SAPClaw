@@ -1,0 +1,22 @@
+[
+  {
+    "service_name": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "from_entity_set": "A_GLAccountInChartOfAccounts",
+    "navigation_name": "to_Text",
+    "to_entity_set": "ToRole_assoc_77BB7447605C974ED4F1845D0830A8B0",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "from_entity_set": "A_GLAccountText",
+    "navigation_name": "to_GLAccountInChartOfAccounts",
+    "to_entity_set": "ToRole_assoc_11337EC4DF89977A7ED94AD073EB06CE",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  }
+]

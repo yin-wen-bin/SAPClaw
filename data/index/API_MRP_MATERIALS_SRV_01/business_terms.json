@@ -1,0 +1,1828 @@
+[
+  {
+    "term": "ABC 标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialABCClassification"
+    ],
+    "synonyms": [
+      "ABC标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "ABC标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialABCClassification"
+    ],
+    "synonyms": [
+      "ABC 标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "MRP 安全库存方法",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MRPSafetyStockMethod"
+    ],
+    "synonyms": [
+      "安全库存方法"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "MRP 控制员",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MRPController"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "MRP 控制员姓名",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MRPControllerName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "MRP 类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MRPType"
+    ],
+    "synonyms": [
+      "物料需求计划类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "MRP 组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MRPGroup"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "MRP 组名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MRPGroupName"
+    ],
+    "synonyms": [
+      "物料需求计划组描述"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "MRP 范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MRPArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "MRP 范围文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MRPAreaText"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Master Data",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "P-S 物料状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialUsabilityProfile"
+    ],
+    "synonyms": [
+      "工厂特定的物料状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "与批量不相关的成本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "LotSizeIndependentCosts"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "中断日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "EffectiveOutDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "产品可配置",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialIsConfigurable"
+    ],
+    "synonyms": [
+      "可配置"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "产品描述",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "产品描述",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "ConfigurableProductName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "产品类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "产品类型描述",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialTypeName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "产品组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialGroup"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "产品组描述",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialGroupName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "以天计的收货处理时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "GoodsReceiptDuration"
+    ],
+    "synonyms": [
+      "收货处理时间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "低层代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "LowLevelCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "再订货点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "ReorderThresholdQuantity"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "准备时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "SetupAndTeardownTime"
+    ],
+    "synonyms": [
+      "建立和拆卸时间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "删除标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialIsMarkedForDeletion"
+    ],
+    "synonyms": [
+      "已加删除标记"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "单个/集中",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "DependentRequirementsType"
+    ],
+    "synonyms": [
+      "单个和集中需求标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "单个和集中需求标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "DependentRequirementsType"
+    ],
+    "synonyms": [
+      "单个/集中"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "厂内生产时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialPlannedProductionDurn"
+    ],
+    "synonyms": [
+      "自制生产"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参数文件名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialProcurementProfileName"
+    ],
+    "synonyms": [
+      "物料采购参数文件名称"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "可配置",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialIsConfigurable"
+    ],
+    "synonyms": [
+      "产品可配置"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "可配置物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "ConfigurableProduct"
+    ],
+    "synonyms": [
+      "可配置的物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "可配置的物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "ConfigurableProduct"
+    ],
+    "synonyms": [
+      "可配置物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "固定值的短文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "DependentRequirementsTypeName"
+    ],
+    "synonyms": [
+      "简短描述"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "固定值的短文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MatlCompDscontnTypeName"
+    ],
+    "synonyms": [
+      "简短描述"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "固定批量大小",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "FixedLotSizeQuantity"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "在工厂级别将物料标记为删除",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "PlntMatlIsMarkedForDeletion"
+    ],
+    "synonyms": [
+      "工厂级 DF"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "基本数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialBaseQuantity"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "基本计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "BaseUnit"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "处理时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "ProcessingTime"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "外部采购的缺省存储地点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "DfltStorageLocationExtProcmt"
+    ],
+    "synonyms": [
+      "存储地点"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "存储地点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "DfltStorageLocationExtProcmt"
+    ],
+    "synonyms": [
+      "外部采购的缺省存储地点"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "存储地点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "ProductionInvtryManagedLoc"
+    ],
+    "synonyms": [
+      "生产存储地点"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "存储地点名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "StorageLocationName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "存储成本代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "StorageCostsPercentageCode"
+    ],
+    "synonyms": [
+      "存储成本百分比代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "存储成本百分比代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "StorageCostsPercentageCode"
+    ],
+    "synonyms": [
+      "存储成本代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "安全库存方法",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MRPSafetyStockMethod"
+    ],
+    "synonyms": [
+      "MRP 安全库存方法"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "安全时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MRPSafetyDuration"
+    ],
+    "synonyms": [
+      "安全时间（按工作日计算）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "安全时间标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "IsSafetyTime"
+    ],
+    "synonyms": [
+      "安全时间标识（含或不含安全时间）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "安全时间标识（含或不含安全时间）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "IsSafetyTime"
+    ],
+    "synonyms": [
+      "安全时间标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "安全时间的期间参数文件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "PerdPrflForSftyTme"
+    ],
+    "synonyms": [
+      "时间参数文件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "安全时间（按工作日计算）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MRPSafetyDuration"
+    ],
+    "synonyms": [
+      "安全时间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MRPPlant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "PlantName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂特定的物料状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialUsabilityProfile"
+    ],
+    "synonyms": [
+      "P-S 物料状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂级 DF",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "PlntMatlIsMarkedForDeletion"
+    ],
+    "synonyms": [
+      "在工厂级别将物料标记为删除"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工序间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "TransitionTime"
+    ],
+    "synonyms": [
+      "工序间时间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工序间时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "TransitionTime"
+    ],
+    "synonyms": [
+      "工序间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已加删除标记",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialIsMarkedForDeletion"
+    ],
+    "synonyms": [
+      "删除标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "库存覆盖范围配置文件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "RangeOfCvrgPrflCode"
+    ],
+    "synonyms": [
+      "覆盖范围参数文件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "建立和拆卸时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "SetupAndTeardownTime"
+    ],
+    "synonyms": [
+      "准备时间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总计补货提前时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "TotalReplenishmentLeadDuration"
+    ],
+    "synonyms": [
+      "总计补货提前时间(按工作日)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总计补货提前时间(按工作日)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "TotalReplenishmentLeadDuration"
+    ],
+    "synonyms": [
+      "总计补货提前时间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批量估计名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialLotSizingProcedureName"
+    ],
+    "synonyms": [
+      "批量估计过程的名称"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批量估计过程的名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialLotSizingProcedureName"
+    ],
+    "synonyms": [
+      "批量估计名称"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批量确定程序",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "LotSizingProcedure"
+    ],
+    "synonyms": [
+      "物料计划中的批量确定程序"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收货处理时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "GoodsReceiptDuration"
+    ],
+    "synonyms": [
+      "以天计的收货处理时间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时间参数文件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "PerdPrflForSftyTme"
+    ],
+    "synonyms": [
+      "安全时间的期间参数文件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "最大库存级别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialMaxStockLevelQuantity"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "最大批次大小",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaximumLotSizeQuantity"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "最小批次大小",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MinimumLotSizeQuantity"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "权限组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "AuthorizationGroup"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识：允许的重复制造",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "RepetitiveManufacturingIsAllwd"
+    ],
+    "synonyms": [
+      "重复制造"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "浮动排产时间容余码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "SchedulingFloatProfile"
+    ],
+    "synonyms": [
+      "边际码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "消耗值类别文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialABCClassificationDesc"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料计划中的批量确定程序",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "LotSizingProcedure"
+    ],
+    "synonyms": [
+      "批量确定程序"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料采购参数文件名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialProcurementProfileName"
+    ],
+    "synonyms": [
+      "参数文件名称"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料采购类别名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialProcurementCatName"
+    ],
+    "synonyms": [
+      "类别名称"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料需求计划类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MRPType"
+    ],
+    "synonyms": [
+      "MRP 类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料需求计划类型名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MRPTypeName"
+    ],
+    "synonyms": [
+      "物料需求计划类型描述"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料需求计划类型描述",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MRPTypeName"
+    ],
+    "synonyms": [
+      "物料需求计划类型名称"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料需求计划组描述",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MRPGroupName"
+    ],
+    "synonyms": [
+      "MRP 组名称"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料需求计划范围类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MRPAreaCategory"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料需求计划范围类别名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MRPAreaCategoryName"
+    ],
+    "synonyms": [
+      "类别名称"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "特殊采购",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialProcurementProfile"
+    ],
+    "synonyms": [
+      "特殊采购类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "特殊采购类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialProcurementProfile"
+    ],
+    "synonyms": [
+      "特殊采购"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "生产主管",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "ProductionSupervisor"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "生产主管姓名",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "ProductionSupervisorName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "生产存储地点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "ProductionInvtryManagedLoc"
+    ],
+    "synonyms": [
+      "存储地点"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "策略组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "PlanningStrategyGroup"
+    ],
+    "synonyms": [
+      "计划策略组"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "简短描述",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "DependentRequirementsTypeName"
+    ],
+    "synonyms": [
+      "固定值的短文本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "简短描述",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MatlCompDscontnTypeName"
+    ],
+    "synonyms": [
+      "固定值的短文本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "类别名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MRPAreaCategoryName"
+    ],
+    "synonyms": [
+      "物料需求计划范围类别名称"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "类别名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialProcurementCatName"
+    ],
+    "synonyms": [
+      "物料采购类别名称"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "自制生产",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialPlannedProductionDurn"
+    ],
+    "synonyms": [
+      "厂内生产时间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "舍入值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "PurOrderQtyRoundingQty"
+    ],
+    "synonyms": [
+      "采购订单数量的舍入值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "舍入参数文件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "RoundingProfile"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "装配报废(%)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "AssemblyScrapPercent"
+    ],
+    "synonyms": [
+      "装配报废百分比"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "装配报废百分比",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "AssemblyScrapPercent"
+    ],
+    "synonyms": [
+      "装配报废(%)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "覆盖范围参数文件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "RangeOfCvrgPrflCode"
+    ],
+    "synonyms": [
+      "库存覆盖范围配置文件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划交货时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialPlannedDeliveryDurn"
+    ],
+    "synonyms": [
+      "计划交货时间（天）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划交货时间（天）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialPlannedDeliveryDurn"
+    ],
+    "synonyms": [
+      "计划交货时间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划日历",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MRPPlanningCalendar"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划的时界",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "PlanningTimeFenceInDays"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划策略组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "PlanningStrategyGroup"
+    ],
+    "synonyms": [
+      "策略组"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计量单位文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "UnitOfMeasureName"
+    ],
+    "synonyms": [
+      "计量单位文本（最多 10 个字符）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计量单位文本（最多 10 个字符）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "UnitOfMeasureName"
+    ],
+    "synonyms": [
+      "计量单位文本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "Currency"
+    ],
+    "synonyms": [
+      "货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "Currency"
+    ],
+    "synonyms": [
+      "货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "跨工厂产品状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "CrossPlantStatus"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "跨工厂状态文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "CrossPlantStatusName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "跨工厂状态文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialUsabilityProfileName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "边际码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "SchedulingFloatProfile"
+    ],
+    "synonyms": [
+      "浮动排产时间容余码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "MaterialProcurementCategory"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "PurchasingGroup"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购组名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "PurchasingGroupName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购订单数量的舍入值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "PurOrderQtyRoundingQty"
+    ],
+    "synonyms": [
+      "舍入值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "重复制造",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "RepetitiveManufacturingIsAllwd"
+    ],
+    "synonyms": [
+      "标识：允许的重复制造"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "重复制造参数文件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "RepetitiveManufacturingProfile"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "间隔时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "TaktTime"
+    ],
+    "synonyms": [
+      "间隔时间（多个计划订单分阶段生产时，计划订单之间的间隔时间)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "间隔时间（多个计划订单分阶段生产时，计划订单之间的间隔时间)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "A_MRPMaterial",
+    "mapped_fields": [
+      "TaktTime"
+    ],
+    "synonyms": [
+      "间隔时间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Material Coverages",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "MaterialCoverages",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Signed INT2 / int16",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "MaterialCoverages",
+    "mapped_fields": [
+      "TimeHorizonInDays"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "MaterialCoverages",
+    "mapped_fields": [
+      "MaterialReplnmtLeadDurnEndDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "MaterialCoverages",
+    "mapped_fields": [
+      "MaterialShortageEndDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "MaterialCoverages",
+    "mapped_fields": [
+      "MaterialShortageStartDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "MaterialCoverages",
+    "mapped_fields": [
+      "MRPSafetyDurationEndDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "MaterialCoverages",
+    "mapped_fields": [
+      "MaterialLastMRPDateTime"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Signed INT2 / int16",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "SupplyDemandItems",
+    "mapped_fields": [
+      "NumberOfWorkdaysPerPeriod"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Signed INT2 / int16",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "SupplyDemandItems",
+    "mapped_fields": [
+      "NumberOfAggregatedItems"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Supply and Demand",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "SupplyDemandItems",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "SupplyDemandItems",
+    "mapped_fields": [
+      "MRPElementAvailyOrRqmtDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "SupplyDemandItems",
+    "mapped_fields": [
+      "MRPElementReschedulingDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "期间/段",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "SupplyDemandItems",
+    "mapped_fields": [
+      "PeriodOrSegment"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "SupplyDemandItems",
+    "mapped_fields": [
+      "MRPElementIsPartiallyDelivered"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "SupplyDemandItems",
+    "mapped_fields": [
+      "MRPElementIsReleased"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MRP_MATERIALS_SRV_01",
+    "mapped_entity_set": "SupplyDemandItems",
+    "mapped_fields": [
+      "MRPElementQuantityIsFirm"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  }
+]

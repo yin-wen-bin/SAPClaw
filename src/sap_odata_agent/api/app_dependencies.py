@@ -87,7 +87,7 @@ def get_orchestrator_for_profile(profile_id: str | None = None) -> AgentOrchestr
             enabled=llm_enabled,
         ),
         validator=BasicPlanValidator(),
-        compiler=BasicODataCompiler(base_url=settings.sap_base_url),
+        compiler=BasicODataCompiler(base_url=settings.sap_base_url, index_root=settings.index_root),
         executor=get_sap_executor(),
         repair_engine=SimpleRepairEngine(),
         result_presenter=LlmResultPresenter(

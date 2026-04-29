@@ -1,0 +1,36 @@
+[
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_CUSTOMER_RETURN_SRV",
+    "description": "You can use this service to integrate external applications with customer return processing. In every API call, you can make use of the following operations:\r\n - You can retrieve returns orders. Apply any of the filters provided or retrieve all existing data.\r\n - You can create returns orders. Note that you must use “deep insert” requests (a header plus at least one of the following entities: header partner, header pricing element, item, item partner, and item pricing element). You cannot create headers without including any related entities.\r\n - You can create items for existing returns orders. Note that you must use “deep insert” requests (an item plus at least one of the following entities: item partner and item pricing element). You cannot create items without including any related entities.\r\n - For existing returns orders, you can update the header, header partner, header pricing element, item, item partner, and item pricing element.\r\n - For existing returns orders, you can delete the header, header partner, header pricing element, item, item partner, and item pricing element.\r\n - You can approve or reject existing returns orders.\r\n\r\nNote: Certain elements and entities can only be used if you activate the business function ISR_RETAILSYSTEM. For more information, see Business Documentation.",
+    "entity_sets": [
+      "A_CustomerReturn",
+      "A_CustomerReturnItem",
+      "A_CustomerReturnItemPartner",
+      "A_CustomerReturnItemPrcgElmnt",
+      "A_CustomerReturnItemRelatedObj",
+      "A_CustomerReturnItemText",
+      "A_CustomerReturnOverviewStatus",
+      "A_CustomerReturnPartner",
+      "A_CustomerReturnPrcgElmnt",
+      "A_CustomerReturnProcessStep",
+      "A_CustomerReturnRelatedObject",
+      "A_CustomerReturnScheduleLine",
+      "A_CustomerReturnSerialNumber",
+      "A_CustomerReturnText"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_CUSTOMER_RETURN_SRV/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/69/bd2e81cb394eb0b3d8eae85d6b4517/frameset.htm",
+    "openapi_version": "1.1.0"
+  }
+]

@@ -1,0 +1,190 @@
+[
+  {
+    "term": "Ledger",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_LEDGER_SRV",
+    "mapped_entity_set": "A_Ledger",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Ledger Text",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_LEDGER_SRV",
+    "mapped_entity_set": "A_Ledger",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "主分类账",
+    "intent_type": "field_alias",
+    "mapped_service": "API_LEDGER_SRV",
+    "mapped_entity_set": "A_Ledger",
+    "mapped_fields": [
+      "IsLeadingLedger"
+    ],
+    "synonyms": [
+      "标识：主分类账"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分类账",
+    "intent_type": "field_alias",
+    "mapped_service": "API_LEDGER_SRV",
+    "mapped_entity_set": "A_Ledger",
+    "mapped_fields": [
+      "Ledger"
+    ],
+    "synonyms": [
+      "总账会计中的分类账"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "子应用程序",
+    "intent_type": "field_alias",
+    "mapped_service": "API_LEDGER_SRV",
+    "mapped_entity_set": "A_Ledger",
+    "mapped_fields": [
+      "LedgerSubApplication"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "应用程序",
+    "intent_type": "field_alias",
+    "mapped_service": "API_LEDGER_SRV",
+    "mapped_entity_set": "A_Ledger",
+    "mapped_fields": [
+      "LedgerApplication"
+    ],
+    "synonyms": [
+      "所有者应用程序"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总账会计中的分类账",
+    "intent_type": "field_alias",
+    "mapped_service": "API_LEDGER_SRV",
+    "mapped_entity_set": "A_Ledger",
+    "mapped_fields": [
+      "Ledger"
+    ],
+    "synonyms": [
+      "分类账"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "所有者应用程序",
+    "intent_type": "field_alias",
+    "mapped_service": "API_LEDGER_SRV",
+    "mapped_entity_set": "A_Ledger",
+    "mapped_fields": [
+      "LedgerApplication"
+    ],
+    "synonyms": [
+      "应用程序"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识：主分类账",
+    "intent_type": "field_alias",
+    "mapped_service": "API_LEDGER_SRV",
+    "mapped_entity_set": "A_Ledger",
+    "mapped_fields": [
+      "IsLeadingLedger"
+    ],
+    "synonyms": [
+      "主分类账"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Ledger",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_LEDGER_SRV",
+    "mapped_entity_set": "A_LedgerText",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Ledger Text",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_LEDGER_SRV",
+    "mapped_entity_set": "A_LedgerText",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "分类账",
+    "intent_type": "field_alias",
+    "mapped_service": "API_LEDGER_SRV",
+    "mapped_entity_set": "A_LedgerText",
+    "mapped_fields": [
+      "Ledger"
+    ],
+    "synonyms": [
+      "总账会计中的分类账"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分类账名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_LEDGER_SRV",
+    "mapped_entity_set": "A_LedgerText",
+    "mapped_fields": [
+      "LedgerName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总账会计中的分类账",
+    "intent_type": "field_alias",
+    "mapped_service": "API_LEDGER_SRV",
+    "mapped_entity_set": "A_LedgerText",
+    "mapped_fields": [
+      "Ledger"
+    ],
+    "synonyms": [
+      "分类账"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "语言代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_LEDGER_SRV",
+    "mapped_entity_set": "A_LedgerText",
+    "mapped_fields": [
+      "Language"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  }
+]

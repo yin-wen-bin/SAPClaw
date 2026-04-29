@@ -1,0 +1,82 @@
+[
+  {
+    "service_name": "API_PRODUCTION_ORDER_2_SRV",
+    "from_entity_set": "A_ProductionOrderItem_2",
+    "navigation_name": "to_ProdnOrderItemSerialNumber",
+    "to_entity_set": "ToRole_assoc_0E327BD4EBD85956F81D57CE37F49F44",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_PRODUCTION_ORDER_2_SRV",
+    "from_entity_set": "A_ProductionOrder_2",
+    "navigation_name": "to_ProductionOrderComponent",
+    "to_entity_set": "ToRole_assoc_A7D8ECE4E0A348F76BEED2DCBA851A43",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_PRODUCTION_ORDER_2_SRV",
+    "from_entity_set": "A_ProductionOrder_2",
+    "navigation_name": "to_ProductionOrderComponentExt",
+    "to_entity_set": "ToRole_assoc_095CEA6CB8E18876DC36F9B344226362",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_PRODUCTION_ORDER_2_SRV",
+    "from_entity_set": "A_ProductionOrder_2",
+    "navigation_name": "to_ProductionOrderComponentExt4",
+    "to_entity_set": "ToRole_assoc_11392B63090B7AA3881D5DF7EAABE964",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_PRODUCTION_ORDER_2_SRV",
+    "from_entity_set": "A_ProductionOrder_2",
+    "navigation_name": "to_ProductionOrderItem",
+    "to_entity_set": "ToRole_assoc_F4AC50C2081CC9FE4718924F697937FD",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_PRODUCTION_ORDER_2_SRV",
+    "from_entity_set": "A_ProductionOrder_2",
+    "navigation_name": "to_ProductionOrderOperation",
+    "to_entity_set": "ToRole_assoc_E53DC734265B7A59243229B745AB1B9E",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_PRODUCTION_ORDER_2_SRV",
+    "from_entity_set": "A_ProductionOrder_2",
+    "navigation_name": "to_ProductionOrderStatus",
+    "to_entity_set": "ToRole_assoc_9DB25913A41F517C778A0056AA33D0B3",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_PRODUCTION_ORDER_2_SRV",
+    "from_entity_set": "A_ProductionOrder_2",
+    "navigation_name": "to_ProductionRsceTools",
+    "to_entity_set": "ToRole_assoc_9EA70CA843A81FB67C982EBCEFF84291",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  }
+]

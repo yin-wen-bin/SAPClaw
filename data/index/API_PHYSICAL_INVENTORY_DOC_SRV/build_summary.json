@@ -1,0 +1,15 @@
+{
+  "service_name": "API_PHYSICAL_INVENTORY_DOC_SRV",
+  "sap_metadata_entity_count": 3,
+  "sap_metadata_field_count": 77,
+  "openapi_documented_entity_count": 7,
+  "openapi_documented_entity_type_count": 5,
+  "merged_entity_count": 7,
+  "merged_field_count": 77,
+  "relation_count": 3,
+  "entity_graph_edge_count": 3,
+  "lookup_path_count": 92,
+  "business_term_count": 123,
+  "vector_document_count": 169,
+  "doc_chunk_count": 136
+}

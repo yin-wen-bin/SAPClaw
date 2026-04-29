@@ -1,0 +1,15 @@
+{
+  "service_name": "API_SEGMENT_SRV",
+  "sap_metadata_entity_count": 2,
+  "sap_metadata_field_count": 4,
+  "openapi_documented_entity_count": 2,
+  "openapi_documented_entity_type_count": 4,
+  "merged_entity_count": 2,
+  "merged_field_count": 4,
+  "relation_count": 2,
+  "entity_graph_edge_count": 2,
+  "lookup_path_count": 0,
+  "business_term_count": 10,
+  "vector_document_count": 4,
+  "doc_chunk_count": 14
+}

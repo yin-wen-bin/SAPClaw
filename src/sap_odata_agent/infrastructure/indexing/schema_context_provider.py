@@ -84,6 +84,7 @@ class SchemaContextProvider:
 
         return {
             "service_name": service_name,
+            "service": self._service_payload(snapshot),
             "query": query,
             "route_decision": self._route_payload(route_decision),
             "entities": entities,
@@ -214,6 +215,7 @@ class SchemaContextProvider:
                     break
         return {
             "service_name": schema_context.get("service_name", ""),
+            "service": schema_context.get("service", {}),
             "entity_count": len(schema_context.get("entities", [])),
             "candidate_field_count": len(schema_context.get("candidate_fields", [])),
             "join_hint_count": len(schema_context.get("join_hints", [])),
@@ -234,6 +236,25 @@ class SchemaContextProvider:
             "available_fields": available_fields,
             "feedback_field_matches": schema_context.get("feedback_field_matches", []),
             "skill_field_matches": schema_context.get("skill_field_matches", []),
+        }
+
+    @staticmethod
+    def _service_payload(snapshot) -> dict[str, Any]:
+        service = snapshot.services[0] if snapshot.services else {}
+        service_kind = str(service.get("service_kind") or "ODATA")
+        runtime_available = service.get("runtime_available", True)
+        odata_runtime_available = service.get(
+            "odata_runtime_available",
+            runtime_available is not False and service_kind != "CDS_VIEW_ONLY",
+        )
+        return {
+            "service_name": snapshot.service_name,
+            "service_kind": service_kind,
+            "base_path": service.get("base_path", ""),
+            "runtime_path_template": service.get("runtime_path_template", ""),
+            "runtime_available": runtime_available,
+            "odata_runtime_available": odata_runtime_available,
+            "runtime_notes": service.get("runtime_notes", ""),
         }
 
     @staticmethod

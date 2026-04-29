@@ -1,0 +1,25 @@
+[
+  {
+    "service_name": "API_MRP_MATERIALS_SRV_01",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_MRP_MATERIALS_SRV_01",
+    "description": "The service contains entities for material master data, supply and demand information, and information about the coverage of materials. You can read master data for one or more materials. You can read supply and demand information over a certain time period, or you can aggregate the quantities on category group level. You can read material coverage information.",
+    "entity_sets": [
+      "A_MRPMaterial",
+      "MaterialCoverages",
+      "SupplyDemandItems"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_MRP_MATERIALS_SRV_01/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/ca/111d6ed0004ac088b68f1360cf24fc/frameset.htm",
+    "openapi_version": "1.0.0"
+  }
+]

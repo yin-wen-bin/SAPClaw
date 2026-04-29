@@ -1,0 +1,415 @@
+[
+  {
+    "service_name": "API_SCHED_AGRMT_PROCESS_SRV",
+    "entity_set": "A_SchAgrmtAcCnt",
+    "entity_type": "A_SchAgrmtAcCntType",
+    "key_fields": [
+      "AccountAssignmentNumber",
+      "SchedulingAgreement",
+      "SchedulingAgreementItem"
+    ],
+    "default_select_fields": [
+      "AccountAssignmentNumber",
+      "SchedulingAgreementItem",
+      "SchedulingAgreement",
+      "CostCenter",
+      "MasterFixedAsset",
+      "ProjectNetwork",
+      "OrderQuantityUnit",
+      "Quantity",
+      "MultipleAcctAssgmtDistrPercent",
+      "DocumentCurrency"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Gets the details of all the account assignments of all the items, in all the purchase scheduling agreements",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SCHED_AGRMT_PROCESS_SRV",
+    "entity_set": "A_SchAgrmtHeader",
+    "entity_type": "A_SchAgrmtHeaderType",
+    "key_fields": [
+      "SchedulingAgreement"
+    ],
+    "default_select_fields": [
+      "SchedulingAgreement",
+      "CompanyCode",
+      "PurchasingDocumentCategory",
+      "PurchasingDocumentType",
+      "CreatedByUser",
+      "CreationDate",
+      "Language",
+      "PurchasingOrganization",
+      "PurchasingGroup",
+      "DocumentCurrency"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SchAgrmtPartner",
+      "to_SchedgAgrmtHdrNotes",
+      "to_SchedgAgrmtItm"
+    ],
+    "description": "Gets the header details of all the purchase scheduling agreements in the system",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SCHED_AGRMT_PROCESS_SRV",
+    "entity_set": "A_SchAgrmtItem",
+    "entity_type": "A_SchAgrmtItemType",
+    "key_fields": [
+      "SchedulingAgreement",
+      "SchedulingAgreementItem"
+    ],
+    "default_select_fields": [
+      "SchedulingAgreement",
+      "SchedulingAgreementItem",
+      "CompanyCode",
+      "PurchasingDocumentCategory",
+      "PurchasingDocumentItemCategory",
+      "PurchasingDocumentItemText",
+      "Material",
+      "ManufacturerMaterial",
+      "SupplierMaterialNumber",
+      "MaterialGroup"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SchAgrmtAcCnt",
+      "to_SchAgrmtSchLine",
+      "to_SchedgAgrmtDeliveryAddress",
+      "to_SchedgAgrmtItmNotes"
+    ],
+    "description": "Gets the details of all the items in all the purchase scheduling agreements in the system",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SCHED_AGRMT_PROCESS_SRV",
+    "entity_set": "A_SchAgrmtPartner",
+    "entity_type": "A_SchAgrmtPartnerType",
+    "key_fields": [
+      "PartnerCounter",
+      "PartnerFunction",
+      "Plant",
+      "PurchasingOrganization",
+      "SchedulingAgreement",
+      "SchedulingAgreementItem",
+      "SupplierSubrange"
+    ],
+    "default_select_fields": [
+      "SchedulingAgreement",
+      "SchedulingAgreementItem",
+      "PurchasingOrganization",
+      "SupplierSubrange",
+      "Plant",
+      "PartnerFunction",
+      "PartnerCounter",
+      "Supplier",
+      "DefaultPartner"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Gets the details of all the partners of all the purchase scheduling agreements in the system",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SCHED_AGRMT_PROCESS_SRV",
+    "entity_set": "A_SchAgrmtSchLine",
+    "entity_type": "A_SchAgrmtSchLineType",
+    "key_fields": [
+      "ScheduleLine",
+      "SchedulingAgreement",
+      "SchedulingAgreementItem"
+    ],
+    "default_select_fields": [
+      "SchedulingAgreement",
+      "SchedulingAgreementItem",
+      "ScheduleLine",
+      "DelivDateCategory",
+      "ScheduleLineDeliveryDate",
+      "SchedLineStscDeliveryDate",
+      "ScheduleLineDeliveryTime",
+      "OrderQuantityUnit",
+      "ScheduleLineOrderQuantity",
+      "PurchaseRequisition"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SchedgAgrmtSubcontrgCompTP"
+    ],
+    "description": "Gets the details of all the scheduling lines of all the items, in all the purchase scheduling agreements in the system",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SCHED_AGRMT_PROCESS_SRV",
+    "entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "entity_type": "A_SchedgAgrmtDeliveryAddressType",
+    "key_fields": [
+      "SchedulingAgreement",
+      "SchedulingAgreementItem"
+    ],
+    "default_select_fields": [
+      "SchedulingAgreement",
+      "SchedulingAgreementItem",
+      "DeliveryAddressID",
+      "AddressType",
+      "PurchasingDeliveryAddressType",
+      "FullName",
+      "StreetName",
+      "HouseNumber",
+      "PostalCode",
+      "CityName"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Gets the delivery address details of all the items in all the purchase scheduling agreements in the system",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SCHED_AGRMT_PROCESS_SRV",
+    "entity_set": "A_SchedgAgrmtHdrNotes",
+    "entity_type": "A_SchedgAgrmtHdrNotesType",
+    "key_fields": [
+      "ArchObjectNumber",
+      "DocumentText",
+      "Language",
+      "SchedulingAgreement",
+      "TechnicalObjectType"
+    ],
+    "default_select_fields": [
+      "Language",
+      "DocumentText",
+      "TechnicalObjectType",
+      "ArchObjectNumber",
+      "SchedulingAgreement",
+      "NoteDescription",
+      "FixedIndicator"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Gets the all the header notes of all purchase scheduling agreement in the system",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SCHED_AGRMT_PROCESS_SRV",
+    "entity_set": "A_SchedgAgrmtItmNotes",
+    "entity_type": "A_SchedgAgrmtItmNotesType",
+    "key_fields": [
+      "ArchObjectNumber",
+      "DocumentText",
+      "Language",
+      "TechnicalObjectType"
+    ],
+    "default_select_fields": [
+      "Language",
+      "DocumentText",
+      "TechnicalObjectType",
+      "ArchObjectNumber",
+      "SchedulingAgreement",
+      "SchedulingAgreementItem",
+      "NoteDescription",
+      "FixedIndicator"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Gets the item notes of all the items in all the purchase scheduling agreements in the system",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SCHED_AGRMT_PROCESS_SRV",
+    "entity_set": "A_SchedgAgrmtSubcontrgComp",
+    "entity_type": "A_SchedgAgrmtSubcontrgCompType",
+    "key_fields": [
+      "RecordType",
+      "ReservationItem",
+      "ScheduleLine",
+      "SchedulingAgreement",
+      "SchedulingAgreementItem"
+    ],
+    "default_select_fields": [
+      "SchedulingAgreement",
+      "SchedulingAgreementItem",
+      "ScheduleLine",
+      "ReservationItem",
+      "RecordType",
+      "Reservation",
+      "Material",
+      "RequirementDate",
+      "RequirementTime",
+      "Plant"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Gets the subcontracting component details of all the items in all the purchase scheduling agreements in the system",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SCHED_AGRMT_PROCESS_SRV",
+    "entity_set": "HeaderRelease",
+    "entity_type": "HeaderReleaseType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Scheduling Agreement Header Release",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SCHED_AGRMT_PROCESS_SRV",
+    "entity_set": "ItemRelease",
+    "entity_type": "ItemReleaseType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Scheduling Agreement Item Release",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SCHED_AGRMT_PROCESS_SRV",
+    "entity_set": "WithdrawFromApproval",
+    "entity_type": "WithdrawFromApprovalType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Withdarw Scheduling Agreement from Approval",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  }
+]

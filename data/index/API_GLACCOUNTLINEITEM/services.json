@@ -1,0 +1,23 @@
+[
+  {
+    "service_name": "API_GLACCOUNTLINEITEM",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM",
+    "description": "This service enables you to retrieve accounting-specific information from all journal entries in Financials. You can read journal entry items and detailed information for ledger, company code, ledger fiscal year, G/L account and optionally segment, profit center, cost center and other fields.",
+    "entity_sets": [
+      "GLAccountLineItem"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD/2602.latest/EN/80/214b5ede2f4e97b640137a4eca208a/frameset.htm",
+    "openapi_version": "1.0.3"
+  }
+]

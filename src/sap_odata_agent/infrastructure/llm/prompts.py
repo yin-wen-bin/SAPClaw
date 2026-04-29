@@ -125,6 +125,7 @@ Planning rules:
 17. Function import plans must not use select_fields, filters, order_by, top, or multi_step bindings; SAP function imports only accept their named input parameters.
 18. If multiple entities expose similarly named fields, choose the entity whose business level matches the requested meaning. A less specific blank field must not be used as negative evidence when api_skill points to a more specific entity/field combination.
 19. Do not synthesize a "history" answer by combining unrelated child entities. If the user asks for document history and schema_context.api_skill says the API does not expose true history, return clarification or no_feasible_plan instead of selecting a detail entity such as pricing, notes, or account assignment.
+20. If schema_context.service.service_kind is CDS_VIEW_ONLY or schema_context.service.odata_runtime_available is false, return no_feasible_plan; do not produce a /sap/opu/odata/sap/... plan.
 """.strip()
 
 
@@ -151,6 +152,7 @@ Repair rules:
 9. wrong API or domain suspected: return reroute_required=true if allowed.
 10. function import syntax error: convert entity-style filters or $top/$select usage into plan_kind=function_import with named function_parameters from schema_context.function_imports.
 11. after repeated failures, prefer no_feasible_plan with clear reason.
+12. If schema_context.service.service_kind is CDS_VIEW_ONLY or schema_context.service.odata_runtime_available is false, return no_feasible_plan; do not repair it into a /sap/opu/odata/sap/... request.
 """.strip()
 
 

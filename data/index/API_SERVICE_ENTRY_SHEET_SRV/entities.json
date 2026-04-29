@@ -1,0 +1,175 @@
+[
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheet",
+    "entity_type": "A_ServiceEntrySheetType",
+    "key_fields": [
+      "ServiceEntrySheet"
+    ],
+    "default_select_fields": [
+      "ServiceEntrySheet",
+      "ApprovalDateTime",
+      "ApprovalStatus",
+      "SESWorkflowStatus",
+      "CreatedByUser",
+      "CreationDateTime",
+      "PurchasingOrganization",
+      "PurchasingGroup",
+      "IsEndOfPurposeBlocked",
+      "Currency"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_ServiceEntrySheetItem"
+    ],
+    "description": "Reads the header data from all service entry sheets.",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_ServiceEntrySheetItem",
+    "entity_type": "A_ServiceEntrySheetItemType",
+    "key_fields": [
+      "ServiceEntrySheet",
+      "ServiceEntrySheetItem"
+    ],
+    "default_select_fields": [
+      "ServiceEntrySheet",
+      "ServiceEntrySheetItem",
+      "AccountAssignmentCategory",
+      "ConfirmedQuantity",
+      "CreatedByUser",
+      "CreationDateTime",
+      "PurchasingOrganization",
+      "PurchasingGroup",
+      "Plant",
+      "Currency"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_AccountAssignment"
+    ],
+    "description": "Reads all service entry sheet items.",
+    "supported_methods": [
+      "GET",
+      "PATCH"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "A_SrvcEntrShtAcctAssignment",
+    "entity_type": "A_SrvcEntrShtAcctAssignmentType",
+    "key_fields": [
+      "AccountAssignment",
+      "ServiceEntrySheet",
+      "ServiceEntrySheetItem"
+    ],
+    "default_select_fields": [
+      "ServiceEntrySheet",
+      "ServiceEntrySheetItem",
+      "AccountAssignment",
+      "AccountAssignmentUUID",
+      "PurchasingOrganization",
+      "PurchasingGroup",
+      "Plant",
+      "BusinessArea",
+      "CommitmentItem",
+      "ControllingArea"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads all account assignments of service entry sheets.",
+    "supported_methods": [
+      "GET",
+      "PATCH"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "RevokeApproval",
+    "entity_type": "RevokeApprovalType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Revokes the approval of a service entry sheet.",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "SubmitForApproval",
+    "entity_type": "SubmitForApprovalType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Submits a service entry sheet for approval.",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "entity_set": "WithdrawFromApproval",
+    "entity_type": "WithdrawFromApprovalType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Withdraws a service entry sheet from the approval process.",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  }
+]

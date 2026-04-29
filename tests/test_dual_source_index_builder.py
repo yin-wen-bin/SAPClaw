@@ -182,6 +182,30 @@ def test_builder_writes_index_files(tmp_path: Path) -> None:
     assert bundle.summary["vector_document_count"] >= 1
 
 
+def test_builder_reads_openapi_json_with_utf8_bom(tmp_path: Path) -> None:
+    class StubFetcher:
+        def fetch(self, config, service_name: str) -> tuple[str, str]:
+            return SAMPLE_XML, f"https://sap.example.com/{service_name}/$metadata"
+
+    openapi_path = tmp_path / "openapi.json"
+    openapi_path.write_text("\ufeff" + json.dumps(SAMPLE_OPENAPI), encoding="utf-8")
+
+    builder = DualSourceIndexBuilder(fetcher=StubFetcher())
+    bundle = builder.build(
+        sap_config=SapConnectionConfig(
+            base_url="https://sap.example.com",
+            username="user",
+            password="pass",
+            client="100",
+        ),
+        sap_service_name="API_TEST",
+        openapi_json_path=openapi_path,
+        output_root=tmp_path / "index",
+    )
+
+    assert bundle.summary["merged_entity_count"] >= 1
+
+
 def test_merge_uses_metadata_business_aliases_for_planned_delivery_time() -> None:
     metadata_parser = SapMetadataParser()
     openapi_parser = OpenApiDocumentParser()

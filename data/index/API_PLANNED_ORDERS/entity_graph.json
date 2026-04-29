@@ -1,0 +1,24 @@
+[
+  {
+    "service_name": "API_PLANNED_ORDERS",
+    "from_entity_set": "A_PlannedOrder",
+    "to_entity_set": "ToRole_assoc_92DFCF2A013C3DC8A2D1E0681F8EC111",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_PlannedOrderComponent",
+    "description": "Navigation `to_PlannedOrderComponent` from `A_PlannedOrder` to `ToRole_assoc_92DFCF2A013C3DC8A2D1E0681F8EC111`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_PLANNED_ORDERS",
+    "from_entity_set": "A_PlannedOrder",
+    "to_entity_set": "ToRole_assoc_B2EF20C2C022C36E03D40DE20ECDEDA9",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_PlannedOrderCapacity",
+    "description": "Navigation `to_PlannedOrderCapacity` from `A_PlannedOrder` to `ToRole_assoc_B2EF20C2C022C36E03D40DE20ECDEDA9`.",
+    "confidence": 0.8
+  }
+]

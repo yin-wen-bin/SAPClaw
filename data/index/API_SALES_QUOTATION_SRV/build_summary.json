@@ -1,0 +1,15 @@
+{
+  "service_name": "API_SALES_QUOTATION_SRV",
+  "sap_metadata_entity_count": 14,
+  "sap_metadata_field_count": 271,
+  "openapi_documented_entity_count": 17,
+  "openapi_documented_entity_type_count": 18,
+  "merged_entity_count": 17,
+  "merged_field_count": 290,
+  "relation_count": 32,
+  "entity_graph_edge_count": 32,
+  "lookup_path_count": 26,
+  "business_term_count": 511,
+  "vector_document_count": 316,
+  "doc_chunk_count": 598
+}
