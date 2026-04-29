@@ -1,0 +1,1845 @@
+﻿{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Cost Center - Read (A2X)",
+    "version": "1.0.0",
+    "description": "This service enables you to read cost center master data. It is based on the OData protocol and can be consumed in SAP Fiori apps and other user interfaces."
+  },
+  "externalDocs": {
+    "description": "Business Documentation",
+    "url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/37/310ccbc01943d98e7d84dff3802537/frameset.htm"
+  },
+  "x-sap-api-type": "ODATA",
+  "x-sap-shortText": "Read cost center master data synchronously using this inbound service",
+  "x-sap-software-min-version": "2025",
+  "x-sap-ext-overview": [
+    {
+      "name": "Authentication Methods",
+      "values": [
+        {
+          "text": "x509",
+          "format": "plain"
+        }
+      ]
+    },
+    {
+      "name": "Business Object",
+      "values": [
+        {
+          "text": "Cost Center",
+          "format": "plain"
+        }
+      ]
+    }
+  ],
+  "servers": [
+    {
+      "url": "https://{host}:{port}/sap/opu/odata/sap/API_COSTCENTER_SRV",
+      "variables": {
+        "host": {
+          "default": ""
+        },
+        "port": {
+          "default": ""
+        }
+      }
+    }
+  ],
+  "x-sap-extensible": {
+    "supported": "manual",
+    "description": "If you are working with key user extensibility, the API can be extended by custom fields on the following business contexts (field usage for this API needs to be selected):\r\n* Cost Center Master Data (FINS_COST_CENTER)\r\n\r\n[How to add an extension field to an API](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b5670aaaa2364a29935f40b16499972d/ce819b8557194ae0aa180ba4ac6a04de.html)\r\n\r\nNote: Please make sure to match the release selected in SAP Business Accelerator Hub with the Feature Pack (FPS) on help page."
+  },
+  "tags": [
+    {
+      "name": "Cost Center"
+    },
+    {
+      "name": "Cost Center Text"
+    }
+  ],
+  "paths": {
+    "/A_CostCenter": {
+      "get": {
+        "summary": "Reads all available cost centers.",
+        "description": "Reads data of all cost centers, based on the specified filter conditions.",
+        "tags": [
+          "Cost Center"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ControllingArea",
+                  "ControllingArea desc",
+                  "CostCenter",
+                  "CostCenter desc",
+                  "ValidityEndDate",
+                  "ValidityEndDate desc",
+                  "ValidityStartDate",
+                  "ValidityStartDate desc",
+                  "CompanyCode",
+                  "CompanyCode desc",
+                  "BusinessArea",
+                  "BusinessArea desc",
+                  "CostCtrResponsiblePersonName",
+                  "CostCtrResponsiblePersonName desc",
+                  "CostCtrResponsibleUser",
+                  "CostCtrResponsibleUser desc",
+                  "CostCenterCurrency",
+                  "CostCenterCurrency desc",
+                  "ProfitCenter",
+                  "ProfitCenter desc",
+                  "Department",
+                  "Department desc",
+                  "CostingSheet",
+                  "CostingSheet desc",
+                  "FunctionalArea",
+                  "FunctionalArea desc",
+                  "Country",
+                  "Country desc",
+                  "PostalCode",
+                  "PostalCode desc",
+                  "StreetAddressName",
+                  "StreetAddressName desc",
+                  "Region",
+                  "Region desc",
+                  "CityName",
+                  "CityName desc",
+                  "CostCenterStandardHierArea",
+                  "CostCenterStandardHierArea desc",
+                  "CostCenterCategory",
+                  "CostCenterCategory desc",
+                  "IsBlkdForPrimaryCostsPosting",
+                  "IsBlkdForPrimaryCostsPosting desc",
+                  "IsBlkdForSecondaryCostsPosting",
+                  "IsBlkdForSecondaryCostsPosting desc",
+                  "IsBlockedForRevenuePosting",
+                  "IsBlockedForRevenuePosting desc",
+                  "IsBlockedForCommitmentPosting",
+                  "IsBlockedForCommitmentPosting desc",
+                  "IsBlockedForPlanPrimaryCosts",
+                  "IsBlockedForPlanPrimaryCosts desc",
+                  "IsBlockedForPlanSecondaryCosts",
+                  "IsBlockedForPlanSecondaryCosts desc",
+                  "IsBlockedForPlanRevenues",
+                  "IsBlockedForPlanRevenues desc",
+                  "ConsumptionQtyIsRecorded",
+                  "ConsumptionQtyIsRecorded desc",
+                  "Language",
+                  "Language desc",
+                  "CostCenterCreatedByUser",
+                  "CostCenterCreatedByUser desc",
+                  "CostCenterCreationDate",
+                  "CostCenterCreationDate desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ControllingArea",
+                  "CostCenter",
+                  "ValidityEndDate",
+                  "ValidityStartDate",
+                  "CompanyCode",
+                  "BusinessArea",
+                  "CostCtrResponsiblePersonName",
+                  "CostCtrResponsibleUser",
+                  "CostCenterCurrency",
+                  "ProfitCenter",
+                  "Department",
+                  "CostingSheet",
+                  "FunctionalArea",
+                  "Country",
+                  "PostalCode",
+                  "StreetAddressName",
+                  "Region",
+                  "CityName",
+                  "CostCenterStandardHierArea",
+                  "CostCenterCategory",
+                  "IsBlkdForPrimaryCostsPosting",
+                  "IsBlkdForSecondaryCostsPosting",
+                  "IsBlockedForRevenuePosting",
+                  "IsBlockedForCommitmentPosting",
+                  "IsBlockedForPlanPrimaryCosts",
+                  "IsBlockedForPlanSecondaryCosts",
+                  "IsBlockedForPlanRevenues",
+                  "ConsumptionQtyIsRecorded",
+                  "Language",
+                  "CostCenterCreatedByUser",
+                  "CostCenterCreationDate",
+                  "to_Text"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_Text"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of A_CostCenterType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_COSTCENTER_SRV.A_CostCenterType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_CostCenter(ControllingArea='{ControllingArea}',CostCenter='{CostCenter}',ValidityEndDate=datetime'{ValidityEndDate}')": {
+      "parameters": [
+        {
+          "name": "ControllingArea",
+          "in": "path",
+          "required": true,
+          "description": "Controlling Area",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "CostCenter",
+          "in": "path",
+          "required": true,
+          "description": "Cost Center",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "ValidityEndDate",
+          "in": "path",
+          "required": true,
+          "description": "Valid To Date",
+          "schema": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T00:00$",
+            "example": "2017-04-13T00:00"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Reads a specific cost center.",
+        "description": "Reads data of the cost center defined by the provided key fields.",
+        "tags": [
+          "Cost Center"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ControllingArea",
+                  "CostCenter",
+                  "ValidityEndDate",
+                  "ValidityStartDate",
+                  "CompanyCode",
+                  "BusinessArea",
+                  "CostCtrResponsiblePersonName",
+                  "CostCtrResponsibleUser",
+                  "CostCenterCurrency",
+                  "ProfitCenter",
+                  "Department",
+                  "CostingSheet",
+                  "FunctionalArea",
+                  "Country",
+                  "PostalCode",
+                  "StreetAddressName",
+                  "Region",
+                  "CityName",
+                  "CostCenterStandardHierArea",
+                  "CostCenterCategory",
+                  "IsBlkdForPrimaryCostsPosting",
+                  "IsBlkdForSecondaryCostsPosting",
+                  "IsBlockedForRevenuePosting",
+                  "IsBlockedForCommitmentPosting",
+                  "IsBlockedForPlanPrimaryCosts",
+                  "IsBlockedForPlanSecondaryCosts",
+                  "IsBlockedForPlanRevenues",
+                  "ConsumptionQtyIsRecorded",
+                  "Language",
+                  "CostCenterCreatedByUser",
+                  "CostCenterCreationDate",
+                  "to_Text"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_Text"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_CostCenterType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_COSTCENTER_SRV.A_CostCenterType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_CostCenter(ControllingArea='{ControllingArea}',CostCenter='{CostCenter}',ValidityEndDate=datetime'{ValidityEndDate}')/to_Text": {
+      "parameters": [
+        {
+          "name": "ControllingArea",
+          "in": "path",
+          "required": true,
+          "description": "Controlling Area",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "CostCenter",
+          "in": "path",
+          "required": true,
+          "description": "Cost Center",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "ValidityEndDate",
+          "in": "path",
+          "required": true,
+          "description": "Valid To Date",
+          "schema": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T00:00$",
+            "example": "2017-04-13T00:00"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Reads all language-dependent fields for a specific cost center.",
+        "description": "Reads all translations available for the language-dependent data of the cost center defined by the provided key fields.",
+        "tags": [
+          "Cost Center",
+          "Cost Center Text"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CostCenter",
+                  "CostCenter desc",
+                  "ControllingArea",
+                  "ControllingArea desc",
+                  "Language",
+                  "Language desc",
+                  "ValidityEndDate",
+                  "ValidityEndDate desc",
+                  "ValidityStartDate",
+                  "ValidityStartDate desc",
+                  "CostCenterName",
+                  "CostCenterName desc",
+                  "CostCenterDescription",
+                  "CostCenterDescription desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CostCenter",
+                  "ControllingArea",
+                  "Language",
+                  "ValidityEndDate",
+                  "ValidityStartDate",
+                  "CostCenterName",
+                  "CostCenterDescription",
+                  "to_CostCenter"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_CostCenter"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of A_CostCenterTextType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_COSTCENTER_SRV.A_CostCenterTextType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_CostCenterText": {
+      "get": {
+        "summary": "Reads all language-dependent fields for all cost centers.",
+        "description": "Reads all translations available for the language-dependent data of all cost centers, based on the specified filter conditions.",
+        "tags": [
+          "Cost Center Text"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CostCenter",
+                  "CostCenter desc",
+                  "ControllingArea",
+                  "ControllingArea desc",
+                  "Language",
+                  "Language desc",
+                  "ValidityEndDate",
+                  "ValidityEndDate desc",
+                  "ValidityStartDate",
+                  "ValidityStartDate desc",
+                  "CostCenterName",
+                  "CostCenterName desc",
+                  "CostCenterDescription",
+                  "CostCenterDescription desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CostCenter",
+                  "ControllingArea",
+                  "Language",
+                  "ValidityEndDate",
+                  "ValidityStartDate",
+                  "CostCenterName",
+                  "CostCenterDescription",
+                  "to_CostCenter"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_CostCenter"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of A_CostCenterTextType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_COSTCENTER_SRV.A_CostCenterTextType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_CostCenterText(CostCenter='{CostCenter}',ControllingArea='{ControllingArea}',Language='{Language}',ValidityEndDate=datetime'{ValidityEndDate}')": {
+      "parameters": [
+        {
+          "name": "CostCenter",
+          "in": "path",
+          "required": true,
+          "description": "Cost Center",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "ControllingArea",
+          "in": "path",
+          "required": true,
+          "description": "Controlling Area",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "Language",
+          "in": "path",
+          "required": true,
+          "description": "Language Key",
+          "schema": {
+            "type": "string",
+            "maxLength": 2
+          }
+        },
+        {
+          "name": "ValidityEndDate",
+          "in": "path",
+          "required": true,
+          "description": "Valid To Date",
+          "schema": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T00:00$",
+            "example": "2017-04-13T00:00"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Reads language-dependent fields of a cost center in a specific language.",
+        "description": "Reads language-dependent data of the cost center defined by the provided key fields, based on the specified language.",
+        "tags": [
+          "Cost Center Text"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CostCenter",
+                  "ControllingArea",
+                  "Language",
+                  "ValidityEndDate",
+                  "ValidityStartDate",
+                  "CostCenterName",
+                  "CostCenterDescription",
+                  "to_CostCenter"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_CostCenter"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_CostCenterTextType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_COSTCENTER_SRV.A_CostCenterTextType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_CostCenterText(CostCenter='{CostCenter}',ControllingArea='{ControllingArea}',Language='{Language}',ValidityEndDate=datetime'{ValidityEndDate}')/to_CostCenter": {
+      "parameters": [
+        {
+          "name": "CostCenter",
+          "in": "path",
+          "required": true,
+          "description": "Cost Center",
+          "schema": {
+            "type": "string",
+            "maxLength": 10
+          }
+        },
+        {
+          "name": "ControllingArea",
+          "in": "path",
+          "required": true,
+          "description": "Controlling Area",
+          "schema": {
+            "type": "string",
+            "maxLength": 4
+          }
+        },
+        {
+          "name": "Language",
+          "in": "path",
+          "required": true,
+          "description": "Language Key",
+          "schema": {
+            "type": "string",
+            "maxLength": 2
+          }
+        },
+        {
+          "name": "ValidityEndDate",
+          "in": "path",
+          "required": true,
+          "description": "Valid To Date",
+          "schema": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T00:00$",
+            "example": "2017-04-13T00:00"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Reads cost center header fields for a specific language.",
+        "description": "Reads cost center header fields defined by the provided key fields.",
+        "tags": [
+          "Cost Center Text",
+          "Cost Center"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ControllingArea",
+                  "CostCenter",
+                  "ValidityEndDate",
+                  "ValidityStartDate",
+                  "CompanyCode",
+                  "BusinessArea",
+                  "CostCtrResponsiblePersonName",
+                  "CostCtrResponsibleUser",
+                  "CostCenterCurrency",
+                  "ProfitCenter",
+                  "Department",
+                  "CostingSheet",
+                  "FunctionalArea",
+                  "Country",
+                  "PostalCode",
+                  "StreetAddressName",
+                  "Region",
+                  "CityName",
+                  "CostCenterStandardHierArea",
+                  "CostCenterCategory",
+                  "IsBlkdForPrimaryCostsPosting",
+                  "IsBlkdForSecondaryCostsPosting",
+                  "IsBlockedForRevenuePosting",
+                  "IsBlockedForCommitmentPosting",
+                  "IsBlockedForPlanPrimaryCosts",
+                  "IsBlockedForPlanSecondaryCosts",
+                  "IsBlockedForPlanRevenues",
+                  "ConsumptionQtyIsRecorded",
+                  "Language",
+                  "CostCenterCreatedByUser",
+                  "CostCenterCreationDate",
+                  "to_Text"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_Text"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_CostCenterType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_COSTCENTER_SRV.A_CostCenterType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/$batch": {
+      "post": {
+        "summary": "Send a group of requests",
+        "description": "Group multiple requests into a single request payload, see [Batch Requests](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=152).\n\n*Please note that \"Try it out\" is not supported for this request.*",
+        "tags": [
+          "Batch Requests"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Batch request",
+          "content": {
+            "multipart/mixed;boundary=request-separator": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "--request-separator\nContent-Type: application/http\nContent-Transfer-Encoding: binary\n\nGET A_CostCenter HTTP/1.1\nAccept: application/json\n\n\n--request-separator--"
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Batch response",
+            "content": {
+              "multipart/mixed": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "--response-separator\nContent-Type: application/http\n\nHTTP/1.1 200 OK\nContent-Type: application/json\n\n{...}\n--response-separator--"
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "API_COSTCENTER_SRV.A_CostCenterType": {
+        "type": "object",
+        "properties": {
+          "ControllingArea": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Controlling Area"
+          },
+          "CostCenter": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Cost Center"
+          },
+          "ValidityEndDate": {
+            "type": "string",
+            "example": "/Date(1492041600000)/",
+            "title": "Valid To",
+            "description": "Valid To Date"
+          },
+          "ValidityStartDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Valid From",
+            "description": "Valid-From Date"
+          },
+          "CompanyCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Company Code"
+          },
+          "BusinessArea": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Business Area"
+          },
+          "CostCtrResponsiblePersonName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 20,
+            "title": "Person Responsible"
+          },
+          "CostCtrResponsibleUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "User Responsible"
+          },
+          "CostCenterCurrency": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "title": "Currency",
+            "description": "Currency Key"
+          },
+          "ProfitCenter": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Profit Center"
+          },
+          "Department": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Department"
+          },
+          "CostingSheet": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 6,
+            "title": "Costing Sheet"
+          },
+          "FunctionalArea": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 16,
+            "title": "Functional Area"
+          },
+          "Country": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Country/Region Key"
+          },
+          "PostalCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Postal Code"
+          },
+          "StreetAddressName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 35,
+            "title": "Street",
+            "description": "Street and House Number"
+          },
+          "Region": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Region",
+            "description": "Region (State, Province, County)"
+          },
+          "CityName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 35,
+            "title": "City"
+          },
+          "CostCenterStandardHierArea": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Hierarchy Area",
+            "description": "Standard Hierarchy Area"
+          },
+          "CostCenterCategory": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Cost Center Category"
+          },
+          "IsBlkdForPrimaryCostsPosting": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Actual primary costs",
+            "description": "Lock Indicator for Actual Primary Postings"
+          },
+          "IsBlkdForSecondaryCostsPosting": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Actl Sec. Costs",
+            "description": "Lock Indicator for Actual Secondary Costs"
+          },
+          "IsBlockedForRevenuePosting": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Actual Revenues",
+            "description": "Lock Indicator for Actual Revenue Postings"
+          },
+          "IsBlockedForCommitmentPosting": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Commitment Update",
+            "description": "Lock Indicator for Commitment Update"
+          },
+          "IsBlockedForPlanPrimaryCosts": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Plan primary costs",
+            "description": "Lock Indicator for Plan Primary Costs"
+          },
+          "IsBlockedForPlanSecondaryCosts": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Lock Plan Sec Costs",
+            "description": "Lock Indicator for Plan Secondary Costs"
+          },
+          "IsBlockedForPlanRevenues": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Lock Planning Revn",
+            "description": "Lock Indicator for Planning Revenues"
+          },
+          "ConsumptionQtyIsRecorded": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Record Quantity",
+            "description": "Indicator for Recording Consumption Quantities"
+          },
+          "Language": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Language Key"
+          },
+          "CostCenterCreatedByUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Created By",
+            "description": "Entered By"
+          },
+          "CostCenterCreationDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Entered On"
+          },
+          "to_Text": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/API_COSTCENTER_SRV.A_CostCenterTextType"
+                }
+              }
+            }
+          }
+        },
+        "title": "Cost Center"
+      },
+      "API_COSTCENTER_SRV.A_CostCenterType-create": {
+        "type": "object",
+        "properties": {
+          "ControllingArea": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Controlling Area"
+          },
+          "CostCenter": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Cost Center"
+          },
+          "ValidityEndDate": {
+            "type": "string",
+            "example": "/Date(1492041600000)/",
+            "title": "Valid To",
+            "description": "Valid To Date"
+          },
+          "ValidityStartDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Valid From",
+            "description": "Valid-From Date"
+          },
+          "CompanyCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Company Code"
+          },
+          "BusinessArea": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Business Area"
+          },
+          "CostCtrResponsiblePersonName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 20,
+            "title": "Person Responsible"
+          },
+          "CostCtrResponsibleUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "User Responsible"
+          },
+          "CostCenterCurrency": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "title": "Currency",
+            "description": "Currency Key"
+          },
+          "ProfitCenter": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Profit Center"
+          },
+          "Department": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Department"
+          },
+          "CostingSheet": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 6,
+            "title": "Costing Sheet"
+          },
+          "FunctionalArea": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 16,
+            "title": "Functional Area"
+          },
+          "Country": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Country/Region Key"
+          },
+          "PostalCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Postal Code"
+          },
+          "StreetAddressName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 35,
+            "title": "Street",
+            "description": "Street and House Number"
+          },
+          "Region": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Region",
+            "description": "Region (State, Province, County)"
+          },
+          "CityName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 35,
+            "title": "City"
+          },
+          "CostCenterStandardHierArea": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Hierarchy Area",
+            "description": "Standard Hierarchy Area"
+          },
+          "CostCenterCategory": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Cost Center Category"
+          },
+          "IsBlkdForPrimaryCostsPosting": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Actual primary costs",
+            "description": "Lock Indicator for Actual Primary Postings"
+          },
+          "IsBlkdForSecondaryCostsPosting": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Actl Sec. Costs",
+            "description": "Lock Indicator for Actual Secondary Costs"
+          },
+          "IsBlockedForRevenuePosting": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Actual Revenues",
+            "description": "Lock Indicator for Actual Revenue Postings"
+          },
+          "IsBlockedForCommitmentPosting": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Commitment Update",
+            "description": "Lock Indicator for Commitment Update"
+          },
+          "IsBlockedForPlanPrimaryCosts": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Plan primary costs",
+            "description": "Lock Indicator for Plan Primary Costs"
+          },
+          "IsBlockedForPlanSecondaryCosts": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Lock Plan Sec Costs",
+            "description": "Lock Indicator for Plan Secondary Costs"
+          },
+          "IsBlockedForPlanRevenues": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Lock Planning Revn",
+            "description": "Lock Indicator for Planning Revenues"
+          },
+          "ConsumptionQtyIsRecorded": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Record Quantity",
+            "description": "Indicator for Recording Consumption Quantities"
+          },
+          "Language": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Language Key"
+          },
+          "CostCenterCreatedByUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Created By",
+            "description": "Entered By"
+          },
+          "CostCenterCreationDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Entered On"
+          },
+          "to_Text": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/API_COSTCENTER_SRV.A_CostCenterTextType-create"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "ControllingArea",
+          "CostCenter",
+          "ValidityEndDate"
+        ],
+        "title": "Cost Center (for create)"
+      },
+      "API_COSTCENTER_SRV.A_CostCenterType-update": {
+        "type": "object",
+        "properties": {
+          "ValidityStartDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Valid From",
+            "description": "Valid-From Date"
+          },
+          "CompanyCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Company Code"
+          },
+          "BusinessArea": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Business Area"
+          },
+          "CostCtrResponsiblePersonName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 20,
+            "title": "Person Responsible"
+          },
+          "CostCtrResponsibleUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "User Responsible"
+          },
+          "CostCenterCurrency": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "title": "Currency",
+            "description": "Currency Key"
+          },
+          "ProfitCenter": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Profit Center"
+          },
+          "Department": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Department"
+          },
+          "CostingSheet": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 6,
+            "title": "Costing Sheet"
+          },
+          "FunctionalArea": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 16,
+            "title": "Functional Area"
+          },
+          "Country": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Country/Region Key"
+          },
+          "PostalCode": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Postal Code"
+          },
+          "StreetAddressName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 35,
+            "title": "Street",
+            "description": "Street and House Number"
+          },
+          "Region": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Region",
+            "description": "Region (State, Province, County)"
+          },
+          "CityName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 35,
+            "title": "City"
+          },
+          "CostCenterStandardHierArea": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Hierarchy Area",
+            "description": "Standard Hierarchy Area"
+          },
+          "CostCenterCategory": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Cost Center Category"
+          },
+          "IsBlkdForPrimaryCostsPosting": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Actual primary costs",
+            "description": "Lock Indicator for Actual Primary Postings"
+          },
+          "IsBlkdForSecondaryCostsPosting": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Actl Sec. Costs",
+            "description": "Lock Indicator for Actual Secondary Costs"
+          },
+          "IsBlockedForRevenuePosting": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Actual Revenues",
+            "description": "Lock Indicator for Actual Revenue Postings"
+          },
+          "IsBlockedForCommitmentPosting": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Commitment Update",
+            "description": "Lock Indicator for Commitment Update"
+          },
+          "IsBlockedForPlanPrimaryCosts": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Plan primary costs",
+            "description": "Lock Indicator for Plan Primary Costs"
+          },
+          "IsBlockedForPlanSecondaryCosts": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Lock Plan Sec Costs",
+            "description": "Lock Indicator for Plan Secondary Costs"
+          },
+          "IsBlockedForPlanRevenues": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Lock Planning Revn",
+            "description": "Lock Indicator for Planning Revenues"
+          },
+          "ConsumptionQtyIsRecorded": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Record Quantity",
+            "description": "Indicator for Recording Consumption Quantities"
+          },
+          "Language": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Language Key"
+          },
+          "CostCenterCreatedByUser": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12,
+            "title": "Created By",
+            "description": "Entered By"
+          },
+          "CostCenterCreationDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Entered On"
+          }
+        },
+        "title": "Cost Center (for update)"
+      },
+      "API_COSTCENTER_SRV.A_CostCenterTextType": {
+        "type": "object",
+        "properties": {
+          "CostCenter": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Cost Center"
+          },
+          "ControllingArea": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Controlling Area"
+          },
+          "Language": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Language Key"
+          },
+          "ValidityEndDate": {
+            "type": "string",
+            "example": "/Date(1492041600000)/",
+            "title": "Valid To",
+            "description": "Valid To Date"
+          },
+          "ValidityStartDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Valid From",
+            "description": "Valid-From Date"
+          },
+          "CostCenterName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 20,
+            "title": "Cost Center Name"
+          },
+          "CostCenterDescription": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Cost Center Desc.",
+            "description": "Description of Cost Center"
+          },
+          "to_CostCenter": {
+            "$ref": "#/components/schemas/API_COSTCENTER_SRV.A_CostCenterType"
+          }
+        },
+        "title": "Cost Center Text"
+      },
+      "API_COSTCENTER_SRV.A_CostCenterTextType-create": {
+        "type": "object",
+        "properties": {
+          "CostCenter": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Cost Center"
+          },
+          "ControllingArea": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Controlling Area"
+          },
+          "Language": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Language Key"
+          },
+          "ValidityEndDate": {
+            "type": "string",
+            "example": "/Date(1492041600000)/",
+            "title": "Valid To",
+            "description": "Valid To Date"
+          },
+          "ValidityStartDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Valid From",
+            "description": "Valid-From Date"
+          },
+          "CostCenterName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 20,
+            "title": "Cost Center Name"
+          },
+          "CostCenterDescription": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Cost Center Desc.",
+            "description": "Description of Cost Center"
+          },
+          "to_CostCenter": {
+            "$ref": "#/components/schemas/API_COSTCENTER_SRV.A_CostCenterType-create"
+          }
+        },
+        "required": [
+          "CostCenter",
+          "ControllingArea",
+          "Language",
+          "ValidityEndDate"
+        ],
+        "title": "Cost Center Text (for create)"
+      },
+      "API_COSTCENTER_SRV.A_CostCenterTextType-update": {
+        "type": "object",
+        "properties": {
+          "ValidityStartDate": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Valid From",
+            "description": "Valid-From Date"
+          },
+          "CostCenterName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 20,
+            "title": "Cost Center Name"
+          },
+          "CostCenterDescription": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Cost Center Desc.",
+            "description": "Description of Cost Center"
+          }
+        },
+        "title": "Cost Center Text (for update)"
+      },
+      "count": {
+        "type": "string",
+        "description": "The number of entities in the collection. Available when using the [$inlinecount](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=67) query option."
+      },
+      "error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "code",
+              "message"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "object",
+                "required": [
+                  "lang",
+                  "value"
+                ],
+                "properties": {
+                  "lang": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              },
+              "innererror": {
+                "type": "object",
+                "description": "The structure of this object is service-specific"
+              }
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "top": {
+        "name": "$top",
+        "in": "query",
+        "description": "Show only the first n items, see [Paging - Top](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=66)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "example": 50
+      },
+      "skip": {
+        "name": "$skip",
+        "in": "query",
+        "description": "Skip the first n items, see [Paging - Skip](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "count": {
+        "name": "$inlinecount",
+        "in": "query",
+        "description": "Include count of items, see [Inlinecount](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=67)",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "allpages",
+            "none"
+          ]
+        }
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/error"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "OAuth2Auth": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "scopes": {},
+            "refreshUrl": "https://{host}:{port}",
+            "authorizationUrl": "https://{host}:{port}",
+            "tokenUrl": "https://{host}:{port}"
+          }
+        }
+      },
+      "BasicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "OAuth2Auth": []
+    },
+    {
+      "BasicAuth": []
+    }
+  ]
+}

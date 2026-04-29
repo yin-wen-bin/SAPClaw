@@ -1,0 +1,405 @@
+﻿{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Trading Partner - Read",
+    "version": "1.0.0",
+    "description": "The service enables you to retrieve trading partner master data. It contains a header and nodes with business information. You can read trading partners and their texts."
+  },
+  "externalDocs": {
+    "description": "Business Documentation",
+    "url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/c2/2cde3a85c94d8d985a4d9886d2913b/frameset.htm"
+  },
+  "x-sap-api-type": "ODATA",
+  "x-sap-shortText": "Read trading partner master data using this synchronous inbound service",
+  "x-sap-software-min-version": "2025",
+  "x-sap-ext-overview": [
+    {
+      "name": "Authentication Methods",
+      "values": [
+        {
+          "text": "x509",
+          "format": "plain"
+        }
+      ]
+    },
+    {
+      "name": "Business Object",
+      "values": [
+        {
+          "text": "Company Code",
+          "format": "plain"
+        }
+      ]
+    }
+  ],
+  "servers": [
+    {
+      "url": "https://{host}:{port}/sap/opu/odata/sap/API_PARTNERCOMPANY_SRV",
+      "variables": {
+        "host": {
+          "default": ""
+        },
+        "port": {
+          "default": ""
+        }
+      }
+    }
+  ],
+  "x-sap-extensible": {
+    "supported": "no"
+  },
+  "tags": [
+    {
+      "name": "Trading Partner"
+    }
+  ],
+  "paths": {
+    "/A_PartnerCompany": {
+      "get": {
+        "summary": "Reads the items of all trading partners.",
+        "description": "Reads the trading partners available in your system.",
+        "tags": [
+          "Trading Partner"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "PartnerCompany",
+                  "PartnerCompany desc",
+                  "CompanyName",
+                  "CompanyName desc",
+                  "Language",
+                  "Language desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "PartnerCompany",
+                  "CompanyName",
+                  "Language"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of A_PartnerCompanyType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_PARTNERCOMPANY_SRV.A_PartnerCompanyType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_PartnerCompany('{PartnerCompany}')": {
+      "parameters": [
+        {
+          "name": "PartnerCompany",
+          "in": "path",
+          "required": true,
+          "description": "Company",
+          "schema": {
+            "type": "string",
+            "maxLength": 6
+          }
+        }
+      ],
+      "get": {
+        "summary": "Reads a trading partner by key.",
+        "description": "Reads a selected trading partner for the provided company key.",
+        "tags": [
+          "Trading Partner"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "PartnerCompany",
+                  "CompanyName",
+                  "Language"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_PartnerCompanyType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_PARTNERCOMPANY_SRV.A_PartnerCompanyType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/$batch": {}
+  },
+  "components": {
+    "schemas": {
+      "API_PARTNERCOMPANY_SRV.A_PartnerCompanyType": {
+        "type": "object",
+        "properties": {
+          "PartnerCompany": {
+            "type": "string",
+            "maxLength": 6,
+            "title": "Company"
+          },
+          "CompanyName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 30,
+            "title": "Company Name"
+          },
+          "Language": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Language Key"
+          }
+        },
+        "title": "Trading Partner"
+      },
+      "API_PARTNERCOMPANY_SRV.A_PartnerCompanyType-create": {
+        "type": "object",
+        "properties": {
+          "PartnerCompany": {
+            "type": "string",
+            "maxLength": 6,
+            "title": "Company"
+          },
+          "CompanyName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 30,
+            "title": "Company Name"
+          },
+          "Language": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Language Key"
+          }
+        },
+        "required": [
+          "PartnerCompany"
+        ],
+        "title": "Trading Partner (for create)"
+      },
+      "API_PARTNERCOMPANY_SRV.A_PartnerCompanyType-update": {
+        "type": "object",
+        "properties": {
+          "CompanyName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 30,
+            "title": "Company Name"
+          },
+          "Language": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Language Key"
+          }
+        },
+        "title": "Trading Partner (for update)"
+      },
+      "count": {
+        "type": "string",
+        "description": "The number of entities in the collection. Available when using the [$inlinecount](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=67) query option."
+      },
+      "error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "code",
+              "message"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "object",
+                "required": [
+                  "lang",
+                  "value"
+                ],
+                "properties": {
+                  "lang": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              },
+              "innererror": {
+                "type": "object",
+                "description": "The structure of this object is service-specific"
+              }
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "top": {
+        "name": "$top",
+        "in": "query",
+        "description": "Show only the first n items, see [Paging - Top](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=66)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "example": 50
+      },
+      "skip": {
+        "name": "$skip",
+        "in": "query",
+        "description": "Skip the first n items, see [Paging - Skip](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "count": {
+        "name": "$inlinecount",
+        "in": "query",
+        "description": "Include count of items, see [Inlinecount](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=67)",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "allpages",
+            "none"
+          ]
+        }
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/error"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "OAuth2Auth": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "scopes": {},
+            "refreshUrl": "https://{host}:{port}",
+            "authorizationUrl": "https://{host}:{port}",
+            "tokenUrl": "https://{host}:{port}"
+          }
+        }
+      },
+      "BasicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "OAuth2Auth": []
+    },
+    {
+      "BasicAuth": []
+    }
+  ]
+}

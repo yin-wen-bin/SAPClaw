@@ -1,0 +1,986 @@
+﻿{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Ledger - Read",
+    "version": "1.0.0",
+    "description": "The service enables you to retrieve ledger master data. It contains a header and nodes with business information. You can read ledgers, their properties like leading ledger and their names in the respective language."
+  },
+  "externalDocs": {
+    "description": "Business Documentation",
+    "url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/61/3fc05ef3cc4505a12a7f1d6b49cc0d/frameset.htm"
+  },
+  "x-sap-api-type": "ODATA",
+  "x-sap-shortText": "Read ledger master data using this synchronous inbound service",
+  "x-sap-software-min-version": "2025",
+  "x-sap-ext-overview": [
+    {
+      "name": "Authentication Methods",
+      "values": [
+        {
+          "text": "x509",
+          "format": "plain"
+        }
+      ]
+    },
+    {
+      "name": "Business Object",
+      "values": [
+        {
+          "text": "Ledger",
+          "format": "plain"
+        }
+      ]
+    }
+  ],
+  "servers": [
+    {
+      "url": "https://{host}:{port}/sap/opu/odata/sap/API_LEDGER_SRV",
+      "variables": {
+        "host": {
+          "default": ""
+        },
+        "port": {
+          "default": ""
+        }
+      }
+    }
+  ],
+  "x-sap-extensible": {
+    "supported": "no"
+  },
+  "tags": [
+    {
+      "name": "Ledger"
+    },
+    {
+      "name": "Ledger Text"
+    }
+  ],
+  "paths": {
+    "/A_Ledger": {
+      "get": {
+        "summary": "Reads the items of all ledgers.",
+        "description": "Reads the ledgers available in your system.",
+        "tags": [
+          "Ledger"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Ledger",
+                  "Ledger desc",
+                  "IsLeadingLedger",
+                  "IsLeadingLedger desc",
+                  "LedgerApplication",
+                  "LedgerApplication desc",
+                  "LedgerSubApplication",
+                  "LedgerSubApplication desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Ledger",
+                  "IsLeadingLedger",
+                  "LedgerApplication",
+                  "LedgerSubApplication",
+                  "to_Text"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_Text"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of A_LedgerType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_LEDGER_SRV.A_LedgerType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_Ledger('{Ledger}')": {
+      "parameters": [
+        {
+          "name": "Ledger",
+          "in": "path",
+          "required": true,
+          "description": "Ledger in General Ledger Accounting",
+          "schema": {
+            "type": "string",
+            "maxLength": 2
+          }
+        }
+      ],
+      "get": {
+        "summary": "Reads a ledger by key.",
+        "description": "Reads a selected ledger for the provided ledger key.",
+        "tags": [
+          "Ledger"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Ledger",
+                  "IsLeadingLedger",
+                  "LedgerApplication",
+                  "LedgerSubApplication",
+                  "to_Text"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_Text"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_LedgerType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_LEDGER_SRV.A_LedgerType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_Ledger('{Ledger}')/to_Text": {
+      "parameters": [
+        {
+          "name": "Ledger",
+          "in": "path",
+          "required": true,
+          "description": "Ledger in General Ledger Accounting",
+          "schema": {
+            "type": "string",
+            "maxLength": 2
+          }
+        }
+      ],
+      "get": {
+        "summary": "Reads the texts of a specific ledger.",
+        "description": "Reads texts and related fields from a specific ledger.",
+        "tags": [
+          "Ledger",
+          "Ledger Text"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Ledger",
+                  "Ledger desc",
+                  "Language",
+                  "Language desc",
+                  "LedgerName",
+                  "LedgerName desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Ledger",
+                  "Language",
+                  "LedgerName",
+                  "to_Ledger"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_Ledger"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of A_LedgerTextType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_LEDGER_SRV.A_LedgerTextType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_LedgerText": {
+      "get": {
+        "summary": "Reads the texts of all ledgers.",
+        "description": "Reads texts and related fields from all ledgers. The related fields include the language and ID.",
+        "tags": [
+          "Ledger Text"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Ledger",
+                  "Ledger desc",
+                  "Language",
+                  "Language desc",
+                  "LedgerName",
+                  "LedgerName desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Ledger",
+                  "Language",
+                  "LedgerName",
+                  "to_Ledger"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_Ledger"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of A_LedgerTextType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/API_LEDGER_SRV.A_LedgerTextType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_LedgerText(Ledger='{Ledger}',Language='{Language}')": {
+      "parameters": [
+        {
+          "name": "Ledger",
+          "in": "path",
+          "required": true,
+          "description": "Ledger in General Ledger Accounting",
+          "schema": {
+            "type": "string",
+            "maxLength": 2
+          }
+        },
+        {
+          "name": "Language",
+          "in": "path",
+          "required": true,
+          "description": "Language Key",
+          "schema": {
+            "type": "string",
+            "maxLength": 2
+          }
+        }
+      ],
+      "get": {
+        "summary": "Reads the texts of a ledger for a specific language and ledger ID.",
+        "description": "Reads the texts and related fields of a ledger. The related fields include the language and ledger ID.",
+        "tags": [
+          "Ledger Text"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Ledger",
+                  "Language",
+                  "LedgerName",
+                  "to_Ledger"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_Ledger"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_LedgerTextType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_LEDGER_SRV.A_LedgerTextType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/A_LedgerText(Ledger='{Ledger}',Language='{Language}')/to_Ledger": {
+      "parameters": [
+        {
+          "name": "Ledger",
+          "in": "path",
+          "required": true,
+          "description": "Ledger in General Ledger Accounting",
+          "schema": {
+            "type": "string",
+            "maxLength": 2
+          }
+        },
+        {
+          "name": "Language",
+          "in": "path",
+          "required": true,
+          "description": "Language Key",
+          "schema": {
+            "type": "string",
+            "maxLength": 2
+          }
+        }
+      ],
+      "get": {
+        "summary": "Reads the ledger related to the text item.",
+        "description": "Reads the ledger and its fields which is related to the specific text for language and ID.",
+        "tags": [
+          "Ledger Text",
+          "Ledger"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Ledger",
+                  "IsLeadingLedger",
+                  "LedgerApplication",
+                  "LedgerSubApplication",
+                  "to_Text"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_Text"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "A_LedgerType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/API_LEDGER_SRV.A_LedgerType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/$batch": {}
+  },
+  "components": {
+    "schemas": {
+      "API_LEDGER_SRV.A_LedgerType": {
+        "type": "object",
+        "properties": {
+          "Ledger": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Ledger",
+            "description": "Ledger in General Ledger Accounting"
+          },
+          "IsLeadingLedger": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Leading Ledger",
+            "description": "Indicator: Leading Ledger"
+          },
+          "LedgerApplication": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Application",
+            "description": "Owner application"
+          },
+          "LedgerSubApplication": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Subapplication"
+          },
+          "to_Text": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/API_LEDGER_SRV.A_LedgerTextType"
+                }
+              }
+            }
+          }
+        },
+        "title": "Ledger"
+      },
+      "API_LEDGER_SRV.A_LedgerType-create": {
+        "type": "object",
+        "properties": {
+          "Ledger": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Ledger",
+            "description": "Ledger in General Ledger Accounting"
+          },
+          "IsLeadingLedger": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Leading Ledger",
+            "description": "Indicator: Leading Ledger"
+          },
+          "LedgerApplication": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Application",
+            "description": "Owner application"
+          },
+          "LedgerSubApplication": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Subapplication"
+          },
+          "to_Text": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/API_LEDGER_SRV.A_LedgerTextType-create"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "Ledger"
+        ],
+        "title": "Ledger (for create)"
+      },
+      "API_LEDGER_SRV.A_LedgerType-update": {
+        "type": "object",
+        "properties": {
+          "IsLeadingLedger": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Leading Ledger",
+            "description": "Indicator: Leading Ledger"
+          },
+          "LedgerApplication": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Application",
+            "description": "Owner application"
+          },
+          "LedgerSubApplication": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Subapplication"
+          }
+        },
+        "title": "Ledger (for update)"
+      },
+      "API_LEDGER_SRV.A_LedgerTextType": {
+        "type": "object",
+        "properties": {
+          "Ledger": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Ledger",
+            "description": "Ledger in General Ledger Accounting"
+          },
+          "Language": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Language Key"
+          },
+          "LedgerName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 30,
+            "title": "Ledger Name"
+          },
+          "to_Ledger": {
+            "$ref": "#/components/schemas/API_LEDGER_SRV.A_LedgerType"
+          }
+        },
+        "title": "Ledger Text"
+      },
+      "API_LEDGER_SRV.A_LedgerTextType-create": {
+        "type": "object",
+        "properties": {
+          "Ledger": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Ledger",
+            "description": "Ledger in General Ledger Accounting"
+          },
+          "Language": {
+            "type": "string",
+            "maxLength": 2,
+            "title": "Language Key"
+          },
+          "LedgerName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 30,
+            "title": "Ledger Name"
+          },
+          "to_Ledger": {
+            "$ref": "#/components/schemas/API_LEDGER_SRV.A_LedgerType-create"
+          }
+        },
+        "required": [
+          "Ledger",
+          "Language"
+        ],
+        "title": "Ledger Text (for create)"
+      },
+      "API_LEDGER_SRV.A_LedgerTextType-update": {
+        "type": "object",
+        "properties": {
+          "LedgerName": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 30,
+            "title": "Ledger Name"
+          }
+        },
+        "title": "Ledger Text (for update)"
+      },
+      "count": {
+        "type": "string",
+        "description": "The number of entities in the collection. Available when using the [$inlinecount](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=67) query option."
+      },
+      "error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "code",
+              "message"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "object",
+                "required": [
+                  "lang",
+                  "value"
+                ],
+                "properties": {
+                  "lang": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              },
+              "innererror": {
+                "type": "object",
+                "description": "The structure of this object is service-specific"
+              }
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "top": {
+        "name": "$top",
+        "in": "query",
+        "description": "Show only the first n items, see [Paging - Top](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=66)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "example": 50
+      },
+      "skip": {
+        "name": "$skip",
+        "in": "query",
+        "description": "Skip the first n items, see [Paging - Skip](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "count": {
+        "name": "$inlinecount",
+        "in": "query",
+        "description": "Include count of items, see [Inlinecount](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=67)",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "allpages",
+            "none"
+          ]
+        }
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/error"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "OAuth2Auth": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "scopes": {},
+            "refreshUrl": "https://{host}:{port}",
+            "authorizationUrl": "https://{host}:{port}",
+            "tokenUrl": "https://{host}:{port}"
+          }
+        }
+      },
+      "BasicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "OAuth2Auth": []
+    },
+    {
+      "BasicAuth": []
+    }
+  ]
+}
