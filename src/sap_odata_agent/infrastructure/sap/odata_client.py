@@ -10,7 +10,14 @@ import urllib.request
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 
-from sap_odata_agent.domain.models import CompiledRequest, ExecutionAttempt, FilterCondition, QueryPlan, ValidationIssue
+from sap_odata_agent.domain.models import (
+    CompiledRequest,
+    ExecutionAttempt,
+    FilterCondition,
+    FunctionParameter,
+    QueryPlan,
+    ValidationIssue,
+)
 
 
 @dataclass(slots=True)
@@ -65,6 +72,15 @@ class BasicPlanValidator:
                 )
             )
 
+        if plan.plan_kind == "function_import" and not plan.function_parameters:
+            issues.append(
+                ValidationIssue(
+                    severity="error",
+                    message="Function import plan is missing function parameters.",
+                    field="function_parameters",
+                )
+            )
+
         if plan.plan_kind in {"lookup", "multi_step"}:
             if not plan.steps:
                 issues.append(
@@ -92,6 +108,9 @@ class BasicODataCompiler:
         self.base_url = base_url.rstrip("/")
 
     def compile(self, plan: QueryPlan) -> CompiledRequest:
+        if plan.plan_kind == "function_import":
+            return self._compile_function_import(plan)
+
         query_parts: list[str] = []
 
         if plan.select_fields:
@@ -114,6 +133,23 @@ class BasicODataCompiler:
             url = f"{url}?{query_string}"
 
         return CompiledRequest(method=plan.http_method, url=url, payload=plan.payload)
+
+    def _compile_function_import(self, plan: QueryPlan) -> CompiledRequest:
+        query_params = {
+            parameter.name: self._compile_function_parameter(parameter)
+            for parameter in plan.function_parameters
+            if parameter.name
+        }
+        query_string = urllib.parse.urlencode(query_params, safe="$(),'/:")
+        path = f"/sap/opu/odata/sap/{plan.service_name}/{plan.entity_set}"
+        url = f"{self.base_url}{path}"
+        if query_string:
+            url = f"{url}?{query_string}"
+        return CompiledRequest(method=plan.http_method, url=url, payload=plan.payload)
+
+    @staticmethod
+    def _compile_function_parameter(parameter: FunctionParameter) -> str:
+        return BasicODataCompiler._compile_literal(parameter.value, parameter.value_type)
 
     @staticmethod
     def _compile_filter_item(item: FilterCondition) -> str:
@@ -149,6 +185,27 @@ class BasicODataCompiler:
             return BasicODataCompiler._compile_datetime_literal(value, literal_type="datetime")
         if normalized_type in {"datetimeoffset", "edm.datetimeoffset"}:
             return BasicODataCompiler._compile_datetime_literal(value, literal_type="datetimeoffset")
+        if normalized_type in {"decimal", "edm.decimal"}:
+            normalized_value = str(value).strip()
+            if re.fullmatch(r"-?\d+(\.\d+)?[mM]", normalized_value):
+                return normalized_value
+            if re.fullmatch(r"-?\d+(\.\d+)?", normalized_value):
+                return f"{normalized_value}M"
+            return normalized_value
+        if normalized_type in {
+            "number",
+            "integer",
+            "int",
+            "edm.int16",
+            "edm.int32",
+            "edm.int64",
+            "edm.double",
+            "edm.single",
+        }:
+            return str(value).strip()
+        raw_value = str(value).strip()
+        if re.fullmatch(r"'([^']|'')*'", raw_value):
+            return raw_value
         escaped = str(value).replace("'", "''")
         return f"'{escaped}'"
 
@@ -160,6 +217,8 @@ class BasicODataCompiler:
             raw_value = wrapper_match.group(2).strip()
 
         normalized_value = BasicODataCompiler._normalize_datetime_value(raw_value)
+        if literal_type == "datetimeoffset" and not re.search(r"(Z|[+-]\d{2}:\d{2})$", normalized_value):
+            normalized_value = f"{normalized_value}Z"
         return f"{literal_type}'{normalized_value}'"
 
     @staticmethod
@@ -302,7 +361,7 @@ class SapODataExecutor:
         if "$top" in param_map and "$inlinecount" not in param_map:
             param_map["$inlinecount"] = "allpages"
 
-        new_query = urllib.parse.urlencode(param_map, safe="$(),'/")
+        new_query = urllib.parse.urlencode(param_map, safe="$(),'/:")
         return urllib.parse.urlunsplit((split.scheme, split.netloc, split.path, new_query, split.fragment))
 
     def _perform_request(self, compiled_request: CompiledRequest) -> dict[str, str | int]:
@@ -371,6 +430,16 @@ class SapODataExecutor:
                         "next_skip": next_skip,
                     },
                 }
+            if isinstance(data, dict):
+                payload_items = {
+                    key: value
+                    for key, value in data.items()
+                    if key != "__metadata"
+                }
+                if len(payload_items) == 1:
+                    name, value = next(iter(payload_items.items()))
+                    if isinstance(value, dict):
+                        return {"result": value, "function_import": name}
             return {"result": data}
         return payload
 

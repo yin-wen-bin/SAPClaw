@@ -74,6 +74,10 @@ class LlmResultPresenter:
             "target_field": plan.target_field,
             "target_entity_set": plan.target_entity_set,
             "response_summary_fields": plan.response_summary_fields,
+            "function_parameters": [
+                {"name": item.name, "value": item.value, "value_type": item.value_type}
+                for item in getattr(plan, "function_parameters", [])
+            ],
             "response_directive": plan.response_directive,
             "result_count": self._total_count(data, records),
             "displayed_count": len(records),

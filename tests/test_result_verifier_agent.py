@@ -1,3 +1,4 @@
+from sap_odata_agent.domain.models import AgentRequest, FilterCondition, QueryPlan
 from sap_odata_agent.infrastructure.llm.result_verifier_agent import LlmResultVerifierAgent
 
 
@@ -24,3 +25,85 @@ def test_result_verifier_prompt_allows_empty_list_results() -> None:
     assert "result_count=0 can be a correct answer" in prompt
     assert "Do not require enrichment identifiers" in prompt
     assert "business object name" in prompt
+
+
+def test_result_verifier_blocks_blank_less_specific_product_tax_classification() -> None:
+    verifier = LlmResultVerifierAgent(enabled=False)
+    plan = QueryPlan(
+        service_name="API_PRODUCT_SRV",
+        entity_set="A_ProductSales",
+        select_fields=["Product", "TaxClassification"],
+        response_summary_fields=["Product", "TaxClassification"],
+        filters=[FilterCondition(field="Product", operator="eq", value="TG0011")],
+    )
+    schema_context_summary = {
+        "service_name": "API_PRODUCT_SRV",
+        "api_skill": {
+            "service_name": "API_PRODUCT_SRV",
+            "summary": (
+                "Prefer A_ProductSalesTax.Product, A_ProductSalesTax.Country, "
+                "A_ProductSalesTax.TaxCategory, and A_ProductSalesTax.TaxClassification. "
+                "A_ProductSales.TaxClassification is not sufficient evidence."
+            ),
+        },
+        "available_fields": [
+            {"entity_set": "A_ProductSalesTax", "field_name": "Product", "data_type": "Edm.String"},
+            {"entity_set": "A_ProductSalesTax", "field_name": "Country", "data_type": "Edm.String"},
+            {"entity_set": "A_ProductSalesTax", "field_name": "TaxCategory", "data_type": "Edm.String"},
+            {"entity_set": "A_ProductSalesTax", "field_name": "TaxClassification", "data_type": "Edm.String"},
+            {"entity_set": "A_ProductSales", "field_name": "TaxClassification", "data_type": "Edm.String"},
+        ],
+    }
+
+    result = verifier.verify(
+        request=AgentRequest(user_input="\u67e5\u8be2\u7269\u6599TG0011\u7684\u7a0e\u5206\u7c7b"),
+        plan=plan,
+        data={"result_count": 1, "results": [{"Product": "TG0011", "TaxClassification": ""}]},
+        schema_context_summary=schema_context_summary,
+    )
+
+    assert result["passed"] is False
+    assert result["issues"][0]["code"] == "wrong_business_level_for_tax_classification"
+    assert result["repair_hints"]["preferred_entity_set"] == "A_ProductSalesTax"
+    assert result["repair_hints"]["preferred_select_fields"] == [
+        "Product",
+        "Country",
+        "TaxCategory",
+        "TaxClassification",
+    ]
+    assert result["repair_hints"]["preferred_filters"] == [
+        {
+            "entity_set": "A_ProductSalesTax",
+            "field": "Product",
+            "operator": "eq",
+            "value": "TG0011",
+            "value_type": "string",
+        }
+    ]
+
+
+def test_result_verifier_allows_filled_product_sales_tax_classification() -> None:
+    verifier = LlmResultVerifierAgent(enabled=False)
+    result = verifier.verify(
+        request=AgentRequest(user_input="\u67e5\u8be2\u7269\u6599TG0011\u7684\u7a0e\u5206\u7c7b"),
+        plan=QueryPlan(
+            service_name="API_PRODUCT_SRV",
+            entity_set="A_ProductSales",
+            select_fields=["Product", "TaxClassification"],
+            filters=[FilterCondition(field="Product", operator="eq", value="TG0011")],
+        ),
+        data={"result_count": 1, "results": [{"Product": "TG0011", "TaxClassification": "1"}]},
+        schema_context_summary={
+            "api_skill": {
+                "summary": "A_ProductSalesTax.TaxClassification; A_ProductSales.TaxClassification"
+            },
+            "available_fields": [
+                {"entity_set": "A_ProductSalesTax", "field_name": "Product"},
+                {"entity_set": "A_ProductSalesTax", "field_name": "Country"},
+                {"entity_set": "A_ProductSalesTax", "field_name": "TaxCategory"},
+                {"entity_set": "A_ProductSalesTax", "field_name": "TaxClassification"},
+            ],
+        },
+    )
+
+    assert result["passed"] is True

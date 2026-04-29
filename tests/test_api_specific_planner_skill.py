@@ -105,3 +105,4 @@ def test_api_specific_planner_includes_api_skill_in_prompt(tmp_path: Path) -> No
     assert "api_skill" in client.user_prompt
     assert "Open documents use" in client.user_prompt
     assert "API skills are not schema authority" in client.system_prompt
+    assert "less specific similarly named field" in client.user_prompt

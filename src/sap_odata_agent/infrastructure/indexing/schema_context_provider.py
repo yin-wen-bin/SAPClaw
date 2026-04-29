@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Any
 
 from sap_odata_agent.domain.models import ApiRouteDecision, RetrievedDocument
+from sap_odata_agent.infrastructure.indexing.function_imports import function_imports_from_snapshot
 from sap_odata_agent.infrastructure.indexing.index_loader import LocalIndexLoader
 
 
@@ -36,6 +37,8 @@ class SchemaContextProvider:
         feedback_memories: list[dict[str, Any]] | None = None,
     ) -> dict[str, Any]:
         snapshot = self.loader.load(service_name)
+        function_imports = function_imports_from_snapshot(snapshot)
+        function_import_map = {str(item.get("name", "")): item for item in function_imports}
         doc_entities = self._entity_sets_from_documents(retrieved_documents or [])
         doc_fields = self._field_refs_from_documents(retrieved_documents or [])
         feedback_field_matches = self._feedback_field_matches(snapshot, feedback_memories or [], route_decision)
@@ -73,7 +76,7 @@ class SchemaContextProvider:
 
         candidate_entities = self._expand_candidate_entities(snapshot, candidate_fields, doc_entities)
         entities = [
-            self._entity_payload(snapshot, entity_set, candidate_fields)
+            self._entity_payload(snapshot, entity_set, candidate_fields, function_import_map)
             for entity_set in candidate_entities[: self.max_candidate_entities]
         ]
         entities = [item for item in entities if item]
@@ -84,6 +87,7 @@ class SchemaContextProvider:
             "query": query,
             "route_decision": self._route_payload(route_decision),
             "entities": entities,
+            "function_imports": function_imports,
             "candidate_fields": candidate_fields,
             "join_hints": self._build_join_hints(snapshot, entity_set_scope),
             "relations": self._build_relation_hints(snapshot, entity_set_scope),
@@ -103,10 +107,13 @@ class SchemaContextProvider:
             return schema_context
 
         snapshot = self.loader.load(service_name)
+        function_imports = schema_context.get("function_imports") or function_imports_from_snapshot(snapshot)
+        function_import_map = {str(item.get("name", "")): item for item in function_imports}
         skill_field_matches = self._skill_field_matches(snapshot, api_skill)
         if not skill_field_matches:
             return {
                 **schema_context,
+                "function_imports": function_imports,
                 "skill_field_matches": [],
             }
 
@@ -146,7 +153,7 @@ class SchemaContextProvider:
             add_entity(str(entity.get("entity_set", "")))
 
         entities = [
-            self._entity_payload(snapshot, entity_set, enriched_fields)
+            self._entity_payload(snapshot, entity_set, enriched_fields, function_import_map)
             for entity_set in candidate_entity_order[: self.max_candidate_entities]
         ]
         entities = [item for item in entities if item]
@@ -156,6 +163,7 @@ class SchemaContextProvider:
             **schema_context,
             "candidate_fields": enriched_fields[: self.max_candidate_fields],
             "entities": entities,
+            "function_imports": function_imports,
             "join_hints": self._build_join_hints(snapshot, entity_set_scope),
             "relations": self._build_relation_hints(snapshot, entity_set_scope),
             "skill_field_matches": [
@@ -210,6 +218,7 @@ class SchemaContextProvider:
             "candidate_field_count": len(schema_context.get("candidate_fields", [])),
             "join_hint_count": len(schema_context.get("join_hints", [])),
             "relation_count": len(schema_context.get("relations", [])),
+            "function_imports": schema_context.get("function_imports", [])[:20],
             "api_skill": {
                 "service_name": (schema_context.get("api_skill") or {}).get("service_name", ""),
                 "summary": (schema_context.get("api_skill") or {}).get("summary", ""),
@@ -281,10 +290,17 @@ class SchemaContextProvider:
                 break
         return ordered or [str(entity.get("entity_set", "")) for entity in snapshot.entities[: self.max_candidate_entities]]
 
-    def _entity_payload(self, snapshot, entity_set: str, candidate_fields: list[dict[str, Any]]) -> dict[str, Any]:
+    def _entity_payload(
+        self,
+        snapshot,
+        entity_set: str,
+        candidate_fields: list[dict[str, Any]],
+        function_import_map: dict[str, dict[str, Any]] | None = None,
+    ) -> dict[str, Any]:
         entity = self._lookup_entity(snapshot, entity_set)
         if not entity:
             return {}
+        function_import = (function_import_map or {}).get(entity_set)
         candidate_field_names = {
             str(field.get("field_name", ""))
             for field in candidate_fields
@@ -304,13 +320,18 @@ class SchemaContextProvider:
                 break
         return {
             "entity_set": entity_set,
+            "kind": "function_import" if function_import else "entity_set",
             "description": entity.get("description", ""),
             "entity_type": entity.get("entity_type", ""),
             "key_fields": entity.get("key_fields", []),
             "default_select_fields": entity.get("default_select_fields", []),
-            "supports_filter": entity.get("supports_filter", True),
+            "supports_filter": False if function_import else entity.get("supports_filter", True),
+            "supports_top": False if function_import else entity.get("supports_top", True),
             "supported_methods": entity.get("supported_methods", ["GET"]),
             "fields": fields,
+            "function_parameters": (function_import or {}).get("parameters", []),
+            "function_return_type": (function_import or {}).get("return_type", ""),
+            "function_return_fields": (function_import or {}).get("return_fields", []),
         }
 
     @staticmethod

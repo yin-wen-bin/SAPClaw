@@ -11,6 +11,7 @@ from sap_odata_agent.domain.models import (
     FeasibilityViolation,
     QueryPlan,
 )
+from sap_odata_agent.infrastructure.indexing.function_imports import function_imports_from_snapshot
 from sap_odata_agent.infrastructure.indexing.index_loader import LocalIndexLoader
 
 
@@ -49,6 +50,11 @@ class SchemaFeasibilityValidator:
         evidence: list[str] = []
         coverage: dict[str, list[str]] = {"answer_fields": [], "filter_fields": []}
         entity_sets = {entity.get("entity_set", "") for entity in snapshot.entities}
+        function_imports = {
+            str(item.get("name", "") or item.get("entity_set", "")): item
+            for item in function_imports_from_snapshot(snapshot)
+        }
+        is_function_import = plan.plan_kind == "function_import"
         planner_failure_reason = self._planner_failure_reason(plan)
         if planner_failure_reason:
             planner_timed_out = self._is_timeout_text(planner_failure_reason)
@@ -63,7 +69,15 @@ class SchemaFeasibilityValidator:
                     entity_set=plan.entity_set,
                 )
             )
-        elif plan.entity_set not in entity_sets:
+        elif is_function_import and plan.entity_set not in function_imports:
+            violations.append(
+                FeasibilityViolation(
+                    code="function_import_not_found",
+                    message=f"Function import `{plan.entity_set}` is not present in indexed metadata.",
+                    entity_set=plan.entity_set,
+                )
+            )
+        elif not is_function_import and plan.entity_set not in entity_sets:
             violations.append(
                 FeasibilityViolation(
                     code="entity_not_found",
@@ -77,7 +91,16 @@ class SchemaFeasibilityValidator:
         required_filter_fields = set((constraints.filter_concepts if constraints else []) or [])
         required_filter_values = set((constraints.filter_values if constraints else []) or [])
 
-        if plan.plan_kind in {"lookup", "multi_step"} and plan.steps:
+        if is_function_import:
+            function_import = function_imports.get(plan.entity_set, {})
+            self._validate_function_import(plan, function_import, violations, evidence)
+            selected_fields = {
+                str(item.get("field_name", ""))
+                for item in function_import.get("return_fields", [])
+                if item.get("field_name")
+            }
+            filter_fields = {parameter.name for parameter in plan.function_parameters or []}
+        elif plan.plan_kind in {"lookup", "multi_step"} and plan.steps:
             self._validate_steps(snapshot, plan.steps, violations, evidence)
             selected_fields = self._selected_fields(plan)
             filter_fields = self._step_filter_fields(plan.steps)
@@ -304,6 +327,94 @@ class SchemaFeasibilityValidator:
             evidence.append(f"steps_validated:{len(steps)}")
 
     @staticmethod
+    def _validate_function_import(
+        plan: QueryPlan,
+        function_import: dict[str, Any],
+        violations: list[FeasibilityViolation],
+        evidence: list[str],
+    ) -> None:
+        parameters = {parameter.name: parameter for parameter in plan.function_parameters or []}
+        if not parameters:
+            violations.append(
+                FeasibilityViolation(
+                    code="missing_function_import_parameters",
+                    message=f"Function import `{plan.entity_set}` has no input parameters.",
+                    entity_set=plan.entity_set,
+                )
+            )
+            return
+
+        metadata_parameters = {
+            str(item.get("name", "")): item
+            for item in function_import.get("parameters", [])
+            if item.get("name")
+        }
+        for parameter_name, parameter in parameters.items():
+            if metadata_parameters and parameter_name not in metadata_parameters:
+                violations.append(
+                    FeasibilityViolation(
+                        code="unknown_function_import_parameter",
+                        message=f"Function import `{plan.entity_set}` does not define parameter `{parameter_name}`.",
+                        field=parameter_name,
+                        entity_set=plan.entity_set,
+                    )
+                )
+            expected_type = str(metadata_parameters.get(parameter_name, {}).get("value_type", "") or "")
+            if (
+                expected_type
+                and parameter.value_type
+                and SchemaFeasibilityValidator._normalize_value_type(parameter.value_type)
+                != SchemaFeasibilityValidator._normalize_value_type(expected_type)
+            ):
+                violations.append(
+                    FeasibilityViolation(
+                        code="function_import_parameter_type_mismatch",
+                        message=(
+                            f"Function import parameter `{parameter_name}` expects `{expected_type}`, "
+                            f"but plan used `{parameter.value_type}`."
+                        ),
+                        field=parameter_name,
+                        entity_set=plan.entity_set,
+                    )
+                )
+
+        for parameter_name, metadata in metadata_parameters.items():
+            if metadata.get("required", True) and parameter_name not in parameters:
+                violations.append(
+                    FeasibilityViolation(
+                        code="missing_function_import_parameter",
+                        message=f"Function import `{plan.entity_set}` requires parameter `{parameter_name}`.",
+                        field=parameter_name,
+                        entity_set=plan.entity_set,
+                    )
+                )
+            elif metadata.get("required", True) and not parameters[parameter_name].value.strip():
+                violations.append(
+                    FeasibilityViolation(
+                        code="empty_required_function_import_parameter",
+                        message=f"Function import `{plan.entity_set}` requires non-empty parameter `{parameter_name}`.",
+                        field=parameter_name,
+                        entity_set=plan.entity_set,
+                    )
+                )
+        evidence.append(f"function_import_parameters:{','.join(sorted(parameters))}")
+
+    @staticmethod
+    def _normalize_value_type(value_type: str) -> str:
+        normalized = str(value_type or "").lower().replace("edm.", "")
+        if normalized in {"datetimeoffset"}:
+            return "datetimeoffset"
+        if normalized in {"datetime", "date"}:
+            return "datetime"
+        if normalized in {"decimal"}:
+            return "decimal"
+        if normalized in {"bool", "boolean"}:
+            return "boolean"
+        if normalized in {"int16", "int32", "int64", "integer", "int", "double", "single", "number"}:
+            return "number"
+        return normalized or "string"
+
+    @staticmethod
     def _field_map(snapshot, entity_set: str) -> dict[str, dict[str, Any]]:
         return {
             str(field.get("field_name", "")): field
@@ -330,6 +441,9 @@ class SchemaFeasibilityValidator:
 
     @staticmethod
     def _plan_contains_filter_value(plan: QueryPlan, values: set[str]) -> bool:
+        for parameter in plan.function_parameters or []:
+            if parameter.value in values:
+                return True
         for condition in plan.filters or []:
             if condition.value in values:
                 return True

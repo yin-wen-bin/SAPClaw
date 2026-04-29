@@ -1,4 +1,4 @@
-from sap_odata_agent.domain.models import FilterCondition, QueryPlan
+from sap_odata_agent.domain.models import FilterCondition, FunctionParameter, QueryPlan
 from sap_odata_agent.infrastructure.sap.odata_client import BasicODataCompiler, BasicPlanValidator
 
 
@@ -122,3 +122,48 @@ def test_compiler_does_not_quote_llm_supplied_datetime_wrapper() -> None:
 
     assert "ScheduleLineDeliveryDate eq datetime'2018-11-23T00:00:00'" in compiled.url
     assert "'datetime''2018-11-23'''" not in compiled.url
+
+
+def test_compiler_builds_function_import_url_without_system_query_options() -> None:
+    plan = QueryPlan(
+        service_name="API_PRODUCT_AVAILY_INFO_BASIC",
+        entity_set="DetermineAvailabilityAt",
+        plan_kind="function_import",
+        function_parameters=[
+            FunctionParameter(name="Material", value="TG0011", value_type="string"),
+            FunctionParameter(name="SupplyingPlant", value="1710", value_type="string"),
+            FunctionParameter(name="ATPCheckingRule", value="A", value_type="string"),
+            FunctionParameter(name="RequestedUTCDateTime", value="2026.04.29", value_type="datetimeoffset"),
+        ],
+        top=50,
+    )
+
+    compiled = BasicODataCompiler(base_url="https://sap.example.com").compile(plan)
+
+    assert compiled.url.startswith(
+        "https://sap.example.com/sap/opu/odata/sap/API_PRODUCT_AVAILY_INFO_BASIC/DetermineAvailabilityAt?"
+    )
+    assert "Material='TG0011'" in compiled.url
+    assert "SupplyingPlant='1710'" in compiled.url
+    assert "ATPCheckingRule='A'" in compiled.url
+    assert "RequestedUTCDateTime=datetimeoffset'2026-04-29T00:00:00Z'" in compiled.url
+    assert "$top" not in compiled.url
+    assert "$filter" not in compiled.url
+    assert "$select" not in compiled.url
+    assert "$inlinecount" not in compiled.url
+
+
+def test_compiler_uses_decimal_literal_for_function_import_quantity() -> None:
+    plan = QueryPlan(
+        service_name="API_PRODUCT_AVAILY_INFO_BASIC",
+        entity_set="DetermineAvailabilityOf",
+        plan_kind="function_import",
+        function_parameters=[
+            FunctionParameter(name="RequestedQuantityInBaseUnit", value="10", value_type="decimal"),
+        ],
+    )
+
+    compiled = BasicODataCompiler(base_url="https://sap.example.com").compile(plan)
+
+    assert "RequestedQuantityInBaseUnit=10M" in compiled.url
+    assert "RequestedQuantityInBaseUnit='10'" not in compiled.url

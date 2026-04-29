@@ -100,7 +100,7 @@ QUERY_PLANNER_TASK_PROMPT = """
 You are an SAP OData query plan generator.
 
 Your task is to produce a schema-valid read-only OData query plan for the selected SAP API. The query may
-target any SAP module or business object. Decide whether the query should be direct, multi_step,
+target any SAP module or business object. Decide whether the query should be direct, multi_step, function_import,
 clarification, or no_feasible_plan. You can only use entity sets, fields, filters, and relationships from
 schema_context. The final plan must be executable by the system.
 
@@ -120,6 +120,9 @@ Planning rules:
 13. If user asks for one factual attribute, use text presentation.
 14. Follow schema_context.api_skill when it gives API-specific semantic guidance, such as which status field supports a business conclusion.
 15. If schema_context.api_skill warns against a field for the user's business meaning, do not use that field unless the user explicitly asks for that exact technical field.
+16. Use function_import when schema_context.function_imports lists the required operation. Put operation inputs in function_parameters, not filters.
+17. Function import plans must not use select_fields, filters, order_by, top, or multi_step bindings; SAP function imports only accept their named input parameters.
+18. If multiple entities expose similarly named fields, choose the entity whose business level matches the requested meaning. A less specific blank field must not be used as negative evidence when api_skill points to a more specific entity/field combination.
 """.strip()
 
 
@@ -144,7 +147,8 @@ Repair rules:
 7. 400 OData syntax error: fix operator/function syntax and field placement.
 8. binding failure: ensure source step selects source_field and target step has target field.
 9. wrong API or domain suspected: return reroute_required=true if allowed.
-10. after repeated failures, prefer no_feasible_plan with clear reason.
+10. function import syntax error: convert entity-style filters or $top/$select usage into plan_kind=function_import with named function_parameters from schema_context.function_imports.
+11. after repeated failures, prefer no_feasible_plan with clear reason.
 """.strip()
 
 

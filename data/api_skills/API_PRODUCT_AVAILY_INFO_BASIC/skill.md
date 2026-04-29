@@ -27,30 +27,41 @@ Keep `data/index/API_PRODUCT_AVAILY_INFO_BASIC` as the schema ground truth. This
 
 - This service is calculation-oriented, not entity-list oriented.
 - The available operations are function imports, not normal entity sets.
-- Required inputs may include product/material, supplying plant, ATP checking rule, requested date, and requested quantity depending on the operation.
+- Required inputs must be passed as function import parameters, not as `$filter`.
+- `DetermineAvailabilityAt` requires `Material` (string), `SupplyingPlant` (string), `ATPCheckingRule` (string), and `RequestedUTCDateTime` (datetimeoffset).
+- `DetermineAvailabilityOf` requires `RequestedQuantityInBaseUnit` (decimal), `Material` (string), `SupplyingPlant` (string), and `ATPCheckingRule` (string).
+- `CalculateAvailabilityTimeseries` requires `ATPCheckingRule` (string), `Material` (string), and `SupplyingPlant` (string).
 - Preserve product/material IDs, plant, dates, quantities, and checking rule values exactly.
+- In this local SAP system, generic availability checks should use `ATPCheckingRule` value `A` when the user does not provide a checking rule. Preserve a user-provided checking rule if present. Mention in `response_directive` when the default rule `A` is used.
 
 ## Common Planning Patterns
 
 ### Availability At Date
 
 - Use `DetermineAvailabilityAt` when the user asks available quantity on a specific date.
+- Map material/product wording to `Material`.
+- Map plant/factory wording to `SupplyingPlant`.
+- Map today/tomorrow/specific date to `RequestedUTCDateTime` as an OData `datetimeoffset` value.
+- Use `plan_kind=function_import` and put all inputs in `function_parameters`.
 
 ### Availability Of Quantity
 
 - Use `DetermineAvailabilityOf` when the user asks whether a requested quantity can be supplied.
+- Map the requested quantity to `RequestedQuantityInBaseUnit` with value_type `decimal`.
+- Use `plan_kind=function_import` and put all inputs in `function_parameters`.
 
 ### Availability Time Series
 
 - Use `CalculateAvailabilityTimeseries` when the user asks for availability over a date range or time series.
+- Use `plan_kind=function_import` and put all inputs in `function_parameters`.
 
 ## Pitfalls
 
-- The current planner/compiler may not reliably execute function imports as SAP requests.
 - Do not invent an entity-set `$filter` plan for these operations.
+- Do not add `$top`, `$select`, `$filter`, `$orderby`, `$skip`, or `$inlinecount` to function import requests.
 - Current stock and ATP availability are different business concepts.
 - Do not route availability wording to the stock API just because stock quantity fields exist. Stock balance can support inventory listing, but it does not replace ATP/date-based availability calculation.
 
 ## Needs Verification
 
-- Full support requires function import planning/compiler support, including parameter mapping and URL generation for function calls.
+- `ATPCheckingRule=A` has been runtime-verified for `DetermineAvailabilityAt` in this local SAP system. Confirm with business owners before treating it as a universal policy outside this system.

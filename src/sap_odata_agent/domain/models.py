@@ -249,6 +249,13 @@ class FilterCondition:
 
 
 @dataclass(slots=True)
+class FunctionParameter:
+    name: str
+    value: str
+    value_type: str = "string"
+
+
+@dataclass(slots=True)
 class StepBinding:
     field: str
     source_step_id: str
@@ -294,6 +301,7 @@ class QueryPlan:
     target_entity_set: str | None = None
     path_id: str | None = None
     steps: list[ExecutionStep] = field(default_factory=list)
+    function_parameters: list[FunctionParameter] = field(default_factory=list)
 
 
 @dataclass(slots=True)

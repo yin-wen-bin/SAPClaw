@@ -28,6 +28,14 @@ class LlmResultVerifierAgent:
         schema_context_summary: dict[str, Any] | None = None,
     ) -> dict[str, Any]:
         fallback = {"passed": True, "issues": [], "repair_hints": {}, "source": "result_verifier_unavailable"}
+        static_result = self._skill_grounded_static_checks(
+            request,
+            plan,
+            data or {},
+            schema_context_summary or {},
+        )
+        if static_result is not None:
+            return static_result
         if not self.enabled or self.llm_client is None or not data:
             return fallback
         try:
@@ -85,6 +93,10 @@ class LlmResultVerifierAgent:
                 "select_fields": plan.select_fields,
                 "response_summary_fields": plan.response_summary_fields,
                 "filters": [{"field": item.field, "operator": item.operator, "value": item.value} for item in plan.filters],
+                "function_parameters": [
+                    {"name": item.name, "value": item.value, "value_type": item.value_type}
+                    for item in getattr(plan, "function_parameters", [])
+                ],
                 "steps": [
                     {
                         "step_id": step.step_id,
@@ -129,9 +141,111 @@ class LlmResultVerifierAgent:
             "11. A successful SAP response with result_count=0 can be a correct answer for a list query. Do not reject only because there are no rows or because a repair might find related rows. Block an empty result only when the plan clearly used the wrong entity, omitted a required user filter, or omitted required answer fields.\n"
             "12. Do not require enrichment identifiers that the user did not explicitly ask for. For address communication list questions, address-level keys plus the requested email, phone, or fax fields are sufficient unless the user explicitly asks to include business partner details.\n\n"
             "13. A business object name in the question can identify the domain or entity type. Do not treat words like business partner, supplier, customer, material, or purchase order as mandatory output fields unless the user explicitly asks for the ID/number/code or those fields are required to distinguish returned rows.\n\n"
+            "14. When api_skill says a similarly named field is not sufficient for the user's business level, block a successful response that uses that insufficient field as negative evidence and provide repair_hints for the more specific entity/field combination.\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )
+
+    @staticmethod
+    def _skill_grounded_static_checks(
+        request: AgentRequest,
+        plan: QueryPlan,
+        data: dict[str, Any],
+        schema_context_summary: dict[str, Any],
+    ) -> dict[str, Any] | None:
+        if not LlmResultVerifierAgent._looks_like_product_tax_classification_request(request):
+            return None
+        if plan.service_name != "API_PRODUCT_SRV" or plan.entity_set != "A_ProductSales":
+            return None
+        selected_fields = set(plan.select_fields or []) | set(plan.response_summary_fields or [])
+        if "TaxClassification" not in selected_fields:
+            return None
+        skill_text = json.dumps(schema_context_summary.get("api_skill", {}), ensure_ascii=False)
+        if "A_ProductSalesTax" not in skill_text or "A_ProductSales.TaxClassification" not in skill_text:
+            return None
+        if not LlmResultVerifierAgent._has_available_fields(
+            schema_context_summary,
+            "A_ProductSalesTax",
+            {"Product", "Country", "TaxCategory", "TaxClassification"},
+        ):
+            return None
+        records = data.get("results") if isinstance(data.get("results"), list) else []
+        if not records and isinstance(data.get("result"), dict):
+            records = [data["result"]]
+        if not records:
+            return None
+        if any(str(record.get("TaxClassification") or "").strip() for record in records if isinstance(record, dict)):
+            return None
+        product_value = LlmResultVerifierAgent._plan_filter_value(plan, "Product")
+        if not product_value:
+            for record in records:
+                if isinstance(record, dict) and record.get("Product"):
+                    product_value = str(record.get("Product"))
+                    break
+        preferred_filters = []
+        if product_value:
+            preferred_filters.append(
+                {
+                    "entity_set": "A_ProductSalesTax",
+                    "field": "Product",
+                    "operator": "eq",
+                    "value": product_value,
+                    "value_type": "string",
+                }
+            )
+        return {
+            "passed": False,
+            "issues": [
+                {
+                    "code": "wrong_business_level_for_tax_classification",
+                    "message": (
+                        "The plan queried blank A_ProductSales.TaxClassification, but the API skill identifies "
+                        "A_ProductSalesTax as the specific sales tax classification entity. A blank value on the "
+                        "less specific field does not prove that product tax classification is not maintained."
+                    ),
+                    "blocking": True,
+                }
+            ],
+            "repair_hints": {
+                "reason": "Use the more specific product sales tax entity for material tax classification details.",
+                "preferred_entity_set": "A_ProductSalesTax",
+                "preferred_select_fields": ["Product", "Country", "TaxCategory", "TaxClassification"],
+                "preferred_filters": preferred_filters,
+                "presentation_kind": "table",
+            },
+            "source": "skill_grounded_result_verifier",
+        }
+
+    @staticmethod
+    def _looks_like_product_tax_classification_request(request: AgentRequest) -> bool:
+        text = f"{request.resolved_user_input or ''} {request.user_input or ''}".lower()
+        return ("税分类" in text or "税收分类" in text or "tax classification" in text) and (
+            "物料" in text or "产品" in text or "material" in text or "product" in text
+        )
+
+    @staticmethod
+    def _has_available_fields(
+        schema_context_summary: dict[str, Any],
+        entity_set: str,
+        required_fields: set[str],
+    ) -> bool:
+        available = {
+            str(item.get("field_name", ""))
+            for item in schema_context_summary.get("available_fields", [])
+            if isinstance(item, dict) and str(item.get("entity_set", "")) == entity_set
+        }
+        return required_fields <= available
+
+    @staticmethod
+    def _plan_filter_value(plan: QueryPlan, field_name: str) -> str:
+        for condition in plan.filters or []:
+            if condition.field == field_name and condition.value not in (None, ""):
+                return str(condition.value)
+        for step in plan.steps or []:
+            for condition in step.filters or []:
+                if condition.field == field_name and condition.value not in (None, ""):
+                    return str(condition.value)
+        return ""
 
     @staticmethod
     def _materialize(parsed: dict[str, Any], schema_context_summary: dict[str, Any] | None = None) -> dict[str, Any]:

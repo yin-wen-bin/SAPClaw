@@ -129,6 +129,55 @@ def _write_index(root: Path) -> None:
     (service_dir / "doc_chunks.jsonl").write_text("", encoding="utf-8")
 
 
+def _write_function_index(root: Path) -> None:
+    service_dir = root / "API_FUNC"
+    raw_dir = service_dir / "raw"
+    raw_dir.mkdir(parents=True)
+    (service_dir / "services.json").write_text(
+        json.dumps([{"service_name": "API_FUNC", "entity_sets": []}]),
+        encoding="utf-8",
+    )
+    (service_dir / "entities.json").write_text(
+        json.dumps(
+            [
+                {
+                    "service_name": "API_FUNC",
+                    "entity_set": "DetermineAvailabilityAt",
+                    "description": "Invoke function DetermineAvailabilityAt",
+                    "supported_methods": ["GET"],
+                }
+            ]
+        ),
+        encoding="utf-8",
+    )
+    for name in ("fields.json", "relations.json", "entity_graph.json", "lookup_paths.json", "business_terms.json"):
+        (service_dir / name).write_text("[]", encoding="utf-8")
+    (service_dir / "vector_documents.jsonl").write_text("", encoding="utf-8")
+    (service_dir / "doc_chunks.jsonl").write_text("", encoding="utf-8")
+    (raw_dir / "API_FUNC.metadata.xml").write_text(
+        """<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+  <edmx:DataServices>
+    <Schema Namespace="API_FUNC" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <ComplexType Name="AvailabilityRecord">
+        <Property Name="AvailableQuantityInBaseUnit" Type="Edm.Decimal" />
+        <Property Name="BaseUnit" Type="Edm.String" />
+      </ComplexType>
+      <EntityContainer Name="API_FUNC_Entities">
+        <FunctionImport Name="DetermineAvailabilityAt" ReturnType="API_FUNC.AvailabilityRecord" m:HttpMethod="GET">
+          <Parameter Name="Material" Type="Edm.String" Mode="In" MaxLength="40" />
+          <Parameter Name="SupplyingPlant" Type="Edm.String" Mode="In" MaxLength="4" />
+          <Parameter Name="ATPCheckingRule" Type="Edm.String" Mode="In" MaxLength="2" />
+          <Parameter Name="RequestedUTCDateTime" Type="Edm.DateTimeOffset" Mode="In" Precision="7" />
+        </FunctionImport>
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>""",
+        encoding="utf-8",
+    )
+
+
 class StubClient:
     def __init__(self, response: dict) -> None:
         self.response = response
@@ -385,3 +434,39 @@ def test_dynamic_path_planner_accepts_direct_plan_with_empty_steps(tmp_path: Pat
     assert plan.entity_set == "A_BusinessPartner"
     assert plan.filters[0].field == "BusinessPartner"
     assert plan.filters[0].value == "1000001"
+
+
+def test_dynamic_path_planner_materializes_function_import_plan(tmp_path: Path) -> None:
+    _write_function_index(tmp_path)
+    client = StubClient(
+        {
+            "plan_kind": "function_import",
+            "entity_set": "DetermineAvailabilityAt",
+            "http_method": "GET",
+            "function_parameters": [
+                {"name": "Material", "value": "TG0011", "value_type": "string"},
+                {"name": "SupplyingPlant", "value": "1710", "value_type": "string"},
+                {"name": "ATPCheckingRule", "value": "A", "value_type": "string"},
+                {"name": "RequestedUTCDateTime", "value": "2026-04-29", "value_type": "datetimeoffset"},
+            ],
+            "presentation": {"kind": "text", "reason": "single availability check"},
+            "response_directive": "Answer whether material is available at the plant.",
+            "rationale": "Availability at date is a function import.",
+        }
+    )
+    planner = LlmDynamicPathPlanner(index_root=tmp_path, service_name="API_FUNC", llm_client=client)
+
+    plan = planner.plan(AgentRequest(user_input="query material TG0011 availability in plant 1710 today"), RetrievedContext())
+
+    assert plan.plan_kind == "function_import"
+    assert plan.entity_set == "DetermineAvailabilityAt"
+    assert plan.top is None
+    assert plan.filters == []
+    assert [(item.name, item.value, item.value_type) for item in plan.function_parameters] == [
+        ("Material", "TG0011", "string"),
+        ("SupplyingPlant", "1710", "string"),
+        ("ATPCheckingRule", "A", "string"),
+        ("RequestedUTCDateTime", "2026-04-29", "datetimeoffset"),
+    ]
+    assert "function_imports" in client.user_prompt
+    assert "RequestedUTCDateTime" in client.user_prompt

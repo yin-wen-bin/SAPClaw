@@ -6,6 +6,7 @@ from sap_odata_agent.domain.models import (
     AgentRequest,
     ExecutionStep,
     FilterCondition,
+    FunctionParameter,
     QueryConstraints,
     QueryPlan,
     QueryShape,
@@ -110,6 +111,55 @@ def _request() -> AgentRequest:
     )
 
 
+def _write_function_index(root: Path) -> None:
+    service_dir = root / "API_FUNC"
+    raw_dir = service_dir / "raw"
+    raw_dir.mkdir(parents=True)
+    (service_dir / "services.json").write_text(
+        json.dumps([{"service_name": "API_FUNC", "entity_sets": []}]),
+        encoding="utf-8",
+    )
+    (service_dir / "entities.json").write_text(
+        json.dumps(
+            [
+                {
+                    "service_name": "API_FUNC",
+                    "entity_set": "DetermineAvailabilityAt",
+                    "description": "Invoke function DetermineAvailabilityAt",
+                    "supported_methods": ["GET"],
+                }
+            ]
+        ),
+        encoding="utf-8",
+    )
+    for name in ("fields.json", "relations.json", "entity_graph.json", "lookup_paths.json", "business_terms.json"):
+        (service_dir / name).write_text("[]", encoding="utf-8")
+    (service_dir / "vector_documents.jsonl").write_text("", encoding="utf-8")
+    (service_dir / "doc_chunks.jsonl").write_text("", encoding="utf-8")
+    (raw_dir / "API_FUNC.metadata.xml").write_text(
+        """<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+  <edmx:DataServices>
+    <Schema Namespace="API_FUNC" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <ComplexType Name="AvailabilityRecord">
+        <Property Name="AvailableQuantityInBaseUnit" Type="Edm.Decimal" />
+        <Property Name="BaseUnit" Type="Edm.String" />
+      </ComplexType>
+      <EntityContainer Name="API_FUNC_Entities">
+        <FunctionImport Name="DetermineAvailabilityAt" ReturnType="API_FUNC.AvailabilityRecord" m:HttpMethod="GET">
+          <Parameter Name="Material" Type="Edm.String" Mode="In" MaxLength="40" />
+          <Parameter Name="SupplyingPlant" Type="Edm.String" Mode="In" MaxLength="4" />
+          <Parameter Name="ATPCheckingRule" Type="Edm.String" Mode="In" MaxLength="2" />
+          <Parameter Name="RequestedUTCDateTime" Type="Edm.DateTimeOffset" Mode="In" Precision="7" />
+        </FunctionImport>
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>""",
+        encoding="utf-8",
+    )
+
+
 def test_schema_feasibility_rejects_entity_without_required_filter_and_answer(tmp_path: Path) -> None:
     _write_index(tmp_path)
     validator = SchemaFeasibilityValidator(index_root=tmp_path, service_name="API_TEST")
@@ -170,6 +220,48 @@ def test_schema_feasibility_accepts_direct_entity_covering_answer_and_filter(tmp
     assert result.passed is True
     assert result.coverage["answer_fields"] == ["BusinessPartner"]
     assert result.coverage["filter_fields"] == ["Customer"]
+
+
+def test_schema_feasibility_validates_function_import_parameters(tmp_path: Path) -> None:
+    _write_function_index(tmp_path)
+    validator = SchemaFeasibilityValidator(index_root=tmp_path, service_name="API_FUNC")
+    plan = QueryPlan(
+        service_name="API_FUNC",
+        entity_set="DetermineAvailabilityAt",
+        plan_kind="function_import",
+        function_parameters=[
+            FunctionParameter(name="Material", value="TG0011", value_type="string"),
+            FunctionParameter(name="SupplyingPlant", value="1710", value_type="string"),
+            FunctionParameter(name="RequestedUTCDateTime", value="2026-04-29", value_type="datetimeoffset"),
+        ],
+    )
+
+    result = validator.validate(AgentRequest(user_input="query availability"), plan)
+
+    assert result.passed is False
+    assert "missing_function_import_parameter" in {violation.code for violation in result.violations}
+    assert any(violation.field == "ATPCheckingRule" for violation in result.violations)
+
+
+def test_schema_feasibility_accepts_complete_function_import_plan(tmp_path: Path) -> None:
+    _write_function_index(tmp_path)
+    validator = SchemaFeasibilityValidator(index_root=tmp_path, service_name="API_FUNC")
+    plan = QueryPlan(
+        service_name="API_FUNC",
+        entity_set="DetermineAvailabilityAt",
+        plan_kind="function_import",
+        function_parameters=[
+            FunctionParameter(name="Material", value="TG0011", value_type="string"),
+            FunctionParameter(name="SupplyingPlant", value="1710", value_type="string"),
+            FunctionParameter(name="ATPCheckingRule", value="A", value_type="string"),
+            FunctionParameter(name="RequestedUTCDateTime", value="2026-04-29", value_type="datetimeoffset"),
+        ],
+    )
+
+    result = validator.validate(AgentRequest(user_input="query availability"), plan)
+
+    assert result.passed is True
+    assert result.coverage["filter_fields"] == []
 
 
 def test_schema_feasibility_rejects_unbounded_downstream_multistep_query(tmp_path: Path) -> None:

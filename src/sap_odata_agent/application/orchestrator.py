@@ -1706,6 +1706,10 @@ class AgentOrchestrator:
                     {"field": item.field, "operator": item.operator, "value": item.value}
                     for item in plan.filters
                 ],
+                "function_parameters": [
+                    {"name": item.name, "value": item.value, "value_type": item.value_type}
+                    for item in plan.function_parameters
+                ],
                 "steps": [
                     {
                         "step_id": step.step_id,

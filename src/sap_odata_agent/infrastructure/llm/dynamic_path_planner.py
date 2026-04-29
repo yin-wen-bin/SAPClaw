@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import re
+from datetime import date
 from difflib import SequenceMatcher
 from typing import Any
 
@@ -9,11 +10,13 @@ from sap_odata_agent.domain.models import (
     AgentRequest,
     ExecutionStep,
     FilterCondition,
+    FunctionParameter,
     QueryPlan,
     RetrievedContext,
     RetrievedDocument,
     StepBinding,
 )
+from sap_odata_agent.infrastructure.indexing.function_imports import function_imports_from_snapshot
 from sap_odata_agent.infrastructure.indexing.index_loader import LocalIndexLoader
 from sap_odata_agent.infrastructure.llm.planner import AnthropicCompatibleMessagesClient, LlmStructuredIntentPlanner
 
@@ -72,6 +75,8 @@ class LlmDynamicPathPlanner:
 
     def _build_schema_context(self, request: AgentRequest, context: RetrievedContext, snapshot) -> dict[str, Any]:
         query = request.resolved_user_input or request.user_input
+        function_imports = function_imports_from_snapshot(snapshot)
+        function_import_map = {str(item.get("name", "")): item for item in function_imports}
         constraints = request.constraints
         schema_rerank = request.schema_rerank or {}
         required_field_names = set()
@@ -130,7 +135,7 @@ class LlmDynamicPathPlanner:
 
         candidate_entities = self._expand_candidate_entities(snapshot, candidate_fields, doc_entities)
         entities = [
-            self._entity_payload(snapshot, entity_set, candidate_fields)
+            self._entity_payload(snapshot, entity_set, candidate_fields, function_import_map)
             for entity_set in candidate_entities[: self.max_candidate_entities]
         ]
         entities = [item for item in entities if item]
@@ -139,6 +144,7 @@ class LlmDynamicPathPlanner:
         return {
             "service_name": self.service_name,
             "entities": entities,
+            "function_imports": function_imports,
             "candidate_fields": candidate_fields,
             "join_hints": self._build_join_hints(snapshot, entity_set_scope),
             "relations": self._build_relation_hints(snapshot, entity_set_scope),
@@ -182,7 +188,7 @@ class LlmDynamicPathPlanner:
                     break
             if len(ordered) >= self.max_candidate_entities:
                 break
-        return ordered
+        return ordered or [str(entity.get("entity_set", "")) for entity in snapshot.entities[: self.max_candidate_entities]]
 
     def _materialize_plan(
         self,
@@ -208,6 +214,45 @@ class LlmDynamicPathPlanner:
             )
         if plan_kind in {"no_feasible_plan", "fail", "failure"}:
             return self._invalid_plan(str(parsed.get("failure_reason") or "llm_reported_no_feasible_plan"), schema_context, parsed)
+
+        function_imports = self._function_import_map(schema_context)
+        function_name = self._first_non_empty(parsed, "entity_set", "function_import", "operation", "function_name")
+        raw_function_parameters = self._raw_function_parameters(parsed)
+        if (
+            plan_kind in {"function_import", "function", "service_operation"}
+            or (function_name in function_imports and not self._field_map(snapshot, function_name))
+        ):
+            entity = self._lookup_entity(snapshot, function_name)
+            if entity is None and function_name not in function_imports:
+                return None
+            function_import = function_imports.get(function_name, {})
+            if raw_function_parameters is None and function_name in function_imports:
+                raw_function_parameters = parsed.get("filters", [])
+            function_parameters = self._materialize_function_parameters(raw_function_parameters, function_import)
+            return QueryPlan(
+                service_name=str((entity or {}).get("service_name") or self.service_name),
+                entity_set=function_name,
+                http_method=str(parsed.get("http_method") or function_import.get("http_method") or "GET").upper(),
+                select_fields=[],
+                response_summary_fields=[],
+                filters=[],
+                order_by=[],
+                top=None,
+                requires_confirmation=bool(parsed.get("requires_confirmation", False)),
+                response_directive=self._response_directive(parsed),
+                rationale=str(parsed.get("rationale") or "LLM selected an OData function import plan."),
+                planner_diagnostics={
+                    "planner_winner": "llm",
+                    "llm_dynamic_path_planner": {
+                        "accepted": True,
+                        "raw": parsed,
+                        "schema_context": self._compact_schema_context(schema_context),
+                    },
+                },
+                plan_kind="function_import",
+                target_entity_set=function_name,
+                function_parameters=function_parameters,
+            )
 
         raw_steps = parsed.get("steps", [])
         has_explicit_steps = isinstance(raw_steps, list) and bool(raw_steps)
@@ -354,12 +399,15 @@ class LlmDynamicPathPlanner:
     @staticmethod
     def _user_prompt(request: AgentRequest, schema_context: dict[str, Any]) -> str:
         example = {
-            "plan_kind": "direct | multi_step | clarification | no_feasible_plan",
+            "plan_kind": "direct | multi_step | function_import | clarification | no_feasible_plan",
             "entity_set": "Final entity set for direct plans",
             "http_method": "GET",
             "select_fields": ["Fields to retrieve from the final entity"],
             "response_summary_fields": ["Fields most relevant for answer rendering"],
             "filters": [{"field": "FilterField", "operator": "eq|contains", "value": "literal from user"}],
+            "function_parameters": [
+                {"name": "FunctionParameterName", "value": "literal from user", "value_type": "string | decimal | datetimeoffset"}
+            ],
             "order_by": [],
             "top": 50,
             "target_entity_set": "Final answer entity set",
@@ -397,6 +445,7 @@ class LlmDynamicPathPlanner:
         }
         payload = {
             "user_input": request.resolved_user_input or request.user_input,
+            "current_date": date.today().isoformat(),
             "query_shape": request.query_shape.value,
             "cardinality_policy": request.cardinality_policy.value,
             "constraints_as_weak_hints": LlmDynamicPathPlanner._constraints_payload(request),
@@ -417,7 +466,9 @@ class LlmDynamicPathPlanner:
             "6. Choose presentation.kind: text for one factual answer, table for lists or multiple rows.\n"
             "7. Use schema_context.schema_research when present as the primary business-semantic analysis.\n"
             "8. Distinguish requirement/expected flags from completion/open status fields; do not treat similarly named fields as equivalent.\n"
-            "9. If the schema context is insufficient, return no_feasible_plan instead of inventing fields.\n\n"
+            "9. For function imports listed in schema_context.function_imports, set plan_kind=function_import and put inputs in function_parameters using the exact parameter names and value_type from schema_context.\n"
+            "10. Do not put function import inputs in filters and do not set top/select/order_by for function_import plans.\n"
+            "11. If the schema context is insufficient, return no_feasible_plan instead of inventing fields.\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )
@@ -516,10 +567,17 @@ class LlmDynamicPathPlanner:
             "score": round(score, 3),
         }
 
-    def _entity_payload(self, snapshot, entity_set: str, candidate_fields: list[dict[str, Any]]) -> dict[str, Any]:
+    def _entity_payload(
+        self,
+        snapshot,
+        entity_set: str,
+        candidate_fields: list[dict[str, Any]],
+        function_import_map: dict[str, dict[str, Any]] | None = None,
+    ) -> dict[str, Any]:
         entity = self._lookup_entity(snapshot, entity_set)
         if not entity:
             return {}
+        function_import = (function_import_map or {}).get(entity_set)
         candidate_field_names = {
             str(field.get("field_name", ""))
             for field in candidate_fields
@@ -538,13 +596,18 @@ class LlmDynamicPathPlanner:
                 break
         return {
             "entity_set": entity_set,
+            "kind": "function_import" if function_import else "entity_set",
             "description": entity.get("description", ""),
             "entity_type": entity.get("entity_type", ""),
             "key_fields": entity.get("key_fields", []),
             "default_select_fields": entity.get("default_select_fields", []),
-            "supports_filter": entity.get("supports_filter", True),
+            "supports_filter": False if function_import else entity.get("supports_filter", True),
+            "supports_top": False if function_import else entity.get("supports_top", True),
             "supported_methods": entity.get("supported_methods", ["GET"]),
             "fields": fields,
+            "function_parameters": (function_import or {}).get("parameters", []),
+            "function_return_type": (function_import or {}).get("return_type", ""),
+            "function_return_fields": (function_import or {}).get("return_fields", []),
         }
 
     @staticmethod
@@ -649,6 +712,54 @@ class LlmDynamicPathPlanner:
                 )
             )
         return filters
+
+    @staticmethod
+    def _function_import_map(schema_context: dict[str, Any]) -> dict[str, dict[str, Any]]:
+        return {
+            str(item.get("name", "") or item.get("entity_set", "")): item
+            for item in schema_context.get("function_imports", [])
+            if isinstance(item, dict) and (item.get("name") or item.get("entity_set"))
+        }
+
+    @staticmethod
+    def _raw_function_parameters(parsed: dict[str, Any]) -> Any:
+        for key in ("function_parameters", "function_import_parameters", "parameters", "params"):
+            if key in parsed:
+                return parsed.get(key)
+        return None
+
+    @staticmethod
+    def _materialize_function_parameters(raw_parameters: Any, function_import: dict[str, Any]) -> list[FunctionParameter]:
+        metadata_by_name = {
+            str(item.get("name", "")): item
+            for item in function_import.get("parameters", [])
+            if isinstance(item, dict) and item.get("name")
+        }
+        raw_items: list[Any]
+        if isinstance(raw_parameters, dict):
+            raw_items = [
+                {"name": name, "value": value}
+                for name, value in raw_parameters.items()
+            ]
+        elif isinstance(raw_parameters, list):
+            raw_items = raw_parameters
+        else:
+            raw_items = []
+
+        parameters: list[FunctionParameter] = []
+        for item in raw_items:
+            if not isinstance(item, dict):
+                continue
+            name = LlmDynamicPathPlanner._first_non_empty(item, "name", "field", "parameter", "parameter_name")
+            if not name:
+                continue
+            value = item.get("value")
+            if value is None:
+                continue
+            metadata = metadata_by_name.get(name, {})
+            value_type = str(item.get("value_type") or metadata.get("value_type") or metadata.get("data_type") or "string")
+            parameters.append(FunctionParameter(name=name, value=str(value), value_type=value_type))
+        return parameters
 
     def _filter_value_type(raw_filter: dict[str, Any], field_metadata: dict[str, Any]) -> str:
         explicit_type = raw_filter.get("value_type")
@@ -835,6 +946,15 @@ class LlmDynamicPathPlanner:
             "top_fields": [
                 f"{item.get('entity_set')}.{item.get('field_name')}"
                 for item in schema_context.get("candidate_fields", [])[:16]
+            ],
+            "function_imports": [
+                {
+                    "name": item.get("name", ""),
+                    "parameters": item.get("parameters", []),
+                    "return_type": item.get("return_type", ""),
+                    "return_fields": item.get("return_fields", []),
+                }
+                for item in schema_context.get("function_imports", [])[:8]
             ],
             "schema_research": schema_context.get("schema_research", {}),
         }

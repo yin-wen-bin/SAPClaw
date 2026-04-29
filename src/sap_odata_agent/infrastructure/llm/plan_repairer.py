@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 from dataclasses import asdict, replace
+from datetime import date
 from typing import Any
 
 from sap_odata_agent.domain.models import AgentRequest, ApiRouteDecision, ExecutionAttempt, QueryPlan
@@ -89,7 +90,7 @@ class LlmPlanRepairer(LlmApiSpecificPlanner):
         failure_context: dict[str, Any],
     ) -> str:
         example = {
-            "plan_kind": "direct | multi_step | no_feasible_plan | reroute_required",
+            "plan_kind": "direct | multi_step | function_import | no_feasible_plan | reroute_required",
             "repair_reason": "",
             "changed_from_previous": [],
             "service_name": schema_context.get("service_name", previous_plan.service_name),
@@ -97,6 +98,9 @@ class LlmPlanRepairer(LlmApiSpecificPlanner):
             "http_method": "GET",
             "select_fields": [],
             "filters": [{"field": "", "operator": "eq", "value": "", "value_type": "string | boolean | number | date"}],
+            "function_parameters": [
+                {"name": "", "value": "", "value_type": "string | boolean | number | decimal | date | datetimeoffset"}
+            ],
             "steps": [
                 {
                     "step_id": "step_1",
@@ -125,6 +129,7 @@ class LlmPlanRepairer(LlmApiSpecificPlanner):
         payload = {
             "original_user_input": request.user_input,
             "resolved_user_input": route_decision.resolved_user_input or request.resolved_user_input or request.user_input,
+            "current_date": date.today().isoformat(),
             "selected_service": schema_context.get("service_name", previous_plan.service_name),
             "previous_plan": LlmStructuredIntentPlanner._plan_to_dict(previous_plan),
             "failure_context": failure_context,
@@ -148,6 +153,9 @@ class LlmPlanRepairer(LlmApiSpecificPlanner):
             "11. For API_PURCHASEORDER_PROCESS_SRV, if A_PurchaseOrderItem.IsCompletelyDelivered is available, prefer IsCompletelyDelivered eq false over GoodsReceiptIsExpected eq true for not-complete delivery/receipt semantics.\n"
             "12. If failure_context reports step_binding_target_not_in_entity, do not reuse that invalid target field. Insert an intermediate bridge entity that contains both the previous join field and the final target key, then bind from that bridge to the final entity.\n"
             "13. For example, do not bind a previous BusinessPartner value directly onto an entity that only has Supplier or Customer; first read the entity that exposes BusinessPartner plus the final role key, then bind the role key to the final entity.\n\n"
+            "14. If SAP rejected a function import because system query options such as $top, $filter, $select, or $inlinecount were used, repair it as plan_kind=function_import with function_parameters from schema_context.function_imports.\n"
+            "15. Do not represent function import parameters as filters; use exact parameter names and value_type from schema_context.function_imports.\n"
+            "16. If repair_hints include preferred_entity_set, preferred_select_fields, preferred_filters, or presentation_kind, use them when they are present in schema_context. This is mandatory for wrong_business_level verifier findings.\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )

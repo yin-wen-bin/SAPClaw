@@ -86,3 +86,11 @@ def test_api_skill_provider_loads_all_indexed_skills() -> None:
         assert skill is not None
         assert skill.service_name == api_name
         assert skill.summary
+
+
+def test_product_skill_guides_tax_classification_to_sales_tax_entity() -> None:
+    content = (SKILL_ROOT / "API_PRODUCT_SRV" / "skill.md").read_text(encoding="utf-8")
+
+    assert "`A_ProductSalesTax.TaxClassification`" in content
+    assert "`A_ProductSales.TaxClassification`" in content
+    assert "Do not answer \"not maintained\" from blank `A_ProductSales.TaxClassification`" in content

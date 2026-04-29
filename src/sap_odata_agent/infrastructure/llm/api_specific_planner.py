@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from datetime import date
 from dataclasses import replace
 from typing import Any
 
@@ -71,12 +72,15 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
         schema_context: dict[str, Any],
     ) -> str:
         example = {
-            "plan_kind": "direct | multi_step | clarification | no_feasible_plan",
+            "plan_kind": "direct | multi_step | function_import | clarification | no_feasible_plan",
             "service_name": schema_context.get("service_name", ""),
             "entity_set": "",
             "http_method": "GET",
             "select_fields": [],
             "filters": [{"field": "", "operator": "eq", "value": "", "value_type": "string | boolean | number | date"}],
+            "function_parameters": [
+                {"name": "", "value": "", "value_type": "string | boolean | number | decimal | date | datetimeoffset"}
+            ],
             "steps": [
                 {
                     "step_id": "step_1",
@@ -107,6 +111,7 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
         payload = {
             "original_user_input": request.user_input,
             "resolved_user_input": route_decision.resolved_user_input or request.resolved_user_input or request.user_input,
+            "current_date": date.today().isoformat(),
             "route_decision": {
                 "selected_apis": [
                     {"service_name": item.service_name, "confidence": item.confidence, "reason": item.reason}
@@ -131,6 +136,9 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             "6. Distinguish requirement/expected flags from completion/open status fields; do not treat similarly named fields as equivalent.\n\n"
             "7. If the intended target entity does not contain the binding target field, insert an intermediate bridge entity that contains both the previous join field and the final target key.\n"
             "8. For example, do not bind BusinessPartner directly onto an entity that only has Supplier or Customer; first use an entity that contains BusinessPartner and Supplier/Customer, then bind the final key.\n\n"
+            "9. For function imports listed in schema_context.function_imports, set plan_kind=function_import and put inputs in function_parameters using the exact parameter names and value_type from schema_context.\n"
+            "10. Do not put function import inputs in filters and do not set top/select/order_by for function_import plans.\n\n"
+            "11. If schema_context.api_skill identifies a more specific entity for the user's business meaning, prefer that entity over a less specific similarly named field. Do not conclude 'not maintained' from a blank less specific field until the skill-preferred entity has been checked.\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )

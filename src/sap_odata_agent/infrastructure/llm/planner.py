@@ -2302,6 +2302,10 @@ class LlmStructuredIntentPlanner(RetrievalAwareIntentPlanner):
                 {"field": item.field, "operator": item.operator, "value": item.value, "value_type": item.value_type}
                 for item in plan.filters
             ],
+            "function_parameters": [
+                {"name": item.name, "value": item.value, "value_type": item.value_type}
+                for item in plan.function_parameters
+            ],
             "top": plan.top,
             "requires_confirmation": plan.requires_confirmation,
             "needs_clarification": plan.needs_clarification,
