@@ -6,8 +6,18 @@ from typing import Any, Literal
 from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel, Field
 
-from sap_odata_agent.api.app_dependencies import get_case_repository, get_feedback_summarizer, get_orchestrator, get_sap_executor
+from sap_odata_agent.api.app_dependencies import (
+    get_case_repository,
+    get_feedback_summarizer,
+    get_orchestrator_for_profile,
+    get_sap_executor,
+)
 from sap_odata_agent.domain.models import AgentRequest, CompiledRequest, ExecutionMode
+from sap_odata_agent.infrastructure.llm.profiles import (
+    describe_llm_profile,
+    get_llm_profile,
+    get_llm_profiles_payload,
+)
 from sap_odata_agent.infrastructure.sap.date_formatting import format_sap_json_date_for_display
 
 router = APIRouter(prefix="/api/v1/agent", tags=["agent"])
@@ -17,6 +27,7 @@ class QueryRequestModel(BaseModel):
     user_input: str = Field(..., description="Natural-language request from the UI")
     conversation_id: str | None = Field(default=None)
     mode: ExecutionMode = Field(default=ExecutionMode.READ_ONLY)
+    llm_profile_id: str | None = Field(default=None, description="Selected full-chain LLM profile id")
 
 
 class FeedbackRequestModel(BaseModel):
@@ -31,16 +42,33 @@ class PageRequestModel(BaseModel):
     skip: int = Field(default=0, ge=0, description="OData skip offset for the requested page.")
 
 
+@router.get("/model-profiles")
+def read_model_profiles() -> dict[str, Any]:
+    return get_llm_profiles_payload()
+
+
 @router.post("/query")
-def run_query(payload: QueryRequestModel, orchestrator=Depends(get_orchestrator)) -> dict[str, Any]:
+def run_query(payload: QueryRequestModel) -> dict[str, Any]:
+    try:
+        profile = get_llm_profile(payload.llm_profile_id)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    if payload.llm_profile_id and not profile.enabled:
+        raise HTTPException(status_code=400, detail=f"LLM profile is not configured: {profile.id}")
+    effective_profile_id = profile.id if profile.enabled else None
+    orchestrator = get_orchestrator_for_profile(effective_profile_id)
     request = AgentRequest(
         user_input=payload.user_input,
         conversation_id=payload.conversation_id,
         mode=payload.mode,
+        llm_profile_id=effective_profile_id,
     )
     response = orchestrator.run(request)
+    llm_profile = describe_llm_profile(effective_profile_id)
     return {
         "case_id": response.case_id,
+        "llm_profile_id": effective_profile_id,
+        "llm_profile": llm_profile,
         "success": response.success,
         "needs_clarification": response.needs_clarification,
         "clarification_question": response.clarification_question,
@@ -215,9 +243,13 @@ def _history_entry_to_payload(entry: dict[str, Any] | None) -> dict[str, Any] | 
         "api_skill",
         {},
     )
+    llm_profile_id = request.get("llm_profile_id")
+    llm_profile = describe_llm_profile(llm_profile_id)
 
     result_snapshot = {
         "case_id": entry.get("case_id"),
+        "llm_profile_id": llm_profile_id,
+        "llm_profile": llm_profile,
         "success": success,
         "needs_clarification": needs_clarification,
         "clarification_question": plan.get("clarification_question"),
@@ -244,6 +276,8 @@ def _history_entry_to_payload(entry: dict[str, Any] | None) -> dict[str, Any] | 
         "created_at": entry.get("created_at"),
         "conversation_id": request.get("conversation_id"),
         "user_input": request.get("user_input"),
+        "llm_profile_id": llm_profile_id,
+        "llm_profile": llm_profile,
         "effective_user_input": entry.get("effective_user_input"),
         "mode": request.get("mode"),
         "final_status": final_status,

@@ -13,10 +13,8 @@ from sap_odata_agent.infrastructure.llm.api_router import LlmApiRouter
 from sap_odata_agent.infrastructure.llm.api_specific_planner import LlmApiSpecificPlanner
 from sap_odata_agent.infrastructure.llm.failure_diagnoser import LlmFailureDiagnoser
 from sap_odata_agent.infrastructure.llm.plan_repairer import LlmPlanRepairer
-from sap_odata_agent.infrastructure.llm.planner import (
-    AnthropicCompatibleMessagesClient,
-    SimpleRepairEngine,
-)
+from sap_odata_agent.infrastructure.llm.planner import SimpleRepairEngine
+from sap_odata_agent.infrastructure.llm.profiles import create_llm_client, get_llm_profile
 from sap_odata_agent.infrastructure.llm.feedback_summarizer import LlmFeedbackSummarizer
 from sap_odata_agent.infrastructure.llm.result_verifier_agent import LlmResultVerifierAgent
 from sap_odata_agent.infrastructure.llm.result_presenter import LlmResultPresenter
@@ -37,26 +35,22 @@ def get_case_repository() -> JsonlCaseRepository:
     return JsonlCaseRepository(settings.case_store_path)
 
 
-@lru_cache(maxsize=1)
-def get_llm_client() -> AnthropicCompatibleMessagesClient | None:
-    settings = get_settings()
-    if settings.llm_enabled:
-        return AnthropicCompatibleMessagesClient(
-            base_url=settings.llm_base_url,
-            api_key=settings.llm_api_key,
-            model=settings.llm_model,
-            timeout_seconds=max(1, settings.llm_timeout_ms // 1000),
-            verify_ssl=settings.llm_verify_ssl,
-        )
-    return None
+@lru_cache(maxsize=16)
+def get_llm_client_for_profile(profile_id: str | None = None):
+    profile = get_llm_profile(profile_id)
+    return create_llm_client(profile)
+
+
+def get_llm_client():
+    return get_llm_client_for_profile()
 
 
 @lru_cache(maxsize=1)
 def get_feedback_summarizer() -> LlmFeedbackSummarizer:
-    settings = get_settings()
+    llm_client = get_llm_client()
     return LlmFeedbackSummarizer(
-        llm_client=get_llm_client(),
-        enabled=settings.llm_enabled,
+        llm_client=llm_client,
+        enabled=llm_client is not None,
     )
 
 
@@ -76,10 +70,12 @@ def get_sap_executor() -> SapODataExecutor:
     )
 
 
-@lru_cache(maxsize=1)
-def get_orchestrator() -> AgentOrchestrator:
+@lru_cache(maxsize=16)
+def get_orchestrator_for_profile(profile_id: str | None = None) -> AgentOrchestrator:
     settings = get_settings()
-    llm_client = get_llm_client()
+    profile = get_llm_profile(profile_id)
+    llm_client = get_llm_client_for_profile(profile.id)
+    llm_enabled = llm_client is not None
     return AgentOrchestrator(
         retriever=LocalDocRetriever(
             index_root=settings.index_root,
@@ -88,7 +84,7 @@ def get_orchestrator() -> AgentOrchestrator:
         planner=LlmApiSpecificPlanner(
             index_root=settings.index_root,
             llm_client=llm_client,
-            enabled=settings.llm_enabled,
+            enabled=llm_enabled,
         ),
         validator=BasicPlanValidator(),
         compiler=BasicODataCompiler(base_url=settings.sap_base_url),
@@ -96,7 +92,7 @@ def get_orchestrator() -> AgentOrchestrator:
         repair_engine=SimpleRepairEngine(),
         result_presenter=LlmResultPresenter(
             llm_client=llm_client,
-            enabled=settings.llm_enabled,
+            enabled=llm_enabled,
         ),
         case_repository=get_case_repository(),
         max_attempts=settings.max_attempts,
@@ -105,7 +101,7 @@ def get_orchestrator() -> AgentOrchestrator:
         schema_reranker=None,
         llm_plan_critic=LlmPlanCritic(
             llm_client=llm_client,
-            enabled=settings.llm_enabled,
+            enabled=llm_enabled,
         ),
         schema_feasibility_validator=SchemaFeasibilityValidator(
             index_root=settings.index_root,
@@ -122,7 +118,7 @@ def get_orchestrator() -> AgentOrchestrator:
         ),
         api_router=LlmApiRouter(
             llm_client=llm_client,
-            enabled=settings.llm_enabled,
+            enabled=llm_enabled,
             default_service_name=settings.default_index_service,
             allow_default_fallback=False,
         ),
@@ -132,25 +128,29 @@ def get_orchestrator() -> AgentOrchestrator:
         api_specific_planner=LlmApiSpecificPlanner(
             index_root=settings.index_root,
             llm_client=llm_client,
-            enabled=settings.llm_enabled,
+            enabled=llm_enabled,
         ),
         plan_repairer=LlmPlanRepairer(
             index_root=settings.index_root,
             llm_client=llm_client,
-            enabled=settings.llm_enabled,
+            enabled=llm_enabled,
         ),
         failure_diagnoser=LlmFailureDiagnoser(
             llm_client=llm_client,
-            enabled=settings.llm_enabled,
+            enabled=llm_enabled,
         ),
         schema_research_agent=LlmSchemaResearchAgent(
             llm_client=llm_client,
-            enabled=settings.llm_enabled,
+            enabled=llm_enabled,
         ),
         result_verifier_agent=LlmResultVerifierAgent(
             llm_client=llm_client,
-            enabled=settings.llm_enabled,
+            enabled=llm_enabled,
         ),
         llm_planning_max_attempts=settings.llm_planning_max_attempts,
         use_llm_first_pipeline=True,
     )
+
+
+def get_orchestrator() -> AgentOrchestrator:
+    return get_orchestrator_for_profile()

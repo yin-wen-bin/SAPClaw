@@ -34,6 +34,7 @@ Keep `data/index/API_PRODUCT_SRV` as the schema ground truth. This skill provide
 ## Business Semantics
 
 - Product master data describes the product/material. It is not transaction history or current stock.
+- Basic product master data normally includes `A_Product.Product`, `A_Product.ProductType`, `A_Product.BaseUnit`, status fields, and lifecycle dates.
 - Product descriptions are language-dependent; when language matters, use the description entity.
 - Plant-specific questions usually require plant-view entities instead of only `A_Product`.
 - Preserve product/material IDs, plants, languages, sales organizations, distribution channels, storage locations, and valuation areas exactly.
@@ -43,6 +44,7 @@ Keep `data/index/API_PRODUCT_SRV` as the schema ground truth. This skill provide
 ### Product Basic Data
 
 - Query `A_Product` for product-level master data.
+- For "产品主数据", "物料主数据", or basic product details by material/product ID, select at least `Product`, `ProductType`, and `BaseUnit` when available.
 
 ### Product Description
 

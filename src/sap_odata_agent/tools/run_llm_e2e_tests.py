@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import time
 import traceback
 import urllib.parse
 from dataclasses import asdict, is_dataclass
@@ -28,6 +29,10 @@ def main() -> None:
     parser.add_argument("--skip-existing", action="store_true", help="Skip cases already present in the run folder.")
     parser.add_argument("--baseline-only", action="store_true", help="Only refresh deterministic baseline data.")
     parser.add_argument("--front-only", action="store_true", help="Only run the LLM-first agent chain.")
+    parser.add_argument("--case-delay-seconds", type=float, default=0.0, help="Delay between cases to avoid LLM rate limits.")
+    parser.add_argument("--rate-limit-retries", type=int, default=1, help="Retry a case when the LLM provider returns HTTP 429.")
+    parser.add_argument("--rate-limit-sleep-seconds", type=float, default=30.0, help="Sleep before retrying an HTTP 429 case.")
+    parser.add_argument("--shared-conversation", action="store_true", help="Reuse one conversation across cases. Default is one isolated conversation per case.")
     args = parser.parse_args()
 
     run_id = args.run_id or datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -45,13 +50,20 @@ def main() -> None:
         if args.skip_existing and out_path.exists():
             results.append(json.loads(out_path.read_text(encoding="utf-8")))
             continue
-        try:
-            result = _run_case(case, run_id, baseline_only=args.baseline_only, front_only=args.front_only)
-        except Exception as exc:  # pragma: no cover - runtime protection for long SAP/LLM runs
-            result = _runtime_failure(case, run_id, exc)
+        result = _run_case_with_retries(
+            case,
+            run_id,
+            baseline_only=args.baseline_only,
+            front_only=args.front_only,
+            rate_limit_retries=max(0, args.rate_limit_retries),
+            rate_limit_sleep_seconds=max(0.0, args.rate_limit_sleep_seconds),
+            shared_conversation=args.shared_conversation,
+        )
         out_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
         results.append(result)
         print(f"{case['id']}: {result['status']} ({result.get('failed_layer') or 'ok'})")
+        if args.case_delay_seconds > 0:
+            time.sleep(args.case_delay_seconds)
 
     summary = _build_summary(run_id, results)
     (run_dir / "summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -78,11 +90,18 @@ def _load_cases(api_names: list[str] | None, case_ids: list[str] | None) -> list
     return cases
 
 
-def _run_case(case: dict[str, Any], run_id: str, *, baseline_only: bool, front_only: bool) -> dict[str, Any]:
+def _run_case(
+    case: dict[str, Any],
+    run_id: str,
+    *,
+    baseline_only: bool,
+    front_only: bool,
+    shared_conversation: bool = False,
+) -> dict[str, Any]:
     started_at = datetime.now().astimezone().isoformat()
     expects_unsupported = bool(case.get("expected_capability", {}).get("unsupported"))
     baseline = None if front_only or expects_unsupported else _run_baseline(case)
-    frontend = None if baseline_only else _run_frontend(case, run_id)
+    frontend = None if baseline_only else _run_frontend(case, run_id, shared_conversation=shared_conversation)
     comparison = _compare(case, baseline, frontend, baseline_only=baseline_only, front_only=front_only)
     return {
         "run_id": run_id,
@@ -98,6 +117,38 @@ def _run_case(case: dict[str, Any], run_id: str, *, baseline_only: bool, front_o
         "baseline": baseline,
         "frontend": frontend,
     }
+
+
+def _run_case_with_retries(
+    case: dict[str, Any],
+    run_id: str,
+    *,
+    baseline_only: bool,
+    front_only: bool,
+    rate_limit_retries: int,
+    rate_limit_sleep_seconds: float,
+    shared_conversation: bool,
+) -> dict[str, Any]:
+    attempts = max(1, rate_limit_retries + 1)
+    last_result: dict[str, Any] | None = None
+    for index in range(attempts):
+        try:
+            result = _run_case(
+                case,
+                run_id,
+                baseline_only=baseline_only,
+                front_only=front_only,
+                shared_conversation=shared_conversation,
+            )
+        except Exception as exc:  # pragma: no cover - runtime protection for long SAP/LLM runs
+            result = _runtime_failure(case, run_id, exc)
+        if not _is_rate_limited_result(result) or index >= attempts - 1:
+            if index:
+                result["rate_limit_retry_count"] = index
+            return result
+        last_result = result
+        time.sleep(rate_limit_sleep_seconds)
+    return last_result or _runtime_failure(case, run_id, RuntimeError("Case retry loop did not run."))
 
 
 def _runtime_failure(case: dict[str, Any], run_id: str, exc: Exception) -> dict[str, Any]:
@@ -122,6 +173,11 @@ def _runtime_failure(case: dict[str, Any], run_id: str, exc: Exception) -> dict[
         "baseline": None,
         "frontend": None,
     }
+
+
+def _is_rate_limited_result(result: dict[str, Any]) -> bool:
+    text = json.dumps(result, ensure_ascii=False, default=str)
+    return "HTTP Error 429" in text or "Too Many Requests" in text
 
 
 def _infer_exception_layer(stack: str) -> str:
@@ -194,12 +250,13 @@ def _run_baseline(case: dict[str, Any]) -> dict[str, Any]:
     return baseline
 
 
-def _run_frontend(case: dict[str, Any], run_id: str) -> dict[str, Any]:
+def _run_frontend(case: dict[str, Any], run_id: str, *, shared_conversation: bool = False) -> dict[str, Any]:
     orchestrator = get_orchestrator()
+    conversation_id = f"eval-{run_id}" if shared_conversation else f"eval-{run_id}-{case['id']}"
     response = orchestrator.run(
         AgentRequest(
             user_input=case["user_input"],
-            conversation_id=f"eval-{run_id}",
+            conversation_id=conversation_id,
         )
     )
     response_dict = _to_jsonable(response)
@@ -232,6 +289,8 @@ def _compare(
     front_only: bool,
 ) -> dict[str, Any]:
     if baseline_only:
+        if case.get("expected_capability", {}).get("unsupported"):
+            return {"passed": True, "mode": "baseline_only", "reason": "Unsupported case has no deterministic baseline."}
         return {"passed": bool(baseline and baseline["success"]), "mode": "baseline_only"}
     if front_only:
         return {"passed": bool(frontend and frontend["success"]), "mode": "front_only"}
@@ -276,6 +335,18 @@ def _compare(
 
     comparison = case["comparison"]
     comparison_type = comparison["type"]
+    missing_required_fields = _missing_required_fields(
+        frontend["results"],
+        comparison.get("required_fields", []),
+        frontend.get("result_count", 0),
+    )
+    if missing_required_fields:
+        return {
+            "passed": False,
+            "failed_layer": "planner",
+            "reason": "Frontend results are missing required fields.",
+            "missing_required_fields": missing_required_fields,
+        }
     baseline_final = baseline["final"]
     baseline_keys = set(_tuple_keys(baseline_final["keys"]))
     actual_keys = set(_tuple_keys(_key_set(frontend["results"], comparison.get("keys", []))))
@@ -411,6 +482,22 @@ def _key_set(results: list[dict[str, Any]], fields: list[str]) -> list[dict[str,
         seen.add(key)
         keys.append({field: item.get(field) for field in fields})
     return keys
+
+
+def _missing_required_fields(
+    results: list[dict[str, Any]],
+    required_fields: list[str],
+    result_count: int,
+) -> list[str]:
+    required = [str(field or "").strip() for field in required_fields if str(field or "").strip()]
+    if not required:
+        return []
+    if result_count <= 0:
+        return []
+    if not results:
+        return required
+    available = set().union(*(set(item) for item in results))
+    return [field for field in required if field not in available]
 
 
 def _tuple_keys(keys: list[dict[str, Any]]) -> list[tuple[tuple[str, Any], ...]]:

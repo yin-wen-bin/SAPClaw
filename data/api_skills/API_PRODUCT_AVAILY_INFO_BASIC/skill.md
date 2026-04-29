@@ -10,6 +10,7 @@ Keep `data/index/API_PRODUCT_AVAILY_INFO_BASIC` as the schema ground truth. This
 
 - The user asks whether a product is available, how much is available, whether a requested quantity can be confirmed, or availability over time.
 - The user provides material/product, plant, date, quantity, or ATP checking rule for an availability calculation.
+- The user says "是否有货", "是否可用", "可用量", "能否满足", "今天/明天/某日期是否有货", or asks whether a product can be supplied at a plant/date.
 
 ## When Not To Use
 
@@ -48,6 +49,7 @@ Keep `data/index/API_PRODUCT_AVAILY_INFO_BASIC` as the schema ground truth. This
 - The current planner/compiler may not reliably execute function imports as SAP requests.
 - Do not invent an entity-set `$filter` plan for these operations.
 - Current stock and ATP availability are different business concepts.
+- Do not route availability wording to the stock API just because stock quantity fields exist. Stock balance can support inventory listing, but it does not replace ATP/date-based availability calculation.
 
 ## Needs Verification
 

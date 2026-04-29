@@ -1,0 +1,65 @@
+{
+  "default_profile": "minimax-default",
+  "profiles": [
+    {
+      "id": "minimax-default",
+      "label": "MiniMax",
+      "provider": "minimax",
+      "model_env": "MINIMAX_MODEL",
+      "base_url_env": "MINIMAX_BASE_URL",
+      "api_key_env": "MINIMAX_API_KEY",
+      "protocol": "anthropic_messages",
+      "api_path": "/v1/messages"
+    },
+    {
+      "id": "deepseek-default",
+      "label": "DeepSeek",
+      "provider": "deepseek",
+      "model_env": "DEEPSEEK_MODEL",
+      "base_url_env": "DEEPSEEK_BASE_URL",
+      "api_key_env": "DEEPSEEK_API_KEY",
+      "protocol": "openai_chat",
+      "api_path": "/chat/completions"
+    },
+    {
+      "id": "glm-default",
+      "label": "GLM",
+      "provider": "glm",
+      "model_env": "GLM_MODEL",
+      "base_url_env": "GLM_BASE_URL",
+      "api_key_env": "GLM_API_KEY",
+      "protocol": "openai_chat",
+      "api_path": "/chat/completions"
+    },
+    {
+      "id": "kimi-default",
+      "label": "KIMI",
+      "provider": "kimi",
+      "model_env": "KIMI_MODEL",
+      "base_url_env": "KIMI_BASE_URL",
+      "api_key_env": "KIMI_API_KEY",
+      "protocol": "openai_chat",
+      "api_path": "/chat/completions"
+    },
+    {
+      "id": "openai-default",
+      "label": "OpenAI",
+      "provider": "openai",
+      "model_env": "OPENAI_MODEL",
+      "base_url_env": "OPENAI_BASE_URL",
+      "api_key_env": "OPENAI_API_KEY",
+      "protocol": "openai_chat",
+      "api_path": "/v1/chat/completions"
+    },
+    {
+      "id": "anthropic-default",
+      "label": "Anthropic",
+      "provider": "anthropic",
+      "model_env": "ANTHROPIC_MODEL",
+      "base_url_env": "ANTHROPIC_BASE_URL",
+      "api_key_env": "ANTHROPIC_API_KEY",
+      "protocol": "anthropic_messages",
+      "api_path": "/v1/messages"
+    }
+  ]
+}

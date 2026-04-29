@@ -41,6 +41,7 @@ Keep `data/index/API_INFORECORD_PROCESS_SRV` as the schema ground truth. This sk
 - "价格条件" should use `A_PurInfoRecdPrcgCndn` and should return actual pricing values, not only condition metadata.
 - For price condition results, include value and unit fields such as `A_PurInfoRecdPrcgCndn.ConditionRateAmount`, `A_PurInfoRecdPrcgCndn.ConditionCurrency`, `A_PurInfoRecdPrcgCndn.ConditionRateValue`, `A_PurInfoRecdPrcgCndn.ConditionRateValueUnit`, `A_PurInfoRecdPrcgCndn.ConditionQuantity`, and `A_PurInfoRecdPrcgCndn.ConditionQuantityUnit` when available.
 - "价格条件有效期" should use `A_PurInfoRecdPrcgCndnValidity`.
+- `A_PurchasingInfoRecord.IsDeleted` is an `Edm.Boolean` field, but `A_PurchasingInfoRecord.IsEndOfPurposeBlocked` is an `Edm.String` indicator. For "用途终止冻结" or end-of-purpose blocked info records, filter `A_PurchasingInfoRecord.IsEndOfPurposeBlocked eq 'X'`, not `eq true`.
 
 ## Common Planning Patterns
 

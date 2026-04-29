@@ -5,9 +5,36 @@
     "scenario": "material_document_header_list",
     "user_input": "查询物料凭证列表",
     "expected_api": "API_MATERIAL_DOCUMENT_SRV",
-    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
-    "baseline": {"steps": [{"id": "headers", "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentHeader?$select=MaterialDocumentYear,MaterialDocument,DocumentDate,PostingDate,InventoryTransactionType&$top=5", "key_fields": ["MaterialDocumentYear", "MaterialDocument"]}]},
-    "comparison": {"type": "count_only", "keys": ["MaterialDocumentYear", "MaterialDocument"], "required_fields": ["MaterialDocument"]}
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "headers",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentHeader?$select=MaterialDocumentYear,MaterialDocument,DocumentDate,PostingDate,InventoryTransactionType&$top=5",
+          "key_fields": [
+            "MaterialDocumentYear",
+            "MaterialDocument"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocumentYear",
+        "MaterialDocument"
+      ],
+      "required_fields": [
+        "MaterialDocument"
+      ]
+    }
   },
   {
     "id": "MD-002",
@@ -15,9 +42,38 @@
     "scenario": "material_document_item_list",
     "user_input": "查询物料凭证行项目列表",
     "expected_api": "API_MATERIAL_DOCUMENT_SRV",
-    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
-    "baseline": {"steps": [{"id": "items", "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentItem?$select=MaterialDocumentYear,MaterialDocument,MaterialDocumentItem,Material,Plant,StorageLocation,GoodsMovementType&$top=5", "key_fields": ["MaterialDocumentYear", "MaterialDocument", "MaterialDocumentItem"]}]},
-    "comparison": {"type": "count_only", "keys": ["MaterialDocumentYear", "MaterialDocument", "MaterialDocumentItem"], "required_fields": ["MaterialDocument"]}
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "items",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentItem?$select=MaterialDocumentYear,MaterialDocument,MaterialDocumentItem,Material,Plant,StorageLocation,GoodsMovementType&$top=5",
+          "key_fields": [
+            "MaterialDocumentYear",
+            "MaterialDocument",
+            "MaterialDocumentItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocumentYear",
+        "MaterialDocument",
+        "MaterialDocumentItem"
+      ],
+      "required_fields": [
+        "MaterialDocument"
+      ]
+    }
   },
   {
     "id": "MD-003",
@@ -25,9 +81,38 @@
     "scenario": "material_movement_by_material",
     "user_input": "查询物料TG0011的物料移动记录",
     "expected_api": "API_MATERIAL_DOCUMENT_SRV",
-    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
-    "baseline": {"steps": [{"id": "items", "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentItem?$select=MaterialDocumentYear,MaterialDocument,MaterialDocumentItem,Material,Plant,GoodsMovementType&$filter=Material eq 'TG0011'&$top=5", "key_fields": ["MaterialDocumentYear", "MaterialDocument", "MaterialDocumentItem"]}]},
-    "comparison": {"type": "count_only", "keys": ["MaterialDocumentYear", "MaterialDocument", "MaterialDocumentItem"], "required_fields": ["MaterialDocument"]}
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "items",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentItem?$select=MaterialDocumentYear,MaterialDocument,MaterialDocumentItem,Material,Plant,GoodsMovementType&$filter=Material eq 'TG0011'&$top=5",
+          "key_fields": [
+            "MaterialDocumentYear",
+            "MaterialDocument",
+            "MaterialDocumentItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocumentYear",
+        "MaterialDocument",
+        "MaterialDocumentItem"
+      ],
+      "required_fields": [
+        "MaterialDocument"
+      ]
+    }
   },
   {
     "id": "MD-004",
@@ -35,9 +120,37 @@
     "scenario": "posting_date_after",
     "user_input": "查询过账日期大于2020.01.01的物料凭证",
     "expected_api": "API_MATERIAL_DOCUMENT_SRV",
-    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
-    "baseline": {"steps": [{"id": "headers", "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentHeader?$select=MaterialDocumentYear,MaterialDocument,PostingDate,DocumentDate&$filter=PostingDate gt datetime'2020-01-01T00:00:00'&$top=5", "key_fields": ["MaterialDocumentYear", "MaterialDocument"]}]},
-    "comparison": {"type": "count_only", "keys": ["MaterialDocumentYear", "MaterialDocument"], "required_fields": ["MaterialDocument", "PostingDate"]}
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "headers",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentHeader?$select=MaterialDocumentYear,MaterialDocument,PostingDate,DocumentDate&$filter=PostingDate gt datetime'2020-01-01T00:00:00'&$top=5",
+          "key_fields": [
+            "MaterialDocumentYear",
+            "MaterialDocument"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocumentYear",
+        "MaterialDocument"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "PostingDate"
+      ]
+    }
   },
   {
     "id": "MD-005",
@@ -45,8 +158,1241 @@
     "scenario": "serial_number_material_documents",
     "user_input": "查询物料凭证的序列号记录",
     "expected_api": "API_MATERIAL_DOCUMENT_SRV",
-    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
-    "baseline": {"steps": [{"id": "serials", "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_SerialNumberMaterialDocument?$select=Material,SerialNumber,MaterialDocument,MaterialDocumentItem,MaterialDocumentYear&$top=5", "key_fields": ["Material", "SerialNumber", "MaterialDocument", "MaterialDocumentItem", "MaterialDocumentYear"]}]},
-    "comparison": {"type": "count_only", "keys": ["Material", "SerialNumber", "MaterialDocument", "MaterialDocumentItem", "MaterialDocumentYear"], "required_fields": ["MaterialDocument", "SerialNumber"]}
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "serials",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_SerialNumberMaterialDocument?$select=Material,SerialNumber,MaterialDocument,MaterialDocumentItem,MaterialDocumentYear&$top=5",
+          "key_fields": [
+            "Material",
+            "SerialNumber",
+            "MaterialDocument",
+            "MaterialDocumentItem",
+            "MaterialDocumentYear"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Material",
+        "SerialNumber",
+        "MaterialDocument",
+        "MaterialDocumentItem",
+        "MaterialDocumentYear"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "SerialNumber"
+      ]
+    }
+  },
+  {
+    "id": "MD-006",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "material_document_by_number",
+    "user_input": "查询物料凭证4900008961的抬头信息",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentHeader?$select=MaterialDocument,MaterialDocumentYear,InventoryTransactionType,DocumentDate,PostingDate,CreationDate,CreationTime,CreatedByUser,MaterialDocumentHeaderText,ReferenceDocument&$filter=MaterialDocument eq '4900008961' and MaterialDocumentYear eq '1998'&$top=5",
+          "key_fields": [
+            "MaterialDocument",
+            "MaterialDocumentYear"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocument",
+        "MaterialDocumentYear"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "PostingDate",
+        "DocumentDate"
+      ]
+    }
+  },
+  {
+    "id": "MD-007",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "material_document_items_by_number",
+    "user_input": "查询物料凭证4900008961的行项目",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentItem?$select=MaterialDocument,MaterialDocumentItem,MaterialDocumentYear,Material,Plant,StorageLocation,Batch,GoodsMovementType,InventoryStockType,InventoryValuationType&$filter=MaterialDocument eq '4900008961' and MaterialDocumentYear eq '1998'&$top=5",
+          "key_fields": [
+            "MaterialDocument",
+            "MaterialDocumentItem",
+            "MaterialDocumentYear"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocument",
+        "MaterialDocumentItem",
+        "MaterialDocumentYear"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "Material",
+        "Plant",
+        "GoodsMovementType"
+      ]
+    }
+  },
+  {
+    "id": "MD-008",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "material_movement_by_material_2350",
+    "user_input": "查询物料2350的物料移动记录",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentItem?$select=MaterialDocument,MaterialDocumentItem,MaterialDocumentYear,Material,Plant,StorageLocation,Batch,GoodsMovementType,InventoryStockType,InventoryValuationType&$filter=Material eq '2350'&$top=5",
+          "key_fields": [
+            "MaterialDocument",
+            "MaterialDocumentItem",
+            "MaterialDocumentYear"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocument",
+        "MaterialDocumentItem",
+        "MaterialDocumentYear"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "Material",
+        "GoodsMovementType"
+      ]
+    }
+  },
+  {
+    "id": "MD-009",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "goods_receipt_movement_type_101",
+    "user_input": "查询101移动类型的收货物料凭证",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentItem?$select=MaterialDocument,MaterialDocumentItem,MaterialDocumentYear,Material,Plant,StorageLocation,Batch,GoodsMovementType,InventoryStockType,InventoryValuationType&$filter=GoodsMovementType eq '101'&$top=5",
+          "key_fields": [
+            "MaterialDocument",
+            "MaterialDocumentItem",
+            "MaterialDocumentYear"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocument",
+        "MaterialDocumentItem",
+        "MaterialDocumentYear"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "GoodsMovementType"
+      ]
+    }
+  },
+  {
+    "id": "MD-010",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "movement_type_102_reversal",
+    "user_input": "查询102移动类型的冲销物料凭证",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentItem?$select=MaterialDocument,MaterialDocumentItem,MaterialDocumentYear,Material,Plant,StorageLocation,Batch,GoodsMovementType,InventoryStockType,InventoryValuationType&$filter=GoodsMovementType eq '102'&$top=5",
+          "key_fields": [
+            "MaterialDocument",
+            "MaterialDocumentItem",
+            "MaterialDocumentYear"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocument",
+        "MaterialDocumentItem",
+        "MaterialDocumentYear"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "GoodsMovementType"
+      ]
+    }
+  },
+  {
+    "id": "MD-011",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "material_documents_by_plant",
+    "user_input": "查询工厂1710的物料凭证行项目",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentItem?$select=MaterialDocument,MaterialDocumentItem,MaterialDocumentYear,Material,Plant,StorageLocation,Batch,GoodsMovementType,InventoryStockType,InventoryValuationType&$filter=Plant eq '1710'&$top=5",
+          "key_fields": [
+            "MaterialDocument",
+            "MaterialDocumentItem",
+            "MaterialDocumentYear"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocument",
+        "MaterialDocumentItem",
+        "MaterialDocumentYear"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "Plant"
+      ]
+    }
+  },
+  {
+    "id": "MD-012",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "material_documents_by_storage_location",
+    "user_input": "查询库存地点9527的物料凭证行项目",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentItem?$select=MaterialDocument,MaterialDocumentItem,MaterialDocumentYear,Material,Plant,StorageLocation,Batch,GoodsMovementType,InventoryStockType,InventoryValuationType&$filter=StorageLocation eq '9527'&$top=5",
+          "key_fields": [
+            "MaterialDocument",
+            "MaterialDocumentItem",
+            "MaterialDocumentYear"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocument",
+        "MaterialDocumentItem",
+        "MaterialDocumentYear"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "StorageLocation"
+      ]
+    }
+  },
+  {
+    "id": "MD-013",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "material_documents_with_stock_type",
+    "user_input": "查询带库存类型的物料凭证行项目",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentItem?$select=MaterialDocument,MaterialDocumentItem,MaterialDocumentYear,Material,Plant,StorageLocation,Batch,GoodsMovementType,InventoryStockType,InventoryValuationType&$top=5",
+          "key_fields": [
+            "MaterialDocument",
+            "MaterialDocumentItem",
+            "MaterialDocumentYear"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocument",
+        "MaterialDocumentItem",
+        "MaterialDocumentYear"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "InventoryStockType"
+      ]
+    }
+  },
+  {
+    "id": "MD-014",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "goods_issue_movement_type_601",
+    "user_input": "查询601移动类型的发货物料凭证",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentItem?$select=MaterialDocument,MaterialDocumentItem,MaterialDocumentYear,Material,Plant,StorageLocation,Batch,GoodsMovementType,InventoryStockType,InventoryValuationType&$filter=GoodsMovementType eq '601'&$top=5",
+          "key_fields": [
+            "MaterialDocument",
+            "MaterialDocumentItem",
+            "MaterialDocumentYear"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocument",
+        "MaterialDocumentItem",
+        "MaterialDocumentYear"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "GoodsMovementType"
+      ]
+    }
+  },
+  {
+    "id": "MD-015",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "cancelled_material_movements",
+    "user_input": "查询已取消的物料移动行项目",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentItem?$select=MaterialDocument,MaterialDocumentItem,MaterialDocumentYear,Material,Plant,StorageLocation,Batch,GoodsMovementType,InventoryStockType,InventoryValuationType,GoodsMovementIsCancelled&$filter=GoodsMovementIsCancelled eq true&$top=5",
+          "key_fields": [
+            "MaterialDocument",
+            "MaterialDocumentItem",
+            "MaterialDocumentYear"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocument",
+        "MaterialDocumentItem",
+        "MaterialDocumentYear"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "GoodsMovementIsCancelled"
+      ]
+    }
+  },
+  {
+    "id": "MD-016",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "document_date_after",
+    "user_input": "查询凭证日期大于2020.01.01的物料凭证",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentHeader?$select=MaterialDocument,MaterialDocumentYear,InventoryTransactionType,DocumentDate,PostingDate,CreationDate,CreationTime,CreatedByUser,MaterialDocumentHeaderText,ReferenceDocument&$filter=DocumentDate gt datetime'2020-01-01T00:00:00'&$top=5",
+          "key_fields": [
+            "MaterialDocument",
+            "MaterialDocumentYear"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocument",
+        "MaterialDocumentYear"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "DocumentDate"
+      ]
+    }
+  },
+  {
+    "id": "MD-017",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "posting_date_before",
+    "user_input": "查询过账日期早于2020.01.01的物料凭证",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentHeader?$select=MaterialDocument,MaterialDocumentYear,InventoryTransactionType,DocumentDate,PostingDate,CreationDate,CreationTime,CreatedByUser,MaterialDocumentHeaderText,ReferenceDocument&$filter=PostingDate lt datetime'2020-01-01T00:00:00'&$top=5",
+          "key_fields": [
+            "MaterialDocument",
+            "MaterialDocumentYear"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocument",
+        "MaterialDocumentYear"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "PostingDate"
+      ]
+    }
+  },
+  {
+    "id": "MD-018",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "material_documents_by_year_2020",
+    "user_input": "查询2020年的物料凭证",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentHeader?$select=MaterialDocument,MaterialDocumentYear,InventoryTransactionType,DocumentDate,PostingDate,CreationDate,CreationTime,CreatedByUser,MaterialDocumentHeaderText,ReferenceDocument&$filter=MaterialDocumentYear eq '2020'&$top=5",
+          "key_fields": [
+            "MaterialDocument",
+            "MaterialDocumentYear"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocument",
+        "MaterialDocumentYear"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "MaterialDocumentYear"
+      ]
+    }
+  },
+  {
+    "id": "MD-019",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "serial_documents_by_material",
+    "user_input": "查询物料2376相关的序列号物料凭证",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_SerialNumberMaterialDocument?$select=Material,MaterialDocument,MaterialDocumentItem,MaterialDocumentYear,SerialNumber,ManufacturerSerialNumber&$filter=Material eq '2376'&$top=5",
+          "key_fields": [
+            "Material",
+            "MaterialDocument",
+            "MaterialDocumentItem",
+            "MaterialDocumentYear",
+            "SerialNumber"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Material",
+        "MaterialDocument",
+        "MaterialDocumentItem"
+      ],
+      "required_fields": [
+        "Material",
+        "SerialNumber"
+      ]
+    }
+  },
+  {
+    "id": "MD-020",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "serial_document_list",
+    "user_input": "查询物料凭证序列号明细列表",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_SerialNumberMaterialDocument?$select=Material,MaterialDocument,MaterialDocumentItem,MaterialDocumentYear,SerialNumber,ManufacturerSerialNumber&$top=5",
+          "key_fields": [
+            "Material",
+            "MaterialDocument",
+            "MaterialDocumentItem",
+            "MaterialDocumentYear",
+            "SerialNumber"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Material",
+        "MaterialDocument",
+        "MaterialDocumentItem"
+      ],
+      "required_fields": [
+        "Material",
+        "SerialNumber"
+      ]
+    }
+  },
+  {
+    "id": "MD-021",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "purchase_order_referenced_movements",
+    "user_input": "查询带采购订单参考的物料凭证行项目",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentItem?$select=MaterialDocument,MaterialDocumentItem,MaterialDocumentYear,Material,Plant,StorageLocation,Batch,GoodsMovementType,InventoryStockType,InventoryValuationType,PurchaseOrder,PurchaseOrderItem&$top=5",
+          "key_fields": [
+            "MaterialDocument",
+            "MaterialDocumentItem",
+            "MaterialDocumentYear"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocument",
+        "MaterialDocumentItem",
+        "MaterialDocumentYear"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "PurchaseOrder",
+        "PurchaseOrderItem"
+      ]
+    }
+  },
+  {
+    "id": "MD-022",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "cost_center_movements",
+    "user_input": "查询带成本中心的物料凭证行项目",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentItem?$select=MaterialDocument,MaterialDocumentItem,MaterialDocumentYear,Material,Plant,StorageLocation,Batch,GoodsMovementType,InventoryStockType,InventoryValuationType,CostCenter&$top=5",
+          "key_fields": [
+            "MaterialDocument",
+            "MaterialDocumentItem",
+            "MaterialDocumentYear"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocument",
+        "MaterialDocumentItem",
+        "MaterialDocumentYear"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "CostCenter"
+      ]
+    }
+  },
+  {
+    "id": "MD-023",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "batch_movements",
+    "user_input": "查询带批次的物料凭证行项目",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentItem?$select=MaterialDocument,MaterialDocumentItem,MaterialDocumentYear,Material,Plant,StorageLocation,Batch,GoodsMovementType,InventoryStockType,InventoryValuationType&$top=5",
+          "key_fields": [
+            "MaterialDocument",
+            "MaterialDocumentItem",
+            "MaterialDocumentYear"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocument",
+        "MaterialDocumentItem",
+        "MaterialDocumentYear"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "Batch"
+      ]
+    }
+  },
+  {
+    "id": "MD-024",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "quantity_and_unit_movements",
+    "user_input": "查询物料凭证行项目的数量和单位",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentItem?$select=MaterialDocument,MaterialDocumentItem,MaterialDocumentYear,Material,Plant,StorageLocation,Batch,GoodsMovementType,InventoryStockType,InventoryValuationType,QuantityInBaseUnit,MaterialBaseUnit&$top=5",
+          "key_fields": [
+            "MaterialDocument",
+            "MaterialDocumentItem",
+            "MaterialDocumentYear"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocument",
+        "MaterialDocumentItem",
+        "MaterialDocumentYear"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "QuantityInBaseUnit",
+        "MaterialBaseUnit"
+      ]
+    }
+  },
+  {
+    "id": "MD-025",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "entry_unit_movements",
+    "user_input": "查询物料凭证行项目的录入单位和录入数量",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentItem?$select=MaterialDocument,MaterialDocumentItem,MaterialDocumentYear,Material,Plant,StorageLocation,Batch,GoodsMovementType,InventoryStockType,InventoryValuationType,QuantityInEntryUnit,EntryUnit&$top=5",
+          "key_fields": [
+            "MaterialDocument",
+            "MaterialDocumentItem",
+            "MaterialDocumentYear"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocument",
+        "MaterialDocumentItem",
+        "MaterialDocumentYear"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "QuantityInEntryUnit",
+        "EntryUnit"
+      ]
+    }
+  },
+  {
+    "id": "MD-026",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "reference_document_headers",
+    "user_input": "查询带参考单据的物料凭证抬头",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentHeader?$select=MaterialDocument,MaterialDocumentYear,InventoryTransactionType,DocumentDate,PostingDate,CreationDate,CreationTime,CreatedByUser,MaterialDocumentHeaderText,ReferenceDocument&$top=5",
+          "key_fields": [
+            "MaterialDocument",
+            "MaterialDocumentYear"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocument",
+        "MaterialDocumentYear"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "ReferenceDocument"
+      ]
+    }
+  },
+  {
+    "id": "MD-027",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "created_by_user_headers",
+    "user_input": "查询物料凭证创建人列表",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentHeader?$select=MaterialDocument,MaterialDocumentYear,InventoryTransactionType,DocumentDate,PostingDate,CreationDate,CreationTime,CreatedByUser,MaterialDocumentHeaderText,ReferenceDocument&$top=5",
+          "key_fields": [
+            "MaterialDocument",
+            "MaterialDocumentYear"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocument",
+        "MaterialDocumentYear"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "CreatedByUser"
+      ]
+    }
+  },
+  {
+    "id": "MD-028",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "material_document_header_texts",
+    "user_input": "查询物料凭证抬头文本",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentHeader?$select=MaterialDocument,MaterialDocumentYear,InventoryTransactionType,DocumentDate,PostingDate,CreationDate,CreationTime,CreatedByUser,MaterialDocumentHeaderText,ReferenceDocument&$top=5",
+          "key_fields": [
+            "MaterialDocument",
+            "MaterialDocumentYear"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocument",
+        "MaterialDocumentYear"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "MaterialDocumentHeaderText"
+      ]
+    }
+  },
+  {
+    "id": "MD-029",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "manufacturing_order_movements",
+    "user_input": "查询带生产订单参考的物料凭证行项目",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentItem?$select=MaterialDocument,MaterialDocumentItem,MaterialDocumentYear,Material,Plant,StorageLocation,Batch,GoodsMovementType,InventoryStockType,InventoryValuationType,ManufacturingOrder&$top=5",
+          "key_fields": [
+            "MaterialDocument",
+            "MaterialDocumentItem",
+            "MaterialDocumentYear"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocument",
+        "MaterialDocumentItem",
+        "MaterialDocumentYear"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "ManufacturingOrder"
+      ]
+    }
+  },
+  {
+    "id": "MD-030",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "delivery_referenced_movements",
+    "user_input": "查询带交货单参考的物料凭证行项目",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentItem?$select=MaterialDocument,MaterialDocumentItem,MaterialDocumentYear,Material,Plant,StorageLocation,Batch,GoodsMovementType,InventoryStockType,InventoryValuationType,Delivery,DeliveryItem&$top=5",
+          "key_fields": [
+            "MaterialDocument",
+            "MaterialDocumentItem",
+            "MaterialDocumentYear"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocument",
+        "MaterialDocumentItem",
+        "MaterialDocumentYear"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "Delivery",
+        "DeliveryItem"
+      ]
+    }
+  },
+  {
+    "id": "MD-031",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "material_document_item_texts",
+    "user_input": "查询物料凭证行项目文本",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentItem?$select=MaterialDocument,MaterialDocumentItem,MaterialDocumentYear,Material,Plant,StorageLocation,Batch,GoodsMovementType,InventoryStockType,InventoryValuationType,MaterialDocumentItemText&$top=5",
+          "key_fields": [
+            "MaterialDocument",
+            "MaterialDocumentItem",
+            "MaterialDocumentYear"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocument",
+        "MaterialDocumentItem",
+        "MaterialDocumentYear"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "MaterialDocumentItemText"
+      ]
+    }
+  },
+  {
+    "id": "MD-032",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "company_code_currency_amounts",
+    "user_input": "查询物料凭证行项目的公司代码币金额",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentItem?$select=MaterialDocument,MaterialDocumentItem,MaterialDocumentYear,Material,Plant,StorageLocation,Batch,GoodsMovementType,InventoryStockType,InventoryValuationType,GdsMvtExtAmtInCoCodeCrcy,CompanyCodeCurrency&$top=5",
+          "key_fields": [
+            "MaterialDocument",
+            "MaterialDocumentItem",
+            "MaterialDocumentYear"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocument",
+        "MaterialDocumentItem",
+        "MaterialDocumentYear"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "GdsMvtExtAmtInCoCodeCrcy",
+        "CompanyCodeCurrency"
+      ]
+    }
+  },
+  {
+    "id": "MD-033",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "goods_recipient_movements",
+    "user_input": "查询物料凭证行项目的收货人信息",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentItem?$select=MaterialDocument,MaterialDocumentItem,MaterialDocumentYear,Material,Plant,StorageLocation,Batch,GoodsMovementType,InventoryStockType,InventoryValuationType,GoodsRecipientName&$top=5",
+          "key_fields": [
+            "MaterialDocument",
+            "MaterialDocumentItem",
+            "MaterialDocumentYear"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocument",
+        "MaterialDocumentItem",
+        "MaterialDocumentYear"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "GoodsRecipientName"
+      ]
+    }
+  },
+  {
+    "id": "MD-034",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "special_stock_movements",
+    "user_input": "查询特殊库存相关的物料凭证行项目",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentItem?$select=MaterialDocument,MaterialDocumentItem,MaterialDocumentYear,Material,Plant,StorageLocation,Batch,GoodsMovementType,InventoryStockType,InventoryValuationType,InventorySpecialStockType&$top=5",
+          "key_fields": [
+            "MaterialDocument",
+            "MaterialDocumentItem",
+            "MaterialDocumentYear"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocument",
+        "MaterialDocumentItem",
+        "MaterialDocumentYear"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "InventorySpecialStockType"
+      ]
+    }
+  },
+  {
+    "id": "MD-035",
+    "api": "API_MATERIAL_DOCUMENT_SRV",
+    "scenario": "valuation_type_movements",
+    "user_input": "查询带评估类型的物料凭证行项目",
+    "expected_api": "API_MATERIAL_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentItem?$select=MaterialDocument,MaterialDocumentItem,MaterialDocumentYear,Material,Plant,StorageLocation,Batch,GoodsMovementType,InventoryStockType,InventoryValuationType&$top=5",
+          "key_fields": [
+            "MaterialDocument",
+            "MaterialDocumentItem",
+            "MaterialDocumentYear"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MaterialDocument",
+        "MaterialDocumentItem",
+        "MaterialDocumentYear"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "InventoryValuationType"
+      ]
+    }
   }
 ]

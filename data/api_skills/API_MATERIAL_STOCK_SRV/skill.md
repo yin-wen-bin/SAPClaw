@@ -26,6 +26,8 @@ Keep `data/index/API_MATERIAL_STOCK_SRV` as the schema ground truth. This skill 
 ## Business Semantics
 
 - This API is a current stock view. It is not a ledger of movements.
+- Use this API for stock balance/listing wording such as "库存", "当前库存", "库存数量", or "按库存地点/批次/库存类型查看库存".
+- Do not treat availability-check wording such as "是否有货", "是否可用", "可用量", "能否满足", or "今天/明天/某日期是否有货" as a stock-balance question when the availability API is available. Those intents belong to `API_PRODUCT_AVAILY_INFO_BASIC`.
 - Material, plant, storage location, batch, stock type, special stock, customer, supplier, and serial number are common stock dimensions.
 - For stock history or goods movement details, use the material document API.
 - Preserve material IDs, plants, storage locations, batches, and serial numbers exactly.

@@ -11,6 +11,7 @@ const initialForm = {
   user_input: quickPrompts[0],
   conversation_id: "demo-001",
   mode: "read_only",
+  llm_profile_id: "",
 };
 
 function formatJson(value) {
@@ -140,6 +141,13 @@ function feedbackLabel(feedback) {
   return feedback.status === "correct" ? "用户已确认正确" : "用户标记为不正确";
 }
 
+function modelProfileLabel(profile) {
+  if (!profile?.label) {
+    return "Default";
+  }
+  return profile.enabled ? profile.label : `${profile.label} (not configured)`;
+}
+
 function planKindLabel(plan) {
   const labels = {
     direct: "单步直查",
@@ -211,6 +219,7 @@ function HistoryList({ history, historyError, onRefresh, onSelect }) {
           {history.map((item) => (
             <button key={item.case_id} type="button" className="history-item" onClick={() => onSelect(item)}>
               <strong>{item.user_input}</strong>
+              {item.llm_profile?.label ? <span>{item.llm_profile.label}</span> : null}
               <span>{item.entity_set || "未确定实体"}</span>
               <span>{statusLabel(item)}</span>
               {item.feedback?.status ? <span>{feedbackLabel(item.feedback)}</span> : null}
@@ -910,6 +919,8 @@ export default function App() {
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [lastDurationMs, setLastDurationMs] = useState(null);
   const [pageLoading, setPageLoading] = useState(false);
+  const [modelProfiles, setModelProfiles] = useState([]);
+  const [defaultProfileId, setDefaultProfileId] = useState("");
   const [feedbackForm, setFeedbackForm] = useState({
     status: "",
     comment: "",
@@ -930,7 +941,29 @@ export default function App() {
     }
   }
 
+  async function loadModelProfiles() {
+    try {
+      const response = await fetch("/api/v1/agent/model-profiles", { cache: "no-store" });
+      if (!response.ok) {
+        throw new Error("model profile load failed");
+      }
+      const payload = await response.json();
+      const items = Array.isArray(payload.items) ? payload.items : [];
+      const preferredProfile =
+        items.find((item) => item.id === payload.default_profile && item.enabled)?.id ||
+        items.find((item) => item.enabled)?.id ||
+        "";
+      setModelProfiles(items);
+      setDefaultProfileId(payload.default_profile || "");
+      setForm((current) => (current.llm_profile_id ? current : { ...current, llm_profile_id: preferredProfile }));
+    } catch {
+      setModelProfiles([]);
+      setDefaultProfileId("");
+    }
+  }
+
   useEffect(() => {
+    loadModelProfiles();
     loadHistory();
   }, []);
 
@@ -979,12 +1012,16 @@ export default function App() {
     setLastDurationMs(null);
 
     try {
+      const requestPayload = { ...form };
+      if (!requestPayload.llm_profile_id) {
+        delete requestPayload.llm_profile_id;
+      }
       const response = await fetch("/api/v1/agent/query", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(form),
+        body: JSON.stringify(requestPayload),
       });
 
       const payload = await response.json();
@@ -1069,6 +1106,7 @@ export default function App() {
       user_input: item.user_input || "",
       conversation_id: item.conversation_id || "demo-001",
       mode: item.mode || "read_only",
+      llm_profile_id: item.llm_profile_id || form.llm_profile_id || defaultProfileId || "",
     });
     const snapshot = normalizeHistoryResult(item);
     setResult(snapshot);
@@ -1182,6 +1220,18 @@ export default function App() {
                   <select name="mode" value={form.mode} onChange={handleChange}>
                     <option value="read_only">read_only</option>
                     <option value="write_confirm_required">write_confirm_required</option>
+                  </select>
+                </label>
+
+                <label>
+                  <span>Model</span>
+                  <select name="llm_profile_id" value={form.llm_profile_id} onChange={handleChange}>
+                    <option value="">Default / local fallback</option>
+                    {modelProfiles.map((profile) => (
+                      <option key={profile.id} value={profile.id} disabled={!profile.enabled}>
+                        {modelProfileLabel(profile)}
+                      </option>
+                    ))}
                   </select>
                 </label>
               </div>

@@ -18,14 +18,21 @@
         {
           "id": "orders",
           "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder?$select=PurchaseOrder,Supplier&$filter=Supplier eq '17300003'&$top=100",
-          "key_fields": ["PurchaseOrder"]
+          "key_fields": [
+            "PurchaseOrder"
+          ]
         }
       ]
     },
     "comparison": {
       "type": "key_set",
-      "keys": ["PurchaseOrder"],
-      "required_fields": ["PurchaseOrder", "Supplier"]
+      "keys": [
+        "PurchaseOrder"
+      ],
+      "required_fields": [
+        "PurchaseOrder",
+        "Supplier"
+      ]
     }
   },
   {
@@ -47,14 +54,20 @@
         {
           "id": "items",
           "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem?$select=PurchaseOrder,PurchaseOrderItem,Material&$filter=Material eq 'TG0011'&$top=100",
-          "key_fields": ["PurchaseOrder"]
+          "key_fields": [
+            "PurchaseOrder"
+          ]
         }
       ]
     },
     "comparison": {
       "type": "count_and_key_subset",
-      "keys": ["PurchaseOrder"],
-      "required_fields": ["PurchaseOrder"]
+      "keys": [
+        "PurchaseOrder"
+      ],
+      "required_fields": [
+        "PurchaseOrder"
+      ]
     }
   },
   {
@@ -76,7 +89,9 @@
         {
           "id": "orders",
           "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder?$select=PurchaseOrder,Supplier&$filter=Supplier eq '17300003'&$top=100",
-          "key_fields": ["PurchaseOrder"]
+          "key_fields": [
+            "PurchaseOrder"
+          ]
         },
         {
           "id": "items",
@@ -86,14 +101,25 @@
             "source_field": "PurchaseOrder",
             "target_field": "PurchaseOrder"
           },
-          "key_fields": ["PurchaseOrder", "PurchaseOrderItem"]
+          "key_fields": [
+            "PurchaseOrder",
+            "PurchaseOrderItem"
+          ]
         }
       ]
     },
     "comparison": {
       "type": "key_set",
-      "keys": ["PurchaseOrder", "PurchaseOrderItem"],
-      "required_fields": ["PurchaseOrder", "PurchaseOrderItem", "GoodsReceiptIsExpected", "IsCompletelyDelivered"]
+      "keys": [
+        "PurchaseOrder",
+        "PurchaseOrderItem"
+      ],
+      "required_fields": [
+        "PurchaseOrder",
+        "PurchaseOrderItem",
+        "GoodsReceiptIsExpected",
+        "IsCompletelyDelivered"
+      ]
     }
   },
   {
@@ -115,14 +141,26 @@
         {
           "id": "schedule_lines",
           "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine?$select=PurchasingDocument,PurchasingDocumentItem,ScheduleLine,ScheduleLineDeliveryDate&$filter=ScheduleLineDeliveryDate gt datetime'2018-11-23T00:00:00'&$top=100",
-          "key_fields": ["PurchasingDocument", "PurchasingDocumentItem", "ScheduleLine"]
+          "key_fields": [
+            "PurchasingDocument",
+            "PurchasingDocumentItem",
+            "ScheduleLine"
+          ]
         }
       ]
     },
     "comparison": {
       "type": "count_and_key_subset",
-      "keys": ["PurchasingDocument", "PurchasingDocumentItem", "ScheduleLine"],
-      "required_fields": ["PurchasingDocument", "PurchasingDocumentItem", "ScheduleLineDeliveryDate"]
+      "keys": [
+        "PurchasingDocument",
+        "PurchasingDocumentItem",
+        "ScheduleLine"
+      ],
+      "required_fields": [
+        "PurchasingDocument",
+        "PurchasingDocumentItem",
+        "ScheduleLineDeliveryDate"
+      ]
     }
   },
   {
@@ -144,7 +182,9 @@
         {
           "id": "orders",
           "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder?$select=PurchaseOrder,Supplier&$filter=Supplier eq '17300003'&$top=100",
-          "key_fields": ["PurchaseOrder"]
+          "key_fields": [
+            "PurchaseOrder"
+          ]
         },
         {
           "id": "items",
@@ -154,14 +194,1189 @@
             "source_field": "PurchaseOrder",
             "target_field": "PurchaseOrder"
           },
-          "key_fields": ["PurchaseOrder", "PurchaseOrderItem"]
+          "key_fields": [
+            "PurchaseOrder",
+            "PurchaseOrderItem"
+          ]
         }
       ]
     },
     "comparison": {
       "type": "key_set",
-      "keys": ["PurchaseOrder", "PurchaseOrderItem"],
-      "required_fields": ["PurchaseOrder", "PurchaseOrderItem", "IsFinallyInvoiced"]
+      "keys": [
+        "PurchaseOrder",
+        "PurchaseOrderItem"
+      ],
+      "required_fields": [
+        "PurchaseOrder",
+        "PurchaseOrderItem",
+        "IsFinallyInvoiced"
+      ]
+    }
+  },
+  {
+    "id": "PO-006",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "purchase_order_by_number",
+    "user_input": "查询采购订单4500000468的抬头信息",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder?$select=PurchaseOrder,CompanyCode,PurchaseOrderType,PurchasingDocumentDeletionCode,PurchasingProcessingStatus,CreatedByUser,CreationDate,LastChangeDateTime,Supplier,PurchaseOrderSubtype&$filter=PurchaseOrder eq '4500000468'&$top=5",
+          "key_fields": [
+            "PurchaseOrder"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseOrder"
+      ],
+      "required_fields": [
+        "PurchaseOrder",
+        "Supplier",
+        "CompanyCode"
+      ]
+    }
+  },
+  {
+    "id": "PO-007",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "purchase_order_items_by_order",
+    "user_input": "查询采购订单4500000468的行项目",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem?$select=PurchaseOrder,PurchaseOrderItem,PurchasingDocumentDeletionCode,PurchaseOrderItemText,Plant,StorageLocation,MaterialGroup,PurchasingInfoRecord,SupplierMaterialNumber,OrderQuantity,Material&$filter=PurchaseOrder eq '4500000468'&$top=5",
+          "key_fields": [
+            "PurchaseOrder",
+            "PurchaseOrderItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseOrder",
+        "PurchaseOrderItem"
+      ],
+      "required_fields": [
+        "PurchaseOrder",
+        "Material",
+        "Plant",
+        "OrderQuantity"
+      ]
+    }
+  },
+  {
+    "id": "PO-008",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "purchase_order_schedule_by_order",
+    "user_input": "查询采购订单4500000468的交货计划行",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine?$select=PurchasingDocument,PurchasingDocumentItem,ScheduleLine,DelivDateCategory,ScheduleLineDeliveryDate,PurchaseOrderQuantityUnit,ScheduleLineOrderQuantity,ScheduleLineDeliveryTime,SchedLineStscDeliveryDate,PurchaseRequisition&$filter=PurchasingDocument eq '4500000468'&$top=5",
+          "key_fields": [
+            "PurchasingDocument",
+            "PurchasingDocumentItem",
+            "ScheduleLine"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchasingDocument",
+        "PurchasingDocumentItem",
+        "ScheduleLine"
+      ],
+      "required_fields": [
+        "PurchasingDocument",
+        "ScheduleLineDeliveryDate",
+        "ScheduleLineOrderQuantity"
+      ]
+    }
+  },
+  {
+    "id": "PO-009",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "purchase_order_pricing_elements",
+    "user_input": "查询采购订单定价条件列表",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurOrdPricingElement?$select=PricingDocument,PricingDocumentItem,PricingProcedureCounter,PricingProcedureStep,PurchaseOrder,PurchaseOrderItem,ConditionType,ConditionRateValue,ConditionCurrency,PriceDetnExchangeRate&$top=5",
+          "key_fields": [
+            "PricingDocument",
+            "PricingDocumentItem",
+            "PricingProcedureCounter",
+            "PricingProcedureStep",
+            "PurchaseOrder",
+            "PurchaseOrderItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PricingDocument",
+        "PricingDocumentItem",
+        "PricingProcedureCounter"
+      ],
+      "required_fields": [
+        "PricingDocument",
+        "ConditionType",
+        "ConditionRateValue",
+        "ConditionCurrency"
+      ]
+    }
+  },
+  {
+    "id": "PO-010",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "purchase_order_account_assignments",
+    "user_input": "查询采购订单科目分配列表",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurOrdAccountAssignment?$select=AccountAssignmentNumber,PurchaseOrder,PurchaseOrderItem,IsDeleted,PurchaseOrderQuantityUnit,Quantity,MultipleAcctAssgmtDistrPercent,DocumentCurrency,PurgDocNetAmount,GLAccount,CostCenter&$top=5",
+          "key_fields": [
+            "AccountAssignmentNumber",
+            "PurchaseOrder",
+            "PurchaseOrderItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "AccountAssignmentNumber",
+        "PurchaseOrder",
+        "PurchaseOrderItem"
+      ],
+      "required_fields": [
+        "AccountAssignmentNumber",
+        "GLAccount",
+        "CostCenter"
+      ]
+    }
+  },
+  {
+    "id": "PO-011",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "purchase_order_item_notes",
+    "user_input": "查询采购订单行项目文本",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItemNote?$select=Language,PurchaseOrder,PurchaseOrderItem,TextObjectType,PlainLongText&$top=5",
+          "key_fields": [
+            "Language",
+            "PurchaseOrder",
+            "PurchaseOrderItem",
+            "TextObjectType"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Language",
+        "PurchaseOrder",
+        "PurchaseOrderItem"
+      ],
+      "required_fields": [
+        "Language",
+        "PlainLongText"
+      ]
+    }
+  },
+  {
+    "id": "PO-012",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "purchase_order_header_notes",
+    "user_input": "查询采购订单抬头文本",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderNote?$select=Language,PurchaseOrder,TextObjectType,PlainLongText&$top=5",
+          "key_fields": [
+            "Language",
+            "PurchaseOrder",
+            "TextObjectType"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Language",
+        "PurchaseOrder",
+        "TextObjectType"
+      ],
+      "required_fields": [
+        "Language",
+        "PlainLongText"
+      ]
+    }
+  },
+  {
+    "id": "PO-013",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "subcontracting_components",
+    "user_input": "查询采购订单委外组件明细",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_POSubcontractingComponent?$select=PurchaseOrder,PurchaseOrderItem,RecordType,ReservationItem,ScheduleLine,Material,BOMItemDescription,RequiredQuantity,BaseUnit,RequirementDate&$top=5",
+          "key_fields": [
+            "PurchaseOrder",
+            "PurchaseOrderItem",
+            "RecordType",
+            "ReservationItem",
+            "ScheduleLine"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseOrder",
+        "PurchaseOrderItem",
+        "RecordType"
+      ],
+      "required_fields": [
+        "PurchaseOrder",
+        "Material",
+        "RequiredQuantity"
+      ]
+    }
+  },
+  {
+    "id": "PO-014",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "supplier_purchase_order_items_by_plant",
+    "user_input": "查询供应商17300003在工厂1710的采购订单行项目",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem?$select=PurchaseOrder,PurchaseOrderItem,PurchasingDocumentDeletionCode,PurchaseOrderItemText,Plant,StorageLocation,MaterialGroup,PurchasingInfoRecord,SupplierMaterialNumber,OrderQuantity,Material&$filter=Plant eq '1710'&$top=100",
+          "key_fields": [
+            "PurchaseOrder",
+            "PurchaseOrderItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseOrder",
+        "PurchaseOrderItem"
+      ],
+      "required_fields": [
+        "PurchaseOrder",
+        "Plant",
+        "Material",
+        "OrderQuantity"
+      ]
+    }
+  },
+  {
+    "id": "PO-015",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "purchase_orders_by_material_rm14",
+    "user_input": "查询物料RM14的采购订单行项目",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem?$select=PurchaseOrder,PurchaseOrderItem,PurchasingDocumentDeletionCode,PurchaseOrderItemText,Plant,StorageLocation,MaterialGroup,PurchasingInfoRecord,SupplierMaterialNumber,OrderQuantity,Material&$filter=Material eq 'RM14'&$top=100",
+          "key_fields": [
+            "PurchaseOrder",
+            "PurchaseOrderItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseOrder",
+        "PurchaseOrderItem"
+      ],
+      "required_fields": [
+        "PurchaseOrder",
+        "Material",
+        "OrderQuantity"
+      ]
+    }
+  },
+  {
+    "id": "PO-016",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "purchase_orders_by_material_ns0001",
+    "user_input": "查询物料NS0001的采购订单行项目",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem?$select=PurchaseOrder,PurchaseOrderItem,PurchasingDocumentDeletionCode,PurchaseOrderItemText,Plant,StorageLocation,MaterialGroup,PurchasingInfoRecord,SupplierMaterialNumber,OrderQuantity,Material&$filter=Material eq 'NS0001'&$top=100",
+          "key_fields": [
+            "PurchaseOrder",
+            "PurchaseOrderItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseOrder",
+        "PurchaseOrderItem"
+      ],
+      "required_fields": [
+        "PurchaseOrder",
+        "Material",
+        "OrderQuantity"
+      ]
+    }
+  },
+  {
+    "id": "PO-017",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "purchase_order_items_by_plant",
+    "user_input": "查询工厂1710的采购订单行项目",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem?$select=PurchaseOrder,PurchaseOrderItem,PurchasingDocumentDeletionCode,PurchaseOrderItemText,Plant,StorageLocation,MaterialGroup,PurchasingInfoRecord,SupplierMaterialNumber,OrderQuantity,Material&$filter=Plant eq '1710'&$top=100",
+          "key_fields": [
+            "PurchaseOrder",
+            "PurchaseOrderItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseOrder",
+        "PurchaseOrderItem"
+      ],
+      "required_fields": [
+        "PurchaseOrder",
+        "Plant",
+        "Material"
+      ]
+    }
+  },
+  {
+    "id": "PO-018",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "goods_receipt_expected_items",
+    "user_input": "查询需要收货的采购订单行项目",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem?$select=PurchaseOrder,PurchaseOrderItem,PurchasingDocumentDeletionCode,PurchaseOrderItemText,Plant,StorageLocation,MaterialGroup,PurchasingInfoRecord,SupplierMaterialNumber,OrderQuantity,GoodsReceiptIsExpected&$filter=GoodsReceiptIsExpected eq true&$top=100",
+          "key_fields": [
+            "PurchaseOrder",
+            "PurchaseOrderItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseOrder",
+        "PurchaseOrderItem"
+      ],
+      "required_fields": [
+        "PurchaseOrder",
+        "GoodsReceiptIsExpected"
+      ]
+    }
+  },
+  {
+    "id": "PO-019",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "not_completely_delivered_items",
+    "user_input": "查询尚未完全交货的采购订单行项目",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem?$select=PurchaseOrder,PurchaseOrderItem,PurchasingDocumentDeletionCode,PurchaseOrderItemText,Plant,StorageLocation,MaterialGroup,PurchasingInfoRecord,SupplierMaterialNumber,OrderQuantity,IsCompletelyDelivered&$filter=IsCompletelyDelivered eq false&$top=100",
+          "key_fields": [
+            "PurchaseOrder",
+            "PurchaseOrderItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseOrder",
+        "PurchaseOrderItem"
+      ],
+      "required_fields": [
+        "PurchaseOrder",
+        "IsCompletelyDelivered"
+      ]
+    }
+  },
+  {
+    "id": "PO-020",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "not_finally_invoiced_items",
+    "user_input": "查询尚未最终开票的采购订单行项目",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem?$select=PurchaseOrder,PurchaseOrderItem,PurchasingDocumentDeletionCode,PurchaseOrderItemText,Plant,StorageLocation,MaterialGroup,PurchasingInfoRecord,SupplierMaterialNumber,OrderQuantity,IsFinallyInvoiced&$filter=IsFinallyInvoiced eq false&$top=100",
+          "key_fields": [
+            "PurchaseOrder",
+            "PurchaseOrderItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseOrder",
+        "PurchaseOrderItem"
+      ],
+      "required_fields": [
+        "PurchaseOrder",
+        "IsFinallyInvoiced"
+      ]
+    }
+  },
+  {
+    "id": "PO-021",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "purchase_order_item_quantities",
+    "user_input": "查询物料TG0011采购订单的订购数量",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem?$select=PurchaseOrder,PurchaseOrderItem,PurchasingDocumentDeletionCode,PurchaseOrderItemText,Plant,StorageLocation,MaterialGroup,PurchasingInfoRecord,SupplierMaterialNumber,OrderQuantity,PurchaseOrderQuantityUnit&$filter=Material eq 'TG0011'&$top=100",
+          "key_fields": [
+            "PurchaseOrder",
+            "PurchaseOrderItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseOrder",
+        "PurchaseOrderItem"
+      ],
+      "required_fields": [
+        "PurchaseOrder",
+        "OrderQuantity",
+        "PurchaseOrderQuantityUnit"
+      ]
+    }
+  },
+  {
+    "id": "PO-022",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "purchase_order_item_net_prices",
+    "user_input": "查询物料TG0011采购订单的净价",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem?$select=PurchaseOrder,PurchaseOrderItem,PurchasingDocumentDeletionCode,PurchaseOrderItemText,Plant,StorageLocation,MaterialGroup,PurchasingInfoRecord,SupplierMaterialNumber,OrderQuantity,NetPriceAmount,DocumentCurrency&$filter=Material eq 'TG0011'&$top=100",
+          "key_fields": [
+            "PurchaseOrder",
+            "PurchaseOrderItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseOrder",
+        "PurchaseOrderItem"
+      ],
+      "required_fields": [
+        "PurchaseOrder",
+        "NetPriceAmount",
+        "DocumentCurrency"
+      ]
+    }
+  },
+  {
+    "id": "PO-023",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "purchase_order_delivery_addresses",
+    "user_input": "查询采购订单行项目的交货地址信息",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem?$select=PurchaseOrder,PurchaseOrderItem,PurchasingDocumentDeletionCode,PurchaseOrderItemText,Plant,StorageLocation,MaterialGroup,PurchasingInfoRecord,SupplierMaterialNumber,OrderQuantity,DeliveryAddressID,DeliveryAddressCityName&$top=5",
+          "key_fields": [
+            "PurchaseOrder",
+            "PurchaseOrderItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseOrder",
+        "PurchaseOrderItem"
+      ],
+      "required_fields": [
+        "PurchaseOrder",
+        "DeliveryAddressID",
+        "DeliveryAddressCityName"
+      ]
+    }
+  },
+  {
+    "id": "PO-024",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "purchase_order_payment_terms",
+    "user_input": "查询采购订单付款条件列表",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder?$select=PurchaseOrder,CompanyCode,PurchaseOrderType,PurchasingDocumentDeletionCode,PurchasingProcessingStatus,CreatedByUser,CreationDate,LastChangeDateTime,Supplier,PurchaseOrderSubtype,PaymentTerms,NetPaymentDays&$top=5",
+          "key_fields": [
+            "PurchaseOrder"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseOrder"
+      ],
+      "required_fields": [
+        "PurchaseOrder",
+        "PaymentTerms",
+        "NetPaymentDays"
+      ]
+    }
+  },
+  {
+    "id": "PO-025",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "purchase_order_incoterms",
+    "user_input": "查询采购订单国际贸易条款列表",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder?$select=PurchaseOrder,CompanyCode,PurchaseOrderType,PurchasingDocumentDeletionCode,PurchasingProcessingStatus,CreatedByUser,CreationDate,LastChangeDateTime,Supplier,PurchaseOrderSubtype,IncotermsClassification,IncotermsLocation1&$top=5",
+          "key_fields": [
+            "PurchaseOrder"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseOrder"
+      ],
+      "required_fields": [
+        "PurchaseOrder",
+        "IncotermsClassification",
+        "IncotermsLocation1"
+      ]
+    }
+  },
+  {
+    "id": "PO-026",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "purchase_order_headers_by_company_code",
+    "user_input": "查询公司代码1710的采购订单",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder?$select=PurchaseOrder,CompanyCode,PurchaseOrderType,PurchasingDocumentDeletionCode,PurchasingProcessingStatus,CreatedByUser,CreationDate,LastChangeDateTime,Supplier,PurchaseOrderSubtype&$filter=CompanyCode eq '1710'&$top=100",
+          "key_fields": [
+            "PurchaseOrder"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseOrder"
+      ],
+      "required_fields": [
+        "PurchaseOrder",
+        "CompanyCode",
+        "Supplier"
+      ]
+    }
+  },
+  {
+    "id": "PO-027",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "purchase_order_headers_by_purchasing_org",
+    "user_input": "查询采购组织1710的采购订单",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder?$select=PurchaseOrder,CompanyCode,PurchaseOrderType,PurchasingDocumentDeletionCode,PurchasingProcessingStatus,CreatedByUser,CreationDate,LastChangeDateTime,Supplier,PurchaseOrderSubtype,PurchasingOrganization&$filter=PurchasingOrganization eq '1710'&$top=100",
+          "key_fields": [
+            "PurchaseOrder"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseOrder"
+      ],
+      "required_fields": [
+        "PurchaseOrder",
+        "PurchasingOrganization",
+        "Supplier"
+      ]
+    }
+  },
+  {
+    "id": "PO-028",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "purchase_order_types",
+    "user_input": "查询采购订单类型列表",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder?$select=PurchaseOrder,CompanyCode,PurchaseOrderType,PurchasingDocumentDeletionCode,PurchasingProcessingStatus,CreatedByUser,CreationDate,LastChangeDateTime,Supplier,PurchaseOrderSubtype&$top=5",
+          "key_fields": [
+            "PurchaseOrder"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseOrder"
+      ],
+      "required_fields": [
+        "PurchaseOrder",
+        "PurchaseOrderType"
+      ]
+    }
+  },
+  {
+    "id": "PO-029",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "schedule_lines_before_date",
+    "user_input": "查询交货日期早于2019.01.01的采购订单计划行",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine?$select=PurchasingDocument,PurchasingDocumentItem,ScheduleLine,DelivDateCategory,ScheduleLineDeliveryDate,PurchaseOrderQuantityUnit,ScheduleLineOrderQuantity,ScheduleLineDeliveryTime,SchedLineStscDeliveryDate,PurchaseRequisition&$filter=ScheduleLineDeliveryDate lt datetime'2019-01-01T00:00:00'&$top=100",
+          "key_fields": [
+            "PurchasingDocument",
+            "PurchasingDocumentItem",
+            "ScheduleLine"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchasingDocument",
+        "PurchasingDocumentItem",
+        "ScheduleLine"
+      ],
+      "required_fields": [
+        "PurchasingDocument",
+        "ScheduleLineDeliveryDate"
+      ]
+    }
+  },
+  {
+    "id": "PO-030",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "schedule_line_quantities",
+    "user_input": "查询采购订单计划行数量列表",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine?$select=PurchasingDocument,PurchasingDocumentItem,ScheduleLine,DelivDateCategory,ScheduleLineDeliveryDate,PurchaseOrderQuantityUnit,ScheduleLineOrderQuantity,ScheduleLineDeliveryTime,SchedLineStscDeliveryDate,PurchaseRequisition&$top=5",
+          "key_fields": [
+            "PurchasingDocument",
+            "PurchasingDocumentItem",
+            "ScheduleLine"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchasingDocument",
+        "PurchasingDocumentItem",
+        "ScheduleLine"
+      ],
+      "required_fields": [
+        "PurchasingDocument",
+        "ScheduleLineOrderQuantity",
+        "PurchaseOrderQuantityUnit"
+      ]
+    }
+  },
+  {
+    "id": "PO-031",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "purchase_order_created_after",
+    "user_input": "查询2018.01.01之后创建的采购订单",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder?$select=PurchaseOrder,CompanyCode,PurchaseOrderType,PurchasingDocumentDeletionCode,PurchasingProcessingStatus,CreatedByUser,CreationDate,LastChangeDateTime,Supplier,PurchaseOrderSubtype&$filter=CreationDate gt datetime'2018-01-01T00:00:00'&$top=100",
+          "key_fields": [
+            "PurchaseOrder"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseOrder"
+      ],
+      "required_fields": [
+        "PurchaseOrder",
+        "CreationDate"
+      ]
+    }
+  },
+  {
+    "id": "PO-032",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "purchase_order_deleted_indicator",
+    "user_input": "查询带删除标识的采购订单抬头",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder?$select=PurchaseOrder,CompanyCode,PurchaseOrderType,PurchasingDocumentDeletionCode,PurchasingProcessingStatus,CreatedByUser,CreationDate,LastChangeDateTime,Supplier,PurchaseOrderSubtype&$top=5",
+          "key_fields": [
+            "PurchaseOrder"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseOrder"
+      ],
+      "required_fields": [
+        "PurchaseOrder",
+        "PurchasingDocumentDeletionCode"
+      ]
+    }
+  },
+  {
+    "id": "PO-033",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "purchase_order_item_deleted_indicator",
+    "user_input": "查询采购订单行项目删除标识",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem?$select=PurchaseOrder,PurchaseOrderItem,PurchasingDocumentDeletionCode,PurchaseOrderItemText,Plant,StorageLocation,MaterialGroup,PurchasingInfoRecord,SupplierMaterialNumber,OrderQuantity&$top=5",
+          "key_fields": [
+            "PurchaseOrder",
+            "PurchaseOrderItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseOrder",
+        "PurchaseOrderItem"
+      ],
+      "required_fields": [
+        "PurchaseOrder",
+        "PurchasingDocumentDeletionCode"
+      ]
+    }
+  },
+  {
+    "id": "PO-034",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "purchase_order_supplier_address",
+    "user_input": "查询采购订单供应商地址信息",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder?$select=PurchaseOrder,CompanyCode,PurchaseOrderType,PurchasingDocumentDeletionCode,PurchasingProcessingStatus,CreatedByUser,CreationDate,LastChangeDateTime,Supplier,PurchaseOrderSubtype,AddressName,AddressCityName&$top=5",
+          "key_fields": [
+            "PurchaseOrder"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseOrder"
+      ],
+      "required_fields": [
+        "PurchaseOrder",
+        "AddressName",
+        "AddressCityName"
+      ]
+    }
+  },
+  {
+    "id": "PO-035",
+    "api": "API_PURCHASEORDER_PROCESS_SRV",
+    "scenario": "purchase_order_release_status",
+    "user_input": "查询采购订单审批释放状态",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder?$select=PurchaseOrder,CompanyCode,PurchaseOrderType,PurchasingDocumentDeletionCode,PurchasingProcessingStatus,CreatedByUser,CreationDate,LastChangeDateTime,Supplier,PurchaseOrderSubtype,ReleaseIsNotCompleted&$top=5",
+          "key_fields": [
+            "PurchaseOrder"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseOrder"
+      ],
+      "required_fields": [
+        "PurchaseOrder",
+        "ReleaseIsNotCompleted",
+        "PurchasingProcessingStatus"
+      ]
     }
   }
 ]

@@ -56,6 +56,7 @@ class Settings:
     llm_base_url: str = _get_setting("MINIMAX_BASE_URL")
     llm_model: str = _get_setting("MINIMAX_MODEL")
     llm_api_key: str = _get_setting("MINIMAX_API_KEY")
+    llm_profiles_path: str = _get_setting("LLM_PROFILES_PATH", default="env/llm_profiles.json")
     llm_verify_ssl: bool = _get_setting("LLM_VERIFY_SSL", default="true").lower() == "true"
     llm_timeout_ms: int = int(_get_setting("LLM_TIMEOUT_MS", default="45000"))
 

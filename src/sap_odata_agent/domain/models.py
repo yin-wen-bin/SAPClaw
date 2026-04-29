@@ -204,6 +204,7 @@ class AgentRequest:
     user_input: str
     conversation_id: str | None = None
     mode: ExecutionMode = ExecutionMode.READ_ONLY
+    llm_profile_id: str | None = None
     resolved_user_input: str | None = None
     feedback_hints: list[dict[str, str]] = field(default_factory=list)
     feedback_memories: list[dict[str, Any]] = field(default_factory=list)

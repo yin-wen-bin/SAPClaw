@@ -33,15 +33,17 @@ class AnthropicCompatibleMessagesClient:
         model: str,
         timeout_seconds: int = 30,
         verify_ssl: bool = True,
+        api_path: str = "/v1/messages",
     ) -> None:
         self.base_url = base_url.rstrip("/")
         self.api_key = api_key
         self.model = model
         self.timeout_seconds = timeout_seconds
         self.verify_ssl = verify_ssl
+        self.api_path = api_path if api_path.startswith("/") else f"/{api_path}"
 
     def complete_json(self, system_prompt: str, user_prompt: str, max_tokens: int = 900) -> str:
-        endpoint = f"{self.base_url}/v1/messages"
+        endpoint = f"{self.base_url}{self.api_path}"
         payload = {
             "model": self.model,
             "max_tokens": max_tokens,
@@ -68,6 +70,57 @@ class AnthropicCompatibleMessagesClient:
         content_items = payload.get("content", [])
         text_parts = [item.get("text", "") for item in content_items if item.get("type") == "text"]
         return "\n".join(part for part in text_parts if part).strip()
+
+
+class OpenAiCompatibleChatClient:
+    def __init__(
+        self,
+        base_url: str,
+        api_key: str,
+        model: str,
+        timeout_seconds: int = 30,
+        verify_ssl: bool = True,
+        api_path: str = "/v1/chat/completions",
+    ) -> None:
+        self.base_url = base_url.rstrip("/")
+        self.api_key = api_key
+        self.model = model
+        self.timeout_seconds = timeout_seconds
+        self.verify_ssl = verify_ssl
+        self.api_path = api_path if api_path.startswith("/") else f"/{api_path}"
+
+    def complete_json(self, system_prompt: str, user_prompt: str, max_tokens: int = 900) -> str:
+        endpoint = f"{self.base_url}{self.api_path}"
+        payload = {
+            "model": self.model,
+            "max_tokens": max_tokens,
+            "temperature": 0,
+            "messages": [
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt},
+            ],
+        }
+        request = urllib.request.Request(
+            endpoint,
+            data=json.dumps(payload).encode("utf-8"),
+            headers={
+                "authorization": f"Bearer {self.api_key}",
+                "content-type": "application/json",
+            },
+            method="POST",
+        )
+        handlers: list[urllib.request.BaseHandler] = []
+        if endpoint.lower().startswith("https://") and not self.verify_ssl:
+            handlers.append(urllib.request.HTTPSHandler(context=ssl._create_unverified_context()))
+        opener = urllib.request.build_opener(*handlers)
+        with opener.open(request, timeout=self.timeout_seconds) as response:
+            response_payload = json.loads(response.read().decode("utf-8"))
+        choices = response_payload.get("choices", [])
+        if not choices:
+            return ""
+        message = choices[0].get("message", {})
+        content = message.get("content", "")
+        return content if isinstance(content, str) else json.dumps(content, ensure_ascii=False)
 
 
 class RetrievalAwareIntentPlanner:

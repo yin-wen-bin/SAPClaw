@@ -223,6 +223,41 @@ class ApiCatalogProvider:
 
     @staticmethod
     def _pinned_filter_fields(service_name: str) -> list[str]:
+        if service_name == "API_BUSINESS_PARTNER":
+            return [
+                "A_BusinessPartner.BusinessPartner",
+                "A_BusinessPartner.Supplier",
+                "A_BusinessPartner.Customer",
+                "A_Supplier.Supplier",
+                "A_Supplier.SupplierName",
+                "A_Supplier.SupplierFullName",
+                "A_Supplier.PaymentIsBlockedForSupplier",
+                "A_Supplier.PostingIsBlocked",
+                "A_Supplier.PurchasingIsBlocked",
+                "A_SupplierCompany.Supplier",
+                "A_SupplierCompany.CompanyCode",
+                "A_SupplierCompany.PaymentTerms",
+                "A_AddressEmailAddress.EmailAddress",
+                "A_AddressPhoneNumber.PhoneNumber",
+                "A_AddressPhoneNumber.InternationalPhoneNumber",
+                "A_AddressFaxNumber.FaxNumber",
+                "A_AddressFaxNumber.InternationalFaxNumber",
+            ]
+        if service_name == "API_PRODUCT_SRV":
+            return [
+                "A_Product.Product",
+                "A_Product.ProductType",
+                "A_Product.BaseUnit",
+                "A_Product.CrossPlantStatus",
+                "A_Product.IsMarkedForDeletion",
+                "A_ProductDescription.Product",
+                "A_ProductDescription.Language",
+                "A_ProductDescription.ProductDescription",
+                "A_ProductPlant.Product",
+                "A_ProductPlant.Plant",
+                "A_ProductUnitsOfMeasure.Product",
+                "A_ProductUnitsOfMeasure.AlternativeUnit",
+            ]
         if service_name == "API_PURCHASEORDER_PROCESS_SRV":
             return [
                 "A_PurchaseOrderItem.IsFinallyInvoiced",

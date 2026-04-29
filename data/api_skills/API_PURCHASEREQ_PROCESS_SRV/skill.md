@@ -33,12 +33,16 @@ Keep `data/index/API_PURCHASEREQ_PROCESS_SRV` as the schema ground truth. This s
 - Purchase order questions belong to the purchase order API unless the user asks for requisition origin or PR conversion.
 - Account assignment, delivery address, and item text are item-level details.
 - Preserve purchase requisition numbers, item numbers, material IDs, plants, delivery dates, and account assignment values exactly.
+- `A_PurchaseRequisitionItem.IsClosed`, `GoodsReceiptIsExpected`, and `InvoiceIsExpected` are boolean fields and should use unquoted boolean literals such as `eq false` or `eq true`.
+- `A_PurchaseRequisitionItem.IsDeleted` and `A_PurchaseRequisitionItem.IsPurReqnBlocked` are string indicator fields. For deleted or blocked requisition items, use string indicator filters such as `IsDeleted eq 'X'` and `IsPurReqnBlocked eq 'X'`, not boolean `eq true`.
 
 ## Common Planning Patterns
 
 ### Requisition Items
 
 - Query `A_PurchaseRequisitionItem` for item-level PR questions by material, plant, delivery date, requester, status, or item number when available.
+- For deleted purchase requisition items, filter `A_PurchaseRequisitionItem.IsDeleted eq 'X'`.
+- For blocked purchase requisition items, filter `A_PurchaseRequisitionItem.IsPurReqnBlocked eq 'X'`.
 
 ### Requisition Header
 

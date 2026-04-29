@@ -9,7 +9,7 @@ Keep `data/index/API_BUSINESS_PARTNER` as the schema ground truth. This skill pr
 ## When To Use
 
 - The user asks for supplier, customer, or business partner master data.
-- The user asks for names, addresses, email, phone, bank data, tax numbers, roles, relationship data, supplier purchasing data, supplier company data, customer company data, or customer sales-area data.
+- The user asks for names, addresses, email, phone, fax, bank data, tax numbers, roles, relationship data, supplier purchasing data, supplier company data, customer company data, or customer sales-area data.
 - The user asks to identify or list suppliers or customers by master-data attributes.
 
 ## When Not To Use
@@ -25,6 +25,7 @@ Keep `data/index/API_BUSINESS_PARTNER` as the schema ground truth. This skill pr
 - `A_BusinessPartnerAddress`: business partner address records.
 - `A_AddressEmailAddress`: email records for a business partner address.
 - `A_AddressPhoneNumber`: phone records for a business partner address.
+- `A_AddressFaxNumber`: fax records for a business partner address.
 - `A_BusinessPartnerBank`: bank-account data.
 - `A_BusinessPartnerTaxNumber`: tax-number data.
 - `A_SupplierCompany`: supplier company-code view.
@@ -36,15 +37,21 @@ Keep `data/index/API_BUSINESS_PARTNER` as the schema ground truth. This skill pr
 
 - A business partner can have supplier and customer roles. Use the supplier entities for supplier-specific fields and customer entities for customer-specific fields.
 - Supplier and customer IDs are identifiers. Preserve leading zeros and user-specified values exactly.
-- Address, email, and phone records are address-level data. If a user asks for contact details, expect a plan that starts from the business partner or supplier/customer and then reads address communication entities.
+- `A_Supplier` contains supplier-specific names and block flags such as `SupplierName`, `SupplierFullName`, `PaymentIsBlockedForSupplier`, `PostingIsBlocked`, and `PurchasingIsBlocked`.
+- Address, email, phone, and fax records are address-level data. If a user asks for contact details for a specific supplier/customer/business partner, expect a plan that starts from the business partner or supplier/customer and then reads address communication entities.
+- If the user asks for a general email, phone, or fax list and does not ask for business partner enrichment, query the communication entity directly so the communication value fields remain in the final answer.
+- Phrases such as "business partner email list", "business partner phone list", or "business partner fax list" identify the master-data domain. They do not by themselves require returning the `BusinessPartner` ID unless the user explicitly asks for business partner number/ID/details.
 - Company-code and purchasing-organization data are role-specific extensions, not general business partner attributes.
+- Supplier company-code payment terms are maintained on `A_SupplierCompany.PaymentTerms`, not on the general `A_Supplier` or `A_BusinessPartner` entity.
 
 ## Common Planning Patterns
 
 ### Supplier Master Data
 
 - Query `A_Supplier` when the user provides a supplier ID or asks for supplier master details.
+- For supplier name plus freeze/block status, query `A_Supplier` directly and select `Supplier`, `SupplierName`, `SupplierFullName`, `PaymentIsBlockedForSupplier`, `PostingIsBlocked`, and `PurchasingIsBlocked`.
 - Use `A_SupplierCompany` for supplier company-code data.
+- For supplier company-code payment terms, query `A_SupplierCompany` and select `Supplier`, `CompanyCode`, `CompanyCodeName`, and `PaymentTerms`.
 - Use `A_SupplierPurchasingOrg` for supplier purchasing-organization data.
 
 ### Business Partner Address And Contact
@@ -52,6 +59,11 @@ Keep `data/index/API_BUSINESS_PARTNER` as the schema ground truth. This skill pr
 - Query `A_BusinessPartner` or `A_Supplier` to identify the business partner.
 - Query `A_BusinessPartnerAddress` for address records.
 - Query `A_AddressEmailAddress` or `A_AddressPhoneNumber` when email or phone details are requested.
+- Query `A_AddressFaxNumber` when fax details are requested.
+- For general communication lists:
+  - email list: query `A_AddressEmailAddress` directly and select `AddressID`, `Person`, `OrdinalNumber`, `EmailAddress`, and `IsDefaultEmailAddress`.
+  - phone list: query `A_AddressPhoneNumber` directly and select `AddressID`, `Person`, `OrdinalNumber`, `PhoneNumber`, `InternationalPhoneNumber`, and `IsDefaultPhoneNumber`.
+  - fax list: query `A_AddressFaxNumber` directly and select `AddressID`, `Person`, `OrdinalNumber`, `FaxNumber`, `InternationalFaxNumber`, and `IsDefaultFaxNumber`.
 
 ### Customer Master Data
 

@@ -5,9 +5,36 @@
     "scenario": "purchase_requisition_item_list",
     "user_input": "查询采购申请行项目列表",
     "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
-    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
-    "baseline": {"steps": [{"id": "items", "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionItem?$select=PurchaseRequisition,PurchaseRequisitionItem,Material,Plant,DeliveryDate&$top=5", "key_fields": ["PurchaseRequisition", "PurchaseRequisitionItem"]}]},
-    "comparison": {"type": "count_only", "keys": ["PurchaseRequisition", "PurchaseRequisitionItem"], "required_fields": ["PurchaseRequisition"]}
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "items",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionItem?$select=PurchaseRequisition,PurchaseRequisitionItem,Material,Plant,DeliveryDate&$top=5",
+          "key_fields": [
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem"
+      ],
+      "required_fields": [
+        "PurchaseRequisition"
+      ]
+    }
   },
   {
     "id": "PRQ-002",
@@ -15,9 +42,34 @@
     "scenario": "purchase_requisition_header_list",
     "user_input": "查询采购申请抬头列表",
     "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
-    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
-    "baseline": {"steps": [{"id": "headers", "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionHeader?$select=PurchaseRequisition,PurchaseRequisitionType,PurReqnDescription&$top=5", "key_fields": ["PurchaseRequisition"]}]},
-    "comparison": {"type": "count_only", "keys": ["PurchaseRequisition"], "required_fields": ["PurchaseRequisition"]}
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "headers",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionHeader?$select=PurchaseRequisition,PurchaseRequisitionType,PurReqnDescription&$top=5",
+          "key_fields": [
+            "PurchaseRequisition"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition"
+      ],
+      "required_fields": [
+        "PurchaseRequisition"
+      ]
+    }
   },
   {
     "id": "PRQ-003",
@@ -25,9 +77,36 @@
     "scenario": "purchase_requisition_by_material",
     "user_input": "查询物料TG0011的采购申请",
     "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
-    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
-    "baseline": {"steps": [{"id": "items", "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionItem?$select=PurchaseRequisition,PurchaseRequisitionItem,Material,Plant,DeliveryDate&$filter=Material eq 'TG0011'&$top=5", "key_fields": ["PurchaseRequisition", "PurchaseRequisitionItem"]}]},
-    "comparison": {"type": "count_only", "keys": ["PurchaseRequisition", "PurchaseRequisitionItem"], "required_fields": ["PurchaseRequisition"]}
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "items",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionItem?$select=PurchaseRequisition,PurchaseRequisitionItem,Material,Plant,DeliveryDate&$filter=Material eq 'TG0011'&$top=5",
+          "key_fields": [
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem"
+      ],
+      "required_fields": [
+        "PurchaseRequisition"
+      ]
+    }
   },
   {
     "id": "PRQ-004",
@@ -35,9 +114,38 @@
     "scenario": "purchase_requisition_account_assignment",
     "user_input": "查询采购申请的科目分配",
     "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
-    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
-    "baseline": {"steps": [{"id": "acct", "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurReqnAcctAssgmt?$select=PurchaseRequisition,PurchaseRequisitionItem,PurchaseReqnAcctAssgmtNumber,CostCenter,Quantity&$top=5", "key_fields": ["PurchaseRequisition", "PurchaseRequisitionItem", "PurchaseReqnAcctAssgmtNumber"]}]},
-    "comparison": {"type": "count_only", "keys": ["PurchaseRequisition", "PurchaseRequisitionItem", "PurchaseReqnAcctAssgmtNumber"], "required_fields": ["PurchaseRequisition"]}
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "acct",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurReqnAcctAssgmt?$select=PurchaseRequisition,PurchaseRequisitionItem,PurchaseReqnAcctAssgmtNumber,CostCenter,Quantity&$top=5",
+          "key_fields": [
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem",
+            "PurchaseReqnAcctAssgmtNumber"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem",
+        "PurchaseReqnAcctAssgmtNumber"
+      ],
+      "required_fields": [
+        "PurchaseRequisition"
+      ]
+    }
   },
   {
     "id": "PRQ-005",
@@ -45,8 +153,1199 @@
     "scenario": "purchase_requisition_delivery_address",
     "user_input": "查询所有采购申请的交货地址",
     "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
-    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
-    "baseline": {"steps": [{"id": "delivery", "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurReqAddDelivery?$select=PurchaseRequisition,PurchaseRequisitionItem,AddressID,Plant,CityName&$top=5", "key_fields": ["PurchaseRequisition", "PurchaseRequisitionItem"]}]},
-    "comparison": {"type": "count_only", "keys": ["PurchaseRequisition", "PurchaseRequisitionItem"], "required_fields": ["PurchaseRequisition"]}
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "delivery",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurReqAddDelivery?$select=PurchaseRequisition,PurchaseRequisitionItem,AddressID,Plant,CityName&$top=5",
+          "key_fields": [
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem"
+      ],
+      "required_fields": [
+        "PurchaseRequisition"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-006",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "purchase_requisition_by_number",
+    "user_input": "查询采购申请10000000的抬头信息",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionHeader?$select=PurchaseRequisition,PurchaseRequisitionType,PurReqnDescription,SourceDetermination,PurReqnDoOnlyValidation&$filter=PurchaseRequisition eq '10000000'&$top=5",
+          "key_fields": [
+            "PurchaseRequisition"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition"
+      ],
+      "required_fields": [
+        "PurchaseRequisition",
+        "PurchaseRequisitionType",
+        "PurReqnDescription"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-007",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "purchase_requisition_items_by_number",
+    "user_input": "查询采购申请10000000的行项目",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionItem?$select=PurchaseRequisition,PurchaseRequisitionItem,PurchasingDocument,PurchasingDocumentItem,PurReqnReleaseStatus,PurchaseRequisitionType,PurchasingDocumentSubtype,PurchasingDocumentItemCategory,PurchaseRequisitionItemText,AccountAssignmentCategory,Material,Plant,RequestedQuantity&$filter=PurchaseRequisition eq '10000000'&$top=5",
+          "key_fields": [
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem"
+      ],
+      "required_fields": [
+        "PurchaseRequisition",
+        "Material",
+        "Plant",
+        "RequestedQuantity"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-008",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "purchase_requisition_by_material_tg10",
+    "user_input": "查询物料TG10的采购申请",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionItem?$select=PurchaseRequisition,PurchaseRequisitionItem,PurchasingDocument,PurchasingDocumentItem,PurReqnReleaseStatus,PurchaseRequisitionType,PurchasingDocumentSubtype,PurchasingDocumentItemCategory,PurchaseRequisitionItemText,AccountAssignmentCategory,Material,Plant&$filter=Material eq 'TG10'&$top=100",
+          "key_fields": [
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem"
+      ],
+      "required_fields": [
+        "PurchaseRequisition",
+        "Material",
+        "Plant"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-009",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "purchase_requisition_by_plant",
+    "user_input": "查询工厂1710的采购申请行项目",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionItem?$select=PurchaseRequisition,PurchaseRequisitionItem,PurchasingDocument,PurchasingDocumentItem,PurReqnReleaseStatus,PurchaseRequisitionType,PurchasingDocumentSubtype,PurchasingDocumentItemCategory,PurchaseRequisitionItemText,AccountAssignmentCategory,Plant,Material&$filter=Plant eq '1710'&$top=100",
+          "key_fields": [
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem"
+      ],
+      "required_fields": [
+        "PurchaseRequisition",
+        "Plant",
+        "Material"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-010",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "purchase_requisition_delivery_after",
+    "user_input": "查询交货日期晚于2018.10.01的采购申请",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionItem?$select=PurchaseRequisition,PurchaseRequisitionItem,PurchasingDocument,PurchasingDocumentItem,PurReqnReleaseStatus,PurchaseRequisitionType,PurchasingDocumentSubtype,PurchasingDocumentItemCategory,PurchaseRequisitionItemText,AccountAssignmentCategory,DeliveryDate&$filter=DeliveryDate gt datetime'2018-10-01T00:00:00'&$top=100",
+          "key_fields": [
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem"
+      ],
+      "required_fields": [
+        "PurchaseRequisition",
+        "DeliveryDate"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-011",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "purchase_requisition_delivery_before",
+    "user_input": "查询交货日期早于2018.01.01的采购申请",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionItem?$select=PurchaseRequisition,PurchaseRequisitionItem,PurchasingDocument,PurchasingDocumentItem,PurReqnReleaseStatus,PurchaseRequisitionType,PurchasingDocumentSubtype,PurchasingDocumentItemCategory,PurchaseRequisitionItemText,AccountAssignmentCategory,DeliveryDate&$filter=DeliveryDate lt datetime'2018-01-01T00:00:00'&$top=100",
+          "key_fields": [
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem"
+      ],
+      "required_fields": [
+        "PurchaseRequisition",
+        "DeliveryDate"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-012",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "purchase_requisition_fixed_supplier",
+    "user_input": "查询固定供应商为17300003的采购申请",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionItem?$select=PurchaseRequisition,PurchaseRequisitionItem,PurchasingDocument,PurchasingDocumentItem,PurReqnReleaseStatus,PurchaseRequisitionType,PurchasingDocumentSubtype,PurchasingDocumentItemCategory,PurchaseRequisitionItemText,AccountAssignmentCategory,FixedSupplier&$filter=FixedSupplier eq '17300003'&$top=100",
+          "key_fields": [
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem"
+      ],
+      "required_fields": [
+        "PurchaseRequisition",
+        "FixedSupplier"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-013",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "open_purchase_requisition_items",
+    "user_input": "查询未关闭的采购申请行项目",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionItem?$select=PurchaseRequisition,PurchaseRequisitionItem,PurchasingDocument,PurchasingDocumentItem,PurReqnReleaseStatus,PurchaseRequisitionType,PurchasingDocumentSubtype,PurchasingDocumentItemCategory,PurchaseRequisitionItemText,AccountAssignmentCategory,IsClosed&$filter=IsClosed eq false&$top=100",
+          "key_fields": [
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem"
+      ],
+      "required_fields": [
+        "PurchaseRequisition",
+        "IsClosed"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-014",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "deleted_purchase_requisition_items",
+    "user_input": "查询已删除的采购申请行项目",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionItem?$select=PurchaseRequisition,PurchaseRequisitionItem,PurchasingDocument,PurchasingDocumentItem,PurReqnReleaseStatus,PurchaseRequisitionType,PurchasingDocumentSubtype,PurchasingDocumentItemCategory,PurchaseRequisitionItemText,AccountAssignmentCategory,IsDeleted&$filter=IsDeleted eq 'X'&$top=100",
+          "key_fields": [
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem"
+      ],
+      "required_fields": [
+        "PurchaseRequisition",
+        "IsDeleted"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-015",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "goods_receipt_expected_requisitions",
+    "user_input": "查询需要收货的采购申请行项目",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionItem?$select=PurchaseRequisition,PurchaseRequisitionItem,PurchasingDocument,PurchasingDocumentItem,PurReqnReleaseStatus,PurchaseRequisitionType,PurchasingDocumentSubtype,PurchasingDocumentItemCategory,PurchaseRequisitionItemText,AccountAssignmentCategory,GoodsReceiptIsExpected&$filter=GoodsReceiptIsExpected eq true&$top=100",
+          "key_fields": [
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem"
+      ],
+      "required_fields": [
+        "PurchaseRequisition",
+        "GoodsReceiptIsExpected"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-016",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "invoice_expected_requisitions",
+    "user_input": "查询需要发票校验的采购申请行项目",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionItem?$select=PurchaseRequisition,PurchaseRequisitionItem,PurchasingDocument,PurchasingDocumentItem,PurReqnReleaseStatus,PurchaseRequisitionType,PurchasingDocumentSubtype,PurchasingDocumentItemCategory,PurchaseRequisitionItemText,AccountAssignmentCategory,InvoiceIsExpected&$filter=InvoiceIsExpected eq true&$top=100",
+          "key_fields": [
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem"
+      ],
+      "required_fields": [
+        "PurchaseRequisition",
+        "InvoiceIsExpected"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-017",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "purchase_requisition_company_code",
+    "user_input": "查询采购申请的公司代码信息",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionItem?$select=PurchaseRequisition,PurchaseRequisitionItem,PurchasingDocument,PurchasingDocumentItem,PurReqnReleaseStatus,PurchaseRequisitionType,PurchasingDocumentSubtype,PurchasingDocumentItemCategory,PurchaseRequisitionItemText,AccountAssignmentCategory,CompanyCode&$top=5",
+          "key_fields": [
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem"
+      ],
+      "required_fields": [
+        "PurchaseRequisition",
+        "CompanyCode"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-018",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "purchase_requisition_purchasing_group",
+    "user_input": "查询采购申请的采购组信息",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionItem?$select=PurchaseRequisition,PurchaseRequisitionItem,PurchasingDocument,PurchasingDocumentItem,PurReqnReleaseStatus,PurchaseRequisitionType,PurchasingDocumentSubtype,PurchasingDocumentItemCategory,PurchaseRequisitionItemText,AccountAssignmentCategory,PurchasingGroup,PurchasingOrganization&$top=5",
+          "key_fields": [
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem"
+      ],
+      "required_fields": [
+        "PurchaseRequisition",
+        "PurchasingGroup",
+        "PurchasingOrganization"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-019",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "purchase_requisition_account_assignments_by_pr",
+    "user_input": "查询采购申请10000000的科目分配",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurReqnAcctAssgmt?$select=PurchaseReqnAcctAssgmtNumber,PurchaseRequisition,PurchaseRequisitionItem,CostCenter,MasterFixedAsset,ProjectNetwork,BaseUnit,Quantity,MultipleAcctAssgmtDistrPercent,PurReqnItemCurrency,GLAccount&$filter=PurchaseRequisition eq '10000000'&$top=5",
+          "key_fields": [
+            "PurchaseReqnAcctAssgmtNumber",
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseReqnAcctAssgmtNumber",
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem"
+      ],
+      "required_fields": [
+        "PurchaseReqnAcctAssgmtNumber",
+        "CostCenter",
+        "GLAccount"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-020",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "purchase_requisition_account_assignments",
+    "user_input": "查询采购申请科目分配列表",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurReqnAcctAssgmt?$select=PurchaseReqnAcctAssgmtNumber,PurchaseRequisition,PurchaseRequisitionItem,CostCenter,MasterFixedAsset,ProjectNetwork,BaseUnit,Quantity,MultipleAcctAssgmtDistrPercent,PurReqnItemCurrency,GLAccount&$top=5",
+          "key_fields": [
+            "PurchaseReqnAcctAssgmtNumber",
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseReqnAcctAssgmtNumber",
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem"
+      ],
+      "required_fields": [
+        "PurchaseReqnAcctAssgmtNumber",
+        "CostCenter",
+        "GLAccount"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-021",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "purchase_requisition_delivery_addresses_by_pr",
+    "user_input": "查询采购申请10000000的交货地址",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurReqAddDelivery?$select=PurchaseRequisition,PurchaseRequisitionItem,AddressID,Plant,AddressType,ManualDeliveryAddressID,ItemDeliveryAddressID,CareOfName,AdditionalStreetSuffixName,CorrespondenceLanguage,CityName&$filter=PurchaseRequisition eq '10000000'&$top=5",
+          "key_fields": [
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem"
+      ],
+      "required_fields": [
+        "PurchaseRequisition",
+        "AddressID",
+        "CityName"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-022",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "purchase_requisition_delivery_addresses",
+    "user_input": "查询采购申请交货地址列表",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurReqAddDelivery?$select=PurchaseRequisition,PurchaseRequisitionItem,AddressID,Plant,AddressType,ManualDeliveryAddressID,ItemDeliveryAddressID,CareOfName,AdditionalStreetSuffixName,CorrespondenceLanguage,CityName&$top=5",
+          "key_fields": [
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem"
+      ],
+      "required_fields": [
+        "PurchaseRequisition",
+        "AddressID",
+        "CityName"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-023",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "purchase_requisition_item_texts",
+    "user_input": "查询采购申请行项目文本",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseReqnItemText?$select=DocumentText,Language,PurchaseRequisition,PurchaseRequisitionItem,TechnicalObjectType,ArchObjectNumber,NoteDescription,FixedIndicator&$top=5",
+          "key_fields": [
+            "DocumentText",
+            "Language",
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem",
+            "TechnicalObjectType"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "DocumentText",
+        "Language",
+        "PurchaseRequisition"
+      ],
+      "required_fields": [
+        "DocumentText",
+        "Language"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-024",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "purchase_requisition_item_texts_by_pr",
+    "user_input": "查询采购申请10000000的行项目文本",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseReqnItemText?$select=DocumentText,Language,PurchaseRequisition,PurchaseRequisitionItem,TechnicalObjectType,ArchObjectNumber,NoteDescription,FixedIndicator&$filter=PurchaseRequisition eq '10000000'&$top=5",
+          "key_fields": [
+            "DocumentText",
+            "Language",
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem",
+            "TechnicalObjectType"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "DocumentText",
+        "Language",
+        "PurchaseRequisition"
+      ],
+      "required_fields": [
+        "DocumentText",
+        "Language"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-025",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "purchase_requisition_quantities",
+    "user_input": "查询采购申请行项目数量和单位",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionItem?$select=PurchaseRequisition,PurchaseRequisitionItem,PurchasingDocument,PurchasingDocumentItem,PurReqnReleaseStatus,PurchaseRequisitionType,PurchasingDocumentSubtype,PurchasingDocumentItemCategory,PurchaseRequisitionItemText,AccountAssignmentCategory,RequestedQuantity,BaseUnit&$top=5",
+          "key_fields": [
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem"
+      ],
+      "required_fields": [
+        "PurchaseRequisition",
+        "RequestedQuantity",
+        "BaseUnit"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-026",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "purchase_requisition_amounts",
+    "user_input": "查询采购申请行项目金额",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionItem?$select=PurchaseRequisition,PurchaseRequisitionItem,PurchasingDocument,PurchasingDocumentItem,PurReqnReleaseStatus,PurchaseRequisitionType,PurchasingDocumentSubtype,PurchasingDocumentItemCategory,PurchaseRequisitionItemText,AccountAssignmentCategory,ItemNetAmount,PurReqnItemCurrency&$top=5",
+          "key_fields": [
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem"
+      ],
+      "required_fields": [
+        "PurchaseRequisition",
+        "ItemNetAmount",
+        "PurReqnItemCurrency"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-027",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "purchase_requisition_material_group",
+    "user_input": "查询采购申请行项目物料组",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionItem?$select=PurchaseRequisition,PurchaseRequisitionItem,PurchasingDocument,PurchasingDocumentItem,PurReqnReleaseStatus,PurchaseRequisitionType,PurchasingDocumentSubtype,PurchasingDocumentItemCategory,PurchaseRequisitionItemText,AccountAssignmentCategory,MaterialGroup&$top=5",
+          "key_fields": [
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem"
+      ],
+      "required_fields": [
+        "PurchaseRequisition",
+        "MaterialGroup"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-028",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "purchase_requisition_source_determination",
+    "user_input": "查询采购申请抬头的货源确定设置",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionHeader?$select=PurchaseRequisition,PurchaseRequisitionType,PurReqnDescription,SourceDetermination,PurReqnDoOnlyValidation&$top=5",
+          "key_fields": [
+            "PurchaseRequisition"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition"
+      ],
+      "required_fields": [
+        "PurchaseRequisition",
+        "SourceDetermination"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-029",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "purchase_requisition_external_approval",
+    "user_input": "查询采购申请外部审批状态",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionItem?$select=PurchaseRequisition,PurchaseRequisitionItem,PurchasingDocument,PurchasingDocumentItem,PurReqnReleaseStatus,PurchaseRequisitionType,PurchasingDocumentSubtype,PurchasingDocumentItemCategory,PurchaseRequisitionItemText,AccountAssignmentCategory,ExternalApprovalStatus&$top=5",
+          "key_fields": [
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem"
+      ],
+      "required_fields": [
+        "PurchaseRequisition",
+        "ExternalApprovalStatus"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-030",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "blocked_purchase_requisitions",
+    "user_input": "查询被阻止的采购申请行项目",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionItem?$select=PurchaseRequisition,PurchaseRequisitionItem,PurchasingDocument,PurchasingDocumentItem,PurReqnReleaseStatus,PurchaseRequisitionType,PurchasingDocumentSubtype,PurchasingDocumentItemCategory,PurchaseRequisitionItemText,AccountAssignmentCategory,IsPurReqnBlocked&$filter=IsPurReqnBlocked eq 'X'&$top=100",
+          "key_fields": [
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem"
+      ],
+      "required_fields": [
+        "PurchaseRequisition",
+        "IsPurReqnBlocked"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-031",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "purchase_requisition_mrp_controller",
+    "user_input": "查询采购申请行项目MRP控制者",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionItem?$select=PurchaseRequisition,PurchaseRequisitionItem,PurchasingDocument,PurchasingDocumentItem,PurReqnReleaseStatus,PurchaseRequisitionType,PurchasingDocumentSubtype,PurchasingDocumentItemCategory,PurchaseRequisitionItemText,AccountAssignmentCategory,MRPController&$top=5",
+          "key_fields": [
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem"
+      ],
+      "required_fields": [
+        "PurchaseRequisition",
+        "MRPController"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-032",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "purchase_requisition_performance_period",
+    "user_input": "查询采购申请服务执行期间",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionItem?$select=PurchaseRequisition,PurchaseRequisitionItem,PurchasingDocument,PurchasingDocumentItem,PurReqnReleaseStatus,PurchaseRequisitionType,PurchasingDocumentSubtype,PurchasingDocumentItemCategory,PurchaseRequisitionItemText,AccountAssignmentCategory,PerformancePeriodStartDate,PerformancePeriodEndDate&$top=5",
+          "key_fields": [
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem"
+      ],
+      "required_fields": [
+        "PurchaseRequisition",
+        "PerformancePeriodStartDate",
+        "PerformancePeriodEndDate"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-033",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "purchase_requisition_supplier_and_material",
+    "user_input": "查询采购申请的固定供应商和物料信息",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionItem?$select=PurchaseRequisition,PurchaseRequisitionItem,PurchasingDocument,PurchasingDocumentItem,PurReqnReleaseStatus,PurchaseRequisitionType,PurchasingDocumentSubtype,PurchasingDocumentItemCategory,PurchaseRequisitionItemText,AccountAssignmentCategory,FixedSupplier,Material&$top=5",
+          "key_fields": [
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem"
+      ],
+      "required_fields": [
+        "PurchaseRequisition",
+        "FixedSupplier",
+        "Material"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-034",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "purchase_requisition_ordered_quantity",
+    "user_input": "查询采购申请已订购数量",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionItem?$select=PurchaseRequisition,PurchaseRequisitionItem,PurchasingDocument,PurchasingDocumentItem,PurReqnReleaseStatus,PurchaseRequisitionType,PurchasingDocumentSubtype,PurchasingDocumentItemCategory,PurchaseRequisitionItemText,AccountAssignmentCategory,OrderedQuantity,RequestedQuantity&$top=5",
+          "key_fields": [
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem"
+      ],
+      "required_fields": [
+        "PurchaseRequisition",
+        "OrderedQuantity",
+        "RequestedQuantity"
+      ]
+    }
+  },
+  {
+    "id": "PRQ-035",
+    "api": "API_PURCHASEREQ_PROCESS_SRV",
+    "scenario": "purchase_requisition_processing_status",
+    "user_input": "查询采购申请处理状态列表",
+    "expected_api": "API_PURCHASEREQ_PROCESS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionItem?$select=PurchaseRequisition,PurchaseRequisitionItem,PurchasingDocument,PurchasingDocumentItem,PurReqnReleaseStatus,PurchaseRequisitionType,PurchasingDocumentSubtype,PurchasingDocumentItemCategory,PurchaseRequisitionItemText,AccountAssignmentCategory,ProcessingStatus&$top=5",
+          "key_fields": [
+            "PurchaseRequisition",
+            "PurchaseRequisitionItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "PurchaseRequisition",
+        "PurchaseRequisitionItem"
+      ],
+      "required_fields": [
+        "PurchaseRequisition",
+        "ProcessingStatus",
+        "PurReqnReleaseStatus"
+      ]
+    }
   }
 ]

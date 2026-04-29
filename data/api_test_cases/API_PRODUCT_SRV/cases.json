@@ -5,9 +5,34 @@
     "scenario": "product_master_list",
     "user_input": "查询产品主数据列表",
     "expected_api": "API_PRODUCT_SRV",
-    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
-    "baseline": {"steps": [{"id": "products", "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_Product?$select=Product,ProductType,BaseUnit,CreationDate&$top=5", "key_fields": ["Product"]}]},
-    "comparison": {"type": "count_only", "keys": ["Product"], "required_fields": ["Product"]}
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "products",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_Product?$select=Product,ProductType,BaseUnit,CreationDate&$top=5",
+          "key_fields": [
+            "Product"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Product"
+      ],
+      "required_fields": [
+        "Product"
+      ]
+    }
   },
   {
     "id": "PROD-002",
@@ -15,9 +40,34 @@
     "scenario": "product_master_by_id",
     "user_input": "查询物料TG0011的产品主数据",
     "expected_api": "API_PRODUCT_SRV",
-    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
-    "baseline": {"steps": [{"id": "products", "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_Product?$select=Product,ProductType,BaseUnit,CreationDate&$filter=Product eq 'TG0011'&$top=5", "key_fields": ["Product"]}]},
-    "comparison": {"type": "key_set", "keys": ["Product"], "required_fields": ["Product"]}
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "products",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_Product?$select=Product,ProductType,BaseUnit,CreationDate&$filter=Product eq 'TG0011'&$top=5",
+          "key_fields": [
+            "Product"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_set",
+      "keys": [
+        "Product"
+      ],
+      "required_fields": [
+        "Product"
+      ]
+    }
   },
   {
     "id": "PROD-003",
@@ -25,9 +75,37 @@
     "scenario": "product_description",
     "user_input": "查询物料TG0011的产品描述",
     "expected_api": "API_PRODUCT_SRV",
-    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
-    "baseline": {"steps": [{"id": "descriptions", "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductDescription?$select=Product,Language,ProductDescription&$filter=Product eq 'TG0011'&$top=5", "key_fields": ["Product", "Language"]}]},
-    "comparison": {"type": "count_only", "keys": ["Product", "Language"], "required_fields": ["Product", "ProductDescription"]}
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "descriptions",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductDescription?$select=Product,Language,ProductDescription&$filter=Product eq 'TG0011'&$top=5",
+          "key_fields": [
+            "Product",
+            "Language"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Product",
+        "Language"
+      ],
+      "required_fields": [
+        "Product",
+        "ProductDescription"
+      ]
+    }
   },
   {
     "id": "PROD-004",
@@ -35,9 +113,37 @@
     "scenario": "product_plant_data",
     "user_input": "查询所有产品的工厂视图数据",
     "expected_api": "API_PRODUCT_SRV",
-    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
-    "baseline": {"steps": [{"id": "plant", "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductPlant?$select=Product,Plant,PurchasingGroup,CountryOfOrigin&$top=5", "key_fields": ["Product", "Plant"]}]},
-    "comparison": {"type": "count_only", "keys": ["Product", "Plant"], "required_fields": ["Product", "Plant"]}
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "plant",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductPlant?$select=Product,Plant,PurchasingGroup,CountryOfOrigin&$top=5",
+          "key_fields": [
+            "Product",
+            "Plant"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Product",
+        "Plant"
+      ],
+      "required_fields": [
+        "Product",
+        "Plant"
+      ]
+    }
   },
   {
     "id": "PROD-005",
@@ -45,8 +151,1190 @@
     "scenario": "product_units_of_measure",
     "user_input": "查询所有产品的计量单位",
     "expected_api": "API_PRODUCT_SRV",
-    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
-    "baseline": {"steps": [{"id": "uom", "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductUnitsOfMeasure?$select=Product,AlternativeUnit,QuantityNumerator,QuantityDenominator&$top=5", "key_fields": ["Product", "AlternativeUnit"]}]},
-    "comparison": {"type": "count_only", "keys": ["Product", "AlternativeUnit"], "required_fields": ["Product", "AlternativeUnit"]}
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "uom",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductUnitsOfMeasure?$select=Product,AlternativeUnit,QuantityNumerator,QuantityDenominator&$top=5",
+          "key_fields": [
+            "Product",
+            "AlternativeUnit"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Product",
+        "AlternativeUnit"
+      ],
+      "required_fields": [
+        "Product",
+        "AlternativeUnit"
+      ]
+    }
+  },
+  {
+    "id": "PROD-006",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_basic_by_id_11",
+    "user_input": "查询物料11的产品主数据",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_Product?$select=Product,ProductType,CrossPlantStatus,CrossPlantStatusValidityDate,CreationDate,CreatedByUser,LastChangeDate,LastChangedByUser,LastChangeDateTime,IsMarkedForDeletion,BaseUnit&$filter=Product eq '11'&$top=5",
+          "key_fields": [
+            "Product"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Product"
+      ],
+      "required_fields": [
+        "Product",
+        "ProductType",
+        "BaseUnit"
+      ]
+    }
+  },
+  {
+    "id": "PROD-007",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_type_fert",
+    "user_input": "查询成品物料主数据列表",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_Product?$select=Product,ProductType,CrossPlantStatus,CrossPlantStatusValidityDate,CreationDate,CreatedByUser,LastChangeDate,LastChangedByUser,LastChangeDateTime,IsMarkedForDeletion&$filter=ProductType eq 'FERT'&$top=5",
+          "key_fields": [
+            "Product"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Product"
+      ],
+      "required_fields": [
+        "Product",
+        "ProductType"
+      ]
+    }
+  },
+  {
+    "id": "PROD-008",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "products_base_unit_pc",
+    "user_input": "查询基本单位为PC的产品列表",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_Product?$select=Product,ProductType,CrossPlantStatus,CrossPlantStatusValidityDate,CreationDate,CreatedByUser,LastChangeDate,LastChangedByUser,LastChangeDateTime,IsMarkedForDeletion,BaseUnit&$filter=BaseUnit eq 'PC'&$top=5",
+          "key_fields": [
+            "Product"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Product"
+      ],
+      "required_fields": [
+        "Product",
+        "BaseUnit"
+      ]
+    }
+  },
+  {
+    "id": "PROD-009",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "products_created_after_date",
+    "user_input": "查询2018.01.01之后创建的产品",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_Product?$select=Product,ProductType,CrossPlantStatus,CrossPlantStatusValidityDate,CreationDate,CreatedByUser,LastChangeDate,LastChangedByUser,LastChangeDateTime,IsMarkedForDeletion&$filter=CreationDate gt datetime'2018-01-01T00:00:00'&$top=5",
+          "key_fields": [
+            "Product"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Product"
+      ],
+      "required_fields": [
+        "Product",
+        "CreationDate"
+      ]
+    }
+  },
+  {
+    "id": "PROD-010",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_group_overview",
+    "user_input": "查询产品组信息列表",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_Product?$select=Product,ProductType,CrossPlantStatus,CrossPlantStatusValidityDate,CreationDate,CreatedByUser,LastChangeDate,LastChangedByUser,LastChangeDateTime,IsMarkedForDeletion,ProductGroup&$top=5",
+          "key_fields": [
+            "Product"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Product"
+      ],
+      "required_fields": [
+        "Product",
+        "ProductGroup"
+      ]
+    }
+  },
+  {
+    "id": "PROD-011",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_plant_by_material",
+    "user_input": "查询物料TG0011的工厂视图",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductPlant?$select=Plant,Product,PurchasingGroup,CountryOfOrigin,RegionOfOrigin,ProductionInvtryManagedLoc,ProfileCode,ProfileValidityStartDate,AvailabilityCheckType,FiscalYearVariant&$filter=Product eq 'TG0011'&$top=5",
+          "key_fields": [
+            "Plant",
+            "Product"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Plant",
+        "Product"
+      ],
+      "required_fields": [
+        "Plant",
+        "PurchasingGroup"
+      ]
+    }
+  },
+  {
+    "id": "PROD-012",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_plant_by_plant",
+    "user_input": "查询工厂1710的产品工厂视图",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductPlant?$select=Plant,Product,PurchasingGroup,CountryOfOrigin,RegionOfOrigin,ProductionInvtryManagedLoc,ProfileCode,ProfileValidityStartDate,AvailabilityCheckType,FiscalYearVariant&$filter=Plant eq '1710'&$top=5",
+          "key_fields": [
+            "Plant",
+            "Product"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Plant",
+        "Product"
+      ],
+      "required_fields": [
+        "Plant",
+        "PurchasingGroup"
+      ]
+    }
+  },
+  {
+    "id": "PROD-013",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_mrp_area",
+    "user_input": "查询产品MRP区域数据",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductPlantMRPArea?$select=MRPArea,Plant,Product,MRPType,MRPResponsible,MRPGroup,ReorderThresholdQuantity,PlanningTimeFence,LotSizingProcedure,LotSizeRoundingQuantity&$top=5",
+          "key_fields": [
+            "MRPArea",
+            "Plant",
+            "Product"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "MRPArea",
+        "Plant",
+        "Product"
+      ],
+      "required_fields": [
+        "MRPArea",
+        "MRPType"
+      ]
+    }
+  },
+  {
+    "id": "PROD-014",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_procurement_view",
+    "user_input": "查询产品采购视图数据",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductProcurement?$select=Product,PurchaseOrderQuantityUnit,VarblPurOrdUnitStatus,PurchasingAcknProfile&$top=5",
+          "key_fields": [
+            "Product"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Product"
+      ],
+      "required_fields": [
+        "Product",
+        "PurchaseOrderQuantityUnit"
+      ]
+    }
+  },
+  {
+    "id": "PROD-015",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_plant_procurement",
+    "user_input": "查询产品工厂采购设置",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductPlantProcurement?$select=Plant,Product,IsAutoPurOrdCreationAllowed,IsSourceListRequired,SourceOfSupplyCategory,ItmIsRlvtToJITDelivSchedules&$top=5",
+          "key_fields": [
+            "Plant",
+            "Product"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Plant",
+        "Product"
+      ],
+      "required_fields": [
+        "Plant",
+        "IsAutoPurOrdCreationAllowed",
+        "IsSourceListRequired"
+      ]
+    }
+  },
+  {
+    "id": "PROD-016",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_storage_view",
+    "user_input": "查询产品存储视图数据",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductStorage?$select=Product,StorageConditions,TemperatureConditionInd,HazardousMaterialNumber,NmbrOfGROrGISlipsToPrintQty,LabelType,LabelForm,MinRemainingShelfLife,ExpirationDate,ShelfLifeExpirationDatePeriod&$top=5",
+          "key_fields": [
+            "Product"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Product"
+      ],
+      "required_fields": [
+        "Product",
+        "StorageConditions",
+        "TemperatureConditionInd"
+      ]
+    }
+  },
+  {
+    "id": "PROD-017",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_storage_location_view",
+    "user_input": "查询产品库存地点视图数据",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductStorageLocation?$select=Plant,Product,StorageLocation,WarehouseStorageBin,MaintenanceStatus,PhysicalInventoryBlockInd,CreationDate,IsMarkedForDeletion,DateOfLastPostedCntUnRstrcdStk,InventoryCorrectionFactor&$top=5",
+          "key_fields": [
+            "Plant",
+            "Product",
+            "StorageLocation"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Plant",
+        "Product",
+        "StorageLocation"
+      ],
+      "required_fields": [
+        "Plant",
+        "StorageLocation",
+        "WarehouseStorageBin"
+      ]
+    }
+  },
+  {
+    "id": "PROD-018",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_sales_view",
+    "user_input": "查询产品销售视图数据",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductSales?$select=Product,SalesStatus,SalesStatusValidityDate,TaxClassification,TransportationGroup&$top=5",
+          "key_fields": [
+            "Product"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Product"
+      ],
+      "required_fields": [
+        "Product",
+        "SalesStatus",
+        "TaxClassification"
+      ]
+    }
+  },
+  {
+    "id": "PROD-019",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_sales_delivery_view",
+    "user_input": "查询产品销售交货数据",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductSalesDelivery?$select=Product,ProductDistributionChnl,ProductSalesOrg,MinimumOrderQuantity,SupplyingPlant,PriceSpecificationProductGroup,AccountDetnProductGroup,DeliveryNoteProcMinDelivQty,ItemCategoryGroup,DeliveryQuantityUnit&$top=5",
+          "key_fields": [
+            "Product",
+            "ProductDistributionChnl",
+            "ProductSalesOrg"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Product",
+        "ProductDistributionChnl",
+        "ProductSalesOrg"
+      ],
+      "required_fields": [
+        "Product",
+        "ProductSalesOrg",
+        "ProductDistributionChnl"
+      ]
+    }
+  },
+  {
+    "id": "PROD-020",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_sales_tax",
+    "user_input": "查询产品销售税分类",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductSalesTax?$select=Country,Product,TaxCategory,TaxClassification&$top=5",
+          "key_fields": [
+            "Country",
+            "Product",
+            "TaxCategory",
+            "TaxClassification"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Country",
+        "Product",
+        "TaxCategory"
+      ],
+      "required_fields": [
+        "Country",
+        "TaxCategory",
+        "TaxClassification"
+      ]
+    }
+  },
+  {
+    "id": "PROD-021",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_valuation",
+    "user_input": "查询产品评估数据",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductValuation?$select=Product,ValuationArea,ValuationType,ValuationClass,PriceDeterminationControl,StandardPrice,PriceUnitQty,InventoryValuationProcedure,IsMarkedForDeletion,MovingAveragePrice&$top=5",
+          "key_fields": [
+            "Product",
+            "ValuationArea",
+            "ValuationType"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Product",
+        "ValuationArea",
+        "ValuationType"
+      ],
+      "required_fields": [
+        "Product",
+        "ValuationArea",
+        "ValuationClass"
+      ]
+    }
+  },
+  {
+    "id": "PROD-022",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_ml_account_prices",
+    "user_input": "查询产品物料分类账价格数据",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductMLAccount?$select=CurrencyRole,Product,ValuationArea,ValuationType,Currency,ProductPriceControl,PriceUnitQty,MovingAveragePrice,StandardPrice&$top=5",
+          "key_fields": [
+            "CurrencyRole",
+            "Product",
+            "ValuationArea",
+            "ValuationType"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "CurrencyRole",
+        "Product",
+        "ValuationArea"
+      ],
+      "required_fields": [
+        "CurrencyRole",
+        "MovingAveragePrice",
+        "StandardPrice"
+      ]
+    }
+  },
+  {
+    "id": "PROD-023",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_future_prices",
+    "user_input": "查询产品未来计划价格",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductMLPrices?$select=CurrencyRole,Product,ValuationArea,ValuationType,Currency,FuturePrice,FuturePriceValidityStartDate,PlannedPrice&$top=5",
+          "key_fields": [
+            "CurrencyRole",
+            "Product",
+            "ValuationArea",
+            "ValuationType"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "CurrencyRole",
+        "Product",
+        "ValuationArea"
+      ],
+      "required_fields": [
+        "CurrencyRole",
+        "FuturePrice",
+        "PlannedPrice"
+      ]
+    }
+  },
+  {
+    "id": "PROD-024",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_purchase_texts",
+    "user_input": "查询产品采购文本",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductPurchaseText?$select=Language,Product,LongText&$top=5",
+          "key_fields": [
+            "Language",
+            "Product"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Language",
+        "Product"
+      ],
+      "required_fields": [
+        "Language",
+        "LongText"
+      ]
+    }
+  },
+  {
+    "id": "PROD-025",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_basic_long_texts",
+    "user_input": "查询产品基本长文本",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductBasicText?$select=Language,Product,LongText&$top=5",
+          "key_fields": [
+            "Language",
+            "Product"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Language",
+        "Product"
+      ],
+      "required_fields": [
+        "Language",
+        "LongText"
+      ]
+    }
+  },
+  {
+    "id": "PROD-026",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_inspection_texts",
+    "user_input": "查询产品检验文本",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductInspectionText?$select=Language,Product,LongText&$top=5",
+          "key_fields": [
+            "Language",
+            "Product"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Language",
+        "Product"
+      ],
+      "required_fields": [
+        "Language",
+        "LongText"
+      ]
+    }
+  },
+  {
+    "id": "PROD-027",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_plant_texts",
+    "user_input": "查询产品工厂文本",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductPlantText?$select=Plant,Product,LongText&$top=5",
+          "key_fields": [
+            "Plant",
+            "Product"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Plant",
+        "Product"
+      ],
+      "required_fields": [
+        "Plant",
+        "LongText"
+      ]
+    }
+  },
+  {
+    "id": "PROD-028",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_supply_planning",
+    "user_input": "查询产品供应计划数据",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductSupplyPlanning?$select=Plant,Product,FixedLotSizeQuantity,MaximumLotSizeQuantity,MinimumLotSizeQuantity,LotSizeRoundingQuantity,LotSizingProcedure,MRPType,MRPResponsible,SafetyStockQuantity&$top=5",
+          "key_fields": [
+            "Plant",
+            "Product"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Plant",
+        "Product"
+      ],
+      "required_fields": [
+        "Plant",
+        "MRPType",
+        "SafetyStockQuantity"
+      ]
+    }
+  },
+  {
+    "id": "PROD-029",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_quality_management",
+    "user_input": "查询产品质量管理数据",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductQualityMgmt?$select=Product,QltyMgmtInProcmtIsActive&$top=5",
+          "key_fields": [
+            "Product"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Product"
+      ],
+      "required_fields": [
+        "Product",
+        "QltyMgmtInProcmtIsActive"
+      ]
+    }
+  },
+  {
+    "id": "PROD-030",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_plant_quality_management",
+    "user_input": "查询产品工厂质量管理数据",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductPlantQualityMgmt?$select=Plant,Product,MaximumStoragePeriod,QualityMgmtCtrlKey,MatlQualityAuthorizationGroup,HasPostToInspectionStock,InspLotDocumentationIsRequired,SuplrQualityManagementSystem,RecrrgInspIntervalTimeInDays,ProductQualityCertificateType&$top=5",
+          "key_fields": [
+            "Plant",
+            "Product"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Plant",
+        "Product"
+      ],
+      "required_fields": [
+        "Plant",
+        "QualityMgmtCtrlKey",
+        "MaximumStoragePeriod"
+      ]
+    }
+  },
+  {
+    "id": "PROD-031",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_costing_view",
+    "user_input": "查询产品工厂成本核算视图",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductPlantCosting?$select=Plant,Product,IsCoProduct,CostingLotSize,VarianceKey,BaseUnit,TaskListGroupCounter,TaskListGroup,TaskListType,CostingProductionVersion&$top=5",
+          "key_fields": [
+            "Plant",
+            "Product"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Plant",
+        "Product"
+      ],
+      "required_fields": [
+        "Plant",
+        "CostingLotSize",
+        "VarianceKey"
+      ]
+    }
+  },
+  {
+    "id": "PROD-032",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_forecasting_view",
+    "user_input": "查询产品预测视图数据",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductPlantForecasting?$select=Plant,Product,ConsumptionRefUsageEndDate,ConsumptionQtyMultiplier,ConsumptionReferenceProduct,ConsumptionReferencePlant&$top=5",
+          "key_fields": [
+            "Plant",
+            "Product"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Plant",
+        "Product"
+      ],
+      "required_fields": [
+        "Plant",
+        "ConsumptionQtyMultiplier"
+      ]
+    }
+  },
+  {
+    "id": "PROD-033",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_international_trade",
+    "user_input": "查询产品国际贸易数据",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductPlantIntlTrd?$select=Plant,Product,CountryOfOrigin,RegionOfOrigin,ConsumptionTaxCtrlCode,ProductCASNumber,ProdIntlTradeClassification,ExportAndImportProductGroup&$top=5",
+          "key_fields": [
+            "Plant",
+            "Product"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Plant",
+        "Product"
+      ],
+      "required_fields": [
+        "Plant",
+        "CountryOfOrigin",
+        "ProdIntlTradeClassification"
+      ]
+    }
+  },
+  {
+    "id": "PROD-034",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_units_conversion",
+    "user_input": "查询产品替代计量单位换算",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductUnitsOfMeasure?$select=AlternativeUnit,Product,QuantityNumerator,QuantityDenominator,MaterialVolume,VolumeUnit,GrossWeight,WeightUnit,GlobalTradeItemNumber,GlobalTradeItemNumberCategory&$top=5",
+          "key_fields": [
+            "AlternativeUnit",
+            "Product"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "AlternativeUnit",
+        "Product"
+      ],
+      "required_fields": [
+        "AlternativeUnit",
+        "QuantityNumerator"
+      ]
+    }
+  },
+  {
+    "id": "PROD-035",
+    "api": "API_PRODUCT_SRV",
+    "scenario": "product_work_scheduling",
+    "user_input": "查询产品工作计划数据",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "baseline",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_ProductWorkScheduling?$select=Plant,Product,MaterialBaseQuantity,UnlimitedOverDelivIsAllowed,OverDelivToleranceLimit,UnderDelivToleranceLimit,ProductionInvtryManagedLoc,BaseUnit,ProductProcessingTime,ProductionSupervisor&$top=5",
+          "key_fields": [
+            "Plant",
+            "Product"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "count_only",
+      "keys": [
+        "Plant",
+        "Product"
+      ],
+      "required_fields": [
+        "Plant",
+        "ProductProcessingTime",
+        "ProductionSupervisor"
+      ]
+    }
   }
 ]
