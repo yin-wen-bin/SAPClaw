@@ -33,6 +33,8 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
         schema_context: dict[str, Any],
     ) -> QueryPlan:
         service_name = str(schema_context.get("service_name") or self._selected_service(route_decision))
+        if self._requires_purchase_order_history_clarification(request, service_name):
+            return self._purchase_order_history_clarification_plan(service_name)
         if not self.enabled or self.llm_client is None:
             return self._unavailable_plan_for_service(service_name, "llm_unavailable")
         try:
@@ -139,6 +141,7 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             "9. For function imports listed in schema_context.function_imports, set plan_kind=function_import and put inputs in function_parameters using the exact parameter names and value_type from schema_context.\n"
             "10. Do not put function import inputs in filters and do not set top/select/order_by for function_import plans.\n\n"
             "11. If schema_context.api_skill identifies a more specific entity for the user's business meaning, prefer that entity over a less specific similarly named field. Do not conclude 'not maintained' from a blank less specific field until the skill-preferred entity has been checked.\n\n"
+            "12. Treat document history requests as ambiguous unless schema_context exposes a true history, movement, receipt, invoice, or change-history entity. Do not answer a history request by returning only pricing, notes, account assignments, or other detail child entities.\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )
@@ -146,6 +149,60 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
     @staticmethod
     def _selected_service(route_decision: ApiRouteDecision) -> str:
         return route_decision.selected_apis[0].service_name if route_decision.selected_apis else ""
+
+    @staticmethod
+    def _requires_purchase_order_history_clarification(request: AgentRequest, service_name: str) -> bool:
+        if service_name != "API_PURCHASEORDER_PROCESS_SRV":
+            return False
+        text = f"{request.resolved_user_input or ''} {request.user_input or ''}".lower()
+        if not any(term in text for term in ("\u91c7\u8d2d\u8ba2\u5355", "purchase order", "po ")):
+            return False
+        if not any(term in text for term in ("\u5386\u53f2\u8bb0\u5f55", "\u5386\u53f2", "history")):
+            return False
+        disambiguating_terms = (
+            "\u5b9a\u4ef7",  # 定价
+            "\u4ef7\u683c\u6761\u4ef6",  # 价格条件
+            "\u6536\u8d27",  # 收货
+            "\u53d1\u7968",  # 发票
+            "\u7269\u6599\u51ed\u8bc1",  # 物料凭证
+            "\u53d8\u66f4",  # 变更
+            "pricing",
+            "price condition",
+            "goods receipt",
+            "invoice",
+            "material document",
+            "change",
+        )
+        return not any(term in text for term in disambiguating_terms)
+
+    @staticmethod
+    def _purchase_order_history_clarification_plan(service_name: str) -> QueryPlan:
+        question = (
+            "\u8bf7\u786e\u8ba4\u4f60\u8981\u67e5\u7684\u201c\u91c7\u8d2d\u8ba2\u5355\u5386\u53f2\u8bb0\u5f55\u201d\u662f\u54ea\u4e00\u7c7b\uff1a"
+            "\u91c7\u8d2d\u8ba2\u5355\u7ed3\u6784\u660e\u7ec6\u3001\u5b9a\u4ef7\u6761\u4ef6\u3001\u6536\u8d27\u5386\u53f2\u3001"
+            "\u53d1\u7968\u5386\u53f2\u3001\u7269\u6599\u51ed\u8bc1\u8fd8\u662f\u53d8\u66f4\u5386\u53f2\uff1f"
+        )
+        return QueryPlan(
+            service_name=service_name,
+            entity_set="",
+            plan_kind="clarification",
+            needs_clarification=True,
+            clarification_question=question,
+            clarification_options=[
+                "\u91c7\u8d2d\u8ba2\u5355\u7ed3\u6784\u660e\u7ec6",
+                "\u5b9a\u4ef7\u6761\u4ef6",
+                "\u6536\u8d27\u5386\u53f2",
+                "\u53d1\u7968\u5386\u53f2",
+                "\u7269\u6599\u51ed\u8bc1",
+                "\u53d8\u66f4\u5386\u53f2",
+            ],
+            response_directive=question,
+            rationale="Purchase order history is ambiguous for API_PURCHASEORDER_PROCESS_SRV.",
+            planner_diagnostics={
+                "planner_type": "llm_api_specific_planner",
+                "clarification_reason": "ambiguous_purchase_order_history",
+            },
+        )
 
     def _unavailable_plan_for_service(self, service_name: str, reason: str) -> QueryPlan:
         plan = self._unavailable_plan(reason)

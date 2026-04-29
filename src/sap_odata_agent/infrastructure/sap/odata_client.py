@@ -579,7 +579,24 @@ class MultiStepSapExecutor:
         if final_data is None:
             return attempts, None
 
-        merged_data = dict(final_data)
+        structured_step_results = self._build_step_results(plan, attempts)
+        primary_step_id = self._choose_primary_step_id(plan, structured_step_results)
+        primary_step = structured_step_results.get(primary_step_id, {}) if primary_step_id else {}
+        primary_data = primary_step.get("data") if isinstance(primary_step.get("data"), dict) else final_data
+        merged_data = dict(primary_data or final_data)
+        merged_data["primary_step_id"] = primary_step_id
+        merged_data["primary_entity_set"] = primary_step.get("entity_set") or ""
+        merged_data["primary_results"] = merged_data.get("results", [])
+        merged_data["final_step_id"] = attempts[-1].step_id if attempts else None
+        merged_data["final_step_entity_set"] = next(
+            (step.entity_set for step in plan.steps if step.step_id == (attempts[-1].step_id if attempts else None)),
+            "",
+        )
+        merged_data["step_results"] = structured_step_results
+        merged_data["result_count_by_step"] = {
+            step_id: step_data.get("result_count")
+            for step_id, step_data in structured_step_results.items()
+        }
         merged_data["execution_trace"] = [
             {
                 "step_id": attempt.step_id,
@@ -598,6 +615,10 @@ class MultiStepSapExecutor:
             "anchor_value": plan.anchor_value,
             "target_field": plan.target_field,
             "target_entity_set": plan.target_entity_set or plan.entity_set,
+            "primary_step_id": primary_step_id,
+            "primary_entity_set": primary_step.get("entity_set") or "",
+            "final_step_id": attempts[-1].step_id if attempts else None,
+            "final_step_entity_set": merged_data["final_step_entity_set"],
         }
         return attempts, merged_data
 
@@ -644,6 +665,39 @@ class MultiStepSapExecutor:
                 }
             )
         return summaries
+
+    @staticmethod
+    def _build_step_results(plan: QueryPlan, attempts: list[ExecutionAttempt]) -> dict[str, dict]:
+        step_by_id = {step.step_id: step for step in plan.steps}
+        results: dict[str, dict] = {}
+        for attempt in attempts:
+            if not attempt.step_id:
+                continue
+            step = step_by_id.get(attempt.step_id)
+            preview = attempt.response_preview or {}
+            results[attempt.step_id] = {
+                "step_id": attempt.step_id,
+                "entity_set": step.entity_set if step else "",
+                "select_fields": list(step.select_fields) if step else [],
+                "result_count": preview.get("result_count"),
+                "returned_count": preview.get("returned_count"),
+                "displayed_count": preview.get("displayed_count"),
+                "results": preview.get("results", []) if isinstance(preview.get("results"), list) else [],
+                "pagination": preview.get("pagination", {}),
+                "data": preview,
+            }
+        return results
+
+    @staticmethod
+    def _choose_primary_step_id(plan: QueryPlan, step_results: dict[str, dict]) -> str:
+        target_entity = plan.target_entity_set or plan.entity_set
+        if target_entity:
+            for step in plan.steps:
+                if step.entity_set == target_entity and step.step_id in step_results:
+                    return step.step_id
+        if plan.steps and plan.steps[-1].step_id in step_results:
+            return plan.steps[-1].step_id
+        return next(iter(step_results.keys()), "")
 
 
 class SapExecutorStub:

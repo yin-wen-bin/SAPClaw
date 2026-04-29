@@ -1,14 +1,25 @@
 import json
 
-from sap_odata_agent.domain.models import AgentRequest, CardinalityPolicy, QueryConstraints, QueryPlan, QueryShape
+from sap_odata_agent.domain.models import (
+    AgentRequest,
+    CardinalityPolicy,
+    ExecutionStep,
+    QueryConstraints,
+    QueryPlan,
+    QueryShape,
+)
 from sap_odata_agent.infrastructure.llm.result_presenter import LlmResultPresenter
 
 
 class StubClient:
     def __init__(self, response_text: str) -> None:
         self.response_text = response_text
+        self.system_prompt = ""
+        self.user_prompt = ""
 
     def complete_json(self, system_prompt: str, user_prompt: str, max_tokens: int = 900) -> str:
+        self.system_prompt = system_prompt
+        self.user_prompt = user_prompt
         return self.response_text
 
 
@@ -73,6 +84,76 @@ def test_result_presenter_uses_table_when_llm_requests_it() -> None:
     assert presentation.kind == "table"
     assert presentation.columns == ["Supplier", "SupplierName", "PaymentTerms"]
     assert len(presentation.rows) == 2
+
+
+def test_result_presenter_prompt_includes_multi_step_results() -> None:
+    client = StubClient(
+        json.dumps(
+            {
+                "kind": "table",
+                "title": "\u67e5\u8be2\u7ed3\u679c",
+                "text": "\u67e5\u8be2\u7ed3\u679c\u603b\u51711\u6761\uff0c\u5f53\u524d\u663e\u793a\u524d1\u6761",
+                "columns": ["PurchaseOrder", "Supplier"],
+                "rows": [{"PurchaseOrder": "4500001513", "Supplier": "17300003"}],
+            }
+        )
+    )
+    presenter = LlmResultPresenter(llm_client=client)
+    plan = QueryPlan(
+        service_name="API_PURCHASEORDER_PROCESS_SRV",
+        entity_set="A_PurchaseOrder",
+        plan_kind="multi_step",
+        select_fields=["PurchaseOrder", "Supplier"],
+        response_summary_fields=["PurchaseOrder", "Supplier"],
+        target_entity_set="A_PurchaseOrder",
+        steps=[
+            ExecutionStep(
+                step_id="step_header",
+                entity_set="A_PurchaseOrder",
+                select_fields=["PurchaseOrder", "Supplier"],
+            ),
+            ExecutionStep(
+                step_id="step_pricing",
+                entity_set="A_PurOrdPricingElement",
+                select_fields=["PurchaseOrder", "PurchaseOrderItem", "ConditionType"],
+            ),
+        ],
+    )
+    data = {
+        "result_count": 1,
+        "results": [{"PurchaseOrder": "4500001513", "Supplier": "17300003"}],
+        "primary_entity_set": "A_PurchaseOrder",
+        "final_step_entity_set": "A_PurOrdPricingElement",
+        "source_step_summaries": [
+            {"step_id": "step_header", "entity_set": "A_PurchaseOrder", "result_count": 1},
+            {"step_id": "step_pricing", "entity_set": "A_PurOrdPricingElement", "result_count": 2},
+        ],
+        "step_results": {
+            "step_header": {
+                "entity_set": "A_PurchaseOrder",
+                "result_count": 1,
+                "results": [{"PurchaseOrder": "4500001513", "Supplier": "17300003"}],
+            },
+            "step_pricing": {
+                "entity_set": "A_PurOrdPricingElement",
+                "result_count": 2,
+                "results": [{"PurchaseOrder": "4500001513", "ConditionType": "PBXX"}],
+            },
+        },
+    }
+
+    presenter.present(
+        AgentRequest(
+            user_input="\u67e5\u8be2\u91c7\u8d2d\u8ba2\u53554500001513\u7684\u91c7\u8d2d\u8ba2\u5355\u5386\u53f2\u8bb0\u5f55"
+        ),
+        plan,
+        data,
+    )
+
+    assert '"step_results"' in client.user_prompt
+    assert '"step_header"' in client.user_prompt
+    assert '"step_pricing"' in client.user_prompt
+    assert "Do not present only the final step" in client.user_prompt
 
 
 def test_result_presenter_filters_target_object_rows_and_recovers_from_empty_llm_rows() -> None:

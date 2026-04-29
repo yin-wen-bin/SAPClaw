@@ -123,6 +123,7 @@ class LlmResultVerifierAgent:
                 "results": data.get("results", [])[:20] if isinstance(data.get("results"), list) else [],
                 "lookup_context": data.get("lookup_context"),
                 "execution_trace": data.get("execution_trace"),
+                "step_results": LlmResultVerifierAgent._summarize_step_results(data.get("step_results")),
             },
         }
         return (
@@ -142,6 +143,7 @@ class LlmResultVerifierAgent:
             "12. Do not require enrichment identifiers that the user did not explicitly ask for. For address communication list questions, address-level keys plus the requested email, phone, or fax fields are sufficient unless the user explicitly asks to include business partner details.\n\n"
             "13. A business object name in the question can identify the domain or entity type. Do not treat words like business partner, supplier, customer, material, or purchase order as mandatory output fields unless the user explicitly asks for the ID/number/code or those fields are required to distinguish returned rows.\n\n"
             "14. When api_skill says a similarly named field is not sufficient for the user's business level, block a successful response that uses that insufficient field as negative evidence and provide repair_hints for the more specific entity/field combination.\n\n"
+            "15. Do not accept pricing elements, notes, account assignments, or other detail child entities as the main answer for a document history request unless the user explicitly asked for that detail type.\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )
@@ -153,6 +155,9 @@ class LlmResultVerifierAgent:
         data: dict[str, Any],
         schema_context_summary: dict[str, Any],
     ) -> dict[str, Any] | None:
+        po_history_result = LlmResultVerifierAgent._purchase_order_history_static_check(request, plan, data)
+        if po_history_result is not None:
+            return po_history_result
         if not LlmResultVerifierAgent._looks_like_product_tax_classification_request(request):
             return None
         if plan.service_name != "API_PRODUCT_SRV" or plan.entity_set != "A_ProductSales":
@@ -217,11 +222,123 @@ class LlmResultVerifierAgent:
         }
 
     @staticmethod
+    def _purchase_order_history_static_check(
+        request: AgentRequest,
+        plan: QueryPlan,
+        data: dict[str, Any],
+    ) -> dict[str, Any] | None:
+        if not LlmResultVerifierAgent._looks_like_purchase_order_history_request(request):
+            return None
+        if plan.service_name != "API_PURCHASEORDER_PROCESS_SRV":
+            return None
+        if LlmResultVerifierAgent._explicitly_asks_for_pricing(request):
+            return None
+        step_results = data.get("step_results") if isinstance(data.get("step_results"), dict) else {}
+        final_entity = str(data.get("final_step_entity_set") or "")
+        primary_entity = str(data.get("primary_entity_set") or plan.entity_set or "")
+        if not final_entity:
+            execution_trace = data.get("execution_trace") if isinstance(data.get("execution_trace"), list) else []
+            if execution_trace and isinstance(execution_trace[-1], dict):
+                final_entity = str(execution_trace[-1].get("entity_set") or "")
+        records = data.get("results") if isinstance(data.get("results"), list) else []
+        pricing_only = (
+            primary_entity == "A_PurOrdPricingElement"
+            or (final_entity == "A_PurOrdPricingElement" and not step_results)
+            or LlmResultVerifierAgent._records_look_like_pricing_elements(records)
+        )
+        if not pricing_only:
+            return None
+        return {
+            "passed": False,
+            "issues": [
+                {
+                    "code": "wrong_business_level_for_purchase_order_history",
+                    "message": (
+                        "The user asked for purchase order history, but the executed result is pricing "
+                        "condition data from A_PurOrdPricingElement. Pricing elements are not purchase order "
+                        "history unless the user explicitly asks for pricing."
+                    ),
+                    "blocking": True,
+                }
+            ],
+            "repair_hints": {
+                "reason": "Do not answer purchase order history with pricing elements.",
+                "preferred_plan_kind": "clarification",
+                "clarification_question": (
+                    "Please clarify whether you want purchase order structure/details, pricing conditions, "
+                    "goods receipt history, invoice receipt history, material documents, or change history."
+                ),
+                "rejected_entity_set": "A_PurOrdPricingElement",
+            },
+            "source": "skill_grounded_result_verifier",
+        }
+
+    @staticmethod
     def _looks_like_product_tax_classification_request(request: AgentRequest) -> bool:
         text = f"{request.resolved_user_input or ''} {request.user_input or ''}".lower()
         return ("税分类" in text or "税收分类" in text or "tax classification" in text) and (
             "物料" in text or "产品" in text or "material" in text or "product" in text
         )
+
+    @staticmethod
+    def _looks_like_purchase_order_history_request(request: AgentRequest) -> bool:
+        text = f"{request.resolved_user_input or ''} {request.user_input or ''}".lower()
+        purchase_order_terms = (
+            "\u91c7\u8d2d\u8ba2\u5355",  # 采购订单
+            "purchase order",
+            "po ",
+        )
+        history_terms = (
+            "\u5386\u53f2\u8bb0\u5f55",  # 历史记录
+            "\u5386\u53f2",  # 历史
+            "history",
+        )
+        return any(term in text for term in purchase_order_terms) and any(term in text for term in history_terms)
+
+    @staticmethod
+    def _explicitly_asks_for_pricing(request: AgentRequest) -> bool:
+        text = f"{request.resolved_user_input or ''} {request.user_input or ''}".lower()
+        pricing_terms = (
+            "\u5b9a\u4ef7",  # 定价
+            "\u4ef7\u683c\u6761\u4ef6",  # 价格条件
+            "pricing",
+            "price condition",
+            "condition type",
+        )
+        return any(term in text for term in pricing_terms)
+
+    @staticmethod
+    def _records_look_like_pricing_elements(records: Any) -> bool:
+        if not isinstance(records, list) or not records:
+            return False
+        pricing_fields = {
+            "ConditionType",
+            "ConditionRateValue",
+            "ConditionCurrency",
+            "PricingProcedureStep",
+            "PricingProcedureCounter",
+            "PricingDocument",
+        }
+        dict_records = [record for record in records if isinstance(record, dict)]
+        if not dict_records:
+            return False
+        return all(pricing_fields.intersection(record.keys()) for record in dict_records)
+
+    @staticmethod
+    def _summarize_step_results(step_results: Any) -> dict[str, Any]:
+        if not isinstance(step_results, dict):
+            return {}
+        summary: dict[str, Any] = {}
+        for step_id, value in step_results.items():
+            if not isinstance(value, dict):
+                continue
+            summary[str(step_id)] = {
+                "entity_set": value.get("entity_set"),
+                "result_count": value.get("result_count"),
+                "displayed_count": value.get("displayed_count"),
+                "sample_results": value.get("results", [])[:3] if isinstance(value.get("results"), list) else [],
+            }
+        return summary
 
     @staticmethod
     def _has_available_fields(

@@ -468,7 +468,8 @@ class LlmDynamicPathPlanner:
             "8. Distinguish requirement/expected flags from completion/open status fields; do not treat similarly named fields as equivalent.\n"
             "9. For function imports listed in schema_context.function_imports, set plan_kind=function_import and put inputs in function_parameters using the exact parameter names and value_type from schema_context.\n"
             "10. Do not put function import inputs in filters and do not set top/select/order_by for function_import plans.\n"
-            "11. If the schema context is insufficient, return no_feasible_plan instead of inventing fields.\n\n"
+            "11. If the schema context is insufficient, return no_feasible_plan instead of inventing fields.\n"
+            "12. Treat document history requests as ambiguous unless schema_context exposes a true history, movement, receipt, invoice, or change-history entity. Do not answer a history request by returning only pricing, notes, account assignments, or other detail child entities.\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )

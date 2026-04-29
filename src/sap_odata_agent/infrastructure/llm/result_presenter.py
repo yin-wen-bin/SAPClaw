@@ -85,9 +85,13 @@ class LlmResultPresenter:
             "records": records[:50],
             "lookup_context": (data or {}).get("lookup_context"),
             "execution_trace": (data or {}).get("execution_trace"),
+            "source_step_summaries": (data or {}).get("source_step_summaries", []),
+            "step_results": self._summarize_step_results((data or {}).get("step_results")),
             "raw_data_summary": {
                 "sap_raw_result_count": (data or {}).get("result_count"),
                 "sap_displayed_count": (data or {}).get("displayed_count"),
+                "primary_entity_set": (data or {}).get("primary_entity_set"),
+                "final_step_entity_set": (data or {}).get("final_step_entity_set"),
                 "has_results": bool(raw_records),
             },
         }
@@ -101,6 +105,8 @@ class LlmResultPresenter:
             "- Prefer concise business wording instead of raw field names when you can do so faithfully.\n\n"
             "- Do not invent values that are not returned by SAP.\n"
             "- Preserve SAP codes exactly as returned.\n\n"
+            "- For multi_step plans, inspect step_results and source_step_summaries. Do not present only the final step unless the plan explicitly makes that final step the answer.\n"
+            "- If the user asked for history and step_results only contains detail data such as pricing, notes, or account assignments, state that limitation rather than titling it as history.\n\n"
             f"Text example:\n{json.dumps(example, ensure_ascii=False, indent=2)}\n\n"
             f"Table example:\n{json.dumps(table_example, ensure_ascii=False, indent=2)}"
         )
@@ -314,6 +320,34 @@ class LlmResultPresenter:
     @staticmethod
     def _format_display_value(value: Any) -> Any:
         return format_sap_json_date_for_display(value)
+
+    @staticmethod
+    def _summarize_step_results(step_results: Any) -> dict[str, Any]:
+        if not isinstance(step_results, dict):
+            return {}
+        summary: dict[str, Any] = {}
+        for step_id, value in step_results.items():
+            if not isinstance(value, dict):
+                continue
+            raw_rows = value.get("results", []) if isinstance(value.get("results"), list) else []
+            rows = []
+            for row in raw_rows[:10]:
+                if not isinstance(row, dict):
+                    continue
+                rows.append(
+                    {
+                        key: LlmResultPresenter._format_display_value(field_value)
+                        for key, field_value in row.items()
+                        if key != "__metadata"
+                    }
+                )
+            summary[str(step_id)] = {
+                "entity_set": value.get("entity_set"),
+                "result_count": value.get("result_count"),
+                "displayed_count": value.get("displayed_count"),
+                "results": rows,
+            }
+        return summary
 
     @staticmethod
     def _total_count(data: dict[str, Any] | None, records: list[dict[str, Any]]) -> int:

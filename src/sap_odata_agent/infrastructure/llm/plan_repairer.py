@@ -155,7 +155,8 @@ class LlmPlanRepairer(LlmApiSpecificPlanner):
             "13. For example, do not bind a previous BusinessPartner value directly onto an entity that only has Supplier or Customer; first read the entity that exposes BusinessPartner plus the final role key, then bind the role key to the final entity.\n\n"
             "14. If SAP rejected a function import because system query options such as $top, $filter, $select, or $inlinecount were used, repair it as plan_kind=function_import with function_parameters from schema_context.function_imports.\n"
             "15. Do not represent function import parameters as filters; use exact parameter names and value_type from schema_context.function_imports.\n"
-            "16. If repair_hints include preferred_entity_set, preferred_select_fields, preferred_filters, or presentation_kind, use them when they are present in schema_context. This is mandatory for wrong_business_level verifier findings.\n\n"
+            "16. If repair_hints include preferred_entity_set, preferred_select_fields, preferred_filters, or presentation_kind, use them when they are present in schema_context. This is mandatory for wrong_business_level verifier findings.\n"
+            "17. If the previous plan answered a document history request with pricing, notes, account assignments, or other detail child entities, do not repeat that plan. Return no_feasible_plan or reroute_required unless schema_context exposes true history, movement, receipt, invoice, or change-history data.\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )

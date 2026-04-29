@@ -94,3 +94,11 @@ def test_product_skill_guides_tax_classification_to_sales_tax_entity() -> None:
     assert "`A_ProductSalesTax.TaxClassification`" in content
     assert "`A_ProductSales.TaxClassification`" in content
     assert "Do not answer \"not maintained\" from blank `A_ProductSales.TaxClassification`" in content
+
+
+def test_purchase_order_skill_disambiguates_history_from_pricing() -> None:
+    content = (SKILL_ROOT / "API_PURCHASEORDER_PROCESS_SRV" / "skill.md").read_text(encoding="utf-8")
+
+    assert "Purchase Order History Wording" in content
+    assert "`A_PurOrdPricingElement` contains pricing condition lines only" in content
+    assert "Do not label `A_PurOrdPricingElement` results as purchase order history" in content

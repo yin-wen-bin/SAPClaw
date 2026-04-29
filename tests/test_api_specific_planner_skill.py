@@ -106,3 +106,27 @@ def test_api_specific_planner_includes_api_skill_in_prompt(tmp_path: Path) -> No
     assert "Open documents use" in client.user_prompt
     assert "API skills are not schema authority" in client.system_prompt
     assert "less specific similarly named field" in client.user_prompt
+    assert "document history requests" in client.user_prompt
+
+
+def test_api_specific_planner_clarifies_ambiguous_purchase_order_history(tmp_path: Path) -> None:
+    client = CapturingClient({})
+    planner = LlmApiSpecificPlanner(index_root=tmp_path, llm_client=client)
+
+    plan = planner.plan_for_api(
+        AgentRequest(
+            user_input="\u67e5\u8be2\u91c7\u8d2d\u8ba2\u53554500001513\u7684\u91c7\u8d2d\u8ba2\u5355\u5386\u53f2\u8bb0\u5f55"
+        ),
+        ApiRouteDecision(
+            selected_apis=[
+                SelectedApi(service_name="API_PURCHASEORDER_PROCESS_SRV", confidence=1.0, reason="purchase order")
+            ]
+        ),
+        {"service_name": "API_PURCHASEORDER_PROCESS_SRV"},
+    )
+
+    assert plan.needs_clarification is True
+    assert plan.plan_kind == "clarification"
+    assert "\u91c7\u8d2d\u8ba2\u5355\u5386\u53f2\u8bb0\u5f55" in (plan.clarification_question or "")
+    assert "\u6536\u8d27\u5386\u53f2" in plan.clarification_options
+    assert client.user_prompt == ""

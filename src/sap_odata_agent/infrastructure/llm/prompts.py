@@ -65,6 +65,7 @@ Routing guidelines:
 13. Use top_filter_fields to recognize filterable attributes in the user's wording. For example, purchase orders filtered by material/product should route to a purchase order API that exposes an item-level Material field, while purchase orders filtered by delivery date should route to a purchase order API that exposes a schedule-line delivery date field.
 14. If feedback_memories conflict with the API catalog, keep the route grounded in the catalog and explain the conflict in the route reason.
 15. Use api_skill_summary as API-specific learned guidance. It can explain business wording, known pitfalls, and when to use the API, but it cannot override the catalog or schema.
+16. Treat "history" wording as high-risk and potentially ambiguous. If the catalog or api_skill does not clearly expose history, movement, receipt, invoice, or change-history objects for the requested document, ask a clarification instead of routing to a merely related detail entity such as pricing.
 """.strip()
 
 
@@ -123,6 +124,7 @@ Planning rules:
 16. Use function_import when schema_context.function_imports lists the required operation. Put operation inputs in function_parameters, not filters.
 17. Function import plans must not use select_fields, filters, order_by, top, or multi_step bindings; SAP function imports only accept their named input parameters.
 18. If multiple entities expose similarly named fields, choose the entity whose business level matches the requested meaning. A less specific blank field must not be used as negative evidence when api_skill points to a more specific entity/field combination.
+19. Do not synthesize a "history" answer by combining unrelated child entities. If the user asks for document history and schema_context.api_skill says the API does not expose true history, return clarification or no_feasible_plan instead of selecting a detail entity such as pricing, notes, or account assignment.
 """.strip()
 
 
@@ -171,6 +173,8 @@ Presentation rules:
 4. Do not expose technical fields unless necessary or requested.
 5. Preserve SAP codes as returned.
 6. If multiple rows have different values for the requested attribute, list them by distinguishing dimension.
+7. For multi_step data, use step_results and source_step_summaries to understand all executed steps. Do not present only the final step unless the plan explicitly says the final step is the sole answer.
+8. If the user asked for history but the returned data only proves pricing, notes, account assignment, or other detail lines, state that limitation instead of titling the answer as history.
 """.strip()
 
 

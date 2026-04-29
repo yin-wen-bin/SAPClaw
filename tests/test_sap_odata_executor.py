@@ -212,6 +212,9 @@ def test_multi_step_executor_passes_previous_step_value_into_next_filter() -> No
     assert data is not None
     assert data["results"][0]["PostalCode"] == "94030"
     assert data["lookup_context"]["path_id"] == "supplier_to_postal_code"
+    assert data["primary_entity_set"] == "A_BusinessPartnerAddress"
+    assert "resolve_business_partner" in data["step_results"]
+    assert "fetch_address" in data["step_results"]
 
 
 def test_multi_step_executor_expands_multiple_previous_values_into_in_filter() -> None:
@@ -359,3 +362,81 @@ def test_multi_step_executor_binds_all_returned_rows_not_display_preview_only() 
     assert data is not None
     assert data["result_count"] == 71
     assert data["source_step_summaries"][0]["result_count"] == 71
+
+
+def test_multi_step_executor_keeps_all_step_results_and_uses_target_as_primary() -> None:
+    class StubExecutor(SapODataExecutor):
+        def _perform_request(self, compiled_request: CompiledRequest) -> dict[str, str | int]:
+            if "A_PurchaseOrder?" in compiled_request.url:
+                return {
+                    "status_code": 200,
+                    "content_type": "application/json",
+                    "body": json.dumps(
+                        {
+                            "d": {
+                                "__count": "1",
+                                "results": [{"PurchaseOrder": "4500001513", "Supplier": "17300003"}],
+                            }
+                        }
+                    ),
+                }
+            assert "A_PurOrdPricingElement?" in compiled_request.url
+            return {
+                "status_code": 200,
+                "content_type": "application/json",
+                "body": json.dumps(
+                    {
+                        "d": {
+                            "__count": "2",
+                            "results": [
+                                {"PurchaseOrder": "4500001513", "ConditionType": "PBXX"},
+                                {"PurchaseOrder": "4500001513", "ConditionType": "DCD1"},
+                            ],
+                        }
+                    }
+                ),
+            }
+
+    executor = StubExecutor(_build_executor().config)
+    compiler = BasicODataCompiler(base_url="https://sap.example.com")
+    multi_step = MultiStepSapExecutor(compiler=compiler, executor=executor)
+    plan = QueryPlan(
+        service_name="API_PURCHASEORDER_PROCESS_SRV",
+        entity_set="A_PurchaseOrder",
+        plan_kind="multi_step",
+        target_entity_set="A_PurchaseOrder",
+        steps=[
+            ExecutionStep(
+                step_id="step_header",
+                entity_set="A_PurchaseOrder",
+                select_fields=["PurchaseOrder", "Supplier"],
+                filters=[FilterCondition(field="PurchaseOrder", operator="eq", value="4500001513")],
+                top=1,
+            ),
+            ExecutionStep(
+                step_id="step_pricing",
+                entity_set="A_PurOrdPricingElement",
+                select_fields=["PurchaseOrder", "ConditionType"],
+                filter_from_previous=[
+                    StepBinding(
+                        field="PurchaseOrder",
+                        source_step_id="step_header",
+                        source_field="PurchaseOrder",
+                    )
+                ],
+                top=100,
+            ),
+        ],
+    )
+
+    attempts, data = multi_step.execute_plan(plan, starting_attempt_number=1)
+
+    assert len(attempts) == 2
+    assert data is not None
+    assert data["primary_step_id"] == "step_header"
+    assert data["primary_entity_set"] == "A_PurchaseOrder"
+    assert data["final_step_id"] == "step_pricing"
+    assert data["final_step_entity_set"] == "A_PurOrdPricingElement"
+    assert data["results"] == [{"PurchaseOrder": "4500001513", "Supplier": "17300003"}]
+    assert data["step_results"]["step_pricing"]["result_count"] == 2
+    assert data["step_results"]["step_pricing"]["results"][0]["ConditionType"] == "PBXX"

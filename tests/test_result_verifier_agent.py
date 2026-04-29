@@ -25,6 +25,7 @@ def test_result_verifier_prompt_allows_empty_list_results() -> None:
     assert "result_count=0 can be a correct answer" in prompt
     assert "Do not require enrichment identifiers" in prompt
     assert "business object name" in prompt
+    assert "detail child entities" in prompt
 
 
 def test_result_verifier_blocks_blank_less_specific_product_tax_classification() -> None:
@@ -104,6 +105,69 @@ def test_result_verifier_allows_filled_product_sales_tax_classification() -> Non
                 {"entity_set": "A_ProductSalesTax", "field_name": "TaxClassification"},
             ],
         },
+    )
+
+    assert result["passed"] is True
+
+
+def test_result_verifier_blocks_purchase_order_history_answered_by_pricing_only() -> None:
+    verifier = LlmResultVerifierAgent(enabled=False)
+    plan = QueryPlan(
+        service_name="API_PURCHASEORDER_PROCESS_SRV",
+        entity_set="A_PurOrdPricingElement",
+        plan_kind="multi_step",
+        select_fields=["PurchaseOrder", "PurchaseOrderItem", "ConditionType", "ConditionRateValue"],
+        filters=[FilterCondition(field="PurchaseOrder", operator="eq", value="4500001513")],
+    )
+
+    result = verifier.verify(
+        request=AgentRequest(
+            user_input="\u67e5\u8be2\u91c7\u8d2d\u8ba2\u53554500001513\u7684\u91c7\u8d2d\u8ba2\u5355\u5386\u53f2\u8bb0\u5f55"
+        ),
+        plan=plan,
+        data={
+            "result_count": 2,
+            "results": [
+                {
+                    "PurchaseOrder": "4500001513",
+                    "PurchaseOrderItem": "10",
+                    "ConditionType": "PBXX",
+                    "ConditionRateValue": "10.000000000",
+                }
+            ],
+            "execution_trace": [
+                {
+                    "step_id": "step_pricing",
+                    "entity_set": "A_PurOrdPricingElement",
+                    "success": True,
+                }
+            ],
+        },
+        schema_context_summary={"service_name": "API_PURCHASEORDER_PROCESS_SRV"},
+    )
+
+    assert result["passed"] is False
+    assert result["issues"][0]["code"] == "wrong_business_level_for_purchase_order_history"
+    assert result["repair_hints"]["rejected_entity_set"] == "A_PurOrdPricingElement"
+
+
+def test_result_verifier_allows_purchase_order_history_when_user_asks_for_pricing() -> None:
+    verifier = LlmResultVerifierAgent(enabled=False)
+
+    result = verifier.verify(
+        request=AgentRequest(
+            user_input="\u67e5\u8be2\u91c7\u8d2d\u8ba2\u53554500001513\u7684\u5b9a\u4ef7\u5386\u53f2"
+        ),
+        plan=QueryPlan(
+            service_name="API_PURCHASEORDER_PROCESS_SRV",
+            entity_set="A_PurOrdPricingElement",
+            select_fields=["PurchaseOrder", "ConditionType"],
+        ),
+        data={
+            "result_count": 1,
+            "results": [{"PurchaseOrder": "4500001513", "ConditionType": "PBXX"}],
+        },
+        schema_context_summary={"service_name": "API_PURCHASEORDER_PROCESS_SRV"},
     )
 
     assert result["passed"] is True

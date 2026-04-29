@@ -16,6 +16,7 @@ Keep `data/index/API_PURCHASEORDER_PROCESS_SRV` as the schema ground truth. This
 
 - Do not use this API for supplier/customer master data, purchase requisitions, current stock balances, product master data, or general material document history.
 - Do not use this API for supplier invoice documents unless the user means purchase orders that are not finally invoiced.
+- Do not use this API alone to answer true purchase order history when the user means goods receipts, invoice receipts, material documents, GR/IR history, or change history. Ask for clarification or use a history-capable API if available.
 
 ## Key Entities
 
@@ -35,6 +36,8 @@ Keep `data/index/API_PURCHASEORDER_PROCESS_SRV` as the schema ground truth. This
 - For material-based purchase order questions, filter on `A_PurchaseOrderItem.Material`.
 - For supplier-based purchase order questions, filter on `A_PurchaseOrder.Supplier`. If final output needs item-level fields, use a multi-step plan from header to item through `PurchaseOrder`.
 - For delivery-date purchase order questions, filter on `A_PurchaseOrderScheduleLine.ScheduleLineDeliveryDate`.
+- "Purchase order history", "PO history", or "采购订单历史记录" is ambiguous. It can mean purchase order structure/details, or follow-on history such as goods receipt, invoice receipt, material documents, and changes. Do not treat it as pricing by default.
+- `A_PurOrdPricingElement` contains pricing condition lines only. It is not purchase order history and must not be used as the main answer for a history request unless the user explicitly asks for pricing, price conditions, or pricing elements.
 - User-specified values such as supplier IDs, material IDs, purchase order numbers, dates, plants, and company codes must be preserved exactly.
 
 ## Common Planning Patterns
@@ -77,11 +80,20 @@ Keep `data/index/API_PURCHASEORDER_PROCESS_SRV` as the schema ground truth. This
 - Select `PurchaseOrder`, `PurchaseOrderItem`, `ScheduleLine`, and `ScheduleLineDeliveryDate`.
 - Enrich to item or header only when the user asks for fields not present on schedule lines.
 
+### Purchase Order History Wording
+
+- If the user asks for "purchase order history", "PO history", or "采购订单历史记录" without specifying the history type, ask a clarification before execution.
+- Clarify whether the user wants purchase order structure/details, or follow-on history such as goods receipts, invoice receipts, material documents, or change history.
+- If the user clarifies that they want purchase order structure/details, a multi-step plan may retrieve header, items, schedule lines, account assignments, notes, subcontracting components, and pricing as separate sections.
+- If the user clarifies that they want pricing history or pricing conditions, query `A_PurOrdPricingElement`.
+- If the user wants goods receipt, invoice receipt, material document, or change history, do not answer from `A_PurOrdPricingElement`; this API may be insufficient by itself.
+
 ## Pitfalls
 
 - `GoodsReceiptIsExpected` alone is not proof that goods have not been received. It must be paired with `IsCompletelyDelivered eq false` for "needs goods receipt but not yet received" questions.
 - Do not answer item-level questions from header-only data when item fields are required.
 - Do not answer schedule-line delivery date questions from header creation date or item-level generic dates.
+- Do not label `A_PurOrdPricingElement` results as purchase order history. Pricing elements are only price condition details.
 - Do not treat `$top` as a user-requested semantic limit unless the user explicitly asks for "前 N 条", "top N", or a similar limit.
 - Date filters must use the OData V2 literal syntax accepted by this SAP service. For `Edm.DateTime`, use a datetime literal such as `datetime'2018-11-23T00:00:00'`.
 
