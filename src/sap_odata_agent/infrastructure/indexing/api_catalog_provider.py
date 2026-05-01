@@ -68,6 +68,7 @@ class ApiCatalogProvider:
             "primary_business_objects": ApiCatalogProvider._primary_business_objects(ranked_entities),
             "top_entities": top_entities,
             "top_filter_fields": ApiCatalogProvider._top_filter_fields(snapshot, top_entities),
+            "top_answer_fields": ApiCatalogProvider._top_answer_fields(snapshot, top_entities),
         }
 
     @staticmethod
@@ -230,6 +231,87 @@ class ApiCatalogProvider:
             if len(result) >= max_count:
                 break
         return result[:max_count]
+
+    @staticmethod
+    def _top_answer_fields(snapshot, top_entities: list[str], max_count: int = 24) -> list[str]:
+        top_entity_rank = {entity_set: index for index, entity_set in enumerate(top_entities)}
+        service_tokens = set(ApiCatalogProvider._service_core_tokens(snapshot.service_name))
+        priority_tokens = {
+            "id": 24.0,
+            "name": 36.0,
+            "description": 28.0,
+            "text": 24.0,
+            "status": 26.0,
+            "amount": 26.0,
+            "currency": 20.0,
+            "quantity": 22.0,
+            "unit": 16.0,
+            "date": 20.0,
+            "time": 12.0,
+            "companycode": 18.0,
+            "companycodename": 44.0,
+            "glaccount": 22.0,
+            "glaccountname": 46.0,
+            "costcenter": 20.0,
+            "costcentername": 42.0,
+            "profitcenter": 20.0,
+            "profitcentername": 42.0,
+            "controllingarea": 18.0,
+            "controllingareaname": 40.0,
+            "ledger": 18.0,
+            "ledgername": 36.0,
+            "material": 22.0,
+            "product": 22.0,
+            "plant": 18.0,
+            "supplier": 20.0,
+            "customer": 20.0,
+        }
+
+        ranked: list[tuple[float, str]] = []
+        seen: set[str] = set()
+        for field in snapshot.fields or []:
+            if field.get("selectable") is False:
+                continue
+            entity_set = str(field.get("entity_set") or "")
+            field_name = str(field.get("field_name") or "")
+            if not entity_set or not field_name:
+                continue
+            qualified = f"{entity_set}.{field_name}"
+            if qualified in seen:
+                continue
+            seen.add(qualified)
+
+            normalized_field = ApiCatalogProvider._normalize(field_name)
+            label = ApiCatalogProvider._normalize(str(field.get("label") or ""))
+            aliases = ApiCatalogProvider._normalize(" ".join(str(item) for item in field.get("business_aliases", []) or []))
+            description = ApiCatalogProvider._normalize(str(field.get("description") or ""))
+            haystack = f"{normalized_field} {label} {aliases} {description}"
+
+            score = 0.0
+            if entity_set in top_entity_rank:
+                score += max(0.0, 22.0 - top_entity_rank[entity_set])
+            if field.get("is_key"):
+                score += 10.0
+            if field.get("runtime_available") is False:
+                score -= 20.0
+            if field.get("filterable") is False:
+                score -= 1.0
+            for token, weight in priority_tokens.items():
+                if token == normalized_field:
+                    score += weight * 2.4
+                elif token in normalized_field:
+                    score += weight * 1.0
+                elif token in haystack:
+                    score += weight * 0.35
+            for token in service_tokens:
+                if token and token in haystack:
+                    score += 6.0
+            if any(term in normalized_field for term in ("metadata", "uuid", "etag")):
+                score -= 10.0
+            ranked.append((-score, qualified))
+
+        ranked.sort()
+        return [qualified for _, qualified in ranked[:max_count]]
 
     @staticmethod
     def _pinned_filter_fields(service_name: str) -> list[str]:

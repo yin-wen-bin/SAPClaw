@@ -34,6 +34,38 @@ def test_compare_fails_when_frontend_omits_required_fields() -> None:
     assert result["missing_required_fields"] == ["Amount"]
 
 
+def test_compare_key_subset_passes_when_baseline_and_frontend_are_empty() -> None:
+    case = {
+        "expected_api": "API_TEST",
+        "expected_capability": {},
+        "comparison": {
+            "type": "key_subset",
+            "keys": ["Document"],
+            "required_fields": ["Document"],
+        },
+    }
+    baseline = {
+        "success": True,
+        "final": {
+            "result_count": 0,
+            "keys": [],
+            "results": [],
+        },
+    }
+    frontend = {
+        "success": True,
+        "selected_api": "API_TEST",
+        "needs_clarification": False,
+        "result_count": 0,
+        "results": [],
+    }
+
+    result = _compare(case, baseline, frontend, baseline_only=False, front_only=False)
+
+    assert result["passed"] is True
+    assert result["failed_layer"] is None
+
+
 def test_rate_limit_result_detection() -> None:
     result = {
         "comparison": {

@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from typing import Any
 
+from sap_odata_agent.application.plan_critic import PlanCritic
 from sap_odata_agent.domain.models import AgentRequest, CriticFinding, QueryPlan, RetrievedContext
 from sap_odata_agent.infrastructure.llm.planner import AnthropicCompatibleMessagesClient, LlmStructuredIntentPlanner
 
@@ -52,6 +53,8 @@ class LlmPlanCritic:
             code = str(item.get("code", "") or "").strip()
             message = str(item.get("message", "") or "").strip()
             if not code or not message:
+                continue
+            if self._is_spurious_field_list_missing_filter(request, plan, code, message):
                 continue
             severity = str(item.get("severity", "warning") or "warning")
             blocking = bool(item.get("blocking", False))
@@ -155,6 +158,9 @@ class LlmPlanCritic:
             "Critique rules:\n"
             "- Do not block if the selected fields can plausibly answer the request.\n"
             "- Treat constraints.target_field_concepts as the authoritative required answer fields; do not add extra required fields only because similarly named candidates have high scores.\n"
+            "- Treat bare field-list wording such as \"with/include/show/display field A and field B\" as requested answer fields, not missing filters.\n"
+            "- Report missing_filters only when the user supplied an explicit filter concept plus a value, comparison, only/where phrase, true/false requirement, nonzero condition, or open/closed business condition.\n"
+            "- Do not block a plan that selects the mentioned fields solely because those fields could also be filterable status indicators.\n"
             "- Block if a stronger metadata candidate clearly maps to the requested concept and the plan selected a different concept.\n"
             "- Block if an identifier field is used as the answer when the user asked for another attribute.\n"
             "- Block if the plan cannot apply the user's requested filter.\n"
@@ -162,3 +168,20 @@ class LlmPlanCritic:
             "- Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )
+
+    @staticmethod
+    def _is_spurious_field_list_missing_filter(
+        request: AgentRequest,
+        plan: QueryPlan,
+        code: str,
+        message: str,
+    ) -> bool:
+        normalized = f"{code} {message}".lower()
+        if "missing_filter" not in normalized and "missing filters" not in normalized:
+            return False
+        if not PlanCritic._looks_like_field_list_without_filter_intent(request):
+            return False
+        selected_fields = set(plan.select_fields or [])
+        for step in plan.steps or []:
+            selected_fields.update(step.select_fields or [])
+        return bool(selected_fields)

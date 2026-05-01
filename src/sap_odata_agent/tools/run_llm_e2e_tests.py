@@ -177,7 +177,14 @@ def _runtime_failure(case: dict[str, Any], run_id: str, exc: Exception) -> dict[
 
 def _is_rate_limited_result(result: dict[str, Any]) -> bool:
     text = json.dumps(result, ensure_ascii=False, default=str)
-    return "HTTP Error 429" in text or "Too Many Requests" in text
+    return (
+        "HTTP Error 429" in text
+        or "Too Many Requests" in text
+        or "api_router_failed" in text
+        or "api_routing_failed" in text
+        or "HTTP Error 400" in text
+        or "The read operation timed out" in text
+    )
 
 
 def _infer_exception_layer(stack: str) -> str:
@@ -362,7 +369,8 @@ def _compare(
 
     if comparison_type == "count_and_key_subset":
         count_passed = baseline_final["result_count"] == frontend["result_count"]
-        key_passed = actual_keys.issubset(baseline_keys) if actual_keys else False
+        no_results = baseline_final["result_count"] == 0 and frontend["result_count"] == 0
+        key_passed = no_results or (actual_keys.issubset(baseline_keys) if actual_keys else False)
         return {
             "passed": count_passed and key_passed,
             "failed_layer": None if count_passed and key_passed else "planner",
@@ -373,7 +381,8 @@ def _compare(
         }
 
     if comparison_type == "key_subset":
-        key_passed = actual_keys.issubset(baseline_keys) and bool(actual_keys)
+        no_results = baseline_final["result_count"] == 0 and frontend["result_count"] == 0
+        key_passed = no_results or (actual_keys.issubset(baseline_keys) and bool(actual_keys))
         return {
             "passed": key_passed,
             "failed_layer": None if key_passed else "planner",

@@ -136,6 +136,7 @@ class BasicODataCompiler:
         self.index_root = Path(index_root) if index_root is not None else None
         self.service_runtime_overrides = dict(service_runtime_overrides or {})
         self._index_runtime_overrides: dict[str, str] | None = None
+        self._entity_key_cache: dict[str, dict[str, list[str]]] = {}
 
     def compile(self, plan: QueryPlan) -> CompiledRequest:
         self._ensure_odata_runtime_service(plan.service_name)
@@ -146,7 +147,12 @@ class BasicODataCompiler:
         query_parts: list[str] = []
 
         if plan.select_fields:
-            query_parts.append("$select=" + ",".join(plan.select_fields))
+            select_fields = self._select_fields_with_entity_keys(
+                plan.service_name,
+                plan.entity_set,
+                plan.select_fields,
+            )
+            query_parts.append("$select=" + ",".join(select_fields))
 
         if plan.filters:
             filter_parts = [self._compile_filter_item(item) for item in plan.filters]
@@ -172,6 +178,54 @@ class BasicODataCompiler:
                 f"{service_name} is marked CDS_VIEW_ONLY and cannot be compiled as "
                 "a /sap/opu/odata/sap/... request."
             )
+
+    def _select_fields_with_entity_keys(
+        self,
+        service_name: str,
+        entity_set: str,
+        select_fields: list[str],
+    ) -> list[str]:
+        fields = [str(field) for field in select_fields if str(field).strip()]
+        existing = set(fields)
+        for key_field in self._entity_key_fields(service_name, entity_set):
+            if key_field and key_field not in existing:
+                fields.append(key_field)
+                existing.add(key_field)
+        return fields
+
+    def _entity_key_fields(self, service_name: str, entity_set: str) -> list[str]:
+        if self.index_root is None or not service_name or not entity_set:
+            return []
+        service_key = str(service_name)
+        if service_key not in self._entity_key_cache:
+            self._entity_key_cache[service_key] = self._load_entity_key_fields(service_key)
+        return list(self._entity_key_cache.get(service_key, {}).get(str(entity_set), []))
+
+    def _load_entity_key_fields(self, service_name: str) -> dict[str, list[str]]:
+        if self.index_root is None:
+            return {}
+        entities_path = self.index_root / service_name / "entities.json"
+        if not entities_path.exists():
+            return {}
+        try:
+            records = json.loads(entities_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            return {}
+        if not isinstance(records, list):
+            return {}
+        key_fields_by_entity: dict[str, list[str]] = {}
+        for record in records:
+            if not isinstance(record, dict):
+                continue
+            entity = str(record.get("entity_set") or "")
+            key_fields = [
+                str(field)
+                for field in (record.get("key_fields") or [])
+                if str(field).strip()
+            ]
+            if entity and key_fields:
+                key_fields_by_entity[entity] = key_fields
+        return key_fields_by_entity
 
     def _compile_function_import(self, plan: QueryPlan) -> CompiledRequest:
         query_params = {
@@ -252,7 +306,7 @@ class BasicODataCompiler:
             or_parts = [
                 f"{field} eq {BasicODataCompiler._compile_literal(str(raw_value), item.value_type)}"
                 for raw_value in values
-                if str(raw_value)
+                if raw_value is not None
             ]
             return f"({' or '.join(or_parts)})" if or_parts else f"{field} eq ''"
         escaped = value.replace("'", "''")
@@ -643,7 +697,7 @@ class MultiStepSapExecutor:
                     extracted_values[binding.field] = values
 
             step_plan = QueryPlan(
-                service_name=plan.service_name,
+                service_name=step.service_name or plan.service_name,
                 entity_set=step.entity_set,
                 http_method=step.http_method,
                 select_fields=step.select_fields,
@@ -686,11 +740,19 @@ class MultiStepSapExecutor:
             for step_id, step_data in structured_step_results.items()
         }
         merged_data["execution_trace"] = [
-            {
-                "step_id": attempt.step_id,
-                "entity_set": next((step.entity_set for step in plan.steps if step.step_id == attempt.step_id), ""),
-                "request_url": attempt.request.url,
-                "status_code": attempt.status_code,
+                {
+                    "step_id": attempt.step_id,
+                    "service_name": next(
+                        (
+                            step.service_name or plan.service_name
+                            for step in plan.steps
+                            if step.step_id == attempt.step_id
+                        ),
+                        plan.service_name,
+                    ),
+                    "entity_set": next((step.entity_set for step in plan.steps if step.step_id == attempt.step_id), ""),
+                    "request_url": attempt.request.url,
+                    "status_code": attempt.status_code,
                 "success": attempt.success,
                 "extracted_values": attempt.extracted_values,
             }
@@ -718,12 +780,18 @@ class MultiStepSapExecutor:
         if not isinstance(results, list) or not results:
             results = data.get("results")
         if isinstance(results, list) and results:
-            values = [row.get(field_name) for row in results if isinstance(row, dict) and row.get(field_name) not in (None, "")]
+            values = [
+                row.get(field_name)
+                for row in results
+                if isinstance(row, dict) and field_name in row and row.get(field_name) is not None
+            ]
             return list(dict.fromkeys(values))
         result = data.get("result")
         if isinstance(result, dict):
+            if field_name not in result:
+                return []
             value = result.get(field_name)
-            return [value] if value not in (None, "") else []
+            return [value] if value is not None else []
         return []
 
     @staticmethod
@@ -736,6 +804,7 @@ class MultiStepSapExecutor:
             summaries.append(
                 {
                     "step_id": attempt.step_id,
+                    "service_name": step.service_name or plan.service_name if step else plan.service_name,
                     "entity_set": step.entity_set if step else "",
                     "select_fields": list(step.select_fields) if step else [],
                     "filters": [
@@ -765,6 +834,7 @@ class MultiStepSapExecutor:
             preview = attempt.response_preview or {}
             results[attempt.step_id] = {
                 "step_id": attempt.step_id,
+                "service_name": step.service_name or plan.service_name if step else plan.service_name,
                 "entity_set": step.entity_set if step else "",
                 "select_fields": list(step.select_fields) if step else [],
                 "result_count": preview.get("result_count"),

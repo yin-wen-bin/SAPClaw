@@ -36,6 +36,20 @@ class SchemaContextProvider:
         retrieved_documents: list[RetrievedDocument] | None = None,
         feedback_memories: list[dict[str, Any]] | None = None,
     ) -> dict[str, Any]:
+        service_names = self._route_service_names(service_name, route_decision)
+        if len(service_names) > 1:
+            contexts = [
+                self.build(
+                    name,
+                    query,
+                    route_decision=None,
+                    retrieved_documents=retrieved_documents,
+                    feedback_memories=feedback_memories,
+                )
+                for name in service_names
+            ]
+            return self._merge_contexts(contexts, route_decision)
+
         snapshot = self.loader.load(service_name)
         function_imports = function_imports_from_snapshot(snapshot)
         function_import_map = {str(item.get("name", "")): item for item in function_imports}
@@ -85,6 +99,8 @@ class SchemaContextProvider:
         return {
             "service_name": service_name,
             "service": self._service_payload(snapshot),
+            "service_names": [service_name],
+            "services": [self._service_payload(snapshot)],
             "query": query,
             "route_decision": self._route_payload(route_decision),
             "entities": entities,
@@ -100,12 +116,148 @@ class SchemaContextProvider:
             ],
         }
 
+    @staticmethod
+    def _route_service_names(service_name: str, route_decision: ApiRouteDecision | None) -> list[str]:
+        names = [str(service_name or "").strip()] if str(service_name or "").strip() else []
+        if route_decision is not None and route_decision.requires_multi_api:
+            names.extend(
+                str(item.service_name or "").strip()
+                for item in route_decision.selected_apis
+                if str(item.service_name or "").strip()
+            )
+        return list(dict.fromkeys(names))
+
+    def _merge_contexts(
+        self,
+        contexts: list[dict[str, Any]],
+        route_decision: ApiRouteDecision | None,
+    ) -> dict[str, Any]:
+        contexts = [context for context in contexts if context]
+        if not contexts:
+            return {}
+
+        primary = contexts[0]
+        service_names = [
+            str(context.get("service_name") or "").strip()
+            for context in contexts
+            if str(context.get("service_name") or "").strip()
+        ]
+        service_names = list(dict.fromkeys(service_names))
+
+        entities: list[dict[str, Any]] = []
+        seen_entities: set[tuple[str, str]] = set()
+        candidate_fields: list[dict[str, Any]] = []
+        seen_fields: set[tuple[str, str, str]] = set()
+        function_imports: list[dict[str, Any]] = []
+        join_hints: list[dict[str, Any]] = []
+        relations: list[dict[str, Any]] = []
+        services: list[dict[str, Any]] = []
+
+        for context in contexts:
+            context_service = str(context.get("service_name") or "")
+            service_payload = dict(context.get("service") or {})
+            if service_payload:
+                service_payload.setdefault("service_name", context_service)
+                services.append(service_payload)
+
+            for entity in context.get("entities", []):
+                if not isinstance(entity, dict):
+                    continue
+                entity_service = str(entity.get("service_name") or context_service)
+                key = (entity_service, str(entity.get("entity_set") or ""))
+                if not key[0] or not key[1] or key in seen_entities:
+                    continue
+                seen_entities.add(key)
+                entities.append({**entity, "service_name": entity_service})
+
+            for field in context.get("candidate_fields", []):
+                if not isinstance(field, dict):
+                    continue
+                field_service = str(field.get("service_name") or context_service)
+                key = (
+                    field_service,
+                    str(field.get("entity_set") or ""),
+                    str(field.get("field_name") or ""),
+                )
+                if not key[0] or not key[1] or not key[2] or key in seen_fields:
+                    continue
+                seen_fields.add(key)
+                candidate_fields.append({**field, "service_name": field_service})
+
+            for item in context.get("function_imports", []):
+                if isinstance(item, dict):
+                    function_imports.append({**item, "service_name": item.get("service_name") or context_service})
+            for item in context.get("join_hints", []):
+                if isinstance(item, dict):
+                    join_hints.append({**item, "service_name": item.get("service_name") or context_service})
+            for item in context.get("relations", []):
+                if isinstance(item, dict):
+                    relations.append({**item, "service_name": item.get("service_name") or context_service})
+
+        join_hints = [*join_hints, *self._build_cross_service_join_hints(entities)]
+
+        return {
+            **primary,
+            "service_name": service_names[0] if service_names else primary.get("service_name", ""),
+            "service_names": service_names,
+            "services": services,
+            "service": services[0] if services else primary.get("service", {}),
+            "route_decision": self._route_payload(route_decision),
+            "entities": entities,
+            "function_imports": function_imports,
+            "candidate_fields": candidate_fields[: self.max_candidate_fields * max(1, len(service_names))],
+            "join_hints": join_hints,
+            "relations": relations,
+            "multi_api": len(service_names) > 1,
+        }
+
+    @staticmethod
+    def _build_cross_service_join_hints(entities: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        by_field: dict[str, list[dict[str, str]]] = {}
+        for entity in entities:
+            service_name = str(entity.get("service_name") or "")
+            entity_set = str(entity.get("entity_set") or "")
+            if not service_name or not entity_set:
+                continue
+            for field in entity.get("fields", []):
+                if not isinstance(field, dict):
+                    continue
+                field_name = str(field.get("field_name") or "")
+                if not field_name:
+                    continue
+                by_field.setdefault(field_name, []).append(
+                    {"service_name": service_name, "entity_set": entity_set}
+                )
+
+        hints: list[dict[str, Any]] = []
+        for field_name, refs in by_field.items():
+            unique_refs = [dict(item) for item in {tuple(ref.items()) for ref in refs}]
+            service_count = len({ref["service_name"] for ref in unique_refs})
+            entity_sets = list(dict.fromkeys(ref["entity_set"] for ref in unique_refs))
+            if service_count < 2 or len(entity_sets) < 2:
+                continue
+            hints.append(
+                {
+                    "field_name": field_name,
+                    "entity_sets": entity_sets[:12],
+                    "entities": sorted(unique_refs, key=lambda item: (item["service_name"], item["entity_set"]))[:12],
+                    "cross_service": True,
+                }
+            )
+        hints.sort(key=lambda item: (-len(item["entity_sets"]), item["field_name"]))
+        return hints[:80]
+
     def enrich_with_api_skill(self, schema_context: dict[str, Any], api_skill: dict[str, Any] | None) -> dict[str, Any]:
         if not api_skill:
             return schema_context
         service_name = str(schema_context.get("service_name") or api_skill.get("service_name") or "")
         if not service_name:
             return schema_context
+        if schema_context.get("multi_api"):
+            return {
+                **schema_context,
+                "skill_field_matches": schema_context.get("skill_field_matches", []),
+            }
 
         snapshot = self.loader.load(service_name)
         function_imports = schema_context.get("function_imports") or function_imports_from_snapshot(snapshot)
@@ -215,6 +367,8 @@ class SchemaContextProvider:
                     break
         return {
             "service_name": schema_context.get("service_name", ""),
+            "service_names": schema_context.get("service_names", [schema_context.get("service_name", "")]),
+            "services": schema_context.get("services", []),
             "service": schema_context.get("service", {}),
             "entity_count": len(schema_context.get("entities", [])),
             "candidate_field_count": len(schema_context.get("candidate_fields", [])),
@@ -228,6 +382,14 @@ class SchemaContextProvider:
             }
             if schema_context.get("api_skill")
             else {},
+            "api_skills": [
+                {
+                    "service_name": item.get("service_name", ""),
+                    "path": item.get("path", ""),
+                }
+                for item in schema_context.get("api_skills", [])
+                if isinstance(item, dict)
+            ],
             "top_entities": [item.get("entity_set") for item in schema_context.get("entities", [])[:8]],
             "top_fields": [
                 f"{item.get('entity_set')}.{item.get('field_name')}"
@@ -340,6 +502,7 @@ class SchemaContextProvider:
             if len(fields) >= 64:
                 break
         return {
+            "service_name": entity.get("service_name", snapshot.service_name),
             "entity_set": entity_set,
             "kind": "function_import" if function_import else "entity_set",
             "description": entity.get("description", ""),
@@ -428,6 +591,7 @@ class SchemaContextProvider:
     @staticmethod
     def _field_payload(field: dict[str, Any], score: float) -> dict[str, Any]:
         return {
+            "service_name": field.get("service_name", ""),
             "entity_set": field.get("entity_set", ""),
             "field_name": field.get("field_name", ""),
             "label": field.get("label", ""),

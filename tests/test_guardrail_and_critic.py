@@ -1,3 +1,4 @@
+from sap_odata_agent.application.orchestrator import AgentOrchestrator
 from sap_odata_agent.application.plan_critic import PlanCritic
 from sap_odata_agent.application.planner_guardrail import PlannerGuardrail
 from sap_odata_agent.application.presentation_verifier import PresentationVerifier
@@ -59,6 +60,157 @@ def test_critic_flags_list_query_with_top_one() -> None:
     findings = PlanCritic().review(request, plan)
 
     assert any(item.code == "list_query_top_too_small" and item.blocking for item in findings)
+
+
+def test_critic_blocks_field_list_output_fields_used_as_filters_without_filter_intent() -> None:
+    request = AgentRequest(
+        user_input=(
+            "Show planned order records with issued quantity, planned order bom is fixed, "
+            "planned order capacity is dsptchd, and planned order is convertible"
+        ),
+        constraints=QueryConstraints(
+            query_shape=QueryShape.LIST_QUERY,
+            cardinality=CardinalityPolicy.MANY,
+            target_object="planned_order",
+            target_field_concepts=[
+                "IssuedQuantity",
+                "PlannedOrderBOMIsFixed",
+                "PlannedOrderCapacityIsDsptchd",
+                "PlannedOrderIsConvertible",
+            ],
+        ),
+    )
+    plan = QueryPlan(
+        service_name="API_PLANNED_ORDERS",
+        entity_set="A_PlannedOrder",
+        select_fields=[
+            "PlannedOrder",
+            "IssuedQuantity",
+            "PlannedOrderBOMIsFixed",
+            "PlannedOrderCapacityIsDsptchd",
+            "PlannedOrderIsConvertible",
+        ],
+        filters=[
+            FilterCondition(field="IssuedQuantity", operator="gt", value="0"),
+            FilterCondition(field="PlannedOrderBOMIsFixed", operator="eq", value="true"),
+        ],
+    )
+
+    findings = PlanCritic().review(request, plan)
+
+    assert any(item.code == "output_field_used_as_filter" and item.blocking for item in findings)
+
+
+def test_critic_allows_explicit_true_filter_for_field_list_wording() -> None:
+    request = AgentRequest(
+        user_input="Show only planned order records where planned order bom is fixed is true",
+        constraints=QueryConstraints(
+            query_shape=QueryShape.LIST_QUERY,
+            cardinality=CardinalityPolicy.MANY,
+            target_object="planned_order",
+            target_field_concepts=["PlannedOrderBOMIsFixed"],
+            filter_concepts=["PlannedOrderBOMIsFixed"],
+            filter_values=["true"],
+        ),
+    )
+    plan = QueryPlan(
+        service_name="API_PLANNED_ORDERS",
+        entity_set="A_PlannedOrder",
+        select_fields=["PlannedOrder", "PlannedOrderBOMIsFixed"],
+        filters=[FilterCondition(field="PlannedOrderBOMIsFixed", operator="eq", value="true")],
+    )
+
+    findings = PlanCritic().review(request, plan)
+
+    assert not any(item.code == "output_field_used_as_filter" for item in findings)
+
+
+def test_orchestrator_removes_output_field_filters_without_filter_intent() -> None:
+    request = AgentRequest(
+        user_input="Show planned indep rqmt records with plnd indep rqmt is active and requirement plan is external",
+        constraints=QueryConstraints(
+            query_shape=QueryShape.LIST_QUERY,
+            cardinality=CardinalityPolicy.MANY,
+            target_object="planned_indep_rqmt",
+            target_field_concepts=["PlndIndepRqmtIsActive", "RequirementPlanIsExternal"],
+        ),
+    )
+    plan = QueryPlan(
+        service_name="API_PLND_INDEP_RQMT_SRV",
+        entity_set="PlannedIndepRqmt",
+        select_fields=["Product", "PlndIndepRqmtIsActive", "RequirementPlanIsExternal"],
+        filters=[
+            FilterCondition(field="PlndIndepRqmtIsActive", operator="eq", value="X"),
+            FilterCondition(field="RequirementPlanIsExternal", operator="eq", value="true"),
+        ],
+    )
+
+    repaired = AgentOrchestrator._remove_output_field_filters_without_filter_intent(request, plan)
+
+    assert repaired.filters == []
+    assert repaired.planner_diagnostics["auto_removed_output_field_filters"] == [
+        "PlndIndepRqmtIsActive",
+        "RequirementPlanIsExternal",
+    ]
+
+
+def test_orchestrator_removes_unmentioned_filter_values_for_field_list_request() -> None:
+    request = AgentRequest(
+        user_input="Show planned indep rqmt records with plnd indep rqmt is active and requirement plan is external",
+        constraints=QueryConstraints(query_shape=QueryShape.LIST_QUERY, target_object="planned_indep_rqmt"),
+    )
+    plan = QueryPlan(
+        service_name="API_PLND_INDEP_RQMT_SRV",
+        entity_set="PlannedIndepRqmt",
+        select_fields=["Product", "Plant", "MRPArea"],
+        filters=[
+            FilterCondition(field="PlndIndepRqmtIsActive", operator="eq", value="X"),
+            FilterCondition(field="RequirementPlanIsExternal", operator="eq", value="true"),
+        ],
+    )
+
+    repaired = AgentOrchestrator._remove_output_field_filters_without_filter_intent(request, plan)
+
+    assert repaired.filters == []
+
+
+def test_field_list_detection_keeps_explicit_identifier_filters() -> None:
+    request = AgentRequest(
+        user_input="Show trial balance material balances for company code 1710 and ledger 0L",
+        constraints=QueryConstraints(query_shape=QueryShape.LIST_QUERY, target_object="trial_balance"),
+    )
+
+    assert PlanCritic._looks_like_field_list_without_filter_intent(request) is False
+
+
+def test_orchestrator_keeps_filters_when_values_are_explicitly_mentioned() -> None:
+    request = AgentRequest(
+        user_input="Show trial balance material balances for company code 1710 and ledger 0L",
+        constraints=QueryConstraints(query_shape=QueryShape.LIST_QUERY, target_object="trial_balance"),
+    )
+    plan = QueryPlan(
+        service_name="C_TRIALBALANCE_CDS",
+        entity_set="C_TRIALBALANCEResults",
+        select_fields=["Material", "CompanyCode", "Ledger"],
+        filters=[
+            FilterCondition(field="CompanyCode", operator="eq", value="1710"),
+            FilterCondition(field="Ledger", operator="eq", value="0L"),
+        ],
+    )
+
+    repaired = AgentOrchestrator._remove_output_field_filters_without_filter_intent(request, plan)
+
+    assert [item.field for item in repaired.filters] == ["CompanyCode", "Ledger"]
+
+
+def test_field_list_detection_uses_original_user_input_over_resolved_filter_rewrite() -> None:
+    request = AgentRequest(
+        user_input="Show planned indep rqmt records with plnd indep rqmt is active and requirement plan is external",
+        resolved_user_input="Find records where active is true and requirement plan is external true",
+        constraints=QueryConstraints(query_shape=QueryShape.LIST_QUERY, target_object="planned_indep_rqmt"),
+    )
+
+    assert PlanCritic._looks_like_field_list_without_filter_intent(request) is True
 
 
 def test_presentation_verifier_repairs_table_count_text() -> None:

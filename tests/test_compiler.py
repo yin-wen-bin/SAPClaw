@@ -113,6 +113,35 @@ def test_compiler_uses_runtime_service_name_from_index_metadata_source(tmp_path)
     assert compiled.url.startswith("https://sap.example.com/sap/opu/odata/sap/API_PRODUCTION_ROUTING;v=0002/")
 
 
+def test_compiler_includes_entity_key_fields_from_index(tmp_path) -> None:
+    service_dir = tmp_path / "data" / "index" / "API_PROFITCENTER_SRV"
+    service_dir.mkdir(parents=True)
+    (service_dir / "entities.json").write_text(
+        json.dumps(
+            [
+                {
+                    "entity_set": "A_ProfitCenter",
+                    "key_fields": ["ControllingArea", "ProfitCenter", "ValidityEndDate"],
+                }
+            ]
+        ),
+        encoding="utf-8",
+    )
+    plan = QueryPlan(
+        service_name="API_PROFITCENTER_SRV",
+        entity_set="A_ProfitCenter",
+        select_fields=["ControllingArea", "ProfitCenter", "District"],
+        top=50,
+    )
+
+    compiled = BasicODataCompiler(
+        base_url="https://sap.example.com",
+        index_root=tmp_path / "data" / "index",
+    ).compile(plan)
+
+    assert "$select=ControllingArea,ProfitCenter,District,ValidityEndDate" in compiled.url
+
+
 def test_compiler_uses_unquoted_boolean_literals() -> None:
     plan = QueryPlan(
         service_name="API_PURCHASEORDER_PROCESS_SRV",
@@ -133,6 +162,27 @@ def test_compiler_uses_unquoted_boolean_literals() -> None:
 
     assert "GoodsReceiptIsExpected eq true" in compiled.url
     assert "GoodsReceiptIsExpected eq 'true'" not in compiled.url
+
+
+def test_compiler_preserves_empty_string_in_in_filter() -> None:
+    plan = QueryPlan(
+        service_name="API_BATCH_SRV",
+        entity_set="BatchCharc",
+        select_fields=["BatchIdentifyingPlant", "Batch"],
+        filters=[
+            FilterCondition(
+                field="BatchIdentifyingPlant",
+                operator="in",
+                value=json.dumps(["", "1710"]),
+            )
+        ],
+        top=50,
+    )
+
+    compiled = BasicODataCompiler(base_url="https://sap.example.com").compile(plan)
+
+    assert "BatchIdentifyingPlant eq ''" in compiled.url
+    assert "BatchIdentifyingPlant eq '1710'" in compiled.url
 
 
 def test_compiler_uses_odata_v2_datetime_literal_for_date_values() -> None:

@@ -143,6 +143,7 @@ class LlmDynamicPathPlanner:
 
         return {
             "service_name": self.service_name,
+            "service_names": [self.service_name],
             "entities": entities,
             "function_imports": function_imports,
             "candidate_fields": candidate_fields,
@@ -346,6 +347,7 @@ class LlmDynamicPathPlanner:
             entity = self._lookup_entity(snapshot, entity_set)
             if entity is None:
                 continue
+            step_service_name = str(item.get("service_name") or entity.get("service_name") or snapshot.service_name)
             field_map = self._field_map(snapshot, entity_set)
             filters = self._materialize_filters(item.get("filters", []), field_map)
             bindings = self._materialize_bindings(item, field_map)
@@ -372,6 +374,7 @@ class LlmDynamicPathPlanner:
                 ExecutionStep(
                     step_id=step_id,
                     entity_set=entity_set,
+                    service_name=step_service_name or None,
                     http_method=str(item.get("http_method") or "GET").upper(),
                     select_fields=select_fields,
                     response_summary_fields=self._summary_fields(
@@ -417,6 +420,7 @@ class LlmDynamicPathPlanner:
             "steps": [
                 {
                     "step_id": "find_source",
+                    "service_name": schema_context.get("service_name", ""),
                     "entity_set": "SourceEntity",
                     "select_fields": ["JoinField", "FilterField"],
                     "filters": [{"field": "FilterField", "operator": "eq", "value": "literal"}],
@@ -424,6 +428,7 @@ class LlmDynamicPathPlanner:
                 },
                 {
                     "step_id": "resolve_target",
+                    "service_name": schema_context.get("service_name", ""),
                     "entity_set": "TargetEntity",
                     "select_fields": ["JoinField", "AnswerField"],
                     "filter_from_previous": [
@@ -470,6 +475,7 @@ class LlmDynamicPathPlanner:
             "10. Do not put function import inputs in filters and do not set top/select/order_by for function_import plans.\n"
             "11. If the schema context is insufficient, return no_feasible_plan instead of inventing fields.\n"
             "12. Treat document history requests as ambiguous unless schema_context exposes a true history, movement, receipt, invoice, or change-history entity. Do not answer a history request by returning only pricing, notes, account assignments, or other detail child entities.\n\n"
+            "13. If schema_context.service_names contains multiple services, every multi_step step must include service_name. Keep each step's entity set and fields within that service and use cross-service join_hints or shared key fields to bridge services.\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )
@@ -558,6 +564,7 @@ class LlmDynamicPathPlanner:
     @staticmethod
     def _field_payload(field: dict[str, Any], score: float) -> dict[str, Any]:
         return {
+            "service_name": field.get("service_name", ""),
             "entity_set": field.get("entity_set", ""),
             "field_name": field.get("field_name", ""),
             "label": field.get("label", ""),
@@ -596,6 +603,7 @@ class LlmDynamicPathPlanner:
             if len(fields) >= 64:
                 break
         return {
+            "service_name": entity.get("service_name", snapshot.service_name),
             "entity_set": entity_set,
             "kind": "function_import" if function_import else "entity_set",
             "description": entity.get("description", ""),
@@ -940,12 +948,17 @@ class LlmDynamicPathPlanner:
     @staticmethod
     def _compact_schema_context(schema_context: dict[str, Any]) -> dict[str, Any]:
         return {
+            "service_names": schema_context.get("service_names", [schema_context.get("service_name", "")]),
             "entity_count": len(schema_context.get("entities", [])),
             "candidate_field_count": len(schema_context.get("candidate_fields", [])),
             "join_hint_count": len(schema_context.get("join_hints", [])),
             "top_entities": [item.get("entity_set") for item in schema_context.get("entities", [])[:8]],
             "top_fields": [
-                f"{item.get('entity_set')}.{item.get('field_name')}"
+                (
+                    f"{item.get('service_name')}.{item.get('entity_set')}.{item.get('field_name')}"
+                    if item.get("service_name")
+                    else f"{item.get('entity_set')}.{item.get('field_name')}"
+                )
                 for item in schema_context.get("candidate_fields", [])[:16]
             ],
             "function_imports": [

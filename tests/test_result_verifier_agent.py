@@ -1,4 +1,4 @@
-from sap_odata_agent.domain.models import AgentRequest, FilterCondition, QueryPlan
+from sap_odata_agent.domain.models import AgentRequest, FilterCondition, QueryConstraints, QueryPlan, QueryShape
 from sap_odata_agent.infrastructure.llm.result_verifier_agent import LlmResultVerifierAgent
 
 
@@ -26,6 +26,47 @@ def test_result_verifier_prompt_allows_empty_list_results() -> None:
     assert "Do not require enrichment identifiers" in prompt
     assert "business object name" in prompt
     assert "detail child entities" in prompt
+    assert "field-list wording" in prompt
+
+
+def test_result_verifier_static_passes_field_list_output_request_without_filters() -> None:
+    verifier = LlmResultVerifierAgent(enabled=False)
+
+    result = verifier.verify(
+        request=AgentRequest(
+            user_input=(
+                "Show planned order records with issued quantity, planned order bom is fixed, "
+                "planned order capacity is dsptchd, and planned order is convertible"
+            ),
+            constraints=QueryConstraints(
+                query_shape=QueryShape.LIST_QUERY,
+                target_object="planned order",
+                target_field_concepts=[
+                    "IssuedQuantity",
+                    "PlannedOrderBOMIsFixed",
+                    "PlannedOrderCapacityIsDsptchd",
+                    "PlannedOrderIsConvertible",
+                ],
+            ),
+        ),
+        plan=QueryPlan(
+            service_name="API_PLANNED_ORDERS",
+            entity_set="A_PlannedOrder",
+            select_fields=[
+                "PlannedOrder",
+                "IssuedQuantity",
+                "PlannedOrderBOMIsFixed",
+                "PlannedOrderCapacityIsDsptchd",
+                "PlannedOrderIsConvertible",
+            ],
+            filters=[],
+        ),
+        data={"result_count": 317, "results": [{"PlannedOrder": "1152", "IssuedQuantity": "0"}]},
+        schema_context_summary={"service_name": "API_PLANNED_ORDERS"},
+    )
+
+    assert result["passed"] is True
+    assert result["source"] == "field_list_static_result_verifier"
 
 
 def test_result_verifier_blocks_blank_less_specific_product_tax_classification() -> None:

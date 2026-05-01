@@ -160,6 +160,90 @@ def _write_function_index(root: Path) -> None:
     )
 
 
+def _write_cross_service_index(root: Path) -> None:
+    company_dir = root / "API_COMPANY"
+    gl_dir = root / "API_GL"
+    company_dir.mkdir(parents=True)
+    gl_dir.mkdir(parents=True)
+    (company_dir / "services.json").write_text(json.dumps([{"service_name": "API_COMPANY"}]), encoding="utf-8")
+    (company_dir / "entities.json").write_text(
+        json.dumps(
+            [
+                {
+                    "service_name": "API_COMPANY",
+                    "entity_set": "A_CompanyCode",
+                    "key_fields": ["CompanyCode"],
+                    "default_select_fields": ["CompanyCode", "ChartOfAccounts"],
+                }
+            ]
+        ),
+        encoding="utf-8",
+    )
+    (company_dir / "fields.json").write_text(
+        json.dumps(
+            [
+                {
+                    "service_name": "API_COMPANY",
+                    "entity_set": "A_CompanyCode",
+                    "field_name": "CompanyCode",
+                    "filterable": True,
+                },
+                {
+                    "service_name": "API_COMPANY",
+                    "entity_set": "A_CompanyCode",
+                    "field_name": "ChartOfAccounts",
+                    "filterable": True,
+                },
+            ]
+        ),
+        encoding="utf-8",
+    )
+    (gl_dir / "services.json").write_text(json.dumps([{"service_name": "API_GL"}]), encoding="utf-8")
+    (gl_dir / "entities.json").write_text(
+        json.dumps(
+            [
+                {
+                    "service_name": "API_GL",
+                    "entity_set": "A_GLAccountInChartOfAccounts",
+                    "key_fields": ["ChartOfAccounts", "GLAccount"],
+                    "default_select_fields": ["ChartOfAccounts", "GLAccount", "IsBalanceSheetAccount"],
+                }
+            ]
+        ),
+        encoding="utf-8",
+    )
+    (gl_dir / "fields.json").write_text(
+        json.dumps(
+            [
+                {
+                    "service_name": "API_GL",
+                    "entity_set": "A_GLAccountInChartOfAccounts",
+                    "field_name": "ChartOfAccounts",
+                    "filterable": True,
+                },
+                {
+                    "service_name": "API_GL",
+                    "entity_set": "A_GLAccountInChartOfAccounts",
+                    "field_name": "GLAccount",
+                    "filterable": True,
+                },
+                {
+                    "service_name": "API_GL",
+                    "entity_set": "A_GLAccountInChartOfAccounts",
+                    "field_name": "IsBalanceSheetAccount",
+                    "filterable": True,
+                },
+            ]
+        ),
+        encoding="utf-8",
+    )
+    for service_dir in (company_dir, gl_dir):
+        for name in ("relations.json", "entity_graph.json", "lookup_paths.json", "business_terms.json"):
+            (service_dir / name).write_text("[]", encoding="utf-8")
+        (service_dir / "vector_documents.jsonl").write_text("", encoding="utf-8")
+        (service_dir / "doc_chunks.jsonl").write_text("", encoding="utf-8")
+
+
 def test_schema_feasibility_rejects_entity_without_required_filter_and_answer(tmp_path: Path) -> None:
     _write_index(tmp_path)
     validator = SchemaFeasibilityValidator(index_root=tmp_path, service_name="API_TEST")
@@ -262,6 +346,45 @@ def test_schema_feasibility_accepts_complete_function_import_plan(tmp_path: Path
 
     assert result.passed is True
     assert result.coverage["filter_fields"] == []
+
+
+def test_schema_feasibility_accepts_cross_service_multistep_plan(tmp_path: Path) -> None:
+    _write_cross_service_index(tmp_path)
+    validator = SchemaFeasibilityValidator(index_root=tmp_path, service_name="API_COMPANY")
+    plan = QueryPlan(
+        service_name="API_GL",
+        entity_set="A_GLAccountInChartOfAccounts",
+        plan_kind="multi_step",
+        target_entity_set="A_GLAccountInChartOfAccounts",
+        steps=[
+            ExecutionStep(
+                step_id="resolve_chart",
+                service_name="API_COMPANY",
+                entity_set="A_CompanyCode",
+                select_fields=["CompanyCode", "ChartOfAccounts"],
+                filters=[FilterCondition(field="CompanyCode", operator="eq", value="1710")],
+            ),
+            ExecutionStep(
+                step_id="read_gl_accounts",
+                service_name="API_GL",
+                entity_set="A_GLAccountInChartOfAccounts",
+                select_fields=["ChartOfAccounts", "GLAccount", "IsBalanceSheetAccount"],
+                filters=[FilterCondition(field="IsBalanceSheetAccount", operator="eq", value="false")],
+                filter_from_previous=[
+                    StepBinding(
+                        field="ChartOfAccounts",
+                        source_step_id="resolve_chart",
+                        source_field="ChartOfAccounts",
+                    )
+                ],
+            ),
+        ],
+    )
+
+    result = validator.validate(AgentRequest(user_input="query company 1710 expense accounts"), plan)
+
+    assert result.passed is True
+    assert result.evidence == ["steps_validated:2"]
 
 
 def test_schema_feasibility_rejects_unbounded_downstream_multistep_query(tmp_path: Path) -> None:

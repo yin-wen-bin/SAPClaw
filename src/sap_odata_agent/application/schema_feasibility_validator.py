@@ -36,10 +36,10 @@ class SchemaFeasibilityValidator:
         if not self.enabled:
             return FeasibilityResult(passed=True)
         try:
-            snapshot = self.loader.load(plan.service_name or self.service_name)
+            snapshot = self._load_snapshot(plan.service_name or self.service_name)
         except FileNotFoundError:
             try:
-                snapshot = self.loader.load(self.service_name)
+                snapshot = self._load_snapshot(self.service_name)
             except FileNotFoundError:
                 return FeasibilityResult(
                     passed=True,
@@ -101,7 +101,7 @@ class SchemaFeasibilityValidator:
             }
             filter_fields = {parameter.name for parameter in plan.function_parameters or []}
         elif plan.plan_kind in {"lookup", "multi_step"} and plan.steps:
-            self._validate_steps(snapshot, plan.steps, violations, evidence)
+            self._validate_steps(plan, violations, evidence)
             selected_fields = self._selected_fields(plan)
             filter_fields = self._step_filter_fields(plan.steps)
         else:
@@ -237,14 +237,27 @@ class SchemaFeasibilityValidator:
 
     def _validate_steps(
         self,
-        snapshot,
-        steps: list[ExecutionStep],
+        plan: QueryPlan,
         violations: list[FeasibilityViolation],
         evidence: list[str],
     ) -> None:
+        steps = plan.steps
         by_step = {step.step_id: step for step in steps}
         selected_by_step = {step.step_id: set(step.select_fields or []) for step in steps}
         for index, step in enumerate(steps):
+            service_name = step.service_name or plan.service_name or self.service_name
+            try:
+                snapshot = self._load_snapshot(service_name)
+            except FileNotFoundError:
+                violations.append(
+                    FeasibilityViolation(
+                        code="step_service_not_found",
+                        message=f"Step `{step.step_id}` service `{service_name}` is not present in local index.",
+                        entity_set=step.entity_set,
+                        step_id=step.step_id,
+                    )
+                )
+                continue
             field_map = self._field_map(snapshot, step.entity_set)
             if not field_map:
                 violations.append(
@@ -325,6 +338,9 @@ class SchemaFeasibilityValidator:
                 )
         if steps:
             evidence.append(f"steps_validated:{len(steps)}")
+
+    def _load_snapshot(self, service_name: str):
+        return self.loader.load(service_name)
 
     @staticmethod
     def _validate_function_import(

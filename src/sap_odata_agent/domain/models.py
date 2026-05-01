@@ -266,6 +266,7 @@ class StepBinding:
 class ExecutionStep:
     step_id: str
     entity_set: str
+    service_name: str | None = None
     http_method: str = "GET"
     select_fields: list[str] = field(default_factory=list)
     response_summary_fields: list[str] = field(default_factory=list)

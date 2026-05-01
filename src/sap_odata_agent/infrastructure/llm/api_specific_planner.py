@@ -3,9 +3,11 @@ from __future__ import annotations
 import json
 from datetime import date
 from dataclasses import replace
+from pathlib import Path
 from typing import Any
 
 from sap_odata_agent.domain.models import AgentRequest, ApiRouteDecision, QueryPlan
+from sap_odata_agent.infrastructure.indexing.index_loader import LocalIndexSnapshot
 from sap_odata_agent.infrastructure.llm.dynamic_path_planner import LlmDynamicPathPlanner
 from sap_odata_agent.infrastructure.llm.planner import AnthropicCompatibleMessagesClient, LlmStructuredIntentPlanner
 from sap_odata_agent.infrastructure.llm.prompts import (
@@ -38,7 +40,7 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
         if not self.enabled or self.llm_client is None:
             return self._unavailable_plan_for_service(service_name, "llm_unavailable")
         try:
-            snapshot = self.loader.load(service_name)
+            snapshot = self._load_schema_snapshot(service_name, schema_context)
         except FileNotFoundError:
             return self._unavailable_plan_for_service(service_name, "index_unavailable")
         try:
@@ -55,7 +57,7 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             return self._invalid_plan_for_service(service_name, "llm_plan_not_materializable", schema_context, parsed)
         return replace(
             materialized,
-            service_name=service_name,
+            service_name=materialized.service_name or service_name,
             planner_diagnostics={
                 **(materialized.planner_diagnostics or {}),
                 "route_decision": route_decision.raw_response,
@@ -86,6 +88,7 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             "steps": [
                 {
                     "step_id": "step_1",
+                    "service_name": schema_context.get("service_name", ""),
                     "entity_set": "SourceEntitySet",
                     "select_fields": ["JoinField", "FilterField"],
                     "filters": [{"field": "FilterField", "operator": "eq", "value": "literal", "value_type": "string"}],
@@ -94,6 +97,7 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
                 },
                 {
                     "step_id": "step_2",
+                    "service_name": schema_context.get("service_name", ""),
                     "entity_set": "TargetEntitySet",
                     "select_fields": ["JoinField", "AnswerField"],
                     "filters": [],
@@ -140,8 +144,10 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             "8. For example, do not bind BusinessPartner directly onto an entity that only has Supplier or Customer; first use an entity that contains BusinessPartner and Supplier/Customer, then bind the final key.\n\n"
             "9. For function imports listed in schema_context.function_imports, set plan_kind=function_import and put inputs in function_parameters using the exact parameter names and value_type from schema_context.\n"
             "10. Do not put function import inputs in filters and do not set top/select/order_by for function_import plans.\n\n"
-            "11. If schema_context.api_skill identifies a more specific entity for the user's business meaning, prefer that entity over a less specific similarly named field. Do not conclude 'not maintained' from a blank less specific field until the skill-preferred entity has been checked.\n\n"
+            "11. If schema_context.api_skill or schema_context.api_skills identify a more specific entity for the user's business meaning, prefer that entity over a less specific similarly named field. Do not conclude 'not maintained' from a blank less specific field until the skill-preferred entity has been checked.\n\n"
             "12. Treat document history requests as ambiguous unless schema_context exposes a true history, movement, receipt, invoice, or change-history entity. Do not answer a history request by returning only pricing, notes, account assignments, or other detail child entities.\n\n"
+            "13. Treat bare \"with/include/show/display\" field-list wording as requested output fields, not filters. Add filters only for explicit restrictions, comparisons, literal values, true/false requirements, nonzero/open/closed conditions, or schema-verified business conditions.\n\n"
+            "14. If schema_context.service_names contains multiple services, every multi_step step must include service_name. Use cross-service join_hints or shared key fields to bridge between services, and only use entity sets and fields from that step's service.\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )
@@ -149,6 +155,43 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
     @staticmethod
     def _selected_service(route_decision: ApiRouteDecision) -> str:
         return route_decision.selected_apis[0].service_name if route_decision.selected_apis else ""
+
+    def _load_schema_snapshot(self, service_name: str, schema_context: dict[str, Any]) -> LocalIndexSnapshot:
+        service_names = [
+            str(item).strip()
+            for item in schema_context.get("service_names", [])
+            if str(item).strip()
+        ]
+        if not service_names:
+            service_names = [service_name]
+        service_names = list(dict.fromkeys(service_names))
+        if len(service_names) == 1:
+            return self.loader.load(service_names[0])
+
+        snapshots = [self.loader.load(name) for name in service_names]
+        root_dir = snapshots[0].root_dir.parent if snapshots else Path("data/index")
+
+        def merge(attr: str) -> list[dict[str, Any]]:
+            rows: list[dict[str, Any]] = []
+            for snapshot in snapshots:
+                for item in getattr(snapshot, attr):
+                    if isinstance(item, dict):
+                        rows.append({**item, "service_name": item.get("service_name") or snapshot.service_name})
+            return rows
+
+        return LocalIndexSnapshot(
+            service_name=service_name or service_names[0],
+            root_dir=root_dir,
+            services=merge("services"),
+            entities=merge("entities"),
+            fields=merge("fields"),
+            relations=merge("relations"),
+            entity_graph=merge("entity_graph"),
+            lookup_paths=merge("lookup_paths"),
+            business_terms=merge("business_terms"),
+            vector_documents=[],
+            doc_chunks=[],
+        )
 
     @staticmethod
     def _requires_purchase_order_history_clarification(request: AgentRequest, service_name: str) -> bool:

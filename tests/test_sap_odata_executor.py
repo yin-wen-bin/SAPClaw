@@ -217,6 +217,87 @@ def test_multi_step_executor_passes_previous_step_value_into_next_filter() -> No
     assert "fetch_address" in data["step_results"]
 
 
+def test_multi_step_executor_uses_step_level_service_names() -> None:
+    class StubExecutor(SapODataExecutor):
+        def _perform_request(self, compiled_request: CompiledRequest) -> dict[str, str | int]:
+            decoded_url = urllib.parse.unquote_plus(compiled_request.url)
+            if "API_COMPANYCODE_SRV/A_CompanyCode?" in compiled_request.url:
+                assert "CompanyCode eq '1710'" in decoded_url
+                return {
+                    "status_code": 200,
+                    "content_type": "application/json",
+                    "body": '{"d":{"results":[{"CompanyCode":"1710","ChartOfAccounts":"YCOA"}]}}',
+                }
+
+            assert "API_GLACCOUNTINCHARTOFACCOUNTS_SRV/A_GLAccountInChartOfAccounts?" in compiled_request.url
+            assert "ChartOfAccounts eq 'YCOA'" in decoded_url
+            assert "IsBalanceSheetAccount eq false" in decoded_url
+            return {
+                "status_code": 200,
+                "content_type": "application/json",
+                "body": (
+                    '{"d":{"results":[{"ChartOfAccounts":"YCOA","GLAccount":"61000000",'
+                    '"IsBalanceSheetAccount":false,"ProfitLossAccountType":"EXP"}]}}'
+                ),
+            }
+
+    executor = StubExecutor(_build_executor().config)
+    compiler = BasicODataCompiler(base_url="https://sap.example.com")
+    multi_step = MultiStepSapExecutor(compiler=compiler, executor=executor)
+    plan = QueryPlan(
+        service_name="API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+        entity_set="A_GLAccountInChartOfAccounts",
+        plan_kind="multi_step",
+        target_entity_set="A_GLAccountInChartOfAccounts",
+        steps=[
+            ExecutionStep(
+                step_id="resolve_chart",
+                service_name="API_COMPANYCODE_SRV",
+                entity_set="A_CompanyCode",
+                select_fields=["CompanyCode", "ChartOfAccounts"],
+                filters=[FilterCondition(field="CompanyCode", operator="eq", value="1710")],
+                top=1,
+            ),
+            ExecutionStep(
+                step_id="fetch_gl_accounts",
+                service_name="API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+                entity_set="A_GLAccountInChartOfAccounts",
+                select_fields=["ChartOfAccounts", "GLAccount", "IsBalanceSheetAccount", "ProfitLossAccountType"],
+                filters=[
+                    FilterCondition(
+                        field="IsBalanceSheetAccount",
+                        operator="eq",
+                        value="false",
+                        value_type="Edm.Boolean",
+                    )
+                ],
+                filter_from_previous=[
+                    StepBinding(
+                        field="ChartOfAccounts",
+                        source_step_id="resolve_chart",
+                        source_field="ChartOfAccounts",
+                    )
+                ],
+                top=50,
+            ),
+        ],
+    )
+
+    attempts, data = multi_step.execute_plan(plan, starting_attempt_number=1)
+
+    assert len(attempts) == 2
+    assert attempts[0].request.url.startswith(
+        "https://sap.example.com/sap/opu/odata/sap/API_COMPANYCODE_SRV/A_CompanyCode?"
+    )
+    assert attempts[1].request.url.startswith(
+        "https://sap.example.com/sap/opu/odata/sap/API_GLACCOUNTINCHARTOFACCOUNTS_SRV/A_GLAccountInChartOfAccounts?"
+    )
+    assert data is not None
+    assert data["execution_trace"][0]["service_name"] == "API_COMPANYCODE_SRV"
+    assert data["execution_trace"][1]["service_name"] == "API_GLACCOUNTINCHARTOFACCOUNTS_SRV"
+    assert data["results"][0]["GLAccount"] == "61000000"
+
+
 def test_multi_step_executor_expands_multiple_previous_values_into_in_filter() -> None:
     class StubExecutor(SapODataExecutor):
         def _perform_request(self, compiled_request: CompiledRequest) -> dict[str, str | int]:
@@ -278,6 +359,94 @@ def test_multi_step_executor_expands_multiple_previous_values_into_in_filter() -
     assert attempts[1].extracted_values["BusinessPartner"] == ["9000000024", "9000000025"]
     assert data is not None
     assert data["result_count"] == 2
+
+
+def test_multi_step_executor_can_bind_empty_string_key_values() -> None:
+    class StubExecutor(SapODataExecutor):
+        def _perform_request(self, compiled_request: CompiledRequest) -> dict[str, str | int]:
+            decoded_url = urllib.parse.unquote_plus(compiled_request.url)
+            if "Batch?" in compiled_request.url:
+                return {
+                    "status_code": 200,
+                    "content_type": "application/json",
+                    "body": json.dumps(
+                        {
+                            "d": {
+                                "results": [
+                                    {
+                                        "Material": "2211",
+                                        "BatchIdentifyingPlant": "",
+                                        "Batch": "0000000074",
+                                    }
+                                ]
+                            }
+                        }
+                    ),
+                }
+
+            assert "BatchCharc?" in compiled_request.url
+            assert "Material eq '2211'" in decoded_url
+            assert "Batch eq '0000000074'" in decoded_url
+            assert "BatchIdentifyingPlant eq ''" in decoded_url
+            return {
+                "status_code": 200,
+                "content_type": "application/json",
+                "body": json.dumps(
+                    {
+                        "d": {
+                            "results": [
+                                {
+                                    "Material": "2211",
+                                    "BatchIdentifyingPlant": "",
+                                    "Batch": "0000000074",
+                                    "CharcInternalID": "1000",
+                                }
+                            ]
+                        }
+                    }
+                ),
+            }
+
+    executor = StubExecutor(_build_executor().config)
+    compiler = BasicODataCompiler(base_url="https://sap.example.com")
+    multi_step = MultiStepSapExecutor(compiler=compiler, executor=executor)
+    plan = QueryPlan(
+        service_name="API_BATCH_SRV",
+        entity_set="BatchCharc",
+        plan_kind="multi_step",
+        target_entity_set="BatchCharc",
+        steps=[
+            ExecutionStep(
+                step_id="step_1",
+                entity_set="Batch",
+                select_fields=["Material", "BatchIdentifyingPlant", "Batch"],
+                top=1,
+            ),
+            ExecutionStep(
+                step_id="step_2",
+                entity_set="BatchCharc",
+                select_fields=["Material", "BatchIdentifyingPlant", "Batch", "CharcInternalID"],
+                filter_from_previous=[
+                    StepBinding(field="Material", source_step_id="step_1", source_field="Material"),
+                    StepBinding(field="Batch", source_step_id="step_1", source_field="Batch"),
+                    StepBinding(
+                        field="BatchIdentifyingPlant",
+                        source_step_id="step_1",
+                        source_field="BatchIdentifyingPlant",
+                    ),
+                ],
+                top=50,
+            ),
+        ],
+    )
+
+    attempts, data = multi_step.execute_plan(plan, starting_attempt_number=1)
+
+    assert len(attempts) == 2
+    assert attempts[1].success is True
+    assert attempts[1].extracted_values["BatchIdentifyingPlant"] == ""
+    assert data is not None
+    assert data["results"][0]["CharcInternalID"] == "1000"
 
 
 def test_multi_step_executor_binds_all_returned_rows_not_display_preview_only() -> None:

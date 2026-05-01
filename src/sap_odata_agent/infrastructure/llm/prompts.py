@@ -50,7 +50,7 @@ needed to explain the route. If the question may require multiple APIs, set requ
 explain why. If the API cannot be determined from the catalog and user question, return needs_clarification=true.
 
 Routing guidelines:
-1. Prefer the API whose short_description, primary_business_objects, top_entities, top_filter_fields, and api_skill_summary best match the user's intent.
+1. Prefer the API whose short_description, primary_business_objects, top_entities, top_filter_fields, top_answer_fields, and api_skill_summary best match the user's intent.
 2. Match both business object and business process.
 3. Master data questions usually route to master data APIs.
 4. Document status, item details, quantities, values, dates, approvals, and lifecycle questions usually route to transactional APIs.
@@ -66,6 +66,9 @@ Routing guidelines:
 14. If feedback_memories conflict with the API catalog, keep the route grounded in the catalog and explain the conflict in the route reason.
 15. Use api_skill_summary as API-specific learned guidance. It can explain business wording, known pitfalls, and when to use the API, but it cannot override the catalog or schema.
 16. Treat "history" wording as high-risk and potentially ambiguous. If the catalog or api_skill does not clearly expose history, movement, receipt, invoice, or change-history objects for the requested document, ask a clarification instead of routing to a merely related detail entity such as pricing.
+17. If the user asks for standalone ledger master records, ledger lists, ledger text, ledger names, or leading-ledger attributes, prefer a ledger master-data API such as API_LEDGER_SRV when present. Do not route those questions to a G/L line item API merely because line items contain a Ledger field. Route to G/L line item APIs only when the user asks for journal entry items, postings, line items, amounts, or accounting documents.
+18. In intent_summary, keep requested output attributes separate from filter constraints. Bare field-list wording such as "with/include/show/display field A and field B" means those attributes should be returned, not used as filters, unless the user explicitly says only/where/true/false/nonzero/greater than/less than or gives a concrete filter value.
+19. Use top_answer_fields to route questions with requested output attributes. If the user asks for descriptive fields such as account name, company code name, cost center name, profit center name, or ledger name, prefer an API that exposes those name fields natively on the requested business object over an API that exposes only the corresponding codes.
 """.strip()
 
 
@@ -92,8 +95,9 @@ Metadata matching rules:
 8. If a document has header and item entities, choose header for header-level questions and item for item-level questions.
 9. Include user-provided organizational context as filters if supported.
 10. If multiple similar fields exist, prefer the field whose entity and label best match the user's business level.
-11. Use schema_context.api_skill as API-specific learned guidance for business semantics, common planning patterns, and pitfalls.
-12. API skills are not schema authority. If schema_context.api_skill mentions an entity or field that is absent from schema_context, do not use it.
+11. Use schema_context.api_skill and schema_context.api_skills as API-specific learned guidance for business semantics, common planning patterns, and pitfalls.
+12. API skills are not schema authority. If schema_context.api_skill or schema_context.api_skills mention an entity or field that is absent from schema_context, do not use it.
+13. Distinguish requested output attributes from filters. Wording like "with/include/show/display <field names or status indicators>" usually means select those fields. Treat them as filters only when the user provides an explicit restriction, comparison, literal value, or phrase such as only/where/true/false/nonzero.
 """.strip()
 
 
@@ -119,13 +123,15 @@ Planning rules:
 11. If multiple organizational levels are possible, use user-provided context; otherwise ask clarification.
 12. If user asks for all/list/which objects, use table presentation.
 13. If user asks for one factual attribute, use text presentation.
-14. Follow schema_context.api_skill when it gives API-specific semantic guidance, such as which status field supports a business conclusion.
-15. If schema_context.api_skill warns against a field for the user's business meaning, do not use that field unless the user explicitly asks for that exact technical field.
+14. Follow schema_context.api_skill and schema_context.api_skills when they give API-specific semantic guidance, such as which status field supports a business conclusion.
+15. If schema_context.api_skill or schema_context.api_skills warn against a field for the user's business meaning, do not use that field unless the user explicitly asks for that exact technical field.
 16. Use function_import when schema_context.function_imports lists the required operation. Put operation inputs in function_parameters, not filters.
 17. Function import plans must not use select_fields, filters, order_by, top, or multi_step bindings; SAP function imports only accept their named input parameters.
 18. If multiple entities expose similarly named fields, choose the entity whose business level matches the requested meaning. A less specific blank field must not be used as negative evidence when api_skill points to a more specific entity/field combination.
 19. Do not synthesize a "history" answer by combining unrelated child entities. If the user asks for document history and schema_context.api_skill says the API does not expose true history, return clarification or no_feasible_plan instead of selecting a detail entity such as pricing, notes, or account assignment.
 20. If schema_context.service.service_kind is CDS_VIEW_ONLY or schema_context.service.odata_runtime_available is false, return no_feasible_plan; do not produce a /sap/opu/odata/sap/... plan.
+21. Do not convert requested output fields into filters. Bare "with/include/show/display" field-list wording should populate select_fields; it should not create filters unless there is an explicit comparison, literal target value, only/where phrase, true/false requirement, or nonzero/open/closed business condition.
+22. If schema_context contains multiple service_names, a multi_step plan may cross APIs. In that case every step must include service_name, and each step may use only entity sets and fields that belong to that service. Use cross-service join_hints or shared key fields for bindings.
 """.strip()
 
 
@@ -153,6 +159,8 @@ Repair rules:
 10. function import syntax error: convert entity-style filters or $top/$select usage into plan_kind=function_import with named function_parameters from schema_context.function_imports.
 11. after repeated failures, prefer no_feasible_plan with clear reason.
 12. If schema_context.service.service_kind is CDS_VIEW_ONLY or schema_context.service.odata_runtime_available is false, return no_feasible_plan; do not repair it into a /sap/opu/odata/sap/... request.
+13. Do not repair a valid field-list plan by adding filters for bare "with/include/show/display" attributes. Add filters only when the user supplied an explicit restriction, comparison, literal target value, true/false requirement, nonzero/open/closed condition, or schema-verified business condition.
+14. If schema_context contains multiple service_names, a repaired multi_step plan may cross APIs. Every step must include service_name and keep entity sets/fields within that service.
 """.strip()
 
 

@@ -2320,6 +2320,7 @@ class LlmStructuredIntentPlanner(RetrievalAwareIntentPlanner):
             "steps": [
                 {
                     "step_id": step.step_id,
+                    "service_name": step.service_name,
                     "entity_set": step.entity_set,
                     "select_fields": step.select_fields,
                     "filters": [

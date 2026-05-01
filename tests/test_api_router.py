@@ -33,6 +33,7 @@ def _catalog() -> list[dict]:
             "primary_business_objects": ["Purchase Order", "Purchase Order Item"],
             "top_entities": ["A_PurchaseOrder", "A_PurchaseOrderItem"],
             "top_filter_fields": ["A_PurchaseOrderItem.IsFinallyInvoiced"],
+            "top_answer_fields": ["A_PurchaseOrder.PurchaseOrder"],
         }
     ]
 
@@ -136,6 +137,216 @@ def test_api_router_prompt_includes_api_skill_summary() -> None:
     assert "api_skill_summary" in client.calls[0]["user_prompt"]
     assert "IsCompletelyDelivered" in client.calls[0]["user_prompt"]
     assert "api_skill_summary" in client.calls[0]["system_prompt"]
+
+
+def test_api_router_compacts_large_catalog_payload() -> None:
+    valid = {
+        "resolved_user_input": "query purchase orders",
+        "should_carry_context": False,
+        "selected_apis": [
+            {
+                "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+                "confidence": 0.8,
+                "reason": "Purchase order business object matched.",
+            }
+        ],
+        "requires_multi_api": False,
+        "intent_summary": "Purchase orders",
+        "business_domain": "Purchasing",
+        "business_object": "Purchase Order",
+        "needs_clarification": False,
+        "clarification_question": "",
+        "clarification_options": [],
+    }
+    catalog = _catalog()
+    catalog[0]["short_description"] = "x" * 1000
+    catalog[0]["primary_business_objects"] = [f"object-{index}" for index in range(12)]
+    catalog[0]["top_entities"] = [f"Entity{index}" for index in range(12)]
+    catalog[0]["top_filter_fields"] = [f"Entity.Field{index}" for index in range(12)]
+    catalog[0]["top_answer_fields"] = [f"Entity.Answer{index}" for index in range(12)]
+    catalog[0]["api_skill_summary"] = "For unreceived purchase orders, prefer A_PurchaseOrderItem.IsCompletelyDelivered eq false. " + "x" * 1000
+    client = SequencedClient([json.dumps(valid)])
+    router = LlmApiRouter(llm_client=client, enabled=True, allow_default_fallback=False)
+
+    router.route("query purchase orders", catalog)
+
+    prompt = client.calls[0]["user_prompt"]
+    payload = json.loads(prompt.split("Input:\n", 1)[1].split("\n\nReturn JSON", 1)[0])
+    compact_entry = payload["api_catalog"][0]
+    assert len(compact_entry["short_description"]) <= 110
+    assert len(compact_entry["primary_business_objects"]) == 4
+    assert len(compact_entry["top_entities"]) == 4
+    assert len(compact_entry["top_filter_fields"]) == 4
+    assert len(compact_entry["top_answer_fields"]) == 4
+    assert len(compact_entry["api_skill_summary"]) <= 120
+
+
+def test_api_router_compaction_keeps_user_relevant_later_entities() -> None:
+    valid = {
+        "resolved_user_input": "show pur ctr account records",
+        "should_carry_context": False,
+        "selected_apis": [
+            {
+                "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+                "confidence": 0.8,
+                "reason": "Matched a catalog entry.",
+            }
+        ],
+        "requires_multi_api": False,
+        "intent_summary": "Purchase contract account records",
+        "business_domain": "Procurement",
+        "business_object": "Purchase Contract Account",
+        "needs_clarification": False,
+        "clarification_question": "",
+        "clarification_options": [],
+    }
+    catalog = _catalog()
+    catalog[0]["primary_business_objects"] = [
+        "Purchase Contract",
+        "Purchase Contract Item",
+        "Purchase Contract Notes",
+        "Purchase Contract Item Notes",
+        "Pur Ctr Account",
+    ]
+    catalog[0]["top_entities"] = [
+        "A_PurchaseContract",
+        "A_PurchaseContractItem",
+        "A_PurchaseContractNotes",
+        "A_PurchaseContractItemNotes",
+        "A_PurCtrAccount",
+    ]
+    client = SequencedClient([json.dumps(valid)])
+    router = LlmApiRouter(llm_client=client, enabled=True, allow_default_fallback=False)
+
+    router.route("show pur ctr account records", catalog)
+
+    prompt = client.calls[0]["user_prompt"]
+    payload = json.loads(prompt.split("Input:\n", 1)[1].split("\n\nReturn JSON", 1)[0])
+    compact_entry = payload["api_catalog"][0]
+    assert "Pur Ctr Account" in compact_entry["primary_business_objects"]
+    assert "A_PurCtrAccount" in compact_entry["top_entities"]
+
+
+def test_api_router_does_not_clarify_field_list_output_request() -> None:
+    response = {
+        "resolved_user_input": "show records with condition is deleted and condition release status",
+        "should_carry_context": False,
+        "selected_apis": [
+            {
+                "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+                "confidence": 0.9,
+                "reason": "Matched catalog entry.",
+            }
+        ],
+        "requires_multi_api": False,
+        "intent_summary": "Show status fields as output attributes.",
+        "business_domain": "Procurement",
+        "business_object": "Condition Supplement",
+        "needs_clarification": True,
+        "clarification_question": "Do you want to filter by deleted status?",
+        "clarification_options": ["filter deleted", "show fields"],
+    }
+    client = SequencedClient([json.dumps(response)])
+    router = LlmApiRouter(llm_client=client, enabled=True, allow_default_fallback=False)
+
+    decision = router.route(
+        "show records with condition is deleted and condition release status",
+        _catalog(),
+    )
+
+    assert decision.selected_apis
+    assert decision.needs_clarification is False
+    assert decision.clarification_question is None
+    assert decision.clarification_options == []
+
+
+def test_api_router_keeps_clarification_for_explicit_filter_request() -> None:
+    response = {
+        "resolved_user_input": "show only deleted records",
+        "should_carry_context": False,
+        "selected_apis": [
+            {
+                "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+                "confidence": 0.9,
+                "reason": "Matched catalog entry.",
+            }
+        ],
+        "requires_multi_api": False,
+        "intent_summary": "Filter by deleted status.",
+        "business_domain": "Procurement",
+        "business_object": "Condition Supplement",
+        "needs_clarification": True,
+        "clarification_question": "Which deleted status value should be used?",
+        "clarification_options": ["true", "false"],
+    }
+    client = SequencedClient([json.dumps(response)])
+    router = LlmApiRouter(llm_client=client, enabled=True, allow_default_fallback=False)
+
+    decision = router.route("show only deleted records", _catalog())
+
+    assert decision.needs_clarification is True
+    assert decision.clarification_question == "Which deleted status value should be used?"
+
+
+def test_api_router_compacts_recent_cases_before_prompting() -> None:
+    valid = {
+        "resolved_user_input": "show production routing status records",
+        "should_carry_context": False,
+        "selected_apis": [
+            {
+                "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+                "confidence": 0.8,
+                "reason": "Matched a catalog entry.",
+            }
+        ],
+        "requires_multi_api": False,
+        "intent_summary": "Status records",
+        "business_domain": "Manufacturing",
+        "business_object": "Production Routing Status",
+        "needs_clarification": False,
+        "clarification_question": "",
+        "clarification_options": [],
+    }
+    huge_case = {
+        "case_id": "case-large",
+        "request": {"user_input": "show production routing status records"},
+        "final_plan": {
+            "service_name": "API_PRODUCTION_ROUTING",
+            "entity_set": "ProductionRoutingStatus",
+        },
+        "final_status": "success",
+        "response_preview": {"results": [{"payload": "x" * 100000}]},
+        "schema_context_summary": {"entities": [{"fields": ["x" * 100000]}]},
+        "planning_attempts": [{"raw": "x" * 100000}],
+        "feedback_memories_used": [
+            {
+                "case_id": "memory-1",
+                "lesson": "Use ProductionRoutingStatus for routing status records." + ("x" * 1000),
+                "preferred_entities": ["ProductionRoutingStatus"],
+            }
+        ],
+    }
+    client = SequencedClient([json.dumps(valid)])
+    router = LlmApiRouter(llm_client=client, enabled=True, allow_default_fallback=False)
+
+    router.route(
+        "show production routing status records",
+        _catalog(),
+        recent_cases=[huge_case],
+        latest_clarification_case=huge_case,
+    )
+
+    prompt = client.calls[0]["user_prompt"]
+    payload = json.loads(prompt.split("Input:\n", 1)[1].split("\n\nReturn JSON", 1)[0])
+    recent_case = payload["recent_cases"][0]
+    clarification_case = payload["latest_clarification_case"]
+    assert "response_preview" not in recent_case
+    assert "schema_context_summary" not in recent_case
+    assert "planning_attempts" not in recent_case
+    assert recent_case["selected_api"] == "API_PRODUCTION_ROUTING"
+    assert recent_case["entity_set"] == "ProductionRoutingStatus"
+    assert len(json.dumps(payload, ensure_ascii=False)) < 10000
+    assert len(clarification_case["feedback_memories_used"][0]["lesson"]) <= 260
 
 
 def test_history_payload_exposes_feedback_memories_used() -> None:

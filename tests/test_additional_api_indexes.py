@@ -4,6 +4,7 @@ from sap_odata_agent.infrastructure.indexing.api_catalog_provider import ApiCata
 from sap_odata_agent.infrastructure.indexing.api_skill_provider import ApiSkillProvider
 from sap_odata_agent.infrastructure.indexing.index_loader import LocalIndexLoader
 from sap_odata_agent.infrastructure.indexing.schema_context_provider import SchemaContextProvider
+from sap_odata_agent.domain.models import ApiRouteDecision, SelectedApi
 
 
 ADDITIONAL_APIS = {
@@ -41,6 +42,7 @@ def test_api_catalog_uses_compact_router_shape() -> None:
         "primary_business_objects",
         "top_entities",
         "top_filter_fields",
+        "top_answer_fields",
     }
     assert purchase_order["service_kind"] == "ODATA"
     assert purchase_order["odata_runtime_available"] is True
@@ -55,9 +57,21 @@ def test_api_catalog_uses_compact_router_shape() -> None:
         "A_PurchaseOrderScheduleLine",
     ]
     assert len(purchase_order["top_filter_fields"]) <= 18
+    assert len(purchase_order["top_answer_fields"]) <= 24
     assert "A_PurchaseOrderItem.IsFinallyInvoiced" in purchase_order["top_filter_fields"]
     assert "A_PurchaseOrderItem.Material" in purchase_order["top_filter_fields"]
     assert "A_PurchaseOrderScheduleLine.ScheduleLineDeliveryDate" in purchase_order["top_filter_fields"]
+
+
+def test_api_catalog_exposes_answer_fields_for_router_selection() -> None:
+    catalog = ApiCatalogProvider(index_root="data/index").load()
+    journal = next(item for item in catalog if item["service_name"] == "API_JOURNALENTRYITEMBASIC_SRV")
+    line_item = next(item for item in catalog if item["service_name"] == "API_GLACCOUNTLINEITEM")
+
+    assert "A_JournalEntryItemBasic.GLAccountName" in journal["top_answer_fields"]
+    assert "A_JournalEntryItemBasic.CompanyCodeName" in journal["top_answer_fields"]
+    assert "GLAccountLineItem.GLAccountName" not in line_item["top_answer_fields"]
+    assert "GLAccountLineItem.CompanyCodeName" not in line_item["top_answer_fields"]
 
 
 def test_api_catalog_pins_info_record_router_fields() -> None:
@@ -111,6 +125,40 @@ def test_purchase_order_schema_context_loads_business_fields() -> None:
     assert ("A_PurchaseOrder", "PurchaseOrder") in fields
     assert ("A_PurchaseOrder", "Supplier") in fields
     assert ("A_PurchaseOrder", "CompanyCode") in fields
+
+
+def test_multi_api_schema_context_includes_all_routed_services_and_cross_join() -> None:
+    route_decision = ApiRouteDecision(
+        selected_apis=[
+            SelectedApi("API_COMPANYCODE_SRV", confidence=0.85),
+            SelectedApi("API_GLACCOUNTINCHARTOFACCOUNTS_SRV", confidence=0.75),
+        ],
+        requires_multi_api=True,
+    )
+    context = SchemaContextProvider(index_root="data/index").build(
+        "API_COMPANYCODE_SRV",
+        "\u67e5\u8be2\u516c\u53f81710\u7684\u8d39\u7528\u7c7b\u79d1\u76ee",
+        route_decision=route_decision,
+    )
+
+    assert context["multi_api"] is True
+    assert context["service_names"] == [
+        "API_COMPANYCODE_SRV",
+        "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    ]
+    qualified_entities = {
+        (entity["service_name"], entity["entity_set"])
+        for entity in context["entities"]
+    }
+    assert ("API_COMPANYCODE_SRV", "A_CompanyCode") in qualified_entities
+    assert (
+        "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+        "A_GLAccountInChartOfAccounts",
+    ) in qualified_entities
+    assert any(
+        hint.get("cross_service") is True and hint.get("field_name") == "ChartOfAccounts"
+        for hint in context["join_hints"]
+    )
 
 
 def test_purchase_order_schema_summary_keeps_receipt_completion_fields() -> None:

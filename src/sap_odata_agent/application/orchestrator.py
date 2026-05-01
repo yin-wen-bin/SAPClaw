@@ -213,6 +213,8 @@ class AgentOrchestrator:
             return response
 
         for attempt_number in range(1, self.max_attempts + 1):
+            current_plan = self._remove_output_field_filters_without_filter_intent(effective_request, current_plan)
+
             latest_guardrail_decision = self._timed_call(
                 timings,
                 "guardrail.evaluate",
@@ -638,6 +640,7 @@ class AgentOrchestrator:
                 **schema_context,
                 "api_skill": api_skill,
             }
+        schema_context = self._attach_multi_api_skills(schema_context, timings)
         schema_research = self._timed_call(
             timings,
             "llm.schema_research",
@@ -837,6 +840,8 @@ class AgentOrchestrator:
                     schema_context_summary=schema_context_summary,
                 )
                 return response
+
+            current_plan = self._remove_output_field_filters_without_filter_intent(effective_request, current_plan)
 
             latest_guardrail_decision = self._timed_call(
                 timings,
@@ -1245,6 +1250,54 @@ class AgentOrchestrator:
         ]
         return "\n".join(section for section in sections if section.strip())
 
+    @staticmethod
+    def _remove_output_field_filters_without_filter_intent(request: AgentRequest, plan: QueryPlan) -> QueryPlan:
+        if not PlanCritic._looks_like_field_list_without_filter_intent(request):
+            return plan
+
+        removed_fields: list[str] = []
+        filters = []
+        for item in plan.filters or []:
+            if not AgentOrchestrator._filter_value_is_mentioned(request, item.value):
+                removed_fields.append(item.field)
+                continue
+            filters.append(item)
+
+        steps = []
+        for step in plan.steps or []:
+            step_filters = []
+            for item in step.filters or []:
+                if not AgentOrchestrator._filter_value_is_mentioned(request, item.value):
+                    removed_fields.append(item.field)
+                    continue
+                step_filters.append(item)
+            if len(step_filters) != len(step.filters or []):
+                steps.append(replace(step, filters=step_filters))
+            else:
+                steps.append(step)
+
+        if not removed_fields:
+            return plan
+
+        return replace(
+            plan,
+            filters=filters,
+            steps=steps,
+            planner_diagnostics={
+                **(plan.planner_diagnostics or {}),
+                "auto_removed_output_field_filters": sorted(set(removed_fields)),
+            },
+        )
+
+    @staticmethod
+    def _filter_value_is_mentioned(request: AgentRequest, value: object) -> bool:
+        literal = str(value or "").strip().strip("'\"").lower()
+        if not literal:
+            return False
+        if literal in {"true", "false", "x"}:
+            return literal in f" {request.resolved_user_input or ''} {request.user_input or ''} ".lower().split()
+        return literal in f"{request.resolved_user_input or ''} {request.user_input or ''}".lower()
+
     def _load_api_skill(self, service_name: str, timings: list[dict]) -> dict | None:
         if self.api_skill_provider is None:
             return None
@@ -1258,6 +1311,25 @@ class AgentOrchestrator:
         if skill is None:
             return None
         return skill.as_prompt_payload()
+
+    def _attach_multi_api_skills(self, schema_context: dict, timings: list[dict]) -> dict:
+        if self.api_skill_provider is None or not schema_context.get("multi_api"):
+            return schema_context
+        skills = []
+        for service_name in schema_context.get("service_names", []):
+            service = str(service_name or "").strip()
+            if not service:
+                continue
+            skill = self._load_api_skill(service, timings)
+            if skill:
+                skills.append(skill)
+        if not skills:
+            return schema_context
+        return {
+            **schema_context,
+            "api_skills": skills,
+            "api_skill": schema_context.get("api_skill") or skills[0],
+        }
 
     @staticmethod
     def _looks_like_standalone_query(user_input: str) -> bool:
@@ -1313,6 +1385,7 @@ class AgentOrchestrator:
                 **schema_context,
                 "api_skill": api_skill,
             }
+        schema_context = self._attach_multi_api_skills(schema_context, timings)
         schema_research = self._timed_call(
             timings,
             "llm.schema_research",

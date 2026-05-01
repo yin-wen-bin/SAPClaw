@@ -144,6 +144,7 @@ class LlmResultVerifierAgent:
             "13. A business object name in the question can identify the domain or entity type. Do not treat words like business partner, supplier, customer, material, or purchase order as mandatory output fields unless the user explicitly asks for the ID/number/code or those fields are required to distinguish returned rows.\n\n"
             "14. When api_skill says a similarly named field is not sufficient for the user's business level, block a successful response that uses that insufficient field as negative evidence and provide repair_hints for the more specific entity/field combination.\n\n"
             "15. Do not accept pricing elements, notes, account assignments, or other detail child entities as the main answer for a document history request unless the user explicitly asked for that detail type.\n\n"
+            "16. For bare field-list wording such as \"with/include/show/display field A and field B\", verify that the fields are selected and returned; do not require filters for those fields unless the user supplied an explicit restriction, comparison, literal value, true/false requirement, nonzero/open/closed condition, or other business condition.\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )
@@ -158,6 +159,9 @@ class LlmResultVerifierAgent:
         po_history_result = LlmResultVerifierAgent._purchase_order_history_static_check(request, plan, data)
         if po_history_result is not None:
             return po_history_result
+        field_list_result = LlmResultVerifierAgent._field_list_output_static_check(request, plan, data)
+        if field_list_result is not None:
+            return field_list_result
         if not LlmResultVerifierAgent._looks_like_product_tax_classification_request(request):
             return None
         if plan.service_name != "API_PRODUCT_SRV" or plan.entity_set != "A_ProductSales":
@@ -271,6 +275,79 @@ class LlmResultVerifierAgent:
                 "rejected_entity_set": "A_PurOrdPricingElement",
             },
             "source": "skill_grounded_result_verifier",
+        }
+
+    @staticmethod
+    def _field_list_output_static_check(
+        request: AgentRequest,
+        plan: QueryPlan,
+        data: dict[str, Any],
+    ) -> dict[str, Any] | None:
+        text = f" {request.user_input or request.resolved_user_input or ''} ".lower()
+        field_list_markers = (
+            " with ",
+            " include ",
+            " includes ",
+            " including ",
+            " display ",
+            " show ",
+            " list ",
+        )
+        if not any(marker in text for marker in field_list_markers):
+            return None
+
+        explicit_filter_markers = (
+            " only ",
+            " where ",
+            " equal ",
+            " equals ",
+            " greater than ",
+            " less than ",
+            " at least ",
+            " at most ",
+            " nonzero ",
+            " non-zero ",
+            " true ",
+            " false ",
+            " open ",
+            " closed ",
+            " completed ",
+            " incomplete ",
+            " unreceived ",
+            " undelivered ",
+            " pending ",
+            " overdue ",
+            " not yet ",
+            "\u4ec5",
+            "\u53ea",
+            "\u5927\u4e8e",
+            "\u5c0f\u4e8e",
+            "\u7b49\u4e8e",
+            "\u4e3a",
+            "\u662f",
+            "\u5426",
+            "\u672a",
+            "\u5df2",
+        )
+        if any(marker in text for marker in explicit_filter_markers):
+            return None
+        if plan.filters or any(step.filters for step in plan.steps or []):
+            return None
+
+        constraints = request.constraints
+        if constraints is not None and (
+            constraints.filter_concepts or constraints.filter_values or constraints.boolean_intent
+        ):
+            return None
+        if not plan.select_fields and not any(step.select_fields for step in plan.steps or []):
+            return None
+        if data.get("result_count") is None and "results" not in data:
+            return None
+        return {
+            "passed": True,
+            "issues": [],
+            "repair_hints": {},
+            "source": "field_list_static_result_verifier",
         }
 
     @staticmethod
