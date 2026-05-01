@@ -40,6 +40,10 @@ Keep `data/index/API_PURGPRCGCONDITIONRECORD_SRV` as the schema ground truth. Th
 - Select the entity whose description most directly matches the requested business object.
 - Apply user-provided identifiers, dates, statuses, organizational units, material/product IDs, customer/supplier IDs, and document numbers as filters when corresponding filterable fields exist.
 - Keep `$select` focused on key fields plus fields needed to answer the question.
+- If the user asks for purchasing pricing condition record records or the main identifying details of condition records, query `A_PurgPrcgConditionRecord` directly.
+- Use `A_PurgPrcgCndnRecdValidity` only when the user asks for validity periods, validity dates, release status, supplier/material/org validity context, or other validity-level details.
+- Use `A_PurgPrcgCndnRecordScale` only for pricing scale lines, scale quantities, or scale amounts.
+- Use `A_PurgPrcgCndnRecdSuplmnt` only for condition supplements.
 
 ### Detail Query
 

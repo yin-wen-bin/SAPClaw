@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Use this API for This service enables a remote system to read, create and update service entry sheets from or in the SAP S/4 HANA system. It also provides service nodes to submit a service entry sheet for approval, withdraw a service entry sheet from approval or revoke approval of an already approved service entry sheet.. This service enables a remote system to read, create and update service entry sheets from or in the SAP S/4HANA system. It also provides service nodes to submit a service entry sheet for approval, withdraw a service entry sheet from approval or revoke approval of an already approved service entry sheet.
+Use this API for service entry sheet headers, service entry sheet items, and service entry sheet account assignments. For service entry sheet header approval status, select `A_ServiceEntrySheet.ApprovalStatus`; use `A_ServiceEntrySheet.SESWorkflowStatus` only for workflow status wording or when both approval and workflow status are requested.
 
 Keep `data/index/API_SERVICE_ENTRY_SHEET_SRV` as the schema ground truth. This skill provides business usage guidance only. SAP $metadata is available in the local index; treat SAP 401/403/timeout responses as execution-time service or authorization issues, not schema absence.
 
@@ -42,6 +42,8 @@ Keep `data/index/API_SERVICE_ENTRY_SHEET_SRV` as the schema ground truth. This s
 - Select the entity whose description most directly matches the requested business object.
 - Apply user-provided identifiers, dates, statuses, organizational units, material/product IDs, customer/supplier IDs, and document numbers as filters when corresponding filterable fields exist.
 - Keep `$select` focused on key fields plus fields needed to answer the question.
+- For service entry sheet header approval status, select `A_ServiceEntrySheet.ApprovalStatus`.
+- Select `A_ServiceEntrySheet.SESWorkflowStatus` only when the user asks for workflow status, workflow approval state, or when both approval status and workflow status are requested.
 
 ### Detail Query
 

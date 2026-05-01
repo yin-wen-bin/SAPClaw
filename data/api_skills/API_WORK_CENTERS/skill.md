@@ -48,6 +48,9 @@ Keep `data/index/API_WORK_CENTERS` as the schema ground truth. This skill provid
 - Select the entity whose description most directly matches the requested business object.
 - Apply user-provided identifiers, dates, statuses, organizational units, material/product IDs, customer/supplier IDs, and document numbers as filters when corresponding filterable fields exist.
 - Keep `$select` focused on key fields plus fields needed to answer the question.
+- If the user asks for work center capacity records or capacity header details, query `A_WorkCenterCapacity` directly.
+- Use `A_WorkCenterAllCapacity` only when the user asks for capacity assignments of work centers or wants the relationship between work centers and capacities.
+- Use capacity bucket/day/order entities only when the user asks for load, bucket evaluation, current-day operations, or order capacity distribution.
 
 ### Detail Query
 

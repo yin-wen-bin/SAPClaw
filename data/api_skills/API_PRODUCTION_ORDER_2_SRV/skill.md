@@ -2,6 +2,8 @@
 
 ## Purpose
 
+Use this API for production order item serial numbers, production order resource tools, and production order status records. These map to `A_ProdnOrderItemSerialNumber`, `A_ProductionRsceTools_2`, and `A_ProductionOrderStatus_2`. Do not route them to production routing, master recipe, material document serial numbers, or stock serial numbers unless the user explicitly asks for those domains.
+
 Use this API for Besides updating header data of the order including the scheduling type, you can also update and delete order components. You can update some properties of the order operations. This service enables you to convert planned orders to production orders, schedule production order operations, and set further statuses for the order such as technically completed, closed, discarded by MES, or released by MES. In addition, you can set the deletion flag, deletion indicator, and delivery completed indicator.. Besides updating header data of the order including the scheduling type, you can also update and delete order components. You can update some properties of the order operations. This service enables you to convert planned orders to production orders, schedule production order operations, and set further statuses for the order such as technically completed, closed, discarded by MES, or released by MES. In addition, you can set the deletion flag, deletion indicator, and delivery completed indicator.
 
 Keep `data/index/API_PRODUCTION_ORDER_2_SRV` as the schema ground truth. This skill provides business usage guidance only. SAP $metadata is available in the local index; treat SAP 401/403/timeout responses as execution-time service or authorization issues, not schema absence.
@@ -48,6 +50,10 @@ Keep `data/index/API_PRODUCTION_ORDER_2_SRV` as the schema ground truth. This sk
 - Select the entity whose description most directly matches the requested business object.
 - Apply user-provided identifiers, dates, statuses, organizational units, material/product IDs, customer/supplier IDs, and document numbers as filters when corresponding filterable fields exist.
 - Keep `$select` focused on key fields plus fields needed to answer the question.
+- Treat the trailing `_2` / "2" in this API's entity names as the service/entity version suffix, not as a row count and not as SAP status code 2.
+- "Production order status records" means records from `A_ProductionOrderStatus_2`. Select `ManufacturingOrder`, `StatusCode`, `IsUserStatus`, `StatusShortName`, and `StatusName`. Do not replace this with `A_ProductionOrder_2`, `OrderIsReleased`, or a `StatusCode eq '2'` filter unless the user explicitly asks for released/status-code-2 orders.
+- "Production order resource tool records" means `A_ProductionRsceTools_2`. Select identifying fields such as `MfgOrderOpProdnRsceToolIntID`, `OrderInternalBillOfOperations`, `ProductionResourceTool`, `ProdnRsceToolCategory`, `ProdnRsceToolCategoryName`, `ProdnRsceToolControlProfile`, `ProdnRsceToolPlant`, and `OrderOperationInternalID`. Do not route this wording to master recipe secondary resources or production routing unless the user explicitly mentions master recipes or routings.
+- "Production order item serial number records" means `A_ProdnOrderItemSerialNumber`. Select `ManufacturingOrder`, `ManufacturingOrderItem`, `SerialNumber`, `SerialNumberProfile`, `Product`, `ProductionPlant`, `ManufacturingOrderCategory`, and `ManufacturingOrderType`.
 
 ### Detail Query
 

@@ -49,6 +49,9 @@ Keep `data/index/API_SALES_CONTRACT_SRV` as the schema ground truth. This skill 
 - Select the entity whose description most directly matches the requested business object.
 - Apply user-provided identifiers, dates, statuses, organizational units, material/product IDs, customer/supplier IDs, and document numbers as filters when corresponding filterable fields exist.
 - Keep `$select` focused on key fields plus fields needed to answer the question.
+- If the user asks for sales contract text records without saying item text, line text, or item-level text, query `A_SalesContractText` directly.
+- Use `A_SalesContractItemText` only when the user explicitly asks for item text, line text, item-level text, or text tied to sales contract items.
+- Do not create a multi-step query that chains `A_SalesContractText` to `A_SalesContractItemText` merely because both share `SalesContract`; query one text level directly unless the user explicitly asks for both header and item texts.
 
 ### Detail Query
 

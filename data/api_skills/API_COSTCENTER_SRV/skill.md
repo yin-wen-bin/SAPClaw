@@ -27,6 +27,9 @@ Keep `data/index/API_COSTCENTER_SRV` as the schema ground truth. This skill prov
 
 - Primary business scope: Cost Center - Read (A2X).
 - Use the service description, entity descriptions, and field descriptions from `data/index/API_COSTCENTER_SRV` to infer user intent.
+- Use `A_CostCenter` for cost center master-data fields, organizational assignments, validity dates, responsible persons, currencies, and posting-control indicators.
+- Use `A_CostCenterText` only when the user explicitly asks for language-dependent cost center names, descriptions, or text records.
+- Cost center posting block and quantity-recording indicator questions map to selectable string indicator fields on `A_CostCenter`: `A_CostCenter.ConsumptionQtyIsRecorded`, `A_CostCenter.IsBlkdForPrimaryCostsPosting`, `A_CostCenter.IsBlkdForSecondaryCostsPosting`, and `A_CostCenter.IsBlockedForCommitmentPosting`. When the user asks to include these indicators, select them; do not convert the request into filters unless the user asks for blocked-only or indicator-specific records.
 - Preserve SAP document numbers, item numbers, partner numbers, material/product IDs, company codes, plants, fiscal years, dates, currencies, quantities, statuses, and type codes exactly as returned by SAP.
 - When a user asks for a list, prefer the entity whose business level matches the requested object: header for document headers, item for line items, schedule for schedule lines, partner/address/text/pricing/account entities only when those details are explicitly requested.
 - For boolean fields, use unquoted OData boolean literals `true` and `false`. For string indicator fields, preserve the string literal exactly.
@@ -38,6 +41,12 @@ Keep `data/index/API_COSTCENTER_SRV` as the schema ground truth. This skill prov
 - Select the entity whose description most directly matches the requested business object.
 - Apply user-provided identifiers, dates, statuses, organizational units, material/product IDs, customer/supplier IDs, and document numbers as filters when corresponding filterable fields exist.
 - Keep `$select` focused on key fields plus fields needed to answer the question.
+
+### Cost Center Indicators
+
+- For "posting block", "blocked for posting", or "quantity recording" questions, query `A_CostCenter`.
+- Select the cost center identifiers plus the requested indicator fields, especially `A_CostCenter.ConsumptionQtyIsRecorded`, `A_CostCenter.IsBlkdForPrimaryCostsPosting`, `A_CostCenter.IsBlkdForSecondaryCostsPosting`, and `A_CostCenter.IsBlockedForCommitmentPosting`.
+- Treat these fields as output indicators for "include/show indicators" wording. Use filters only for wording such as "blocked cost centers" or "where quantity recording is active".
 
 ### Detail Query
 

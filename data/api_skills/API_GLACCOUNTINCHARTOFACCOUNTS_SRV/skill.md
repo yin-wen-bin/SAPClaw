@@ -27,6 +27,9 @@ Keep `data/index/API_GLACCOUNTINCHARTOFACCOUNTS_SRV` as the schema ground truth.
 
 - Primary business scope: G/L Account - Read.
 - Use the service description, entity descriptions, and field descriptions from `data/index/API_GLACCOUNTINCHARTOFACCOUNTS_SRV` to infer user intent.
+- Use `A_GLAccountInChartOfAccounts` for G/L account master attributes, chart of accounts assignments, account groups, balance sheet/profit-and-loss account type, creation/change dates, and blocking/deletion indicators.
+- Use `A_GLAccountText` when the user asks for G/L account names, long names, descriptions, or language-dependent text. If the user asks for English names, filtering by language is acceptable, but do not require the language field in the output unless requested.
+- For wording such as "include blocking indicators" or "show deletion indicators", select `A_GLAccountInChartOfAccounts.AccountIsBlockedForCreation`, `A_GLAccountInChartOfAccounts.AccountIsBlockedForPlanning`, `A_GLAccountInChartOfAccounts.AccountIsBlockedForPosting`, and `A_GLAccountInChartOfAccounts.AccountIsMarkedForDeletion`. Do not convert the request into filters unless the user asks for blocked-only or deleted-only accounts.
 - Preserve SAP document numbers, item numbers, partner numbers, material/product IDs, company codes, plants, fiscal years, dates, currencies, quantities, statuses, and type codes exactly as returned by SAP.
 - When a user asks for a list, prefer the entity whose business level matches the requested object: header for document headers, item for line items, schedule for schedule lines, partner/address/text/pricing/account entities only when those details are explicitly requested.
 - For boolean fields, use unquoted OData boolean literals `true` and `false`. For string indicator fields, preserve the string literal exactly.
@@ -38,6 +41,18 @@ Keep `data/index/API_GLACCOUNTINCHARTOFACCOUNTS_SRV` as the schema ground truth.
 - Select the entity whose description most directly matches the requested business object.
 - Apply user-provided identifiers, dates, statuses, organizational units, material/product IDs, customer/supplier IDs, and document numbers as filters when corresponding filterable fields exist.
 - Keep `$select` focused on key fields plus fields needed to answer the question.
+
+### G/L Account Text And Indicators
+
+- For G/L account names or long names, query `A_GLAccountText` and select `A_GLAccountText.ChartOfAccounts`, `A_GLAccountText.GLAccount`, `A_GLAccountText.GLAccountName`, and `A_GLAccountText.GLAccountLongName`.
+- For account creation/change dates or blocking/deletion indicators, query `A_GLAccountInChartOfAccounts`.
+- Treat indicator-field wording as an output request unless the user provides explicit filter values.
+
+### Company-Code Scoped G/L Account Lookup
+
+- This API is chart-of-accounts scoped, not company-code scoped. If the user provides a company code such as `1710`, use `API_COMPANYCODE_SRV.A_CompanyCode` first to retrieve `ChartOfAccounts`, then bind that value to `API_GLACCOUNTINCHARTOFACCOUNTS_SRV.A_GLAccountInChartOfAccounts.ChartOfAccounts`.
+- For Chinese wording such as `费用类科目`, `费用科目`, `expense accounts`, or similar expense/P&L account requests, do not use `GLAccountType eq 'X'` as a blind rule. In this API, prefer schema-grounded P&L/non-balance-sheet evidence: filter `A_GLAccountInChartOfAccounts.IsBalanceSheetAccount eq false` when an exact expense-vs-revenue code is not available, and select `ProfitLossAccountType`, `GLAccountType`, and `GLAccount` so the result remains auditable.
+- If account names are requested, add a final text step against `A_GLAccountText` by binding `ChartOfAccounts` and `GLAccount`; filter `Language` only when the user requests a specific language.
 
 ### Detail Query
 

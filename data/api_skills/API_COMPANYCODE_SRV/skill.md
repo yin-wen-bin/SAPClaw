@@ -38,6 +38,11 @@ Keep `data/index/API_COMPANYCODE_SRV` as the schema ground truth. This skill pro
 - Apply user-provided identifiers, dates, statuses, organizational units, material/product IDs, customer/supplier IDs, and document numbers as filters when corresponding filterable fields exist.
 - Keep `$select` focused on key fields plus fields needed to answer the question.
 
+### Bridge To Chart-Of-Accounts APIs
+
+- Company-code scoped G/L account questions need `A_CompanyCode.ChartOfAccounts` as a bridge value. This API can answer the company-code-to-chart lookup, but it cannot list G/L accounts by itself.
+- For requests such as `查询公司1710的费用类科目`, use this API only as step 1: filter `A_CompanyCode.CompanyCode eq '1710'`, select `CompanyCode`, `CompanyCodeName`, and `ChartOfAccounts`, then continue in the routed G/L account API.
+
 ### Detail Query
 
 - Use item/detail/text/pricing/account/partner/schedule entities only when the user asks for that detail level or when a relationship path in `lookup_paths.json` proves the navigation.

@@ -37,6 +37,11 @@ Keep `data/index/C_TRIALBALANCE_CDS` as the schema ground truth. This skill prov
 
 - Primary business scope: The service enables you to retrieve starting, credit and debit balances for G/L accounts per fiscal year period. You can read data for period-based balances. You cannot read data for day-based balances. You need to provide the time frame for the selection in a date format and you need to provide the level of aggregation in a $select clause..
 - Use the service description, entity descriptions, and field descriptions from `data/index/C_TRIALBALANCE_CDS` to infer user intent.
+- Use `C_TRIALBALANCEResults` for user questions about trial balance rows, G/L account balances, debit amounts, credit amounts, ending balances, and balance sheet account indicators.
+- `Ledger`, `CompanyCode`, and `GLAccount` are valid selectable/filterable fields on `C_TRIALBALANCEResults`. If the user supplies ledger and company code, apply both filters directly on `C_TRIALBALANCEResults`.
+- Trial balance amount fields on `C_TRIALBALANCEResults` include `StartingBalanceAmtInCoCodeCrcy`, `DebitAmountInCoCodeCrcy`, `CreditAmountInCoCodeCrcy`, and `EndingBalanceAmtInCoCodeCrcy`. These fields are selectable result measures; do not reject a plan just because they are not filter fields.
+- In a trial balance question, "order balances" means balances by the `OrderID` dimension on `C_TRIALBALANCEResults`. Select `OrderID` plus balance amount fields. Do not route this wording to `OrderIDResults` or `IsBalanceSheetAccountResults`.
+- `IsBalanceSheetAccount` is a valid selectable/filterable string indicator on `C_TRIALBALANCEResults` for balance sheet account questions.
 - Preserve SAP document numbers, item numbers, partner numbers, material/product IDs, company codes, plants, fiscal years, dates, currencies, quantities, statuses, and type codes exactly as returned by SAP.
 - When a user asks for a list, prefer the entity whose business level matches the requested object: header for document headers, item for line items, schedule for schedule lines, partner/address/text/pricing/account entities only when those details are explicitly requested.
 - For boolean fields, use unquoted OData boolean literals `true` and `false`. For string indicator fields, preserve the string literal exactly.
@@ -48,6 +53,15 @@ Keep `data/index/C_TRIALBALANCE_CDS` as the schema ground truth. This skill prov
 - Select the entity whose description most directly matches the requested business object.
 - Apply user-provided identifiers, dates, statuses, organizational units, material/product IDs, customer/supplier IDs, and document numbers as filters when corresponding filterable fields exist.
 - Keep `$select` focused on key fields plus fields needed to answer the question.
+
+### Trial Balance Rows
+
+- For "trial balance" or "G/L account balance" questions, prefer a direct query on `C_TRIALBALANCEResults`.
+- If the user provides company code and ledger, use filters such as `CompanyCode eq '1710'` and `Ledger eq '0L'`.
+- For debit/credit amount questions, select `Ledger`, `CompanyCode`, `GLAccount`, `DebitAmountInCoCodeCrcy`, `CreditAmountInCoCodeCrcy`, and an ending balance field such as `EndingBalanceAmtInCoCodeCrcy`.
+- For order balance dimension questions, select `Ledger`, `CompanyCode`, `GLAccount`, `OrderID`, and `EndingBalanceAmtInCoCodeCrcy`; include debit/credit fields when the user asks for movements.
+- For balance sheet account indicator questions, select `Ledger`, `CompanyCode`, `GLAccount`, `IsBalanceSheetAccount`, and any requested balance fields.
+- If the user asks for trial balance but omits company code or ledger, ask a concise clarification instead of selecting an unrelated ledger master-data API.
 
 ### Detail Query
 

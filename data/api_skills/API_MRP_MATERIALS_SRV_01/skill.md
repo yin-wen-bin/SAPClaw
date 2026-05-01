@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Use this API for The service contains entities for material master data, supply and demand information, and information about the coverage of materials. You can read master data for one or more materials. You can read supply and demand information over a certain time period, or you can aggregate the quantities on category group level. You can read material coverage information.. The service contains entities for material master data, supply and demand information, and information about the coverage of materials. You can read master data for one or more materials. You can read supply and demand information over a certain time period, or you can aggregate the quantities on category group level. You can read material coverage information.
+Use this API for MRP material records; `A_MRPMaterial` directly includes `CrossPlantStatus`, `CrossPlantStatusName`, `IsSafetyTime`, and `MaterialIsConfigurable`. The service contains entities for material master data, supply and demand information, and information about the coverage of materials. You can read master data for one or more materials. You can read supply and demand information over a certain time period, or you can aggregate the quantities on category group level. You can read material coverage information.
 
 Keep `data/index/API_MRP_MATERIALS_SRV_01` as the schema ground truth. This skill provides business usage guidance only. SAP $metadata is available in the local index; treat SAP 401/403/timeout responses as execution-time service or authorization issues, not schema absence.
 
@@ -39,6 +39,8 @@ Keep `data/index/API_MRP_MATERIALS_SRV_01` as the schema ground truth. This skil
 - Select the entity whose description most directly matches the requested business object.
 - Apply user-provided identifiers, dates, statuses, organizational units, material/product IDs, customer/supplier IDs, and document numbers as filters when corresponding filterable fields exist.
 - Keep `$select` focused on key fields plus fields needed to answer the question.
+- For MRP material descriptive-name requests, `A_MRPMaterial.MaterialTypeName`, `A_MRPMaterial.MRPGroupName`, and `A_MRPMaterial.PlantName` are direct fields on `A_MRPMaterial`; do not require `MRPArea` unless the user asks for MRP area.
+- For MRP material status/indicator requests, `A_MRPMaterial.CrossPlantStatus`, `A_MRPMaterial.CrossPlantStatusName`, `A_MRPMaterial.IsSafetyTime`, and `A_MRPMaterial.MaterialIsConfigurable` are direct fields on `A_MRPMaterial`. Do not reroute to product master data or ask for clarification when the user asks for these fields on MRP material records.
 
 ### Detail Query
 

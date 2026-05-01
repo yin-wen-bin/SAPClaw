@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Use this API for A routing is a description of the operations (or steps in a process) that are performed to manufacture a product (or material). It is used as a reference for production orders, to run schedules and in calculating the costs of products.. A routing is a description of the operations (or steps in a process) that are performed to manufacture a product (or material). It is used as a reference for production orders, to run schedules and in calculating the costs of products.
+Use this API for production routings, production routing headers, production routing operations, production routing material assignments, production routing statuses, routing usages, and routing control profiles. A routing describes the operations or steps used to manufacture a product/material and is used by production orders, scheduling, and product costing.
 
 Keep `data/index/API_PRODUCTION_ROUTING` as the schema ground truth. This skill provides business usage guidance only. SAP $metadata is available in the local index; treat SAP 401/403/timeout responses as execution-time service or authorization issues, not schema absence.
 
@@ -48,6 +48,8 @@ Keep `data/index/API_PRODUCTION_ROUTING` as the schema ground truth. This skill 
 - Select the entity whose description most directly matches the requested business object.
 - Apply user-provided identifiers, dates, statuses, organizational units, material/product IDs, customer/supplier IDs, and document numbers as filters when corresponding filterable fields exist.
 - Keep `$select` focused on key fields plus fields needed to answer the question.
+- If the user asks for production routing status records, routing status values, or main identifying details for routing statuses, query `ProductionRoutingStatus` directly and select `BillOfOperationsStatus` and `BillOfOperationsStatusDesc`.
+- Do not expand a production routing status list into `ProductionRoutingHeader`, `ProductionRoutingMatlAssgmt`, or other routing detail entities unless the user also asks for concrete routings, products/material assignments, operations, or header-level details.
 
 ### Detail Query
 

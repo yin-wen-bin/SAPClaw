@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Use this API for Accounting Document - Read (A2X). This service is based on the OData protocol and can be consumed in Fiori apps and on other user interfaces.
+Use this API for Accounting Document - Read (A2X); `A_OperationalAcctgDocItemCube` directly includes `AccountsReceivableIsPledged`, `CashDiscount1Days`, `CashDiscount1DueDate`, and `CashDiscount1Percent`. This service is based on the OData protocol and can be consumed in Fiori apps and on other user interfaces.
 
 This service only extracts journal entries with an entry view and is not designed to extract large data volumes. It contains the operational accounting document header and item nodes.
 
@@ -39,6 +39,7 @@ Keep `data/index/API_OPLACCTGDOCITEMCUBE_SRV` as the schema ground truth. This s
 - Select the entity whose description most directly matches the requested business object.
 - Apply user-provided identifiers, dates, statuses, organizational units, material/product IDs, customer/supplier IDs, and document numbers as filters when corresponding filterable fields exist.
 - Keep `$select` focused on key fields plus fields needed to answer the question.
+- For operational accounting document item cube requests about pledged receivables and cash discount terms, use `A_OperationalAcctgDocItemCube` and select `A_OperationalAcctgDocItemCube.AccountsReceivableIsPledged`, `A_OperationalAcctgDocItemCube.CashDiscount1Days`, `A_OperationalAcctgDocItemCube.CashDiscount1DueDate`, and `A_OperationalAcctgDocItemCube.CashDiscount1Percent` directly. Do not ask for clarification merely because these fields are not in `top_filter_fields`.
 
 ### Detail Query
 

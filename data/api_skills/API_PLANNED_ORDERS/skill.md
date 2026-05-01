@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Use this API for The service contains planned order header, planned order capacity and planned order components. The information is sent in the request as a payload. You can read, create, change and delete components of orders and also use this service to schedule planned order operations.. The service contains planned order header, planned order capacity and planned order components. The information is sent in the request as a payload. You can read, create, change and delete components of orders and also use this service to schedule planned order operations.
+Use this API for planned order header/component/capacity records. In field-list wording, "with issued quantity / BOM is fixed / capacity is dispatched / is convertible" means select those fields, never filter them unless the user says only/where/true/nonzero. The service contains planned order header, planned order capacity and planned order components. You can read, create, change and delete components of orders and use this service to schedule planned order operations.
 
 Keep `data/index/API_PLANNED_ORDERS` as the schema ground truth. This skill provides business usage guidance only. SAP $metadata is available in the local index; treat SAP 401/403/timeout responses as execution-time service or authorization issues, not schema absence.
 
@@ -41,6 +41,8 @@ Keep `data/index/API_PLANNED_ORDERS` as the schema ground truth. This skill prov
 - Select the entity whose description most directly matches the requested business object.
 - Apply user-provided identifiers, dates, statuses, organizational units, material/product IDs, customer/supplier IDs, and document numbers as filters when corresponding filterable fields exist.
 - Keep `$select` focused on key fields plus fields needed to answer the question.
+- For planned order component text requests, `A_PlannedOrderComponent.BOMItemDescription` and `A_PlannedOrderComponent.BOMItemDescriptionLine2` are direct fields on `A_PlannedOrderComponent`; do not ask for BOM relationship clarification when the user only wants to display these component fields.
+- For planned order header wording such as "with issued quantity", "with planned order BOM is fixed", "with planned order capacity is dispatched", or "with planned order is convertible", treat `A_PlannedOrder.IssuedQuantity`, `A_PlannedOrder.PlannedOrderBOMIsFixed`, `A_PlannedOrder.PlannedOrderCapacityIsDsptchd`, and `A_PlannedOrder.PlannedOrderIsConvertible` as output fields unless the user explicitly asks for only records where the value is true/nonzero. Do not add filters by default.
 
 ### Detail Query
 

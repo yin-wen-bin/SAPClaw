@@ -48,6 +48,10 @@ Keep `data/index/API_PROCESS_ORDER_2_SRV` as the schema ground truth. This skill
 - Select the entity whose description most directly matches the requested business object.
 - Apply user-provided identifiers, dates, statuses, organizational units, material/product IDs, customer/supplier IDs, and document numbers as filters when corresponding filterable fields exist.
 - Keep `$select` focused on key fields plus fields needed to answer the question.
+- Treat the trailing `_2` / "2" in this API's entity names as the service/entity version suffix, not as a row count and not as SAP status code 2.
+- Exact phrase rule: "process order status 2 records" means records from entity `A_ProcessOrderStatus_2`. It does not mean two rows, SAP status code `2`, released orders, or `OrderIsReleased`.
+- For "process order status 2 records" or "process order status records", use `A_ProcessOrderStatus_2` with `ManufacturingOrder`, `StatusCode`, `IsUserStatus`, `StatusShortName`, and `StatusName`. Never replace this with `A_ProcessOrder_2`, `OrderIsReleased`, or `ReleaseOrder` unless the user explicitly says released orders.
+- `A_ProcessOrder_2` directly exposes customer and delivery-related descriptive fields such as `CustomerName`, `GoodsRecipientName`, `OrderLongText`, and `UnloadingPointName`. If the user asks for these fields on process order 2 records, query `A_ProcessOrder_2` and select those fields instead of asking a sales/delivery clarification.
 
 ### Detail Query
 

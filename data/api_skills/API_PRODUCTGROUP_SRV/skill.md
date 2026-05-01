@@ -38,6 +38,7 @@ Keep `data/index/API_PRODUCTGROUP_SRV` as the schema ground truth. This skill pr
 - Select the entity whose description most directly matches the requested business object.
 - Apply user-provided identifiers, dates, statuses, organizational units, material/product IDs, customer/supplier IDs, and document numbers as filters when corresponding filterable fields exist.
 - Keep `$select` focused on key fields plus fields needed to answer the question.
+- For `A_ProductGroupText`, the identifying key is `Language` plus `MaterialGroup`. When listing product group text records or asking for main identifying details, include `Language`, `MaterialGroup`, `MaterialGroupName`, and `MaterialGroupText`. Do not omit `Language` as noise unless the user explicitly asks for a language-independent summary.
 
 ### Detail Query
 
