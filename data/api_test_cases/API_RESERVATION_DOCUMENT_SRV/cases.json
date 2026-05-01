@@ -1,0 +1,395 @@
+[
+  {
+    "id": "RESV-001",
+    "api": "API_RESERVATION_DOCUMENT_SRV",
+    "scenario": "A_ReservationDocumentHeader_main_list",
+    "user_input": "Show me a list of reservation documents",
+    "expected_api": "API_RESERVATION_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_RESERVATION_DOCUMENT_SRV/A_ReservationDocumentHeader?$select=Reservation,OrderID,GoodsMovementType,CostCenter,GoodsRecipientName,ReservationDate,IsCheckedAgainstFactoryCal,Customer&$top=50",
+          "key_fields": [
+            "Reservation"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Reservation"
+      ],
+      "required_fields": [
+        "Reservation"
+      ]
+    }
+  },
+  {
+    "id": "RESV-002",
+    "api": "API_RESERVATION_DOCUMENT_SRV",
+    "scenario": "A_ReservationDocumentItem_detail_list",
+    "user_input": "Show reservation documents reservation document item details",
+    "expected_api": "API_RESERVATION_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_RESERVATION_DOCUMENT_SRV/A_ReservationDocumentItem?$select=RecordType,Reservation,ReservationItem,Product,RequirementType,MatlCompRequirementDate,Plant,ManufacturingOrderOperation&$top=7000",
+          "key_fields": [
+            "RecordType",
+            "Reservation",
+            "ReservationItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "RecordType",
+        "Reservation",
+        "ReservationItem"
+      ],
+      "required_fields": [
+        "RecordType",
+        "Reservation",
+        "ReservationItem"
+      ]
+    }
+  },
+  {
+    "id": "RESDOC-T10-001",
+    "api": "API_RESERVATION_DOCUMENT_SRV",
+    "scenario": "A_ReservationDocumentItem_summary_001",
+    "user_input": "Show reservation document item records with their main identifying details",
+    "expected_api": "API_RESERVATION_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_RESERVATION_DOCUMENT_SRV/A_ReservationDocumentItem?$select=RecordType,Reservation,ReservationItem,Product,RequirementType,MatlCompRequirementDate,Plant,ManufacturingOrderOperation&$top=50",
+          "key_fields": [
+            "RecordType",
+            "Reservation",
+            "ReservationItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "RecordType",
+        "Reservation",
+        "ReservationItem"
+      ],
+      "required_fields": [
+        "RecordType",
+        "Reservation",
+        "ReservationItem"
+      ]
+    }
+  },
+  {
+    "id": "RESDOC-T10-002",
+    "api": "API_RESERVATION_DOCUMENT_SRV",
+    "scenario": "A_ReservationDocumentHeader_summary_002",
+    "user_input": "Show reservation document header records with their main identifying details",
+    "expected_api": "API_RESERVATION_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_RESERVATION_DOCUMENT_SRV/A_ReservationDocumentHeader?$select=Reservation,OrderID,GoodsMovementType,CostCenter,GoodsRecipientName,ReservationDate,IsCheckedAgainstFactoryCal,Customer&$top=50",
+          "key_fields": [
+            "Reservation"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Reservation"
+      ],
+      "required_fields": [
+        "Reservation"
+      ]
+    }
+  },
+  {
+    "id": "RESDOC-T10-003",
+    "api": "API_RESERVATION_DOCUMENT_SRV",
+    "scenario": "A_ReservationDocumentItem_names_and_descriptions_003",
+    "user_input": "Show reservation document item records with goods recipient name, reservation item text, and unloading point name",
+    "expected_api": "API_RESERVATION_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_RESERVATION_DOCUMENT_SRV/A_ReservationDocumentItem?$select=RecordType,Reservation,ReservationItem,GoodsRecipientName,ReservationItemText,UnloadingPointName,Product,RequirementType&$top=50",
+          "key_fields": [
+            "RecordType",
+            "Reservation",
+            "ReservationItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "RecordType",
+        "Reservation",
+        "ReservationItem"
+      ],
+      "required_fields": [
+        "RecordType",
+        "Reservation",
+        "ReservationItem",
+        "GoodsRecipientName",
+        "ReservationItemText",
+        "UnloadingPointName"
+      ]
+    }
+  },
+  {
+    "id": "RESDOC-T10-004",
+    "api": "API_RESERVATION_DOCUMENT_SRV",
+    "scenario": "A_ReservationDocumentHeader_names_and_descriptions_004",
+    "user_input": "Show reservation document header records with goods recipient name",
+    "expected_api": "API_RESERVATION_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_RESERVATION_DOCUMENT_SRV/A_ReservationDocumentHeader?$select=Reservation,GoodsRecipientName,OrderID,GoodsMovementType,CostCenter,ReservationDate,IsCheckedAgainstFactoryCal,Customer&$top=50",
+          "key_fields": [
+            "Reservation"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Reservation"
+      ],
+      "required_fields": [
+        "Reservation",
+        "GoodsRecipientName"
+      ]
+    }
+  },
+  {
+    "id": "RESDOC-T10-005",
+    "api": "API_RESERVATION_DOCUMENT_SRV",
+    "scenario": "A_ReservationDocumentItem_status_and_indicators_005",
+    "user_input": "Show reservation document item records with goods movement is allowed, issuing or receiving plant, issuing or receiving storage loc, and purchasing document",
+    "expected_api": "API_RESERVATION_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_RESERVATION_DOCUMENT_SRV/A_ReservationDocumentItem?$select=RecordType,Reservation,ReservationItem,GoodsMovementIsAllowed,IssuingOrReceivingPlant,IssuingOrReceivingStorageLoc,PurchasingDocument,Product&$top=50",
+          "key_fields": [
+            "RecordType",
+            "Reservation",
+            "ReservationItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "RecordType",
+        "Reservation",
+        "ReservationItem"
+      ],
+      "required_fields": [
+        "RecordType",
+        "Reservation",
+        "ReservationItem",
+        "GoodsMovementIsAllowed",
+        "IssuingOrReceivingPlant",
+        "IssuingOrReceivingStorageLoc",
+        "PurchasingDocument"
+      ]
+    }
+  },
+  {
+    "id": "RESDOC-T10-006",
+    "api": "API_RESERVATION_DOCUMENT_SRV",
+    "scenario": "A_ReservationDocumentHeader_status_and_indicators_006",
+    "user_input": "Show reservation document header records with is checked against factory cal, issuing or receiving plant, and issuing or receiving storage loc",
+    "expected_api": "API_RESERVATION_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_RESERVATION_DOCUMENT_SRV/A_ReservationDocumentHeader?$select=Reservation,IsCheckedAgainstFactoryCal,IssuingOrReceivingPlant,IssuingOrReceivingStorageLoc,OrderID,GoodsMovementType,CostCenter,GoodsRecipientName&$top=50",
+          "key_fields": [
+            "Reservation"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Reservation"
+      ],
+      "required_fields": [
+        "Reservation",
+        "IsCheckedAgainstFactoryCal",
+        "IssuingOrReceivingPlant",
+        "IssuingOrReceivingStorageLoc"
+      ]
+    }
+  },
+  {
+    "id": "RESDOC-T10-007",
+    "api": "API_RESERVATION_DOCUMENT_SRV",
+    "scenario": "A_ReservationDocumentItem_dates_and_periods_007",
+    "user_input": "Show reservation document item records with matl comp requirement date",
+    "expected_api": "API_RESERVATION_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_RESERVATION_DOCUMENT_SRV/A_ReservationDocumentItem?$select=RecordType,Reservation,ReservationItem,MatlCompRequirementDate,Product,RequirementType,Plant,ManufacturingOrderOperation&$top=50",
+          "key_fields": [
+            "RecordType",
+            "Reservation",
+            "ReservationItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "RecordType",
+        "Reservation",
+        "ReservationItem"
+      ],
+      "required_fields": [
+        "RecordType",
+        "Reservation",
+        "ReservationItem",
+        "MatlCompRequirementDate"
+      ]
+    }
+  },
+  {
+    "id": "RESDOC-T10-008",
+    "api": "API_RESERVATION_DOCUMENT_SRV",
+    "scenario": "A_ReservationDocumentHeader_dates_and_periods_008",
+    "user_input": "Show reservation document header records with reservation date",
+    "expected_api": "API_RESERVATION_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_RESERVATION_DOCUMENT_SRV/A_ReservationDocumentHeader?$select=Reservation,ReservationDate,OrderID,GoodsMovementType,CostCenter,GoodsRecipientName,IsCheckedAgainstFactoryCal,Customer&$top=50",
+          "key_fields": [
+            "Reservation"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Reservation"
+      ],
+      "required_fields": [
+        "Reservation",
+        "ReservationDate"
+      ]
+    }
+  }
+]

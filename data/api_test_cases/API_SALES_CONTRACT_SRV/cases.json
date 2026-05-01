@@ -1,0 +1,394 @@
+[
+  {
+    "id": "SCON-001",
+    "api": "API_SALES_CONTRACT_SRV",
+    "scenario": "A_SalesContract_header_list",
+    "user_input": "Show me a list of sales contracts",
+    "expected_api": "API_SALES_CONTRACT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_CONTRACT_SRV/A_SalesContract?$select=SalesContract,ContractManualCompletion,CreatedByUser,CreationDate,CustomerPaymentTerms,CustomerPurchaseOrderDate,CustomerPurchaseOrderType,DistributionChannel&$top=50",
+          "key_fields": [
+            "SalesContract"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "SalesContract"
+      ],
+      "required_fields": [
+        "SalesContract"
+      ]
+    }
+  },
+  {
+    "id": "SCON-002",
+    "api": "API_SALES_CONTRACT_SRV",
+    "scenario": "A_SalesContractItemPartner_detail_list",
+    "user_input": "Show sales contracts sales contract item partner details",
+    "expected_api": "API_SALES_CONTRACT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_CONTRACT_SRV/A_SalesContractItemPartner?$select=PartnerFunction,SalesContract,SalesContractItem,Customer,Supplier,Personnel,ContactPerson&$top=50",
+          "key_fields": [
+            "PartnerFunction",
+            "SalesContract",
+            "SalesContractItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PartnerFunction",
+        "SalesContract",
+        "SalesContractItem"
+      ],
+      "required_fields": [
+        "PartnerFunction",
+        "SalesContract",
+        "SalesContractItem"
+      ]
+    }
+  },
+  {
+    "id": "SCON-003",
+    "api": "API_SALES_CONTRACT_SRV",
+    "scenario": "A_SalesContractItemPrcgElmnt_supporting_list",
+    "user_input": "List pricing elements for sales contract items",
+    "expected_api": "API_SALES_CONTRACT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_CONTRACT_SRV/A_SalesContractItemPrcgElmnt?$select=PricingProcedureCounter,PricingProcedureStep,SalesContract,SalesContractItem,ConditionType,PricingDateTime,ConditionCalculationType,ConditionBaseValue&$top=50",
+          "key_fields": [
+            "PricingProcedureCounter",
+            "PricingProcedureStep",
+            "SalesContract"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PricingProcedureCounter",
+        "PricingProcedureStep",
+        "SalesContract"
+      ],
+      "required_fields": [
+        "PricingProcedureCounter",
+        "PricingProcedureStep",
+        "SalesContract"
+      ]
+    }
+  },
+  {
+    "id": "SALCON-T10-001",
+    "api": "API_SALES_CONTRACT_SRV",
+    "scenario": "A_SalesContract_summary_001",
+    "user_input": "Show sales contract records with their main identifying details",
+    "expected_api": "API_SALES_CONTRACT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_CONTRACT_SRV/A_SalesContract?$select=SalesContract,SalesContractType,SalesOrganization,DistributionChannel,OrganizationDivision,SalesGroup,SalesOffice,SalesDistrict&$top=50",
+          "key_fields": [
+            "SalesContract"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "SalesContract"
+      ],
+      "required_fields": [
+        "SalesContract"
+      ]
+    }
+  },
+  {
+    "id": "SALCON-T10-002",
+    "api": "API_SALES_CONTRACT_SRV",
+    "scenario": "A_SalesContractItem_summary_002",
+    "user_input": "Show sales contract item records with their main identifying details",
+    "expected_api": "API_SALES_CONTRACT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_CONTRACT_SRV/A_SalesContractItem?$select=SalesContract,SalesContractItem,HigherLevelItem,SalesContractItemCategory,SalesContractItemText,PurchaseOrderByCustomer,Material,MaterialByCustomer&$top=50",
+          "key_fields": [
+            "SalesContract",
+            "SalesContractItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "SalesContract",
+        "SalesContractItem"
+      ],
+      "required_fields": [
+        "SalesContract",
+        "SalesContractItem"
+      ]
+    }
+  },
+  {
+    "id": "SALCON-T10-003",
+    "api": "API_SALES_CONTRACT_SRV",
+    "scenario": "A_SalesContractText_summary_003",
+    "user_input": "Show sales contract text records with their main identifying details",
+    "expected_api": "API_SALES_CONTRACT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_CONTRACT_SRV/A_SalesContractText?$select=Language,LongTextID,SalesContract,LongText&$top=50",
+          "key_fields": [
+            "Language",
+            "LongTextID",
+            "SalesContract"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Language",
+        "LongTextID",
+        "SalesContract"
+      ],
+      "required_fields": [
+        "Language",
+        "LongTextID",
+        "SalesContract"
+      ]
+    }
+  },
+  {
+    "id": "SALCON-T10-004",
+    "api": "API_SALES_CONTRACT_SRV",
+    "scenario": "A_SalesContractPartner_summary_004",
+    "user_input": "Show sales contract partner records with their main identifying details",
+    "expected_api": "API_SALES_CONTRACT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_CONTRACT_SRV/A_SalesContractPartner?$select=PartnerFunction,SalesContract,Customer,Supplier,Personnel,ContactPerson&$top=50",
+          "key_fields": [
+            "PartnerFunction",
+            "SalesContract"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PartnerFunction",
+        "SalesContract"
+      ],
+      "required_fields": [
+        "PartnerFunction",
+        "SalesContract"
+      ]
+    }
+  },
+  {
+    "id": "SALCON-T10-005",
+    "api": "API_SALES_CONTRACT_SRV",
+    "scenario": "A_SalesContractItemText_summary_005",
+    "user_input": "Show sales contract item text records with their main identifying details",
+    "expected_api": "API_SALES_CONTRACT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_CONTRACT_SRV/A_SalesContractItemText?$select=Language,LongTextID,SalesContract,SalesContractItem,LongText&$top=50",
+          "key_fields": [
+            "Language",
+            "LongTextID",
+            "SalesContract"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Language",
+        "LongTextID",
+        "SalesContract"
+      ],
+      "required_fields": [
+        "Language",
+        "LongTextID",
+        "SalesContract"
+      ]
+    }
+  },
+  {
+    "id": "SALCON-T10-006",
+    "api": "API_SALES_CONTRACT_SRV",
+    "scenario": "A_SalesContractPrcgElmnt_summary_006",
+    "user_input": "Show sales contract prcg elmnt records with their main identifying details",
+    "expected_api": "API_SALES_CONTRACT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_CONTRACT_SRV/A_SalesContractPrcgElmnt?$select=PricingProcedureCounter,PricingProcedureStep,SalesContract,ConditionType,PricingDateTime,ConditionCalculationType,ConditionBaseValue,ConditionRateValue&$top=50",
+          "key_fields": [
+            "PricingProcedureCounter",
+            "PricingProcedureStep",
+            "SalesContract"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PricingProcedureCounter",
+        "PricingProcedureStep",
+        "SalesContract"
+      ],
+      "required_fields": [
+        "PricingProcedureCounter",
+        "PricingProcedureStep",
+        "SalesContract"
+      ]
+    }
+  },
+  {
+    "id": "SALCON-T10-007",
+    "api": "API_SALES_CONTRACT_SRV",
+    "scenario": "A_SalesContractItemPartner_summary_007",
+    "user_input": "Show sales contract item partner records with their main identifying details",
+    "expected_api": "API_SALES_CONTRACT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_CONTRACT_SRV/A_SalesContractItemPartner?$select=PartnerFunction,SalesContract,SalesContractItem,Customer,Supplier,Personnel,ContactPerson&$top=50",
+          "key_fields": [
+            "PartnerFunction",
+            "SalesContract",
+            "SalesContractItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PartnerFunction",
+        "SalesContract",
+        "SalesContractItem"
+      ],
+      "required_fields": [
+        "PartnerFunction",
+        "SalesContract",
+        "SalesContractItem"
+      ]
+    }
+  }
+]

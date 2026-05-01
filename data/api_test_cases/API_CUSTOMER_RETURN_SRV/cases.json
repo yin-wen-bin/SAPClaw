@@ -1,0 +1,397 @@
+[
+  {
+    "id": "CUSTRET-001",
+    "api": "API_CUSTOMER_RETURN_SRV",
+    "scenario": "A_CustomerReturn_header_list",
+    "user_input": "Show me a list of customer returns",
+    "expected_api": "API_CUSTOMER_RETURN_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_CUSTOMER_RETURN_SRV/A_CustomerReturn?$select=CustomerReturn,AccountingDocExternalReference,AssignmentReference,CreatedByUser,CreationDate,CustomerPaymentTerms,CustomerPurchaseOrderDate,CustomerPurchaseOrderType&$top=50",
+          "key_fields": [
+            "CustomerReturn"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CustomerReturn"
+      ],
+      "required_fields": [
+        "CustomerReturn"
+      ]
+    }
+  },
+  {
+    "id": "CUSTRET-002",
+    "api": "API_CUSTOMER_RETURN_SRV",
+    "scenario": "A_CustomerReturnItemPartner_detail_list",
+    "user_input": "Show customer returns customer return item partner details",
+    "expected_api": "API_CUSTOMER_RETURN_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_CUSTOMER_RETURN_SRV/A_CustomerReturnItemPartner?$select=CustomerReturn,CustomerReturnItem,PartnerFunction,Customer,Supplier,Personnel,ContactPerson&$top=50",
+          "key_fields": [
+            "CustomerReturn",
+            "CustomerReturnItem",
+            "PartnerFunction"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CustomerReturn",
+        "CustomerReturnItem",
+        "PartnerFunction"
+      ],
+      "required_fields": [
+        "CustomerReturn",
+        "CustomerReturnItem",
+        "PartnerFunction"
+      ]
+    }
+  },
+  {
+    "id": "CUSTRET-003",
+    "api": "API_CUSTOMER_RETURN_SRV",
+    "scenario": "A_CustomerReturnItemPrcgElmnt_supporting_list",
+    "user_input": "List pricing elements for customer return items",
+    "expected_api": "API_CUSTOMER_RETURN_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_CUSTOMER_RETURN_SRV/A_CustomerReturnItemPrcgElmnt?$select=CustomerReturn,CustomerReturnItem,PricingProcedureCounter,PricingProcedureStep,ConditionType,PricingDateTime,ConditionCalculationType,ConditionBaseValue&$top=2000",
+          "key_fields": [
+            "CustomerReturn",
+            "CustomerReturnItem",
+            "PricingProcedureStep",
+            "PricingProcedureCounter"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CustomerReturn",
+        "CustomerReturnItem",
+        "PricingProcedureStep",
+        "PricingProcedureCounter"
+      ],
+      "required_fields": [
+        "CustomerReturn",
+        "CustomerReturnItem",
+        "PricingProcedureStep",
+        "PricingProcedureCounter"
+      ]
+    }
+  },
+  {
+    "id": "CUSRET-T10-001",
+    "api": "API_CUSTOMER_RETURN_SRV",
+    "scenario": "A_CustomerReturn_summary_001",
+    "user_input": "Show customer return records with their main identifying details",
+    "expected_api": "API_CUSTOMER_RETURN_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_CUSTOMER_RETURN_SRV/A_CustomerReturn?$select=CustomerReturn,CustomerReturnType,SalesOrganization,DistributionChannel,OrganizationDivision,SalesGroup,SalesOffice,SalesDistrict&$top=50",
+          "key_fields": [
+            "CustomerReturn"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CustomerReturn"
+      ],
+      "required_fields": [
+        "CustomerReturn"
+      ]
+    }
+  },
+  {
+    "id": "CUSRET-T10-002",
+    "api": "API_CUSTOMER_RETURN_SRV",
+    "scenario": "A_CustomerReturnItem_summary_002",
+    "user_input": "Show customer return item records with their main identifying details",
+    "expected_api": "API_CUSTOMER_RETURN_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_CUSTOMER_RETURN_SRV/A_CustomerReturnItem?$select=CustomerReturn,CustomerReturnItem,HigherLevelItem,CustomerReturnItemCategory,CustomerReturnItemText,PurchaseOrderByCustomer,Material,MaterialByCustomer&$top=50",
+          "key_fields": [
+            "CustomerReturn",
+            "CustomerReturnItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CustomerReturn",
+        "CustomerReturnItem"
+      ],
+      "required_fields": [
+        "CustomerReturn",
+        "CustomerReturnItem"
+      ]
+    }
+  },
+  {
+    "id": "CUSRET-T10-003",
+    "api": "API_CUSTOMER_RETURN_SRV",
+    "scenario": "A_CustomerReturnText_summary_003",
+    "user_input": "Show customer return text records with their main identifying details",
+    "expected_api": "API_CUSTOMER_RETURN_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_CUSTOMER_RETURN_SRV/A_CustomerReturnText?$select=CustomerReturn,Language,LongTextID,LongText&$top=50",
+          "key_fields": [
+            "CustomerReturn",
+            "Language",
+            "LongTextID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CustomerReturn",
+        "Language",
+        "LongTextID"
+      ],
+      "required_fields": [
+        "CustomerReturn",
+        "Language",
+        "LongTextID"
+      ]
+    }
+  },
+  {
+    "id": "CUSRET-T10-004",
+    "api": "API_CUSTOMER_RETURN_SRV",
+    "scenario": "A_CustomerReturnPartner_summary_004",
+    "user_input": "Show customer return partner records with their main identifying details",
+    "expected_api": "API_CUSTOMER_RETURN_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_CUSTOMER_RETURN_SRV/A_CustomerReturnPartner?$select=CustomerReturn,PartnerFunction,Customer,Supplier,Personnel,ContactPerson&$top=50",
+          "key_fields": [
+            "CustomerReturn",
+            "PartnerFunction"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CustomerReturn",
+        "PartnerFunction"
+      ],
+      "required_fields": [
+        "CustomerReturn",
+        "PartnerFunction"
+      ]
+    }
+  },
+  {
+    "id": "CUSRET-T10-005",
+    "api": "API_CUSTOMER_RETURN_SRV",
+    "scenario": "A_CustomerReturnItemText_summary_005",
+    "user_input": "Show customer return item text records with their main identifying details",
+    "expected_api": "API_CUSTOMER_RETURN_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_CUSTOMER_RETURN_SRV/A_CustomerReturnItemText?$select=CustomerReturn,CustomerReturnItem,Language,LongTextID,LongText&$top=50",
+          "key_fields": [
+            "CustomerReturn",
+            "CustomerReturnItem",
+            "Language"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CustomerReturn",
+        "CustomerReturnItem",
+        "Language"
+      ],
+      "required_fields": [
+        "CustomerReturn",
+        "CustomerReturnItem",
+        "Language"
+      ]
+    }
+  },
+  {
+    "id": "CUSRET-T10-006",
+    "api": "API_CUSTOMER_RETURN_SRV",
+    "scenario": "A_CustomerReturnPrcgElmnt_summary_006",
+    "user_input": "Show customer return prcg elmnt records with their main identifying details",
+    "expected_api": "API_CUSTOMER_RETURN_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_CUSTOMER_RETURN_SRV/A_CustomerReturnPrcgElmnt?$select=CustomerReturn,PricingProcedureCounter,PricingProcedureStep,ConditionType,PricingDateTime,ConditionCalculationType,ConditionBaseValue,ConditionRateValue&$top=50",
+          "key_fields": [
+            "CustomerReturn",
+            "PricingProcedureCounter",
+            "PricingProcedureStep"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CustomerReturn",
+        "PricingProcedureCounter",
+        "PricingProcedureStep"
+      ],
+      "required_fields": [
+        "CustomerReturn",
+        "PricingProcedureCounter",
+        "PricingProcedureStep"
+      ]
+    }
+  },
+  {
+    "id": "CUSRET-T10-007",
+    "api": "API_CUSTOMER_RETURN_SRV",
+    "scenario": "A_CustomerReturnItemPartner_summary_007",
+    "user_input": "Show customer return item partner records with their main identifying details",
+    "expected_api": "API_CUSTOMER_RETURN_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_CUSTOMER_RETURN_SRV/A_CustomerReturnItemPartner?$select=CustomerReturn,CustomerReturnItem,PartnerFunction,Customer,Supplier,Personnel,ContactPerson&$top=50",
+          "key_fields": [
+            "CustomerReturn",
+            "CustomerReturnItem",
+            "PartnerFunction"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CustomerReturn",
+        "CustomerReturnItem",
+        "PartnerFunction"
+      ],
+      "required_fields": [
+        "CustomerReturn",
+        "CustomerReturnItem",
+        "PartnerFunction"
+      ]
+    }
+  }
+]

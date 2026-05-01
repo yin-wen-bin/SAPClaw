@@ -1,0 +1,434 @@
+[
+  {
+    "id": "PIR-001",
+    "api": "API_PLND_INDEP_RQMT_SRV",
+    "scenario": "PlannedIndepRqmt_header_list",
+    "user_input": "Show me a list of planned independent requirements",
+    "expected_api": "API_PLND_INDEP_RQMT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PLND_INDEP_RQMT_SRV/PlannedIndepRqmt?$select=MRPArea,Plant,PlndIndepRqmtType,PlndIndepRqmtVersion,Product,RequirementPlan,RequirementSegment,PlndIndepRqmtAcctAssgmtCat&$top=50",
+          "key_fields": [
+            "MRPArea",
+            "Plant",
+            "PlndIndepRqmtType",
+            "PlndIndepRqmtVersion",
+            "Product",
+            "RequirementPlan",
+            "RequirementSegment"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "MRPArea",
+        "Plant",
+        "PlndIndepRqmtType",
+        "PlndIndepRqmtVersion",
+        "Product",
+        "RequirementPlan",
+        "RequirementSegment"
+      ],
+      "required_fields": [
+        "MRPArea",
+        "Plant",
+        "PlndIndepRqmtType",
+        "PlndIndepRqmtVersion",
+        "Product",
+        "RequirementPlan",
+        "RequirementSegment"
+      ]
+    }
+  },
+  {
+    "id": "PIR-002",
+    "api": "API_PLND_INDEP_RQMT_SRV",
+    "scenario": "PlannedIndepRqmt_detail_list",
+    "user_input": "Show planned independent requirements planned indep rqmt details",
+    "expected_api": "API_PLND_INDEP_RQMT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PLND_INDEP_RQMT_SRV/PlannedIndepRqmt?$select=MRPArea,Plant,PlndIndepRqmtType,PlndIndepRqmtVersion,Product,RequirementPlan,RequirementSegment,Update_mc&$top=50",
+          "key_fields": [
+            "MRPArea",
+            "Plant",
+            "PlndIndepRqmtType"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "MRPArea",
+        "Plant",
+        "PlndIndepRqmtType"
+      ],
+      "required_fields": [
+        "MRPArea",
+        "Plant",
+        "PlndIndepRqmtType"
+      ]
+    }
+  },
+  {
+    "id": "PLNINDRQM-T10-001",
+    "api": "API_PLND_INDEP_RQMT_SRV",
+    "scenario": "PlannedIndepRqmt_summary_001",
+    "user_input": "Show planned indep rqmt records with their main identifying details",
+    "expected_api": "API_PLND_INDEP_RQMT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PLND_INDEP_RQMT_SRV/PlannedIndepRqmt?$select=MRPArea,Plant,PlndIndepRqmtType,Update_mc,to_PlndIndepRqmtItem_oc,Product,PlndIndepRqmtVersion,RequirementPlan&$top=50",
+          "key_fields": [
+            "MRPArea",
+            "Plant",
+            "PlndIndepRqmtType"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "MRPArea",
+        "Plant",
+        "PlndIndepRqmtType"
+      ],
+      "required_fields": [
+        "MRPArea",
+        "Plant",
+        "PlndIndepRqmtType"
+      ]
+    }
+  },
+  {
+    "id": "PLNINDRQM-T10-002",
+    "api": "API_PLND_INDEP_RQMT_SRV",
+    "scenario": "PlannedIndepRqmtItem_summary_002",
+    "user_input": "Show planned indep rqmt item records with their main identifying details",
+    "expected_api": "API_PLND_INDEP_RQMT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PLND_INDEP_RQMT_SRV/PlannedIndepRqmtItem?$select=MRPArea,PeriodType,Plant,Update_mc,Product,PlndIndepRqmtType,PlndIndepRqmtVersion,RequirementPlan&$top=50",
+          "key_fields": [
+            "MRPArea",
+            "PeriodType",
+            "Plant"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "MRPArea",
+        "PeriodType",
+        "Plant"
+      ],
+      "required_fields": [
+        "MRPArea",
+        "PeriodType",
+        "Plant"
+      ]
+    }
+  },
+  {
+    "id": "PLNINDRQM-T10-003",
+    "api": "API_PLND_INDEP_RQMT_SRV",
+    "scenario": "PlannedIndepRqmt_status_and_indicators_003",
+    "user_input": "Show planned indep rqmt records with plnd indep rqmt is active and requirement plan is external",
+    "expected_api": "API_PLND_INDEP_RQMT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PLND_INDEP_RQMT_SRV/PlannedIndepRqmt?$select=MRPArea,Plant,PlndIndepRqmtType,PlndIndepRqmtIsActive,RequirementPlanIsExternal,Update_mc,to_PlndIndepRqmtItem_oc,Product&$top=50",
+          "key_fields": [
+            "MRPArea",
+            "Plant",
+            "PlndIndepRqmtType"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "MRPArea",
+        "Plant",
+        "PlndIndepRqmtType"
+      ],
+      "required_fields": [
+        "MRPArea",
+        "Plant",
+        "PlndIndepRqmtType",
+        "PlndIndepRqmtIsActive",
+        "RequirementPlanIsExternal"
+      ]
+    }
+  },
+  {
+    "id": "PLNINDRQM-T10-004",
+    "api": "API_PLND_INDEP_RQMT_SRV",
+    "scenario": "PlannedIndepRqmt_dates_and_periods_004",
+    "user_input": "Show planned indep rqmt records with plnd indep rqmt last chgd date time and update mc",
+    "expected_api": "API_PLND_INDEP_RQMT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PLND_INDEP_RQMT_SRV/PlannedIndepRqmt?$select=MRPArea,Plant,PlndIndepRqmtType,PlndIndepRqmtLastChgdDateTime,Update_mc,to_PlndIndepRqmtItem_oc,Product,PlndIndepRqmtVersion&$top=50",
+          "key_fields": [
+            "MRPArea",
+            "Plant",
+            "PlndIndepRqmtType"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "MRPArea",
+        "Plant",
+        "PlndIndepRqmtType"
+      ],
+      "required_fields": [
+        "MRPArea",
+        "Plant",
+        "PlndIndepRqmtType",
+        "PlndIndepRqmtLastChgdDateTime",
+        "Update_mc"
+      ]
+    }
+  },
+  {
+    "id": "PLNINDRQM-T10-005",
+    "api": "API_PLND_INDEP_RQMT_SRV",
+    "scenario": "PlannedIndepRqmtItem_dates_and_periods_005",
+    "user_input": "Show planned indep rqmt item records with last change date, period type, plnd indep rqmt last chgd date time, and plnd indep rqmt period",
+    "expected_api": "API_PLND_INDEP_RQMT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PLND_INDEP_RQMT_SRV/PlannedIndepRqmtItem?$select=MRPArea,PeriodType,Plant,LastChangeDate,PlndIndepRqmtLastChgdDateTime,PlndIndepRqmtPeriod,Update_mc,Product&$top=50",
+          "key_fields": [
+            "MRPArea",
+            "PeriodType",
+            "Plant"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "MRPArea",
+        "PeriodType",
+        "Plant"
+      ],
+      "required_fields": [
+        "MRPArea",
+        "PeriodType",
+        "Plant",
+        "LastChangeDate",
+        "PlndIndepRqmtLastChgdDateTime",
+        "PlndIndepRqmtPeriod"
+      ]
+    }
+  },
+  {
+    "id": "PLNINDRQM-T10-006",
+    "api": "API_PLND_INDEP_RQMT_SRV",
+    "scenario": "PlannedIndepRqmtItem_quantities_and_units_006",
+    "user_input": "Show planned indep rqmt item records with planned quantity, unit of measure, and withdrawal quantity",
+    "expected_api": "API_PLND_INDEP_RQMT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PLND_INDEP_RQMT_SRV/PlannedIndepRqmtItem?$select=MRPArea,PeriodType,Plant,PlannedQuantity,UnitOfMeasure,WithdrawalQuantity,Update_mc,Product&$top=50",
+          "key_fields": [
+            "MRPArea",
+            "PeriodType",
+            "Plant"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "MRPArea",
+        "PeriodType",
+        "Plant"
+      ],
+      "required_fields": [
+        "MRPArea",
+        "PeriodType",
+        "Plant",
+        "PlannedQuantity",
+        "UnitOfMeasure",
+        "WithdrawalQuantity"
+      ]
+    }
+  },
+  {
+    "id": "PLNINDRQM-T10-007",
+    "api": "API_PLND_INDEP_RQMT_SRV",
+    "scenario": "PlannedIndepRqmt_organization_007",
+    "user_input": "Show planned indep rqmt records with plant",
+    "expected_api": "API_PLND_INDEP_RQMT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PLND_INDEP_RQMT_SRV/PlannedIndepRqmt?$select=MRPArea,Plant,PlndIndepRqmtType,Update_mc,to_PlndIndepRqmtItem_oc,Product,PlndIndepRqmtVersion,RequirementPlan&$top=50",
+          "key_fields": [
+            "MRPArea",
+            "Plant",
+            "PlndIndepRqmtType"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "MRPArea",
+        "Plant",
+        "PlndIndepRqmtType"
+      ],
+      "required_fields": [
+        "MRPArea",
+        "Plant",
+        "PlndIndepRqmtType"
+      ]
+    }
+  },
+  {
+    "id": "PLNINDRQM-T10-008",
+    "api": "API_PLND_INDEP_RQMT_SRV",
+    "scenario": "PlannedIndepRqmtItem_organization_008",
+    "user_input": "Show planned indep rqmt item records with plant",
+    "expected_api": "API_PLND_INDEP_RQMT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PLND_INDEP_RQMT_SRV/PlannedIndepRqmtItem?$select=MRPArea,PeriodType,Plant,Update_mc,Product,PlndIndepRqmtType,PlndIndepRqmtVersion,RequirementPlan&$top=50",
+          "key_fields": [
+            "MRPArea",
+            "PeriodType",
+            "Plant"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "MRPArea",
+        "PeriodType",
+        "Plant"
+      ],
+      "required_fields": [
+        "MRPArea",
+        "PeriodType",
+        "Plant"
+      ]
+    }
+  }
+]

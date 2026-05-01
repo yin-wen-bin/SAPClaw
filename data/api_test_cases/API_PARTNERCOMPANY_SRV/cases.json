@@ -1,0 +1,359 @@
+[
+  {
+    "id": "PCOMP-001",
+    "api": "API_PARTNERCOMPANY_SRV",
+    "scenario": "A_PartnerCompany_main_list",
+    "user_input": "Show me a list of partner companies",
+    "expected_api": "API_PARTNERCOMPANY_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PARTNERCOMPANY_SRV/A_PartnerCompany?$select=PartnerCompany,CompanyName,Language&$top=50",
+          "key_fields": [
+            "PartnerCompany"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PartnerCompany"
+      ],
+      "required_fields": [
+        "PartnerCompany"
+      ]
+    }
+  },
+  {
+    "id": "PARTNERCOMPA-T10-001",
+    "api": "API_PARTNERCOMPANY_SRV",
+    "scenario": "A_PartnerCompany_summary_001",
+    "user_input": "Show partner company records with their main identifying details",
+    "expected_api": "API_PARTNERCOMPANY_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PARTNERCOMPANY_SRV/A_PartnerCompany?$select=PartnerCompany,CompanyName,Language&$top=50",
+          "key_fields": [
+            "PartnerCompany"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PartnerCompany"
+      ],
+      "required_fields": [
+        "PartnerCompany"
+      ]
+    }
+  },
+  {
+    "id": "PARTNERCOMPA-T10-002",
+    "api": "API_PARTNERCOMPANY_SRV",
+    "scenario": "A_PartnerCompany_names_and_descriptions_002",
+    "user_input": "Show partner company records with company name",
+    "expected_api": "API_PARTNERCOMPANY_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PARTNERCOMPANY_SRV/A_PartnerCompany?$select=PartnerCompany,CompanyName,Language&$top=50",
+          "key_fields": [
+            "PartnerCompany"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PartnerCompany"
+      ],
+      "required_fields": [
+        "PartnerCompany",
+        "CompanyName"
+      ]
+    }
+  },
+  {
+    "id": "PARTNERCOMPA-T10-003",
+    "api": "API_PARTNERCOMPANY_SRV",
+    "scenario": "A_PartnerCompany_partner_accounts_003",
+    "user_input": "Show partner company records with partner company",
+    "expected_api": "API_PARTNERCOMPANY_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PARTNERCOMPANY_SRV/A_PartnerCompany?$select=PartnerCompany,CompanyName,Language&$top=50",
+          "key_fields": [
+            "PartnerCompany"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PartnerCompany"
+      ],
+      "required_fields": [
+        "PartnerCompany"
+      ]
+    }
+  },
+  {
+    "id": "PARTNERCOMPA-T10-004",
+    "api": "API_PARTNERCOMPANY_SRV",
+    "scenario": "A_PartnerCompany_detail_entity_004",
+    "user_input": "List partner company details with their main business identifiers",
+    "expected_api": "API_PARTNERCOMPANY_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PARTNERCOMPANY_SRV/A_PartnerCompany?$select=PartnerCompany,CompanyName,Language&$top=50",
+          "key_fields": [
+            "PartnerCompany"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PartnerCompany"
+      ],
+      "required_fields": [
+        "PartnerCompany"
+      ]
+    }
+  },
+  {
+    "id": "PARTNERCOMPA-T10-005",
+    "api": "API_PARTNERCOMPANY_SRV",
+    "scenario": "A_PartnerCompany_field_set_1_005",
+    "user_input": "Show partner company records with company name, language, and partner company",
+    "expected_api": "API_PARTNERCOMPANY_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PARTNERCOMPANY_SRV/A_PartnerCompany?$select=PartnerCompany,CompanyName,Language&$top=50",
+          "key_fields": [
+            "PartnerCompany"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PartnerCompany"
+      ],
+      "required_fields": [
+        "PartnerCompany",
+        "CompanyName",
+        "Language"
+      ]
+    }
+  },
+  {
+    "id": "PARTNERCOMPA-T10-007",
+    "api": "API_PARTNERCOMPANY_SRV",
+    "scenario": "A_PartnerCompany_single_field_Language_007",
+    "user_input": "List partner company master data focused on language",
+    "expected_api": "API_PARTNERCOMPANY_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PARTNERCOMPANY_SRV/A_PartnerCompany?$select=PartnerCompany,Language,CompanyName&$top=50",
+          "key_fields": [
+            "PartnerCompany"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PartnerCompany"
+      ],
+      "required_fields": [
+        "PartnerCompany",
+        "Language"
+      ]
+    }
+  },
+  {
+    "id": "PARTNERCOMPA-T10-008",
+    "api": "API_PARTNERCOMPANY_SRV",
+    "scenario": "A_PartnerCompany_single_field_PartnerCompany_008",
+    "user_input": "Show the partner company maintained for partner company records",
+    "expected_api": "API_PARTNERCOMPANY_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PARTNERCOMPANY_SRV/A_PartnerCompany?$select=PartnerCompany,CompanyName,Language&$top=50",
+          "key_fields": [
+            "PartnerCompany"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PartnerCompany"
+      ],
+      "required_fields": [
+        "PartnerCompany"
+      ]
+    }
+  },
+  {
+    "id": "PARTNERCOMPA-T10-009",
+    "api": "API_PARTNERCOMPANY_SRV",
+    "scenario": "A_PartnerCompany_business_view_1_009",
+    "user_input": "Show partner company records with company name and language",
+    "expected_api": "API_PARTNERCOMPANY_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PARTNERCOMPANY_SRV/A_PartnerCompany?$select=PartnerCompany,CompanyName,Language&$top=50",
+          "key_fields": [
+            "PartnerCompany"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PartnerCompany"
+      ],
+      "required_fields": [
+        "PartnerCompany",
+        "CompanyName",
+        "Language"
+      ]
+    }
+  },
+  {
+    "id": "PARTNERCOMPA-T10-010",
+    "api": "API_PARTNERCOMPANY_SRV",
+    "scenario": "A_PartnerCompany_business_view_2_010",
+    "user_input": "List partner company master data focused on language and partner company",
+    "expected_api": "API_PARTNERCOMPANY_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PARTNERCOMPANY_SRV/A_PartnerCompany?$select=PartnerCompany,Language,CompanyName&$top=50",
+          "key_fields": [
+            "PartnerCompany"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PartnerCompany"
+      ],
+      "required_fields": [
+        "PartnerCompany",
+        "Language"
+      ]
+    }
+  }
+]

@@ -1,0 +1,402 @@
+[
+  {
+    "id": "CMR-001",
+    "api": "API_CREDIT_MEMO_REQUEST_SRV",
+    "scenario": "A_CreditMemoRequest_header_list",
+    "user_input": "Show me a list of credit memo requests",
+    "expected_api": "API_CREDIT_MEMO_REQUEST_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_CREDIT_MEMO_REQUEST_SRV/A_CreditMemoRequest?$select=CreditMemoRequest,AccountingDocExternalReference,AssignmentReference,BillingDocumentDate,CreatedByUser,CreationDate,CreditMemoReqApprovalReason,CreditMemoRequestDate&$top=50",
+          "key_fields": [
+            "CreditMemoRequest"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CreditMemoRequest"
+      ],
+      "required_fields": [
+        "CreditMemoRequest"
+      ]
+    }
+  },
+  {
+    "id": "CMR-002",
+    "api": "API_CREDIT_MEMO_REQUEST_SRV",
+    "scenario": "A_CreditMemoReqItemPartner_detail_list",
+    "user_input": "Show credit memo requests credit memo req item partner details",
+    "expected_api": "API_CREDIT_MEMO_REQUEST_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_CREDIT_MEMO_REQUEST_SRV/A_CreditMemoReqItemPartner?$select=CreditMemoRequest,CreditMemoRequestItem,PartnerFunction,Customer,Supplier,Personnel,ContactPerson&$top=50",
+          "key_fields": [
+            "CreditMemoRequest",
+            "CreditMemoRequestItem",
+            "PartnerFunction"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CreditMemoRequest",
+        "CreditMemoRequestItem",
+        "PartnerFunction"
+      ],
+      "required_fields": [
+        "CreditMemoRequest",
+        "CreditMemoRequestItem",
+        "PartnerFunction"
+      ]
+    }
+  },
+  {
+    "id": "CMR-003",
+    "api": "API_CREDIT_MEMO_REQUEST_SRV",
+    "scenario": "A_CreditMemoReqItemPrcgElmnt_supporting_list",
+    "user_input": "List pricing elements for credit memo request items",
+    "expected_api": "API_CREDIT_MEMO_REQUEST_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_CREDIT_MEMO_REQUEST_SRV/A_CreditMemoReqItemPrcgElmnt?$select=CreditMemoRequest,CreditMemoRequestItem,PricingProcedureCounter,PricingProcedureStep,ConditionApplication,ConditionType,PricingDateTime,PriceConditionDeterminationDte&$top=50",
+          "key_fields": [
+            "CreditMemoRequest",
+            "CreditMemoRequestItem",
+            "PricingProcedureCounter"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CreditMemoRequest",
+        "CreditMemoRequestItem",
+        "PricingProcedureCounter"
+      ],
+      "required_fields": [
+        "CreditMemoRequest",
+        "CreditMemoRequestItem",
+        "PricingProcedureCounter"
+      ]
+    }
+  },
+  {
+    "id": "CREMEMREQ-T10-001",
+    "api": "API_CREDIT_MEMO_REQUEST_SRV",
+    "scenario": "A_CreditMemoReqPartner_header_partner_list",
+    "user_input": "Show credit memo request header partners with customer and supplier details",
+    "expected_api": "API_CREDIT_MEMO_REQUEST_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_CREDIT_MEMO_REQUEST_SRV/A_CreditMemoReqPartner?$select=CreditMemoRequest,PartnerFunction,Customer,Supplier,Personnel,ContactPerson&$top=50",
+          "key_fields": [
+            "CreditMemoRequest",
+            "PartnerFunction"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CreditMemoRequest",
+        "PartnerFunction"
+      ],
+      "required_fields": [
+        "CreditMemoRequest",
+        "PartnerFunction"
+      ]
+    }
+  },
+  {
+    "id": "CREMEMREQ-T10-002",
+    "api": "API_CREDIT_MEMO_REQUEST_SRV",
+    "scenario": "A_CreditMemoReqText_header_text_list",
+    "user_input": "Show credit memo request header texts by language",
+    "expected_api": "API_CREDIT_MEMO_REQUEST_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_CREDIT_MEMO_REQUEST_SRV/A_CreditMemoReqText?$select=CreditMemoRequest,Language,LongTextID,LongText&$top=50",
+          "key_fields": [
+            "CreditMemoRequest",
+            "Language",
+            "LongTextID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CreditMemoRequest",
+        "Language",
+        "LongTextID"
+      ],
+      "required_fields": [
+        "CreditMemoRequest",
+        "Language",
+        "LongTextID"
+      ]
+    }
+  },
+  {
+    "id": "CREMEMREQ-T10-003",
+    "api": "API_CREDIT_MEMO_REQUEST_SRV",
+    "scenario": "A_CreditMemoReqItemText_item_text_list",
+    "user_input": "Show credit memo request item texts by item and language",
+    "expected_api": "API_CREDIT_MEMO_REQUEST_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_CREDIT_MEMO_REQUEST_SRV/A_CreditMemoReqItemText?$select=CreditMemoRequest,CreditMemoRequestItem,Language,LongTextID,LongText&$top=50",
+          "key_fields": [
+            "CreditMemoRequest",
+            "CreditMemoRequestItem",
+            "Language",
+            "LongTextID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CreditMemoRequest",
+        "CreditMemoRequestItem",
+        "Language",
+        "LongTextID"
+      ],
+      "required_fields": [
+        "CreditMemoRequest",
+        "CreditMemoRequestItem",
+        "Language",
+        "LongTextID"
+      ]
+    }
+  },
+  {
+    "id": "CREMEMREQ-T10-004",
+    "api": "API_CREDIT_MEMO_REQUEST_SRV",
+    "scenario": "A_CreditMemoRequest_summary_004",
+    "user_input": "Show credit memo request records with their main identifying details",
+    "expected_api": "API_CREDIT_MEMO_REQUEST_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_CREDIT_MEMO_REQUEST_SRV/A_CreditMemoRequest?$select=CreditMemoRequest,CreditMemoRequestType,SalesOrganization,DistributionChannel,OrganizationDivision,SalesGroup,SalesOffice,SalesDistrict&$top=50",
+          "key_fields": [
+            "CreditMemoRequest"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CreditMemoRequest"
+      ],
+      "required_fields": [
+        "CreditMemoRequest"
+      ]
+    }
+  },
+  {
+    "id": "CREMEMREQ-T10-005",
+    "api": "API_CREDIT_MEMO_REQUEST_SRV",
+    "scenario": "A_CreditMemoRequestItem_summary_005",
+    "user_input": "Show credit memo request item records with their main identifying details",
+    "expected_api": "API_CREDIT_MEMO_REQUEST_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_CREDIT_MEMO_REQUEST_SRV/A_CreditMemoRequestItem?$select=CreditMemoRequest,CreditMemoRequestItem,HigherLevelItem,CreditMemoRequestItemCategory,CreditMemoRequestItemText,PurchaseOrderByCustomer,Material,MaterialByCustomer&$top=50",
+          "key_fields": [
+            "CreditMemoRequest",
+            "CreditMemoRequestItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CreditMemoRequest",
+        "CreditMemoRequestItem"
+      ],
+      "required_fields": [
+        "CreditMemoRequest",
+        "CreditMemoRequestItem"
+      ]
+    }
+  },
+  {
+    "id": "CREMEMREQ-T10-006",
+    "api": "API_CREDIT_MEMO_REQUEST_SRV",
+    "scenario": "A_CreditMemoReqPrcgElmnt_header_pricing_list",
+    "user_input": "Show credit memo request header pricing elements with condition type and pricing date",
+    "expected_api": "API_CREDIT_MEMO_REQUEST_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_CREDIT_MEMO_REQUEST_SRV/A_CreditMemoReqPrcgElmnt?$select=CreditMemoRequest,PricingProcedureStep,PricingProcedureCounter,ConditionApplication,ConditionType,PricingDateTime,ConditionCalculationType,ConditionRateValue&$top=50",
+          "key_fields": [
+            "CreditMemoRequest",
+            "PricingProcedureCounter",
+            "PricingProcedureStep"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CreditMemoRequest",
+        "PricingProcedureCounter",
+        "PricingProcedureStep"
+      ],
+      "required_fields": [
+        "CreditMemoRequest",
+        "PricingProcedureCounter",
+        "PricingProcedureStep",
+        "ConditionType"
+      ]
+    }
+  },
+  {
+    "id": "CREMEMREQ-T10-007",
+    "api": "API_CREDIT_MEMO_REQUEST_SRV",
+    "scenario": "A_CreditMemoReqItemPrcgElmnt_item_pricing_list",
+    "user_input": "Show credit memo request item pricing elements with condition type and rate value",
+    "expected_api": "API_CREDIT_MEMO_REQUEST_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_CREDIT_MEMO_REQUEST_SRV/A_CreditMemoReqItemPrcgElmnt?$select=CreditMemoRequest,CreditMemoRequestItem,PricingProcedureStep,PricingProcedureCounter,ConditionApplication,ConditionType,PricingDateTime,ConditionRateValue&$top=50",
+          "key_fields": [
+            "CreditMemoRequest",
+            "CreditMemoRequestItem",
+            "PricingProcedureCounter",
+            "PricingProcedureStep"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CreditMemoRequest",
+        "CreditMemoRequestItem",
+        "PricingProcedureCounter",
+        "PricingProcedureStep"
+      ],
+      "required_fields": [
+        "CreditMemoRequest",
+        "CreditMemoRequestItem",
+        "PricingProcedureCounter",
+        "PricingProcedureStep",
+        "ConditionType"
+      ]
+    }
+  }
+]

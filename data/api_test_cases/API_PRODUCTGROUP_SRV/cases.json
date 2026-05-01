@@ -1,0 +1,377 @@
+[
+  {
+    "id": "PRODGRP-001",
+    "api": "API_PRODUCTGROUP_SRV",
+    "scenario": "A_ProductGroup_main_list",
+    "user_input": "Show me a list of product groups",
+    "expected_api": "API_PRODUCTGROUP_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PRODUCTGROUP_SRV/A_ProductGroup?$select=MaterialGroup,AuthorizationGroup&$top=50",
+          "key_fields": [
+            "MaterialGroup"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "MaterialGroup"
+      ],
+      "required_fields": [
+        "MaterialGroup"
+      ]
+    }
+  },
+  {
+    "id": "PRODGRP-002",
+    "api": "API_PRODUCTGROUP_SRV",
+    "scenario": "A_ProductGroupText_detail_list",
+    "user_input": "Show product groups product group text details",
+    "expected_api": "API_PRODUCTGROUP_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PRODUCTGROUP_SRV/A_ProductGroupText?$select=MaterialGroup,MaterialGroupName,MaterialGroupText&$top=50",
+          "key_fields": [
+            "MaterialGroup",
+            "MaterialGroupName"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "MaterialGroup",
+        "MaterialGroupName"
+      ],
+      "required_fields": [
+        "MaterialGroup",
+        "MaterialGroupName"
+      ]
+    }
+  },
+  {
+    "id": "PRODUCTGROUP-T10-001",
+    "api": "API_PRODUCTGROUP_SRV",
+    "scenario": "A_ProductGroup_summary_001",
+    "user_input": "Show product group records with their main identifying details",
+    "expected_api": "API_PRODUCTGROUP_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PRODUCTGROUP_SRV/A_ProductGroup?$select=MaterialGroup,AuthorizationGroup&$top=50",
+          "key_fields": [
+            "MaterialGroup"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "MaterialGroup"
+      ],
+      "required_fields": [
+        "MaterialGroup"
+      ]
+    }
+  },
+  {
+    "id": "PRODUCTGROUP-T10-002",
+    "api": "API_PRODUCTGROUP_SRV",
+    "scenario": "A_ProductGroupText_summary_002",
+    "user_input": "Show product group text records with their main identifying details",
+    "expected_api": "API_PRODUCTGROUP_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PRODUCTGROUP_SRV/A_ProductGroupText?$select=Language,MaterialGroup,MaterialGroupName,MaterialGroupText&$top=50",
+          "key_fields": [
+            "Language",
+            "MaterialGroup"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Language",
+        "MaterialGroup"
+      ],
+      "required_fields": [
+        "Language",
+        "MaterialGroup"
+      ]
+    }
+  },
+  {
+    "id": "PRODUCTGROUP-T10-003",
+    "api": "API_PRODUCTGROUP_SRV",
+    "scenario": "A_ProductGroupText_names_and_descriptions_003",
+    "user_input": "Show product group text records with material group name and material group text",
+    "expected_api": "API_PRODUCTGROUP_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PRODUCTGROUP_SRV/A_ProductGroupText?$select=Language,MaterialGroup,MaterialGroupName,MaterialGroupText&$top=50",
+          "key_fields": [
+            "Language",
+            "MaterialGroup"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Language",
+        "MaterialGroup"
+      ],
+      "required_fields": [
+        "Language",
+        "MaterialGroup",
+        "MaterialGroupName",
+        "MaterialGroupText"
+      ]
+    }
+  },
+  {
+    "id": "PRODUCTGROUP-T10-004",
+    "api": "API_PRODUCTGROUP_SRV",
+    "scenario": "A_ProductGroup_product_materials_004",
+    "user_input": "Show product group records with material group",
+    "expected_api": "API_PRODUCTGROUP_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PRODUCTGROUP_SRV/A_ProductGroup?$select=MaterialGroup,AuthorizationGroup&$top=50",
+          "key_fields": [
+            "MaterialGroup"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "MaterialGroup"
+      ],
+      "required_fields": [
+        "MaterialGroup"
+      ]
+    }
+  },
+  {
+    "id": "PRODUCTGROUP-T10-005",
+    "api": "API_PRODUCTGROUP_SRV",
+    "scenario": "A_ProductGroupText_product_materials_005",
+    "user_input": "Show product group text records with material group, material group name, and material group text",
+    "expected_api": "API_PRODUCTGROUP_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PRODUCTGROUP_SRV/A_ProductGroupText?$select=Language,MaterialGroup,MaterialGroupName,MaterialGroupText&$top=50",
+          "key_fields": [
+            "Language",
+            "MaterialGroup"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Language",
+        "MaterialGroup"
+      ],
+      "required_fields": [
+        "Language",
+        "MaterialGroup",
+        "MaterialGroupName",
+        "MaterialGroupText"
+      ]
+    }
+  },
+  {
+    "id": "PRODUCTGROUP-T10-006",
+    "api": "API_PRODUCTGROUP_SRV",
+    "scenario": "A_ProductGroup_types_and_categories_006",
+    "user_input": "Show product group records with authorization group and material group",
+    "expected_api": "API_PRODUCTGROUP_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PRODUCTGROUP_SRV/A_ProductGroup?$select=MaterialGroup,AuthorizationGroup&$top=50",
+          "key_fields": [
+            "MaterialGroup"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "MaterialGroup"
+      ],
+      "required_fields": [
+        "MaterialGroup",
+        "AuthorizationGroup"
+      ]
+    }
+  },
+  {
+    "id": "PRODUCTGROUP-T10-008",
+    "api": "API_PRODUCTGROUP_SRV",
+    "scenario": "A_ProductGroupText_detail_entity_008",
+    "user_input": "List product group text details with their main business identifiers",
+    "expected_api": "API_PRODUCTGROUP_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PRODUCTGROUP_SRV/A_ProductGroupText?$select=Language,MaterialGroup,MaterialGroupName,MaterialGroupText&$top=50",
+          "key_fields": [
+            "Language",
+            "MaterialGroup"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Language",
+        "MaterialGroup"
+      ],
+      "required_fields": [
+        "Language",
+        "MaterialGroup"
+      ]
+    }
+  },
+  {
+    "id": "PRODUCTGROUP-T10-010",
+    "api": "API_PRODUCTGROUP_SRV",
+    "scenario": "A_ProductGroupText_field_set_1_010",
+    "user_input": "Show product group text records with language, material group, material group name, and material group text",
+    "expected_api": "API_PRODUCTGROUP_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PRODUCTGROUP_SRV/A_ProductGroupText?$select=Language,MaterialGroup,MaterialGroupName,MaterialGroupText&$top=50",
+          "key_fields": [
+            "Language",
+            "MaterialGroup"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Language",
+        "MaterialGroup"
+      ],
+      "required_fields": [
+        "Language",
+        "MaterialGroup",
+        "MaterialGroupName",
+        "MaterialGroupText"
+      ]
+    }
+  }
+]

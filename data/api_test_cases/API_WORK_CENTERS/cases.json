@@ -1,0 +1,404 @@
+[
+  {
+    "id": "WC-001",
+    "api": "API_WORK_CENTERS",
+    "scenario": "A_WorkCenters_main_list",
+    "user_input": "Show me a list of work centers",
+    "expected_api": "API_WORK_CENTERS",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_WORK_CENTERS/A_WorkCenters?$select=WorkCenterInternalID,WorkCenter,Plant,WorkCenterCategoryCode,WorkCenterDesc,ValidityStartDate,ValidityEndDate,SupplyArea&$top=50",
+          "key_fields": [
+            "WorkCenterInternalID",
+            "WorkCenter",
+            "Plant"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "WorkCenterInternalID",
+        "WorkCenter",
+        "Plant"
+      ],
+      "required_fields": [
+        "WorkCenterInternalID",
+        "WorkCenter",
+        "Plant"
+      ]
+    }
+  },
+  {
+    "id": "WC-002",
+    "api": "API_WORK_CENTERS",
+    "scenario": "A_WorkCenterCapOrderPerBucketSet_detail_list",
+    "user_input": "Show work centers work center cap order per bucket set details",
+    "expected_api": "API_WORK_CENTERS",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_WORK_CENTERS/A_WorkCenterCapOrderPerBucketSet?$select=CapacityCategoryAllocation,CapacityEvaluationTimePeriod,CapacityInternalID,MRPController,Material,Operation,OrderID,P_CapEvalBucketType&$top=50",
+          "key_fields": [
+            "CapacityCategoryAllocation",
+            "CapacityEvaluationTimePeriod",
+            "CapacityInternalID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CapacityCategoryAllocation",
+        "CapacityEvaluationTimePeriod",
+        "CapacityInternalID"
+      ],
+      "required_fields": [
+        "CapacityCategoryAllocation",
+        "CapacityEvaluationTimePeriod",
+        "CapacityInternalID"
+      ]
+    }
+  },
+  {
+    "id": "WC-003",
+    "api": "API_WORK_CENTERS",
+    "scenario": "A_WorkCenterCostCenter_supporting_list",
+    "user_input": "List work center cost center assignments",
+    "expected_api": "API_WORK_CENTERS",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_WORK_CENTERS/A_WorkCenterCostCenter?$select=CostCenterAllocation,ValidityEndDate,WorkCenterInternalID,WorkCenterTypeCode,ValidityStartDate,WorkCenter,Plant,WorkCenterCategoryCode&$top=50",
+          "key_fields": [
+            "CostCenterAllocation",
+            "ValidityEndDate",
+            "WorkCenterInternalID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CostCenterAllocation",
+        "ValidityEndDate",
+        "WorkCenterInternalID"
+      ],
+      "required_fields": [
+        "CostCenterAllocation",
+        "ValidityEndDate",
+        "WorkCenterInternalID"
+      ]
+    }
+  },
+  {
+    "id": "WORCEN-T10-001",
+    "api": "API_WORK_CENTERS",
+    "scenario": "A_WorkCenterDescription_description_list",
+    "user_input": "Show work center descriptions by language with plant and category details",
+    "expected_api": "API_WORK_CENTERS",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_WORK_CENTERS/A_WorkCenterDescription?$select=WorkCenterInternalID,WorkCenterTypeCode,Language,WorkCenterDesc,WorkCenter,Plant,WorkCenterCategoryCode,WorkCenterLastChangeDateTime&$top=50",
+          "key_fields": [
+            "WorkCenterInternalID",
+            "WorkCenterTypeCode",
+            "Language"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "WorkCenterInternalID",
+        "WorkCenterTypeCode",
+        "Language"
+      ],
+      "required_fields": [
+        "WorkCenterInternalID",
+        "WorkCenterTypeCode",
+        "Language",
+        "WorkCenterDesc"
+      ]
+    }
+  },
+  {
+    "id": "WORCEN-T10-002",
+    "api": "API_WORK_CENTERS",
+    "scenario": "A_WorkCenterCapOrderPerBucketSet_summary_002",
+    "user_input": "Show work center cap order per bucket set records with their main identifying details",
+    "expected_api": "API_WORK_CENTERS",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_WORK_CENTERS/A_WorkCenterCapOrderPerBucketSet?$select=CapacityCategoryAllocation,CapacityEvaluationTimePeriod,CapacityInternalID,P_CapEvalStartDate,P_CapEvalEndDate,P_CapEvalBucketType,Plant,MRPController&$top=50",
+          "key_fields": [
+            "CapacityCategoryAllocation",
+            "CapacityEvaluationTimePeriod",
+            "CapacityInternalID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CapacityCategoryAllocation",
+        "CapacityEvaluationTimePeriod",
+        "CapacityInternalID"
+      ],
+      "required_fields": [
+        "CapacityCategoryAllocation",
+        "CapacityEvaluationTimePeriod",
+        "CapacityInternalID"
+      ]
+    }
+  },
+  {
+    "id": "WORCEN-T10-003",
+    "api": "API_WORK_CENTERS",
+    "scenario": "A_WorkCenters_summary_003",
+    "user_input": "Show work centers records with their main identifying details",
+    "expected_api": "API_WORK_CENTERS",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_WORK_CENTERS/A_WorkCenters?$select=WorkCenterInternalID,WorkCenterTypeCode,WorkCenter,WorkCenterDesc,Plant,WorkCenterCategoryCode,WorkCenterResponsible,WorkCenterResponsibleName&$top=50",
+          "key_fields": [
+            "WorkCenterInternalID",
+            "WorkCenterTypeCode"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "WorkCenterInternalID",
+        "WorkCenterTypeCode"
+      ],
+      "required_fields": [
+        "WorkCenterInternalID",
+        "WorkCenterTypeCode"
+      ]
+    }
+  },
+  {
+    "id": "WORCEN-T10-004",
+    "api": "API_WORK_CENTERS",
+    "scenario": "A_WorkCenterCapDayOp_summary_004",
+    "user_input": "Show work center cap day op records with their main identifying details",
+    "expected_api": "API_WORK_CENTERS",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_WORK_CENTERS/A_WorkCenterCapDayOp?$select=CapacityInternalID,CapacityRequirement,MRPController,Plant,WorkCenter,Material,OrderID,Operation&$top=50",
+          "key_fields": [
+            "CapacityInternalID",
+            "CapacityRequirement",
+            "MRPController"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CapacityInternalID",
+        "CapacityRequirement",
+        "MRPController"
+      ],
+      "required_fields": [
+        "CapacityInternalID",
+        "CapacityRequirement",
+        "MRPController"
+      ]
+    }
+  },
+  {
+    "id": "WORCEN-T10-005",
+    "api": "API_WORK_CENTERS",
+    "scenario": "A_WorkCenterCapacity_summary_005",
+    "user_input": "Show work center capacity records with their main identifying details",
+    "expected_api": "API_WORK_CENTERS",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_WORK_CENTERS/A_WorkCenterCapacity?$select=CapacityInternalID,Capacity,CapacityCategoryCode,CapacityActiveVersion,CapacityIsFinite,CapacityIsPooled,CapacityHasIndivCapacities,CapacityIsExcldFrmLongTermPlng&$top=50",
+          "key_fields": [
+            "CapacityInternalID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CapacityInternalID"
+      ],
+      "required_fields": [
+        "CapacityInternalID"
+      ]
+    }
+  },
+  {
+    "id": "WORCEN-T10-006",
+    "api": "API_WORK_CENTERS",
+    "scenario": "A_WorkCenterCostCenter_summary_006",
+    "user_input": "Show work center cost center records with their main identifying details",
+    "expected_api": "API_WORK_CENTERS",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_WORK_CENTERS/A_WorkCenterCostCenter?$select=CostCenterAllocation,ValidityEndDate,WorkCenterInternalID,WorkCenterTypeCode,ValidityStartDate,WorkCenter,Plant,WorkCenterCategoryCode&$top=50",
+          "key_fields": [
+            "CostCenterAllocation",
+            "ValidityEndDate",
+            "WorkCenterInternalID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CostCenterAllocation",
+        "ValidityEndDate",
+        "WorkCenterInternalID"
+      ],
+      "required_fields": [
+        "CostCenterAllocation",
+        "ValidityEndDate",
+        "WorkCenterInternalID"
+      ]
+    }
+  },
+  {
+    "id": "WORCEN-T10-007",
+    "api": "API_WORK_CENTERS",
+    "scenario": "A_WorkCenterAllCapacity_summary_007",
+    "user_input": "Show work center all capacity records with their main identifying details",
+    "expected_api": "API_WORK_CENTERS",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_WORK_CENTERS/A_WorkCenterAllCapacity?$select=CapacityCategoryAllocation,CapacityInternalID,WorkCenterInternalID,WorkCenterTypeCode,WorkCenter,WorkCenterDesc,Plant,WorkCenterCategoryCode&$top=50",
+          "key_fields": [
+            "CapacityCategoryAllocation",
+            "CapacityInternalID",
+            "WorkCenterInternalID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CapacityCategoryAllocation",
+        "CapacityInternalID",
+        "WorkCenterInternalID"
+      ],
+      "required_fields": [
+        "CapacityCategoryAllocation",
+        "CapacityInternalID",
+        "WorkCenterInternalID"
+      ]
+    }
+  }
+]

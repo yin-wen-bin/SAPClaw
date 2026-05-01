@@ -1,0 +1,394 @@
+[
+  {
+    "id": "SQUOTE-001",
+    "api": "API_SALES_QUOTATION_SRV",
+    "scenario": "A_SalesQuotation_header_list",
+    "user_input": "Show me a list of sales quotations",
+    "expected_api": "API_SALES_QUOTATION_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_QUOTATION_SRV/A_SalesQuotation?$select=SalesQuotation,BindingPeriodValidityEndDate,BindingPeriodValidityStartDate,CompleteDeliveryIsDefined,CreatedByUser,CreationDate,CustomerPaymentTerms,CustomerPriceGroup&$top=50",
+          "key_fields": [
+            "SalesQuotation"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "SalesQuotation"
+      ],
+      "required_fields": [
+        "SalesQuotation"
+      ]
+    }
+  },
+  {
+    "id": "SQUOTE-002",
+    "api": "API_SALES_QUOTATION_SRV",
+    "scenario": "A_SalesQuotationItemPartner_detail_list",
+    "user_input": "Show sales quotations sales quotation item partner details",
+    "expected_api": "API_SALES_QUOTATION_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_QUOTATION_SRV/A_SalesQuotationItemPartner?$select=PartnerFunction,SalesQuotation,SalesQuotationItem,Customer,Supplier,Personnel,ContactPerson&$top=50",
+          "key_fields": [
+            "PartnerFunction",
+            "SalesQuotation",
+            "SalesQuotationItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PartnerFunction",
+        "SalesQuotation",
+        "SalesQuotationItem"
+      ],
+      "required_fields": [
+        "PartnerFunction",
+        "SalesQuotation",
+        "SalesQuotationItem"
+      ]
+    }
+  },
+  {
+    "id": "SQUOTE-003",
+    "api": "API_SALES_QUOTATION_SRV",
+    "scenario": "A_SalesQuotationItemPrcgElmnt_supporting_list",
+    "user_input": "List pricing elements for sales quotation items",
+    "expected_api": "API_SALES_QUOTATION_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_QUOTATION_SRV/A_SalesQuotationItemPrcgElmnt?$select=PricingProcedureCounter,PricingProcedureStep,SalesQuotation,SalesQuotationItem,ConditionType,PricingDateTime,PriceConditionDeterminationDte,ConditionCalculationType&$top=50",
+          "key_fields": [
+            "PricingProcedureCounter",
+            "PricingProcedureStep",
+            "SalesQuotation"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PricingProcedureCounter",
+        "PricingProcedureStep",
+        "SalesQuotation"
+      ],
+      "required_fields": [
+        "PricingProcedureCounter",
+        "PricingProcedureStep",
+        "SalesQuotation"
+      ]
+    }
+  },
+  {
+    "id": "SALQUO-T10-001",
+    "api": "API_SALES_QUOTATION_SRV",
+    "scenario": "A_SalesQuotation_summary_001",
+    "user_input": "Show sales quotation records with their main identifying details",
+    "expected_api": "API_SALES_QUOTATION_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_QUOTATION_SRV/A_SalesQuotation?$select=SalesQuotation,SalesQuotationType,SalesOrganization,DistributionChannel,OrganizationDivision,SalesGroup,SalesOffice,SalesDistrict&$top=50",
+          "key_fields": [
+            "SalesQuotation"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "SalesQuotation"
+      ],
+      "required_fields": [
+        "SalesQuotation"
+      ]
+    }
+  },
+  {
+    "id": "SALQUO-T10-002",
+    "api": "API_SALES_QUOTATION_SRV",
+    "scenario": "A_SalesQuotationItem_summary_002",
+    "user_input": "Show sales quotation item records with their main identifying details",
+    "expected_api": "API_SALES_QUOTATION_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_QUOTATION_SRV/A_SalesQuotationItem?$select=SalesQuotation,SalesQuotationItem,HigherLevelItem,SalesQuotationItemCategory,SalesQuotationItemText,PurchaseOrderByCustomer,Material,MaterialByCustomer&$top=50",
+          "key_fields": [
+            "SalesQuotation",
+            "SalesQuotationItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "SalesQuotation",
+        "SalesQuotationItem"
+      ],
+      "required_fields": [
+        "SalesQuotation",
+        "SalesQuotationItem"
+      ]
+    }
+  },
+  {
+    "id": "SALQUO-T10-003",
+    "api": "API_SALES_QUOTATION_SRV",
+    "scenario": "A_SalesQuotationText_summary_003",
+    "user_input": "Show sales quotation text records with their main identifying details",
+    "expected_api": "API_SALES_QUOTATION_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_QUOTATION_SRV/A_SalesQuotationText?$select=Language,LongTextID,SalesQuotation,LongText&$top=50",
+          "key_fields": [
+            "Language",
+            "LongTextID",
+            "SalesQuotation"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Language",
+        "LongTextID",
+        "SalesQuotation"
+      ],
+      "required_fields": [
+        "Language",
+        "LongTextID",
+        "SalesQuotation"
+      ]
+    }
+  },
+  {
+    "id": "SALQUO-T10-004",
+    "api": "API_SALES_QUOTATION_SRV",
+    "scenario": "A_SalesQuotationPartner_summary_004",
+    "user_input": "Show sales quotation partner records with their main identifying details",
+    "expected_api": "API_SALES_QUOTATION_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_QUOTATION_SRV/A_SalesQuotationPartner?$select=PartnerFunction,SalesQuotation,Customer,Supplier,Personnel,ContactPerson&$top=50",
+          "key_fields": [
+            "PartnerFunction",
+            "SalesQuotation"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PartnerFunction",
+        "SalesQuotation"
+      ],
+      "required_fields": [
+        "PartnerFunction",
+        "SalesQuotation"
+      ]
+    }
+  },
+  {
+    "id": "SALQUO-T10-005",
+    "api": "API_SALES_QUOTATION_SRV",
+    "scenario": "A_SalesQuotationItemText_summary_005",
+    "user_input": "Show sales quotation item text records with their main identifying details",
+    "expected_api": "API_SALES_QUOTATION_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_QUOTATION_SRV/A_SalesQuotationItemText?$select=Language,LongTextID,SalesQuotation,SalesQuotationItem,LongText&$top=50",
+          "key_fields": [
+            "Language",
+            "LongTextID",
+            "SalesQuotation"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Language",
+        "LongTextID",
+        "SalesQuotation"
+      ],
+      "required_fields": [
+        "Language",
+        "LongTextID",
+        "SalesQuotation"
+      ]
+    }
+  },
+  {
+    "id": "SALQUO-T10-006",
+    "api": "API_SALES_QUOTATION_SRV",
+    "scenario": "A_SalesQuotationPrcgElmnt_summary_006",
+    "user_input": "Show sales quotation prcg elmnt records with their main identifying details",
+    "expected_api": "API_SALES_QUOTATION_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_QUOTATION_SRV/A_SalesQuotationPrcgElmnt?$select=PricingProcedureCounter,PricingProcedureStep,SalesQuotation,ConditionType,PricingDateTime,PriceConditionDeterminationDte,ConditionCalculationType,ConditionBaseValue&$top=50",
+          "key_fields": [
+            "PricingProcedureCounter",
+            "PricingProcedureStep",
+            "SalesQuotation"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PricingProcedureCounter",
+        "PricingProcedureStep",
+        "SalesQuotation"
+      ],
+      "required_fields": [
+        "PricingProcedureCounter",
+        "PricingProcedureStep",
+        "SalesQuotation"
+      ]
+    }
+  },
+  {
+    "id": "SALQUO-T10-007",
+    "api": "API_SALES_QUOTATION_SRV",
+    "scenario": "A_SalesQuotationItemPartner_summary_007",
+    "user_input": "Show sales quotation item partner records with their main identifying details",
+    "expected_api": "API_SALES_QUOTATION_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_QUOTATION_SRV/A_SalesQuotationItemPartner?$select=PartnerFunction,SalesQuotation,SalesQuotationItem,Customer,Supplier,Personnel,ContactPerson&$top=50",
+          "key_fields": [
+            "PartnerFunction",
+            "SalesQuotation",
+            "SalesQuotationItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PartnerFunction",
+        "SalesQuotation",
+        "SalesQuotationItem"
+      ],
+      "required_fields": [
+        "PartnerFunction",
+        "SalesQuotation",
+        "SalesQuotationItem"
+      ]
+    }
+  }
+]

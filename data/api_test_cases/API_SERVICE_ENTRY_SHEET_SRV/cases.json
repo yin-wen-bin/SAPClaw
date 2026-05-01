@@ -1,0 +1,389 @@
+[
+  {
+    "id": "SES-001",
+    "api": "API_SERVICE_ENTRY_SHEET_SRV",
+    "scenario": "A_ServiceEntrySheet_header_list",
+    "user_input": "Show me a list of service entry sheets",
+    "expected_api": "API_SERVICE_ENTRY_SHEET_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SERVICE_ENTRY_SHEET_SRV/A_ServiceEntrySheet?$select=ServiceEntrySheet,ApprovalDateTime,ApprovalStatus,CreatedByUser,CreationDateTime,Currency,ExternalRevisionDateTime,IsDeleted&$top=50",
+          "key_fields": [
+            "ServiceEntrySheet"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ServiceEntrySheet"
+      ],
+      "required_fields": [
+        "ServiceEntrySheet"
+      ]
+    }
+  },
+  {
+    "id": "SES-002",
+    "api": "API_SERVICE_ENTRY_SHEET_SRV",
+    "scenario": "A_ServiceEntrySheet_detail_list",
+    "user_input": "Show service entry sheets service entry sheet details",
+    "expected_api": "API_SERVICE_ENTRY_SHEET_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SERVICE_ENTRY_SHEET_SRV/A_ServiceEntrySheet?$select=ServiceEntrySheet,ApprovalDateTime,ApprovalStatus,SESWorkflowStatus,CreatedByUser,CreationDateTime,PurchasingOrganization,PurchasingGroup&$top=50",
+          "key_fields": [
+            "ServiceEntrySheet"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ServiceEntrySheet"
+      ],
+      "required_fields": [
+        "ServiceEntrySheet"
+      ]
+    }
+  },
+  {
+    "id": "SES-003",
+    "api": "API_SERVICE_ENTRY_SHEET_SRV",
+    "scenario": "A_SrvcEntrShtAcctAssignment_supporting_list",
+    "user_input": "List account assignments for service entry sheets",
+    "expected_api": "API_SERVICE_ENTRY_SHEET_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SERVICE_ENTRY_SHEET_SRV/A_SrvcEntrShtAcctAssignment?$select=AccountAssignment,ServiceEntrySheet,ServiceEntrySheetItem,AccountAssignmentUUID,PurchasingOrganization,PurchasingGroup,Plant,BusinessArea&$top=50",
+          "key_fields": [
+            "AccountAssignment",
+            "ServiceEntrySheet",
+            "ServiceEntrySheetItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "AccountAssignment",
+        "ServiceEntrySheet",
+        "ServiceEntrySheetItem"
+      ],
+      "required_fields": [
+        "AccountAssignment",
+        "ServiceEntrySheet",
+        "ServiceEntrySheetItem"
+      ]
+    }
+  },
+  {
+    "id": "SERENTSHE-T10-001",
+    "api": "API_SERVICE_ENTRY_SHEET_SRV",
+    "scenario": "A_ServiceEntrySheet_summary_001",
+    "user_input": "Show service entry sheet records with their main identifying details",
+    "expected_api": "API_SERVICE_ENTRY_SHEET_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SERVICE_ENTRY_SHEET_SRV/A_ServiceEntrySheet?$select=ServiceEntrySheet,ApprovalDateTime,ApprovalStatus,SESWorkflowStatus,CreatedByUser,CreationDateTime,PurchasingOrganization,PurchasingGroup&$top=50",
+          "key_fields": [
+            "ServiceEntrySheet"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ServiceEntrySheet"
+      ],
+      "required_fields": [
+        "ServiceEntrySheet"
+      ]
+    }
+  },
+  {
+    "id": "SERENTSHE-T10-002",
+    "api": "API_SERVICE_ENTRY_SHEET_SRV",
+    "scenario": "A_ServiceEntrySheetItem_summary_002",
+    "user_input": "Show service entry sheet item records with their main identifying details",
+    "expected_api": "API_SERVICE_ENTRY_SHEET_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SERVICE_ENTRY_SHEET_SRV/A_ServiceEntrySheetItem?$select=ServiceEntrySheet,ServiceEntrySheetItem,AccountAssignmentCategory,ConfirmedQuantity,CreatedByUser,CreationDateTime,PurchasingOrganization,PurchasingGroup&$top=50",
+          "key_fields": [
+            "ServiceEntrySheet",
+            "ServiceEntrySheetItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ServiceEntrySheet",
+        "ServiceEntrySheetItem"
+      ],
+      "required_fields": [
+        "ServiceEntrySheet",
+        "ServiceEntrySheetItem"
+      ]
+    }
+  },
+  {
+    "id": "SERENTSHE-T10-003",
+    "api": "API_SERVICE_ENTRY_SHEET_SRV",
+    "scenario": "A_SrvcEntrShtAcctAssignment_summary_003",
+    "user_input": "Show srvc entr sht acct assignment records with their main identifying details",
+    "expected_api": "API_SERVICE_ENTRY_SHEET_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SERVICE_ENTRY_SHEET_SRV/A_SrvcEntrShtAcctAssignment?$select=AccountAssignment,ServiceEntrySheet,ServiceEntrySheetItem,AccountAssignmentUUID,PurchasingOrganization,PurchasingGroup,Plant,BusinessArea&$top=50",
+          "key_fields": [
+            "AccountAssignment",
+            "ServiceEntrySheet",
+            "ServiceEntrySheetItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "AccountAssignment",
+        "ServiceEntrySheet",
+        "ServiceEntrySheetItem"
+      ],
+      "required_fields": [
+        "AccountAssignment",
+        "ServiceEntrySheet",
+        "ServiceEntrySheetItem"
+      ]
+    }
+  },
+  {
+    "id": "SERENTSHE-T10-004",
+    "api": "API_SERVICE_ENTRY_SHEET_SRV",
+    "scenario": "A_ServiceEntrySheet_names_and_descriptions_004",
+    "user_input": "Show service entry sheet records with service entry sheet name",
+    "expected_api": "API_SERVICE_ENTRY_SHEET_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SERVICE_ENTRY_SHEET_SRV/A_ServiceEntrySheet?$select=ServiceEntrySheet,ServiceEntrySheetName,ApprovalDateTime,ApprovalStatus,SESWorkflowStatus,CreatedByUser,CreationDateTime,PurchasingOrganization&$top=50",
+          "key_fields": [
+            "ServiceEntrySheet"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ServiceEntrySheet"
+      ],
+      "required_fields": [
+        "ServiceEntrySheet",
+        "ServiceEntrySheetName"
+      ]
+    }
+  },
+  {
+    "id": "SERENTSHE-T10-005",
+    "api": "API_SERVICE_ENTRY_SHEET_SRV",
+    "scenario": "A_ServiceEntrySheet_status_and_indicators_005",
+    "user_input": "Show service entry sheet records with approval status, external revision date time, is deleted, and is end of purpose blocked",
+    "expected_api": "API_SERVICE_ENTRY_SHEET_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SERVICE_ENTRY_SHEET_SRV/A_ServiceEntrySheet?$select=ServiceEntrySheet,ApprovalStatus,ExternalRevisionDateTime,IsDeleted,IsEndOfPurposeBlocked,ApprovalDateTime,SESWorkflowStatus,CreatedByUser&$top=50",
+          "key_fields": [
+            "ServiceEntrySheet"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ServiceEntrySheet"
+      ],
+      "required_fields": [
+        "ServiceEntrySheet",
+        "ApprovalStatus",
+        "ExternalRevisionDateTime",
+        "IsDeleted",
+        "IsEndOfPurposeBlocked"
+      ]
+    }
+  },
+  {
+    "id": "SERENTSHE-T10-006",
+    "api": "API_SERVICE_ENTRY_SHEET_SRV",
+    "scenario": "A_ServiceEntrySheetItem_status_and_indicators_006",
+    "user_input": "Show service entry sheet item records with is deleted, multiple acct assgmt distribution, purchase contract, and purchase contract item",
+    "expected_api": "API_SERVICE_ENTRY_SHEET_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SERVICE_ENTRY_SHEET_SRV/A_ServiceEntrySheetItem?$select=ServiceEntrySheet,ServiceEntrySheetItem,IsDeleted,MultipleAcctAssgmtDistribution,PurchaseContract,PurchaseContractItem,AccountAssignmentCategory,ConfirmedQuantity&$top=50",
+          "key_fields": [
+            "ServiceEntrySheet",
+            "ServiceEntrySheetItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ServiceEntrySheet",
+        "ServiceEntrySheetItem"
+      ],
+      "required_fields": [
+        "ServiceEntrySheet",
+        "ServiceEntrySheetItem",
+        "IsDeleted",
+        "MultipleAcctAssgmtDistribution",
+        "PurchaseContract",
+        "PurchaseContractItem"
+      ]
+    }
+  },
+  {
+    "id": "SERENTSHE-T10-007",
+    "api": "API_SERVICE_ENTRY_SHEET_SRV",
+    "scenario": "A_SrvcEntrShtAcctAssignment_status_and_indicators_007",
+    "user_input": "Show srvc entr sht acct assignment records with is deleted, multiple acct assgmt distr percent, purchasing group, and purchasing organization",
+    "expected_api": "API_SERVICE_ENTRY_SHEET_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SERVICE_ENTRY_SHEET_SRV/A_SrvcEntrShtAcctAssignment?$select=AccountAssignment,ServiceEntrySheet,ServiceEntrySheetItem,IsDeleted,MultipleAcctAssgmtDistrPercent,PurchasingGroup,PurchasingOrganization,AccountAssignmentUUID&$top=50",
+          "key_fields": [
+            "AccountAssignment",
+            "ServiceEntrySheet",
+            "ServiceEntrySheetItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "AccountAssignment",
+        "ServiceEntrySheet",
+        "ServiceEntrySheetItem"
+      ],
+      "required_fields": [
+        "AccountAssignment",
+        "ServiceEntrySheet",
+        "ServiceEntrySheetItem",
+        "IsDeleted",
+        "MultipleAcctAssgmtDistrPercent",
+        "PurchasingGroup",
+        "PurchasingOrganization"
+      ]
+    }
+  }
+]

@@ -1,0 +1,409 @@
+[
+  {
+    "id": "PHYINV-001",
+    "api": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "scenario": "A_PhysInventoryDocHeader_main_list",
+    "user_input": "Show me a list of physical inventory documents",
+    "expected_api": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PHYSICAL_INVENTORY_DOC_SRV/A_PhysInventoryDocHeader?$select=FiscalYear,PhysicalInventoryDocument,InventoryTransactionType,Plant,StorageLocation,InventorySpecialStockType,DocumentDate,PhysInventoryPlannedCountDate&$top=50",
+          "key_fields": [
+            "FiscalYear",
+            "PhysicalInventoryDocument"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "FiscalYear",
+        "PhysicalInventoryDocument"
+      ],
+      "required_fields": [
+        "FiscalYear",
+        "PhysicalInventoryDocument"
+      ]
+    }
+  },
+  {
+    "id": "PHYINV-002",
+    "api": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "scenario": "A_PhysInventoryDocItem_detail_list",
+    "user_input": "Show physical inventory documents phys inventory doc item details",
+    "expected_api": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PHYSICAL_INVENTORY_DOC_SRV/A_PhysInventoryDocItem?$select=FiscalYear,PhysicalInventoryDocument,PhysicalInventoryDocumentItem,Plant,StorageLocation,Material,Batch,InventorySpecialStockType&$top=50",
+          "key_fields": [
+            "FiscalYear",
+            "PhysicalInventoryDocument",
+            "PhysicalInventoryDocumentItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "FiscalYear",
+        "PhysicalInventoryDocument",
+        "PhysicalInventoryDocumentItem"
+      ],
+      "required_fields": [
+        "FiscalYear",
+        "PhysicalInventoryDocument",
+        "PhysicalInventoryDocumentItem"
+      ]
+    }
+  },
+  {
+    "id": "PHYINV-003",
+    "api": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "scenario": "A_SerialNumberPhysInventoryDoc_supporting_list",
+    "user_input": "List serial numbers for physical inventory documents",
+    "expected_api": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PHYSICAL_INVENTORY_DOC_SRV/A_SerialNumberPhysInventoryDoc?$select=Equipment,FiscalYear,PhysicalInventoryDocument,PhysicalInventoryDocumentItem,SerialNumberPhysicalInvtryType,Material,SerialNumber&$top=50",
+          "key_fields": [
+            "Equipment",
+            "FiscalYear",
+            "PhysicalInventoryDocument"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Equipment",
+        "FiscalYear",
+        "PhysicalInventoryDocument"
+      ],
+      "required_fields": [
+        "Equipment",
+        "FiscalYear",
+        "PhysicalInventoryDocument"
+      ]
+    }
+  },
+  {
+    "id": "PHYINVDOC-T10-001",
+    "api": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "scenario": "A_PhysInventoryDocHeader_summary_001",
+    "user_input": "Show phys inventory doc header records with their main identifying details",
+    "expected_api": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PHYSICAL_INVENTORY_DOC_SRV/A_PhysInventoryDocHeader?$select=FiscalYear,PhysicalInventoryDocument,InventoryTransactionType,Plant,StorageLocation,InventorySpecialStockType,DocumentDate,PhysInventoryPlannedCountDate&$top=50",
+          "key_fields": [
+            "FiscalYear",
+            "PhysicalInventoryDocument"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "FiscalYear",
+        "PhysicalInventoryDocument"
+      ],
+      "required_fields": [
+        "FiscalYear",
+        "PhysicalInventoryDocument"
+      ]
+    }
+  },
+  {
+    "id": "PHYINVDOC-T10-002",
+    "api": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "scenario": "A_PhysInventoryDocItem_summary_002",
+    "user_input": "Show phys inventory doc item records with their main identifying details",
+    "expected_api": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PHYSICAL_INVENTORY_DOC_SRV/A_PhysInventoryDocItem?$select=FiscalYear,PhysicalInventoryDocument,PhysicalInventoryDocumentItem,Plant,StorageLocation,Material,Batch,InventorySpecialStockType&$top=50",
+          "key_fields": [
+            "FiscalYear",
+            "PhysicalInventoryDocument",
+            "PhysicalInventoryDocumentItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "FiscalYear",
+        "PhysicalInventoryDocument",
+        "PhysicalInventoryDocumentItem"
+      ],
+      "required_fields": [
+        "FiscalYear",
+        "PhysicalInventoryDocument",
+        "PhysicalInventoryDocumentItem"
+      ]
+    }
+  },
+  {
+    "id": "PHYINVDOC-T10-003",
+    "api": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "scenario": "A_SerialNumberPhysInventoryDoc_summary_003",
+    "user_input": "Show serial number phys inventory doc records with their main identifying details",
+    "expected_api": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PHYSICAL_INVENTORY_DOC_SRV/A_SerialNumberPhysInventoryDoc?$select=Equipment,FiscalYear,PhysicalInventoryDocument,PhysicalInventoryDocumentItem,SerialNumberPhysicalInvtryType,Material,SerialNumber&$top=50",
+          "key_fields": [
+            "Equipment",
+            "FiscalYear",
+            "PhysicalInventoryDocument"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Equipment",
+        "FiscalYear",
+        "PhysicalInventoryDocument"
+      ],
+      "required_fields": [
+        "Equipment",
+        "FiscalYear",
+        "PhysicalInventoryDocument"
+      ]
+    }
+  },
+  {
+    "id": "PHYINVDOC-T10-004",
+    "api": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "scenario": "A_PhysInventoryDocHeader_status_and_indicators_004",
+    "user_input": "Show phys inventory doc header records with fiscal period, fiscal year, phys invtry deletion status, and phys invtry doc has qty snapshot",
+    "expected_api": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PHYSICAL_INVENTORY_DOC_SRV/A_PhysInventoryDocHeader?$select=FiscalYear,PhysicalInventoryDocument,FiscalPeriod,PhysInvtryDeletionStatus,PhysInvtryDocHasQtySnapshot,InventoryTransactionType,Plant,StorageLocation&$top=50",
+          "key_fields": [
+            "FiscalYear",
+            "PhysicalInventoryDocument"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "FiscalYear",
+        "PhysicalInventoryDocument"
+      ],
+      "required_fields": [
+        "FiscalYear",
+        "PhysicalInventoryDocument",
+        "FiscalPeriod",
+        "PhysInvtryDeletionStatus",
+        "PhysInvtryDocHasQtySnapshot"
+      ]
+    }
+  },
+  {
+    "id": "PHYINVDOC-T10-005",
+    "api": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "scenario": "A_PhysInventoryDocItem_status_and_indicators_005",
+    "user_input": "Show phys inventory doc item records with fiscal year, is handled in altv unit of msr, is value only material, and phys invtry difference is posted",
+    "expected_api": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PHYSICAL_INVENTORY_DOC_SRV/A_PhysInventoryDocItem?$select=FiscalYear,PhysicalInventoryDocument,PhysicalInventoryDocumentItem,IsHandledInAltvUnitOfMsr,IsValueOnlyMaterial,PhysInvtryDifferenceIsPosted,Plant,StorageLocation&$top=50",
+          "key_fields": [
+            "FiscalYear",
+            "PhysicalInventoryDocument",
+            "PhysicalInventoryDocumentItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "FiscalYear",
+        "PhysicalInventoryDocument",
+        "PhysicalInventoryDocumentItem"
+      ],
+      "required_fields": [
+        "FiscalYear",
+        "PhysicalInventoryDocument",
+        "PhysicalInventoryDocumentItem",
+        "IsHandledInAltvUnitOfMsr",
+        "IsValueOnlyMaterial",
+        "PhysInvtryDifferenceIsPosted"
+      ]
+    }
+  },
+  {
+    "id": "PHYINVDOC-T10-006",
+    "api": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "scenario": "A_SerialNumberPhysInventoryDoc_status_and_indicators_006",
+    "user_input": "Show serial number phys inventory doc records with fiscal year",
+    "expected_api": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PHYSICAL_INVENTORY_DOC_SRV/A_SerialNumberPhysInventoryDoc?$select=Equipment,FiscalYear,PhysicalInventoryDocument,PhysicalInventoryDocumentItem,SerialNumberPhysicalInvtryType,Material,SerialNumber&$top=50",
+          "key_fields": [
+            "Equipment",
+            "FiscalYear",
+            "PhysicalInventoryDocument"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Equipment",
+        "FiscalYear",
+        "PhysicalInventoryDocument"
+      ],
+      "required_fields": [
+        "Equipment",
+        "FiscalYear",
+        "PhysicalInventoryDocument"
+      ]
+    }
+  },
+  {
+    "id": "PHYINVDOC-T10-007",
+    "api": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "scenario": "A_PhysInventoryDocHeader_dates_and_periods_007",
+    "user_input": "Show phys inventory doc header records with document date, fiscal period, fiscal year, and last change date time",
+    "expected_api": "API_PHYSICAL_INVENTORY_DOC_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PHYSICAL_INVENTORY_DOC_SRV/A_PhysInventoryDocHeader?$select=FiscalYear,PhysicalInventoryDocument,DocumentDate,FiscalPeriod,LastChangeDateTime,InventoryTransactionType,Plant,StorageLocation&$top=50",
+          "key_fields": [
+            "FiscalYear",
+            "PhysicalInventoryDocument"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "FiscalYear",
+        "PhysicalInventoryDocument"
+      ],
+      "required_fields": [
+        "FiscalYear",
+        "PhysicalInventoryDocument",
+        "DocumentDate",
+        "FiscalPeriod",
+        "LastChangeDateTime"
+      ]
+    }
+  }
+]

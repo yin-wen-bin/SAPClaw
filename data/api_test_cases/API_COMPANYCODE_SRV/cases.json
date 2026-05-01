@@ -1,0 +1,376 @@
+[
+  {
+    "id": "CCODE-001",
+    "api": "API_COMPANYCODE_SRV",
+    "scenario": "A_CompanyCode_main_list",
+    "user_input": "Show me a list of company codes",
+    "expected_api": "API_COMPANYCODE_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_COMPANYCODE_SRV/A_CompanyCode?$select=CompanyCode,CompanyCodeName,CityName,Country,Currency,Language,ChartOfAccounts,FiscalYearVariant&$top=50",
+          "key_fields": [
+            "CompanyCode"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode"
+      ],
+      "required_fields": [
+        "CompanyCode"
+      ]
+    }
+  },
+  {
+    "id": "COMPANYCODE-T10-001",
+    "api": "API_COMPANYCODE_SRV",
+    "scenario": "A_CompanyCode_summary_001",
+    "user_input": "Show company code records with their main identifying details",
+    "expected_api": "API_COMPANYCODE_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_COMPANYCODE_SRV/A_CompanyCode?$select=CompanyCode,CompanyCodeName,CityName,Country,Currency,Language,ChartOfAccounts,FiscalYearVariant&$top=50",
+          "key_fields": [
+            "CompanyCode"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode"
+      ],
+      "required_fields": [
+        "CompanyCode"
+      ]
+    }
+  },
+  {
+    "id": "COMPANYCODE-T10-002",
+    "api": "API_COMPANYCODE_SRV",
+    "scenario": "A_CompanyCode_names_and_descriptions_002",
+    "user_input": "Show company code records with city name and company code name",
+    "expected_api": "API_COMPANYCODE_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_COMPANYCODE_SRV/A_CompanyCode?$select=CompanyCode,CityName,CompanyCodeName,Country,Currency,Language,ChartOfAccounts,FiscalYearVariant&$top=50",
+          "key_fields": [
+            "CompanyCode"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode"
+      ],
+      "required_fields": [
+        "CompanyCode",
+        "CityName",
+        "CompanyCodeName"
+      ]
+    }
+  },
+  {
+    "id": "COMPANYCODE-T10-003",
+    "api": "API_COMPANYCODE_SRV",
+    "scenario": "A_CompanyCode_status_and_indicators_003",
+    "user_input": "Show company code records with doc date is used for tax detn, extended whldg tax is active, field status variant, and fiscal year variant",
+    "expected_api": "API_COMPANYCODE_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_COMPANYCODE_SRV/A_CompanyCode?$select=CompanyCode,DocDateIsUsedForTaxDetn,ExtendedWhldgTaxIsActive,FieldStatusVariant,FiscalYearVariant,CompanyCodeName,CityName,Country&$top=50",
+          "key_fields": [
+            "CompanyCode"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode"
+      ],
+      "required_fields": [
+        "CompanyCode",
+        "DocDateIsUsedForTaxDetn",
+        "ExtendedWhldgTaxIsActive",
+        "FieldStatusVariant",
+        "FiscalYearVariant"
+      ]
+    }
+  },
+  {
+    "id": "COMPANYCODE-T10-004",
+    "api": "API_COMPANYCODE_SRV",
+    "scenario": "A_CompanyCode_dates_and_periods_004",
+    "user_input": "List all company codes and include fiscal year variant plus document-date and tax-reporting date indicators",
+    "expected_api": "API_COMPANYCODE_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_COMPANYCODE_SRV/A_CompanyCode?$select=CompanyCode,DocDateIsUsedForTaxDetn,FiscalYearVariant,TaxRptgDateIsActive,CompanyCodeName,CityName,Country,Currency&$top=50",
+          "key_fields": [
+            "CompanyCode"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode"
+      ],
+      "required_fields": [
+        "CompanyCode",
+        "DocDateIsUsedForTaxDetn",
+        "FiscalYearVariant",
+        "TaxRptgDateIsActive"
+      ]
+    }
+  },
+  {
+    "id": "COMPANYCODE-T10-005",
+    "api": "API_COMPANYCODE_SRV",
+    "scenario": "A_CompanyCode_amounts_and_currencies_005",
+    "user_input": "Show company code records with currency, doc date is used for tax detn, extended whldg tax is active, and non taxable transaction tax code",
+    "expected_api": "API_COMPANYCODE_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_COMPANYCODE_SRV/A_CompanyCode?$select=CompanyCode,Currency,DocDateIsUsedForTaxDetn,ExtendedWhldgTaxIsActive,NonTaxableTransactionTaxCode,CompanyCodeName,CityName,Country&$top=50",
+          "key_fields": [
+            "CompanyCode"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode"
+      ],
+      "required_fields": [
+        "CompanyCode",
+        "Currency",
+        "DocDateIsUsedForTaxDetn",
+        "ExtendedWhldgTaxIsActive",
+        "NonTaxableTransactionTaxCode"
+      ]
+    }
+  },
+  {
+    "id": "COMPANYCODE-T10-006",
+    "api": "API_COMPANYCODE_SRV",
+    "scenario": "A_CompanyCode_organization_006",
+    "user_input": "Show company code records with company code, company code name, and controlling area",
+    "expected_api": "API_COMPANYCODE_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_COMPANYCODE_SRV/A_CompanyCode?$select=CompanyCode,CompanyCodeName,ControllingArea,CityName,Country,Currency,Language,ChartOfAccounts&$top=50",
+          "key_fields": [
+            "CompanyCode"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode"
+      ],
+      "required_fields": [
+        "CompanyCode",
+        "CompanyCodeName",
+        "ControllingArea"
+      ]
+    }
+  },
+  {
+    "id": "COMPANYCODE-T10-007",
+    "api": "API_COMPANYCODE_SRV",
+    "scenario": "A_CompanyCode_partner_accounts_007",
+    "user_input": "Show company code records with chart of accounts and country chart of accounts",
+    "expected_api": "API_COMPANYCODE_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_COMPANYCODE_SRV/A_CompanyCode?$select=CompanyCode,ChartOfAccounts,CountryChartOfAccounts,CompanyCodeName,CityName,Country,Currency,Language&$top=50",
+          "key_fields": [
+            "CompanyCode"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode"
+      ],
+      "required_fields": [
+        "CompanyCode",
+        "ChartOfAccounts",
+        "CountryChartOfAccounts"
+      ]
+    }
+  },
+  {
+    "id": "COMPANYCODE-T10-008",
+    "api": "API_COMPANYCODE_SRV",
+    "scenario": "A_CompanyCode_field_set_1_008",
+    "user_input": "Show company code records with address id, chart of accounts, city name, and company",
+    "expected_api": "API_COMPANYCODE_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_COMPANYCODE_SRV/A_CompanyCode?$select=CompanyCode,AddressID,ChartOfAccounts,CityName,Company,CompanyCodeName,Country,Currency&$top=50",
+          "key_fields": [
+            "CompanyCode"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode"
+      ],
+      "required_fields": [
+        "CompanyCode",
+        "AddressID",
+        "ChartOfAccounts",
+        "CityName",
+        "Company"
+      ]
+    }
+  },
+  {
+    "id": "COMPANYCODE-T10-009",
+    "api": "API_COMPANYCODE_SRV",
+    "scenario": "A_CompanyCode_field_set_2_009",
+    "user_input": "Show company code records with company code, company code name, controlling area, and country",
+    "expected_api": "API_COMPANYCODE_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_COMPANYCODE_SRV/A_CompanyCode?$select=CompanyCode,CompanyCodeName,ControllingArea,Country,CityName,Currency,Language,ChartOfAccounts&$top=50",
+          "key_fields": [
+            "CompanyCode"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode"
+      ],
+      "required_fields": [
+        "CompanyCode",
+        "CompanyCodeName",
+        "ControllingArea",
+        "Country"
+      ]
+    }
+  }
+]

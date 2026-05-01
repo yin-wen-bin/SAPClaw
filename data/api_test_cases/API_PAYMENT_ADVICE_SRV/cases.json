@@ -1,0 +1,435 @@
+[
+  {
+    "id": "PAYADV-001",
+    "api": "API_PAYMENT_ADVICE_SRV",
+    "scenario": "A_PaymentAdvice_header_list",
+    "user_input": "Show me a list of payment advices",
+    "expected_api": "API_PAYMENT_ADVICE_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PAYMENT_ADVICE_SRV/A_PaymentAdvice?$select=CompanyCode,PaymentAdvice,PaymentAdviceAccount,PaymentAdviceAccountType,AccountByShipper,BankReference,BillOfExchangeFailureDate,BusinessPartnerName&$top=50",
+          "key_fields": [
+            "CompanyCode",
+            "PaymentAdvice",
+            "PaymentAdviceAccount",
+            "PaymentAdviceAccountType"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "PaymentAdvice",
+        "PaymentAdviceAccount",
+        "PaymentAdviceAccountType"
+      ],
+      "required_fields": [
+        "CompanyCode",
+        "PaymentAdvice",
+        "PaymentAdviceAccount",
+        "PaymentAdviceAccountType"
+      ]
+    }
+  },
+  {
+    "id": "PAYADV-002",
+    "api": "API_PAYMENT_ADVICE_SRV",
+    "scenario": "A_PaymentAdviceItem_item_list",
+    "user_input": "List payment advice items",
+    "expected_api": "API_PAYMENT_ADVICE_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PAYMENT_ADVICE_SRV/A_PaymentAdviceItem?$select=PaymentAdvice,PaymentAdviceItem,PaymentAdviceAccount,PaymentAdviceAccountType,AccountingDocument,BillingDocument,GrossAmountInPaymentCurrency,NetPaymentAmountInPaytCurrency&$top=1000",
+          "key_fields": [
+            "PaymentAdvice",
+            "PaymentAdviceItem",
+            "PaymentAdviceAccount",
+            "PaymentAdviceAccountType"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PaymentAdvice",
+        "PaymentAdviceItem",
+        "PaymentAdviceAccount",
+        "PaymentAdviceAccountType"
+      ],
+      "required_fields": [
+        "PaymentAdvice",
+        "PaymentAdviceItem",
+        "PaymentAdviceAccount",
+        "PaymentAdviceAccountType"
+      ]
+    }
+  },
+  {
+    "id": "PAYADV-T10-001",
+    "api": "API_PAYMENT_ADVICE_SRV",
+    "scenario": "A_PaymentAdvice_summary_001",
+    "user_input": "Show payment advice records with their main identifying details",
+    "expected_api": "API_PAYMENT_ADVICE_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PAYMENT_ADVICE_SRV/A_PaymentAdvice?$select=CompanyCode,PaymentAdvice,PaymentAdviceAccount,PaymentAdviceAccountType,PaymentDocument,AccountByShipper,PaymentCurrency,PaymentDate&$top=50",
+          "key_fields": [
+            "CompanyCode",
+            "PaymentAdvice",
+            "PaymentAdviceAccount"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "PaymentAdvice",
+        "PaymentAdviceAccount"
+      ],
+      "required_fields": [
+        "CompanyCode",
+        "PaymentAdvice",
+        "PaymentAdviceAccount"
+      ]
+    }
+  },
+  {
+    "id": "PAYADV-T10-002",
+    "api": "API_PAYMENT_ADVICE_SRV",
+    "scenario": "A_PaymentAdviceItem_summary_002",
+    "user_input": "Show payment advice item records with their main identifying details",
+    "expected_api": "API_PAYMENT_ADVICE_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PAYMENT_ADVICE_SRV/A_PaymentAdviceItem?$select=CompanyCode,PaymentAdvice,PaymentAdviceAccount,PaymentAdviceAccountType,PaymentAdviceItem,PaymentAdviceAltvAccount,AlternativeCompanyCode,AccountingDocument&$top=50",
+          "key_fields": [
+            "CompanyCode",
+            "PaymentAdvice",
+            "PaymentAdviceAccount"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "PaymentAdvice",
+        "PaymentAdviceAccount"
+      ],
+      "required_fields": [
+        "CompanyCode",
+        "PaymentAdvice",
+        "PaymentAdviceAccount"
+      ]
+    }
+  },
+  {
+    "id": "PAYADV-T10-003",
+    "api": "API_PAYMENT_ADVICE_SRV",
+    "scenario": "A_PaymentAdvice_names_and_descriptions_003",
+    "user_input": "Show payment advice records with business partner name and payment advice header text",
+    "expected_api": "API_PAYMENT_ADVICE_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PAYMENT_ADVICE_SRV/A_PaymentAdvice?$select=PaymentAdvice,PaymentAdviceAccountType,PaymentAdviceAccount,BusinessPartnerName,PaymentAdviceHeaderText&$top=50",
+          "key_fields": [
+            "PaymentAdvice",
+            "PaymentAdviceAccountType",
+            "PaymentAdviceAccount"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PaymentAdvice",
+        "PaymentAdviceAccountType",
+        "PaymentAdviceAccount"
+      ],
+      "required_fields": [
+        "PaymentAdvice",
+        "PaymentAdviceAccountType",
+        "PaymentAdviceAccount",
+        "BusinessPartnerName",
+        "PaymentAdviceHeaderText"
+      ]
+    }
+  },
+  {
+    "id": "PAYADV-T10-004",
+    "api": "API_PAYMENT_ADVICE_SRV",
+    "scenario": "A_PaymentAdviceItem_names_and_descriptions_004",
+    "user_input": "Show payment advice item records with document item text",
+    "expected_api": "API_PAYMENT_ADVICE_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PAYMENT_ADVICE_SRV/A_PaymentAdviceItem?$select=CompanyCode,PaymentAdvice,PaymentAdviceAccount,DocumentItemText,PaymentAdviceAccountType,PaymentAdviceItem,PaymentAdviceAltvAccount,AlternativeCompanyCode&$top=50",
+          "key_fields": [
+            "CompanyCode",
+            "PaymentAdvice",
+            "PaymentAdviceAccount"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "PaymentAdvice",
+        "PaymentAdviceAccount"
+      ],
+      "required_fields": [
+        "CompanyCode",
+        "PaymentAdvice",
+        "PaymentAdviceAccount",
+        "DocumentItemText"
+      ]
+    }
+  },
+  {
+    "id": "PAYADV-T10-005",
+    "api": "API_PAYMENT_ADVICE_SRV",
+    "scenario": "A_PaymentAdvice_status_and_indicators_005",
+    "user_input": "Show payment advice records with cash discount amount in payt crcy and payment advice status",
+    "expected_api": "API_PAYMENT_ADVICE_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PAYMENT_ADVICE_SRV/A_PaymentAdvice?$select=CompanyCode,PaymentAdvice,PaymentAdviceAccount,CashDiscountAmountInPaytCrcy,PaymentAdviceStatus,PaymentAdviceAccountType,PaymentDocument,AccountByShipper&$top=50",
+          "key_fields": [
+            "CompanyCode",
+            "PaymentAdvice",
+            "PaymentAdviceAccount"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "PaymentAdvice",
+        "PaymentAdviceAccount"
+      ],
+      "required_fields": [
+        "CompanyCode",
+        "PaymentAdvice",
+        "PaymentAdviceAccount",
+        "CashDiscountAmountInPaytCrcy",
+        "PaymentAdviceStatus"
+      ]
+    }
+  },
+  {
+    "id": "PAYADV-T10-006",
+    "api": "API_PAYMENT_ADVICE_SRV",
+    "scenario": "A_PaymentAdviceItem_status_and_indicators_006",
+    "user_input": "Show payment advice item records with cash discount amount in payt crcy, cash discount days, cash discount is activated, and cash discount percent",
+    "expected_api": "API_PAYMENT_ADVICE_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PAYMENT_ADVICE_SRV/A_PaymentAdviceItem?$select=CompanyCode,PaymentAdvice,PaymentAdviceAccount,CashDiscountAmountInPaytCrcy,CashDiscountDays,CashDiscountIsActivated,CashDiscountPercent,PaymentAdviceAccountType&$top=50",
+          "key_fields": [
+            "CompanyCode",
+            "PaymentAdvice",
+            "PaymentAdviceAccount"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "PaymentAdvice",
+        "PaymentAdviceAccount"
+      ],
+      "required_fields": [
+        "CompanyCode",
+        "PaymentAdvice",
+        "PaymentAdviceAccount",
+        "CashDiscountAmountInPaytCrcy",
+        "CashDiscountDays",
+        "CashDiscountIsActivated",
+        "CashDiscountPercent"
+      ]
+    }
+  },
+  {
+    "id": "PAYADV-T10-007",
+    "api": "API_PAYMENT_ADVICE_SRV",
+    "scenario": "A_PaymentAdvice_dates_and_periods_007",
+    "user_input": "Show payment advice records with bill of exchange failure date, creation date, creation time, and last change date",
+    "expected_api": "API_PAYMENT_ADVICE_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PAYMENT_ADVICE_SRV/A_PaymentAdvice?$select=CompanyCode,PaymentAdvice,PaymentAdviceAccount,BillOfExchangeFailureDate,CreationDate,CreationTime,LastChangeDate,PaymentAdviceAccountType&$top=50",
+          "key_fields": [
+            "CompanyCode",
+            "PaymentAdvice",
+            "PaymentAdviceAccount"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "PaymentAdvice",
+        "PaymentAdviceAccount"
+      ],
+      "required_fields": [
+        "CompanyCode",
+        "PaymentAdvice",
+        "PaymentAdviceAccount",
+        "BillOfExchangeFailureDate",
+        "CreationDate",
+        "CreationTime",
+        "LastChangeDate"
+      ]
+    }
+  },
+  {
+    "id": "PAYADV-T10-008",
+    "api": "API_PAYMENT_ADVICE_SRV",
+    "scenario": "A_PaymentAdviceItem_dates_and_periods_008",
+    "user_input": "Show payment advice item records with accounting document creation date, cash discount days, fiscal year, and invoice date",
+    "expected_api": "API_PAYMENT_ADVICE_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PAYMENT_ADVICE_SRV/A_PaymentAdviceItem?$select=CompanyCode,PaymentAdvice,PaymentAdviceAccount,AccountingDocumentCreationDate,CashDiscountDays,FiscalYear,InvoiceDate,PaymentAdviceAccountType&$top=50",
+          "key_fields": [
+            "CompanyCode",
+            "PaymentAdvice",
+            "PaymentAdviceAccount"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "PaymentAdvice",
+        "PaymentAdviceAccount"
+      ],
+      "required_fields": [
+        "CompanyCode",
+        "PaymentAdvice",
+        "PaymentAdviceAccount",
+        "AccountingDocumentCreationDate",
+        "CashDiscountDays",
+        "FiscalYear",
+        "InvoiceDate"
+      ]
+    }
+  }
+]

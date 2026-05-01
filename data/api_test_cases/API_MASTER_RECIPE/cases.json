@@ -1,0 +1,412 @@
+[
+  {
+    "id": "RECIPE-001",
+    "api": "API_MASTER_RECIPE",
+    "scenario": "MasterRecipeHeader_main_list",
+    "user_input": "Show me a list of master recipes",
+    "expected_api": "API_MASTER_RECIPE",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_MASTER_RECIPE/MasterRecipeHeader?$select=MasterRecipe,MasterRecipeGroup,MasterRecipeInternalVersion,IsMarkedForDeletion,BillOfOperationsDesc,LongTextLanguageCode,PlainLongText,Plant&$top=50",
+          "key_fields": [
+            "MasterRecipe",
+            "MasterRecipeGroup",
+            "MasterRecipeInternalVersion"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "MasterRecipe",
+        "MasterRecipeGroup",
+        "MasterRecipeInternalVersion"
+      ],
+      "required_fields": [
+        "MasterRecipe",
+        "MasterRecipeGroup",
+        "MasterRecipeInternalVersion"
+      ]
+    }
+  },
+  {
+    "id": "RECIPE-002",
+    "api": "API_MASTER_RECIPE",
+    "scenario": "MasterRecipeOperation_detail_list",
+    "user_input": "Show master recipes master recipe operation details",
+    "expected_api": "API_MASTER_RECIPE",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_MASTER_RECIPE/MasterRecipeOperation?$select=MasterRecipe,MasterRecipeGroup,MasterRecipeOperationIntID,MstrRcpOperationIntVersion,Operation,OperationText,LongTextLanguageCode,PlainLongText&$top=50",
+          "key_fields": [
+            "MasterRecipe",
+            "MasterRecipeGroup",
+            "MasterRecipeOperationIntID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "MasterRecipe",
+        "MasterRecipeGroup",
+        "MasterRecipeOperationIntID"
+      ],
+      "required_fields": [
+        "MasterRecipe",
+        "MasterRecipeGroup",
+        "MasterRecipeOperationIntID"
+      ]
+    }
+  },
+  {
+    "id": "RECIPE-003",
+    "api": "API_MASTER_RECIPE",
+    "scenario": "MasterRecipeMatlAssgmt_supporting_list",
+    "user_input": "List material assignments for master recipes",
+    "expected_api": "API_MASTER_RECIPE",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_MASTER_RECIPE/MasterRecipeMatlAssgmt?$select=MasterRecipe,MasterRecipeGroup,MasterRecipeMaterialAssignment,MstrRcpMatlAssgmtIntVersion,Plant,Product,CreationDate,CreatedByUser&$top=50",
+          "key_fields": [
+            "MasterRecipe",
+            "MasterRecipeGroup",
+            "MasterRecipeMaterialAssignment"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "MasterRecipe",
+        "MasterRecipeGroup",
+        "MasterRecipeMaterialAssignment"
+      ],
+      "required_fields": [
+        "MasterRecipe",
+        "MasterRecipeGroup",
+        "MasterRecipeMaterialAssignment"
+      ]
+    }
+  },
+  {
+    "id": "MASREC-T10-001",
+    "api": "API_MASTER_RECIPE",
+    "scenario": "MasterRecipeHeader_summary_001",
+    "user_input": "Show master recipe header records with their main identifying details",
+    "expected_api": "API_MASTER_RECIPE",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_MASTER_RECIPE/MasterRecipeHeader?$select=MasterRecipe,MasterRecipeGroup,MasterRecipeInternalVersion,IsMarkedForDeletion,BillOfOperationsDesc,LongTextLanguageCode,PlainLongText,Plant&$top=50",
+          "key_fields": [
+            "MasterRecipe",
+            "MasterRecipeGroup",
+            "MasterRecipeInternalVersion"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "MasterRecipe",
+        "MasterRecipeGroup",
+        "MasterRecipeInternalVersion"
+      ],
+      "required_fields": [
+        "MasterRecipe",
+        "MasterRecipeGroup",
+        "MasterRecipeInternalVersion"
+      ]
+    }
+  },
+  {
+    "id": "MASREC-T10-002",
+    "api": "API_MASTER_RECIPE",
+    "scenario": "MasterRecipePhase_summary_002",
+    "user_input": "Show master recipe phase records with their main identifying details",
+    "expected_api": "API_MASTER_RECIPE",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_MASTER_RECIPE/MasterRecipePhase?$select=MasterRecipe,MasterRecipeGroup,MasterRecipeOperationIntID,MstrRcpSuperiorOpIntVersion,MstrRcpOperationIntVersion,SuperiorOperationInternalID,Operation,OperationText&$top=50",
+          "key_fields": [
+            "MasterRecipe",
+            "MasterRecipeGroup",
+            "MasterRecipeOperationIntID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "MasterRecipe",
+        "MasterRecipeGroup",
+        "MasterRecipeOperationIntID"
+      ],
+      "required_fields": [
+        "MasterRecipe",
+        "MasterRecipeGroup",
+        "MasterRecipeOperationIntID"
+      ]
+    }
+  },
+  {
+    "id": "MASREC-T10-003",
+    "api": "API_MASTER_RECIPE",
+    "scenario": "MasterRecipeOperation_summary_003",
+    "user_input": "Show master recipe operation records with their main identifying details",
+    "expected_api": "API_MASTER_RECIPE",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_MASTER_RECIPE/MasterRecipeOperation?$select=MasterRecipe,MasterRecipeGroup,MasterRecipeOperationIntID,MstrRcpOperationIntVersion,Operation,OperationText,LongTextLanguageCode,PlainLongText&$top=50",
+          "key_fields": [
+            "MasterRecipe",
+            "MasterRecipeGroup",
+            "MasterRecipeOperationIntID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "MasterRecipe",
+        "MasterRecipeGroup",
+        "MasterRecipeOperationIntID"
+      ],
+      "required_fields": [
+        "MasterRecipe",
+        "MasterRecipeGroup",
+        "MasterRecipeOperationIntID"
+      ]
+    }
+  },
+  {
+    "id": "MASREC-T10-004",
+    "api": "API_MASTER_RECIPE",
+    "scenario": "MasterRecipeMatlAssgmt_summary_004",
+    "user_input": "Show master recipe matl assgmt records with their main identifying details",
+    "expected_api": "API_MASTER_RECIPE",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_MASTER_RECIPE/MasterRecipeMatlAssgmt?$select=MasterRecipe,MasterRecipeGroup,MasterRecipeMaterialAssignment,Product,Plant,MstrRcpMatlAssgmtIntVersion,CreationDate,CreatedByUser&$top=50",
+          "key_fields": [
+            "MasterRecipe",
+            "MasterRecipeGroup",
+            "MasterRecipeMaterialAssignment"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "MasterRecipe",
+        "MasterRecipeGroup",
+        "MasterRecipeMaterialAssignment"
+      ],
+      "required_fields": [
+        "MasterRecipe",
+        "MasterRecipeGroup",
+        "MasterRecipeMaterialAssignment"
+      ]
+    }
+  },
+  {
+    "id": "MASREC-T10-005",
+    "api": "API_MASTER_RECIPE",
+    "scenario": "MasterRecipePhseRelshp_summary_005",
+    "user_input": "Show master recipe phse relshp records with their main identifying details",
+    "expected_api": "API_MASTER_RECIPE",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_MASTER_RECIPE/MasterRecipePhseRelshp?$select=MasterRecipeRelationshipType,MaxTimeIntvlIsUsedForSchedg,MstrRcpRelationshipIntVersion,PrdcssrMasterRecipeGroup,PrdcssrMasterRecipe,PrdcssrMstrRcpOpInternalID,SuccssrMasterRecipeGroup,SuccssrMasterRecipe&$top=50",
+          "key_fields": [
+            "MasterRecipeRelationshipType",
+            "MaxTimeIntvlIsUsedForSchedg",
+            "MstrRcpRelationshipIntVersion"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "MasterRecipeRelationshipType",
+        "MaxTimeIntvlIsUsedForSchedg",
+        "MstrRcpRelationshipIntVersion"
+      ],
+      "required_fields": [
+        "MasterRecipeRelationshipType",
+        "MaxTimeIntvlIsUsedForSchedg",
+        "MstrRcpRelationshipIntVersion"
+      ]
+    }
+  },
+  {
+    "id": "MASREC-T10-006",
+    "api": "API_MASTER_RECIPE",
+    "scenario": "MasterRecipeOpCompAlloc_summary_006",
+    "user_input": "Show master recipe op comp alloc records with their main identifying details",
+    "expected_api": "API_MASTER_RECIPE",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_MASTER_RECIPE/MasterRecipeOpCompAlloc?$select=MasterRecipe,MasterRecipeGroup,MasterRecipeOperationIntID,MstrRcpOpBOMItemInternalID,MstrRcpOpBOMItemIntVersion,BillOfMaterialCategory,BillOfMaterial,BillOfMaterialVariant&$top=50",
+          "key_fields": [
+            "MasterRecipe",
+            "MasterRecipeGroup",
+            "MasterRecipeOperationIntID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "MasterRecipe",
+        "MasterRecipeGroup",
+        "MasterRecipeOperationIntID"
+      ],
+      "required_fields": [
+        "MasterRecipe",
+        "MasterRecipeGroup",
+        "MasterRecipeOperationIntID"
+      ]
+    }
+  },
+  {
+    "id": "MASREC-T10-007",
+    "api": "API_MASTER_RECIPE",
+    "scenario": "MasterRecipeOpSecdryRsce_summary_007",
+    "user_input": "Show master recipe op secdry rsce records with their main identifying details",
+    "expected_api": "API_MASTER_RECIPE",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_MASTER_RECIPE/MasterRecipeOpSecdryRsce?$select=MasterRecipe,MasterRecipeGroup,MasterRecipeOperationIntID,MstrRcpOperationIntVersion,SuperiorOperationInternalID,Operation,OperationText,LongTextLanguageCode&$top=50",
+          "key_fields": [
+            "MasterRecipe",
+            "MasterRecipeGroup",
+            "MasterRecipeOperationIntID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "MasterRecipe",
+        "MasterRecipeGroup",
+        "MasterRecipeOperationIntID"
+      ],
+      "required_fields": [
+        "MasterRecipe",
+        "MasterRecipeGroup",
+        "MasterRecipeOperationIntID"
+      ]
+    }
+  }
+]

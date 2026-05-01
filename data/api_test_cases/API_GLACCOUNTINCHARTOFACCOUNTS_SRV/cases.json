@@ -1,0 +1,397 @@
+[
+  {
+    "id": "GLCOA-001",
+    "api": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "scenario": "A_GLAccountInChartOfAccounts_main_list",
+    "user_input": "Show me a list of G/L accounts in chart of accounts",
+    "expected_api": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTINCHARTOFACCOUNTS_SRV/A_GLAccountInChartOfAccounts?$select=ChartOfAccounts,GLAccount,IsBalanceSheetAccount,GLAccountGroup,CorporateGroupAccount,ProfitLossAccountType,SampleGLAccount,AccountIsMarkedForDeletion&$top=50",
+          "key_fields": [
+            "ChartOfAccounts",
+            "GLAccount"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ChartOfAccounts",
+        "GLAccount"
+      ],
+      "required_fields": [
+        "ChartOfAccounts",
+        "GLAccount"
+      ]
+    }
+  },
+  {
+    "id": "GLCOA-002",
+    "api": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "scenario": "A_GLAccountText_detail_list",
+    "user_input": "Show G/L accounts in chart of accounts glaccount text details",
+    "expected_api": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTINCHARTOFACCOUNTS_SRV/A_GLAccountText?$select=ChartOfAccounts,GLAccount,Language,GLAccountName,GLAccountLongName,LastChangeDateTime&$top=50",
+          "key_fields": [
+            "ChartOfAccounts",
+            "GLAccount",
+            "Language"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ChartOfAccounts",
+        "GLAccount",
+        "Language"
+      ],
+      "required_fields": [
+        "ChartOfAccounts",
+        "GLAccount",
+        "Language"
+      ]
+    }
+  },
+  {
+    "id": "GLACCOUNTINC-T10-001",
+    "api": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "scenario": "A_GLAccountText_summary_001",
+    "user_input": "Show gl account text records with their main identifying details",
+    "expected_api": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTINCHARTOFACCOUNTS_SRV/A_GLAccountText?$select=ChartOfAccounts,GLAccount,Language,GLAccountName,GLAccountLongName,LastChangeDateTime&$top=50",
+          "key_fields": [
+            "ChartOfAccounts",
+            "GLAccount",
+            "Language"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ChartOfAccounts",
+        "GLAccount",
+        "Language"
+      ],
+      "required_fields": [
+        "ChartOfAccounts",
+        "GLAccount",
+        "Language"
+      ]
+    }
+  },
+  {
+    "id": "GLACCOUNTINC-T10-002",
+    "api": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "scenario": "A_GLAccountInChartOfAccounts_summary_002",
+    "user_input": "Show gl account in chart of accounts records with their main identifying details",
+    "expected_api": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTINCHARTOFACCOUNTS_SRV/A_GLAccountInChartOfAccounts?$select=ChartOfAccounts,GLAccount,IsBalanceSheetAccount,GLAccountGroup,CorporateGroupAccount,ProfitLossAccountType,SampleGLAccount,AccountIsMarkedForDeletion&$top=50",
+          "key_fields": [
+            "ChartOfAccounts",
+            "GLAccount"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ChartOfAccounts",
+        "GLAccount"
+      ],
+      "required_fields": [
+        "ChartOfAccounts",
+        "GLAccount"
+      ]
+    }
+  },
+  {
+    "id": "GLACCOUNTINC-T10-003",
+    "api": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "scenario": "A_GLAccountText_english_names_list",
+    "user_input": "List G/L account English text records and include account name and long name",
+    "expected_api": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTINCHARTOFACCOUNTS_SRV/A_GLAccountText?$select=ChartOfAccounts,GLAccount,GLAccountName,GLAccountLongName&$filter=Language eq 'EN'&$top=50",
+          "key_fields": [
+            "ChartOfAccounts",
+            "GLAccount"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ChartOfAccounts",
+        "GLAccount"
+      ],
+      "required_fields": [
+        "ChartOfAccounts",
+        "GLAccount",
+        "GLAccountName",
+        "GLAccountLongName"
+      ]
+    }
+  },
+  {
+    "id": "GLACCOUNTINC-T10-004",
+    "api": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "scenario": "A_GLAccountInChartOfAccounts_names_and_descriptions_004",
+    "user_input": "Show gl account in chart of accounts records with gl account external",
+    "expected_api": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTINCHARTOFACCOUNTS_SRV/A_GLAccountInChartOfAccounts?$select=ChartOfAccounts,GLAccount,GLAccountExternal,IsBalanceSheetAccount,GLAccountGroup,CorporateGroupAccount,ProfitLossAccountType,SampleGLAccount&$top=50",
+          "key_fields": [
+            "ChartOfAccounts",
+            "GLAccount"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ChartOfAccounts",
+        "GLAccount"
+      ],
+      "required_fields": [
+        "ChartOfAccounts",
+        "GLAccount",
+        "GLAccountExternal"
+      ]
+    }
+  },
+  {
+    "id": "GLACCOUNTINC-T10-005",
+    "api": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "scenario": "A_GLAccountInChartOfAccounts_blocking_indicator_list",
+    "user_input": "List all G/L accounts and include account blocking and deletion indicators",
+    "expected_api": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTINCHARTOFACCOUNTS_SRV/A_GLAccountInChartOfAccounts?$select=ChartOfAccounts,GLAccount,AccountIsBlockedForCreation,AccountIsBlockedForPlanning,AccountIsBlockedForPosting,AccountIsMarkedForDeletion&$top=50",
+          "key_fields": [
+            "ChartOfAccounts",
+            "GLAccount"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ChartOfAccounts",
+        "GLAccount"
+      ],
+      "required_fields": [
+        "ChartOfAccounts",
+        "GLAccount",
+        "AccountIsBlockedForCreation",
+        "AccountIsBlockedForPlanning",
+        "AccountIsBlockedForPosting",
+        "AccountIsMarkedForDeletion"
+      ]
+    }
+  },
+  {
+    "id": "GLACCOUNTINC-T10-006",
+    "api": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "scenario": "A_GLAccountInChartOfAccounts_last_change_list",
+    "user_input": "List G/L accounts and include creation date and last change date time",
+    "expected_api": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTINCHARTOFACCOUNTS_SRV/A_GLAccountInChartOfAccounts?$select=ChartOfAccounts,GLAccount,CreationDate,LastChangeDateTime,GLAccountGroup,IsBalanceSheetAccount&$top=50",
+          "key_fields": [
+            "ChartOfAccounts",
+            "GLAccount"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ChartOfAccounts",
+        "GLAccount"
+      ],
+      "required_fields": [
+        "ChartOfAccounts",
+        "GLAccount",
+        "LastChangeDateTime"
+      ]
+    }
+  },
+  {
+    "id": "GLACCOUNTINC-T10-007",
+    "api": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "scenario": "A_GLAccountInChartOfAccounts_creation_change_list",
+    "user_input": "List G/L accounts and include creation date and last change date time",
+    "expected_api": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTINCHARTOFACCOUNTS_SRV/A_GLAccountInChartOfAccounts?$select=ChartOfAccounts,GLAccount,CreationDate,LastChangeDateTime,IsBalanceSheetAccount,GLAccountGroup&$top=50",
+          "key_fields": [
+            "GLAccount"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "GLAccount"
+      ],
+      "required_fields": [
+        "GLAccount",
+        "CreationDate",
+        "LastChangeDateTime"
+      ]
+    }
+  },
+  {
+    "id": "GLACCOUNTINC-T10-008",
+    "api": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "scenario": "A_GLAccountText_english_long_name_list",
+    "user_input": "List G/L account English text records and include chart of accounts, account, account name, and long name",
+    "expected_api": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTINCHARTOFACCOUNTS_SRV/A_GLAccountText?$select=ChartOfAccounts,GLAccount,GLAccountName,GLAccountLongName&$filter=Language eq 'EN'&$top=50",
+          "key_fields": [
+            "ChartOfAccounts",
+            "GLAccount"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ChartOfAccounts",
+        "GLAccount"
+      ],
+      "required_fields": [
+        "ChartOfAccounts",
+        "GLAccount",
+        "GLAccountName",
+        "GLAccountLongName"
+      ]
+    }
+  }
+]

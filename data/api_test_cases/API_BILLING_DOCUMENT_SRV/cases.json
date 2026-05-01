@@ -1,0 +1,397 @@
+[
+  {
+    "id": "BILLDOC-001",
+    "api": "API_BILLING_DOCUMENT_SRV",
+    "scenario": "A_BillingDocument_header_list",
+    "user_input": "Show me a list of billing documents",
+    "expected_api": "API_BILLING_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV/A_BillingDocument?$select=BillingDocument,BillingDocumentType,BillingDocumentCategory,BillingDocumentDate,CreationDate,SoldToParty,SalesOrganization,CompanyCode&$top=50",
+          "key_fields": [
+            "BillingDocument"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "BillingDocument"
+      ],
+      "required_fields": [
+        "BillingDocument"
+      ]
+    }
+  },
+  {
+    "id": "BILLDOC-002",
+    "api": "API_BILLING_DOCUMENT_SRV",
+    "scenario": "A_BillingDocumentItemPartner_detail_list",
+    "user_input": "Show billing documents billing document item partner details",
+    "expected_api": "API_BILLING_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV/A_BillingDocumentItemPartner?$select=BillingDocument,BillingDocumentItem,PartnerFunction,Customer,Supplier,Personnel,ContactPerson&$top=1000",
+          "key_fields": [
+            "BillingDocument",
+            "BillingDocumentItem",
+            "PartnerFunction"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "BillingDocument",
+        "BillingDocumentItem",
+        "PartnerFunction"
+      ],
+      "required_fields": [
+        "BillingDocument",
+        "BillingDocumentItem",
+        "PartnerFunction"
+      ]
+    }
+  },
+  {
+    "id": "BILLDOC-003",
+    "api": "API_BILLING_DOCUMENT_SRV",
+    "scenario": "A_BillingDocumentItemPrcgElmnt_supporting_list",
+    "user_input": "List pricing elements for billing document items",
+    "expected_api": "API_BILLING_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV/A_BillingDocumentItemPrcgElmnt?$select=BillingDocument,BillingDocumentItem,PricingProcedureCounter,PricingProcedureStep,ConditionType,PricingDateTime,ConditionCalculationType,ConditionBaseValue&$top=2000",
+          "key_fields": [
+            "BillingDocument",
+            "BillingDocumentItem",
+            "PricingProcedureStep",
+            "PricingProcedureCounter"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "BillingDocument",
+        "BillingDocumentItem",
+        "PricingProcedureStep",
+        "PricingProcedureCounter"
+      ],
+      "required_fields": [
+        "BillingDocument",
+        "BillingDocumentItem",
+        "PricingProcedureStep",
+        "PricingProcedureCounter"
+      ]
+    }
+  },
+  {
+    "id": "BILDOC-T10-001",
+    "api": "API_BILLING_DOCUMENT_SRV",
+    "scenario": "A_BillingDocument_summary_001",
+    "user_input": "Show billing document records with their main identifying details",
+    "expected_api": "API_BILLING_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV/A_BillingDocument?$select=BillingDocument,SDDocumentCategory,BillingDocumentCategory,BillingDocumentType,CreationDate,CreationTime,LastChangeDate,LastChangeDateTime&$top=50",
+          "key_fields": [
+            "BillingDocument"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "BillingDocument"
+      ],
+      "required_fields": [
+        "BillingDocument"
+      ]
+    }
+  },
+  {
+    "id": "BILDOC-T10-002",
+    "api": "API_BILLING_DOCUMENT_SRV",
+    "scenario": "A_BillingDocumentItem_summary_002",
+    "user_input": "Show billing document item records with their main identifying details",
+    "expected_api": "API_BILLING_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV/A_BillingDocumentItem?$select=BillingDocument,BillingDocumentItem,SalesDocumentItemCategory,SalesDocumentItemType,ReturnItemProcessingType,CreatedByUser,CreationDate,CreationTime&$top=50",
+          "key_fields": [
+            "BillingDocument",
+            "BillingDocumentItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "BillingDocument",
+        "BillingDocumentItem"
+      ],
+      "required_fields": [
+        "BillingDocument",
+        "BillingDocumentItem"
+      ]
+    }
+  },
+  {
+    "id": "BILDOC-T10-003",
+    "api": "API_BILLING_DOCUMENT_SRV",
+    "scenario": "A_BillingDocumentText_summary_003",
+    "user_input": "Show billing document text records with their main identifying details",
+    "expected_api": "API_BILLING_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV/A_BillingDocumentText?$select=BillingDocument,Language,LongTextID,LongText&$top=50",
+          "key_fields": [
+            "BillingDocument",
+            "Language",
+            "LongTextID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "BillingDocument",
+        "Language",
+        "LongTextID"
+      ],
+      "required_fields": [
+        "BillingDocument",
+        "Language",
+        "LongTextID"
+      ]
+    }
+  },
+  {
+    "id": "BILDOC-T10-004",
+    "api": "API_BILLING_DOCUMENT_SRV",
+    "scenario": "A_BillingDocumentPartner_summary_004",
+    "user_input": "Show billing document partner records with their main identifying details",
+    "expected_api": "API_BILLING_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV/A_BillingDocumentPartner?$select=BillingDocument,PartnerFunction,Customer,Supplier,Personnel,ContactPerson&$top=50",
+          "key_fields": [
+            "BillingDocument",
+            "PartnerFunction"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "BillingDocument",
+        "PartnerFunction"
+      ],
+      "required_fields": [
+        "BillingDocument",
+        "PartnerFunction"
+      ]
+    }
+  },
+  {
+    "id": "BILDOC-T10-005",
+    "api": "API_BILLING_DOCUMENT_SRV",
+    "scenario": "A_BillingDocumentItemText_summary_005",
+    "user_input": "Show billing document item text records with their main identifying details",
+    "expected_api": "API_BILLING_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV/A_BillingDocumentItemText?$select=BillingDocument,BillingDocumentItem,Language,LongTextID,LongText&$top=50",
+          "key_fields": [
+            "BillingDocument",
+            "BillingDocumentItem",
+            "Language"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "BillingDocument",
+        "BillingDocumentItem",
+        "Language"
+      ],
+      "required_fields": [
+        "BillingDocument",
+        "BillingDocumentItem",
+        "Language"
+      ]
+    }
+  },
+  {
+    "id": "BILDOC-T10-006",
+    "api": "API_BILLING_DOCUMENT_SRV",
+    "scenario": "A_BillingDocumentPrcgElmnt_summary_006",
+    "user_input": "Show billing document prcg elmnt records with their main identifying details",
+    "expected_api": "API_BILLING_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV/A_BillingDocumentPrcgElmnt?$select=BillingDocument,PricingProcedureCounter,PricingProcedureStep,ConditionType,PricingDateTime,ConditionCalculationType,ConditionBaseValue,ConditionRateValue&$top=50",
+          "key_fields": [
+            "BillingDocument",
+            "PricingProcedureCounter",
+            "PricingProcedureStep"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "BillingDocument",
+        "PricingProcedureCounter",
+        "PricingProcedureStep"
+      ],
+      "required_fields": [
+        "BillingDocument",
+        "PricingProcedureCounter",
+        "PricingProcedureStep"
+      ]
+    }
+  },
+  {
+    "id": "BILDOC-T10-007",
+    "api": "API_BILLING_DOCUMENT_SRV",
+    "scenario": "A_BillingDocumentItemPartner_summary_007",
+    "user_input": "Show billing document item partner records with their main identifying details",
+    "expected_api": "API_BILLING_DOCUMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV/A_BillingDocumentItemPartner?$select=BillingDocument,BillingDocumentItem,PartnerFunction,Customer,Supplier,Personnel,ContactPerson&$top=50",
+          "key_fields": [
+            "BillingDocument",
+            "BillingDocumentItem",
+            "PartnerFunction"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "BillingDocument",
+        "BillingDocumentItem",
+        "PartnerFunction"
+      ],
+      "required_fields": [
+        "BillingDocument",
+        "BillingDocumentItem",
+        "PartnerFunction"
+      ]
+    }
+  }
+]

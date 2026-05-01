@@ -1,0 +1,394 @@
+[
+  {
+    "id": "SORDER-001",
+    "api": "API_SALES_ORDER_SRV",
+    "scenario": "A_SalesOrder_header_list",
+    "user_input": "Show me a list of sales orders",
+    "expected_api": "API_SALES_ORDER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder?$select=SalesOrder,AccountingDocExternalReference,AccountingExchangeRate,AdditionalCustomerGroup1,AdditionalCustomerGroup2,AdditionalCustomerGroup3,AdditionalCustomerGroup4,AdditionalCustomerGroup5&$top=50",
+          "key_fields": [
+            "SalesOrder"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "SalesOrder"
+      ],
+      "required_fields": [
+        "SalesOrder"
+      ]
+    }
+  },
+  {
+    "id": "SORDER-002",
+    "api": "API_SALES_ORDER_SRV",
+    "scenario": "A_SalesOrderHeaderPrElement_detail_list",
+    "user_input": "Show sales orders sales order header pr element details",
+    "expected_api": "API_SALES_ORDER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrderHeaderPrElement?$select=PricingProcedureCounter,PricingProcedureStep,SalesOrder,ConditionType,PricingDateTime,PriceConditionDeterminationDte,ConditionCalculationType,ConditionBaseValue&$top=50",
+          "key_fields": [
+            "PricingProcedureCounter",
+            "PricingProcedureStep",
+            "SalesOrder"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PricingProcedureCounter",
+        "PricingProcedureStep",
+        "SalesOrder"
+      ],
+      "required_fields": [
+        "PricingProcedureCounter",
+        "PricingProcedureStep",
+        "SalesOrder"
+      ]
+    }
+  },
+  {
+    "id": "SORDER-003",
+    "api": "API_SALES_ORDER_SRV",
+    "scenario": "A_SalesOrderBillingPlanItem_supporting_list",
+    "user_input": "List billing plan items for sales orders",
+    "expected_api": "API_SALES_ORDER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrderBillingPlanItem?$select=BillingPlan,BillingPlanItem,SalesOrder,BillingPlanDateCategory,BillingPlanBillingDate,BillingPlanAmount,TransactionCurrency,BillingPlanAmountPercent&$top=50",
+          "key_fields": [
+            "BillingPlan",
+            "BillingPlanItem",
+            "SalesOrder"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "BillingPlan",
+        "BillingPlanItem",
+        "SalesOrder"
+      ],
+      "required_fields": [
+        "BillingPlan",
+        "BillingPlanItem",
+        "SalesOrder"
+      ]
+    }
+  },
+  {
+    "id": "SALORD-T10-001",
+    "api": "API_SALES_ORDER_SRV",
+    "scenario": "A_SalesOrder_summary_001",
+    "user_input": "Show sales order records with their main identifying details",
+    "expected_api": "API_SALES_ORDER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder?$select=SalesOrder,SalesOrderType,SalesOrganization,DistributionChannel,OrganizationDivision,SalesGroup,SalesOffice,SalesDistrict&$top=50",
+          "key_fields": [
+            "SalesOrder"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "SalesOrder"
+      ],
+      "required_fields": [
+        "SalesOrder"
+      ]
+    }
+  },
+  {
+    "id": "SALORD-T10-002",
+    "api": "API_SALES_ORDER_SRV",
+    "scenario": "A_SalesOrderItem_summary_002",
+    "user_input": "Show sales order item records with their main identifying details",
+    "expected_api": "API_SALES_ORDER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrderItem?$select=SalesOrder,SalesOrderItem,HigherLevelItem,HigherLevelItemUsage,SalesOrderItemCategory,SalesOrderItemText,PurchaseOrderByCustomer,PurchaseOrderByShipToParty&$top=50",
+          "key_fields": [
+            "SalesOrder",
+            "SalesOrderItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "SalesOrder",
+        "SalesOrderItem"
+      ],
+      "required_fields": [
+        "SalesOrder",
+        "SalesOrderItem"
+      ]
+    }
+  },
+  {
+    "id": "SALORD-T10-003",
+    "api": "API_SALES_ORDER_SRV",
+    "scenario": "A_SalesOrderText_summary_003",
+    "user_input": "Show sales order text records with their main identifying details",
+    "expected_api": "API_SALES_ORDER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrderText?$select=Language,LongTextID,SalesOrder,LongText&$top=50",
+          "key_fields": [
+            "Language",
+            "LongTextID",
+            "SalesOrder"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Language",
+        "LongTextID",
+        "SalesOrder"
+      ],
+      "required_fields": [
+        "Language",
+        "LongTextID",
+        "SalesOrder"
+      ]
+    }
+  },
+  {
+    "id": "SALORD-T10-004",
+    "api": "API_SALES_ORDER_SRV",
+    "scenario": "A_SalesOrderItemText_summary_004",
+    "user_input": "Show sales order item text records with their main identifying details",
+    "expected_api": "API_SALES_ORDER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrderItemText?$select=Language,LongTextID,SalesOrder,SalesOrderItem,LongText&$top=50",
+          "key_fields": [
+            "Language",
+            "LongTextID",
+            "SalesOrder"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Language",
+        "LongTextID",
+        "SalesOrder"
+      ],
+      "required_fields": [
+        "Language",
+        "LongTextID",
+        "SalesOrder"
+      ]
+    }
+  },
+  {
+    "id": "SALORD-T10-005",
+    "api": "API_SALES_ORDER_SRV",
+    "scenario": "A_SalesOrderBillingPlan_summary_005",
+    "user_input": "Show sales order billing plan records with their main identifying details",
+    "expected_api": "API_SALES_ORDER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrderBillingPlan?$select=BillingPlan,SalesOrder,BillingPlanStartDate,BillingPlanStartDateRule,ReferenceBillingPlan,PaymentLinkIsRequired,BillingPlanCategory,BillingPlanType&$top=50",
+          "key_fields": [
+            "BillingPlan",
+            "SalesOrder"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "BillingPlan",
+        "SalesOrder"
+      ],
+      "required_fields": [
+        "BillingPlan",
+        "SalesOrder"
+      ]
+    }
+  },
+  {
+    "id": "SALORD-T10-006",
+    "api": "API_SALES_ORDER_SRV",
+    "scenario": "A_SalesOrderItemPartner_summary_006",
+    "user_input": "Show sales order item partner records with their main identifying details",
+    "expected_api": "API_SALES_ORDER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrderItemPartner?$select=PartnerFunction,SalesOrder,SalesOrderItem,PartnerFunctionInternalCode,Customer,Supplier,Personnel,ContactPerson&$top=50",
+          "key_fields": [
+            "PartnerFunction",
+            "SalesOrder",
+            "SalesOrderItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PartnerFunction",
+        "SalesOrder",
+        "SalesOrderItem"
+      ],
+      "required_fields": [
+        "PartnerFunction",
+        "SalesOrder",
+        "SalesOrderItem"
+      ]
+    }
+  },
+  {
+    "id": "SALORD-T10-007",
+    "api": "API_SALES_ORDER_SRV",
+    "scenario": "A_SalesOrderScheduleLine_summary_007",
+    "user_input": "Show sales order schedule line records with their main identifying details",
+    "expected_api": "API_SALES_ORDER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrderScheduleLine?$select=SalesOrder,SalesOrderItem,ScheduleLine,RequestedDeliveryDate,ConfirmedDeliveryDate,OrderQuantityUnit,OrderQuantitySAPUnit,OrderQuantityISOUnit&$top=50",
+          "key_fields": [
+            "SalesOrder",
+            "SalesOrderItem",
+            "ScheduleLine"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "SalesOrder",
+        "SalesOrderItem",
+        "ScheduleLine"
+      ],
+      "required_fields": [
+        "SalesOrder",
+        "SalesOrderItem",
+        "ScheduleLine"
+      ]
+    }
+  }
+]

@@ -1,0 +1,377 @@
+[
+  {
+    "id": "LEDGER-001",
+    "api": "API_LEDGER_SRV",
+    "scenario": "A_Ledger_main_list",
+    "user_input": "Show me a list of ledgers",
+    "expected_api": "API_LEDGER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_LEDGER_SRV/A_Ledger?$select=Ledger,IsLeadingLedger,LedgerApplication,LedgerSubApplication&$top=50",
+          "key_fields": [
+            "Ledger"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Ledger"
+      ],
+      "required_fields": [
+        "Ledger"
+      ]
+    }
+  },
+  {
+    "id": "LEDGER-002",
+    "api": "API_LEDGER_SRV",
+    "scenario": "A_LedgerText_detail_list",
+    "user_input": "Show ledgers ledger text details",
+    "expected_api": "API_LEDGER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_LEDGER_SRV/A_LedgerText?$select=Language,Ledger,LedgerName&$filter=Language eq 'EN'&$top=50",
+          "key_fields": [
+            "Language",
+            "Ledger"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Language",
+        "Ledger"
+      ],
+      "required_fields": [
+        "Language",
+        "Ledger"
+      ]
+    }
+  },
+  {
+    "id": "LEDGER-T10-001",
+    "api": "API_LEDGER_SRV",
+    "scenario": "A_Ledger_summary_001",
+    "user_input": "Show ledger records with their main identifying details",
+    "expected_api": "API_LEDGER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_LEDGER_SRV/A_Ledger?$select=Ledger,IsLeadingLedger,LedgerApplication,LedgerSubApplication&$top=50",
+          "key_fields": [
+            "Ledger"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Ledger"
+      ],
+      "required_fields": [
+        "Ledger"
+      ]
+    }
+  },
+  {
+    "id": "LEDGER-T10-002",
+    "api": "API_LEDGER_SRV",
+    "scenario": "A_LedgerText_summary_002",
+    "user_input": "Show ledger text records with their main identifying details",
+    "expected_api": "API_LEDGER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_LEDGER_SRV/A_LedgerText?$select=Language,Ledger,LedgerName&$filter=Language eq 'EN'&$top=50",
+          "key_fields": [
+            "Language",
+            "Ledger"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Language",
+        "Ledger"
+      ],
+      "required_fields": [
+        "Language",
+        "Ledger"
+      ]
+    }
+  },
+  {
+    "id": "LEDGER-T10-003",
+    "api": "API_LEDGER_SRV",
+    "scenario": "A_LedgerText_names_and_descriptions_003",
+    "user_input": "Show ledger text records with ledger name",
+    "expected_api": "API_LEDGER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_LEDGER_SRV/A_LedgerText?$select=Language,Ledger,LedgerName&$filter=Language eq 'EN'&$top=50",
+          "key_fields": [
+            "Language",
+            "Ledger"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Language",
+        "Ledger"
+      ],
+      "required_fields": [
+        "Language",
+        "Ledger",
+        "LedgerName"
+      ]
+    }
+  },
+  {
+    "id": "LEDGER-T10-004",
+    "api": "API_LEDGER_SRV",
+    "scenario": "A_Ledger_status_and_indicators_004",
+    "user_input": "Show ledger records with is leading ledger",
+    "expected_api": "API_LEDGER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_LEDGER_SRV/A_Ledger?$select=Ledger,IsLeadingLedger,LedgerApplication,LedgerSubApplication&$top=50",
+          "key_fields": [
+            "Ledger"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Ledger"
+      ],
+      "required_fields": [
+        "Ledger",
+        "IsLeadingLedger"
+      ]
+    }
+  },
+  {
+    "id": "LEDGER-T10-005",
+    "api": "API_LEDGER_SRV",
+    "scenario": "A_Ledger_organization_005",
+    "user_input": "Show ledger records with is leading ledger, ledger, ledger application, and ledger sub application",
+    "expected_api": "API_LEDGER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_LEDGER_SRV/A_Ledger?$select=Ledger,IsLeadingLedger,LedgerApplication,LedgerSubApplication&$top=50",
+          "key_fields": [
+            "Ledger"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Ledger"
+      ],
+      "required_fields": [
+        "Ledger",
+        "IsLeadingLedger",
+        "LedgerApplication",
+        "LedgerSubApplication"
+      ]
+    }
+  },
+  {
+    "id": "LEDGER-T10-006",
+    "api": "API_LEDGER_SRV",
+    "scenario": "A_LedgerText_organization_006",
+    "user_input": "Show ledger text records with ledger and ledger name",
+    "expected_api": "API_LEDGER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_LEDGER_SRV/A_LedgerText?$select=Language,Ledger,LedgerName&$filter=Language eq 'EN'&$top=50",
+          "key_fields": [
+            "Language",
+            "Ledger"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Language",
+        "Ledger"
+      ],
+      "required_fields": [
+        "Language",
+        "Ledger",
+        "LedgerName"
+      ]
+    }
+  },
+  {
+    "id": "LEDGER-T10-007",
+    "api": "API_LEDGER_SRV",
+    "scenario": "A_LedgerText_detail_entity_007",
+    "user_input": "List ledger text details with their main business identifiers",
+    "expected_api": "API_LEDGER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_LEDGER_SRV/A_LedgerText?$select=Language,Ledger,LedgerName&$filter=Language eq 'EN'&$top=50",
+          "key_fields": [
+            "Language",
+            "Ledger"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Language",
+        "Ledger"
+      ],
+      "required_fields": [
+        "Language",
+        "Ledger"
+      ]
+    }
+  },
+  {
+    "id": "LEDGER-T10-009",
+    "api": "API_LEDGER_SRV",
+    "scenario": "A_LedgerText_field_set_1_009",
+    "user_input": "Show ledger text records with language, ledger, and ledger name",
+    "expected_api": "API_LEDGER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_LEDGER_SRV/A_LedgerText?$select=Language,Ledger,LedgerName&$filter=Language eq 'EN'&$top=50",
+          "key_fields": [
+            "Language",
+            "Ledger"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Language",
+        "Ledger"
+      ],
+      "required_fields": [
+        "Language",
+        "Ledger",
+        "LedgerName"
+      ]
+    }
+  }
+]

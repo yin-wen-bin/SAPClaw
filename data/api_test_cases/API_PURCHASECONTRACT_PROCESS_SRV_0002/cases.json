@@ -1,0 +1,391 @@
+[
+  {
+    "id": "PCON-001",
+    "api": "API_PURCHASECONTRACT_PROCESS_SRV_0002",
+    "scenario": "A_PurchaseContract_header_list",
+    "user_input": "Show me a list of purchase contracts",
+    "expected_api": "API_PURCHASECONTRACT_PROCESS_SRV_0002",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PURCHASECONTRACT_PROCESS_SRV;v=0002/A_PurchaseContract?$select=PurchaseContract,CashDiscount1Days,CashDiscount1Percent,CashDiscount2Days,CashDiscount2Percent,CompanyCode,ContractConsumptionInPct,CorrespncExternalReference&$top=50",
+          "key_fields": [
+            "PurchaseContract"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PurchaseContract"
+      ],
+      "required_fields": [
+        "PurchaseContract"
+      ]
+    }
+  },
+  {
+    "id": "PCON-002",
+    "api": "API_PURCHASECONTRACT_PROCESS_SRV_0002",
+    "scenario": "A_PurchaseContractItemNotes_detail_list",
+    "user_input": "Show purchase contracts purchase contract item notes details",
+    "expected_api": "API_PURCHASECONTRACT_PROCESS_SRV_0002",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PURCHASECONTRACT_PROCESS_SRV;v=0002/A_PurchaseContractItemNotes?$select=ArchitecturalObjectNumber,Language,PurchaseContract,PurchaseContractItem,TechnicalObjectType,TextObjectType,NoteDescription,FixedIndicator&$top=50",
+          "key_fields": [
+            "ArchitecturalObjectNumber",
+            "Language",
+            "PurchaseContract"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ArchitecturalObjectNumber",
+        "Language",
+        "PurchaseContract"
+      ],
+      "required_fields": [
+        "ArchitecturalObjectNumber",
+        "Language",
+        "PurchaseContract"
+      ]
+    }
+  },
+  {
+    "id": "PCON-003",
+    "api": "API_PURCHASECONTRACT_PROCESS_SRV_0002",
+    "scenario": "A_PurchaseContract_supporting_list",
+    "user_input": "List purchase contract headers",
+    "expected_api": "API_PURCHASECONTRACT_PROCESS_SRV_0002",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PURCHASECONTRACT_PROCESS_SRV;v=0002/A_PurchaseContract?$select=PurchaseContract,PurchaseContractType,CompanyCode,PurchasingDocumentDeletionCode,CreationDate,CreatedByUser,Supplier,PurchasingOrganization&$top=50",
+          "key_fields": [
+            "PurchaseContract"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PurchaseContract"
+      ],
+      "required_fields": [
+        "PurchaseContract"
+      ]
+    }
+  },
+  {
+    "id": "PURPRO-T10-001",
+    "api": "API_PURCHASECONTRACT_PROCESS_SRV_0002",
+    "scenario": "A_PurchaseContract_summary_001",
+    "user_input": "Show purchase contract records with their main identifying details",
+    "expected_api": "API_PURCHASECONTRACT_PROCESS_SRV_0002",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PURCHASECONTRACT_PROCESS_SRV;v=0002/A_PurchaseContract?$select=PurchaseContract,PurchaseContractType,CompanyCode,PurchasingDocumentDeletionCode,CreationDate,CreatedByUser,Supplier,PurchasingOrganization&$top=50",
+          "key_fields": [
+            "PurchaseContract"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PurchaseContract"
+      ],
+      "required_fields": [
+        "PurchaseContract"
+      ]
+    }
+  },
+  {
+    "id": "PURPRO-T10-002",
+    "api": "API_PURCHASECONTRACT_PROCESS_SRV_0002",
+    "scenario": "A_PurchaseContractItem_summary_002",
+    "user_input": "Show purchase contract item records with their main identifying details",
+    "expected_api": "API_PURCHASECONTRACT_PROCESS_SRV_0002",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PURCHASECONTRACT_PROCESS_SRV;v=0002/A_PurchaseContractItem?$select=PurchaseContract,PurchaseContractItem,PurchasingContractDeletionCode,PurchaseContractItemText,CompanyCode,Plant,StorageLocation,RequirementTracking&$top=50",
+          "key_fields": [
+            "PurchaseContract",
+            "PurchaseContractItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PurchaseContract",
+        "PurchaseContractItem"
+      ],
+      "required_fields": [
+        "PurchaseContract",
+        "PurchaseContractItem"
+      ]
+    }
+  },
+  {
+    "id": "PURPRO-T10-003",
+    "api": "API_PURCHASECONTRACT_PROCESS_SRV_0002",
+    "scenario": "A_PurchaseContractNotes_summary_003",
+    "user_input": "Show purchase contract notes records with their main identifying details",
+    "expected_api": "API_PURCHASECONTRACT_PROCESS_SRV_0002",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PURCHASECONTRACT_PROCESS_SRV;v=0002/A_PurchaseContractNotes?$select=ArchitecturalObjectNumber,Language,PurchaseContract,TextObjectType,TechnicalObjectType,NoteDescription&$top=50",
+          "key_fields": [
+            "ArchitecturalObjectNumber",
+            "Language",
+            "PurchaseContract"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ArchitecturalObjectNumber",
+        "Language",
+        "PurchaseContract"
+      ],
+      "required_fields": [
+        "ArchitecturalObjectNumber",
+        "Language",
+        "PurchaseContract"
+      ]
+    }
+  },
+  {
+    "id": "PURPRO-T10-004",
+    "api": "API_PURCHASECONTRACT_PROCESS_SRV_0002",
+    "scenario": "A_PurchaseContractItemNotes_summary_004",
+    "user_input": "Show purchase contract item notes records with their main identifying details",
+    "expected_api": "API_PURCHASECONTRACT_PROCESS_SRV_0002",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PURCHASECONTRACT_PROCESS_SRV;v=0002/A_PurchaseContractItemNotes?$select=ArchitecturalObjectNumber,Language,PurchaseContract,TextObjectType,TechnicalObjectType,PurchaseContractItem,NoteDescription,FixedIndicator&$top=50",
+          "key_fields": [
+            "ArchitecturalObjectNumber",
+            "Language",
+            "PurchaseContract"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ArchitecturalObjectNumber",
+        "Language",
+        "PurchaseContract"
+      ],
+      "required_fields": [
+        "ArchitecturalObjectNumber",
+        "Language",
+        "PurchaseContract"
+      ]
+    }
+  },
+  {
+    "id": "PURPRO-T10-005",
+    "api": "API_PURCHASECONTRACT_PROCESS_SRV_0002",
+    "scenario": "A_PurCtrAccount_summary_005",
+    "user_input": "Show pur ctr account records with their main identifying details",
+    "expected_api": "API_PURCHASECONTRACT_PROCESS_SRV_0002",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PURCHASECONTRACT_PROCESS_SRV;v=0002/A_PurCtrAccount?$select=AccountAssignment,PurchaseContract,PurchaseContractItem,IsDeleted,Quantity,OrderQuantityUnit,OrderQuantityUnitISOCode,MultipleAcctAssgmtDistrPercent&$top=50",
+          "key_fields": [
+            "AccountAssignment",
+            "PurchaseContract",
+            "PurchaseContractItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "AccountAssignment",
+        "PurchaseContract",
+        "PurchaseContractItem"
+      ],
+      "required_fields": [
+        "AccountAssignment",
+        "PurchaseContract",
+        "PurchaseContractItem"
+      ]
+    }
+  },
+  {
+    "id": "PURPRO-T10-006",
+    "api": "API_PURCHASECONTRACT_PROCESS_SRV_0002",
+    "scenario": "A_PurCtrAddress_summary_006",
+    "user_input": "Show pur ctr address records with their main identifying details",
+    "expected_api": "API_PURCHASECONTRACT_PROCESS_SRV_0002",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PURCHASECONTRACT_PROCESS_SRV;v=0002/A_PurCtrAddress?$select=AddressID,PurchaseContract,PurchaseContractItem,FormOfAddress,FullName,ConsigneeName3,ConsigneeName4,CareOfName&$top=50",
+          "key_fields": [
+            "AddressID",
+            "PurchaseContract",
+            "PurchaseContractItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "AddressID",
+        "PurchaseContract",
+        "PurchaseContractItem"
+      ],
+      "required_fields": [
+        "AddressID",
+        "PurchaseContract",
+        "PurchaseContractItem"
+      ]
+    }
+  },
+  {
+    "id": "PURPRO-T10-007",
+    "api": "API_PURCHASECONTRACT_PROCESS_SRV_0002",
+    "scenario": "A_PurCtrPartners_summary_007",
+    "user_input": "Show pur ctr partners records with their main identifying details",
+    "expected_api": "API_PURCHASECONTRACT_PROCESS_SRV_0002",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PURCHASECONTRACT_PROCESS_SRV;v=0002/A_PurCtrPartners?$select=PartnerCounter,PartnerFunction,Plant,PurchaseContract,PurchaseContractItem,PurchasingOrganization,SupplierSubrange,Supplier&$top=50",
+          "key_fields": [
+            "PartnerCounter",
+            "PartnerFunction",
+            "Plant"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PartnerCounter",
+        "PartnerFunction",
+        "Plant"
+      ],
+      "required_fields": [
+        "PartnerCounter",
+        "PartnerFunction",
+        "Plant"
+      ]
+    }
+  }
+]

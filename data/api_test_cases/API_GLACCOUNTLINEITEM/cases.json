@@ -1,0 +1,524 @@
+[
+  {
+    "id": "GLITEM-001",
+    "api": "API_GLACCOUNTLINEITEM",
+    "scenario": "GLAccountLineItem_main_list",
+    "user_input": "Show me a list of general ledger line items",
+    "expected_api": "API_GLACCOUNTLINEITEM",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,SourceLedger,CompanyCode,FiscalYear,AccountingDocument,LedgerGLLineItem,Ledger,LedgerFiscalYear&$top=50",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "ID"
+      ]
+    }
+  },
+  {
+    "id": "GLACCOUNTLIN-T10-001",
+    "api": "API_GLACCOUNTLINEITEM",
+    "scenario": "GLAccountLineItem_summary_001",
+    "user_input": "List G/L account line item records with their main identifying details",
+    "expected_api": "API_GLACCOUNTLINEITEM",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,LedgerFiscalYear,GLAccount,PostingDate,DocumentDate&$top=50",
+          "key_fields": [
+            "CompanyCode",
+            "FiscalYear",
+            "AccountingDocument",
+            "AccountingDocumentItem",
+            "Ledger",
+            "GLAccount"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem",
+        "Ledger",
+        "GLAccount"
+      ],
+      "required_fields": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem",
+        "Ledger",
+        "GLAccount",
+        "ID"
+      ]
+    }
+  },
+  {
+    "id": "GLACCOUNTLIN-T10-002",
+    "api": "API_GLACCOUNTLINEITEM",
+    "scenario": "GLAccountLineItem_names_and_descriptions_002",
+    "user_input": "Show gl account line item records with document item text and reference document context",
+    "expected_api": "API_GLACCOUNTLINEITEM",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,LedgerFiscalYear,GLAccount,DocumentItemText,ReferenceDocumentContext,ReferenceDocument,ReferenceDocumentItem,ReferenceDocumentType,PostingDate,DebitCreditCode,AmountInCompanyCodeCurrency&$top=50",
+          "key_fields": [
+            "CompanyCode",
+            "FiscalYear",
+            "AccountingDocument",
+            "AccountingDocumentItem",
+            "Ledger",
+            "GLAccount"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem",
+        "Ledger",
+        "GLAccount"
+      ],
+      "required_fields": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem",
+        "Ledger",
+        "GLAccount",
+        "ID",
+        "DocumentItemText",
+        "ReferenceDocumentContext"
+      ]
+    }
+  },
+  {
+    "id": "GLACCOUNTLIN-T10-003",
+    "api": "API_GLACCOUNTLINEITEM",
+    "scenario": "GLAccountLineItem_clearing_distribution_list",
+    "user_input": "List G/L account line item records and include clearing fiscal year, cost analysis resource, depreciation fiscal period, and distribution channel",
+    "expected_api": "API_GLACCOUNTLINEITEM",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,LedgerFiscalYear,GLAccount,ClearingDocFiscalYear,CostAnalysisResource,DepreciationFiscalPeriod,DistributionChannel&$top=50",
+          "key_fields": [
+            "CompanyCode",
+            "FiscalYear",
+            "AccountingDocument",
+            "AccountingDocumentItem",
+            "Ledger",
+            "GLAccount"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem",
+        "Ledger",
+        "GLAccount"
+      ],
+      "required_fields": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem",
+        "Ledger",
+        "GLAccount",
+        "ID",
+        "ClearingDocFiscalYear",
+        "CostAnalysisResource",
+        "DepreciationFiscalPeriod",
+        "DistributionChannel"
+      ]
+    }
+  },
+  {
+    "id": "GLACCOUNTLIN-T10-004",
+    "api": "API_GLACCOUNTLINEITEM",
+    "scenario": "GLAccountLineItem_dates_and_periods_004",
+    "user_input": "Show gl account line item records with asset value date, clearing date, clearing doc fiscal year, and creation date",
+    "expected_api": "API_GLACCOUNTLINEITEM",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,LedgerFiscalYear,GLAccount,AssetValueDate,ClearingDate,ClearingDocFiscalYear,CreationDate&$top=50",
+          "key_fields": [
+            "CompanyCode",
+            "FiscalYear",
+            "AccountingDocument",
+            "AccountingDocumentItem",
+            "Ledger",
+            "GLAccount"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem",
+        "Ledger",
+        "GLAccount"
+      ],
+      "required_fields": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem",
+        "Ledger",
+        "GLAccount",
+        "ID",
+        "AssetValueDate",
+        "ClearingDate",
+        "ClearingDocFiscalYear",
+        "CreationDate"
+      ]
+    }
+  },
+  {
+    "id": "GLACCOUNTLIN-T10-005",
+    "api": "API_GLACCOUNTLINEITEM",
+    "scenario": "GLAccountLineItem_amounts_and_currencies_005",
+    "user_input": "Show gl account line item records with amount in balance transac crcy, amount in company code currency, amount in free defined currency1, and amount in free defined currency2",
+    "expected_api": "API_GLACCOUNTLINEITEM",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,LedgerFiscalYear,GLAccount,AmountInBalanceTransacCrcy,AmountInCompanyCodeCurrency,AmountInFreeDefinedCurrency1,AmountInFreeDefinedCurrency2&$top=50",
+          "key_fields": [
+            "CompanyCode",
+            "FiscalYear",
+            "AccountingDocument",
+            "AccountingDocumentItem",
+            "Ledger",
+            "GLAccount"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem",
+        "Ledger",
+        "GLAccount"
+      ],
+      "required_fields": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem",
+        "Ledger",
+        "GLAccount",
+        "ID",
+        "AmountInBalanceTransacCrcy",
+        "AmountInCompanyCodeCurrency",
+        "AmountInFreeDefinedCurrency1",
+        "AmountInFreeDefinedCurrency2"
+      ]
+    }
+  },
+  {
+    "id": "GLACCOUNTLIN-T10-006",
+    "api": "API_GLACCOUNTLINEITEM",
+    "scenario": "GLAccountLineItem_quantities_and_units_006",
+    "user_input": "Show gl account line item records with additional quantity1, additional quantity1 unit, additional quantity2, and additional quantity2 unit",
+    "expected_api": "API_GLACCOUNTLINEITEM",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,LedgerFiscalYear,GLAccount,AdditionalQuantity1,AdditionalQuantity1Unit,AdditionalQuantity2,AdditionalQuantity2Unit&$top=50",
+          "key_fields": [
+            "CompanyCode",
+            "FiscalYear",
+            "AccountingDocument",
+            "AccountingDocumentItem",
+            "Ledger",
+            "GLAccount"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem",
+        "Ledger",
+        "GLAccount"
+      ],
+      "required_fields": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem",
+        "Ledger",
+        "GLAccount",
+        "ID",
+        "AdditionalQuantity1",
+        "AdditionalQuantity1Unit",
+        "AdditionalQuantity2",
+        "AdditionalQuantity2Unit"
+      ]
+    }
+  },
+  {
+    "id": "GLACCOUNTLIN-T10-007",
+    "api": "API_GLACCOUNTLINEITEM",
+    "scenario": "GLAccountLineItem_organization_007",
+    "user_input": "Show gl account line item records with amount in company code currency, company code, company code currency, and controlling area",
+    "expected_api": "API_GLACCOUNTLINEITEM",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,LedgerFiscalYear,GLAccount,AmountInCompanyCodeCurrency,CompanyCodeCurrency,ControllingArea&$top=50",
+          "key_fields": [
+            "CompanyCode",
+            "FiscalYear",
+            "AccountingDocument",
+            "AccountingDocumentItem",
+            "Ledger",
+            "GLAccount"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem",
+        "Ledger",
+        "GLAccount"
+      ],
+      "required_fields": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem",
+        "Ledger",
+        "GLAccount",
+        "ID",
+        "AmountInCompanyCodeCurrency",
+        "CompanyCodeCurrency",
+        "ControllingArea"
+      ]
+    }
+  },
+  {
+    "id": "GLACCOUNTLIN-T10-008",
+    "api": "API_GLACCOUNTLINEITEM",
+    "scenario": "GLAccountLineItem_assignment_created_by_list",
+    "user_input": "List G/L account line item records and include account assignment details and the document creator as output columns without filtering by creator",
+    "expected_api": "API_GLACCOUNTLINEITEM",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,LedgerFiscalYear,GLAccount,AccountingDocCreatedByUser,AccountAssignment,AccountAssignmentNumber,AccountAssignmentType&$top=50",
+          "key_fields": [
+            "CompanyCode",
+            "FiscalYear",
+            "AccountingDocument",
+            "AccountingDocumentItem",
+            "Ledger",
+            "GLAccount"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem",
+        "Ledger",
+        "GLAccount"
+      ],
+      "required_fields": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem",
+        "Ledger",
+        "GLAccount",
+        "ID",
+        "AccountAssignment",
+        "AccountAssignmentType",
+        "AccountingDocCreatedByUser"
+      ]
+    }
+  },
+  {
+    "id": "GLACCOUNTLIN-T10-009",
+    "api": "API_GLACCOUNTLINEITEM",
+    "scenario": "GLAccountLineItem_product_materials_009",
+    "user_input": "List G/L account line item records and include customer service notification plus partner service document details",
+    "expected_api": "API_GLACCOUNTLINEITEM",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,LedgerFiscalYear,GLAccount,PostingDate,DocumentDate,CustomerServiceNotification,PartnerServiceDocument,PartnerServiceDocumentItem,PartnerServiceDocumentType,ServiceDocument,ServiceDocumentItem,ServiceDocumentType&$top=50",
+          "key_fields": [
+            "CompanyCode",
+            "FiscalYear",
+            "AccountingDocument",
+            "AccountingDocumentItem",
+            "Ledger",
+            "GLAccount"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem",
+        "Ledger",
+        "GLAccount"
+      ],
+      "required_fields": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem",
+        "Ledger",
+        "GLAccount",
+        "ID",
+        "CustomerServiceNotification",
+        "PartnerServiceDocument",
+        "PartnerServiceDocumentItem",
+        "PartnerServiceDocumentType"
+      ]
+    }
+  }
+]

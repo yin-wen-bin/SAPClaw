@@ -1,0 +1,398 @@
+[
+  {
+    "id": "TRBAL-001",
+    "api": "C_TRIALBALANCE_CDS",
+    "scenario": "TrialBalance_company_ledger_list",
+    "user_input": "Show trial balance for company code 1710 and ledger 0L",
+    "expected_api": "C_TRIALBALANCE_CDS",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=Ledger,CompanyCode,CompanyCodeName,GLAccount,GLAccountHierarchyName,StartingBalanceAmtInCoCodeCrcy,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710'&$top=50",
+          "key_fields": [
+            "Ledger",
+            "CompanyCode",
+            "GLAccount"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Ledger",
+        "CompanyCode",
+        "GLAccount"
+      ],
+      "required_fields": [
+        "Ledger",
+        "CompanyCode",
+        "GLAccount"
+      ]
+    }
+  },
+  {
+    "id": "TRBAL-002",
+    "api": "C_TRIALBALANCE_CDS",
+    "scenario": "TrialBalance_debit_credit_list",
+    "user_input": "Show trial balance debit and credit amounts for company code 1710 and ledger 0L",
+    "expected_api": "C_TRIALBALANCE_CDS",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=Ledger,CompanyCode,GLAccount,DebitAmountInCoCodeCrcy,CreditAmountInCoCodeCrcy,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710'&$top=50",
+          "key_fields": [
+            "Ledger",
+            "CompanyCode",
+            "GLAccount"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Ledger",
+        "CompanyCode",
+        "GLAccount"
+      ],
+      "required_fields": [
+        "Ledger",
+        "CompanyCode",
+        "GLAccount"
+      ]
+    }
+  },
+  {
+    "id": "TRBAL-003",
+    "api": "C_TRIALBALANCE_CDS",
+    "scenario": "TrialBalance_balance_sheet_flag_list",
+    "user_input": "Show trial balance balance sheet account indicators for company code 1710 and ledger 0L",
+    "expected_api": "C_TRIALBALANCE_CDS",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=Ledger,CompanyCode,GLAccount,IsBalanceSheetAccount,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710'&$top=50",
+          "key_fields": [
+            "Ledger",
+            "CompanyCode",
+            "GLAccount"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Ledger",
+        "CompanyCode",
+        "GLAccount"
+      ],
+      "required_fields": [
+        "Ledger",
+        "CompanyCode",
+        "GLAccount"
+      ]
+    }
+  },
+  {
+    "id": "CTRI-T10-001",
+    "api": "C_TRIALBALANCE_CDS",
+    "scenario": "TrialBalance_ledger_text_and_balances_001",
+    "user_input": "Show trial balance ledger details and ending balances for company code 1710 and ledger 0L",
+    "expected_api": "C_TRIALBALANCE_CDS",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,CompanyCodeName,GLAccount,GLAccountHierarchyName,StartingBalanceAmtInCoCodeCrcy,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710'&$top=50",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "ID",
+        "Ledger",
+        "CompanyCode",
+        "GLAccount",
+        "EndingBalanceAmtInCoCodeCrcy"
+      ]
+    }
+  },
+  {
+    "id": "CTRI-T10-002",
+    "api": "C_TRIALBALANCE_CDS",
+    "scenario": "TrialBalance_order_balance_dimension_002",
+    "user_input": "Show trial balance order balances for company code 1710 and ledger 0L",
+    "expected_api": "C_TRIALBALANCE_CDS",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,GLAccount,OrderID,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710'&$top=50",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "ID",
+        "Ledger",
+        "CompanyCode",
+        "GLAccount",
+        "OrderID"
+      ]
+    }
+  },
+  {
+    "id": "CTRI-T10-003",
+    "api": "C_TRIALBALANCE_CDS",
+    "scenario": "TrialBalance_product_balance_dimension_003",
+    "user_input": "Show trial balance product balances for company code 1710 and ledger 0L",
+    "expected_api": "C_TRIALBALANCE_CDS",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,GLAccount,Product,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710'&$top=50",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "ID",
+        "Ledger",
+        "CompanyCode",
+        "GLAccount",
+        "Product"
+      ]
+    }
+  },
+  {
+    "id": "CTRI-T10-004",
+    "api": "C_TRIALBALANCE_CDS",
+    "scenario": "TrialBalance_material_balance_dimension_004",
+    "user_input": "Show trial balance material balances for company code 1710 and ledger 0L",
+    "expected_api": "C_TRIALBALANCE_CDS",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,GLAccount,Material,MaterialName,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710'&$top=50",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "ID",
+        "Ledger",
+        "CompanyCode",
+        "GLAccount",
+        "Material"
+      ]
+    }
+  },
+  {
+    "id": "CTRI-T10-005",
+    "api": "C_TRIALBALANCE_CDS",
+    "scenario": "TrialBalance_sales_order_balance_dimension_005",
+    "user_input": "Show trial balance sales order balances for company code 1710 and ledger 0L",
+    "expected_api": "C_TRIALBALANCE_CDS",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,GLAccount,SalesOrder,SalesOrderItem,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710'&$top=50",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "ID",
+        "Ledger",
+        "CompanyCode",
+        "GLAccount",
+        "SalesOrder"
+      ]
+    }
+  },
+  {
+    "id": "CTRI-T10-006",
+    "api": "C_TRIALBALANCE_CDS",
+    "scenario": "TrialBalance_company_code_names_and_balances_006",
+    "user_input": "Show trial balance company code names and ending balances for company code 1710 and ledger 0L",
+    "expected_api": "C_TRIALBALANCE_CDS",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,CompanyCodeName,GLAccount,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710'&$top=50",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "ID",
+        "Ledger",
+        "CompanyCode",
+        "CompanyCodeName",
+        "EndingBalanceAmtInCoCodeCrcy"
+      ]
+    }
+  },
+  {
+    "id": "CTRI-T10-007",
+    "api": "C_TRIALBALANCE_CDS",
+    "scenario": "TrialBalance_sold_product_balance_dimension_007",
+    "user_input": "Show trial balance sold product balances for company code 1710 and ledger 0L",
+    "expected_api": "C_TRIALBALANCE_CDS",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,GLAccount,SoldProduct,SoldProductGroup,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710'&$top=50",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "ID",
+        "Ledger",
+        "CompanyCode",
+        "GLAccount",
+        "SoldProduct"
+      ]
+    }
+  }
+]

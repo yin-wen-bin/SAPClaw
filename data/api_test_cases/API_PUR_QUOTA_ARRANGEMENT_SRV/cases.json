@@ -1,0 +1,380 @@
+[
+  {
+    "id": "QUOTA-001",
+    "api": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "scenario": "A_PurchasingQuotaArrangement_header_list",
+    "user_input": "Show me a list of quota arrangements",
+    "expected_api": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PUR_QUOTA_ARRANGEMENT_SRV/A_PurchasingQuotaArrangement?$select=QuotaArrangement,CreatedByUser,CreationDate,LastChangeDateTime,Material,MaterialBaseUnit,MinQtyForSpltQuota,Plant&$top=50",
+          "key_fields": [
+            "QuotaArrangement"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "QuotaArrangement"
+      ],
+      "required_fields": [
+        "QuotaArrangement"
+      ]
+    }
+  },
+  {
+    "id": "QUOTA-002",
+    "api": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "scenario": "A_PurchasingQuotaArrangement_detail_list",
+    "user_input": "Show quota arrangements purchasing quota arrangement details",
+    "expected_api": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PUR_QUOTA_ARRANGEMENT_SRV/A_PurchasingQuotaArrangement?$select=QuotaArrangement,Material,Plant,ValidityEndDate,ValidityStartDate,CreationDate,CreatedByUser,MinQtyForSpltQuota&$top=50",
+          "key_fields": [
+            "QuotaArrangement"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "QuotaArrangement"
+      ],
+      "required_fields": [
+        "QuotaArrangement"
+      ]
+    }
+  },
+  {
+    "id": "PURQUOARR-T10-001",
+    "api": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "scenario": "A_PurgQuotaArrangementItem_summary_001",
+    "user_input": "Show purg quota arrangement item records with their main identifying details",
+    "expected_api": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PUR_QUOTA_ARRANGEMENT_SRV/A_PurgQuotaArrangementItem?$select=QuotaArrangement,QuotaArrangementItem,MaterialProcurementCategory,MaterialProcurementType,Supplier,SupplyingPlant,PurchasingSourceQuota,QuotaBaseQuantity&$top=50",
+          "key_fields": [
+            "QuotaArrangement",
+            "QuotaArrangementItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "QuotaArrangement",
+        "QuotaArrangementItem"
+      ],
+      "required_fields": [
+        "QuotaArrangement",
+        "QuotaArrangementItem"
+      ]
+    }
+  },
+  {
+    "id": "PURQUOARR-T10-002",
+    "api": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "scenario": "A_PurchasingQuotaArrangement_summary_002",
+    "user_input": "Show purchasing quota arrangement records with their main identifying details",
+    "expected_api": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PUR_QUOTA_ARRANGEMENT_SRV/A_PurchasingQuotaArrangement?$select=QuotaArrangement,Material,Plant,ValidityEndDate,ValidityStartDate,CreationDate,CreatedByUser,MinQtyForSpltQuota&$top=50",
+          "key_fields": [
+            "QuotaArrangement"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "QuotaArrangement"
+      ],
+      "required_fields": [
+        "QuotaArrangement"
+      ]
+    }
+  },
+  {
+    "id": "PURQUOARR-T10-003",
+    "api": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "scenario": "A_PurchasingQuotaArrangement_names_and_descriptions_003",
+    "user_input": "Show purchasing quota arrangement records with user description",
+    "expected_api": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PUR_QUOTA_ARRANGEMENT_SRV/A_PurchasingQuotaArrangement?$select=QuotaArrangement,UserDescription,Material,Plant,ValidityEndDate,ValidityStartDate,CreationDate,CreatedByUser&$top=50",
+          "key_fields": [
+            "QuotaArrangement"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "QuotaArrangement"
+      ],
+      "required_fields": [
+        "QuotaArrangement",
+        "UserDescription"
+      ]
+    }
+  },
+  {
+    "id": "PURQUOARR-T10-004",
+    "api": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "scenario": "A_PurgQuotaArrangementItem_status_and_indicators_004",
+    "user_input": "Show purg quota arrangement item records with purchasing source quota and source of supply is assigned once",
+    "expected_api": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PUR_QUOTA_ARRANGEMENT_SRV/A_PurgQuotaArrangementItem?$select=QuotaArrangement,QuotaArrangementItem,PurchasingSourceQuota,SourceOfSupplyIsAssignedOnce,MaterialProcurementCategory,MaterialProcurementType,Supplier,SupplyingPlant&$top=50",
+          "key_fields": [
+            "QuotaArrangement",
+            "QuotaArrangementItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "QuotaArrangement",
+        "QuotaArrangementItem"
+      ],
+      "required_fields": [
+        "QuotaArrangement",
+        "QuotaArrangementItem",
+        "PurchasingSourceQuota",
+        "SourceOfSupplyIsAssignedOnce"
+      ]
+    }
+  },
+  {
+    "id": "PURQUOARR-T10-005",
+    "api": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "scenario": "A_PurgQuotaArrangementItem_dates_and_periods_005",
+    "user_input": "Show purg quota arrangement item records with number of periods per rel quantity, planned delivery duration in days, and quota release period type",
+    "expected_api": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PUR_QUOTA_ARRANGEMENT_SRV/A_PurgQuotaArrangementItem?$select=QuotaArrangement,QuotaArrangementItem,NumberOfPeriodsPerRelQuantity,PlannedDeliveryDurationInDays,QuotaReleasePeriodType,MaterialProcurementCategory,MaterialProcurementType,Supplier&$top=50",
+          "key_fields": [
+            "QuotaArrangement",
+            "QuotaArrangementItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "QuotaArrangement",
+        "QuotaArrangementItem"
+      ],
+      "required_fields": [
+        "QuotaArrangement",
+        "QuotaArrangementItem",
+        "NumberOfPeriodsPerRelQuantity",
+        "PlannedDeliveryDurationInDays",
+        "QuotaReleasePeriodType"
+      ]
+    }
+  },
+  {
+    "id": "PURQUOARR-T10-006",
+    "api": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "scenario": "A_PurchasingQuotaArrangement_dates_and_periods_006",
+    "user_input": "Show purchasing quota arrangement records with creation date, last change date time, validity end date, and validity start date",
+    "expected_api": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PUR_QUOTA_ARRANGEMENT_SRV/A_PurchasingQuotaArrangement?$select=QuotaArrangement,CreationDate,LastChangeDateTime,ValidityEndDate,ValidityStartDate,Material,Plant,CreatedByUser&$top=50",
+          "key_fields": [
+            "QuotaArrangement"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "QuotaArrangement"
+      ],
+      "required_fields": [
+        "QuotaArrangement",
+        "CreationDate",
+        "LastChangeDateTime",
+        "ValidityEndDate",
+        "ValidityStartDate"
+      ]
+    }
+  },
+  {
+    "id": "PURQUOARR-T10-007",
+    "api": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "scenario": "A_PurgQuotaArrangementItem_quantities_and_units_007",
+    "user_input": "Show purg quota arrangement item records with material base unit, material max lot size quantity, material min lot size quantity, and maximum release quantity",
+    "expected_api": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PUR_QUOTA_ARRANGEMENT_SRV/A_PurgQuotaArrangementItem?$select=QuotaArrangement,QuotaArrangementItem,MaterialBaseUnit,MaterialMaxLotSizeQuantity,MaterialMinLotSizeQuantity,MaximumReleaseQuantity,MaterialProcurementCategory,MaterialProcurementType&$top=50",
+          "key_fields": [
+            "QuotaArrangement",
+            "QuotaArrangementItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "QuotaArrangement",
+        "QuotaArrangementItem"
+      ],
+      "required_fields": [
+        "QuotaArrangement",
+        "QuotaArrangementItem",
+        "MaterialBaseUnit",
+        "MaterialMaxLotSizeQuantity",
+        "MaterialMinLotSizeQuantity",
+        "MaximumReleaseQuantity"
+      ]
+    }
+  },
+  {
+    "id": "PURQUOARR-T10-008",
+    "api": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "scenario": "A_PurchasingQuotaArrangement_quantities_and_units_008",
+    "user_input": "Show purchasing quota arrangement records with material base unit and min qty for splt quota",
+    "expected_api": "API_PUR_QUOTA_ARRANGEMENT_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PUR_QUOTA_ARRANGEMENT_SRV/A_PurchasingQuotaArrangement?$select=QuotaArrangement,MaterialBaseUnit,MinQtyForSpltQuota,Material,Plant,ValidityEndDate,ValidityStartDate,CreationDate&$top=50",
+          "key_fields": [
+            "QuotaArrangement"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "QuotaArrangement"
+      ],
+      "required_fields": [
+        "QuotaArrangement",
+        "MaterialBaseUnit",
+        "MinQtyForSpltQuota"
+      ]
+    }
+  }
+]

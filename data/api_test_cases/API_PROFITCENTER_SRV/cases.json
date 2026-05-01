@@ -1,0 +1,423 @@
+[
+  {
+    "id": "PCTR-001",
+    "api": "API_PROFITCENTER_SRV",
+    "scenario": "A_ProfitCenter_header_list",
+    "user_input": "Show me a list of profit centers",
+    "expected_api": "API_PROFITCENTER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PROFITCENTER_SRV/A_ProfitCenter?$select=ControllingArea,ProfitCenter,ValidityEndDate,AdditionalName,AddressName,CityName,CompanyCode,Country&$top=50",
+          "key_fields": [
+            "ControllingArea",
+            "ProfitCenter",
+            "ValidityEndDate"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ControllingArea",
+        "ProfitCenter",
+        "ValidityEndDate"
+      ],
+      "required_fields": [
+        "ControllingArea",
+        "ProfitCenter",
+        "ValidityEndDate"
+      ]
+    }
+  },
+  {
+    "id": "PCTR-002",
+    "api": "API_PROFITCENTER_SRV",
+    "scenario": "A_ProfitCenter_detail_list",
+    "user_input": "Show profit centers profit center details",
+    "expected_api": "API_PROFITCENTER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PROFITCENTER_SRV/A_ProfitCenter?$select=ControllingArea,ProfitCenter,ValidityEndDate,ProfitCtrResponsiblePersonName,CompanyCode,ProfitCtrResponsibleUser,ValidityStartDate,Department&$top=50",
+          "key_fields": [
+            "ControllingArea",
+            "ProfitCenter",
+            "ValidityEndDate"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ControllingArea",
+        "ProfitCenter",
+        "ValidityEndDate"
+      ],
+      "required_fields": [
+        "ControllingArea",
+        "ProfitCenter",
+        "ValidityEndDate"
+      ]
+    }
+  },
+  {
+    "id": "PCTR-003",
+    "api": "API_PROFITCENTER_SRV",
+    "scenario": "A_ProfitCenterText_supporting_list",
+    "user_input": "List profit center text descriptions",
+    "expected_api": "API_PROFITCENTER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PROFITCENTER_SRV/A_ProfitCenterText?$select=ControllingArea,Language,ProfitCenter,ValidityEndDate,ValidityStartDate,ProfitCenterName,ProfitCenterLongName&$top=50",
+          "key_fields": [
+            "ControllingArea",
+            "Language",
+            "ProfitCenter"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ControllingArea",
+        "Language",
+        "ProfitCenter"
+      ],
+      "required_fields": [
+        "ControllingArea",
+        "Language",
+        "ProfitCenter"
+      ]
+    }
+  },
+  {
+    "id": "PROFITCENTER-T10-001",
+    "api": "API_PROFITCENTER_SRV",
+    "scenario": "A_PrftCtrCompanyCodeAssignment_summary_001",
+    "user_input": "Show prft ctr company code assignment records with their main identifying details",
+    "expected_api": "API_PROFITCENTER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PROFITCENTER_SRV/A_PrftCtrCompanyCodeAssignment?$select=CompanyCode,ControllingArea,ProfitCenter&$top=50",
+          "key_fields": [
+            "CompanyCode",
+            "ControllingArea",
+            "ProfitCenter"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "ControllingArea",
+        "ProfitCenter"
+      ],
+      "required_fields": [
+        "CompanyCode",
+        "ControllingArea",
+        "ProfitCenter"
+      ]
+    }
+  },
+  {
+    "id": "PROFITCENTER-T10-002",
+    "api": "API_PROFITCENTER_SRV",
+    "scenario": "A_ProfitCenter_summary_002",
+    "user_input": "Show profit center records with their main identifying details",
+    "expected_api": "API_PROFITCENTER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PROFITCENTER_SRV/A_ProfitCenter?$select=ControllingArea,ProfitCenter,ValidityEndDate,ProfitCtrResponsiblePersonName,CompanyCode,ProfitCtrResponsibleUser,ValidityStartDate,Department&$top=50",
+          "key_fields": [
+            "ControllingArea",
+            "ProfitCenter",
+            "ValidityEndDate"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ControllingArea",
+        "ProfitCenter",
+        "ValidityEndDate"
+      ],
+      "required_fields": [
+        "ControllingArea",
+        "ProfitCenter",
+        "ValidityEndDate"
+      ]
+    }
+  },
+  {
+    "id": "PROFITCENTER-T10-003",
+    "api": "API_PROFITCENTER_SRV",
+    "scenario": "A_ProfitCenterText_summary_003",
+    "user_input": "Show profit center text records with their main identifying details",
+    "expected_api": "API_PROFITCENTER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PROFITCENTER_SRV/A_ProfitCenterText?$select=ControllingArea,Language,ProfitCenter,ValidityEndDate,ValidityStartDate,ProfitCenterName,ProfitCenterLongName&$top=50",
+          "key_fields": [
+            "ControllingArea",
+            "Language",
+            "ProfitCenter"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ControllingArea",
+        "Language",
+        "ProfitCenter"
+      ],
+      "required_fields": [
+        "ControllingArea",
+        "Language",
+        "ProfitCenter"
+      ]
+    }
+  },
+  {
+    "id": "PROFITCENTER-T10-004",
+    "api": "API_PROFITCENTER_SRV",
+    "scenario": "A_ProfitCenter_names_and_descriptions_004",
+    "user_input": "Show profit center records with additional name, address name, city name, and profit center addr name3",
+    "expected_api": "API_PROFITCENTER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PROFITCENTER_SRV/A_ProfitCenter?$select=ControllingArea,ProfitCenter,ValidityEndDate,AdditionalName,AddressName,CityName,ProfitCenterAddrName3,ProfitCtrResponsiblePersonName&$top=50",
+          "key_fields": [
+            "ControllingArea",
+            "ProfitCenter",
+            "ValidityEndDate"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ControllingArea",
+        "ProfitCenter",
+        "ValidityEndDate"
+      ],
+      "required_fields": [
+        "ControllingArea",
+        "ProfitCenter",
+        "ValidityEndDate",
+        "AdditionalName",
+        "AddressName",
+        "CityName",
+        "ProfitCenterAddrName3"
+      ]
+    }
+  },
+  {
+    "id": "PROFITCENTER-T10-005",
+    "api": "API_PROFITCENTER_SRV",
+    "scenario": "A_ProfitCenterText_names_and_descriptions_005",
+    "user_input": "Show profit center text records with profit center long name and profit center name",
+    "expected_api": "API_PROFITCENTER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PROFITCENTER_SRV/A_ProfitCenterText?$select=ControllingArea,Language,ProfitCenter,ProfitCenterLongName,ProfitCenterName,ValidityEndDate,ValidityStartDate&$top=50",
+          "key_fields": [
+            "ControllingArea",
+            "Language",
+            "ProfitCenter"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ControllingArea",
+        "Language",
+        "ProfitCenter"
+      ],
+      "required_fields": [
+        "ControllingArea",
+        "Language",
+        "ProfitCenter",
+        "ProfitCenterLongName",
+        "ProfitCenterName"
+      ]
+    }
+  },
+  {
+    "id": "PROFITCENTER-T10-006",
+    "api": "API_PROFITCENTER_SRV",
+    "scenario": "A_ProfitCenter_status_and_indicators_006",
+    "user_input": "Show profit center records with district, profit center is blocked, and tax jurisdiction",
+    "expected_api": "API_PROFITCENTER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PROFITCENTER_SRV/A_ProfitCenter?$select=ControllingArea,ProfitCenter,ValidityEndDate,District,ProfitCenterIsBlocked,TaxJurisdiction,ProfitCtrResponsiblePersonName,CompanyCode&$top=50",
+          "key_fields": [
+            "ControllingArea",
+            "ProfitCenter",
+            "ValidityEndDate"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ControllingArea",
+        "ProfitCenter",
+        "ValidityEndDate"
+      ],
+      "required_fields": [
+        "ControllingArea",
+        "ProfitCenter",
+        "ValidityEndDate",
+        "District",
+        "ProfitCenterIsBlocked",
+        "TaxJurisdiction"
+      ]
+    }
+  },
+  {
+    "id": "PROFITCENTER-T10-007",
+    "api": "API_PROFITCENTER_SRV",
+    "scenario": "A_ProfitCenter_dates_and_periods_007",
+    "user_input": "Show profit center records with profit center creation date, validity end date, and validity start date",
+    "expected_api": "API_PROFITCENTER_SRV",
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "records",
+          "url": "/sap/opu/odata/sap/API_PROFITCENTER_SRV/A_ProfitCenter?$select=ControllingArea,ProfitCenter,ValidityEndDate,ProfitCenterCreationDate,ValidityStartDate,ProfitCtrResponsiblePersonName,CompanyCode,ProfitCtrResponsibleUser&$top=50",
+          "key_fields": [
+            "ControllingArea",
+            "ProfitCenter",
+            "ValidityEndDate"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ControllingArea",
+        "ProfitCenter",
+        "ValidityEndDate"
+      ],
+      "required_fields": [
+        "ControllingArea",
+        "ProfitCenter",
+        "ValidityEndDate",
+        "ProfitCenterCreationDate",
+        "ValidityStartDate"
+      ]
+    }
+  }
+]
