@@ -58,3 +58,39 @@ Use this API for skilled routing.
     assert enriched[0]["api_skill_summary"].startswith("## Purpose")
     assert "api_skill_summary" not in enriched[1]
     assert catalog[0].get("api_skill_summary") is None
+
+
+def test_api_skill_provider_reuses_cache_until_skill_file_changes(tmp_path: Path) -> None:
+    service_dir = tmp_path / "API_TEST"
+    service_dir.mkdir(parents=True)
+    skill_path = service_dir / "skill.md"
+    skill_path.write_text(
+        """# API_TEST Skill
+
+## Purpose
+Use first version.
+""",
+        encoding="utf-8",
+    )
+
+    provider = ApiSkillProvider(skill_root=tmp_path)
+    first = provider.load("API_TEST")
+    second = provider.load("API_TEST")
+
+    assert first is not None
+    assert second is first
+
+    skill_path.write_text(
+        """# API_TEST Skill
+
+## Purpose
+Use second version with changed length.
+""",
+        encoding="utf-8",
+    )
+
+    third = provider.load("API_TEST")
+
+    assert third is not None
+    assert third is not first
+    assert "second version" in third.content

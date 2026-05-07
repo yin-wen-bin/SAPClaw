@@ -178,7 +178,157 @@ def test_api_router_compacts_large_catalog_payload() -> None:
     assert len(compact_entry["top_entities"]) == 4
     assert len(compact_entry["top_filter_fields"]) == 4
     assert len(compact_entry["top_answer_fields"]) == 4
-    assert len(compact_entry["api_skill_summary"]) <= 120
+    assert len(compact_entry["api_skill_summary"]) <= 700
+
+
+def test_api_router_keeps_user_relevant_skill_guidance_after_compaction() -> None:
+    valid = {
+        "resolved_user_input": "query company 1710 chart of accounts",
+        "should_carry_context": False,
+        "selected_apis": [
+            {
+                "service_name": "API_COMPANYCODE_SRV",
+                "confidence": 0.91,
+                "reason": "Company code API exposes ChartOfAccounts as an answer field.",
+            }
+        ],
+        "requires_multi_api": False,
+        "intent_summary": "Company code chart of accounts",
+        "business_domain": "Finance",
+        "business_object": "Company Code",
+        "needs_clarification": False,
+        "clarification_question": "",
+        "clarification_options": [],
+    }
+    catalog = [
+        {
+            "service_name": "API_COMPANYCODE_SRV",
+            "short_description": "Company code master data.",
+            "primary_business_objects": ["Company Code"],
+            "top_entities": ["A_CompanyCode"],
+            "top_filter_fields": ["A_CompanyCode.CompanyCode", "A_CompanyCode.ChartOfAccounts"],
+            "top_answer_fields": ["A_CompanyCode.ChartOfAccounts"],
+            "api_skill_summary": (
+                "Generic company code guidance. " + ("x" * 300) + "\n"
+                "- For company code chart of accounts requests, query "
+                "A_CompanyCode.ChartOfAccounts directly."
+            ),
+        }
+    ]
+    client = SequencedClient([json.dumps(valid)])
+    router = LlmApiRouter(llm_client=client, enabled=True, allow_default_fallback=False)
+
+    decision = router.route("query company 1710 chart of accounts", catalog)
+
+    assert decision.selected_apis[0].service_name == "API_COMPANYCODE_SRV"
+    prompt = client.calls[0]["user_prompt"]
+    assert "Relevant skill guidance" in prompt
+    assert "A_CompanyCode.ChartOfAccounts directly" in prompt
+
+
+def test_api_router_keeps_sales_order_delivery_skill_guidance_after_compaction() -> None:
+    valid = {
+        "resolved_user_input": "query delivery documents for sales order 3773",
+        "should_carry_context": False,
+        "selected_apis": [
+            {
+                "service_name": "API_OUTBOUND_DELIVERY_SRV",
+                "confidence": 0.92,
+                "reason": "Outbound delivery exposes OrderID as a sales order reference filter.",
+            }
+        ],
+        "requires_multi_api": False,
+        "intent_summary": "Delivery documents for sales order",
+        "business_domain": "Sales and Distribution",
+        "business_object": "Outbound Delivery",
+        "needs_clarification": False,
+        "clarification_question": "",
+        "clarification_options": [],
+    }
+    catalog = [
+        {
+            "service_name": "API_OUTBOUND_DELIVERY_SRV",
+            "short_description": "Outbound delivery API.",
+            "primary_business_objects": ["Outbound Delivery"],
+            "top_entities": ["A_OutbDeliveryHeader"],
+            "top_filter_fields": ["A_OutbDeliveryItem.ReferenceSDDocument"],
+            "top_answer_fields": ["A_OutbDeliveryHeader.DeliveryDocument"],
+            "api_skill_summary": (
+                "Generic outbound delivery guidance. " + ("x" * 300) + "\n"
+                "- For sales order delivery document requests, query "
+                "A_OutbDeliveryItem.ReferenceSDDocument directly."
+            ),
+        }
+    ]
+    client = SequencedClient([json.dumps(valid)])
+    router = LlmApiRouter(llm_client=client, enabled=True, allow_default_fallback=False)
+
+    decision = router.route("查询销售订单3773的交货单", catalog)
+
+    assert decision.selected_apis[0].service_name == "API_OUTBOUND_DELIVERY_SRV"
+    assert decision.requires_multi_api is False
+    prompt = client.calls[0]["user_prompt"]
+    assert "Relevant skill guidance" in prompt
+    assert "A_OutbDeliveryItem.ReferenceSDDocument directly" in prompt
+
+
+def test_api_router_keeps_delivered_not_billed_delivery_skill_guidance_after_compaction() -> None:
+    valid = {
+        "resolved_user_input": "query customer 17100003 delivered but not billed delivery documents",
+        "should_carry_context": False,
+        "selected_apis": [
+            {
+                "service_name": "API_OUTBOUND_DELIVERY_SRV",
+                "confidence": 0.92,
+                "reason": "Outbound delivery exposes delivery billing status directly.",
+            }
+        ],
+        "requires_multi_api": False,
+        "intent_summary": "Delivered but not billed outbound deliveries",
+        "business_domain": "Sales and Distribution",
+        "business_object": "Outbound Delivery",
+        "needs_clarification": False,
+        "clarification_question": "",
+        "clarification_options": [],
+    }
+    catalog = [
+        {
+            "service_name": "API_OUTBOUND_DELIVERY_SRV",
+            "short_description": "Outbound delivery API.",
+            "primary_business_objects": ["Outbound Delivery"],
+            "top_entities": ["A_OutbDeliveryHeader"],
+            "top_filter_fields": [
+                "A_OutbDeliveryHeader.SoldToParty",
+                "A_OutbDeliveryHeader.OverallGoodsMovementStatus",
+                "A_OutbDeliveryHeader.OverallDelivReltdBillgStatus",
+            ],
+            "top_answer_fields": ["A_OutbDeliveryHeader.DeliveryDocument"],
+            "api_skill_summary": (
+                "Generic outbound delivery guidance. " + ("x" * 300) + "\n"
+                "- For delivered but not billed delivery documents, query "
+                "A_OutbDeliveryHeader with OverallGoodsMovementStatus and "
+                "OverallDelivReltdBillgStatus directly."
+            ),
+        },
+        {
+            "service_name": "API_BILLING_DOCUMENT_SRV",
+            "short_description": "Billing document API.",
+            "primary_business_objects": ["Billing Document"],
+            "top_entities": ["A_BillingDocument"],
+            "top_filter_fields": ["A_BillingDocument.BillingDocument"],
+            "top_answer_fields": ["A_BillingDocument.BillingDocument"],
+        },
+    ]
+    client = SequencedClient([json.dumps(valid)])
+    router = LlmApiRouter(llm_client=client, enabled=True, allow_default_fallback=False)
+
+    decision = router.route("查询客户17100003已发货但还没开票的交货单", catalog)
+
+    assert decision.selected_apis[0].service_name == "API_OUTBOUND_DELIVERY_SRV"
+    assert decision.requires_multi_api is False
+    prompt = client.calls[0]["user_prompt"]
+    assert "Relevant skill guidance" in prompt
+    assert "OverallDelivReltdBillgStatus directly" in prompt
 
 
 def test_api_router_compaction_keeps_user_relevant_later_entities() -> None:

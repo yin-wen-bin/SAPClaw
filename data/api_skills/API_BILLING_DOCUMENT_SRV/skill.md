@@ -36,6 +36,8 @@ Keep `data/index/API_BILLING_DOCUMENT_SRV` as the schema ground truth. This skil
 
 - Primary business scope: Billing Document - Read, Cancel, Get PDF, Complete Pro Forma Invoice.
 - Use the service description, entity descriptions, and field descriptions from `data/index/API_BILLING_DOCUMENT_SRV` to infer user intent.
+- Use this API when the user asks for actual billing documents, invoice numbers, invoice dates, billing document items, billing partners, billing pricing elements, PDFs, cancellation, or pro forma invoice completion.
+- Do not use this API merely to determine whether an outbound delivery is billed when the outbound delivery API exposes delivery billing status fields directly.
 - Preserve SAP document numbers, item numbers, partner numbers, material/product IDs, company codes, plants, fiscal years, dates, currencies, quantities, statuses, and type codes exactly as returned by SAP.
 - When a user asks for a list, prefer the entity whose business level matches the requested object: header for document headers, item for line items, schedule for schedule lines, partner/address/text/pricing/account entities only when those details are explicitly requested.
 - For boolean fields, use unquoted OData boolean literals `true` and `false`. For string indicator fields, preserve the string literal exactly.

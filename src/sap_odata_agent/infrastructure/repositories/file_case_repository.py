@@ -4,6 +4,7 @@ import json
 import re
 from datetime import datetime
 from pathlib import Path
+from threading import RLock
 from typing import Any
 
 from sap_odata_agent.domain.models import CaseRecord
@@ -36,13 +37,28 @@ class JsonlCaseRepository:
         self.file_path.parent.mkdir(parents=True, exist_ok=True)
         self.memory_path = Path(memory_path) if memory_path else self.file_path.with_name("feedback_memory.jsonl")
         self.memory_path.parent.mkdir(parents=True, exist_ok=True)
+        self._cache_lock = RLock()
+        self._entries_cache: list[dict[str, Any]] | None = None
+        self._entries_signature: tuple[int, int] | None = None
+        self._memory_cache: list[dict[str, Any]] | None = None
+        self._memory_signature: tuple[int, int] | None = None
 
     def save(self, record: CaseRecord) -> None:
-        with self.file_path.open("a", encoding="utf-8") as handle:
-            handle.write(json.dumps(record.to_dict(), ensure_ascii=False, default=str) + "\n")
+        payload = self._normalize_json(record.to_dict())
+        with self._cache_lock:
+            before_signature = self._file_signature(self.file_path)
+            with self.file_path.open("a", encoding="utf-8") as handle:
+                handle.write(json.dumps(payload, ensure_ascii=False, default=str) + "\n")
+            after_signature = self._file_signature(self.file_path)
+            if self._entries_cache is not None and self._entries_signature == before_signature:
+                self._entries_cache.append(payload)
+                self._entries_signature = after_signature
+            else:
+                self._entries_cache = None
+                self._entries_signature = None
 
     def list_recent(self, limit: int = 20, conversation_id: str | None = None) -> list[dict[str, Any]]:
-        entries = self._load_entries()
+        entries = list(self._load_entries())
         if conversation_id:
             entries = [
                 entry
@@ -65,23 +81,24 @@ class JsonlCaseRepository:
         comment: str = "",
         expected_result: str = "",
     ) -> dict[str, Any] | None:
-        entries = self._load_entries()
-        updated: dict[str, Any] | None = None
-        for entry in entries:
-            if entry.get("case_id") != case_id:
-                continue
-            entry["feedback"] = {
-                "status": status,
-                "comment": comment,
-                "expected_result": expected_result,
-                "created_at": datetime.now().astimezone().isoformat(),
-            }
-            updated = entry
-            break
-        if updated is None:
-            return None
-        self._write_entries(entries)
-        return updated
+        with self._cache_lock:
+            entries = self._load_entries()
+            updated: dict[str, Any] | None = None
+            for entry in entries:
+                if entry.get("case_id") != case_id:
+                    continue
+                entry["feedback"] = {
+                    "status": status,
+                    "comment": comment,
+                    "expected_result": expected_result,
+                    "created_at": datetime.now().astimezone().isoformat(),
+                }
+                updated = entry
+                break
+            if updated is None:
+                return None
+            self._write_entries(entries)
+            return updated
 
     def save_feedback_memory(self, case_id: str, memory: dict[str, Any]) -> None:
         payload = {
@@ -89,8 +106,18 @@ class JsonlCaseRepository:
             "created_at": datetime.now().astimezone().isoformat(),
             **memory,
         }
-        with self.memory_path.open("a", encoding="utf-8") as handle:
-            handle.write(json.dumps(payload, ensure_ascii=False, default=str) + "\n")
+        payload = self._normalize_json(payload)
+        with self._cache_lock:
+            before_signature = self._file_signature(self.memory_path)
+            with self.memory_path.open("a", encoding="utf-8") as handle:
+                handle.write(json.dumps(payload, ensure_ascii=False, default=str) + "\n")
+            after_signature = self._file_signature(self.memory_path)
+            if self._memory_cache is not None and self._memory_signature == before_signature:
+                self._memory_cache.append(payload)
+                self._memory_signature = after_signature
+            else:
+                self._memory_cache = None
+                self._memory_signature = None
 
     def search_feedback_memory(self, query: str, limit: int = 5) -> list[dict[str, Any]]:
         query_terms = self._tokenize(query)
@@ -169,43 +196,75 @@ class JsonlCaseRepository:
         return [entry for _, entry in candidates[: max(1, limit)]]
 
     def _load_entries(self) -> list[dict[str, Any]]:
-        if not self.file_path.exists():
-            return []
-        entries: list[dict[str, Any]] = []
-        for raw_line in self.file_path.read_text(encoding="utf-8", errors="ignore").splitlines():
-            line = raw_line.strip()
-            if not line:
-                continue
-            try:
-                parsed = json.loads(line)
-            except json.JSONDecodeError:
-                continue
-            if isinstance(parsed, dict):
-                entries.append(parsed)
-        return entries
+        with self._cache_lock:
+            signature = self._file_signature(self.file_path)
+            if self._entries_cache is not None and self._entries_signature == signature:
+                return self._entries_cache
+            if signature == (0, 0):
+                self._entries_cache = []
+                self._entries_signature = signature
+                return self._entries_cache
+            entries: list[dict[str, Any]] = []
+            for raw_line in self.file_path.read_text(encoding="utf-8", errors="ignore").splitlines():
+                line = raw_line.strip()
+                if not line:
+                    continue
+                try:
+                    parsed = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+                if isinstance(parsed, dict):
+                    entries.append(parsed)
+            self._entries_cache = entries
+            self._entries_signature = signature
+            return self._entries_cache
 
     def _write_entries(self, entries: list[dict[str, Any]]) -> None:
-        lines = [json.dumps(entry, ensure_ascii=False, default=str) for entry in entries]
-        payload = "\n".join(lines)
-        if payload:
-            payload += "\n"
-        self.file_path.write_text(payload, encoding="utf-8")
+        with self._cache_lock:
+            normalized_entries = [self._normalize_json(entry) for entry in entries]
+            lines = [json.dumps(entry, ensure_ascii=False, default=str) for entry in normalized_entries]
+            payload = "\n".join(lines)
+            if payload:
+                payload += "\n"
+            self.file_path.write_text(payload, encoding="utf-8")
+            self._entries_cache = normalized_entries
+            self._entries_signature = self._file_signature(self.file_path)
 
     def _load_memory_entries(self) -> list[dict[str, Any]]:
-        if not self.memory_path.exists():
-            return []
-        entries: list[dict[str, Any]] = []
-        for raw_line in self.memory_path.read_text(encoding="utf-8", errors="ignore").splitlines():
-            line = raw_line.strip()
-            if not line:
-                continue
-            try:
-                parsed = json.loads(line)
-            except json.JSONDecodeError:
-                continue
-            if isinstance(parsed, dict):
-                entries.append(parsed)
-        return entries
+        with self._cache_lock:
+            signature = self._file_signature(self.memory_path)
+            if self._memory_cache is not None and self._memory_signature == signature:
+                return self._memory_cache
+            if signature == (0, 0):
+                self._memory_cache = []
+                self._memory_signature = signature
+                return self._memory_cache
+            entries: list[dict[str, Any]] = []
+            for raw_line in self.memory_path.read_text(encoding="utf-8", errors="ignore").splitlines():
+                line = raw_line.strip()
+                if not line:
+                    continue
+                try:
+                    parsed = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+                if isinstance(parsed, dict):
+                    entries.append(parsed)
+            self._memory_cache = entries
+            self._memory_signature = signature
+            return self._memory_cache
+
+    @staticmethod
+    def _file_signature(path: Path) -> tuple[int, int]:
+        try:
+            stat = path.stat()
+        except FileNotFoundError:
+            return (0, 0)
+        return (stat.st_mtime_ns, stat.st_size)
+
+    @staticmethod
+    def _normalize_json(payload: dict[str, Any]) -> dict[str, Any]:
+        return json.loads(json.dumps(payload, ensure_ascii=False, default=str))
 
     @staticmethod
     def _entry_sort_key(entry: dict[str, Any]) -> datetime:

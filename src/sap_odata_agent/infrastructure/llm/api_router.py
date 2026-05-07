@@ -169,7 +169,10 @@ class LlmApiRouter:
             }
             skill_summary = str(entry.get("api_skill_summary") or "")
             if skill_summary.strip():
-                item["api_skill_summary"] = LlmApiRouter._truncate(skill_summary, 120)
+                item["api_skill_summary"] = LlmApiRouter._compact_skill_summary_for_prompt(
+                    skill_summary,
+                    user_input=user_input,
+                )
             if entry.get("odata_runtime_available") is False:
                 item["odata_runtime_available"] = False
                 item["runtime_notes"] = LlmApiRouter._truncate(str(entry.get("runtime_notes") or ""), 80)
@@ -279,6 +282,59 @@ class LlmApiRouter:
             }
             compact.append({key: value for key, value in item.items() if value not in ("", [], {})})
         return compact
+
+    @staticmethod
+    def _compact_skill_summary_for_prompt(skill_summary: str, *, user_input: str) -> str:
+        text = str(skill_summary or "").strip()
+        if not text:
+            return ""
+        compact = LlmApiRouter._truncate(text, 180)
+        relevant_lines: list[str] = []
+        for raw_line in text.splitlines():
+            line = raw_line.strip()
+            if not line or line.startswith("#"):
+                continue
+            if LlmApiRouter._skill_line_matches_user_input(line, user_input):
+                cleaned = re.sub(r"^\s*[-*]\s*", "", line)
+                if cleaned not in relevant_lines:
+                    relevant_lines.append(cleaned)
+            if len(relevant_lines) >= 4:
+                break
+        if relevant_lines:
+            compact = f"{compact}\nRelevant skill guidance:\n" + "\n".join(
+                f"- {line}" for line in relevant_lines
+            )
+        return LlmApiRouter._truncate(compact, 700)
+
+    @staticmethod
+    def _skill_line_matches_user_input(line: str, user_input: str) -> bool:
+        if LlmApiRouter._value_matches_user_input(line, user_input):
+            return True
+        query = LlmApiRouter._normalize_match_text(user_input)
+        candidate = LlmApiRouter._normalize_match_text(line)
+        synonym_groups = (
+            ("company", "companycode", "company code", "公司", "公司代码"),
+            ("chartofaccounts", "chart of accounts", "科目表"),
+            ("glaccount", "g/l account", "general ledger account", "总账科目", "会计科目"),
+            ("expense", "profitloss", "profit and loss", "费用", "损益"),
+            ("salesorder", "sales order", "销售订单", "销货订单"),
+            ("deliverydocument", "outbounddelivery", "outbound delivery", "delivery", "交货单", "交货凭证", "出库交货"),
+            ("orderid", "reference document", "referencesddocument", "参考文档", "参考凭证"),
+            ("customer", "soldtoparty", "shiptoparty", "客户", "售达方", "收货方"),
+            ("billing", "billingstatus", "billing status", "invoice", "invoiced", "not billed", "unbilled", "开票", "未开票", "没开票", "发票"),
+            ("goodsmovement", "goods movement", "goods issue", "shipped", "delivered", "已发货", "发货", "已交货", "货物移动"),
+        )
+        for group in synonym_groups:
+            query_matches = [
+                LlmApiRouter._normalize_match_text(term)
+                for term in group
+                if LlmApiRouter._normalize_match_text(term) in query
+            ]
+            if not query_matches:
+                continue
+            if any(LlmApiRouter._normalize_match_text(term) in candidate for term in group):
+                return True
+        return False
 
     @staticmethod
     def _truncate(value: str, max_chars: int) -> str:

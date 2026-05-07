@@ -3,6 +3,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 from pathlib import Path
+from threading import RLock
 from typing import Any
 
 
@@ -32,23 +33,34 @@ class ApiSkillProvider:
     def __init__(self, skill_root: str | Path = "data/api_skills", max_summary_chars: int = 2200) -> None:
         self.skill_root = Path(skill_root)
         self.max_summary_chars = max_summary_chars
+        self._cache_lock = RLock()
+        self._skill_cache: dict[str, tuple[tuple[int, int, int] | None, ApiSkill | None]] = {}
 
     def load(self, service_name: str) -> ApiSkill | None:
         service = str(service_name or "").strip()
         if not service:
             return None
         path = self.skill_root / service / "skill.md"
-        if not path.exists():
-            return None
-        content = path.read_text(encoding="utf-8").strip()
-        if not content:
-            return None
-        return ApiSkill(
-            service_name=service,
-            path=str(path),
-            content=content,
-            summary=self._summarize(content),
-        )
+        with self._cache_lock:
+            signature = self._skill_signature(path)
+            cached = self._skill_cache.get(service)
+            if cached is not None and cached[0] == signature:
+                return cached[1]
+            if signature is None:
+                self._skill_cache[service] = (signature, None)
+                return None
+            content = path.read_text(encoding="utf-8").strip()
+            if not content:
+                self._skill_cache[service] = (signature, None)
+                return None
+            skill = ApiSkill(
+                service_name=service,
+                path=str(path),
+                content=content,
+                summary=self._summarize(content),
+            )
+            self._skill_cache[service] = (signature, skill)
+            return skill
 
     def enrich_catalog(self, api_catalog: list[dict[str, Any]]) -> list[dict[str, Any]]:
         enriched: list[dict[str, Any]] = []
@@ -115,3 +127,10 @@ class ApiSkillProvider:
         if len(value) <= max_chars:
             return value
         return value[: max_chars - 3].rstrip() + "..."
+
+    def _skill_signature(self, path: Path) -> tuple[int, int, int] | None:
+        try:
+            stat = path.stat()
+        except FileNotFoundError:
+            return None
+        return (stat.st_mtime_ns, stat.st_size, self.max_summary_chars)

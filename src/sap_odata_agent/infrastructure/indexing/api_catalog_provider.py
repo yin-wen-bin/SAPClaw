@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import re
+from copy import deepcopy
 from pathlib import Path
+from threading import RLock
 from typing import Any
 
 from sap_odata_agent.infrastructure.indexing.index_loader import LocalIndexLoader
@@ -15,21 +17,40 @@ class ApiCatalogProvider:
     API-specific metadata is loaded.
     """
 
+    _INDEX_SIGNATURE_FILES = (
+        "services.json",
+        "entities.json",
+        "fields.json",
+        "entity_graph.json",
+        "relations.json",
+        "lookup_paths.json",
+        "business_terms.json",
+    )
+
     def __init__(self, index_root: str | Path = "data/index", default_service_name: str = "API_BUSINESS_PARTNER") -> None:
         self.index_root = Path(index_root)
         self.default_service_name = default_service_name
         self.loader = LocalIndexLoader(index_root=index_root)
+        self._cache_lock = RLock()
+        self._cached_signature: tuple[tuple[str, tuple[tuple[int, int], ...]], ...] | None = None
+        self._cached_catalog: list[dict[str, Any]] | None = None
 
     def load(self) -> list[dict[str, Any]]:
-        service_names = self._discover_service_names()
-        catalog: list[dict[str, Any]] = []
-        for service_name in service_names:
-            try:
-                snapshot = self.loader.load(service_name)
-            except FileNotFoundError:
-                continue
-            catalog.append(self._catalog_entry(snapshot))
-        return catalog
+        with self._cache_lock:
+            signature = self._cache_signature()
+            if self._cached_catalog is not None and self._cached_signature == signature:
+                return deepcopy(self._cached_catalog)
+
+            catalog: list[dict[str, Any]] = []
+            for service_name, _ in signature:
+                try:
+                    snapshot = self.loader.load(service_name)
+                except FileNotFoundError:
+                    continue
+                catalog.append(self._catalog_entry(snapshot))
+            self._cached_signature = signature
+            self._cached_catalog = deepcopy(catalog)
+            return deepcopy(catalog)
 
     def _discover_service_names(self) -> list[str]:
         if not self.index_root.exists():
@@ -42,6 +63,22 @@ class ApiCatalogProvider:
         if self.default_service_name not in names:
             names.insert(0, self.default_service_name)
         return list(dict.fromkeys(names))
+
+    def _cache_signature(self) -> tuple[tuple[str, tuple[tuple[int, int], ...]], ...]:
+        signature: list[tuple[str, tuple[tuple[int, int], ...]]] = []
+        for service_name in self._discover_service_names():
+            service_dir = self.index_root / service_name
+            file_signatures: list[tuple[int, int]] = []
+            for filename in self._INDEX_SIGNATURE_FILES:
+                path = service_dir / filename
+                try:
+                    stat = path.stat()
+                except FileNotFoundError:
+                    file_signatures.append((0, 0))
+                    continue
+                file_signatures.append((stat.st_mtime_ns, stat.st_size))
+            signature.append((service_name, tuple(file_signatures)))
+        return tuple(signature)
 
     @staticmethod
     def _catalog_entry(snapshot) -> dict[str, Any]:
@@ -86,10 +123,12 @@ class ApiCatalogProvider:
         def score(entity: dict[str, Any]) -> tuple[float, str]:
             entity_set = str(entity.get("entity_set", "") or "")
             description = str(entity.get("description", "") or "")
+            pinned_entity_scores = ApiCatalogProvider._pinned_entity_scores(snapshot.service_name)
             normalized = ApiCatalogProvider._normalize(ApiCatalogProvider._humanize_entity_set(entity_set))
             text = ApiCatalogProvider._normalize(f"{entity_set} {description}")
             lower_text = f"{entity_set} {description}".lower()
             value = 0.0
+            value += pinned_entity_scores.get(entity_set, 0.0)
             if normalized in core_tokens:
                 value += 90.0
             if any(normalized == f"{token}item" for token in core_tokens):
@@ -157,6 +196,18 @@ class ApiCatalogProvider:
             "plant": 24.0,
             "storagelocation": 20.0,
             "companycode": 22.0,
+            "chartofaccounts": 34.0,
+            "countrychartofaccounts": 24.0,
+            "salesorder": 38.0,
+            "orderid": 38.0,
+            "orderitem": 28.0,
+            "deliverydocument": 38.0,
+            "deliverydocumentitem": 30.0,
+            "referencesddocument": 36.0,
+            "referencesddocumentitem": 30.0,
+            "shiptoparty": 24.0,
+            "soldtoparty": 24.0,
+            "shippingpoint": 22.0,
             "creationdate": 18.0,
             "deliverydate": 28.0,
             "schedulelinedeliverydate": 30.0,
@@ -250,6 +301,21 @@ class ApiCatalogProvider:
             "time": 12.0,
             "companycode": 18.0,
             "companycodename": 44.0,
+            "chartofaccounts": 46.0,
+            "countrychartofaccounts": 34.0,
+            "salesorder": 34.0,
+            "orderid": 34.0,
+            "orderitem": 24.0,
+            "deliverydocument": 44.0,
+            "deliverydocumentitem": 36.0,
+            "deliverydate": 28.0,
+            "referencesddocument": 32.0,
+            "referencesddocumentitem": 24.0,
+            "shiptoparty": 28.0,
+            "soldtoparty": 28.0,
+            "shippingpoint": 24.0,
+            "overallgoodsmovementstatus": 24.0,
+            "overallsdprocessstatus": 24.0,
             "glaccount": 22.0,
             "glaccountname": 46.0,
             "costcenter": 20.0,
@@ -311,7 +377,19 @@ class ApiCatalogProvider:
             ranked.append((-score, qualified))
 
         ranked.sort()
-        return [qualified for _, qualified in ranked[:max_count]]
+        pinned = [
+            field
+            for field in ApiCatalogProvider._pinned_answer_fields(snapshot.service_name)
+            if field in seen
+        ]
+        result = list(dict.fromkeys(pinned))
+        for _, qualified in ranked:
+            if qualified in result:
+                continue
+            result.append(qualified)
+            if len(result) >= max_count:
+                break
+        return result[:max_count]
 
     @staticmethod
     def _pinned_filter_fields(service_name: str) -> list[str]:
@@ -388,7 +466,92 @@ class ApiCatalogProvider:
                 "A_MaterialSerialNumber.Material",
                 "A_MaterialSerialNumber.SerialNumber",
             ]
+        if service_name == "API_COMPANYCODE_SRV":
+            return [
+                "A_CompanyCode.CompanyCode",
+                "A_CompanyCode.ChartOfAccounts",
+                "A_CompanyCode.CountryChartOfAccounts",
+            ]
+        if service_name == "API_SALES_ORDER_SRV":
+            return [
+                "A_SalesOrder.SalesOrder",
+                "A_SalesOrderItem.SalesOrder",
+                "A_SalesOrder.PurchaseOrderByCustomer",
+                "A_SalesOrder.SoldToParty",
+            ]
+        if service_name == "API_OUTBOUND_DELIVERY_SRV":
+            return [
+                "A_OutbDeliveryItem.ReferenceSDDocument",
+                "A_OutbDeliveryItem.ReferenceSDDocumentItem",
+                "A_OutbDeliveryHeader.SoldToParty",
+                "A_OutbDeliveryHeader.ShipToParty",
+                "A_OutbDeliveryHeader.OverallGoodsMovementStatus",
+                "A_OutbDeliveryHeader.OverallDelivReltdBillgStatus",
+                "A_OutbDeliveryItem.GoodsMovementStatus",
+                "A_OutbDeliveryItem.DeliveryRelatedBillingStatus",
+                "A_OutbDeliveryHeader.OrderID",
+                "A_OutbDeliveryHeader.DeliveryDocument",
+                "A_OutbDeliveryHeader.DeliveryDate",
+                "A_OutbDeliveryItem.OrderID",
+                "A_OutbDeliveryItem.DeliveryDocument",
+                "A_OutbDeliveryItem.DeliveryDocumentItem",
+            ]
         return []
+
+    @staticmethod
+    def _pinned_answer_fields(service_name: str) -> list[str]:
+        if service_name == "API_COMPANYCODE_SRV":
+            return [
+                "A_CompanyCode.CompanyCode",
+                "A_CompanyCode.CompanyCodeName",
+                "A_CompanyCode.ChartOfAccounts",
+                "A_CompanyCode.CountryChartOfAccounts",
+            ]
+        if service_name == "API_SALES_ORDER_SRV":
+            return [
+                "A_SalesOrder.SalesOrder",
+                "A_SalesOrder.SalesOrderType",
+                "A_SalesOrder.SalesOrganization",
+                "A_SalesOrder.SoldToParty",
+            ]
+        if service_name == "API_OUTBOUND_DELIVERY_SRV":
+            return [
+                "A_OutbDeliveryHeader.DeliveryDocument",
+                "A_OutbDeliveryHeader.DeliveryDate",
+                "A_OutbDeliveryHeader.SoldToParty",
+                "A_OutbDeliveryHeader.ShipToParty",
+                "A_OutbDeliveryHeader.OverallGoodsMovementStatus",
+                "A_OutbDeliveryHeader.OverallDelivReltdBillgStatus",
+                "A_OutbDeliveryItem.DeliveryDocument",
+                "A_OutbDeliveryItem.DeliveryDocumentItem",
+                "A_OutbDeliveryItem.ReferenceSDDocument",
+                "A_OutbDeliveryItem.ReferenceSDDocumentItem",
+                "A_OutbDeliveryHeader.OrderID",
+                "A_OutbDeliveryHeader.ShippingPoint",
+                "A_OutbDeliveryHeader.OverallSDProcessStatus",
+                "A_OutbDeliveryItem.OrderID",
+                "A_OutbDeliveryItem.Material",
+                "A_OutbDeliveryItem.GoodsMovementStatus",
+                "A_OutbDeliveryItem.DeliveryRelatedBillingStatus",
+            ]
+        return []
+
+    @staticmethod
+    def _pinned_entity_scores(service_name: str) -> dict[str, float]:
+        if service_name == "API_SALES_ORDER_SRV":
+            return {
+                "A_SalesOrder": 140.0,
+                "A_SalesOrderItem": 110.0,
+                "A_SalesOrderItmSubsqntProcFlow": 70.0,
+                "A_SalesOrderSubsqntProcFlow": 70.0,
+            }
+        if service_name == "API_OUTBOUND_DELIVERY_SRV":
+            return {
+                "A_OutbDeliveryHeader": 140.0,
+                "A_OutbDeliveryItem": 120.0,
+                "A_OutbDeliveryDocFlow": 80.0,
+            }
+        return {}
 
     @staticmethod
     def _service_core_tokens(service_name: str) -> list[str]:
@@ -414,6 +577,7 @@ class ApiCatalogProvider:
             "Invc": "Invoice",
             "Matl": "Material",
             "Stk": "Stock",
+            "Outb": "Outbound",
         }
         for source, target in replacements.items():
             name = name.replace(source, target)

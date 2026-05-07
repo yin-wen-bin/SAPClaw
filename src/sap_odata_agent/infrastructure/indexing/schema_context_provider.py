@@ -254,10 +254,7 @@ class SchemaContextProvider:
         if not service_name:
             return schema_context
         if schema_context.get("multi_api"):
-            return {
-                **schema_context,
-                "skill_field_matches": schema_context.get("skill_field_matches", []),
-            }
+            return self._enrich_multi_api_context_with_skill(schema_context, api_skill)
 
         snapshot = self.loader.load(service_name)
         function_imports = schema_context.get("function_imports") or function_imports_from_snapshot(snapshot)
@@ -322,6 +319,140 @@ class SchemaContextProvider:
             "skill_field_matches": [
                 {key: value for key, value in match.items() if key != "score"}
                 for match in skill_field_matches
+            ],
+        }
+
+    def _enrich_multi_api_context_with_skill(
+        self,
+        schema_context: dict[str, Any],
+        api_skill: dict[str, Any],
+    ) -> dict[str, Any]:
+        service_name = str(api_skill.get("service_name") or "").strip()
+        if not service_name:
+            return {
+                **schema_context,
+                "skill_field_matches": schema_context.get("skill_field_matches", []),
+            }
+        try:
+            snapshot = self.loader.load(service_name)
+        except FileNotFoundError:
+            return {
+                **schema_context,
+                "skill_field_matches": schema_context.get("skill_field_matches", []),
+            }
+
+        skill_field_matches = self._skill_field_matches(snapshot, api_skill)
+        if not skill_field_matches:
+            return {
+                **schema_context,
+                "skill_field_matches": schema_context.get("skill_field_matches", []),
+            }
+
+        field_by_key = {
+            (str(field.get("entity_set", "")), str(field.get("field_name", ""))): field
+            for field in snapshot.fields
+        }
+        function_imports = [
+            item
+            for item in schema_context.get("function_imports", [])
+            if isinstance(item, dict) and str(item.get("service_name") or service_name) == service_name
+        ]
+        function_import_map = {str(item.get("name", "")): item for item in function_imports}
+
+        enriched_fields: list[dict[str, Any]] = []
+        seen_fields: set[tuple[str, str, str]] = set()
+        matched_entity_order: list[str] = []
+
+        def add_field(field: dict[str, Any]) -> None:
+            field_service = str(field.get("service_name") or service_name)
+            key = (
+                field_service,
+                str(field.get("entity_set") or ""),
+                str(field.get("field_name") or ""),
+            )
+            if not key[0] or not key[1] or not key[2] or key in seen_fields:
+                return
+            seen_fields.add(key)
+            enriched_fields.append({**field, "service_name": field_service})
+            if field_service == service_name and key[1] not in matched_entity_order:
+                matched_entity_order.append(key[1])
+
+        for match in skill_field_matches:
+            key = (str(match["entity_set"]), str(match["field_name"]))
+            field = field_by_key.get(key)
+            if field is None:
+                continue
+            add_field(self._field_payload(field, float(match["score"])))
+
+        for field in schema_context.get("candidate_fields", []):
+            if isinstance(field, dict):
+                add_field(field)
+
+        existing_entities = [
+            dict(entity)
+            for entity in schema_context.get("entities", [])
+            if isinstance(entity, dict)
+        ]
+        entities_by_key = {
+            (str(entity.get("service_name") or ""), str(entity.get("entity_set") or "")): entity
+            for entity in existing_entities
+        }
+
+        def merge_entity_fields(entity: dict[str, Any], extra_fields: list[dict[str, Any]]) -> dict[str, Any]:
+            merged_fields: list[dict[str, Any]] = []
+            seen: set[str] = set()
+            for field in [*extra_fields, *list(entity.get("fields", []))]:
+                if not isinstance(field, dict):
+                    continue
+                field_name = str(field.get("field_name") or "")
+                if not field_name or field_name in seen:
+                    continue
+                seen.add(field_name)
+                merged_fields.append(field)
+            return {**entity, "fields": merged_fields[:64]}
+
+        for entity_set in matched_entity_order:
+            matched_fields = [
+                field
+                for field in enriched_fields
+                if field.get("service_name") == service_name and field.get("entity_set") == entity_set
+            ]
+            payload = self._entity_payload(snapshot, entity_set, matched_fields, function_import_map)
+            if not payload:
+                continue
+            payload = {**payload, "service_name": service_name}
+            key = (service_name, entity_set)
+            if key in entities_by_key:
+                entities_by_key[key] = merge_entity_fields(entities_by_key[key], payload.get("fields", []))
+            else:
+                entities_by_key[key] = payload
+
+        ordered_entities: list[dict[str, Any]] = []
+        emitted: set[tuple[str, str]] = set()
+        for entity_set in matched_entity_order:
+            key = (service_name, entity_set)
+            entity = entities_by_key.get(key)
+            if entity and key not in emitted:
+                ordered_entities.append(entity)
+                emitted.add(key)
+        for entity in existing_entities:
+            key = (str(entity.get("service_name") or ""), str(entity.get("entity_set") or ""))
+            entity = entities_by_key.get(key, entity)
+            if key[0] and key[1] and key not in emitted:
+                ordered_entities.append(entity)
+                emitted.add(key)
+
+        cleaned_matches = [
+            {**{key: value for key, value in match.items() if key != "score"}, "service_name": service_name}
+            for match in skill_field_matches
+        ]
+        return {
+            **schema_context,
+            "candidate_fields": enriched_fields[: self.max_candidate_fields * max(1, len(schema_context.get("service_names", [])))],
+            "entities": ordered_entities[: self.max_candidate_entities * max(1, len(schema_context.get("service_names", [])))],
+            "skill_field_matches": [
+                *schema_context.get("skill_field_matches", []),
+                *cleaned_matches,
             ],
         }
 

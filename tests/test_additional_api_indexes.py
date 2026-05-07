@@ -26,6 +26,20 @@ def test_api_catalog_discovers_additional_indexed_apis() -> None:
     assert ADDITIONAL_APIS <= service_names
 
 
+def test_api_catalog_cache_returns_isolated_copies() -> None:
+    provider = ApiCatalogProvider(index_root="data/index")
+    first = provider.load()
+    assert first
+
+    first[0]["service_name"] = "MUTATED"
+    first[0]["top_entities"].append("MUTATED_ENTITY")
+
+    second = provider.load()
+
+    assert second[0]["service_name"] != "MUTATED"
+    assert "MUTATED_ENTITY" not in second[0]["top_entities"]
+
+
 def test_api_catalog_uses_compact_router_shape() -> None:
     catalog = ApiCatalogProvider(index_root="data/index").load()
     purchase_order = next(
@@ -72,6 +86,155 @@ def test_api_catalog_exposes_answer_fields_for_router_selection() -> None:
     assert "A_JournalEntryItemBasic.CompanyCodeName" in journal["top_answer_fields"]
     assert "GLAccountLineItem.GLAccountName" not in line_item["top_answer_fields"]
     assert "GLAccountLineItem.CompanyCodeName" not in line_item["top_answer_fields"]
+
+
+def test_company_code_catalog_prioritizes_chart_of_accounts_for_router() -> None:
+    catalog = ApiCatalogProvider(index_root="data/index").load()
+    company_code = next(item for item in catalog if item["service_name"] == "API_COMPANYCODE_SRV")
+
+    assert company_code["top_filter_fields"][:3] == [
+        "A_CompanyCode.CompanyCode",
+        "A_CompanyCode.ChartOfAccounts",
+        "A_CompanyCode.CountryChartOfAccounts",
+    ]
+    assert "A_CompanyCode.ChartOfAccounts" in company_code["top_answer_fields"][:4]
+    assert "A_CompanyCode.CountryChartOfAccounts" in company_code["top_answer_fields"][:4]
+
+
+def test_sales_order_and_outbound_delivery_catalog_expose_document_reference_fields() -> None:
+    catalog = ApiCatalogProvider(index_root="data/index").load()
+    sales_order = next(item for item in catalog if item["service_name"] == "API_SALES_ORDER_SRV")
+    delivery = next(item for item in catalog if item["service_name"] == "API_OUTBOUND_DELIVERY_SRV")
+
+    assert sales_order["top_entities"][:2] == ["A_SalesOrder", "A_SalesOrderItem"]
+    assert "A_SalesOrder.SalesOrder" in sales_order["top_filter_fields"][:4]
+    assert "A_SalesOrder.SalesOrder" in sales_order["top_answer_fields"][:4]
+
+    assert delivery["top_entities"][:3] == [
+        "A_OutbDeliveryHeader",
+        "A_OutbDeliveryItem",
+        "A_OutbDeliveryDocFlow",
+    ]
+    assert delivery["top_filter_fields"][:10] == [
+        "A_OutbDeliveryItem.ReferenceSDDocument",
+        "A_OutbDeliveryItem.ReferenceSDDocumentItem",
+        "A_OutbDeliveryHeader.SoldToParty",
+        "A_OutbDeliveryHeader.ShipToParty",
+        "A_OutbDeliveryHeader.OverallGoodsMovementStatus",
+        "A_OutbDeliveryHeader.OverallDelivReltdBillgStatus",
+        "A_OutbDeliveryItem.GoodsMovementStatus",
+        "A_OutbDeliveryItem.DeliveryRelatedBillingStatus",
+        "A_OutbDeliveryHeader.OrderID",
+        "A_OutbDeliveryHeader.DeliveryDocument",
+    ]
+    assert delivery["top_answer_fields"][:4] == [
+        "A_OutbDeliveryHeader.DeliveryDocument",
+        "A_OutbDeliveryHeader.DeliveryDate",
+        "A_OutbDeliveryHeader.SoldToParty",
+        "A_OutbDeliveryHeader.ShipToParty",
+    ]
+    assert "A_OutbDeliveryHeader.OverallGoodsMovementStatus" in delivery["top_answer_fields"][:8]
+    assert "A_OutbDeliveryHeader.OverallDelivReltdBillgStatus" in delivery["top_answer_fields"][:8]
+    assert "A_OutbDeliveryItem.ReferenceSDDocument" in delivery["top_answer_fields"]
+    assert "A_OutbDeliveryItem.ReferenceSDDocumentItem" in delivery["top_answer_fields"]
+
+
+def test_multi_api_schema_context_can_be_enriched_by_primary_api_skill() -> None:
+    route_decision = ApiRouteDecision(
+        selected_apis=[
+            SelectedApi("API_OUTBOUND_DELIVERY_SRV", confidence=0.95),
+            SelectedApi("API_BILLING_DOCUMENT_SRV", confidence=0.7),
+        ],
+        requires_multi_api=True,
+    )
+    provider = SchemaContextProvider(index_root="data/index")
+    context = provider.build(
+        "API_OUTBOUND_DELIVERY_SRV",
+        "\u67e5\u8be2\u5ba2\u623717100003\u5df2\u53d1\u8d27\u4f46\u8fd8\u6ca1\u5f00\u7968\u7684\u4ea4\u8d27\u5355",
+        route_decision=route_decision,
+    )
+    skill = ApiSkillProvider(skill_root="data/api_skills").load("API_OUTBOUND_DELIVERY_SRV")
+    assert skill is not None
+
+    enriched = provider.enrich_with_api_skill(context, skill.as_prompt_payload())
+
+    fields = {
+        (field.get("service_name"), field.get("entity_set"), field.get("field_name"))
+        for field in enriched["candidate_fields"]
+    }
+    assert (
+        "API_OUTBOUND_DELIVERY_SRV",
+        "A_OutbDeliveryHeader",
+        "OverallGoodsMovementStatus",
+    ) in fields
+    assert (
+        "API_OUTBOUND_DELIVERY_SRV",
+        "A_OutbDeliveryHeader",
+        "OverallDelivReltdBillgStatus",
+    ) in fields
+    assert any(
+        match.get("matched_field") == "A_OutbDeliveryHeader.OverallDelivReltdBillgStatus"
+        for match in enriched["skill_field_matches"]
+    )
+
+
+def test_outbound_delivery_skill_documents_delivered_not_billed_pattern() -> None:
+    skill = ApiSkillProvider(skill_root="data/api_skills").load("API_OUTBOUND_DELIVERY_SRV")
+    assert skill is not None
+
+    assert "Delivered But Not Billed Delivery Documents" in skill.content
+    assert "A_OutbDeliveryHeader.OverallGoodsMovementStatus eq 'C'" in skill.content
+    assert "A_OutbDeliveryHeader.OverallDelivReltdBillgStatus eq 'A'" in skill.content
+
+
+def test_sales_order_reference_fields_remain_in_outbound_delivery_answer_fields() -> None:
+    catalog = ApiCatalogProvider(index_root="data/index").load()
+    delivery = next(item for item in catalog if item["service_name"] == "API_OUTBOUND_DELIVERY_SRV")
+
+    assert "A_OutbDeliveryItem.ReferenceSDDocument" in delivery["top_answer_fields"]
+    assert "A_OutbDeliveryItem.ReferenceSDDocumentItem" in delivery["top_answer_fields"]
+
+
+def test_outbound_delivery_catalog_exposes_billing_status_fields() -> None:
+    catalog = ApiCatalogProvider(index_root="data/index").load()
+    delivery = next(item for item in catalog if item["service_name"] == "API_OUTBOUND_DELIVERY_SRV")
+
+    assert "A_OutbDeliveryHeader.OverallGoodsMovementStatus" in delivery["top_filter_fields"][:8]
+    assert "A_OutbDeliveryHeader.OverallDelivReltdBillgStatus" in delivery["top_filter_fields"][:8]
+    assert "A_OutbDeliveryHeader.SoldToParty" in delivery["top_filter_fields"][:4]
+    assert "A_OutbDeliveryHeader.ShipToParty" in delivery["top_filter_fields"][:4]
+
+
+def test_outbound_delivery_answer_fields_start_with_header_delivery_status() -> None:
+    catalog = ApiCatalogProvider(index_root="data/index").load()
+    delivery = next(item for item in catalog if item["service_name"] == "API_OUTBOUND_DELIVERY_SRV")
+
+    assert delivery["top_answer_fields"][:6] == [
+        "A_OutbDeliveryHeader.DeliveryDocument",
+        "A_OutbDeliveryHeader.DeliveryDate",
+        "A_OutbDeliveryHeader.SoldToParty",
+        "A_OutbDeliveryHeader.ShipToParty",
+        "A_OutbDeliveryHeader.OverallGoodsMovementStatus",
+        "A_OutbDeliveryHeader.OverallDelivReltdBillgStatus",
+    ]
+
+
+def test_outbound_delivery_sales_order_item_answer_fields_are_still_available() -> None:
+    catalog = ApiCatalogProvider(index_root="data/index").load()
+    delivery = next(item for item in catalog if item["service_name"] == "API_OUTBOUND_DELIVERY_SRV")
+
+    assert "A_OutbDeliveryItem.DeliveryDocument" in delivery["top_answer_fields"]
+    assert "A_OutbDeliveryItem.DeliveryDocumentItem" in delivery["top_answer_fields"]
+
+
+def test_outbound_delivery_catalog_keeps_document_reference_fields_near_top() -> None:
+    catalog = ApiCatalogProvider(index_root="data/index").load()
+    delivery = next(item for item in catalog if item["service_name"] == "API_OUTBOUND_DELIVERY_SRV")
+
+    assert delivery["top_filter_fields"][:2] == [
+        "A_OutbDeliveryItem.ReferenceSDDocument",
+        "A_OutbDeliveryItem.ReferenceSDDocumentItem",
+    ]
 
 
 def test_api_catalog_pins_info_record_router_fields() -> None:

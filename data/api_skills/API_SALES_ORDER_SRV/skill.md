@@ -51,6 +51,7 @@ Keep `data/index/API_SALES_ORDER_SRV` as the schema ground truth. This skill pro
 
 - Primary business scope: Sales Order (A2X).
 - Use the service description, entity descriptions, and field descriptions from `data/index/API_SALES_ORDER_SRV` to infer user intent.
+- Use this API for sales order header, item, partner, pricing, text, billing plan, and sales-order-specific fields. If the user asks for delivery documents created for or related to a sales order, route to `API_OUTBOUND_DELIVERY_SRV` because the target object is an outbound delivery.
 - Preserve SAP document numbers, item numbers, partner numbers, material/product IDs, company codes, plants, fiscal years, dates, currencies, quantities, statuses, and type codes exactly as returned by SAP.
 - When a user asks for a list, prefer the entity whose business level matches the requested object: header for document headers, item for line items, schedule for schedule lines, partner/address/text/pricing/account entities only when those details are explicitly requested.
 - For boolean fields, use unquoted OData boolean literals `true` and `false`. For string indicator fields, preserve the string literal exactly.
@@ -62,6 +63,11 @@ Keep `data/index/API_SALES_ORDER_SRV` as the schema ground truth. This skill pro
 - Select the entity whose description most directly matches the requested business object.
 - Apply user-provided identifiers, dates, statuses, organizational units, material/product IDs, customer/supplier IDs, and document numbers as filters when corresponding filterable fields exist.
 - Keep `$select` focused on key fields plus fields needed to answer the question.
+
+### Related Delivery Documents
+
+- Do not answer `delivery documents for sales order <number>` from this API unless the user explicitly asks for sales-order-side document-flow fields.
+- Prefer `API_OUTBOUND_DELIVERY_SRV.A_OutbDeliveryHeader.OrderID` for header-level delivery documents and `API_OUTBOUND_DELIVERY_SRV.A_OutbDeliveryItem.OrderID` or `ReferenceSDDocument` for delivery items.
 
 ### Detail Query
 

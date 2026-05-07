@@ -37,6 +37,7 @@ Keep `data/index/API_OUTBOUND_DELIVERY_SRV` as the schema ground truth. This ski
 
 - Primary business scope: Outbound Delivery (A2X).
 - Use the service description, entity descriptions, and field descriptions from `data/index/API_OUTBOUND_DELIVERY_SRV` to infer user intent.
+- When the user asks for delivery documents related to a sales order, this API is the target-object API. Prefer a direct outbound delivery item query using `A_OutbDeliveryItem.ReferenceSDDocument` instead of routing through the sales order API only to validate the order.
 - Preserve SAP document numbers, item numbers, partner numbers, material/product IDs, company codes, plants, fiscal years, dates, currencies, quantities, statuses, and type codes exactly as returned by SAP.
 - When a user asks for a list, prefer the entity whose business level matches the requested object: header for document headers, item for line items, schedule for schedule lines, partner/address/text/pricing/account entities only when those details are explicitly requested.
 - For boolean fields, use unquoted OData boolean literals `true` and `false`. For string indicator fields, preserve the string literal exactly.
@@ -48,6 +49,24 @@ Keep `data/index/API_OUTBOUND_DELIVERY_SRV` as the schema ground truth. This ski
 - Select the entity whose description most directly matches the requested business object.
 - Apply user-provided identifiers, dates, statuses, organizational units, material/product IDs, customer/supplier IDs, and document numbers as filters when corresponding filterable fields exist.
 - Keep `$select` focused on key fields plus fields needed to answer the question.
+
+### Delivery Documents For A Sales Order
+
+- For requests such as `query delivery documents for sales order 3773` or `查询销售订单3773的交货单`, use `API_OUTBOUND_DELIVERY_SRV` directly.
+- Start with `A_OutbDeliveryItem` for sales-order-related delivery documents: filter `A_OutbDeliveryItem.ReferenceSDDocument eq '3773'`, and select `DeliveryDocument`, `DeliveryDocumentItem`, `ReferenceSDDocument`, `ReferenceSDDocumentItem`, `OrderID`, `Material`, and quantity/status fields.
+- `A_OutbDeliveryHeader.OrderID` can be blank in this SAP service for sales-order-created deliveries. Do not conclude that no delivery exists from an empty `OrderID` result until `A_OutbDeliveryItem.ReferenceSDDocument` has been checked.
+- If the user asks for header-level delivery dates, ship-to party, sold-to party, shipping point, or overall status, use a second step from `A_OutbDeliveryItem.DeliveryDocument` to `A_OutbDeliveryHeader.DeliveryDocument`.
+- Do not build a multi-API plan through `API_SALES_ORDER_SRV` merely to confirm the sales order exists when the delivery API exposes the sales order reference as a filter field.
+
+### Delivered But Not Billed Delivery Documents
+
+- For requests such as `delivered but not billed deliveries`, `shipped but not invoiced delivery documents`, `已发货但未开票的交货单`, or `已发货但还没开票的交货单`, prefer a direct `API_OUTBOUND_DELIVERY_SRV` plan before considering `API_BILLING_DOCUMENT_SRV`.
+- Use `A_OutbDeliveryHeader` when the user asks for delivery documents at header/list level.
+- For customer wording without a more specific partner role, filter `A_OutbDeliveryHeader.SoldToParty eq '<customer>'`. If the user explicitly says ship-to or receiver, use `A_OutbDeliveryHeader.ShipToParty eq '<customer>'`.
+- For already shipped / goods issue completed semantics, filter `A_OutbDeliveryHeader.OverallGoodsMovementStatus eq 'C'`.
+- For not yet billed semantics, filter `A_OutbDeliveryHeader.OverallDelivReltdBillgStatus eq 'A'`. For not fully billed / open billing wording, use `A_OutbDeliveryHeader.OverallDelivReltdBillgStatus ne 'C'` when the user allows partially billed deliveries.
+- Select `DeliveryDocument`, `DeliveryDate`, `SoldToParty`, `ShipToParty`, `OverallGoodsMovementStatus`, and `OverallDelivReltdBillgStatus`.
+- Use `API_BILLING_DOCUMENT_SRV` only when the user asks for actual billing documents, invoice numbers, invoice dates, or billing document details, or when the outbound delivery billing status fields cannot answer the business question.
 
 ### Detail Query
 
@@ -64,6 +83,7 @@ Keep `data/index/API_OUTBOUND_DELIVERY_SRV` as the schema ground truth. This ski
 - Do not treat a detail entity as proof of a header-level business status unless the indexed fields explicitly support that status.
 - Do not use action/function entities for read-only questions unless they are documented function imports and all required parameters are available.
 - Do not answer from an empty or blank less-specific field when a more specific entity or field exists for the business concept.
+- Do not use a cross-API anti-join against billing documents for delivered-but-not-billed delivery lists when `A_OutbDeliveryHeader.OverallDelivReltdBillgStatus` is available.
 
 ## Needs Verification
 

@@ -1,3 +1,4 @@
+import json
 from datetime import datetime
 from pathlib import Path
 
@@ -163,6 +164,77 @@ def test_case_repository_persists_feedback_and_can_search_it(tmp_path: Path) -> 
     matched = repository.search_feedback("供应商17300003在所有采购组织下的planned delivery time分别是多久？", limit=3)
     assert matched
     assert matched[0]["case_id"] == "case-1"
+
+
+def test_case_repository_reuses_cache_and_detects_external_history_changes(tmp_path: Path) -> None:
+    path = tmp_path / "cases.jsonl"
+    repository = JsonlCaseRepository(str(path))
+    repository.save(
+        _make_case(
+            case_id="case-1",
+            user_input="first query",
+            conversation_id="conv-cache",
+            final_status="success",
+        )
+    )
+
+    assert repository.list_recent(limit=5)[0]["case_id"] == "case-1"
+
+    external_entry = {
+        "case_id": "case-2",
+        "created_at": "2099-01-01T00:00:00+00:00",
+        "request": {"user_input": "external query", "conversation_id": "conv-cache"},
+        "final_status": "success",
+    }
+    with path.open("a", encoding="utf-8") as handle:
+        handle.write(json.dumps(external_entry, ensure_ascii=False) + "\n")
+
+    recent = repository.list_recent(limit=5, conversation_id="conv-cache")
+
+    assert recent[0]["case_id"] == "case-2"
+
+    repository.save(
+        _make_case(
+            case_id="case-3",
+            user_input="third query",
+            conversation_id="conv-cache",
+            final_status="success",
+        )
+    )
+
+    case_ids = {entry["case_id"] for entry in repository.list_recent(limit=5, conversation_id="conv-cache")}
+    assert {"case-1", "case-2", "case-3"} <= case_ids
+
+
+def test_case_repository_reuses_cache_and_detects_external_feedback_memory_changes(tmp_path: Path) -> None:
+    memory_path = tmp_path / "feedback_memory.jsonl"
+    repository = JsonlCaseRepository(str(tmp_path / "cases.jsonl"), memory_path=str(memory_path))
+    repository.save_feedback_memory(
+        "case-1",
+        {
+            "memory_type": "field_disambiguation",
+            "lesson": "Use IsFinallyInvoiced for open invoice purchase orders.",
+            "user_phrases": ["open invoice"],
+            "preferred_fields": ["IsFinallyInvoiced"],
+        },
+    )
+
+    assert repository.search_feedback_memory("open invoice purchase orders", limit=5)
+
+    external_memory = {
+        "case_id": "case-2",
+        "created_at": "2099-01-01T00:00:00+00:00",
+        "memory_type": "field_disambiguation",
+        "lesson": "Use Material and Plant for stock availability queries.",
+        "user_phrases": ["stock availability"],
+        "preferred_fields": ["Material", "Plant"],
+    }
+    with memory_path.open("a", encoding="utf-8") as handle:
+        handle.write(json.dumps(external_memory, ensure_ascii=False) + "\n")
+
+    matched = repository.search_feedback_memory("stock availability by material and plant", limit=5)
+
+    assert any(entry["case_id"] == "case-2" for entry in matched)
 
 
 def test_orchestrator_carries_clarification_context_into_follow_up(tmp_path: Path) -> None:

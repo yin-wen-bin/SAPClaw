@@ -26,6 +26,7 @@ Keep `data/index/API_COMPANYCODE_SRV` as the schema ground truth. This skill pro
 
 - Primary business scope: Company Code - Read.
 - Use the service description, entity descriptions, and field descriptions from `data/index/API_COMPANYCODE_SRV` to infer user intent.
+- When the user asks for a company code's chart of accounts, route here and read `A_CompanyCode.ChartOfAccounts`; do not interpret the company code value as a chart-of-accounts code.
 - Preserve SAP document numbers, item numbers, partner numbers, material/product IDs, company codes, plants, fiscal years, dates, currencies, quantities, statuses, and type codes exactly as returned by SAP.
 - When a user asks for a list, prefer the entity whose business level matches the requested object: header for document headers, item for line items, schedule for schedule lines, partner/address/text/pricing/account entities only when those details are explicitly requested.
 - For boolean fields, use unquoted OData boolean literals `true` and `false`. For string indicator fields, preserve the string literal exactly.
@@ -37,6 +38,13 @@ Keep `data/index/API_COMPANYCODE_SRV` as the schema ground truth. This skill pro
 - Select the entity whose description most directly matches the requested business object.
 - Apply user-provided identifiers, dates, statuses, organizational units, material/product IDs, customer/supplier IDs, and document numbers as filters when corresponding filterable fields exist.
 - Keep `$select` focused on key fields plus fields needed to answer the question.
+
+### Company Code Chart Of Accounts
+
+- For requests such as `query company 1710 chart of accounts` or `what chart of accounts is assigned to company code 1710`, query `A_CompanyCode` directly.
+- Filter `A_CompanyCode.CompanyCode eq '1710'`.
+- Select `A_CompanyCode.CompanyCode`, `A_CompanyCode.CompanyCodeName`, `A_CompanyCode.ChartOfAccounts`, and `A_CompanyCode.CountryChartOfAccounts` when available.
+- Do not route this standalone attribute question to `API_GLACCOUNTINCHARTOFACCOUNTS_SRV`; that API lists G/L accounts within a chart of accounts.
 
 ### Bridge To Chart-Of-Accounts APIs
 

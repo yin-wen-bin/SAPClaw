@@ -127,7 +127,7 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
                 "business_domain": route_decision.business_domain,
                 "business_object": route_decision.business_object,
             },
-            "schema_context": schema_context,
+            "schema_context": LlmApiSpecificPlanner._schema_context_prompt_payload(schema_context, request),
             "feedback_hints": request.feedback_hints,
             "feedback_memories": request.feedback_memories,
         }
@@ -151,6 +151,201 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )
+
+    @staticmethod
+    def _schema_context_prompt_payload(
+        schema_context: dict[str, Any],
+        request: AgentRequest,
+    ) -> dict[str, Any]:
+        query = request.resolved_user_input or request.user_input or str(schema_context.get("query") or "")
+
+        def compact_field(field: dict[str, Any]) -> dict[str, Any]:
+            payload = {
+                "service_name": field.get("service_name", ""),
+                "entity_set": field.get("entity_set", ""),
+                "field_name": field.get("field_name", ""),
+                "label": field.get("label", ""),
+                "data_type": field.get("data_type", ""),
+                "filterable": field.get("filterable", False),
+            }
+            description = str(field.get("description") or "").strip()
+            if description:
+                payload["description"] = LlmApiSpecificPlanner._truncate_prompt_value(description, 80)
+            return {key: value for key, value in payload.items() if value not in ("", [], {})}
+
+        def compact_entity(entity: dict[str, Any]) -> dict[str, Any]:
+            fields = [
+                compact_field({**field, "entity_set": field.get("entity_set") or entity.get("entity_set", "")})
+                for field in entity.get("fields", [])[:24]
+                if isinstance(field, dict)
+            ]
+            return {
+                "service_name": entity.get("service_name", ""),
+                "entity_set": entity.get("entity_set", ""),
+                "kind": entity.get("kind", "entity_set"),
+                "description": LlmApiSpecificPlanner._truncate_prompt_value(str(entity.get("description") or ""), 120),
+                "key_fields": entity.get("key_fields", []),
+                "default_select_fields": entity.get("default_select_fields", [])[:12],
+                "supports_filter": entity.get("supports_filter", True),
+                "supports_top": entity.get("supports_top", True),
+                "fields": fields,
+            }
+
+        def compact_skill(skill: dict[str, Any]) -> dict[str, Any]:
+            return {
+                "service_name": skill.get("service_name", ""),
+                "path": skill.get("path", ""),
+                "summary": LlmApiSpecificPlanner._truncate_prompt_value(str(skill.get("summary") or ""), 2200),
+            }
+
+        selected_entities = LlmApiSpecificPlanner._select_prompt_entities(schema_context)
+        payload: dict[str, Any] = {
+            "service_name": schema_context.get("service_name", ""),
+            "service_names": schema_context.get("service_names", [schema_context.get("service_name", "")]),
+            "services": schema_context.get("services", []),
+            "service": schema_context.get("service", {}),
+            "multi_api": schema_context.get("multi_api", False),
+            "route_decision": schema_context.get("route_decision", {}),
+            "entities": [
+                compact_entity(entity)
+                for entity in selected_entities
+                if isinstance(entity, dict)
+            ],
+            "candidate_fields": [
+                compact_field(field)
+                for field in schema_context.get("candidate_fields", [])[:80]
+                if isinstance(field, dict)
+            ],
+            "join_hints": schema_context.get("join_hints", [])[:30],
+            "relations": schema_context.get("relations", [])[:24],
+            "retrieved_documents": schema_context.get("retrieved_documents", [])[:8],
+            "feedback_memories": schema_context.get("feedback_memories", [])[:5],
+            "feedback_field_matches": schema_context.get("feedback_field_matches", []),
+            "skill_field_matches": schema_context.get("skill_field_matches", []),
+            "schema_research": schema_context.get("schema_research", {}),
+        }
+        api_skill = schema_context.get("api_skill") or {}
+        api_skills = [
+            compact_skill(skill)
+            for skill in schema_context.get("api_skills", [])
+            if isinstance(skill, dict)
+        ]
+        if api_skills:
+            payload["api_skills"] = api_skills[:6]
+        elif isinstance(api_skill, dict) and api_skill:
+            payload["api_skill"] = compact_skill(api_skill)
+        if LlmApiSpecificPlanner._should_include_function_imports(query, schema_context):
+            payload["function_imports"] = [
+                LlmApiSpecificPlanner._compact_function_import(item)
+                for item in schema_context.get("function_imports", [])[:12]
+                if isinstance(item, dict)
+            ]
+        return payload
+
+    @staticmethod
+    def _select_prompt_entities(schema_context: dict[str, Any]) -> list[dict[str, Any]]:
+        entities = [
+            entity
+            for entity in schema_context.get("entities", [])
+            if isinstance(entity, dict) and str(entity.get("entity_set") or "")
+        ]
+        if not entities:
+            return []
+        service_names = [
+            str(item).strip()
+            for item in schema_context.get("service_names", [schema_context.get("service_name", "")])
+            if str(item).strip()
+        ]
+        if len(service_names) <= 1:
+            return entities[:16]
+
+        selected: list[dict[str, Any]] = []
+        emitted: set[tuple[str, str]] = set()
+        per_service = max(4, 16 // len(service_names))
+        for service_name in service_names:
+            count = 0
+            for entity in entities:
+                key = (str(entity.get("service_name") or ""), str(entity.get("entity_set") or ""))
+                if key[0] != service_name or key in emitted:
+                    continue
+                selected.append(entity)
+                emitted.add(key)
+                count += 1
+                if count >= per_service:
+                    break
+        for entity in entities:
+            if len(selected) >= 20:
+                break
+            key = (str(entity.get("service_name") or ""), str(entity.get("entity_set") or ""))
+            if key not in emitted:
+                selected.append(entity)
+                emitted.add(key)
+        return selected
+
+    @staticmethod
+    def _compact_function_import(item: dict[str, Any]) -> dict[str, Any]:
+        return {
+            "service_name": item.get("service_name", ""),
+            "name": item.get("name", "") or item.get("entity_set", ""),
+            "entity_set": item.get("entity_set", ""),
+            "http_method": item.get("http_method", ""),
+            "parameters": [
+                {
+                    "name": parameter.get("name", ""),
+                    "data_type": parameter.get("data_type", ""),
+                    "value_type": parameter.get("value_type", ""),
+                    "required": parameter.get("required", True),
+                    "label": parameter.get("label", ""),
+                }
+                for parameter in item.get("parameters", [])[:12]
+                if isinstance(parameter, dict)
+            ],
+            "return_type": item.get("return_type", ""),
+            "return_fields": [
+                {
+                    "field_name": field.get("field_name", ""),
+                    "data_type": field.get("data_type", ""),
+                    "value_type": field.get("value_type", ""),
+                    "label": field.get("label", ""),
+                }
+                for field in item.get("return_fields", [])[:16]
+                if isinstance(field, dict)
+            ],
+        }
+
+    @staticmethod
+    def _should_include_function_imports(query: str, schema_context: dict[str, Any]) -> bool:
+        if not schema_context.get("function_imports"):
+            return False
+        service_names = " ".join(str(item) for item in schema_context.get("service_names", []))
+        text = f"{query} {service_names}".lower()
+        markers = (
+            "function import",
+            "availability",
+            "available",
+            "avail",
+            "stock availability",
+            "can be delivered",
+            "can deliver",
+            "\u6709\u8d27",
+            "\u53ef\u7528",
+            "\u53ef\u4ea4\u4ed8",
+            "\u5e93\u5b58\u53ef\u7528",
+        )
+        if any(marker in text for marker in markers):
+            return True
+        entities = schema_context.get("entities", [])
+        return bool(entities) and all(
+            isinstance(entity, dict) and entity.get("kind") == "function_import"
+            for entity in entities
+        )
+
+    @staticmethod
+    def _truncate_prompt_value(value: str, max_chars: int) -> str:
+        text = " ".join(str(value or "").split())
+        if len(text) <= max_chars:
+            return text
+        return text[: max_chars - 3].rstrip() + "..."
 
     @staticmethod
     def _selected_service(route_decision: ApiRouteDecision) -> str:

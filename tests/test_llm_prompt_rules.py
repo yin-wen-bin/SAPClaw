@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import json
+
 from sap_odata_agent.application.llm_plan_critic import LlmPlanCritic
 from sap_odata_agent.domain.models import AgentRequest, ApiRouteDecision, QueryConstraints, QueryPlan, QueryShape, SelectedApi
 from sap_odata_agent.infrastructure.llm.api_specific_planner import LlmApiSpecificPlanner
@@ -66,6 +68,19 @@ def test_prompts_distinguish_output_field_lists_from_filters() -> None:
         )
 
 
+def test_api_router_prompt_distinguishes_company_chart_attribute_from_gl_accounts() -> None:
+    assert "company code's chart of accounts" in API_ROUTER_TASK_PROMPT
+    assert "company code API" in API_ROUTER_TASK_PROMPT
+    assert "G/L account API" in API_ROUTER_TASK_PROMPT
+
+
+def test_api_router_prompt_prefers_target_document_api_for_source_references() -> None:
+    assert "target documents related to a source document" in API_ROUTER_TASK_PROMPT
+    assert "delivery documents for sales order 3773" in API_ROUTER_TASK_PROMPT
+    assert "outbound delivery API" in API_ROUTER_TASK_PROMPT
+    assert "OrderID or ReferenceSDDocument" in API_ROUTER_TASK_PROMPT
+
+
 def test_api_planner_prompt_supports_cross_service_multistep_steps() -> None:
     prompt = LlmApiSpecificPlanner._user_prompt(
         AgentRequest(user_input="query company 1710 expense accounts"),
@@ -89,6 +104,85 @@ def test_api_planner_prompt_supports_cross_service_multistep_steps() -> None:
     assert "service_name" in prompt
     assert "cross-service join_hints" in prompt
     assert "every multi_step step must include service_name" in prompt
+
+
+def test_api_planner_prompt_omits_function_imports_for_plain_read_queries() -> None:
+    route_decision = ApiRouteDecision(
+        selected_apis=[SelectedApi("API_OUTBOUND_DELIVERY_SRV", confidence=0.9)],
+        requires_multi_api=False,
+    )
+    prompt = LlmApiSpecificPlanner._user_prompt(
+        AgentRequest(user_input="query delivered but not billed deliveries"),
+        route_decision=route_decision,
+        schema_context={
+            "service_name": "API_OUTBOUND_DELIVERY_SRV",
+            "service_names": ["API_OUTBOUND_DELIVERY_SRV"],
+            "entities": [
+                {
+                    "service_name": "API_OUTBOUND_DELIVERY_SRV",
+                    "entity_set": "A_OutbDeliveryHeader",
+                    "fields": [
+                        {
+                            "entity_set": "A_OutbDeliveryHeader",
+                            "field_name": "OverallDelivReltdBillgStatus",
+                            "label": "Billing Status",
+                            "data_type": "Edm.String",
+                            "filterable": True,
+                        }
+                    ],
+                }
+            ],
+            "function_imports": [
+                {
+                    "name": "MutatingAction",
+                    "parameters": [{"name": "DeliveryDocument", "data_type": "Edm.String"}],
+                    "return_fields": [{"field_name": f"Field{index}"} for index in range(100)],
+                }
+            ],
+            "api_skill": {
+                "service_name": "API_OUTBOUND_DELIVERY_SRV",
+                "summary": "Use delivery billing status for delivered but not billed lists.",
+                "content": "x" * 10000,
+            },
+        },
+    )
+
+    payload = json.loads(prompt.split("Input:\n", 1)[1].split("\n\nPlanning rules", 1)[0])
+    prompt_context = payload["schema_context"]
+
+    assert "function_imports" not in prompt_context
+    assert "content" not in prompt_context["api_skill"]
+    assert len(prompt) < 25000
+
+
+def test_api_planner_prompt_keeps_function_imports_for_availability_queries() -> None:
+    route_decision = ApiRouteDecision(
+        selected_apis=[SelectedApi("API_PRODUCT_AVAILY_INFO_BASIC", confidence=0.9)],
+        requires_multi_api=False,
+    )
+    prompt = LlmApiSpecificPlanner._user_prompt(
+        AgentRequest(user_input="查询物料TG0011在工厂1710今天是否有货"),
+        route_decision=route_decision,
+        schema_context={
+            "service_name": "API_PRODUCT_AVAILY_INFO_BASIC",
+            "service_names": ["API_PRODUCT_AVAILY_INFO_BASIC"],
+            "entities": [{"entity_set": "DetermineAvailabilityAt", "kind": "function_import"}],
+            "function_imports": [
+                {
+                    "name": "DetermineAvailabilityAt",
+                    "parameters": [
+                        {"name": "Product", "data_type": "Edm.String", "value_type": "string", "required": True},
+                        {"name": "Plant", "data_type": "Edm.String", "value_type": "string", "required": True},
+                    ],
+                    "return_type": "Availability",
+                }
+            ],
+        },
+    )
+
+    payload = json.loads(prompt.split("Input:\n", 1)[1].split("\n\nPlanning rules", 1)[0])
+
+    assert payload["schema_context"]["function_imports"][0]["name"] == "DetermineAvailabilityAt"
 
 
 def test_api_planner_materializes_cross_service_steps_from_router_selection() -> None:
