@@ -110,7 +110,7 @@ def get_orchestrator_for_profile(profile_id: str | None = None) -> AgentOrchestr
         ),
         api_skill_provider=ApiSkillProvider(
             skill_root=settings.api_skill_root,
-            max_summary_chars=900,
+            max_summary_chars=4000,
         ),
         enable_query_repair=False,
         api_catalog_provider=ApiCatalogProvider(

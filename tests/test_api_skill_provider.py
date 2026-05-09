@@ -33,7 +33,9 @@ Use this API for test documents.
     assert skill is not None
     assert skill.service_name == "API_TEST"
     assert "Use this API for test documents" in skill.content
+    assert skill.summary.startswith("## Business Semantics") or skill.summary.startswith("## Common Planning Patterns")
     assert "Open means" in skill.summary
+    assert "Use this API for test documents" in skill.summary
     assert "Needs Verification" not in skill.summary
 
 
@@ -94,3 +96,35 @@ Use second version with changed length.
     assert third is not None
     assert third is not first
     assert "second version" in third.content
+
+
+def test_api_skill_provider_prioritizes_common_planning_patterns_before_truncation(tmp_path: Path) -> None:
+    service_dir = tmp_path / "API_TEST"
+    service_dir.mkdir(parents=True)
+    (service_dir / "skill.md").write_text(
+        """# API_TEST Skill
+
+## Purpose
+{}
+
+## When To Use
+- Query this API.
+
+## Business Semantics
+- Basic semantics.
+
+## Common Planning Patterns
+- For line items with functional area, filter `FunctionalArea ne ''`.
+
+## Pitfalls
+- Do not use blank fields as negative proof.
+""".format("x" * 1000),
+        encoding="utf-8",
+    )
+
+    provider = ApiSkillProvider(skill_root=tmp_path, max_summary_chars=220)
+    skill = provider.load("API_TEST")
+
+    assert skill is not None
+    assert skill.summary.startswith("## Common Planning Patterns")
+    assert "FunctionalArea ne ''" in skill.summary

@@ -30,7 +30,7 @@ class ApiSkillProvider:
     index, and schema validation remains authoritative for fields and entities.
     """
 
-    def __init__(self, skill_root: str | Path = "data/api_skills", max_summary_chars: int = 2200) -> None:
+    def __init__(self, skill_root: str | Path = "data/api_skills", max_summary_chars: int = 4000) -> None:
         self.skill_root = Path(skill_root)
         self.max_summary_chars = max_summary_chars
         self._cache_lock = RLock()
@@ -79,7 +79,7 @@ class ApiSkillProvider:
         return enriched
 
     def _summarize(self, content: str) -> str:
-        sections = self._extract_sections(
+        sections_by_heading = self._extract_sections_by_heading(
             content,
             wanted={
                 "purpose",
@@ -89,6 +89,17 @@ class ApiSkillProvider:
                 "pitfalls",
             },
         )
+        sections = [
+            sections_by_heading[heading]
+            for heading in (
+                "common planning patterns",
+                "business semantics",
+                "pitfalls",
+                "purpose",
+                "when to use",
+            )
+            if heading in sections_by_heading
+        ]
         summary = "\n\n".join(section for section in sections if section).strip()
         if not summary:
             summary = content
@@ -96,16 +107,21 @@ class ApiSkillProvider:
 
     @staticmethod
     def _extract_sections(content: str, wanted: set[str]) -> list[str]:
+        return list(ApiSkillProvider._extract_sections_by_heading(content, wanted).values())
+
+    @staticmethod
+    def _extract_sections_by_heading(content: str, wanted: set[str]) -> dict[str, str]:
         lines = content.splitlines()
-        sections: list[str] = []
+        sections: dict[str, str] = {}
         current_heading = ""
         current_lines: list[str] = []
 
         def flush() -> None:
-            if current_heading and ApiSkillProvider._normalize_heading(current_heading) in wanted:
+            normalized_heading = ApiSkillProvider._normalize_heading(current_heading)
+            if current_heading and normalized_heading in wanted:
                 text = "\n".join(current_lines).strip()
                 if text:
-                    sections.append(f"## {current_heading}\n{text}")
+                    sections[normalized_heading] = f"## {current_heading}\n{text}"
 
         for line in lines:
             match = re.match(r"^##\s+(.+?)\s*$", line)

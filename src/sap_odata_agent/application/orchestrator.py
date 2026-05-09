@@ -1170,15 +1170,22 @@ class AgentOrchestrator:
             )
         response_plan = last_successful_plan if post_execution_repair_timeout and last_successful_plan else current_plan
         response_data = last_successful_data if post_execution_repair_timeout else None
-        failure_attribution = self.failure_attributor.attribute(
-            effective_request,
-            response_plan,
-            success=False,
-            final_message=diagnosis.root_cause or "Unable to produce a valid SAP OData request after LLM planning attempts.",
-            guardrail_decision=latest_guardrail_decision,
-            critic_findings=latest_critic_findings,
-            presentation_verification=presentation_verification,
-        )
+        if post_execution_repair_timeout:
+            failure_attribution = FailureAttribution(
+                category=diagnosis.category,
+                root_cause=diagnosis.root_cause,
+                evidence=diagnosis.evidence,
+            )
+        else:
+            failure_attribution = self.failure_attributor.attribute(
+                effective_request,
+                response_plan,
+                success=False,
+                final_message=diagnosis.root_cause or "Unable to produce a valid SAP OData request after LLM planning attempts.",
+                guardrail_decision=latest_guardrail_decision,
+                critic_findings=latest_critic_findings,
+                presentation_verification=presentation_verification,
+            )
         response = AgentResponse(
             success=False,
             plan=response_plan,
@@ -1325,10 +1332,25 @@ class AgentOrchestrator:
                 skills.append(skill)
         if not skills:
             return schema_context
+        enriched_context = schema_context
+        already_enriched_service = str((schema_context.get("api_skill") or {}).get("service_name") or "")
+        if hasattr(self.schema_context_provider, "enrich_with_api_skill"):
+            for skill in skills:
+                skill_service = str(skill.get("service_name") or "")
+                if skill_service and skill_service == already_enriched_service:
+                    continue
+                enriched_context = self._timed_call(
+                    timings,
+                    "schema_context.enrich_with_api_skill",
+                    "菴ｿ逕ｨ API Skill 蠅槫ｼｺ Schema Context",
+                    self.schema_context_provider.enrich_with_api_skill,
+                    enriched_context,
+                    skill,
+                )
         return {
-            **schema_context,
+            **enriched_context,
             "api_skills": skills,
-            "api_skill": schema_context.get("api_skill") or skills[0],
+            "api_skill": enriched_context.get("api_skill") or skills[0],
         }
 
     @staticmethod

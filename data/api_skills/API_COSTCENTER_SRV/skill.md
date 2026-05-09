@@ -47,6 +47,31 @@ Keep `data/index/API_COSTCENTER_SRV` as the schema ground truth. This skill prov
 - For "posting block", "blocked for posting", or "quantity recording" questions, query `A_CostCenter`.
 - Select the cost center identifiers plus the requested indicator fields, especially `A_CostCenter.ConsumptionQtyIsRecorded`, `A_CostCenter.IsBlkdForPrimaryCostsPosting`, `A_CostCenter.IsBlkdForSecondaryCostsPosting`, and `A_CostCenter.IsBlockedForCommitmentPosting`.
 - Treat these fields as output indicators for "include/show indicators" wording. Use filters only for wording such as "blocked cost centers" or "where quantity recording is active".
+- For wording such as "禁止初级成本过账的成本中心" or "blocked for primary cost posting", query `A_CostCenter`, filter `A_CostCenter.IsBlkdForPrimaryCostsPosting eq 'X'`, and select only `A_CostCenter.ControllingArea`, `A_CostCenter.CostCenter`, `A_CostCenter.CompanyCode`, and `A_CostCenter.IsBlkdForPrimaryCostsPosting`. Do not query `A_CostCenterText` unless the user asks for names or descriptions.
+- For wording such as "禁止次级成本过账的成本中心" or "blocked for secondary cost posting", query `A_CostCenter`, filter `A_CostCenter.IsBlkdForSecondaryCostsPosting eq 'X'`, and select only `A_CostCenter.ControllingArea`, `A_CostCenter.CostCenter`, `A_CostCenter.CompanyCode`, and `A_CostCenter.IsBlkdForSecondaryCostsPosting`. Do not query `A_CostCenterText` unless the user asks for names or descriptions.
+
+### Cost Center Currency
+
+- For wording such as "公司1710成本中心使用的货币" or "cost center currency for company 1710", query `A_CostCenter` by `A_CostCenter.CompanyCode` and select only `A_CostCenter.ControllingArea`, `A_CostCenter.CostCenter`, `A_CostCenter.CompanyCode`, and `A_CostCenter.CostCenterCurrency`.
+- Do not answer cost center currency from `API_COMPANYCODE_SRV.A_CompanyCode.Currency`; company-code currency is not the same as the currency maintained on each cost center.
+
+### Cost Center Master Attributes
+
+- For wording such as "公司1710成本中心的标准层级区域", query `A_CostCenter` by `A_CostCenter.CompanyCode` and select only `A_CostCenter.ControllingArea`, `A_CostCenter.CostCenter`, `A_CostCenter.CompanyCode`, and `A_CostCenter.CostCenterStandardHierArea`.
+- For wording such as "公司1710成本中心类别", query `A_CostCenter` by `A_CostCenter.CompanyCode` and select only `A_CostCenter.ControllingArea`, `A_CostCenter.CostCenter`, `A_CostCenter.CompanyCode`, and `A_CostCenter.CostCenterCategory`.
+- For wording such as "公司1710成本中心负责人信息", query `A_CostCenter` by `A_CostCenter.CompanyCode` and select only `A_CostCenter.ControllingArea`, `A_CostCenter.CostCenter`, `A_CostCenter.CompanyCode`, `A_CostCenter.CostCtrResponsiblePersonName`, and `A_CostCenter.CostCtrResponsibleUser`.
+
+### Company Cost Center Names
+
+- For wording such as "公司1710成本中心的英文名称" or "cost center English names for company 1710", do not ask for a specific cost center. Treat it as a list request for all cost centers assigned to that company code.
+- Step 1: query `A_CostCenter` by `A_CostCenter.CompanyCode` and select only `A_CostCenter.ControllingArea`, `A_CostCenter.CostCenter`, and `A_CostCenter.CompanyCode`.
+- Step 2: query `A_CostCenterText` by `CostCenter` binding and filter `A_CostCenterText.Language eq 'EN'`. Select only `A_CostCenterText.ControllingArea`, `A_CostCenterText.CostCenter`, `A_CostCenterText.Language`, and `A_CostCenterText.CostCenterName`.
+
+### Cost Center To Profit Center Mapping
+
+- For wording such as "成本中心对应的利润中心", "成本中心关联利润中心", or "cost center profit center mapping", do not ask for a specific cost center when the user also provides a company code. Treat it as a list mapping request for all cost centers in that company code.
+- Step 1: query `A_CostCenter` by `A_CostCenter.CompanyCode` and select `A_CostCenter.ControllingArea`, `A_CostCenter.CostCenter`, `A_CostCenter.CompanyCode`, and `A_CostCenter.ProfitCenter`.
+- If names are requested, Step 2 can query `API_PROFITCENTER_SRV.A_ProfitCenterText` by `ProfitCenter` and select `A_ProfitCenterText.ControllingArea`, `A_ProfitCenterText.ProfitCenter`, `A_ProfitCenterText.Language`, and `A_ProfitCenterText.ProfitCenterName`.
 
 ### Detail Query
 

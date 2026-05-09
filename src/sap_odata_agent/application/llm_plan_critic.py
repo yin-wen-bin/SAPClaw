@@ -56,6 +56,10 @@ class LlmPlanCritic:
                 continue
             if self._is_spurious_field_list_missing_filter(request, plan, code, message):
                 continue
+            if self._is_spurious_unrequested_field_requirement(request, code, message):
+                continue
+            if self._is_spurious_unrequested_name_field_finding(request, code, message):
+                continue
             severity = str(item.get("severity", "warning") or "warning")
             blocking = bool(item.get("blocking", False))
             findings.append(
@@ -185,3 +189,54 @@ class LlmPlanCritic:
         for step in plan.steps or []:
             selected_fields.update(step.select_fields or [])
         return bool(selected_fields)
+
+    @staticmethod
+    def _is_spurious_unrequested_field_requirement(
+        request: AgentRequest,
+        code: str,
+        message: str,
+    ) -> bool:
+        normalized = f"{code} {message}".lower()
+        if not any(marker in normalized for marker in ("missing", "required", "critical", "wrong_field")):
+            return False
+        user_text = f"{request.resolved_user_input or ''} {request.user_input or ''}".lower()
+        concept_groups = [
+            (("name", "名称", "名字", "description", "描述", "text field"), ("name", "名称", "名字", "description", "描述", "文本")),
+            (("postingdate", "documentdate", "date", "日期", "过账日期", "凭证日期"), ("date", "日期", "过账日期", "凭证日期")),
+            (("debit", "credit", "debitcredit", "借贷", "借方", "贷方"), ("debit", "credit", "借贷", "借方", "贷方")),
+        ]
+        mentioned_groups = [
+            requested_markers
+            for message_markers, requested_markers in concept_groups
+            if any(marker in normalized for marker in message_markers)
+        ]
+        if not mentioned_groups:
+            return False
+        return not any(
+            marker in user_text
+            for requested_markers in mentioned_groups
+            for marker in requested_markers
+        )
+
+    @staticmethod
+    def _is_spurious_unrequested_name_field_finding(
+        request: AgentRequest,
+        code: str,
+        message: str,
+    ) -> bool:
+        normalized = f"{code} {message}".lower()
+        if "wrong_field" not in normalized and "field_semantics" not in normalized:
+            return False
+        if not any(marker in normalized for marker in ("name", "名称", "text field", "description")):
+            return False
+        user_text = f"{request.resolved_user_input or ''} {request.user_input or ''}".lower()
+        requested_name_markers = (
+            "名称",
+            "名字",
+            "描述",
+            "文本",
+            "name",
+            "description",
+            "text",
+        )
+        return not any(marker in user_text for marker in requested_name_markers)

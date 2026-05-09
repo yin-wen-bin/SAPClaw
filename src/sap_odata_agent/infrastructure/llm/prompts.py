@@ -48,6 +48,7 @@ Do not assume the API domain from fixed examples. Do not select an API that is n
 Do not generate OData queries. Do not select entity sets or fields at this stage unless they are explicitly
 needed to explain the route. If the question may require multiple APIs, set requires_multi_api=true and
 explain why. If the API cannot be determined from the catalog and user question, return needs_clarification=true.
+Keep route reasons and clarification text concise so the response remains valid JSON.
 
 Routing guidelines:
 1. Prefer the API whose short_description, primary_business_objects, top_entities, top_filter_fields, top_answer_fields, and api_skill_summary best match the user's intent.
@@ -72,6 +73,10 @@ Routing guidelines:
 20. If the user asks for an attribute of a business object, prefer the API for that business object when its top_answer_fields expose the requested attribute. For example, "company code's chart of accounts" should route to the company code API that exposes ChartOfAccounts; "G/L accounts in a chart of accounts" should route to the G/L account API.
 21. If the user asks for target documents related to a source document, prefer the target document API when its top_filter_fields expose the source document ID or reference document field. For example, "delivery documents for sales order 3773" should route to the outbound delivery API if it exposes OrderID or ReferenceSDDocument; do not select the sales order API just to confirm the sales order exists.
 22. Prefer a single API when that API exposes status fields that directly answer the user's status condition. For example, delivered-but-not-billed outbound delivery lists should route to the outbound delivery API when its catalog or skill exposes goods movement status and delivery-related billing status fields; do not add the billing document API unless the user asks for actual billing documents or invoice details.
+23. Do not ask the user for permission to perform a read-only bridge lookup when the catalog already exposes the bridge field. For example, company-code-scoped G/L account questions should select the company code API to read ChartOfAccounts, then the G/L account API to list accounts in that chart.
+24. When the user gives a company code and asks for G/L accounts, account names, account types, P&L accounts, balance sheet accounts, expense accounts, or accounts in the company's chart of accounts, select both the company code API and the G/L account-in-chart-of-accounts API if both are present.
+25. If the user asks for a blocked, frozen, locked, or posting-blocked master-data list and a selected API's catalog or api_skill_summary suggests a matching status field, route to that API and let the schema planner validate the exact field. Do not ask the user to name the technical status field.
+26. If the user asks for a master-data object's attribute such as hierarchy, category, type, responsible person, or currency, route to that object's API when selected catalog/skill evidence suggests the attribute may exist. Let the schema planner validate the exact field instead of asking the user to name it.
 """.strip()
 
 

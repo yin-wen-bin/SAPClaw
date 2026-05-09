@@ -48,12 +48,14 @@ Keep `data/index/API_GLACCOUNTINCHARTOFACCOUNTS_SRV` as the schema ground truth.
 - For G/L account names or long names, query `A_GLAccountText` and select `A_GLAccountText.ChartOfAccounts`, `A_GLAccountText.GLAccount`, `A_GLAccountText.GLAccountName`, and `A_GLAccountText.GLAccountLongName`.
 - For account creation/change dates or blocking/deletion indicators, query `A_GLAccountInChartOfAccounts`.
 - Treat indicator-field wording as an output request unless the user provides explicit filter values.
+- For sample G/L account relationship questions, including Chinese wording such as `样本科目关系`, keep the final answer on `A_GLAccountInChartOfAccounts` and select `A_GLAccountInChartOfAccounts.SampleGLAccount`. A relationship exists only when `SampleGLAccount` is not blank, so filter `SampleGLAccount ne ''` when the user asks for sample-account relationships. Do not switch the final answer to `A_GLAccountText` unless `SampleGLAccount` remains selected in the final result.
 
 ### Company-Code Scoped G/L Account Lookup
 
 - Use this pattern only when the user asks for G/L account records under a company code, such as expense accounts or P&L accounts. Do not use it when the requested answer is only the assigned chart of accounts for the company code.
 - This API is chart-of-accounts scoped, not company-code scoped. If the user provides a company code such as `1710`, use `API_COMPANYCODE_SRV.A_CompanyCode` first to retrieve `ChartOfAccounts`, then bind that value to `API_GLACCOUNTINCHARTOFACCOUNTS_SRV.A_GLAccountInChartOfAccounts.ChartOfAccounts`.
-- For Chinese wording such as `费用类科目`, `费用科目`, `expense accounts`, or similar expense/P&L account requests, do not use `GLAccountType eq 'X'` as a blind rule. In this API, prefer schema-grounded P&L/non-balance-sheet evidence: filter `A_GLAccountInChartOfAccounts.IsBalanceSheetAccount eq false` when an exact expense-vs-revenue code is not available, and select `ProfitLossAccountType`, `GLAccountType`, and `GLAccount` so the result remains auditable.
+- For Chinese wording such as `公司1710科目表下...`, the number after `公司` is a company code, not the chart of accounts value. Do not filter `A_GLAccountInChartOfAccounts.ChartOfAccounts eq '1710'`; first query `API_COMPANYCODE_SRV.A_CompanyCode` with `CompanyCode eq '1710'` and bind the returned `ChartOfAccounts`.
+- For Chinese wording such as `损益类科目`, `利润表科目`, `费用类科目`, `费用科目`, `expense accounts`, or similar P&L account requests, filter `A_GLAccountInChartOfAccounts.IsProfitLossAccount eq true` and select `ProfitLossAccountType`, `GLAccountType`, `IsProfitLossAccount`, and `GLAccount` so the result remains auditable. Do not use `GLAccountType eq 'X'` as a blind rule.
 - If account names are requested, add a final text step against `A_GLAccountText` by binding `ChartOfAccounts` and `GLAccount`; filter `Language` only when the user requests a specific language.
 
 ### Detail Query

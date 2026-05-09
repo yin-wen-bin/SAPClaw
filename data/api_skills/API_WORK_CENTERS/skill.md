@@ -57,6 +57,13 @@ Keep `data/index/API_WORK_CENTERS` as the schema ground truth. This skill provid
 - Use item/detail/text/pricing/account/partner/schedule entities only when the user asks for that detail level or when a relationship path in `lookup_paths.json` proves the navigation.
 - For cross-entity questions, use indexed lookup paths instead of guessing joins.
 
+### Routing Work Centers
+
+- If another selected API skill asks for work centers used by a production routing, answer the work center master/capacity side from `A_WorkCenterAllCapacity`.
+- Bind `A_WorkCenterAllCapacity.WorkCenterInternalID` from routing operation `WorkCenterInternalID`.
+- Bind `A_WorkCenterAllCapacity.Plant` from routing material assignment `Plant` when plant is available.
+- Select `A_WorkCenterAllCapacity.WorkCenterInternalID`, `A_WorkCenterAllCapacity.WorkCenter`, `A_WorkCenterAllCapacity.Plant`, and `A_WorkCenterAllCapacity.WorkCenterDesc`.
+
 ### Runtime Availability
 
 - If this skill says the index is documentation-only, route and plan only when the schema is sufficient, and expect SAP execution to require service authorization or metadata activation.

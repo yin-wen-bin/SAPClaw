@@ -53,6 +53,15 @@ Keep `data/index/API_INFORECORD_PROCESS_SRV` as the schema ground truth. This sk
 - Use `A_PurgInfoRecdOrgPlantData` when the user asks for purchasing organization or plant-specific data.
 - Do not add pricing condition or validity steps unless the user explicitly asks for price, condition, validity, scale, or pricing details.
 
+### Supplier Name For Material Info Records
+
+- For material purchasing info record supplier name requests, use `API_INFORECORD_PROCESS_SRV` together with `API_BUSINESS_PARTNER`.
+- Step 1: query `API_INFORECORD_PROCESS_SRV.A_PurchasingInfoRecord` filtered by `Material` and select `PurchasingInfoRecord`, `Material`, and `Supplier`.
+- Step 2: query `API_BUSINESS_PARTNER.A_Supplier` by binding `A_PurchasingInfoRecord.Supplier` to `A_Supplier.Supplier`.
+- Select `API_BUSINESS_PARTNER.A_Supplier.Supplier` and `API_BUSINESS_PARTNER.A_Supplier.SupplierName`.
+- Do not use `A_PurchasingInfoRecord.SupplierRespSalesPersonName` as the supplier name. It is the supplier responsible salesperson name, not the supplier master-data name.
+- 中文“物料采购信息记录中的供应商名称” means first get `Supplier` from `A_PurchasingInfoRecord`, then get `SupplierName` from `API_BUSINESS_PARTNER.A_Supplier`.
+
 ### Info Record Pricing
 
 - Query `A_PurInfoRecdPrcgCndn` for condition records.

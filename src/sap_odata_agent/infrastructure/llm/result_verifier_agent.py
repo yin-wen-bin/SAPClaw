@@ -51,7 +51,7 @@ class LlmResultVerifierAgent:
                 "source": "result_verifier_failed",
                 "error": str(exc),
             }
-        return self._materialize(parsed, schema_context_summary or {})
+        return self._materialize(parsed, schema_context_summary or {}, request)
 
     @staticmethod
     def _system_prompt() -> str:
@@ -115,6 +115,7 @@ class LlmResultVerifierAgent:
             "schema_context_summary": {
                 "service_name": schema_context_summary.get("service_name", ""),
                 "api_skill": schema_context_summary.get("api_skill", {}),
+                "api_skills": schema_context_summary.get("api_skills", [])[:6],
                 "top_entities": schema_context_summary.get("top_entities", []),
                 "available_fields": schema_context_summary.get("available_fields", [])[:120],
             },
@@ -135,16 +136,17 @@ class LlmResultVerifierAgent:
             "4. If schema_research flagged semantic risks, verify the final plan addressed them.\n"
             "5. Use schema_context_summary.api_skill as API-specific guidance for whether a field combination supports the user's business conclusion.\n"
             "6. If api_skill defines a field combination for the user's intent and the executed plan uses that combination, do not reject it unless returned data contradicts it.\n"
-            "7. If the result is semantically unreliable, set passed=false and give repair_hints.\n"
-            "8. Do not block for presentation wording; only block data/plan support issues.\n"
-            "9. repair_hints must only recommend fields listed in schema_context_summary.available_fields; do not invent field names.\n"
-            "10. For unreceived/undelivered/open receipt questions, prefer actual completion/status or received/open quantity fields over expected/required/configuration flags. If the user explicitly asks for orders that need goods receipt but are not yet received, the API skill may define expected=true plus completion=false as the correct combination.\n\n"
-            "11. A successful SAP response with result_count=0 can be a correct answer for a list query. Do not reject only because there are no rows or because a repair might find related rows. Block an empty result only when the plan clearly used the wrong entity, omitted a required user filter, or omitted required answer fields.\n"
-            "12. Do not require enrichment identifiers that the user did not explicitly ask for. For address communication list questions, address-level keys plus the requested email, phone, or fax fields are sufficient unless the user explicitly asks to include business partner details.\n\n"
-            "13. A business object name in the question can identify the domain or entity type. Do not treat words like business partner, supplier, customer, material, or purchase order as mandatory output fields unless the user explicitly asks for the ID/number/code or those fields are required to distinguish returned rows.\n\n"
-            "14. When api_skill says a similarly named field is not sufficient for the user's business level, block a successful response that uses that insufficient field as negative evidence and provide repair_hints for the more specific entity/field combination.\n\n"
-            "15. Do not accept pricing elements, notes, account assignments, or other detail child entities as the main answer for a document history request unless the user explicitly asked for that detail type.\n\n"
-            "16. For bare field-list wording such as \"with/include/show/display field A and field B\", verify that the fields are selected and returned; do not require filters for those fields unless the user supplied an explicit restriction, comparison, literal value, true/false requirement, nonzero/open/closed condition, or other business condition.\n\n"
+            "7. If api_skill or api_skills contains a Common Planning Pattern that matches the user's wording, verify that the executed filters and fields follow that pattern when the fields are available.\n"
+            "8. If the result is semantically unreliable, set passed=false and give repair_hints.\n"
+            "9. Do not block for presentation wording; only block data/plan support issues.\n"
+            "10. repair_hints must only recommend fields listed in schema_context_summary.available_fields; do not invent field names.\n"
+            "11. For unreceived/undelivered/open receipt questions, prefer actual completion/status or received/open quantity fields over expected/required/configuration flags. If the user explicitly asks for orders that need goods receipt but are not yet received, the API skill may define expected=true plus completion=false as the correct combination.\n\n"
+            "12. A successful SAP response with result_count=0 can be a correct answer for a list query. Do not reject only because there are no rows or because a repair might find related rows. Block an empty result only when the plan clearly used the wrong entity, omitted a required user filter, or omitted required answer fields.\n"
+            "13. Do not require enrichment identifiers that the user did not explicitly ask for. For address communication list questions, address-level keys plus the requested email, phone, or fax fields are sufficient unless the user explicitly asks to include business partner details.\n\n"
+            "14. A business object name in the question can identify the domain or entity type. Do not treat words like business partner, supplier, customer, material, or purchase order as mandatory output fields unless the user explicitly asks for the ID/number/code or those fields are required to distinguish returned rows.\n\n"
+            "15. When api_skill says a similarly named field is not sufficient for the user's business level, block a successful response that uses that insufficient field as negative evidence and provide repair_hints for the more specific entity/field combination.\n\n"
+            "16. Do not accept pricing elements, notes, account assignments, or other detail child entities as the main answer for a document history request unless the user explicitly asked for that detail type.\n\n"
+            "17. For bare field-list wording such as \"with/include/show/display field A and field B\", verify that the fields are selected and returned; do not require filters for those fields unless the user supplied an explicit restriction, comparison, literal value, true/false requirement, nonzero/open/closed condition, or other business condition.\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )
@@ -442,7 +444,11 @@ class LlmResultVerifierAgent:
         return ""
 
     @staticmethod
-    def _materialize(parsed: dict[str, Any], schema_context_summary: dict[str, Any] | None = None) -> dict[str, Any]:
+    def _materialize(
+        parsed: dict[str, Any],
+        schema_context_summary: dict[str, Any] | None = None,
+        request: AgentRequest | None = None,
+    ) -> dict[str, Any]:
         issues = []
         for item in parsed.get("issues", []):
             if not isinstance(item, dict):
@@ -450,6 +456,12 @@ class LlmResultVerifierAgent:
             code = str(item.get("code", "") or "").strip()
             message = str(item.get("message", "") or "").strip()
             if not code or not message:
+                continue
+            if request is not None and LlmResultVerifierAgent._is_spurious_unrequested_field_requirement(
+                request,
+                code,
+                message,
+            ):
                 continue
             issues.append(
                 {
@@ -459,7 +471,9 @@ class LlmResultVerifierAgent:
                 }
             )
         passed = bool(parsed.get("passed", False))
-        if any(issue.get("blocking") for issue in issues):
+        if not issues:
+            passed = True
+        elif any(issue.get("blocking") for issue in issues):
             passed = False
         repair_hints = parsed.get("repair_hints", {}) if isinstance(parsed.get("repair_hints"), dict) else {}
         repair_hints = LlmResultVerifierAgent._filter_repair_hints(repair_hints, schema_context_summary or {})
@@ -469,6 +483,35 @@ class LlmResultVerifierAgent:
             "repair_hints": repair_hints,
             "source": "llm_result_verifier_agent",
         }
+
+    @staticmethod
+    def _is_spurious_unrequested_field_requirement(
+        request: AgentRequest,
+        code: str,
+        message: str,
+    ) -> bool:
+        normalized = f"{code} {message}".lower()
+        if not any(marker in normalized for marker in ("missing", "required", "critical", "wrong_field", "omitted")):
+            return False
+        user_text = f"{request.resolved_user_input or ''} {request.user_input or ''}".lower()
+        concept_groups = [
+            (("name", "名称", "名字", "description", "描述", "text field"), ("name", "名称", "名字", "description", "描述", "文本")),
+            (("postingdate", "documentdate", "date", "日期", "过账日期", "凭证日期"), ("date", "日期", "过账日期", "凭证日期")),
+            (("debit", "credit", "debitcredit", "借贷", "借方", "贷方"), ("debit", "credit", "借贷", "借方", "贷方")),
+            (("accountingdocument", "document number", "凭证号", "凭证编号"), ("accounting document", "document number", "凭证号", "凭证编号")),
+        ]
+        mentioned_groups = [
+            requested_markers
+            for message_markers, requested_markers in concept_groups
+            if any(marker in normalized for marker in message_markers)
+        ]
+        if not mentioned_groups:
+            return False
+        return not any(
+            marker in user_text
+            for requested_markers in mentioned_groups
+            for marker in requested_markers
+        )
 
     @staticmethod
     def _filter_repair_hints(repair_hints: dict[str, Any], schema_context_summary: dict[str, Any]) -> dict[str, Any]:

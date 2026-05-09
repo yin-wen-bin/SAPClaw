@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from sap_odata_agent.application.orchestrator import AgentOrchestrator
 from sap_odata_agent.infrastructure.indexing.api_catalog_provider import ApiCatalogProvider
 from sap_odata_agent.infrastructure.indexing.api_skill_provider import ApiSkillProvider
 from sap_odata_agent.infrastructure.indexing.index_loader import LocalIndexLoader
@@ -108,7 +109,10 @@ def test_sales_order_and_outbound_delivery_catalog_expose_document_reference_fie
 
     assert sales_order["top_entities"][:2] == ["A_SalesOrder", "A_SalesOrderItem"]
     assert "A_SalesOrder.SalesOrder" in sales_order["top_filter_fields"][:4]
+    assert "A_SalesOrderItem.Material" in sales_order["top_filter_fields"][:4]
+    assert "A_SalesOrderItem.DeliveryStatus" in sales_order["top_filter_fields"][:4]
     assert "A_SalesOrder.SalesOrder" in sales_order["top_answer_fields"][:4]
+    assert "A_SalesOrderItem.Material" in sales_order["top_answer_fields"][:4]
 
     assert delivery["top_entities"][:3] == [
         "A_OutbDeliveryHeader",
@@ -178,6 +182,47 @@ def test_multi_api_schema_context_can_be_enriched_by_primary_api_skill() -> None
     )
 
 
+def test_orchestrator_enriches_multi_api_context_with_each_api_skill() -> None:
+    route_decision = ApiRouteDecision(
+        selected_apis=[
+            SelectedApi("API_OUTBOUND_DELIVERY_SRV", confidence=0.95),
+            SelectedApi("API_BILLING_DOCUMENT_SRV", confidence=0.7),
+        ],
+        requires_multi_api=True,
+    )
+    provider = SchemaContextProvider(index_root="data/index")
+    skill_provider = ApiSkillProvider(skill_root="data/api_skills")
+    context = provider.build(
+        "API_OUTBOUND_DELIVERY_SRV",
+        "\u67e5\u8be2\u5ba2\u623717100003\u4ea4\u8d27\u5355\u5bf9\u5e94\u7684\u5f00\u7968\u9879\u76ee",
+        route_decision=route_decision,
+    )
+    primary_skill = skill_provider.load("API_OUTBOUND_DELIVERY_SRV")
+    assert primary_skill is not None
+    context = provider.enrich_with_api_skill(context, primary_skill.as_prompt_payload())
+    context = {**context, "api_skill": primary_skill.as_prompt_payload()}
+    orchestrator = AgentOrchestrator.__new__(AgentOrchestrator)
+    orchestrator.api_skill_provider = skill_provider
+    orchestrator.schema_context_provider = provider
+
+    enriched = orchestrator._attach_multi_api_skills(context, timings=[])
+
+    fields = {
+        (field.get("service_name"), field.get("entity_set"), field.get("field_name"))
+        for field in enriched["candidate_fields"]
+    }
+    assert (
+        "API_BILLING_DOCUMENT_SRV",
+        "A_BillingDocumentItem",
+        "ReferenceSDDocument",
+    ) in fields
+    assert any(
+        match.get("service_name") == "API_BILLING_DOCUMENT_SRV"
+        and match.get("matched_field") == "A_BillingDocumentItem.ReferenceSDDocument"
+        for match in enriched["skill_field_matches"]
+    )
+
+
 def test_outbound_delivery_skill_documents_delivered_not_billed_pattern() -> None:
     skill = ApiSkillProvider(skill_root="data/api_skills").load("API_OUTBOUND_DELIVERY_SRV")
     assert skill is not None
@@ -185,6 +230,282 @@ def test_outbound_delivery_skill_documents_delivered_not_billed_pattern() -> Non
     assert "Delivered But Not Billed Delivery Documents" in skill.content
     assert "A_OutbDeliveryHeader.OverallGoodsMovementStatus eq 'C'" in skill.content
     assert "A_OutbDeliveryHeader.OverallDelivReltdBillgStatus eq 'A'" in skill.content
+
+
+def test_outbound_delivery_skill_documents_product_master_pattern() -> None:
+    skill = ApiSkillProvider(skill_root="data/api_skills").load("API_OUTBOUND_DELIVERY_SRV")
+    assert skill is not None
+
+    assert "Product Master Data For Customer Delivery Items" in skill.content
+    assert "A_OutbDeliveryItem.Material ne ''" in skill.content
+    assert "A_Product.ProductGroup" in skill.content
+
+
+def test_product_skill_basic_data_includes_product_group() -> None:
+    skill = ApiSkillProvider(skill_root="data/api_skills").load("API_PRODUCT_SRV")
+    assert skill is not None
+
+    assert "A_Product.ProductGroup" in skill.content
+
+
+def test_sales_order_skill_documents_open_delivery_and_billing_patterns() -> None:
+    skill = ApiSkillProvider(skill_root="data/api_skills").load("API_SALES_ORDER_SRV")
+    assert skill is not None
+
+    assert "Customer Sales Orders Not Fully Delivered" in skill.content
+    assert "A_SalesOrder.OverallTotalDeliveryStatus ne 'C'" in skill.content
+    assert "Material Sales Orders Not Fully Delivered" in skill.content
+    assert "A_SalesOrderItem.Material eq '<material>'" in skill.content
+    assert "A_SalesOrderItem.DeliveryStatus ne 'C'" in skill.content
+    assert "Customer Sales Orders Not Fully Billed" in skill.content
+    assert "A_SalesOrder.OverallOrdReltdBillgStatus ne 'C'" in skill.content
+
+
+def test_sales_order_material_open_delivery_context_promotes_item_fields() -> None:
+    provider = SchemaContextProvider(index_root="data/index")
+    skill = ApiSkillProvider(skill_root="data/api_skills").load("API_SALES_ORDER_SRV")
+    assert skill is not None
+
+    context = provider.build(
+        "API_SALES_ORDER_SRV",
+        "查询物料MZ-TG-Y240的未交货销售订单",
+    )
+    enriched = provider.enrich_with_api_skill(context, skill.as_prompt_payload())
+
+    fields = {
+        (field.get("entity_set"), field.get("field_name"))
+        for field in enriched["candidate_fields"]
+    }
+    assert ("A_SalesOrderItem", "Material") in fields
+    assert ("A_SalesOrderItem", "DeliveryStatus") in fields
+    assert any(
+        match.get("matched_field") == "A_SalesOrderItem.DeliveryStatus"
+        for match in enriched["skill_field_matches"]
+    )
+
+
+def test_sales_order_skill_documents_pricing_condition_pattern() -> None:
+    skill = ApiSkillProvider(skill_root="data/api_skills").load("API_SALES_ORDER_SRV")
+    assert skill is not None
+
+    assert "Sales Order Pricing Conditions" in skill.content
+    assert "A_SalesOrderItemPrElement" in skill.content
+    assert "A_SalesOrderItemPrElement.ConditionType" in skill.content
+
+
+def test_billing_document_skill_documents_product_master_pattern() -> None:
+    skill = ApiSkillProvider(skill_root="data/api_skills").load("API_BILLING_DOCUMENT_SRV")
+    assert skill is not None
+
+    assert "Product Master Data For Customer Billing Items" in skill.content
+    assert "A_BillingDocumentItem.Material ne ''" in skill.content
+    assert "A_Product.ProductGroup" in skill.content
+
+
+def test_info_record_skill_documents_supplier_name_bridge_pattern() -> None:
+    skill = ApiSkillProvider(skill_root="data/api_skills").load("API_INFORECORD_PROCESS_SRV")
+    assert skill is not None
+
+    assert "Supplier Name For Material Info Records" in skill.content
+    assert "API_BUSINESS_PARTNER.A_Supplier" in skill.content
+    assert "A_Supplier.SupplierName" in skill.content
+    assert "SupplierRespSalesPersonName" in skill.content
+
+
+def test_material_document_skill_documents_po_goods_receipt_target_pattern() -> None:
+    skill = ApiSkillProvider(skill_root="data/api_skills").load("API_MATERIAL_DOCUMENT_SRV")
+    assert skill is not None
+
+    assert "Purchase Orders With Goods Receipt Material Documents" in skill.content
+    assert "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItem" in skill.content
+    assert "target_entity_set" in skill.content
+    assert "MaterialDocument" in skill.content
+
+
+def test_material_document_skill_documents_production_order_material_documents() -> None:
+    skill = ApiSkillProvider(skill_root="data/api_skills").load("API_MATERIAL_DOCUMENT_SRV")
+    assert skill is not None
+
+    assert "Production Order Material Documents" in skill.content
+    assert "API_PRODUCTION_ORDER_2_SRV.A_ProductionOrder_2" in skill.content
+    assert "A_MaterialDocumentItem.ManufacturingOrder" in skill.content
+    assert "material-only movement history" in skill.content
+
+
+def test_material_document_catalog_pins_manufacturing_order_fields() -> None:
+    catalog = ApiCatalogProvider(index_root="data/index").load()
+    material_doc = next(item for item in catalog if item["service_name"] == "API_MATERIAL_DOCUMENT_SRV")
+
+    assert "A_MaterialDocumentItem.ManufacturingOrder" in material_doc["top_filter_fields"][:4]
+    assert "A_MaterialDocumentItem.ManufacturingOrder" in material_doc["top_answer_fields"][:5]
+
+
+def test_production_order_skill_documents_common_pp_patterns() -> None:
+    skill = ApiSkillProvider(skill_root="data/api_skills").load("API_PRODUCTION_ORDER_2_SRV")
+    assert skill is not None
+
+    assert "A_ProductionOrder_2.ProductionPlant" in skill.content
+    assert "Production Order Operations" in skill.content
+    assert "A_ProductionOrderOperation_2" in skill.content
+    assert "A_ProductionOrderOperation_2.WorkCenter" in skill.content
+    assert "Production Order Components" in skill.content
+    assert "A_ProductionOrderComponent_2" in skill.content
+    assert "Production Order Finished Product Master Data" in skill.content
+    assert "API_PRODUCT_SRV.A_Product" in skill.content
+    assert "Production Order Material Documents" in skill.content
+    assert "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItem" in skill.content
+    assert "A_MaterialDocumentItem.ManufacturingOrder" in skill.content
+
+
+def test_material_stock_skill_documents_production_component_stock_pattern() -> None:
+    skill = ApiSkillProvider(skill_root="data/api_skills").load("API_MATERIAL_STOCK_SRV")
+    assert skill is not None
+
+    assert "Production Order Component Stock" in skill.content
+    assert "API_PRODUCTION_ORDER_2_SRV.A_ProductionOrderComponent_2" in skill.content
+    assert "A_MatlStkInAcctMod" in skill.content
+    assert "MatlWrhsStkQtyInMatlBaseUnit" in skill.content
+
+
+def test_material_stock_skill_documents_mrp_material_stock_pattern() -> None:
+    skill = ApiSkillProvider(skill_root="data/api_skills").load("API_MATERIAL_STOCK_SRV")
+    assert skill is not None
+
+    assert "MRP Material Stock" in skill.content
+    assert "API_MRP_MATERIALS_SRV_01" in skill.content
+    assert "A_MRPMaterial.Material" in skill.content
+    assert "A_MatlStkInAcctMod.Material" in skill.content
+
+
+def test_planned_orders_skill_documents_component_material_pattern() -> None:
+    skill = ApiSkillProvider(skill_root="data/api_skills").load("API_PLANNED_ORDERS")
+    assert skill is not None
+
+    assert "planned order component" in skill.content
+    assert "A_PlannedOrderComponent.Material" in skill.content
+    assert "A_PlannedOrderComponent.GoodsMovementEntryQty" in skill.content
+    assert "BOMItem" in skill.content
+
+
+def test_planned_orders_skill_distinguishes_header_material_master_data_from_components() -> None:
+    skill = ApiSkillProvider(skill_root="data/api_skills").load("API_PLANNED_ORDERS")
+    assert skill is not None
+
+    assert "计划订单物料的产品主数据" in skill.content
+    assert "not `A_PlannedOrderComponent`" in skill.content
+    assert "A_PlannedOrder.Material" in skill.content
+    assert "API_PRODUCT_SRV.A_Product" in skill.content
+
+
+def test_mrp_materials_skill_documents_supply_demand_key_fields() -> None:
+    skill = ApiSkillProvider(skill_root="data/api_skills").load("API_MRP_MATERIALS_SRV_01")
+    assert skill is not None
+
+    assert "SupplyDemandItems" in skill.content
+    assert "SupplyDemandItems.MRPElement" in skill.content
+    assert "SupplyDemandItems.MRPElementItem" in skill.content
+    assert "SupplyDemandItems.MRPElementCategory" in skill.content
+    assert "MRPElementOpenQuantity" in skill.content
+    assert "MRP Material Stock" in skill.content
+    assert "API_MATERIAL_STOCK_SRV.A_MatlStkInAcctMod" in skill.content
+
+
+def test_production_routing_skill_distinguishes_routing_from_operations() -> None:
+    skill = ApiSkillProvider(skill_root="data/api_skills").load("API_PRODUCTION_ROUTING")
+    assert skill is not None
+
+    assert "ProductionRoutingMatlAssgmt" in skill.content
+    assert "Product`, `Plant`, `ProductionRoutingGroup`, and `ProductionRouting`" in skill.content
+    assert "Do not continue from `ProductionRoutingMatlAssgmt` into `ProductionRoutingOperation`" in skill.content
+    assert "`工序`" in skill.content
+    assert "ProductionRoutingOperation" in skill.content
+    assert "`Operation`" in skill.content
+    assert "`WorkCenterInternalID`" in skill.content
+    assert "Routing Work Centers" in skill.content
+    assert "API_WORK_CENTERS.A_WorkCenterAllCapacity" in skill.content
+    assert "ProductionRoutingOperation.WorkCenterInternalID" in skill.content
+    assert "ProductionRoutingHeader.PlanningWorkCenter" in skill.content
+
+
+def test_work_centers_skill_documents_routing_bridge_fields() -> None:
+    skill = ApiSkillProvider(skill_root="data/api_skills").load("API_WORK_CENTERS")
+    assert skill is not None
+
+    assert "Routing Work Centers" in skill.content
+    assert "A_WorkCenterAllCapacity.WorkCenterInternalID" in skill.content
+    assert "A_WorkCenterAllCapacity.WorkCenter" in skill.content
+    assert "A_WorkCenterAllCapacity.WorkCenterDesc" in skill.content
+
+
+def test_routing_work_center_multi_api_context_promotes_bridge_fields() -> None:
+    route_decision = ApiRouteDecision(
+        selected_apis=[
+            SelectedApi("API_PRODUCTION_ROUTING", confidence=0.9),
+            SelectedApi("API_WORK_CENTERS", confidence=0.7),
+        ],
+        requires_multi_api=True,
+    )
+    provider = SchemaContextProvider(index_root="data/index")
+    skill_provider = ApiSkillProvider(skill_root="data/api_skills")
+    context = provider.build(
+        "API_PRODUCTION_ROUTING",
+        "查询产品MZ-FG-R300工艺路线用到的工作中心",
+        route_decision=route_decision,
+    )
+    for service_name in ("API_PRODUCTION_ROUTING", "API_WORK_CENTERS"):
+        skill = skill_provider.load(service_name)
+        assert skill is not None
+        context = provider.enrich_with_api_skill(context, skill.as_prompt_payload())
+
+    fields = [
+        (field.get("service_name"), field.get("entity_set"), field.get("field_name"))
+        for field in context["candidate_fields"][:16]
+    ]
+
+    assert (
+        "API_PRODUCTION_ROUTING",
+        "ProductionRoutingOperation",
+        "WorkCenterInternalID",
+    ) in fields
+    assert (
+        "API_WORK_CENTERS",
+        "A_WorkCenterAllCapacity",
+        "WorkCenterInternalID",
+    ) in fields
+    assert (
+        "API_WORK_CENTERS",
+        "A_WorkCenterAllCapacity",
+        "WorkCenter",
+    ) in fields
+
+
+def test_production_order_skill_does_not_clarify_plant_work_center_operations() -> None:
+    skill = ApiSkillProvider(skill_root="data/api_skills").load("API_PRODUCTION_ORDER_2_SRV")
+    assert skill is not None
+
+    assert "查询工厂1710工作中心上的生产订单工序" in skill.content
+    assert "do not ask for a specific work center" in skill.content
+    assert "WorkCenter eq '1710'" in skill.content
+    assert "A_ProductionOrderOperation_2.ProductionPlant" in skill.content
+
+
+def test_production_order_catalog_pins_operation_fields_for_router() -> None:
+    catalog = ApiCatalogProvider(index_root="data/index").load()
+    production_order = next(item for item in catalog if item["service_name"] == "API_PRODUCTION_ORDER_2_SRV")
+
+    assert production_order["top_filter_fields"][:4] == [
+        "A_ProductionOrderOperation_2.ProductionPlant",
+        "A_ProductionOrderOperation_2.WorkCenter",
+        "A_ProductionOrderOperation_2.ManufacturingOrder",
+        "A_ProductionOrderOperation_2.ManufacturingOrderOperation",
+    ]
+    assert production_order["top_answer_fields"][:5] == [
+        "A_ProductionOrderOperation_2.ManufacturingOrder",
+        "A_ProductionOrderOperation_2.ManufacturingOrderOperation",
+        "A_ProductionOrderOperation_2.ProductionPlant",
+        "A_ProductionOrderOperation_2.WorkCenter",
+        "A_ProductionOrderOperation_2.MfgOrderOperationText",
+    ]
 
 
 def test_sales_order_reference_fields_remain_in_outbound_delivery_answer_fields() -> None:

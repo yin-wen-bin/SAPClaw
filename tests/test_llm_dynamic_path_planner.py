@@ -271,6 +271,84 @@ def test_dynamic_path_planner_materializes_llm_multistep_email_to_bp(tmp_path: P
     assert "AddressID" in client.user_prompt
 
 
+def test_dynamic_path_planner_corrects_target_when_final_step_fields_do_not_match_requested_entity(
+    tmp_path: Path,
+) -> None:
+    _write_index(tmp_path)
+    client = StubClient(
+        {
+            "plan_kind": "multi_step",
+            "http_method": "GET",
+            "target_entity_set": "A_AddressEmailAddress",
+            "target_fields": ["BusinessPartner", "BusinessPartnerFullName"],
+            "steps": [
+                {
+                    "step_id": "find_email",
+                    "entity_set": "A_AddressEmailAddress",
+                    "select_fields": ["AddressID", "EmailAddress"],
+                    "filters": [{"field": "EmailAddress", "operator": "eq", "value": "info@10300006.com"}],
+                    "top": 50,
+                },
+                {
+                    "step_id": "read_bp",
+                    "entity_set": "A_BusinessPartner",
+                    "select_fields": ["BusinessPartner", "BusinessPartnerFullName"],
+                    "filter_from_previous": [
+                        {"field": "BusinessPartner", "source_step_id": "find_email", "source_field": "AddressID"}
+                    ],
+                    "top": 50,
+                },
+            ],
+        }
+    )
+    planner = LlmDynamicPathPlanner(index_root=tmp_path, service_name="API_TEST", llm_client=client)
+
+    plan = planner.plan(AgentRequest(user_input="query BP name by email"), RetrievedContext())
+
+    assert plan.entity_set == "A_BusinessPartner"
+    assert plan.target_entity_set == "A_BusinessPartner"
+    assert plan.select_fields == ["BusinessPartner", "BusinessPartnerFullName"]
+
+
+def test_dynamic_path_planner_raises_top_for_binding_source_steps(tmp_path: Path) -> None:
+    _write_index(tmp_path)
+    client = StubClient(
+        {
+            "plan_kind": "multi_step",
+            "http_method": "GET",
+            "target_entity_set": "A_BusinessPartner",
+            "steps": [
+                {
+                    "step_id": "find_address",
+                    "entity_set": "A_BusinessPartnerAddress",
+                    "select_fields": ["BusinessPartner", "AddressID"],
+                    "filters": [],
+                    "top": 50,
+                },
+                {
+                    "step_id": "read_bp",
+                    "entity_set": "A_BusinessPartner",
+                    "select_fields": ["BusinessPartner", "BusinessPartnerFullName"],
+                    "filter_from_previous": [
+                        {
+                            "field": "BusinessPartner",
+                            "source_step_id": "find_address",
+                            "source_field": "BusinessPartner",
+                        }
+                    ],
+                    "top": 50,
+                },
+            ],
+        }
+    )
+    planner = LlmDynamicPathPlanner(index_root=tmp_path, service_name="API_TEST", llm_client=client)
+
+    plan = planner.plan(AgentRequest(user_input="query BPs through address"), RetrievedContext())
+
+    assert plan.steps[0].top == 200
+    assert plan.steps[1].top == 50
+
+
 def test_dynamic_path_planner_materializes_step_level_binding_shorthand(tmp_path: Path) -> None:
     _write_index(tmp_path)
     client = StubClient(

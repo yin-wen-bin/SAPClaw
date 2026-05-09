@@ -50,6 +50,36 @@ Keep `data/index/API_BILLING_DOCUMENT_SRV` as the schema ground truth. This skil
 - Apply user-provided identifiers, dates, statuses, organizational units, material/product IDs, customer/supplier IDs, and document numbers as filters when corresponding filterable fields exist.
 - Keep `$select` focused on key fields plus fields needed to answer the question.
 
+### Customer Billing Documents
+
+- For requests such as `query billing documents for customer 17100003` or `query customer 17100003 invoices`, prefer a direct `A_BillingDocument` header query when the user asks for billing document headers or invoice documents.
+- Filter `A_BillingDocument.SoldToParty eq '<customer>'`.
+- Select only `A_BillingDocument.BillingDocument`, `A_BillingDocument.SoldToParty`, `A_BillingDocument.CompanyCode`, and `A_BillingDocument.BillingDocumentDate`.
+- Do not route through `A_BillingDocumentPartner` unless the user explicitly asks for a non-sold-to partner role. If a partner bridge is required, the final result must still include the customer relationship needed by the user question.
+- Do not continue to pricing, item pricing, text, or PDF/function operations unless the user explicitly asks for those details.
+
+### Sales Order Billing Items
+
+- For requests such as `query billing documents for sales order 3773` or `query invoices for sales order 3773`, query `A_BillingDocumentItem` directly.
+- Use filter field `A_BillingDocumentItem.SalesDocument` with the sales order number from the user; do not use `A_BillingDocumentItem.OrderID` for this business meaning because it can return no rows even when `SalesDocument` has the source sales order.
+- Select only `A_BillingDocumentItem.BillingDocument`, `A_BillingDocumentItem.BillingDocumentItem`, `A_BillingDocumentItem.SalesDocument`, `A_BillingDocumentItem.SalesDocumentItem`, `A_BillingDocumentItem.Material`, and `A_BillingDocumentItem.BillingQuantity`.
+
+### Delivery Billing Items
+
+- For requests such as `query billing items for delivery documents of customer 17100003`, use a cross-API plan with `API_OUTBOUND_DELIVERY_SRV` and this API.
+- Step 1: query `API_OUTBOUND_DELIVERY_SRV.A_OutbDeliveryHeader` by `SoldToParty` when the user provides a customer, selecting `DeliveryDocument`, `SoldToParty`, `OverallGoodsMovementStatus`, and `OverallDelivReltdBillgStatus`.
+- Step 2: query `A_BillingDocumentItem` by binding `API_OUTBOUND_DELIVERY_SRV.A_OutbDeliveryHeader.DeliveryDocument` to `A_BillingDocumentItem.ReferenceSDDocument`.
+- Select only `A_BillingDocumentItem.BillingDocument`, `A_BillingDocumentItem.BillingDocumentItem`, `A_BillingDocumentItem.ReferenceSDDocument`, `A_BillingDocumentItem.ReferenceSDDocumentItem`, `A_BillingDocumentItem.Material`, and `A_BillingDocumentItem.BillingQuantity`.
+- Do not ask for clarification merely because the user did not provide specific delivery document numbers; the customer filter in step 1 provides the delivery-document scope.
+
+### Product Master Data For Customer Billing Items
+
+- For requests such as `查询客户17100003开票项目里的物料主数据`, use this API as the source step and `API_PRODUCT_SRV` as the target API.
+- Step 1: query `A_BillingDocument` by `A_BillingDocument.SoldToParty` and select only `A_BillingDocument.BillingDocument` and `A_BillingDocument.SoldToParty`.
+- Step 2: query `A_BillingDocumentItem` by binding `A_BillingDocument.BillingDocument` to `A_BillingDocumentItem.BillingDocument`; select only `A_BillingDocumentItem.BillingDocument`, `A_BillingDocumentItem.BillingDocumentItem`, and `A_BillingDocumentItem.Material`; add filter `A_BillingDocumentItem.Material ne ''`.
+- Step 3: query `API_PRODUCT_SRV.A_Product` by binding `A_BillingDocumentItem.Material` to `A_Product.Product`; select only `A_Product.Product`, `A_Product.ProductType`, `A_Product.ProductGroup`, and `A_Product.BaseUnit`.
+- Keep upstream billing/item scope bounded to the first page unless the user explicitly asks for every matching billing item.
+
 ### Detail Query
 
 - Use item/detail/text/pricing/account/partner/schedule entities only when the user asks for that detail level or when a relationship path in `lookup_paths.json` proves the navigation.

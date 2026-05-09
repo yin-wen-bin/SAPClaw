@@ -331,3 +331,61 @@ def test_llm_plan_critic_drops_spurious_missing_filters_for_field_list_output() 
     findings = critic.review(request, context=None, plan=plan)
 
     assert findings == []
+
+
+def test_llm_plan_critic_drops_unrequested_name_field_requirement() -> None:
+    critic = LlmPlanCritic(
+        llm_client=StaticJsonClient(
+            {
+                "pass": False,
+                "findings": [
+                    {
+                        "code": "wrong_field_semantics",
+                        "message": "The plan selects GLAccount but should select G/L account name fields.",
+                        "severity": "error",
+                        "blocking": True,
+                    }
+                ],
+            }
+        )
+    )
+    request = AgentRequest(user_input="查询公司1710的运营会计凭证项目")
+    plan = QueryPlan(
+        service_name="API_OPLACCTGDOCITEMCUBE_SRV",
+        entity_set="A_OperationalAcctgDocItemCube",
+        select_fields=["CompanyCode", "AccountingDocument", "GLAccount"],
+        filters=[],
+    )
+
+    findings = critic.review(request, context=None, plan=plan)
+
+    assert findings == []
+
+
+def test_llm_plan_critic_drops_unrequested_date_and_debit_credit_requirement() -> None:
+    critic = LlmPlanCritic(
+        llm_client=StaticJsonClient(
+            {
+                "pass": False,
+                "findings": [
+                    {
+                        "code": "missing_critical_fields",
+                        "message": "The plan is missing PostingDate and DebitCreditIndicator fields.",
+                        "severity": "error",
+                        "blocking": True,
+                    }
+                ],
+            }
+        )
+    )
+    request = AgentRequest(user_input="查询公司1710中科目10010000的日记账行项目")
+    plan = QueryPlan(
+        service_name="API_JOURNALENTRYITEMBASIC_SRV",
+        entity_set="A_JournalEntryItemBasic",
+        select_fields=["ID", "CompanyCode", "GLAccount"],
+        filters=[],
+    )
+
+    findings = critic.review(request, context=None, plan=plan)
+
+    assert findings == []

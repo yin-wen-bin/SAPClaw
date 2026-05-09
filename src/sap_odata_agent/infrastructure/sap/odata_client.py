@@ -273,14 +273,26 @@ class BasicODataCompiler:
             if not isinstance(record, dict):
                 continue
             index_service_name = str(record.get("service_name") or services_path.parent.name)
-            runtime_service_name = self._extract_runtime_service_name(
-                str(record.get("source") or "") or str(record.get("base_path") or "")
-            )
+            runtime_service_name = self._runtime_service_name_from_index_record(record, index_service_name)
             if runtime_service_name and runtime_service_name != index_service_name:
                 overrides[index_service_name] = runtime_service_name
 
         self._index_runtime_overrides = overrides
         return overrides
+
+    @classmethod
+    def _runtime_service_name_from_index_record(cls, record: dict, index_service_name: str) -> str:
+        runtime_path_template = str(record.get("runtime_path_template") or "")
+        if runtime_path_template:
+            if "{service_name}" in runtime_path_template:
+                return index_service_name
+            runtime_service_name = cls._extract_runtime_service_name(runtime_path_template)
+            if runtime_service_name:
+                return runtime_service_name
+
+        return cls._extract_runtime_service_name(
+            str(record.get("source") or "") or str(record.get("base_path") or "")
+        )
 
     @staticmethod
     def _extract_runtime_service_name(value: str) -> str:

@@ -41,6 +41,16 @@ Keep `data/index/API_MRP_MATERIALS_SRV_01` as the schema ground truth. This skil
 - Keep `$select` focused on key fields plus fields needed to answer the question.
 - For MRP material descriptive-name requests, `A_MRPMaterial.MaterialTypeName`, `A_MRPMaterial.MRPGroupName`, and `A_MRPMaterial.PlantName` are direct fields on `A_MRPMaterial`; do not require `MRPArea` unless the user asks for MRP area.
 - For MRP material status/indicator requests, `A_MRPMaterial.CrossPlantStatus`, `A_MRPMaterial.CrossPlantStatusName`, `A_MRPMaterial.IsSafetyTime`, and `A_MRPMaterial.MaterialIsConfigurable` are direct fields on `A_MRPMaterial`. Do not reroute to product master data or ask for clarification when the user asks for these fields on MRP material records.
+- For MRP supply and demand / MRP供需项目 requests, use `SupplyDemandItems`.
+- Filter `SupplyDemandItems.Material` and `SupplyDemandItems.MRPPlant` when material and plant are provided.
+- Select `SupplyDemandItems.Material`, `SupplyDemandItems.MRPPlant`, `SupplyDemandItems.MRPArea`, `SupplyDemandItems.MRPElement`, `SupplyDemandItems.MRPElementItem`, `SupplyDemandItems.MRPElementCategory`, `SupplyDemandItems.MRPElementOpenQuantity`, and `SupplyDemandItems.MRPElementAvailyOrRqmtDate`.
+- Do not remove `MRPElement` from supply/demand item output during repair; it is the business element identifier needed to distinguish rows.
+
+### MRP Material Stock
+
+- For MRP material stock requests (`MRP物料的库存`), use `API_MRP_MATERIALS_SRV_01` together with `API_MATERIAL_STOCK_SRV`.
+- Step 1: query `A_MRPMaterial` by `A_MRPMaterial.MRPPlant` and select `A_MRPMaterial.Material`, `A_MRPMaterial.MRPPlant`, and `A_MRPMaterial.MRPArea`.
+- Step 2: query `API_MATERIAL_STOCK_SRV.A_MatlStkInAcctMod` by binding `A_MatlStkInAcctMod.Material` from Step 1 and filtering/binding `A_MatlStkInAcctMod.Plant` to the same plant.
 
 ### Detail Query
 

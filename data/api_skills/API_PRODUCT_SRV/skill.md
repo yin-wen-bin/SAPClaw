@@ -46,7 +46,7 @@ Keep `data/index/API_PRODUCT_SRV` as the schema ground truth. This skill provide
 ### Product Basic Data
 
 - Query `A_Product` for product-level master data.
-- For "产品主数据", "物料主数据", or basic product details by material/product ID, select at least `Product`, `ProductType`, and `BaseUnit` when available.
+- For product master data, material master data, "产品主数据", "物料主数据", or basic product details by material/product ID, select only `A_Product.Product`, `A_Product.ProductType`, `A_Product.ProductGroup`, and `A_Product.BaseUnit` when available.
 
 ### Product Description
 

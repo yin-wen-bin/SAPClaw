@@ -50,6 +50,21 @@ Keep `data/index/API_MATERIAL_STOCK_SRV` as the schema ground truth. This skill 
 - Use plant, storage location, and batch filters on the stock entity that contains the requested dimensions.
 - Use `A_MatlStkInAcctMod.Plant`, `A_MatlStkInAcctMod.StorageLocation`, and `A_MatlStkInAcctMod.InventoryStockType` for plant/storage-location/stock-type breakdowns.
 
+### Production Order Component Stock
+
+- For production order component stock / 生产订单组件库存 requests, use `API_PRODUCTION_ORDER_2_SRV` together with `API_MATERIAL_STOCK_SRV`.
+- Step 1: query `API_PRODUCTION_ORDER_2_SRV.A_ProductionOrderComponent_2` filtered by plant and select `ManufacturingOrder`, `Material`, and `Plant`.
+- Step 2: query `API_MATERIAL_STOCK_SRV.A_MatlStkInAcctMod` filtered by the same plant and bind component `Material` to stock `Material`.
+- Select stock dimensions and quantity fields such as `Material`, `Plant`, `StorageLocation`, `InventoryStockType`, and `MatlWrhsStkQtyInMatlBaseUnit`.
+- Do not ask for a specific production order number when the user asks for plant-level production order component stock.
+
+### MRP Material Stock
+
+- For MRP material stock requests (`MRP物料的库存`), use `API_MRP_MATERIALS_SRV_01` together with `API_MATERIAL_STOCK_SRV`.
+- Step 1: query `API_MRP_MATERIALS_SRV_01.A_MRPMaterial` by `A_MRPMaterial.MRPPlant` when the user provides a plant. Select `A_MRPMaterial.Material`, `A_MRPMaterial.MRPPlant`, and `A_MRPMaterial.MRPArea`.
+- Step 2: query `A_MatlStkInAcctMod` by binding `A_MatlStkInAcctMod.Material` from Step 1 and filtering/binding `A_MatlStkInAcctMod.Plant` to the same plant. Select `A_MatlStkInAcctMod.Material`, `A_MatlStkInAcctMod.Plant`, `A_MatlStkInAcctMod.StorageLocation`, `A_MatlStkInAcctMod.InventoryStockType`, and `A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit`.
+- Do not answer MRP material stock by querying stock with only `A_MatlStkInAcctMod.Plant`; first constrain materials through `A_MRPMaterial`.
+
 ### Serial Number Stock
 
 - Query `A_MaterialSerialNumber` when the user asks for serial-number-specific stock.

@@ -51,9 +51,41 @@ Keep `data/index/API_PRODUCTION_ORDER_2_SRV` as the schema ground truth. This sk
 - Apply user-provided identifiers, dates, statuses, organizational units, material/product IDs, customer/supplier IDs, and document numbers as filters when corresponding filterable fields exist.
 - Keep `$select` focused on key fields plus fields needed to answer the question.
 - Treat the trailing `_2` / "2" in this API's entity names as the service/entity version suffix, not as a row count and not as SAP status code 2.
+- "Production orders" / "生产订单" without item/component/operation/status wording means header records from `A_ProductionOrder_2`, not `A_ProductionOrderItem_2`.
+- For plant-scoped production order headers, filter `A_ProductionOrder_2.ProductionPlant` when the user says production plant / 工厂, and select `ManufacturingOrder`, `Material`, `ProductionPlant`, and `ManufacturingOrderType`.
 - "Production order status records" means records from `A_ProductionOrderStatus_2`. Select `ManufacturingOrder`, `StatusCode`, `IsUserStatus`, `StatusShortName`, and `StatusName`. Do not replace this with `A_ProductionOrder_2`, `OrderIsReleased`, or a `StatusCode eq '2'` filter unless the user explicitly asks for released/status-code-2 orders.
 - "Production order resource tool records" means `A_ProductionRsceTools_2`. Select identifying fields such as `MfgOrderOpProdnRsceToolIntID`, `OrderInternalBillOfOperations`, `ProductionResourceTool`, `ProdnRsceToolCategory`, `ProdnRsceToolCategoryName`, `ProdnRsceToolControlProfile`, `ProdnRsceToolPlant`, and `OrderOperationInternalID`. Do not route this wording to master recipe secondary resources or production routing unless the user explicitly mentions master recipes or routings.
 - "Production order item serial number records" means `A_ProdnOrderItemSerialNumber`. Select `ManufacturingOrder`, `ManufacturingOrderItem`, `SerialNumber`, `SerialNumberProfile`, `Product`, `ProductionPlant`, `ManufacturingOrderCategory`, and `ManufacturingOrderType`.
+
+### Production Order Operations
+
+- For production order operation / 工序 requests, use `A_ProductionOrderOperation_2`.
+- 中文“查询工厂1710生产订单的工序” means actual created production order operation details from `A_ProductionOrderOperation_2`, not production routing / 工艺路线 template operations. Do not ask this clarification for that wording.
+- "查询工厂1710工作中心上的生产订单工序" means all production order operations assigned to work centers in plant `1710`; do not ask for a specific work center unless the user explicitly requests one.
+- In "工厂1710工作中心上的生产订单工序", `1710` is the plant value. Filter `A_ProductionOrderOperation_2.ProductionPlant eq '1710'` only; do not add `A_ProductionOrderOperation_2.WorkCenter eq '1710'`.
+- If the user provides a plant, filter `A_ProductionOrderOperation_2.ProductionPlant`.
+- Select `A_ProductionOrderOperation_2.ManufacturingOrder`, `A_ProductionOrderOperation_2.ManufacturingOrderOperation`, `A_ProductionOrderOperation_2.ProductionPlant`, `A_ProductionOrderOperation_2.WorkCenter`, and `A_ProductionOrderOperation_2.MfgOrderOperationText` when available.
+- Do not ask for clarification just because operations can be viewed through routing or work centers when the wording is explicitly production order operations.
+
+### Production Order Components
+
+- For production order component / 组件 requests, use `A_ProductionOrderComponent_2`.
+- If the user provides a plant, filter `A_ProductionOrderComponent_2.Plant` or `A_ProductionOrderComponent_2.ProductionPlant` according to the available schema.
+- Select `ManufacturingOrder`, `ManufacturingOrderOperation`, `Material`, `Plant`, and `ProductionPlant`.
+
+### Production Order Finished Product Master Data
+
+- For production order finished product master data / 成品主数据 requests, use `API_PRODUCTION_ORDER_2_SRV` together with `API_PRODUCT_SRV`.
+- Step 1: query `API_PRODUCTION_ORDER_2_SRV.A_ProductionOrder_2` filtered by `ProductionPlant` and select `ManufacturingOrder`, `Material`, and `ProductionPlant`.
+- Step 2: query `API_PRODUCT_SRV.A_Product` by binding `A_ProductionOrder_2.Material` to `A_Product.Product`.
+- Select product master fields such as `Product`, `ProductType`, `ProductGroup`, and `BaseUnit`.
+
+### Production Order Material Documents
+
+- For production order material document requests (`生产订单对应的物料凭证`), use `API_PRODUCTION_ORDER_2_SRV` together with `API_MATERIAL_DOCUMENT_SRV`.
+- Step 1: query `A_ProductionOrder_2` by `A_ProductionOrder_2.ProductionPlant` when the user provides a plant. Select `A_ProductionOrder_2.ManufacturingOrder`, `A_ProductionOrder_2.Material`, and `A_ProductionOrder_2.ProductionPlant`.
+- Step 2: query `API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItem` by binding `A_MaterialDocumentItem.ManufacturingOrder` from Step 1. Select `A_MaterialDocumentItem.MaterialDocument`, `A_MaterialDocumentItem.MaterialDocumentYear`, `A_MaterialDocumentItem.MaterialDocumentItem`, `A_MaterialDocumentItem.ManufacturingOrder`, `A_MaterialDocumentItem.Material`, `A_MaterialDocumentItem.Plant`, and `A_MaterialDocumentItem.GoodsMovementType`.
+- Do not use material-only movement history for this wording; preserve the `ManufacturingOrder` relationship.
 
 ### Detail Query
 

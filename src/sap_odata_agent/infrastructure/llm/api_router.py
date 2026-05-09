@@ -64,14 +64,14 @@ class LlmApiRouter:
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )
         try:
-            raw = self._complete_nonempty_json_text(self._system_prompt(), user_prompt, max_tokens=1100)
+            raw = self._complete_nonempty_json_text(self._system_prompt(), user_prompt, max_tokens=1600)
             try:
                 parsed = LlmStructuredIntentPlanner._parse_json_object(raw)
             except json.JSONDecodeError:
                 repaired_raw = self._complete_nonempty_json_text(
                     self._json_repair_system_prompt(),
                     self._json_repair_prompt(raw, example),
-                    max_tokens=900,
+                    max_tokens=1200,
                     attempts=1,
                 )
                 parsed = LlmStructuredIntentPlanner._parse_json_object(repaired_raw)
@@ -289,7 +289,22 @@ class LlmApiRouter:
         if not text:
             return ""
         compact = LlmApiRouter._truncate(text, 180)
+        relevant_lines = LlmApiRouter._relevant_skill_lines_for_prompt(text, user_input=user_input, max_lines=4)
+        if relevant_lines:
+            compact = f"{compact}\nRelevant skill guidance:\n" + "\n".join(
+                f"- {line}" for line in relevant_lines
+            )
+        return LlmApiRouter._truncate(compact, 700)
+
+    @staticmethod
+    def _relevant_skill_lines_for_prompt(
+        skill_summary: str,
+        *,
+        user_input: str,
+        max_lines: int = 4,
+    ) -> list[str]:
         relevant_lines: list[str] = []
+        text = str(skill_summary or "")
         for raw_line in text.splitlines():
             line = raw_line.strip()
             if not line or line.startswith("#"):
@@ -298,13 +313,9 @@ class LlmApiRouter:
                 cleaned = re.sub(r"^\s*[-*]\s*", "", line)
                 if cleaned not in relevant_lines:
                     relevant_lines.append(cleaned)
-            if len(relevant_lines) >= 4:
+            if len(relevant_lines) >= max_lines:
                 break
-        if relevant_lines:
-            compact = f"{compact}\nRelevant skill guidance:\n" + "\n".join(
-                f"- {line}" for line in relevant_lines
-            )
-        return LlmApiRouter._truncate(compact, 700)
+        return relevant_lines[:max_lines]
 
     @staticmethod
     def _skill_line_matches_user_input(line: str, user_input: str) -> bool:
@@ -313,16 +324,34 @@ class LlmApiRouter:
         query = LlmApiRouter._normalize_match_text(user_input)
         candidate = LlmApiRouter._normalize_match_text(line)
         synonym_groups = (
-            ("company", "companycode", "company code", "公司", "公司代码"),
-            ("chartofaccounts", "chart of accounts", "科目表"),
-            ("glaccount", "g/l account", "general ledger account", "总账科目", "会计科目"),
-            ("expense", "profitloss", "profit and loss", "费用", "损益"),
+            ("company", "companycode", "company code", "公司", "公司代码", "法人公司"),
+            ("chartofaccounts", "chart of accounts", "科目表", "会计科目表"),
+            ("glaccount", "g/l account", "general ledger account", "总账科目", "会计科目", "科目"),
+            ("expense", "profitloss", "profit and loss", "费用", "损益", "损益类", "收入", "资产负债"),
+            ("journalentry", "journal entry", "line item", "财务行项目", "日记账", "凭证行项目", "总账行项目"),
+            ("functionalarea", "functional area", "职能范围", "功能范围"),
+            ("ledger", "leading ledger", "分类账", "主导ledger", "主导分类账"),
             ("salesorder", "sales order", "销售订单", "销货订单"),
             ("deliverydocument", "outbounddelivery", "outbound delivery", "delivery", "交货单", "交货凭证", "出库交货"),
             ("orderid", "reference document", "referencesddocument", "参考文档", "参考凭证"),
             ("customer", "soldtoparty", "shiptoparty", "客户", "售达方", "收货方"),
             ("billing", "billingstatus", "billing status", "invoice", "invoiced", "not billed", "unbilled", "开票", "未开票", "没开票", "发票"),
             ("goodsmovement", "goods movement", "goods issue", "shipped", "delivered", "已发货", "发货", "已交货", "货物移动"),
+        )
+        synonym_groups = (
+            *synonym_groups,
+            ("supplier", "vendor", "供应商"),
+            ("material", "product", "物料", "产品"),
+            ("name", "names", "名称", "名字"),
+            ("purchasinginforecord", "purchasing info record", "info record", "采购信息记录"),
+            ("masterdata", "master data", "主数据"),
+            ("productionorder", "production order", "生产订单"),
+            ("operation", "operations", "工序", "作业"),
+            ("component", "components", "组件"),
+            ("stock", "inventory", "库存"),
+            ("finishedproduct", "finished product", "成品"),
+            ("workcenter", "work center", "work centers", "工作中心"),
+            ("routing", "productionrouting", "production routing", "工艺路线", "工艺"),
         )
         for group in synonym_groups:
             query_matches = [
@@ -364,6 +393,22 @@ class LlmApiRouter:
                     reason=str(item.get("reason") or ""),
                 )
             )
+        selected = self._repair_incomplete_multi_api_selection(selected, parsed, valid_services)
+        company_code_scoped_gl_request = self._looks_like_company_code_scoped_gl_request(user_input)
+        selected = self._repair_company_code_scoped_gl_route(
+            selected,
+            valid_services,
+            company_code_scoped_gl_request,
+        )
+        selected = self._repair_cost_center_master_route(selected, valid_services, user_input)
+        selected = self._repair_journal_entry_item_route(selected, valid_services, user_input)
+        selected = self._repair_gl_account_line_item_route(selected, valid_services, user_input)
+        selected = self._repair_skill_declared_companion_apis(
+            selected,
+            user_input=user_input,
+            api_catalog=api_catalog,
+            valid_services=valid_services,
+        )
         if (
             not selected
             and valid_services
@@ -382,19 +427,668 @@ class LlmApiRouter:
             needs_clarification = False
             clarification_question = None
             clarification_options = []
+        if selected and needs_clarification and self._looks_like_read_only_bridge_permission(parsed):
+            needs_clarification = False
+            clarification_question = None
+            clarification_options = []
+        if selected and needs_clarification and company_code_scoped_gl_request:
+            needs_clarification = False
+            clarification_question = None
+            clarification_options = []
+        if selected and needs_clarification and self._looks_like_resolvable_journal_entry_dimension_request(selected, user_input):
+            needs_clarification = False
+            clarification_question = None
+            clarification_options = []
+        if selected and needs_clarification and self._looks_like_cross_object_mapping_request(selected, user_input):
+            needs_clarification = False
+            clarification_question = None
+            clarification_options = []
+        if selected and needs_clarification and self._looks_like_resolvable_production_order_operation_request(
+            selected,
+            user_input,
+        ):
+            needs_clarification = False
+            clarification_question = None
+            clarification_options = []
+        if selected and needs_clarification and self._looks_like_company_scoped_list_request(user_input):
+            needs_clarification = False
+            clarification_question = None
+            clarification_options = []
+        if selected and needs_clarification and self._looks_like_status_filtered_master_request(user_input):
+            needs_clarification = False
+            clarification_question = None
+            clarification_options = []
+        if selected and needs_clarification and self._looks_like_master_attribute_request(user_input):
+            needs_clarification = False
+            clarification_question = None
+            clarification_options = []
+        if selected and needs_clarification and self._looks_like_resolvable_pricing_condition_request(
+            selected,
+            user_input,
+            api_catalog,
+        ):
+            needs_clarification = False
+            clarification_question = None
+            clarification_options = []
+        requires_multi_api = bool(parsed.get("requires_multi_api", False)) or len(selected) > 1
+        materialized_raw_response = {
+            **parsed,
+            "selected_apis": [
+                {
+                    "service_name": item.service_name,
+                    "confidence": item.confidence,
+                    "reason": item.reason,
+                }
+                for item in selected
+            ],
+            "requires_multi_api": requires_multi_api,
+            "needs_clarification": needs_clarification,
+            "clarification_question": clarification_question or "",
+            "clarification_options": clarification_options,
+        }
         return ApiRouteDecision(
             resolved_user_input=str(parsed.get("resolved_user_input") or user_input),
             should_carry_context=bool(parsed.get("should_carry_context", False)),
             selected_apis=selected,
-            requires_multi_api=bool(parsed.get("requires_multi_api", False)),
+            requires_multi_api=requires_multi_api,
             intent_summary=str(parsed.get("intent_summary") or ""),
             business_domain=str(parsed.get("business_domain") or ""),
             business_object=str(parsed.get("business_object") or ""),
             needs_clarification=needs_clarification,
             clarification_question=clarification_question,
             clarification_options=clarification_options,
-            raw_response=parsed,
+            raw_response=materialized_raw_response,
         )
+
+    @staticmethod
+    def _repair_incomplete_multi_api_selection(
+        selected: list[SelectedApi],
+        parsed: dict[str, Any],
+        valid_services: set[str],
+    ) -> list[SelectedApi]:
+        if not bool(parsed.get("requires_multi_api", False)):
+            return selected
+        selected_names = {item.service_name for item in selected}
+        parsed_text = json.dumps(parsed, ensure_ascii=False)
+        repaired = list(selected)
+        for service_name in sorted(valid_services):
+            if service_name in selected_names or service_name not in parsed_text:
+                continue
+            repaired.append(
+                SelectedApi(
+                    service_name=service_name,
+                    confidence=0.5,
+                    reason="Router marked the request as multi-API and mentioned this valid service in its reasoning.",
+                )
+            )
+            selected_names.add(service_name)
+            if len(repaired) >= 4:
+                break
+        return repaired
+
+    @staticmethod
+    def _repair_skill_declared_companion_apis(
+        selected: list[SelectedApi],
+        *,
+        user_input: str,
+        api_catalog: list[dict[str, Any]],
+        valid_services: set[str],
+    ) -> list[SelectedApi]:
+        if not selected or not valid_services:
+            return selected
+        selected_names = {item.service_name for item in selected}
+        catalog_by_service = {
+            str(item.get("service_name") or ""): item
+            for item in api_catalog
+            if str(item.get("service_name") or "")
+        }
+        repaired = list(selected)
+        for selected_item in selected:
+            entry = catalog_by_service.get(selected_item.service_name) or {}
+            relevant_lines = LlmApiRouter._relevant_skill_lines_for_prompt(
+                str(entry.get("api_skill_summary") or ""),
+                user_input=user_input,
+                max_lines=20,
+            )
+            for line in relevant_lines:
+                normalized_line = line.lower()
+                if "do not use" in normalized_line or "don't use" in normalized_line:
+                    continue
+                if not LlmApiRouter._companion_line_is_specific_enough(line, user_input):
+                    continue
+                for service_name in sorted(valid_services):
+                    if service_name in selected_names or service_name not in line:
+                        continue
+                    repaired.append(
+                        SelectedApi(
+                            service_name=service_name,
+                            confidence=0.55,
+                            reason=(
+                                "Selected API skill guidance references this companion API "
+                                "for the user request."
+                            ),
+                        )
+                    )
+                    selected_names.add(service_name)
+                    if len(repaired) >= 4:
+                        return repaired
+        return repaired
+
+    @staticmethod
+    def _companion_line_is_specific_enough(line: str, user_input: str) -> bool:
+        query = LlmApiRouter._normalize_match_text(user_input)
+        candidate = LlmApiRouter._normalize_match_text(line)
+        if query and candidate and (query in candidate or candidate in query):
+            return True
+
+        synonym_groups = (
+            ("supplier", "vendor", "供应商"),
+            ("material", "product", "物料", "产品"),
+            ("name", "names", "名称"),
+            ("purchasinginforecord", "purchasing info record", "info record", "采购信息记录"),
+            ("plannedorder", "planned order", "计划订单"),
+            ("productionorder", "production order", "生产订单"),
+            ("operation", "operations", "工序", "作业"),
+            ("component", "components", "组件", "部件"),
+            ("stock", "inventory", "库存"),
+            ("finishedproduct", "finished product", "成品"),
+            ("workcenter", "work center", "work centers", "工作中心"),
+            ("routing", "productionrouting", "production routing", "工艺路线", "工艺"),
+            ("delivery", "deliverydocument", "outbounddelivery", "交货单"),
+            ("billing", "invoice", "开票", "发票"),
+        )
+        matched_groups = 0
+        query_text = str(user_input or "").lower()
+        candidate_text = str(line or "").lower()
+        for group in synonym_groups:
+            query_has_group = any(
+                LlmApiRouter._text_contains_business_term(query_text, term)
+                for term in group
+            )
+            candidate_has_group = any(
+                LlmApiRouter._text_contains_business_term(candidate_text, term)
+                for term in group
+            )
+            if query_has_group and candidate_has_group:
+                matched_groups += 1
+        return matched_groups >= 2
+
+    @staticmethod
+    def _text_contains_business_term(text: str, term: str) -> bool:
+        raw_term = str(term or "").lower().strip()
+        if not raw_term:
+            return False
+        if re.fullmatch(r"[a-z0-9][a-z0-9 ]*[a-z0-9]", raw_term):
+            pattern = r"(?<![a-z0-9])" + re.escape(raw_term) + r"(?![a-z0-9])"
+            return re.search(pattern, text) is not None
+        return LlmApiRouter._normalize_match_text(raw_term) in LlmApiRouter._normalize_match_text(text)
+
+    @staticmethod
+    def _looks_like_read_only_bridge_permission(parsed: dict[str, Any]) -> bool:
+        text = json.dumps(parsed, ensure_ascii=False).lower()
+        bridge_markers = (
+            "allow first",
+            "allow to first",
+            "permission",
+            "先查询",
+            "允许先",
+            "获取科目表",
+            "bridge",
+            "lookup",
+        )
+        read_markers = (
+            "read",
+            "query",
+            "retrieve",
+            "查询",
+            "读取",
+            "获取",
+        )
+        return any(marker in text for marker in bridge_markers) and any(
+            marker in text for marker in read_markers
+        )
+
+    @staticmethod
+    def _repair_company_code_scoped_gl_route(
+        selected: list[SelectedApi],
+        valid_services: set[str],
+        company_code_scoped_gl_request: bool,
+    ) -> list[SelectedApi]:
+        gl_service = "API_GLACCOUNTINCHARTOFACCOUNTS_SRV"
+        company_service = "API_COMPANYCODE_SRV"
+        selected_names = {item.service_name for item in selected}
+        if gl_service not in selected_names or company_service in selected_names:
+            return selected
+        if gl_service not in valid_services or company_service not in valid_services:
+            return selected
+        if not company_code_scoped_gl_request:
+            return selected
+        return [
+            SelectedApi(
+                service_name=company_service,
+                confidence=0.6,
+                reason="Company-code-scoped G/L account questions need the company code chart-of-accounts bridge.",
+            ),
+            *selected,
+        ]
+
+    @staticmethod
+    def _repair_cost_center_master_route(
+        selected: list[SelectedApi],
+        valid_services: set[str],
+        user_input: str,
+    ) -> list[SelectedApi]:
+        cost_center_service = "API_COSTCENTER_SRV"
+        company_service = "API_COMPANYCODE_SRV"
+        if cost_center_service not in valid_services:
+            return selected
+        if not LlmApiRouter._looks_like_cost_center_master_request(user_input):
+            return selected
+        selected_names = {item.service_name for item in selected}
+        if cost_center_service in selected_names:
+            return selected
+        if selected_names == {company_service}:
+            return [
+                SelectedApi(
+                    service_name=cost_center_service,
+                    confidence=0.75,
+                    reason="Cost-center master-data wording should use the cost center API; company code is only a filter.",
+                )
+            ]
+        return selected
+
+    @staticmethod
+    def _looks_like_cost_center_master_request(user_input: str) -> bool:
+        text = str(user_input or "").lower()
+        if not any(marker in text for marker in ("成本中心", "cost center")):
+            return False
+        transactional_markers = (
+            "财务行项目",
+            "日记账",
+            "总账行项目",
+            "运营会计",
+            "journal",
+            "line item",
+            "g/l line",
+            "operational accounting",
+        )
+        return not any(marker in text for marker in transactional_markers)
+
+    @staticmethod
+    def _looks_like_company_code_scoped_gl_request(user_input: str) -> bool:
+        normalized = LlmApiRouter._normalize_match_text(user_input)
+        has_company = any(token in normalized for token in ("公司", "公司代码", "company", "companycode"))
+        has_gl = any(
+            token in normalized
+            for token in (
+                "科目表",
+                "总账科目",
+                "会计科目",
+                "科目",
+                "chartofaccounts",
+                "glaccount",
+                "generalledgeraccount",
+            )
+        )
+        return has_company and has_gl
+
+    @staticmethod
+    def _repair_gl_account_line_item_route(
+        selected: list[SelectedApi],
+        valid_services: set[str],
+        user_input: str,
+    ) -> list[SelectedApi]:
+        line_item_service = "API_GLACCOUNTLINEITEM"
+        journal_service = "API_JOURNALENTRYITEMBASIC_SRV"
+        company_service = "API_COMPANYCODE_SRV"
+        ledger_service = "API_LEDGER_SRV"
+        if line_item_service not in valid_services:
+            return selected
+        if not LlmApiRouter._looks_like_gl_account_line_item_request(user_input):
+            return selected
+        selected_names = {item.service_name for item in selected}
+        if line_item_service in selected_names and journal_service not in selected_names:
+            if (
+                LlmApiRouter._looks_like_leading_ledger_request(user_input)
+                and ledger_service in valid_services
+                and ledger_service not in selected_names
+            ):
+                return [
+                    SelectedApi(
+                        service_name=ledger_service,
+                        confidence=0.7,
+                        reason="Leading-ledger G/L line item requests need the ledger master API to resolve the leading ledger.",
+                    ),
+                    *selected,
+                ]
+            return selected
+        repaired = [
+            item
+            for item in selected
+            if item.service_name not in {journal_service, company_service, line_item_service}
+        ]
+        if (
+            LlmApiRouter._looks_like_leading_ledger_request(user_input)
+            and ledger_service in valid_services
+            and all(item.service_name != ledger_service for item in repaired)
+        ):
+            repaired.append(
+                SelectedApi(
+                    service_name=ledger_service,
+                    confidence=0.7,
+                    reason="Leading-ledger G/L line item requests need the ledger master API to resolve the leading ledger.",
+                )
+            )
+        repaired.append(
+            SelectedApi(
+                service_name=line_item_service,
+                confidence=0.75,
+                reason="G/L account line item wording should use the dedicated G/L account line item API.",
+            )
+        )
+        return repaired
+
+    @staticmethod
+    def _looks_like_gl_account_line_item_request(user_input: str) -> bool:
+        text = str(user_input or "").lower()
+        markers = (
+            "总账行项目",
+            "总账行项目清单",
+            "g/l account line item",
+            "g/l account line items",
+            "gl account line item",
+            "gl account line items",
+            "general ledger line item",
+            "general ledger line items",
+        )
+        return any(marker in text for marker in markers)
+
+    @staticmethod
+    def _repair_journal_entry_item_route(
+        selected: list[SelectedApi],
+        valid_services: set[str],
+        user_input: str,
+    ) -> list[SelectedApi]:
+        journal_service = "API_JOURNALENTRYITEMBASIC_SRV"
+        line_item_service = "API_GLACCOUNTLINEITEM"
+        operational_item_service = "API_OPLACCTGDOCITEMCUBE_SRV"
+        if journal_service not in valid_services:
+            return selected
+        if not LlmApiRouter._looks_like_journal_entry_item_request(user_input):
+            return selected
+        if LlmApiRouter._looks_like_gl_account_line_item_request(user_input):
+            return selected
+        selected_names = {item.service_name for item in selected}
+        if journal_service in selected_names:
+            return selected
+        if line_item_service not in selected_names and operational_item_service not in selected_names:
+            return selected
+        repaired = [
+            item
+            for item in selected
+            if item.service_name not in {line_item_service, operational_item_service}
+        ]
+        repaired.append(
+            SelectedApi(
+                service_name=journal_service,
+                confidence=0.75,
+                reason="Journal-entry item wording should use the journal entry item API, not another accounting line-item API.",
+            )
+        )
+        return repaired
+
+    @staticmethod
+    def _looks_like_journal_entry_item_request(user_input: str) -> bool:
+        text = str(user_input or "").lower()
+        markers = (
+            "日记账行项目",
+            "日记帐行项目",
+            "会计行项目",
+            "财务行项目",
+            "journal entry item",
+            "journal entry items",
+        )
+        return any(marker in text for marker in markers)
+
+    @staticmethod
+    def _looks_like_resolvable_journal_entry_dimension_request(
+        selected: list[SelectedApi],
+        user_input: str,
+    ) -> bool:
+        selected_names = {item.service_name for item in selected}
+        if "API_JOURNALENTRYITEMBASIC_SRV" not in selected_names:
+            return False
+        if not LlmApiRouter._looks_like_journal_entry_item_request(user_input):
+            return False
+        text = str(user_input or "").lower()
+        dimension_markers = (
+            "职能范围",
+            "功能范围",
+            "成本中心",
+            "利润中心",
+            "客户",
+            "工厂",
+            "会计期间",
+            "functional area",
+            "cost center",
+            "profit center",
+            "customer",
+            "plant",
+            "fiscal year period",
+        )
+        return any(marker in text for marker in dimension_markers)
+
+    @staticmethod
+    def _looks_like_cross_object_mapping_request(
+        selected: list[SelectedApi],
+        user_input: str,
+    ) -> bool:
+        if len({item.service_name for item in selected}) < 2:
+            return False
+        text = str(user_input or "").lower()
+        mapping_markers = (
+            "对应",
+            "关联",
+            "分配",
+            "映射",
+            "关系",
+            "mapping",
+            "assignment",
+            "assigned",
+            "related",
+        )
+        scope_markers = (
+            "公司",
+            "公司代码",
+            "工厂",
+            "客户",
+            "供应商",
+            "物料",
+            "company",
+            "plant",
+            "customer",
+            "supplier",
+            "material",
+        )
+        return any(marker in text for marker in mapping_markers) and any(marker in text for marker in scope_markers)
+
+    @staticmethod
+    def _looks_like_resolvable_production_order_operation_request(
+        selected: list[SelectedApi],
+        user_input: str,
+    ) -> bool:
+        selected_names = {item.service_name for item in selected}
+        if "API_PRODUCTION_ORDER_2_SRV" not in selected_names:
+            return False
+        normalized = LlmApiRouter._normalize_match_text(user_input)
+        has_production_order = any(
+            marker in normalized
+            for marker in (
+                "productionorder",
+                "manufacturingorder",
+                "生产订单",
+            )
+        )
+        has_operation = any(
+            marker in normalized
+            for marker in (
+                "operation",
+                "operations",
+                "工序",
+                "作业",
+            )
+        )
+        has_resolvable_scope = any(
+            marker in normalized
+            for marker in (
+                "plant",
+                "工厂",
+                "workcenter",
+                "工作中心",
+                "manufacturingorder",
+            )
+        )
+        return has_production_order and has_operation and has_resolvable_scope
+
+    @staticmethod
+    def _looks_like_company_scoped_list_request(user_input: str) -> bool:
+        text = str(user_input or "").lower()
+        if any(marker in text for marker in ("哪个", "哪一个", "具体哪个", "specific", "which one")):
+            return False
+        has_company_scope = any(marker in text for marker in ("公司", "公司代码", "company", "company code"))
+        has_list_object = any(
+            marker in text
+            for marker in (
+                "有哪些",
+                "哪些",
+                "所有",
+                "列表",
+                "清单",
+                "名称",
+                "英文名称",
+                "assigned",
+                "assignment",
+                "list",
+                "names",
+            )
+        )
+        return has_company_scope and has_list_object
+
+    @staticmethod
+    def _looks_like_status_filtered_master_request(user_input: str) -> bool:
+        text = str(user_input or "").lower()
+        status_markers = (
+            "冻结",
+            "锁定",
+            "禁止",
+            "blocked",
+            "frozen",
+            "locked",
+        )
+        object_markers = (
+            "利润中心",
+            "成本中心",
+            "供应商",
+            "客户",
+            "物料",
+            "profit center",
+            "cost center",
+            "supplier",
+            "customer",
+            "material",
+        )
+        return any(marker in text for marker in status_markers) and any(marker in text for marker in object_markers)
+
+    @staticmethod
+    def _looks_like_master_attribute_request(user_input: str) -> bool:
+        text = str(user_input or "").lower()
+        object_markers = (
+            "利润中心",
+            "成本中心",
+            "供应商",
+            "客户",
+            "物料",
+            "profit center",
+            "cost center",
+            "supplier",
+            "customer",
+            "material",
+        )
+        attribute_markers = (
+            "标准层级",
+            "层级",
+            "类别",
+            "类型",
+            "负责人",
+            "货币",
+            "standard hierarchy",
+            "hierarchy",
+            "category",
+            "type",
+            "responsible",
+            "currency",
+        )
+        return any(marker in text for marker in object_markers) and any(marker in text for marker in attribute_markers)
+
+    @staticmethod
+    def _looks_like_resolvable_pricing_condition_request(
+        selected: list[SelectedApi],
+        user_input: str,
+        api_catalog: list[dict[str, Any]],
+    ) -> bool:
+        query = LlmApiRouter._normalize_match_text(user_input)
+        if not query:
+            return False
+        pricing_terms = {
+            "price",
+            "pricing",
+            "condition",
+            "conditions",
+            "pricecondition",
+            "pricingcondition",
+            "价格",
+            "定价",
+            "条件",
+            "价格条件",
+            "定价条件",
+        }
+        if not any(LlmApiRouter._normalize_match_text(term) in query for term in pricing_terms):
+            return False
+
+        selected_names = {item.service_name for item in selected}
+        for entry in api_catalog:
+            if str(entry.get("service_name") or "") not in selected_names:
+                continue
+            evidence = json.dumps(
+                {
+                    "top_entities": entry.get("top_entities") or [],
+                    "top_filter_fields": entry.get("top_filter_fields") or [],
+                    "top_answer_fields": entry.get("top_answer_fields") or [],
+                    "api_skill_summary": entry.get("api_skill_summary") or "",
+                    "primary_business_objects": entry.get("primary_business_objects") or [],
+                },
+                ensure_ascii=False,
+            ).lower()
+            if any(
+                marker in evidence
+                for marker in (
+                    "pric",
+                    "prcg",
+                    "conditiontype",
+                    "conditionamount",
+                    "conditioncurrency",
+                    "pricingprocedurestep",
+                    "定价",
+                    "价格条件",
+                )
+            ):
+                return True
+        return False
+
+    @staticmethod
+    def _looks_like_leading_ledger_request(user_input: str) -> bool:
+        text = str(user_input or "").lower()
+        return any(marker in text for marker in ("主导ledger", "主导分类账", "leading ledger"))
 
     def _unavailable_route(self, api_catalog: list[dict[str, Any]]) -> ApiRouteDecision:
         if not self.allow_default_fallback:

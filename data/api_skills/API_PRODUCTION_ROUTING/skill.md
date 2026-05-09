@@ -48,6 +48,10 @@ Keep `data/index/API_PRODUCTION_ROUTING` as the schema ground truth. This skill 
 - Select the entity whose description most directly matches the requested business object.
 - Apply user-provided identifiers, dates, statuses, organizational units, material/product IDs, customer/supplier IDs, and document numbers as filters when corresponding filterable fields exist.
 - Keep `$select` focused on key fields plus fields needed to answer the question.
+- If the user asks for a product/material production routing (`生产工艺路线`, `工艺路线`, `routing`) without asking for operations, steps, or work centers, use `ProductionRoutingMatlAssgmt` as the target entity and select `Product`, `Plant`, `ProductionRoutingGroup`, and `ProductionRouting`.
+- Do not continue from `ProductionRoutingMatlAssgmt` into `ProductionRoutingOperation` unless the user explicitly asks for operations, steps, `工序`, `作业`, `operation`, `step`, or work center details.
+- If the user asks for routing operations (`工艺路线的工序`, `routing operations`, `operations used by a routing`), first query `ProductionRoutingMatlAssgmt` by product/material and plant when those filters are provided, then bind `ProductionRoutingGroup` and `ProductionRouting` into `ProductionRoutingOperation`.
+- For `ProductionRoutingOperation` answers, select `ProductionRoutingGroup`, `ProductionRouting`, `ProductionRoutingSequence`, `ProductionRoutingOpIntID`, `Operation`, and `WorkCenterInternalID` when those fields are available.
 - If the user asks for production routing status records, routing status values, or main identifying details for routing statuses, query `ProductionRoutingStatus` directly and select `BillOfOperationsStatus` and `BillOfOperationsStatusDesc`.
 - Do not expand a production routing status list into `ProductionRoutingHeader`, `ProductionRoutingMatlAssgmt`, or other routing detail entities unless the user also asks for concrete routings, products/material assignments, operations, or header-level details.
 
@@ -55,6 +59,14 @@ Keep `data/index/API_PRODUCTION_ROUTING` as the schema ground truth. This skill 
 
 - Use item/detail/text/pricing/account/partner/schedule entities only when the user asks for that detail level or when a relationship path in `lookup_paths.json` proves the navigation.
 - For cross-entity questions, use indexed lookup paths instead of guessing joins.
+
+### Routing Work Centers
+
+- If the user asks for work centers used by a product/material routing (`工艺路线用到的工作中心`, `routing work centers`), use `API_PRODUCTION_ROUTING` together with `API_WORK_CENTERS`.
+- Step 1: query `ProductionRoutingMatlAssgmt` by `ProductionRoutingMatlAssgmt.Product` and `ProductionRoutingMatlAssgmt.Plant` when those values are provided or can be derived from the product routing assignment. Select `ProductionRoutingMatlAssgmt.Product`, `ProductionRoutingMatlAssgmt.Plant`, `ProductionRoutingMatlAssgmt.ProductionRoutingGroup`, and `ProductionRoutingMatlAssgmt.ProductionRouting`.
+- Step 2: query `ProductionRoutingOperation` by binding `ProductionRoutingOperation.ProductionRoutingGroup` and `ProductionRoutingOperation.ProductionRouting` from Step 1. Select `ProductionRoutingOperation.ProductionRoutingGroup`, `ProductionRoutingOperation.ProductionRouting`, `ProductionRoutingOperation.ProductionRoutingSequence`, `ProductionRoutingOperation.ProductionRoutingOpIntID`, `ProductionRoutingOperation.Operation`, and `ProductionRoutingOperation.WorkCenterInternalID`.
+- Step 3: query `API_WORK_CENTERS.A_WorkCenterAllCapacity` by binding `WorkCenterInternalID` from Step 2, and bind `Plant` from Step 1 when plant is available. Select `WorkCenterInternalID`, `WorkCenter`, `Plant`, and `WorkCenterDesc`.
+- Do not use `ProductionRoutingHeader.PlanningWorkCenter` as a substitute for all work centers used by routing operations.
 
 ### Runtime Availability
 

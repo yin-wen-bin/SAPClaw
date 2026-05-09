@@ -2,6 +2,16 @@ from sap_odata_agent.domain.models import AgentRequest, FilterCondition, QueryCo
 from sap_odata_agent.infrastructure.llm.result_verifier_agent import LlmResultVerifierAgent
 
 
+class StaticJsonClient:
+    def __init__(self, payload):
+        self.payload = payload
+
+    def complete_json(self, system_prompt: str, user_prompt: str, max_tokens: int = 900) -> str:
+        import json
+
+        return json.dumps(self.payload)
+
+
 def test_result_verifier_prompt_allows_empty_list_results() -> None:
     prompt = LlmResultVerifierAgent._user_prompt(
         request=type("Request", (), {"resolved_user_input": "", "user_input": "查询传真号码列表"})(),
@@ -67,6 +77,42 @@ def test_result_verifier_static_passes_field_list_output_request_without_filters
 
     assert result["passed"] is True
     assert result["source"] == "field_list_static_result_verifier"
+
+
+def test_result_verifier_drops_unrequested_document_date_and_debit_credit_fields() -> None:
+    verifier = LlmResultVerifierAgent(
+        llm_client=StaticJsonClient(
+            {
+                "passed": False,
+                "issues": [
+                    {
+                        "code": "missing_required_fields",
+                        "message": "The result omitted AccountingDocument, PostingDate, and DebitCreditIndicator.",
+                        "blocking": True,
+                    }
+                ],
+                "repair_hints": {},
+            }
+        )
+    )
+
+    result = verifier.verify(
+        request=AgentRequest(user_input="查询公司1710中科目10010000的日记账行项目"),
+        plan=QueryPlan(
+            service_name="API_JOURNALENTRYITEMBASIC_SRV",
+            entity_set="A_JournalEntryItemBasic",
+            select_fields=["ID", "CompanyCode", "GLAccount", "AmountInCompanyCodeCurrency"],
+            filters=[],
+        ),
+        data={
+            "result_count": 1,
+            "results": [{"ID": "1", "CompanyCode": "1710", "GLAccount": "10010000"}],
+        },
+        schema_context_summary={"service_name": "API_JOURNALENTRYITEMBASIC_SRV"},
+    )
+
+    assert result["passed"] is True
+    assert result["issues"] == []
 
 
 def test_result_verifier_blocks_blank_less_specific_product_tax_classification() -> None:

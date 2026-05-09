@@ -542,6 +542,9 @@ def test_llm_first_pipeline_preserves_successful_execution_after_repair_timeout(
     assert response.attempts[0].request.url == "https://sap.example.com/A_Bad"
     assert "SAP request was executed successfully" in response.final_message
     assert "No SAP request was executed" not in response.final_message
+    assert response.failure_attribution is not None
+    assert response.failure_attribution.category == "post_execution_repair_timeout"
+    assert "No SAP request was executed" not in response.failure_attribution.root_cause
     assert repairer.calls == 1
 
 

@@ -45,10 +45,14 @@ Keep `data/index/API_GLACCOUNTLINEITEM` as the schema ground truth. This skill p
 
 ### Line Item Field Lists
 
+- For Chinese wording such as `总账行项目清单`, select only `GLAccountLineItem.CompanyCode`, `GLAccountLineItem.FiscalYear`, `GLAccountLineItem.AccountingDocument`, `GLAccountLineItem.Ledger`, `GLAccountLineItem.GLAccount`, and `GLAccountLineItem.AmountInCompanyCodeCurrency`.
+- For Chinese wording such as `主导ledger的总账行项目`, first resolve the leading ledger with `API_LEDGER_SRV.A_Ledger.IsLeadingLedger eq true`, then query `GLAccountLineItem` and select only `GLAccountLineItem.CompanyCode`, `GLAccountLineItem.FiscalYear`, `GLAccountLineItem.AccountingDocument`, `GLAccountLineItem.Ledger`, `GLAccountLineItem.GLAccount`, and `GLAccountLineItem.AmountInCompanyCodeCurrency`.
 - For broad "list G/L account line item records" requests, select `GLAccountLineItem.ID`, `GLAccountLineItem.CompanyCode`, `GLAccountLineItem.FiscalYear`, `GLAccountLineItem.AccountingDocument`, `GLAccountLineItem.AccountingDocumentItem`, `GLAccountLineItem.Ledger`, `GLAccountLineItem.LedgerFiscalYear`, `GLAccountLineItem.GLAccount`, `GLAccountLineItem.PostingDate`, `GLAccountLineItem.DocumentDate`, and fields needed by the user request.
 - For broad "main identifying details" requests, do not add optional dimensions such as `GLAccountLineItem.AccountingDocCreatedByUser`, `GLAccountLineItem.LedgerGLLineItem`, `GLAccountLineItem.GLRecordType`, `GLAccountLineItem.ControllingArea`, `GLAccountLineItem.DebitCreditCode`, or `GLAccountLineItem.DocumentItemText` unless the user explicitly asks for them. Extra analytical dimensions change result granularity and total counts.
 - If the user asks for `AccountingDocCreatedByUser` without providing a user value, select `GLAccountLineItem.AccountingDocCreatedByUser`; do not add a filter with a placeholder value.
 - When the user asks for clearing, amount, quantity, assignment, reference, service document, customer, supplier, company code, controlling area, cost center, profit center, or distribution channel details, select those fields on `GLAccountLineItem` and keep the stable row-identifying dimensions listed above.
+- For Chinese wording such as `成本中心相关的总账行项目`, select only `GLAccountLineItem.CompanyCode`, `GLAccountLineItem.FiscalYear`, `GLAccountLineItem.AccountingDocument`, `GLAccountLineItem.Ledger`, `GLAccountLineItem.GLAccount`, `GLAccountLineItem.CostCenter`, and `GLAccountLineItem.AmountInCompanyCodeCurrency`, and add filter `GLAccountLineItem.CostCenter ne ''`.
+- For Chinese wording such as `利润中心相关的总账行项目`, select only `GLAccountLineItem.CompanyCode`, `GLAccountLineItem.FiscalYear`, `GLAccountLineItem.AccountingDocument`, `GLAccountLineItem.Ledger`, `GLAccountLineItem.GLAccount`, `GLAccountLineItem.ProfitCenter`, and `GLAccountLineItem.AmountInCompanyCodeCurrency`, and add filter `GLAccountLineItem.ProfitCenter ne ''`.
 
 ### Detail Query
 

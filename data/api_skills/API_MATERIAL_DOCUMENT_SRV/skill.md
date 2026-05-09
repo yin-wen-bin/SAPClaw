@@ -39,6 +39,20 @@ Keep `data/index/API_MATERIAL_DOCUMENT_SRV` as the schema ground truth. This ski
 - Query `A_MaterialDocumentItem` when the user asks for movement history by material, plant, storage location, batch, or movement type.
 - Select document keys and requested movement fields.
 
+### Purchase Orders With Goods Receipt Material Documents
+
+- For requests that ask for purchase orders and goods receipt material documents by material, query purchase order items first only to identify related `PurchaseOrder` / `PurchaseOrderItem` references.
+- Then query `API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItem` and select `MaterialDocument`, `MaterialDocumentYear`, `MaterialDocumentItem`, `PurchaseOrder`, `PurchaseOrderItem`, `Material`, and `GoodsMovementType`.
+- The answer target should be `A_MaterialDocumentItem` when the requested output includes goods receipt material document numbers.
+- Do not set `target_entity_set` to the purchase order item entity if the final displayed rows need `MaterialDocument`.
+
+### Production Order Material Documents
+
+- For requests that ask for material documents corresponding to production orders (`生产订单对应的物料凭证`), use `API_PRODUCTION_ORDER_2_SRV` together with `API_MATERIAL_DOCUMENT_SRV`.
+- Step 1: query `API_PRODUCTION_ORDER_2_SRV.A_ProductionOrder_2` by `A_ProductionOrder_2.ProductionPlant` when the user provides a plant. Select `A_ProductionOrder_2.ManufacturingOrder`, `A_ProductionOrder_2.Material`, and `A_ProductionOrder_2.ProductionPlant`.
+- Step 2: query `A_MaterialDocumentItem` by binding `A_MaterialDocumentItem.ManufacturingOrder` from Step 1. Select `A_MaterialDocumentItem.MaterialDocument`, `A_MaterialDocumentItem.MaterialDocumentYear`, `A_MaterialDocumentItem.MaterialDocumentItem`, `A_MaterialDocumentItem.ManufacturingOrder`, `A_MaterialDocumentItem.Material`, `A_MaterialDocumentItem.Plant`, and `A_MaterialDocumentItem.GoodsMovementType`.
+- Do not answer production-order material document requests with material-only movement history; `A_MaterialDocumentItem.ManufacturingOrder` is required to preserve the production order relationship.
+
 ### Movement By Posting Or Document Date
 
 - Query `A_MaterialDocumentHeader` when the requested filter is header-level date or header text.

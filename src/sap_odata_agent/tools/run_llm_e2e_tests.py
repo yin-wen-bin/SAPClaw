@@ -23,12 +23,16 @@ RUN_ROOT = Path("data/api_test_runs")
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run natural-language SAP API e2e evaluation cases.")
     parser.add_argument("--api", action="append", help="API service name to run. Can be repeated.")
+    parser.add_argument("--module", action="append", help="Cross-API module folder to run. Alias of --api for cross-api case roots.")
+    parser.add_argument("--case-root", default=str(CASE_ROOT), help="Case asset root. Defaults to data/api_test_cases.")
+    parser.add_argument("--run-root", default=str(RUN_ROOT), help="Run output root. Defaults to data/api_test_runs.")
     parser.add_argument("--case-id", action="append", help="Single case id to run. Can be repeated.")
     parser.add_argument("--limit", type=int, default=0, help="Maximum number of cases to run.")
     parser.add_argument("--run-id", default="", help="Existing or new run id.")
     parser.add_argument("--skip-existing", action="store_true", help="Skip cases already present in the run folder.")
     parser.add_argument("--baseline-only", action="store_true", help="Only refresh deterministic baseline data.")
     parser.add_argument("--front-only", action="store_true", help="Only run the LLM-first agent chain.")
+    parser.add_argument("--use-existing-baseline", action="store_true", help="Read existing baseline files instead of refreshing them.")
     parser.add_argument("--case-delay-seconds", type=float, default=0.0, help="Delay between cases to avoid LLM rate limits.")
     parser.add_argument("--rate-limit-retries", type=int, default=1, help="Retry a case when the LLM provider returns HTTP 429.")
     parser.add_argument("--rate-limit-sleep-seconds", type=float, default=30.0, help="Sleep before retrying an HTTP 429 case.")
@@ -36,11 +40,14 @@ def main() -> None:
     args = parser.parse_args()
 
     run_id = args.run_id or datetime.now().strftime("%Y%m%d_%H%M%S")
-    run_dir = RUN_ROOT / run_id
+    case_root = Path(args.case_root)
+    run_root = Path(args.run_root)
+    run_dir = run_root / run_id
     per_case_dir = run_dir / "per_case"
     per_case_dir.mkdir(parents=True, exist_ok=True)
 
-    cases = _load_cases(args.api, args.case_id)
+    selected_groups = args.api or args.module
+    cases = _load_cases(case_root, selected_groups, args.case_id)
     if args.limit > 0:
         cases = cases[: args.limit]
 
@@ -53,8 +60,10 @@ def main() -> None:
         result = _run_case_with_retries(
             case,
             run_id,
+            case_root,
             baseline_only=args.baseline_only,
             front_only=args.front_only,
+            use_existing_baseline=args.use_existing_baseline,
             rate_limit_retries=max(0, args.rate_limit_retries),
             rate_limit_sleep_seconds=max(0.0, args.rate_limit_sleep_seconds),
             shared_conversation=args.shared_conversation,
@@ -72,14 +81,18 @@ def main() -> None:
     print(json.dumps(summary, ensure_ascii=False, indent=2))
 
 
-def _load_cases(api_names: list[str] | None, case_ids: list[str] | None) -> list[dict[str, Any]]:
+def _load_cases(
+    case_root: Path,
+    api_names: list[str] | None,
+    case_ids: list[str] | None,
+) -> list[dict[str, Any]]:
     selected_apis = api_names or [
-        path.name for path in sorted(CASE_ROOT.iterdir()) if (path / "cases.json").exists()
+        path.name for path in sorted(case_root.iterdir()) if (path / "cases.json").exists()
     ]
     selected_case_ids = set(case_ids or [])
     cases: list[dict[str, Any]] = []
     for api_name in selected_apis:
-        path = CASE_ROOT / api_name / "cases.json"
+        path = case_root / api_name / "cases.json"
         if not path.exists():
             raise FileNotFoundError(f"Missing cases file: {path}")
         api_cases = json.loads(path.read_text(encoding="utf-8-sig"))
@@ -93,14 +106,16 @@ def _load_cases(api_names: list[str] | None, case_ids: list[str] | None) -> list
 def _run_case(
     case: dict[str, Any],
     run_id: str,
+    case_root: Path,
     *,
     baseline_only: bool,
     front_only: bool,
+    use_existing_baseline: bool,
     shared_conversation: bool = False,
 ) -> dict[str, Any]:
     started_at = datetime.now().astimezone().isoformat()
     expects_unsupported = bool(case.get("expected_capability", {}).get("unsupported"))
-    baseline = None if front_only or expects_unsupported else _run_baseline(case)
+    baseline = None if front_only or expects_unsupported else _load_or_run_baseline(case, case_root, use_existing_baseline)
     frontend = None if baseline_only else _run_frontend(case, run_id, shared_conversation=shared_conversation)
     comparison = _compare(case, baseline, frontend, baseline_only=baseline_only, front_only=front_only)
     return {
@@ -122,9 +137,11 @@ def _run_case(
 def _run_case_with_retries(
     case: dict[str, Any],
     run_id: str,
+    case_root: Path,
     *,
     baseline_only: bool,
     front_only: bool,
+    use_existing_baseline: bool,
     rate_limit_retries: int,
     rate_limit_sleep_seconds: float,
     shared_conversation: bool,
@@ -136,8 +153,10 @@ def _run_case_with_retries(
             result = _run_case(
                 case,
                 run_id,
+                case_root,
                 baseline_only=baseline_only,
                 front_only=front_only,
+                use_existing_baseline=use_existing_baseline,
                 shared_conversation=shared_conversation,
             )
         except Exception as exc:  # pragma: no cover - runtime protection for long SAP/LLM runs
@@ -149,6 +168,17 @@ def _run_case_with_retries(
         last_result = result
         time.sleep(rate_limit_sleep_seconds)
     return last_result or _runtime_failure(case, run_id, RuntimeError("Case retry loop did not run."))
+
+
+def _load_or_run_baseline(
+    case: dict[str, Any],
+    case_root: Path,
+    use_existing_baseline: bool,
+) -> dict[str, Any]:
+    baseline_path = case_root / case["api"] / "baselines" / f"{case['id']}.json"
+    if use_existing_baseline and baseline_path.exists():
+        return json.loads(baseline_path.read_text(encoding="utf-8"))
+    return _run_baseline(case, case_root)
 
 
 def _runtime_failure(case: dict[str, Any], run_id: str, exc: Exception) -> dict[str, Any]:
@@ -204,7 +234,7 @@ def _infer_exception_layer(stack: str) -> str:
     return "runner"
 
 
-def _run_baseline(case: dict[str, Any]) -> dict[str, Any]:
+def _run_baseline(case: dict[str, Any], case_root: Path = CASE_ROOT) -> dict[str, Any]:
     executor = get_sap_executor()
     settings = get_settings()
     step_outputs: dict[str, dict[str, Any]] = {}
@@ -212,8 +242,7 @@ def _run_baseline(case: dict[str, Any]) -> dict[str, Any]:
 
     for index, step in enumerate(case["baseline"]["steps"], start=1):
         url = _absolute_url(settings.sap_base_url, step["url"])
-        bind = step.get("bind")
-        if bind:
+        for bind in _iter_step_bindings(step):
             source_output = step_outputs[bind["source_step"]]
             values = _extract_values(source_output["results"], bind["source_field"])
             url = _append_binding_filter(url, bind["target_field"], values)
@@ -251,10 +280,37 @@ def _run_baseline(case: dict[str, Any]) -> dict[str, Any]:
             "results": final_step.get("results", []),
         },
     }
-    baseline_path = CASE_ROOT / case["api"] / "baselines" / f"{case['id']}.json"
+    baseline_path = case_root / case["api"] / "baselines" / f"{case['id']}.json"
     baseline_path.parent.mkdir(parents=True, exist_ok=True)
     baseline_path.write_text(json.dumps(baseline, ensure_ascii=False, indent=2), encoding="utf-8")
     return baseline
+
+
+def _iter_step_bindings(step: dict[str, Any]) -> list[dict[str, str]]:
+    raw_bindings: list[Any] = []
+    for key in ("bind", "binds", "bindings", "filter_from_previous"):
+        value = step.get(key)
+        if isinstance(value, list):
+            raw_bindings.extend(value)
+        elif isinstance(value, dict):
+            raw_bindings.append(value)
+
+    bindings: list[dict[str, str]] = []
+    for raw in raw_bindings:
+        if not isinstance(raw, dict):
+            continue
+        source_step = raw.get("source_step") or raw.get("source_step_id")
+        source_field = raw.get("source_field")
+        target_field = raw.get("target_field") or raw.get("field")
+        if source_step and source_field and target_field:
+            bindings.append(
+                {
+                    "source_step": str(source_step),
+                    "source_field": str(source_field),
+                    "target_field": str(target_field),
+                }
+            )
+    return bindings
 
 
 def _run_frontend(case: dict[str, Any], run_id: str, *, shared_conversation: bool = False) -> dict[str, Any]:
@@ -274,6 +330,7 @@ def _run_frontend(case: dict[str, Any], run_id: str, *, shared_conversation: boo
         "needs_clarification": response.needs_clarification,
         "case_id": response.case_id,
         "selected_api": response.plan.service_name,
+        "selected_apis": _selected_services(response),
         "entity_set": response.plan.entity_set,
         "final_message": response.final_message,
         "result_count": data.get("result_count", 0) if isinstance(data, dict) else 0,
@@ -285,6 +342,37 @@ def _run_frontend(case: dict[str, Any], run_id: str, *, shared_conversation: boo
         "presentation": response_dict.get("presentation"),
         "raw_response": response_dict,
     }
+
+
+def _selected_services(response: Any) -> list[str]:
+    services: list[str] = []
+    plan = getattr(response, "plan", None)
+    if plan is None:
+        return services
+    service_name = getattr(plan, "service_name", None)
+    if service_name:
+        services.append(str(service_name))
+    for step in getattr(plan, "steps", []) or []:
+        step_service = getattr(step, "service_name", None)
+        if step_service:
+            services.append(str(step_service))
+    return list(dict.fromkeys(services))
+
+
+def _expected_api_matches(case: dict[str, Any], frontend: dict[str, Any]) -> bool:
+    actual = set(frontend.get("selected_apis") or [])
+    selected_api = frontend.get("selected_api")
+    if selected_api:
+        actual.add(str(selected_api))
+    expected_apis = [str(item) for item in case.get("expected_apis") or [] if str(item)]
+    if expected_apis:
+        if case.get("require_all_expected_apis"):
+            return set(expected_apis).issubset(actual)
+        return bool(set(expected_apis) & actual)
+    expected_api = case.get("expected_api")
+    if expected_api:
+        return str(expected_api) in actual
+    return True
 
 
 def _compare(
@@ -304,13 +392,15 @@ def _compare(
     if case.get("expected_capability", {}).get("unsupported"):
         if frontend is None:
             return {"passed": False, "failed_layer": "runner", "reason": "Frontend result missing."}
-        route_passed = frontend["selected_api"] == case["expected_api"]
+        route_passed = _expected_api_matches(case, frontend)
         unsupported_passed = not frontend["success"]
         return {
             "passed": route_passed and unsupported_passed,
             "failed_layer": None if route_passed and unsupported_passed else "unsupported_handling",
-            "expected_api": case["expected_api"],
+            "expected_api": case.get("expected_api"),
+            "expected_apis": case.get("expected_apis"),
             "actual_api": frontend["selected_api"],
+            "actual_apis": frontend.get("selected_apis", []),
             "frontend_success": frontend["success"],
             "final_message": frontend.get("final_message"),
         }
@@ -318,13 +408,15 @@ def _compare(
         return {"passed": False, "failed_layer": "baseline", "reason": "Baseline request failed."}
     if frontend is None:
         return {"passed": False, "failed_layer": "runner", "reason": "Frontend result missing."}
-    if frontend["selected_api"] != case["expected_api"]:
+    if not _expected_api_matches(case, frontend):
         return {
             "passed": False,
             "failed_layer": "router",
             "reason": "Selected API mismatch.",
-            "expected_api": case["expected_api"],
+            "expected_api": case.get("expected_api"),
+            "expected_apis": case.get("expected_apis"),
             "actual_api": frontend["selected_api"],
+            "actual_apis": frontend.get("selected_apis", []),
         }
     if case["expected_capability"].get("clarify"):
         return {
@@ -347,16 +439,23 @@ def _compare(
         comparison.get("required_fields", []),
         frontend.get("result_count", 0),
     )
-    if missing_required_fields:
+    missing_required_field_groups = _missing_required_field_groups(
+        frontend["results"],
+        comparison.get("required_any_fields", []),
+        frontend.get("result_count", 0),
+    )
+    if missing_required_fields or missing_required_field_groups:
         return {
             "passed": False,
             "failed_layer": "planner",
             "reason": "Frontend results are missing required fields.",
             "missing_required_fields": missing_required_fields,
+            "missing_required_any_fields": missing_required_field_groups,
         }
     baseline_final = baseline["final"]
     baseline_keys = set(_tuple_keys(baseline_final["keys"]))
     actual_keys = set(_tuple_keys(_key_set(frontend["results"], comparison.get("keys", []))))
+    baseline_scope_limited = _baseline_scope_limited(baseline)
 
     if comparison_type == "count_only":
         passed = baseline_final["result_count"] == frontend["result_count"]
@@ -370,24 +469,47 @@ def _compare(
     if comparison_type == "count_and_key_subset":
         count_passed = baseline_final["result_count"] == frontend["result_count"]
         no_results = baseline_final["result_count"] == 0 and frontend["result_count"] == 0
+        baseline_page_too_small = int(baseline_final.get("returned_count", len(baseline_final.get("results", [])))) < len(actual_keys)
         key_passed = no_results or (actual_keys.issubset(baseline_keys) if actual_keys else False)
+        frontend_superset_of_limited_baseline = bool(baseline_keys) and baseline_keys.issubset(actual_keys)
+        if not count_passed and baseline_scope_limited and frontend.get("result_count", 0) >= baseline_final["result_count"]:
+            count_passed = True
+        if not key_passed and (
+            (count_passed and baseline_page_too_small)
+            or (baseline_scope_limited and frontend_superset_of_limited_baseline)
+        ):
+            key_passed = True
         return {
             "passed": count_passed and key_passed,
             "failed_layer": None if count_passed and key_passed else "planner",
             "baseline_count": baseline_final["result_count"],
             "actual_count": frontend["result_count"],
+            "key_check_limited_by_baseline_page": bool(
+                (count_passed and baseline_page_too_small) or baseline_scope_limited
+            ),
             "actual_keys_not_in_baseline": sorted(actual_keys - baseline_keys),
             "baseline_keys_missing_from_actual_page": sorted(list(baseline_keys - actual_keys))[:50],
         }
 
     if comparison_type == "key_subset":
         no_results = baseline_final["result_count"] == 0 and frontend["result_count"] == 0
+        count_passed = baseline_final["result_count"] == frontend["result_count"]
+        baseline_page_too_small = int(baseline_final.get("returned_count", len(baseline_final.get("results", [])))) < len(actual_keys)
         key_passed = no_results or (actual_keys.issubset(baseline_keys) and bool(actual_keys))
+        frontend_superset_of_limited_baseline = bool(baseline_keys) and baseline_keys.issubset(actual_keys)
+        if not key_passed and (
+            (count_passed and baseline_page_too_small)
+            or (baseline_scope_limited and frontend_superset_of_limited_baseline)
+        ):
+            key_passed = True
         return {
             "passed": key_passed,
             "failed_layer": None if key_passed else "planner",
             "baseline_count": baseline_final["result_count"],
             "actual_count": frontend["result_count"],
+            "key_check_limited_by_baseline_page": bool(
+                (count_passed and baseline_page_too_small) or baseline_scope_limited
+            ),
             "actual_keys_not_in_baseline": sorted(actual_keys - baseline_keys),
             "baseline_keys_missing_from_actual_page": sorted(list(baseline_keys - actual_keys))[:50],
         }
@@ -404,6 +526,22 @@ def _compare(
         }
 
     return {"passed": False, "failed_layer": "runner", "reason": f"Unsupported comparison: {comparison_type}"}
+
+
+def _baseline_scope_limited(baseline: dict[str, Any]) -> bool:
+    for step in baseline.get("steps", []) or []:
+        try:
+            result_count = int(step.get("result_count", 0) or 0)
+            returned_count = int(step.get("returned_count", 0) or 0)
+        except (TypeError, ValueError):
+            continue
+        if result_count > returned_count >= 0:
+            return True
+    final = baseline.get("final", {})
+    try:
+        return int(final.get("result_count", 0) or 0) > int(final.get("returned_count", 0) or 0)
+    except (TypeError, ValueError):
+        return False
 
 
 def _build_summary(run_id: str, results: list[dict[str, Any]]) -> dict[str, Any]:
@@ -507,6 +645,25 @@ def _missing_required_fields(
         return required
     available = set().union(*(set(item) for item in results))
     return [field for field in required if field not in available]
+
+
+def _missing_required_field_groups(
+    results: list[dict[str, Any]],
+    required_any_fields: list[list[str]],
+    result_count: int,
+) -> list[list[str]]:
+    groups = [
+        [str(field or "").strip() for field in group if str(field or "").strip()]
+        for group in required_any_fields
+        if isinstance(group, list)
+    ]
+    groups = [group for group in groups if group]
+    if not groups or result_count <= 0:
+        return []
+    if not results:
+        return groups
+    available = set().union(*(set(item) for item in results))
+    return [group for group in groups if not any(field in available for field in group)]
 
 
 def _tuple_keys(keys: list[dict[str, Any]]) -> list[tuple[tuple[str, Any], ...]]:

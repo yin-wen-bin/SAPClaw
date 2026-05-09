@@ -41,7 +41,12 @@ Keep `data/index/API_PLANNED_ORDERS` as the schema ground truth. This skill prov
 - Select the entity whose description most directly matches the requested business object.
 - Apply user-provided identifiers, dates, statuses, organizational units, material/product IDs, customer/supplier IDs, and document numbers as filters when corresponding filterable fields exist.
 - Keep `$select` focused on key fields plus fields needed to answer the question.
+- For planned order component / 计划订单组件 requests, use `A_PlannedOrderComponent` and select `A_PlannedOrderComponent.PlannedOrder`, `A_PlannedOrderComponent.Material`, `A_PlannedOrderComponent.Plant`, `A_PlannedOrderComponent.BillOfMaterialItemNumber`, and `A_PlannedOrderComponent.GoodsMovementEntryQty`.
+- Do not use `BOMItem` as a replacement for component `Material` when the user asks for components.
 - For planned order component text requests, `A_PlannedOrderComponent.BOMItemDescription` and `A_PlannedOrderComponent.BOMItemDescriptionLine2` are direct fields on `A_PlannedOrderComponent`; do not ask for BOM relationship clarification when the user only wants to display these component fields.
+- For planned order material/product master data requests (`计划订单物料的产品主数据`) without component wording, use planned order header material from `A_PlannedOrder`, not `A_PlannedOrderComponent`.
+- Step 1: query `A_PlannedOrder` by `A_PlannedOrder.MRPPlant` when the user provides a plant. Select `A_PlannedOrder.PlannedOrder`, `A_PlannedOrder.Material`, `A_PlannedOrder.MRPPlant`, and `A_PlannedOrder.MRPController`.
+- Step 2: query `API_PRODUCT_SRV.A_Product` by binding `A_PlannedOrder.Material` to `A_Product.Product`. Select `A_Product.Product`, `A_Product.ProductType`, and `A_Product.ProductGroup`.
 - For planned order header wording such as "with issued quantity", "with planned order BOM is fixed", "with planned order capacity is dispatched", or "with planned order is convertible", treat `A_PlannedOrder.IssuedQuantity`, `A_PlannedOrder.PlannedOrderBOMIsFixed`, `A_PlannedOrder.PlannedOrderCapacityIsDsptchd`, and `A_PlannedOrder.PlannedOrderIsConvertible` as output fields unless the user explicitly asks for only records where the value is true/nonzero. Do not add filters by default.
 
 ### Detail Query

@@ -113,6 +113,40 @@ def test_compiler_uses_runtime_service_name_from_index_metadata_source(tmp_path)
     assert compiled.url.startswith("https://sap.example.com/sap/opu/odata/sap/API_PRODUCTION_ROUTING;v=0002/")
 
 
+def test_compiler_prefers_runtime_path_template_over_index_metadata_source(tmp_path) -> None:
+    service_dir = tmp_path / "data" / "index" / "API_PRODUCTION_ROUTING"
+    service_dir.mkdir(parents=True)
+    (service_dir / "services.json").write_text(
+        json.dumps(
+            [
+                {
+                    "service_name": "API_PRODUCTION_ROUTING",
+                    "runtime_path_template": "/sap/opu/odata/sap/{service_name}",
+                    "source": (
+                        "https://sap.example.com/sap/opu/odata/sap/"
+                        "API_PRODUCTION_ROUTING;v=0002/$metadata?sap-client=100"
+                    ),
+                }
+            ]
+        ),
+        encoding="utf-8",
+    )
+    plan = QueryPlan(
+        service_name="API_PRODUCTION_ROUTING",
+        entity_set="ProductionRoutingOperation",
+        select_fields=["ProductionRoutingGroup", "ProductionRouting"],
+        top=10,
+    )
+
+    compiled = BasicODataCompiler(
+        base_url="https://sap.example.com",
+        index_root=tmp_path / "data" / "index",
+    ).compile(plan)
+
+    assert compiled.url.startswith("https://sap.example.com/sap/opu/odata/sap/API_PRODUCTION_ROUTING/")
+    assert "API_PRODUCTION_ROUTING;v=0002" not in compiled.url
+
+
 def test_compiler_includes_entity_key_fields_from_index(tmp_path) -> None:
     service_dir = tmp_path / "data" / "index" / "API_PROFITCENTER_SRV"
     service_dir.mkdir(parents=True)

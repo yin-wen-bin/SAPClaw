@@ -61,6 +61,14 @@ class LlmPlanRepairer(LlmApiSpecificPlanner):
         materialized = self._materialize_plan(parsed, snapshot, schema_context)
         if materialized is None:
             return self._invalid_plan_for_service(service_name, "repair_plan_not_materializable", schema_context, parsed)
+        materialized = self._apply_skill_filter_patterns(materialized, request, schema_context)
+        materialized = self._apply_skill_preferred_filter_fields(materialized, request, schema_context)
+        materialized = self._apply_skill_select_only_patterns(materialized, request, schema_context)
+        materialized = self._clear_skill_resolved_clarification(materialized)
+        materialized = self._remove_unrequested_temporal_filters(materialized, request)
+        materialized = self._apply_company_code_chart_of_accounts_bridge(materialized, request, schema_context)
+        materialized = self._apply_profit_center_company_assignment_bridge(materialized, request, schema_context)
+        materialized = self._normalize_profit_center_assignment_bindings(materialized)
         return replace(
             materialized,
             service_name=materialized.service_name or service_name,
@@ -159,8 +167,9 @@ class LlmPlanRepairer(LlmApiSpecificPlanner):
             "15. Do not represent function import parameters as filters; use exact parameter names and value_type from schema_context.function_imports.\n"
             "16. If repair_hints include preferred_entity_set, preferred_select_fields, preferred_filters, or presentation_kind, use them when they are present in schema_context. This is mandatory for wrong_business_level verifier findings.\n"
             "17. If the previous plan answered a document history request with pricing, notes, account assignments, or other detail child entities, do not repeat that plan. Return no_feasible_plan or reroute_required unless schema_context exposes true history, movement, receipt, invoice, or change-history data.\n\n"
-            "18. Do not add filters only because a user wrote bare \"with/include/show/display\" field names or status indicators. Preserve those as select fields unless the user supplied an explicit restriction, comparison, literal value, true/false requirement, nonzero/open/closed condition, or schema-verified business condition.\n\n"
-            "19. If schema_context.service_names contains multiple services, every multi_step step must include service_name. Keep each step's entity set and fields within that service and use cross-service join_hints or shared key fields to bridge services.\n\n"
+            "18. If schema_context.api_skill or schema_context.api_skills contains a Common Planning Pattern that matches the user's wording, treat that pattern as schema-verified business guidance and use its entity, select fields, and filters when those fields exist in schema_context.\n\n"
+            "19. Do not add filters only because a user wrote bare \"with/include/show/display\" field names or status indicators. Preserve those as select fields unless the user supplied an explicit restriction, comparison, literal value, true/false requirement, nonzero/open/closed condition, schema-verified business condition, or a matching api_skill Common Planning Pattern.\n\n"
+            "20. If schema_context.service_names contains multiple services, every multi_step step must include service_name. Keep each step's entity set and fields within that service and use cross-service join_hints or shared key fields to bridge services.\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )

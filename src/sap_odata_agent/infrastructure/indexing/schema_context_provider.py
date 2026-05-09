@@ -517,6 +517,7 @@ class SchemaContextProvider:
                 {
                     "service_name": item.get("service_name", ""),
                     "path": item.get("path", ""),
+                    "summary": str(item.get("summary") or "")[:2400],
                 }
                 for item in schema_context.get("api_skills", [])
                 if isinstance(item, dict)

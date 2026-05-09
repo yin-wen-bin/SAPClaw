@@ -69,6 +69,41 @@ Keep `data/index/API_SALES_ORDER_SRV` as the schema ground truth. This skill pro
 - Do not answer `delivery documents for sales order <number>` from this API unless the user explicitly asks for sales-order-side document-flow fields.
 - Prefer `API_OUTBOUND_DELIVERY_SRV.A_OutbDeliveryHeader.OrderID` for header-level delivery documents and `API_OUTBOUND_DELIVERY_SRV.A_OutbDeliveryItem.OrderID` or `ReferenceSDDocument` for delivery items.
 
+### Customer Sales Order Items
+
+- For requests such as `query sales order items for customer 17100003` or `query customer 17100003 sales order line items`, use `A_SalesOrder` first and `A_SalesOrderItem` second.
+- Step 1: query `A_SalesOrder` with `SoldToParty eq '<customer>'`, selecting `SalesOrder`, `SoldToParty`, `SalesOrganization`, `OverallDeliveryStatus`, and `OverallOrdReltdBillgStatus`.
+- Step 2: query `A_SalesOrderItem` by binding `A_SalesOrder.SalesOrder` to `A_SalesOrderItem.SalesOrder`.
+- For the final item result, select only `A_SalesOrderItem.SalesOrder`, `A_SalesOrderItem.SalesOrderItem`, `A_SalesOrderItem.Material`, `A_SalesOrderItem.RequestedQuantity`, and `A_SalesOrderItem.ProductionPlant`.
+- Do not continue from sales order items to pricing elements, partners, texts, billing plan, or related objects unless the user explicitly asks for price, condition, partner, text, billing plan, or related-object details.
+
+### Customer Sales Orders Not Fully Delivered
+
+- For requests such as `查询客户17100003未完全交货的销售订单`, `customer 17100003 open delivery sales orders`, or `sales orders not fully delivered for customer`, answer from `A_SalesOrder`; do not use item-level quantity comparison unless the user explicitly asks for line items, ordered quantity, delivered quantity, or quantity variance.
+- Filter `A_SalesOrder.SoldToParty eq '<customer>'` and `A_SalesOrder.OverallTotalDeliveryStatus ne 'C'`.
+- Select only `A_SalesOrder.SalesOrder`, `A_SalesOrder.SoldToParty`, `A_SalesOrder.OverallDeliveryStatus`, and `A_SalesOrder.OverallTotalDeliveryStatus`; answer from this step and do not continue to `A_SalesOrderItem` enrichment.
+
+### Material Sales Orders Not Fully Delivered
+
+- For requests such as `查询物料MZ-TG-Y240的未交货销售订单`, `material <id> undelivered sales orders`, or `open delivery sales orders for material <id>`, answer from `A_SalesOrderItem`; the material identifier is an item-level filter, not a product-master query.
+- Filter `A_SalesOrderItem.Material eq '<material>'` and `A_SalesOrderItem.DeliveryStatus ne 'C'`.
+- Select only `A_SalesOrderItem.SalesOrder`, `A_SalesOrderItem.SalesOrderItem`, `A_SalesOrderItem.Material`, `A_SalesOrderItem.RequestedQuantity`, `A_SalesOrderItem.ConfdDelivQtyInOrderQtyUnit`, and `A_SalesOrderItem.DeliveryStatus`.
+- Do not route this request to `API_PRODUCT_SRV`; product master data cannot answer sales order delivery status.
+- Do not start from `A_SalesOrder` for a material-only filter unless header fields are explicitly requested; `A_SalesOrder` does not contain the item material.
+
+### Customer Sales Orders Not Fully Billed
+
+- For requests such as `查询客户17100003未完全开票的销售订单`, `customer 17100003 unbilled sales orders`, or `sales orders not fully billed for customer`, answer from `A_SalesOrder`; do not ask a clarification just because fully unbilled and partially billed are both possible when the wording says not fully billed.
+- Filter `A_SalesOrder.SoldToParty eq '<customer>'` and `A_SalesOrder.OverallOrdReltdBillgStatus ne 'C'`.
+- Select only `A_SalesOrder.SalesOrder`, `A_SalesOrder.SoldToParty`, and `A_SalesOrder.OverallOrdReltdBillgStatus`; answer from this step and do not continue to billing document or item enrichment unless the user explicitly asks for invoice numbers, billing documents, billing dates, or billing items.
+
+### Sales Order Pricing Conditions
+
+- For requests such as `查询销售订单3773的价格条件`, `sales order 3773 pricing conditions`, or `sales order condition elements`, this API exposes sales order item pricing elements on `A_SalesOrderItemPrElement`; do not ask clarification merely because other SD APIs also expose pricing elements.
+- Step 1: query `A_SalesOrder` by `A_SalesOrder.SalesOrder eq '<sales order>'` and select only `A_SalesOrder.SalesOrder`.
+- Step 2: query `A_SalesOrderItemPrElement` by binding `A_SalesOrder.SalesOrder` to `A_SalesOrderItemPrElement.SalesOrder`.
+- Select only `A_SalesOrderItemPrElement.SalesOrder`, `A_SalesOrderItemPrElement.SalesOrderItem`, `A_SalesOrderItemPrElement.PricingProcedureStep`, `A_SalesOrderItemPrElement.PricingProcedureCounter`, `A_SalesOrderItemPrElement.ConditionType`, `A_SalesOrderItemPrElement.ConditionAmount`, and `A_SalesOrderItemPrElement.ConditionCurrency`.
+
 ### Detail Query
 
 - Use item/detail/text/pricing/account/partner/schedule entities only when the user asks for that detail level or when a relationship path in `lookup_paths.json` proves the navigation.

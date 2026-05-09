@@ -54,6 +54,7 @@ Keep `data/index/API_OUTBOUND_DELIVERY_SRV` as the schema ground truth. This ski
 
 - For requests such as `query delivery documents for sales order 3773` or `查询销售订单3773的交货单`, use `API_OUTBOUND_DELIVERY_SRV` directly.
 - Start with `A_OutbDeliveryItem` for sales-order-related delivery documents: filter `A_OutbDeliveryItem.ReferenceSDDocument eq '3773'`, and select `DeliveryDocument`, `DeliveryDocumentItem`, `ReferenceSDDocument`, `ReferenceSDDocumentItem`, `OrderID`, `Material`, and quantity/status fields.
+- If the user only asks for delivery documents corresponding to a sales order and does not ask for header-only fields, answer from `A_OutbDeliveryItem`; select only `A_OutbDeliveryItem.DeliveryDocument`, `A_OutbDeliveryItem.DeliveryDocumentItem`, `A_OutbDeliveryItem.ReferenceSDDocument`, `A_OutbDeliveryItem.ReferenceSDDocumentItem`, `A_OutbDeliveryItem.Material`, and `A_OutbDeliveryItem.ActualDeliveryQuantity`; do not add an `A_OutbDeliveryHeader` enrichment step.
 - `A_OutbDeliveryHeader.OrderID` can be blank in this SAP service for sales-order-created deliveries. Do not conclude that no delivery exists from an empty `OrderID` result until `A_OutbDeliveryItem.ReferenceSDDocument` has been checked.
 - If the user asks for header-level delivery dates, ship-to party, sold-to party, shipping point, or overall status, use a second step from `A_OutbDeliveryItem.DeliveryDocument` to `A_OutbDeliveryHeader.DeliveryDocument`.
 - Do not build a multi-API plan through `API_SALES_ORDER_SRV` merely to confirm the sales order exists when the delivery API exposes the sales order reference as a filter field.
@@ -67,6 +68,21 @@ Keep `data/index/API_OUTBOUND_DELIVERY_SRV` as the schema ground truth. This ski
 - For not yet billed semantics, filter `A_OutbDeliveryHeader.OverallDelivReltdBillgStatus eq 'A'`. For not fully billed / open billing wording, use `A_OutbDeliveryHeader.OverallDelivReltdBillgStatus ne 'C'` when the user allows partially billed deliveries.
 - Select `DeliveryDocument`, `DeliveryDate`, `SoldToParty`, `ShipToParty`, `OverallGoodsMovementStatus`, and `OverallDelivReltdBillgStatus`.
 - Use `API_BILLING_DOCUMENT_SRV` only when the user asks for actual billing documents, invoice numbers, invoice dates, or billing document details, or when the outbound delivery billing status fields cannot answer the business question.
+
+### Billing Items For Customer Delivery Documents
+
+- For requests such as `query customer 17100003 delivery documents' billing items`, use this API as the source step and `API_BILLING_DOCUMENT_SRV` as the target API.
+- Step 1: query `A_OutbDeliveryHeader` by `A_OutbDeliveryHeader.SoldToParty` and select only `A_OutbDeliveryHeader.DeliveryDocument`, `A_OutbDeliveryHeader.SoldToParty`, `A_OutbDeliveryHeader.OverallGoodsMovementStatus`, and `A_OutbDeliveryHeader.OverallDelivReltdBillgStatus`.
+- Step 2: query `API_BILLING_DOCUMENT_SRV.A_BillingDocumentItem` by binding `A_OutbDeliveryHeader.DeliveryDocument` to `A_BillingDocumentItem.ReferenceSDDocument`.
+- Do not ask the user for specific delivery document numbers when the customer filter can produce the delivery document scope.
+
+### Product Master Data For Customer Delivery Items
+
+- For requests such as `查询客户17100003交货单里的物料主数据`, use this API as the source step and `API_PRODUCT_SRV` as the target API.
+- Step 1: query `A_OutbDeliveryHeader` by `A_OutbDeliveryHeader.SoldToParty` and select only `A_OutbDeliveryHeader.DeliveryDocument` and `A_OutbDeliveryHeader.SoldToParty`.
+- Step 2: query `A_OutbDeliveryItem` by binding `A_OutbDeliveryHeader.DeliveryDocument` to `A_OutbDeliveryItem.DeliveryDocument`; select only `A_OutbDeliveryItem.DeliveryDocument`, `A_OutbDeliveryItem.DeliveryDocumentItem`, and `A_OutbDeliveryItem.Material`; add filter `A_OutbDeliveryItem.Material ne ''`.
+- Step 3: query `API_PRODUCT_SRV.A_Product` by binding `A_OutbDeliveryItem.Material` to `A_Product.Product`; select only `A_Product.Product`, `A_Product.ProductType`, `A_Product.ProductGroup`, and `A_Product.BaseUnit`.
+- Keep upstream delivery/item scope bounded to the first page unless the user explicitly asks for every matching delivery item.
 
 ### Detail Query
 

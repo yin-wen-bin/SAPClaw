@@ -1,0 +1,1059 @@
+[
+  {
+    "id": "PP-XAPI-001",
+    "api": "PP",
+    "scenario": "plant_production_orders",
+    "user_input": "查询工厂1710的生产订单",
+    "expected_api": "API_PRODUCTION_ORDER_2_SRV",
+    "expected_apis": [
+      "API_PRODUCTION_ORDER_2_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "orders",
+          "url": "/sap/opu/odata/sap/API_PRODUCTION_ORDER_2_SRV/A_ProductionOrder_2?$select=ManufacturingOrder,Material,ProductionPlant,ManufacturingOrderType&$filter=ProductionPlant eq '1710'&$top=20",
+          "key_fields": [
+            "ManufacturingOrder"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ManufacturingOrder"
+      ],
+      "required_fields": [
+        "ManufacturingOrder",
+        "ProductionPlant"
+      ]
+    }
+  },
+  {
+    "id": "PP-XAPI-002",
+    "api": "PP",
+    "scenario": "production_order_components",
+    "user_input": "查询工厂1710生产订单的组件",
+    "expected_api": "API_PRODUCTION_ORDER_2_SRV",
+    "expected_apis": [
+      "API_PRODUCTION_ORDER_2_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "orders",
+          "url": "/sap/opu/odata/sap/API_PRODUCTION_ORDER_2_SRV/A_ProductionOrder_2?$select=ManufacturingOrder,Material,ProductionPlant,ManufacturingOrderType&$filter=ProductionPlant eq '1710'&$top=20",
+          "key_fields": [
+            "ManufacturingOrder"
+          ]
+        },
+        {
+          "id": "components",
+          "url": "/sap/opu/odata/sap/API_PRODUCTION_ORDER_2_SRV/A_ProductionOrderComponent_2?$select=ManufacturingOrder,Reservation,ReservationItem,Material,Plant,RequiredQuantity&$top=50",
+          "key_fields": [
+            "Reservation",
+            "ReservationItem"
+          ],
+          "bind": {
+            "source_step": "orders",
+            "source_field": "ManufacturingOrder",
+            "target_field": "ManufacturingOrder"
+          }
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Reservation",
+        "ReservationItem"
+      ],
+      "required_fields": [
+        "ManufacturingOrder",
+        "Material"
+      ]
+    }
+  },
+  {
+    "id": "PP-XAPI-003",
+    "api": "PP",
+    "scenario": "production_order_operations",
+    "user_input": "查询工厂1710生产订单的工序",
+    "expected_api": "API_PRODUCTION_ORDER_2_SRV",
+    "expected_apis": [
+      "API_PRODUCTION_ORDER_2_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "orders",
+          "url": "/sap/opu/odata/sap/API_PRODUCTION_ORDER_2_SRV/A_ProductionOrder_2?$select=ManufacturingOrder,Material,ProductionPlant,ManufacturingOrderType&$filter=ProductionPlant eq '1710'&$top=20",
+          "key_fields": [
+            "ManufacturingOrder"
+          ]
+        },
+        {
+          "id": "operations",
+          "url": "/sap/opu/odata/sap/API_PRODUCTION_ORDER_2_SRV/A_ProductionOrderOperation_2?$select=ManufacturingOrder,ManufacturingOrderOperation,ProductionPlant,WorkCenter&$top=50",
+          "key_fields": [
+            "ManufacturingOrder",
+            "ManufacturingOrderOperation"
+          ],
+          "bind": {
+            "source_step": "orders",
+            "source_field": "ManufacturingOrder",
+            "target_field": "ManufacturingOrder"
+          }
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ManufacturingOrder",
+        "ManufacturingOrderOperation"
+      ],
+      "required_fields": [
+        "ManufacturingOrder",
+        "WorkCenter"
+      ]
+    }
+  },
+  {
+    "id": "PP-XAPI-004",
+    "api": "PP",
+    "scenario": "production_order_product_master",
+    "user_input": "查询工厂1710生产订单成品的产品主数据",
+    "expected_api": "API_PRODUCTION_ORDER_2_SRV",
+    "expected_apis": [
+      "API_PRODUCTION_ORDER_2_SRV",
+      "API_PRODUCT_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "orders",
+          "url": "/sap/opu/odata/sap/API_PRODUCTION_ORDER_2_SRV/A_ProductionOrder_2?$select=ManufacturingOrder,Material,ProductionPlant,ManufacturingOrderType&$filter=ProductionPlant eq '1710'&$top=20",
+          "key_fields": [
+            "ManufacturingOrder"
+          ]
+        },
+        {
+          "id": "products",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_Product?$select=Product,ProductType,ProductGroup&$top=50",
+          "key_fields": [
+            "Product"
+          ],
+          "bind": {
+            "source_step": "orders",
+            "source_field": "Material",
+            "target_field": "Product"
+          }
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Product"
+      ],
+      "required_fields": [
+        "Product"
+      ]
+    }
+  },
+  {
+    "id": "PP-XAPI-005",
+    "api": "PP",
+    "scenario": "production_component_stock",
+    "user_input": "查询工厂1710生产订单组件的库存",
+    "expected_api": "API_PRODUCTION_ORDER_2_SRV",
+    "expected_apis": [
+      "API_PRODUCTION_ORDER_2_SRV",
+      "API_MATERIAL_STOCK_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "components",
+          "url": "/sap/opu/odata/sap/API_PRODUCTION_ORDER_2_SRV/A_ProductionOrderComponent_2?$select=ManufacturingOrder,Material,Plant&$filter=Plant eq '1710'&$top=200",
+          "key_fields": [
+            "Material"
+          ]
+        },
+        {
+          "id": "stock",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_STOCK_SRV/A_MatlStkInAcctMod?$select=Material,Plant,StorageLocation,InventoryStockType,MatlWrhsStkQtyInMatlBaseUnit&$filter=Plant eq '1710'&$top=50",
+          "key_fields": [
+            "Material",
+            "Plant",
+            "StorageLocation",
+            "InventoryStockType"
+          ],
+          "bind": {
+            "source_step": "components",
+            "source_field": "Material",
+            "target_field": "Material"
+          }
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Material",
+        "Plant",
+        "StorageLocation",
+        "InventoryStockType"
+      ],
+      "required_fields": [
+        "Material",
+        "Plant"
+      ]
+    }
+  },
+  {
+    "id": "PP-XAPI-006",
+    "api": "PP",
+    "scenario": "planned_orders",
+    "user_input": "查询工厂1710的计划订单",
+    "expected_api": "API_PLANNED_ORDERS",
+    "expected_apis": [
+      "API_PLANNED_ORDERS"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "planned_orders",
+          "url": "/sap/opu/odata/sap/API_PLANNED_ORDERS/A_PlannedOrder?$select=PlannedOrder,Material,MRPPlant,MRPController&$filter=MRPPlant eq '1710'&$top=20",
+          "key_fields": [
+            "PlannedOrder"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PlannedOrder"
+      ],
+      "required_fields": [
+        "PlannedOrder",
+        "MRPPlant"
+      ]
+    }
+  },
+  {
+    "id": "PP-XAPI-007",
+    "api": "PP",
+    "scenario": "planned_order_components",
+    "user_input": "查询工厂1710计划订单的组件",
+    "expected_api": "API_PLANNED_ORDERS",
+    "expected_apis": [
+      "API_PLANNED_ORDERS"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "planned_orders",
+          "url": "/sap/opu/odata/sap/API_PLANNED_ORDERS/A_PlannedOrder?$select=PlannedOrder,Material,MRPPlant,MRPController&$filter=MRPPlant eq '1710'&$top=20",
+          "key_fields": [
+            "PlannedOrder"
+          ]
+        },
+        {
+          "id": "components",
+          "url": "/sap/opu/odata/sap/API_PLANNED_ORDERS/A_PlannedOrderComponent?$select=PlannedOrder,Material,Plant,BillOfMaterialItemNumber,GoodsMovementEntryQty&$top=50",
+          "key_fields": [
+            "PlannedOrder",
+            "Material"
+          ],
+          "bind": {
+            "source_step": "planned_orders",
+            "source_field": "PlannedOrder",
+            "target_field": "PlannedOrder"
+          }
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PlannedOrder",
+        "Material"
+      ],
+      "required_fields": [
+        "PlannedOrder",
+        "Material"
+      ]
+    }
+  },
+  {
+    "id": "PP-XAPI-008",
+    "api": "PP",
+    "scenario": "planned_order_capacity",
+    "user_input": "查询工厂1710计划订单的产能需求",
+    "expected_api": "API_PLANNED_ORDERS",
+    "expected_apis": [
+      "API_PLANNED_ORDERS"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "planned_orders",
+          "url": "/sap/opu/odata/sap/API_PLANNED_ORDERS/A_PlannedOrder?$select=PlannedOrder,Material,MRPPlant,MRPController&$filter=MRPPlant eq '1710'&$top=20",
+          "key_fields": [
+            "PlannedOrder"
+          ]
+        },
+        {
+          "id": "capacity",
+          "url": "/sap/opu/odata/sap/API_PLANNED_ORDERS/A_PlannedOrderCapacity?$select=PlannedOrder,CapacityRequirement,CapacityRequirementItem,WorkCenter,OperationEarliestStartDate&$top=50",
+          "key_fields": [
+            "PlannedOrder",
+            "CapacityRequirement",
+            "CapacityRequirementItem"
+          ],
+          "bind": {
+            "source_step": "planned_orders",
+            "source_field": "PlannedOrder",
+            "target_field": "PlannedOrder"
+          }
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "PlannedOrder",
+        "CapacityRequirement",
+        "CapacityRequirementItem"
+      ],
+      "required_fields": [
+        "PlannedOrder"
+      ]
+    }
+  },
+  {
+    "id": "PP-XAPI-009",
+    "api": "PP",
+    "scenario": "mrp_materials",
+    "user_input": "查询工厂1710的MRP物料",
+    "expected_api": "API_MRP_MATERIALS_SRV_01",
+    "expected_apis": [
+      "API_MRP_MATERIALS_SRV_01"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "mrp",
+          "url": "/sap/opu/odata/sap/API_MRP_MATERIALS_SRV_01/A_MRPMaterial?$select=Material,MRPPlant,MRPArea,MRPController,MRPType&$filter=MRPPlant eq '1710'&$top=50",
+          "key_fields": [
+            "Material",
+            "MRPPlant",
+            "MRPArea"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Material",
+        "MRPPlant",
+        "MRPArea"
+      ],
+      "required_fields": [
+        "Material",
+        "MRPPlant"
+      ]
+    }
+  },
+  {
+    "id": "PP-XAPI-010",
+    "api": "PP",
+    "scenario": "mrp_supply_demand",
+    "user_input": "查询物料TG0011在工厂1710的MRP供需项目",
+    "expected_api": "API_MRP_MATERIALS_SRV_01",
+    "expected_apis": [
+      "API_MRP_MATERIALS_SRV_01"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "mrp",
+          "url": "/sap/opu/odata/sap/API_MRP_MATERIALS_SRV_01/A_MRPMaterial?$select=Material,MRPPlant,MRPArea&$filter=Material eq 'TG0011' and MRPPlant eq '1710'&$top=5",
+          "key_fields": [
+            "Material",
+            "MRPPlant",
+            "MRPArea"
+          ]
+        },
+        {
+          "id": "items",
+          "url": "/sap/opu/odata/sap/API_MRP_MATERIALS_SRV_01/SupplyDemandItems?$select=Material,MRPPlant,MRPArea,MRPElement,MRPElementItem,MRPElementCategory,MRPAvailableQuantity&$filter=MRPPlant eq '1710'&$top=50",
+          "key_fields": [
+            "Material",
+            "MRPPlant",
+            "MRPArea",
+            "MRPElement",
+            "MRPElementItem"
+          ],
+          "bind": {
+            "source_step": "mrp",
+            "source_field": "Material",
+            "target_field": "Material"
+          }
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Material",
+        "MRPPlant",
+        "MRPArea",
+        "MRPElement",
+        "MRPElementItem"
+      ],
+      "required_fields": [
+        "Material",
+        "MRPElement"
+      ]
+    }
+  },
+  {
+    "id": "PP-XAPI-011",
+    "api": "PP",
+    "scenario": "product_routing",
+    "user_input": "查询产品MZ-FG-R300在工厂1710的生产工艺路线",
+    "expected_api": "API_PRODUCT_SRV",
+    "expected_apis": [
+      "API_PRODUCT_SRV",
+      "API_PRODUCTION_ROUTING"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "product",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_Product?$select=Product,ProductType,ProductGroup&$filter=Product eq 'MZ-FG-R300'&$top=5",
+          "key_fields": [
+            "Product"
+          ]
+        },
+        {
+          "id": "routings",
+          "url": "/sap/opu/odata/sap/API_PRODUCTION_ROUTING/ProductionRoutingMatlAssgmt?$select=Product,Plant,ProductionRouting,ProductionRoutingGroup&$filter=Plant eq '1710'&$top=50",
+          "key_fields": [
+            "Product",
+            "Plant",
+            "ProductionRouting",
+            "ProductionRoutingGroup"
+          ],
+          "bind": {
+            "source_step": "product",
+            "source_field": "Product",
+            "target_field": "Product"
+          }
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Product",
+        "Plant",
+        "ProductionRouting",
+        "ProductionRoutingGroup"
+      ],
+      "required_fields": [
+        "Product",
+        "ProductionRouting"
+      ]
+    }
+  },
+  {
+    "id": "PP-XAPI-012",
+    "api": "PP",
+    "scenario": "routing_operations",
+    "user_input": "查询产品MZ-FG-R300工艺路线的工序",
+    "expected_api": "API_PRODUCTION_ROUTING",
+    "expected_apis": [
+      "API_PRODUCTION_ROUTING"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "routings",
+          "url": "/sap/opu/odata/sap/API_PRODUCTION_ROUTING/ProductionRoutingMatlAssgmt?$select=Product,Plant,ProductionRouting,ProductionRoutingGroup&$filter=Product eq 'MZ-FG-R300' and Plant eq '1710'&$top=20",
+          "key_fields": [
+            "ProductionRouting",
+            "ProductionRoutingGroup"
+          ]
+        },
+        {
+          "id": "operations",
+          "url": "/sap/opu/odata/sap/API_PRODUCTION_ROUTING/ProductionRoutingOperation?$select=ProductionRouting,ProductionRoutingGroup,ProductionRoutingSequence,ProductionRoutingOpIntID,Operation,OperationText,WorkCenterInternalID&$top=50",
+          "key_fields": [
+            "ProductionRouting",
+            "ProductionRoutingGroup",
+            "ProductionRoutingSequence",
+            "ProductionRoutingOpIntID"
+          ],
+          "bindings": [
+            {
+              "source_step": "routings",
+              "source_field": "ProductionRouting",
+              "target_field": "ProductionRouting"
+            },
+            {
+              "source_step": "routings",
+              "source_field": "ProductionRoutingGroup",
+              "target_field": "ProductionRoutingGroup"
+            }
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ProductionRouting",
+        "ProductionRoutingGroup",
+        "ProductionRoutingSequence",
+        "ProductionRoutingOpIntID"
+      ],
+      "required_fields": [
+        "ProductionRouting",
+        "Operation"
+      ]
+    }
+  },
+  {
+    "id": "PP-XAPI-013",
+    "api": "PP",
+    "scenario": "routing_work_centers",
+    "user_input": "查询产品MZ-FG-R300工艺路线用到的工作中心",
+    "expected_api": "API_PRODUCTION_ROUTING",
+    "expected_apis": [
+      "API_PRODUCTION_ROUTING",
+      "API_WORK_CENTERS"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "routings",
+          "url": "/sap/opu/odata/sap/API_PRODUCTION_ROUTING/ProductionRoutingMatlAssgmt?$select=Product,Plant,ProductionRouting,ProductionRoutingGroup&$filter=Product eq 'MZ-FG-R300'&$top=20",
+          "key_fields": [
+            "Product",
+            "Plant",
+            "ProductionRouting",
+            "ProductionRoutingGroup"
+          ]
+        },
+        {
+          "id": "operations",
+          "url": "/sap/opu/odata/sap/API_PRODUCTION_ROUTING/ProductionRoutingOperation?$select=ProductionRouting,ProductionRoutingGroup,ProductionRoutingSequence,ProductionRoutingOpIntID,Operation,WorkCenterInternalID&$top=50",
+          "key_fields": [
+            "WorkCenterInternalID"
+          ],
+          "bindings": [
+            {
+              "source_step": "routings",
+              "source_field": "ProductionRouting",
+              "target_field": "ProductionRouting"
+            },
+            {
+              "source_step": "routings",
+              "source_field": "ProductionRoutingGroup",
+              "target_field": "ProductionRoutingGroup"
+            }
+          ]
+        },
+        {
+          "id": "work_centers",
+          "url": "/sap/opu/odata/sap/API_WORK_CENTERS/A_WorkCenterAllCapacity?$select=WorkCenterInternalID,WorkCenter,Plant,WorkCenterDesc&$top=50",
+          "key_fields": [
+            "WorkCenterInternalID"
+          ],
+          "bindings": [
+            {
+              "source_step": "operations",
+              "source_field": "WorkCenterInternalID",
+              "target_field": "WorkCenterInternalID"
+            },
+            {
+              "source_step": "routings",
+              "source_field": "Plant",
+              "target_field": "Plant"
+            }
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "WorkCenterInternalID"
+      ],
+      "required_fields": [
+        "WorkCenterInternalID",
+        "WorkCenter"
+      ]
+    }
+  },
+  {
+    "id": "PP-XAPI-014",
+    "api": "PP",
+    "scenario": "plant_work_centers",
+    "user_input": "查询工厂1710的工作中心",
+    "expected_api": "API_WORK_CENTERS",
+    "expected_apis": [
+      "API_WORK_CENTERS"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "work_centers",
+          "url": "/sap/opu/odata/sap/API_WORK_CENTERS/A_WorkCenterAllCapacity?$select=WorkCenterInternalID,WorkCenter,Plant,WorkCenterDesc&$filter=Plant eq '1710'&$top=50",
+          "key_fields": [
+            "WorkCenterInternalID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "WorkCenterInternalID"
+      ],
+      "required_fields": [
+        "WorkCenter",
+        "Plant"
+      ]
+    }
+  },
+  {
+    "id": "PP-XAPI-015",
+    "api": "PP",
+    "scenario": "work_center_operations",
+    "user_input": "查询工厂1710工作中心上的生产订单工序",
+    "expected_api": "API_PRODUCTION_ORDER_2_SRV",
+    "expected_apis": [
+      "API_PRODUCTION_ORDER_2_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "operations",
+          "url": "/sap/opu/odata/sap/API_PRODUCTION_ORDER_2_SRV/A_ProductionOrderOperation_2?$select=ManufacturingOrder,ManufacturingOrderOperation,ProductionPlant,WorkCenter,MfgOrderOperationText&$filter=ProductionPlant eq '1710'&$top=50",
+          "key_fields": [
+            "ManufacturingOrder",
+            "ManufacturingOrderOperation"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ManufacturingOrder",
+        "ManufacturingOrderOperation"
+      ],
+      "required_fields": [
+        "ManufacturingOrder",
+        "WorkCenter"
+      ]
+    }
+  },
+  {
+    "id": "PP-XAPI-016",
+    "api": "PP",
+    "scenario": "production_order_status",
+    "user_input": "查询工厂1710生产订单的状态",
+    "expected_api": "API_PRODUCTION_ORDER_2_SRV",
+    "expected_apis": [
+      "API_PRODUCTION_ORDER_2_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "orders",
+          "url": "/sap/opu/odata/sap/API_PRODUCTION_ORDER_2_SRV/A_ProductionOrder_2?$select=ManufacturingOrder,Material,ProductionPlant,ManufacturingOrderType&$filter=ProductionPlant eq '1710'&$top=20",
+          "key_fields": [
+            "ManufacturingOrder"
+          ]
+        },
+        {
+          "id": "status",
+          "url": "/sap/opu/odata/sap/API_PRODUCTION_ORDER_2_SRV/A_ProductionOrderStatus_2?$select=ManufacturingOrder,StatusCode,StatusName,StatusShortName&$top=50",
+          "key_fields": [
+            "ManufacturingOrder",
+            "StatusCode"
+          ],
+          "bind": {
+            "source_step": "orders",
+            "source_field": "ManufacturingOrder",
+            "target_field": "ManufacturingOrder"
+          }
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ManufacturingOrder",
+        "StatusCode"
+      ],
+      "required_fields": [
+        "ManufacturingOrder",
+        "StatusCode"
+      ]
+    }
+  },
+  {
+    "id": "PP-XAPI-017",
+    "api": "PP",
+    "scenario": "production_order_material_documents",
+    "user_input": "查询工厂1710生产订单对应的物料凭证",
+    "expected_api": "API_PRODUCTION_ORDER_2_SRV",
+    "expected_apis": [
+      "API_PRODUCTION_ORDER_2_SRV",
+      "API_MATERIAL_DOCUMENT_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "orders",
+          "url": "/sap/opu/odata/sap/API_PRODUCTION_ORDER_2_SRV/A_ProductionOrder_2?$select=ManufacturingOrder,Material,ProductionPlant,ManufacturingOrderType&$filter=ProductionPlant eq '1710'&$top=200",
+          "key_fields": [
+            "ManufacturingOrder"
+          ]
+        },
+        {
+          "id": "docs",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/A_MaterialDocumentItem?$select=MaterialDocument,MaterialDocumentYear,MaterialDocumentItem,ManufacturingOrder,Material,Plant,GoodsMovementType&$filter=Plant eq '1710'&$top=50",
+          "key_fields": [
+            "MaterialDocument",
+            "MaterialDocumentYear",
+            "MaterialDocumentItem"
+          ],
+          "bind": {
+            "source_step": "orders",
+            "source_field": "ManufacturingOrder",
+            "target_field": "ManufacturingOrder"
+          }
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "MaterialDocument",
+        "MaterialDocumentYear",
+        "MaterialDocumentItem"
+      ],
+      "required_fields": [
+        "MaterialDocument",
+        "ManufacturingOrder"
+      ]
+    }
+  },
+  {
+    "id": "PP-XAPI-018",
+    "api": "PP",
+    "scenario": "planned_order_product_master",
+    "user_input": "查询工厂1710计划订单物料的产品主数据",
+    "expected_api": "API_PLANNED_ORDERS",
+    "expected_apis": [
+      "API_PLANNED_ORDERS",
+      "API_PRODUCT_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "planned_orders",
+          "url": "/sap/opu/odata/sap/API_PLANNED_ORDERS/A_PlannedOrder?$select=PlannedOrder,Material,MRPPlant,MRPController&$filter=MRPPlant eq '1710'&$top=20",
+          "key_fields": [
+            "PlannedOrder"
+          ]
+        },
+        {
+          "id": "products",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_Product?$select=Product,ProductType,ProductGroup&$top=50",
+          "key_fields": [
+            "Product"
+          ],
+          "bind": {
+            "source_step": "planned_orders",
+            "source_field": "Material",
+            "target_field": "Product"
+          }
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Product"
+      ],
+      "required_fields": [
+        "Product"
+      ]
+    }
+  },
+  {
+    "id": "PP-XAPI-019",
+    "api": "PP",
+    "scenario": "mrp_material_stock",
+    "user_input": "查询工厂1710 MRP物料的库存",
+    "expected_api": "API_MRP_MATERIALS_SRV_01",
+    "expected_apis": [
+      "API_MRP_MATERIALS_SRV_01",
+      "API_MATERIAL_STOCK_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "mrp",
+          "url": "/sap/opu/odata/sap/API_MRP_MATERIALS_SRV_01/A_MRPMaterial?$select=Material,MRPPlant,MRPArea&$filter=MRPPlant eq '1710'&$top=20",
+          "key_fields": [
+            "Material"
+          ]
+        },
+        {
+          "id": "stock",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_STOCK_SRV/A_MatlStkInAcctMod?$select=Material,Plant,StorageLocation,InventoryStockType,MatlWrhsStkQtyInMatlBaseUnit&$filter=Plant eq '1710'&$top=50",
+          "key_fields": [
+            "Material",
+            "Plant",
+            "StorageLocation",
+            "InventoryStockType"
+          ],
+          "bind": {
+            "source_step": "mrp",
+            "source_field": "Material",
+            "target_field": "Material"
+          }
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Material",
+        "Plant",
+        "StorageLocation",
+        "InventoryStockType"
+      ],
+      "required_fields": [
+        "Material",
+        "Plant"
+      ]
+    }
+  },
+  {
+    "id": "PP-XAPI-020",
+    "api": "PP",
+    "scenario": "production_order_component_product_master",
+    "user_input": "查询工厂1710生产订单组件的产品主数据",
+    "expected_api": "API_PRODUCTION_ORDER_2_SRV",
+    "expected_apis": [
+      "API_PRODUCTION_ORDER_2_SRV",
+      "API_PRODUCT_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "components",
+          "url": "/sap/opu/odata/sap/API_PRODUCTION_ORDER_2_SRV/A_ProductionOrderComponent_2?$select=ManufacturingOrder,Material,Plant&$filter=Plant eq '1710'&$top=200",
+          "key_fields": [
+            "Material"
+          ]
+        },
+        {
+          "id": "products",
+          "url": "/sap/opu/odata/sap/API_PRODUCT_SRV/A_Product?$select=Product,ProductType,ProductGroup&$top=50",
+          "key_fields": [
+            "Product"
+          ],
+          "bind": {
+            "source_step": "components",
+            "source_field": "Material",
+            "target_field": "Product"
+          }
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Product"
+      ],
+      "required_fields": [
+        "Product"
+      ]
+    }
+  }
+]

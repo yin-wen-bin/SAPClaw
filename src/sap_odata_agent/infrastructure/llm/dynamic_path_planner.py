@@ -262,7 +262,12 @@ class LlmDynamicPathPlanner:
             if not steps:
                 return None
             final_step = steps[-1]
-            target_entity_set = str(parsed.get("target_entity_set") or final_step.entity_set)
+            target_entity_set = self._resolve_multi_step_target_entity_set(
+                snapshot,
+                str(parsed.get("target_entity_set") or final_step.entity_set),
+                final_step,
+                parsed,
+            )
             target_entity = self._lookup_entity(snapshot, target_entity_set)
             if target_entity is None:
                 target_entity_set = final_step.entity_set
@@ -389,7 +394,20 @@ class LlmDynamicPathPlanner:
                     rationale=str(item.get("rationale") or ""),
                 )
             )
+        self._raise_binding_source_step_limits(steps)
         return steps
+
+    @staticmethod
+    def _raise_binding_source_step_limits(steps: list[ExecutionStep]) -> None:
+        referenced_source_steps = {
+            binding.source_step_id
+            for step in steps
+            for binding in step.filter_from_previous
+            if binding.source_step_id
+        }
+        for step in steps:
+            if step.step_id in referenced_source_steps:
+                step.top = max(int(step.top or 0), 200)
 
     @staticmethod
     def _system_prompt() -> str:
@@ -707,9 +725,11 @@ class LlmDynamicPathPlanner:
                 continue
             field_name = str(item.get("field") or "")
             value = item.get("value")
-            if field_name not in field_map or value in (None, ""):
-                continue
             operator = str(item.get("operator") or "eq").lower()
+            if field_name not in field_map or value is None:
+                continue
+            if value == "" and operator not in {"eq", "ne"}:
+                continue
             if operator not in {"eq", "ne", "gt", "ge", "lt", "le", "contains"}:
                 operator = "eq"
             filters.append(
@@ -904,6 +924,38 @@ class LlmDynamicPathPlanner:
             if field_name in field_map and field_name not in results:
                 results.append(field_name)
         return results
+
+    @staticmethod
+    def _resolve_multi_step_target_entity_set(
+        snapshot,
+        requested_target_entity_set: str,
+        final_step: ExecutionStep,
+        parsed: dict[str, Any],
+    ) -> str:
+        requested = str(requested_target_entity_set or "")
+        if not requested or requested == final_step.entity_set:
+            return final_step.entity_set
+        requested_field_map = LlmDynamicPathPlanner._field_map(snapshot, requested)
+        final_field_map = LlmDynamicPathPlanner._field_map(snapshot, final_step.entity_set)
+        if not requested_field_map or not final_field_map:
+            return requested
+
+        final_selected = [field for field in final_step.select_fields if field in final_field_map]
+        if not final_selected:
+            return requested
+        requested_selected_matches = [field for field in final_selected if field in requested_field_map]
+        target_fields = [
+            str(field)
+            for field in parsed.get("target_fields", [])
+            if str(field or "").strip()
+        ]
+        final_target_matches = [field for field in target_fields if field in final_field_map]
+        requested_target_matches = [field for field in target_fields if field in requested_field_map]
+        if final_target_matches and len(final_target_matches) > len(requested_target_matches):
+            return final_step.entity_set
+        if len(requested_selected_matches) < len(final_selected):
+            return final_step.entity_set
+        return requested
 
     @staticmethod
     def _default_fields(entity: dict[str, Any], field_map: dict[str, dict[str, Any]]) -> list[str]:

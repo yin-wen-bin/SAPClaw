@@ -203,6 +203,9 @@ class ApiCatalogProvider:
             "orderitem": 28.0,
             "deliverydocument": 38.0,
             "deliverydocumentitem": 30.0,
+            "deliverystatus": 34.0,
+            "overalldeliverystatus": 30.0,
+            "overalltotaldeliverystatus": 34.0,
             "referencesddocument": 36.0,
             "referencesddocumentitem": 30.0,
             "shiptoparty": 24.0,
@@ -466,18 +469,58 @@ class ApiCatalogProvider:
                 "A_MaterialSerialNumber.Material",
                 "A_MaterialSerialNumber.SerialNumber",
             ]
+        if service_name == "API_MATERIAL_DOCUMENT_SRV":
+            return [
+                "A_MaterialDocumentItem.ManufacturingOrder",
+                "A_MaterialDocumentItem.MaterialDocument",
+                "A_MaterialDocumentItem.MaterialDocumentYear",
+                "A_MaterialDocumentItem.MaterialDocumentItem",
+                "A_MaterialDocumentItem.Material",
+                "A_MaterialDocumentItem.Plant",
+                "A_MaterialDocumentItem.PurchaseOrder",
+                "A_MaterialDocumentItem.PurchaseOrderItem",
+            ]
         if service_name == "API_COMPANYCODE_SRV":
             return [
                 "A_CompanyCode.CompanyCode",
                 "A_CompanyCode.ChartOfAccounts",
                 "A_CompanyCode.CountryChartOfAccounts",
             ]
+        if service_name == "API_GLACCOUNTINCHARTOFACCOUNTS_SRV":
+            return [
+                "A_GLAccountInChartOfAccounts.ChartOfAccounts",
+                "A_GLAccountInChartOfAccounts.GLAccount",
+                "A_GLAccountInChartOfAccounts.IsProfitLossAccount",
+                "A_GLAccountInChartOfAccounts.IsBalanceSheetAccount",
+                "A_GLAccountInChartOfAccounts.ProfitLossAccountType",
+                "A_GLAccountInChartOfAccounts.GLAccountType",
+                "A_GLAccountInChartOfAccounts.SampleGLAccount",
+                "A_GLAccountInChartOfAccounts.AccountIsBlockedForPosting",
+                "A_GLAccountText.ChartOfAccounts",
+                "A_GLAccountText.GLAccount",
+                "A_GLAccountText.Language",
+            ]
+        if service_name == "API_JOURNALENTRYITEMBASIC_SRV":
+            return [
+                "A_JournalEntryItemBasic.CompanyCode",
+                "A_JournalEntryItemBasic.ID",
+                "A_JournalEntryItemBasic.FunctionalArea",
+                "A_JournalEntryItemBasic.CostCenter",
+                "A_JournalEntryItemBasic.ProfitCenter",
+                "A_JournalEntryItemBasic.GLAccount",
+                "A_JournalEntryItemBasic.Ledger",
+                "A_JournalEntryItemBasic.Plant",
+            ]
         if service_name == "API_SALES_ORDER_SRV":
             return [
                 "A_SalesOrder.SalesOrder",
+                "A_SalesOrderItem.Material",
+                "A_SalesOrderItem.DeliveryStatus",
+                "A_SalesOrder.OverallTotalDeliveryStatus",
                 "A_SalesOrderItem.SalesOrder",
                 "A_SalesOrder.PurchaseOrderByCustomer",
                 "A_SalesOrder.SoldToParty",
+                "A_SalesOrder.OverallDeliveryStatus",
             ]
         if service_name == "API_OUTBOUND_DELIVERY_SRV":
             return [
@@ -496,6 +539,16 @@ class ApiCatalogProvider:
                 "A_OutbDeliveryItem.DeliveryDocument",
                 "A_OutbDeliveryItem.DeliveryDocumentItem",
             ]
+        if service_name == "API_PRODUCTION_ORDER_2_SRV":
+            return [
+                "A_ProductionOrderOperation_2.ProductionPlant",
+                "A_ProductionOrderOperation_2.WorkCenter",
+                "A_ProductionOrderOperation_2.ManufacturingOrder",
+                "A_ProductionOrderOperation_2.ManufacturingOrderOperation",
+                "A_ProductionOrder_2.ProductionPlant",
+                "A_ProductionOrder_2.ManufacturingOrder",
+                "A_ProductionOrder_2.Material",
+            ]
         return []
 
     @staticmethod
@@ -507,12 +560,47 @@ class ApiCatalogProvider:
                 "A_CompanyCode.ChartOfAccounts",
                 "A_CompanyCode.CountryChartOfAccounts",
             ]
+        if service_name == "API_GLACCOUNTINCHARTOFACCOUNTS_SRV":
+            return [
+                "A_GLAccountInChartOfAccounts.ChartOfAccounts",
+                "A_GLAccountInChartOfAccounts.GLAccount",
+                "A_GLAccountInChartOfAccounts.GLAccountGroup",
+                "A_GLAccountInChartOfAccounts.GLAccountType",
+                "A_GLAccountInChartOfAccounts.IsProfitLossAccount",
+                "A_GLAccountInChartOfAccounts.IsBalanceSheetAccount",
+                "A_GLAccountInChartOfAccounts.ProfitLossAccountType",
+                "A_GLAccountInChartOfAccounts.SampleGLAccount",
+                "A_GLAccountText.GLAccountName",
+                "A_GLAccountText.GLAccountLongName",
+            ]
+        if service_name == "API_JOURNALENTRYITEMBASIC_SRV":
+            return [
+                "A_JournalEntryItemBasic.ID",
+                "A_JournalEntryItemBasic.CompanyCode",
+                "A_JournalEntryItemBasic.CompanyCodeName",
+                "A_JournalEntryItemBasic.FunctionalArea",
+                "A_JournalEntryItemBasic.FunctionalAreaName",
+                "A_JournalEntryItemBasic.CostCenter",
+                "A_JournalEntryItemBasic.CostCenterName",
+                "A_JournalEntryItemBasic.ProfitCenter",
+                "A_JournalEntryItemBasic.ProfitCenterName",
+                "A_JournalEntryItemBasic.GLAccount",
+                "A_JournalEntryItemBasic.GLAccountName",
+                "A_JournalEntryItemBasic.AmountInCompanyCodeCurrency",
+            ]
         if service_name == "API_SALES_ORDER_SRV":
             return [
                 "A_SalesOrder.SalesOrder",
+                "A_SalesOrderItem.SalesOrder",
+                "A_SalesOrderItem.SalesOrderItem",
+                "A_SalesOrderItem.Material",
+                "A_SalesOrderItem.DeliveryStatus",
+                "A_SalesOrderItem.RequestedQuantity",
                 "A_SalesOrder.SalesOrderType",
                 "A_SalesOrder.SalesOrganization",
                 "A_SalesOrder.SoldToParty",
+                "A_SalesOrder.OverallDeliveryStatus",
+                "A_SalesOrder.OverallTotalDeliveryStatus",
             ]
         if service_name == "API_OUTBOUND_DELIVERY_SRV":
             return [
@@ -533,6 +621,29 @@ class ApiCatalogProvider:
                 "A_OutbDeliveryItem.Material",
                 "A_OutbDeliveryItem.GoodsMovementStatus",
                 "A_OutbDeliveryItem.DeliveryRelatedBillingStatus",
+            ]
+        if service_name == "API_MATERIAL_DOCUMENT_SRV":
+            return [
+                "A_MaterialDocumentItem.MaterialDocument",
+                "A_MaterialDocumentItem.MaterialDocumentYear",
+                "A_MaterialDocumentItem.MaterialDocumentItem",
+                "A_MaterialDocumentItem.ManufacturingOrder",
+                "A_MaterialDocumentItem.Material",
+                "A_MaterialDocumentItem.Plant",
+                "A_MaterialDocumentItem.GoodsMovementType",
+                "A_MaterialDocumentItem.PurchaseOrder",
+                "A_MaterialDocumentItem.PurchaseOrderItem",
+            ]
+        if service_name == "API_PRODUCTION_ORDER_2_SRV":
+            return [
+                "A_ProductionOrderOperation_2.ManufacturingOrder",
+                "A_ProductionOrderOperation_2.ManufacturingOrderOperation",
+                "A_ProductionOrderOperation_2.ProductionPlant",
+                "A_ProductionOrderOperation_2.WorkCenter",
+                "A_ProductionOrderOperation_2.MfgOrderOperationText",
+                "A_ProductionOrder_2.ManufacturingOrder",
+                "A_ProductionOrder_2.Material",
+                "A_ProductionOrder_2.ProductionPlant",
             ]
         return []
 
