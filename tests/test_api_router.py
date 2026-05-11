@@ -77,6 +77,52 @@ def test_api_router_repairs_malformed_json_without_business_fallback() -> None:
     assert decision.raw_response["selected_apis"][0]["confidence"] == 0.91
 
 
+def test_api_router_regenerates_when_json_repair_is_still_invalid() -> None:
+    valid = {
+        "resolved_user_input": "query customer billing documents",
+        "should_carry_context": False,
+        "selected_apis": [
+            {
+                "service_name": "API_BILLING_DOCUMENT_SRV",
+                "confidence": 0.89,
+                "reason": "Billing document wording matched the billing document API.",
+            }
+        ],
+        "requires_multi_api": False,
+        "intent_summary": "Customer billing documents",
+        "business_domain": "Sales and Distribution",
+        "business_object": "Billing Document",
+        "needs_clarification": False,
+        "clarification_question": "",
+        "clarification_options": [],
+    }
+    catalog = [
+        {
+            "service_name": "API_BILLING_DOCUMENT_SRV",
+            "short_description": "Billing document API.",
+            "primary_business_objects": ["Billing Document"],
+            "top_entities": ["A_BillingDocument"],
+            "top_filter_fields": ["A_BillingDocument.SoldToParty"],
+            "top_answer_fields": ["A_BillingDocument.BillingDocument"],
+        }
+    ]
+    client = SequencedClient(
+        [
+            '{"resolved_user_input": "query customer billing documents", "selected_apis": [',
+            '{"resolved_user_input": "query customer billing documents", "selected_apis": [',
+            json.dumps(valid),
+        ]
+    )
+    router = LlmApiRouter(llm_client=client, enabled=True, allow_default_fallback=False)
+
+    decision = router.route("query customer billing documents", catalog)
+
+    assert len(client.calls) == 3
+    assert "Repair only the JSON syntax" in client.calls[1]["user_prompt"]
+    assert "Regenerate the API routing decision" in client.calls[2]["user_prompt"]
+    assert decision.selected_apis[0].service_name == "API_BILLING_DOCUMENT_SRV"
+
+
 def test_api_router_retries_transport_failure_without_business_fallback() -> None:
     valid = {
         "resolved_user_input": "query purchase orders",

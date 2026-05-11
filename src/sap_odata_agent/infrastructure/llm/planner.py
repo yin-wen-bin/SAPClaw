@@ -2306,6 +2306,15 @@ class LlmStructuredIntentPlanner(RetrievalAwareIntentPlanner):
                 {"name": item.name, "value": item.value, "value_type": item.value_type}
                 for item in plan.function_parameters
             ],
+            "result_transform": (
+                {
+                    "type": plan.result_transform.type,
+                    "group_by": plan.result_transform.group_by,
+                    "sum_fields": plan.result_transform.sum_fields,
+                }
+                if plan.result_transform is not None
+                else None
+            ),
             "top": plan.top,
             "requires_confirmation": plan.requires_confirmation,
             "needs_clarification": plan.needs_clarification,

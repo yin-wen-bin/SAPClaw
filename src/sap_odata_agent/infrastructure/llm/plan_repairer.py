@@ -64,6 +64,7 @@ class LlmPlanRepairer(LlmApiSpecificPlanner):
         materialized = self._apply_skill_filter_patterns(materialized, request, schema_context)
         materialized = self._apply_skill_preferred_filter_fields(materialized, request, schema_context)
         materialized = self._apply_skill_select_only_patterns(materialized, request, schema_context)
+        materialized = self._apply_skill_result_transform_patterns(materialized, request, schema_context)
         materialized = self._clear_skill_resolved_clarification(materialized)
         materialized = self._remove_unrequested_temporal_filters(materialized, request)
         materialized = self._apply_company_code_chart_of_accounts_bridge(materialized, request, schema_context)
@@ -134,6 +135,11 @@ class LlmPlanRepairer(LlmApiSpecificPlanner):
             "target_entity_set": "",
             "target_fields": [],
             "presentation": {"kind": "text | table", "reason": ""},
+            "result_transform": {
+                "type": "none | aggregate",
+                "group_by": ["FieldName"],
+                "sum_fields": ["NumericFieldName"],
+            },
             "rationale": "",
         }
         payload = {
@@ -165,11 +171,12 @@ class LlmPlanRepairer(LlmApiSpecificPlanner):
             "13. For example, do not bind a previous BusinessPartner value directly onto an entity that only has Supplier or Customer; first read the entity that exposes BusinessPartner plus the final role key, then bind the role key to the final entity.\n\n"
             "14. If SAP rejected a function import because system query options such as $top, $filter, $select, or $inlinecount were used, repair it as plan_kind=function_import with function_parameters from schema_context.function_imports.\n"
             "15. Do not represent function import parameters as filters; use exact parameter names and value_type from schema_context.function_imports.\n"
-            "16. If repair_hints include preferred_entity_set, preferred_select_fields, preferred_filters, or presentation_kind, use them when they are present in schema_context. This is mandatory for wrong_business_level verifier findings.\n"
+            "16. If repair_hints include preferred_entity_set, preferred_select_fields, preferred_filters, preferred_result_transform, or presentation_kind, use them when they are present in schema_context. This is mandatory for wrong_business_level verifier findings.\n"
             "17. If the previous plan answered a document history request with pricing, notes, account assignments, or other detail child entities, do not repeat that plan. Return no_feasible_plan or reroute_required unless schema_context exposes true history, movement, receipt, invoice, or change-history data.\n\n"
             "18. If schema_context.api_skill or schema_context.api_skills contains a Common Planning Pattern that matches the user's wording, treat that pattern as schema-verified business guidance and use its entity, select fields, and filters when those fields exist in schema_context.\n\n"
             "19. Do not add filters only because a user wrote bare \"with/include/show/display\" field names or status indicators. Preserve those as select fields unless the user supplied an explicit restriction, comparison, literal value, true/false requirement, nonzero/open/closed condition, schema-verified business condition, or a matching api_skill Common Planning Pattern.\n\n"
             "20. If schema_context.service_names contains multiple services, every multi_step step must include service_name. Keep each step's entity set and fields within that service and use cross-service join_hints or shared key fields to bridge services.\n\n"
+            "21. If the verifier or api_skill requests summarized output, set result_transform.type=aggregate with schema-valid group_by and sum_fields. The program will execute the aggregation; do not calculate totals in text.\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )

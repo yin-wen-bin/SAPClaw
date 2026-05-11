@@ -71,7 +71,7 @@ Keep `data/index/API_COSTCENTER_SRV` as the schema ground truth. This skill prov
 
 - For wording such as "成本中心对应的利润中心", "成本中心关联利润中心", or "cost center profit center mapping", do not ask for a specific cost center when the user also provides a company code. Treat it as a list mapping request for all cost centers in that company code.
 - Step 1: query `A_CostCenter` by `A_CostCenter.CompanyCode` and select `A_CostCenter.ControllingArea`, `A_CostCenter.CostCenter`, `A_CostCenter.CompanyCode`, and `A_CostCenter.ProfitCenter`.
-- If names are requested, Step 2 can query `API_PROFITCENTER_SRV.A_ProfitCenterText` by `ProfitCenter` and select `A_ProfitCenterText.ControllingArea`, `A_ProfitCenterText.ProfitCenter`, `A_ProfitCenterText.Language`, and `A_ProfitCenterText.ProfitCenterName`.
+- If names are requested, Step 2 can query `API_PROFITCENTER_SRV.A_ProfitCenterText` by `ProfitCenter` and select `API_PROFITCENTER_SRV.A_ProfitCenterText.ControllingArea`, `API_PROFITCENTER_SRV.A_ProfitCenterText.ProfitCenter`, `API_PROFITCENTER_SRV.A_ProfitCenterText.Language`, and `API_PROFITCENTER_SRV.A_ProfitCenterText.ProfitCenterName`.
 
 ### Detail Query
 

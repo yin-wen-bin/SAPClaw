@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import re
+from dataclasses import replace
 from datetime import date
 from difflib import SequenceMatcher
 from typing import Any
@@ -14,6 +15,7 @@ from sap_odata_agent.domain.models import (
     QueryPlan,
     RetrievedContext,
     RetrievedDocument,
+    ResultTransform,
     StepBinding,
 )
 from sap_odata_agent.infrastructure.indexing.function_imports import function_imports_from_snapshot
@@ -275,16 +277,34 @@ class LlmDynamicPathPlanner:
             if target_entity is None:
                 return None
             target_field = str(parsed.get("target_field") or "") or None
+            target_field_map = self._field_map(snapshot, target_entity_set)
+            result_transform = self._materialize_result_transform(
+                parsed.get("result_transform"),
+                target_field_map,
+                target_entity_set,
+            )
+            if result_transform is not None:
+                transform_fields = [*result_transform.group_by, *result_transform.sum_fields]
+                final_select_fields = self._dedupe_fields([*final_step.select_fields, *transform_fields])
+                final_summary_fields = self._dedupe_fields(transform_fields)
+                final_step = replace(
+                    final_step,
+                    select_fields=final_select_fields,
+                    response_summary_fields=final_summary_fields,
+                )
+                steps = [*steps[:-1], final_step]
+            else:
+                final_summary_fields = self._summary_fields(
+                    parsed.get("response_summary_fields"),
+                    final_step.select_fields,
+                    target_field,
+                )
             return QueryPlan(
                 service_name=str(target_entity.get("service_name") or self.service_name),
                 entity_set=target_entity_set,
                 http_method=str(parsed.get("http_method") or "GET").upper(),
                 select_fields=final_step.select_fields,
-                response_summary_fields=self._summary_fields(
-                    parsed.get("response_summary_fields"),
-                    final_step.select_fields,
-                    target_field,
-                ),
+                response_summary_fields=final_summary_fields,
                 filters=steps[0].filters,
                 top=final_step.top,
                 requires_confirmation=bool(parsed.get("requires_confirmation", False)),
@@ -305,6 +325,7 @@ class LlmDynamicPathPlanner:
                 target_entity_set=target_entity_set,
                 path_id=str(parsed.get("path_id") or "llm_dynamic_path"),
                 steps=steps,
+                result_transform=result_transform,
             )
 
         entity_set = str(parsed.get("entity_set") or "")
@@ -317,12 +338,23 @@ class LlmDynamicPathPlanner:
             select_fields = self._default_fields(entity, field_map)
         filters = self._materialize_filters(parsed.get("filters", []), field_map)
         target_field = str(parsed.get("target_field") or "") or None
+        result_transform = self._materialize_result_transform(
+            parsed.get("result_transform"),
+            field_map,
+            entity_set,
+        )
+        if result_transform is not None:
+            transform_fields = [*result_transform.group_by, *result_transform.sum_fields]
+            select_fields = self._dedupe_fields([*select_fields, *transform_fields])
+            response_summary_fields = self._dedupe_fields(transform_fields)
+        else:
+            response_summary_fields = self._summary_fields(parsed.get("response_summary_fields"), select_fields, target_field)
         return QueryPlan(
             service_name=str(entity.get("service_name") or self.service_name),
             entity_set=entity_set,
             http_method=str(parsed.get("http_method") or "GET").upper(),
             select_fields=select_fields,
-            response_summary_fields=self._summary_fields(parsed.get("response_summary_fields"), select_fields, target_field),
+            response_summary_fields=response_summary_fields,
             filters=filters,
             order_by=[str(item) for item in parsed.get("order_by", []) if str(item) in field_map],
             top=self._parse_top(parsed.get("top"), default=50 if self._presentation_kind(parsed) == "table" else 20),
@@ -340,6 +372,7 @@ class LlmDynamicPathPlanner:
             plan_kind="direct",
             target_field=target_field,
             target_entity_set=entity_set,
+            result_transform=result_transform,
         )
 
     def _materialize_steps(self, raw_steps: Any, snapshot) -> list[ExecutionStep]:
@@ -459,6 +492,11 @@ class LlmDynamicPathPlanner:
                 "kind": "text | table",
                 "reason": "Use text for a single fact, table for lists/comparisons.",
             },
+            "result_transform": {
+                "type": "none | aggregate",
+                "group_by": ["FieldName"],
+                "sum_fields": ["NumericFieldName"],
+            },
             "response_directive": "Tell the result presenter how to answer the user.",
             "needs_clarification": False,
             "clarification_question": "",
@@ -494,6 +532,7 @@ class LlmDynamicPathPlanner:
             "11. If the schema context is insufficient, return no_feasible_plan instead of inventing fields.\n"
             "12. Treat document history requests as ambiguous unless schema_context exposes a true history, movement, receipt, invoice, or change-history entity. Do not answer a history request by returning only pricing, notes, account assignments, or other detail child entities.\n\n"
             "13. If schema_context.service_names contains multiple services, every multi_step step must include service_name. Keep each step's entity set and fields within that service and use cross-service join_hints or shared key fields to bridge services.\n\n"
+            "14. If the user asks for an output level such as material level, plant level, storage-location level, batch level, or another summarized level, choose fields for the raw SAP query and set result_transform.type=aggregate with schema-valid group_by and sum_fields. The program will execute the aggregation; do not calculate totals in text.\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )
@@ -924,6 +963,68 @@ class LlmDynamicPathPlanner:
             if field_name in field_map and field_name not in results:
                 results.append(field_name)
         return results
+
+    @staticmethod
+    def _materialize_result_transform(
+        raw_transform: Any,
+        field_map: dict[str, dict[str, Any]],
+        entity_set: str,
+    ) -> ResultTransform | None:
+        if not isinstance(raw_transform, dict):
+            return None
+        transform_type = str(raw_transform.get("type") or raw_transform.get("kind") or "").strip().lower()
+        if transform_type != "aggregate":
+            return None
+        group_by = LlmDynamicPathPlanner._valid_transform_fields(
+            raw_transform.get("group_by") or raw_transform.get("groupBy"),
+            field_map,
+            entity_set,
+        )
+        sum_fields = [
+            field_name
+            for field_name in LlmDynamicPathPlanner._valid_transform_fields(
+                raw_transform.get("sum_fields") or raw_transform.get("sumFields"),
+                field_map,
+                entity_set,
+            )
+            if LlmDynamicPathPlanner._field_is_summable(field_map.get(field_name, {}))
+        ]
+        if not group_by or not sum_fields:
+            return None
+        return ResultTransform(type="aggregate", group_by=group_by, sum_fields=sum_fields)
+
+    @staticmethod
+    def _valid_transform_fields(
+        raw_fields: Any,
+        field_map: dict[str, dict[str, Any]],
+        entity_set: str,
+    ) -> list[str]:
+        results: list[str] = []
+        for raw_field in raw_fields if isinstance(raw_fields, list) else []:
+            field_name = LlmDynamicPathPlanner._normalize_transform_field(raw_field, entity_set)
+            if field_name in field_map and field_name not in results:
+                results.append(field_name)
+        return results
+
+    @staticmethod
+    def _normalize_transform_field(raw_field: Any, entity_set: str) -> str:
+        field_name = str(raw_field or "").strip().strip("`")
+        if "." in field_name:
+            entity, _, candidate = field_name.rpartition(".")
+            if entity == entity_set:
+                return candidate
+        return field_name
+
+    @staticmethod
+    def _field_is_summable(field: dict[str, Any]) -> bool:
+        data_type = str(field.get("data_type") or "").lower()
+        if not data_type:
+            return True
+        return any(token in data_type for token in ("decimal", "double", "single", "int", "byte"))
+
+    @staticmethod
+    def _dedupe_fields(fields: list[str]) -> list[str]:
+        return list(dict.fromkeys(field for field in fields if field))
 
     @staticmethod
     def _resolve_multi_step_target_entity_set(

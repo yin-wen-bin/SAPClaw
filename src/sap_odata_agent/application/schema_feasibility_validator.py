@@ -110,6 +110,8 @@ class SchemaFeasibilityValidator:
             selected_fields = set(plan.select_fields or [])
             filter_fields = {condition.field for condition in plan.filters or []}
 
+        self._validate_result_transform(plan, violations, evidence)
+
         covered_answer_fields = sorted(required_answer_fields & selected_fields)
         covered_filter_fields = sorted(required_filter_fields & filter_fields)
         coverage["answer_fields"] = covered_answer_fields
@@ -339,6 +341,100 @@ class SchemaFeasibilityValidator:
         if steps:
             evidence.append(f"steps_validated:{len(steps)}")
 
+    def _validate_result_transform(
+        self,
+        plan: QueryPlan,
+        violations: list[FeasibilityViolation],
+        evidence: list[str],
+    ) -> None:
+        transform = plan.result_transform
+        if transform is None:
+            return
+        if transform.type != "aggregate":
+            violations.append(
+                FeasibilityViolation(
+                    code="unsupported_result_transform",
+                    message=f"Unsupported result_transform type `{transform.type}`.",
+                    entity_set=plan.entity_set,
+                )
+            )
+            return
+
+        service_name = plan.service_name or self.service_name
+        entity_set = plan.entity_set
+        if plan.steps:
+            target_step = next(
+                (step for step in plan.steps if step.entity_set == (plan.target_entity_set or plan.entity_set)),
+                plan.steps[-1],
+            )
+            service_name = target_step.service_name or service_name
+            entity_set = target_step.entity_set
+        try:
+            snapshot = self._load_snapshot(service_name)
+        except FileNotFoundError:
+            violations.append(
+                FeasibilityViolation(
+                    code="result_transform_service_not_found",
+                    message=f"result_transform service `{service_name}` is not present in local index.",
+                    entity_set=entity_set,
+                )
+            )
+            return
+        field_map = self._field_map(snapshot, entity_set)
+        selected_fields = self._selected_fields(plan)
+        for field_name in transform.group_by:
+            if field_name not in field_map:
+                violations.append(
+                    FeasibilityViolation(
+                        code="result_transform_group_field_not_in_entity",
+                        message=f"result_transform group_by field `{field_name}` is not present on `{entity_set}`.",
+                        field=field_name,
+                        entity_set=entity_set,
+                    )
+                )
+            elif field_name not in selected_fields:
+                violations.append(
+                    FeasibilityViolation(
+                        code="result_transform_group_field_not_selected",
+                        message=f"result_transform group_by field `{field_name}` is not selected.",
+                        field=field_name,
+                        entity_set=entity_set,
+                    )
+                )
+        for field_name in transform.sum_fields:
+            field = field_map.get(field_name)
+            if field is None:
+                violations.append(
+                    FeasibilityViolation(
+                        code="result_transform_sum_field_not_in_entity",
+                        message=f"result_transform sum field `{field_name}` is not present on `{entity_set}`.",
+                        field=field_name,
+                        entity_set=entity_set,
+                    )
+                )
+            elif field_name not in selected_fields:
+                violations.append(
+                    FeasibilityViolation(
+                        code="result_transform_sum_field_not_selected",
+                        message=f"result_transform sum field `{field_name}` is not selected.",
+                        field=field_name,
+                        entity_set=entity_set,
+                    )
+                )
+            elif not self._is_numeric_field(field):
+                violations.append(
+                    FeasibilityViolation(
+                        code="result_transform_sum_field_not_numeric",
+                        message=f"result_transform sum field `{field_name}` is not numeric.",
+                        field=field_name,
+                        entity_set=entity_set,
+                    )
+                )
+        evidence.append(
+            "result_transform:aggregate:"
+            + ",".join([*transform.group_by, *transform.sum_fields])
+        )
+
     def _load_snapshot(self, service_name: str):
         return self.loader.load(service_name)
 
@@ -429,6 +525,11 @@ class SchemaFeasibilityValidator:
         if normalized in {"int16", "int32", "int64", "integer", "int", "double", "single", "number"}:
             return "number"
         return normalized or "string"
+
+    @staticmethod
+    def _is_numeric_field(field: dict[str, Any]) -> bool:
+        data_type = str(field.get("data_type") or "").lower()
+        return not data_type or any(token in data_type for token in ("decimal", "double", "single", "int", "byte"))
 
     @staticmethod
     def _field_map(snapshot, entity_set: str) -> dict[str, dict[str, Any]]:

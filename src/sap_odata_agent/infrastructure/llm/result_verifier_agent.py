@@ -97,6 +97,15 @@ class LlmResultVerifierAgent:
                     {"name": item.name, "value": item.value, "value_type": item.value_type}
                     for item in getattr(plan, "function_parameters", [])
                 ],
+                "result_transform": (
+                    {
+                        "type": getattr(plan, "result_transform").type,
+                        "group_by": getattr(plan, "result_transform").group_by,
+                        "sum_fields": getattr(plan, "result_transform").sum_fields,
+                    }
+                    if getattr(plan, "result_transform", None) is not None
+                    else None
+                ),
                 "steps": [
                     {
                         "step_id": step.step_id,
@@ -161,6 +170,9 @@ class LlmResultVerifierAgent:
         po_history_result = LlmResultVerifierAgent._purchase_order_history_static_check(request, plan, data)
         if po_history_result is not None:
             return po_history_result
+        material_stock_level_result = LlmResultVerifierAgent._material_stock_level_static_check(request, plan, data)
+        if material_stock_level_result is not None:
+            return material_stock_level_result
         field_list_result = LlmResultVerifierAgent._field_list_output_static_check(request, plan, data)
         if field_list_result is not None:
             return field_list_result
@@ -280,6 +292,74 @@ class LlmResultVerifierAgent:
         }
 
     @staticmethod
+    def _material_stock_level_static_check(
+        request: AgentRequest,
+        plan: QueryPlan,
+        data: dict[str, Any],
+    ) -> dict[str, Any] | None:
+        if not LlmResultVerifierAgent._looks_like_material_level_stock_request(request):
+            return None
+        if plan.service_name != "API_MATERIAL_STOCK_SRV":
+            return None
+        transform = plan.result_transform
+        if (
+            transform is not None
+            and transform.type == "aggregate"
+            and set(transform.group_by) <= {"Material", "Plant", "MaterialBaseUnit"}
+            and "Material" in transform.group_by
+            and "MatlWrhsStkQtyInMatlBaseUnit" in transform.sum_fields
+            and "Batch" not in transform.group_by
+        ):
+            return None
+        selected_fields = set(plan.select_fields or []) | set(plan.response_summary_fields or [])
+        for step in plan.steps or []:
+            selected_fields.update(step.select_fields or [])
+            selected_fields.update(step.response_summary_fields or [])
+        records = data.get("results") if isinstance(data.get("results"), list) else []
+        includes_batch = "Batch" in selected_fields or any(
+            isinstance(record, dict) and record.get("Batch") not in (None, "") for record in records
+        )
+        if not includes_batch and transform is not None:
+            return None
+        return {
+            "passed": False,
+            "issues": [
+                {
+                    "code": "wrong_business_level_for_material_stock",
+                    "message": (
+                        "The user asked for material-level stock, but the plan/result is not aggregated at "
+                        "material level. Batch, storage-location, or stock-type detail must not define the "
+                        "answer unless the user explicitly asks for that breakdown."
+                    ),
+                    "blocking": True,
+                }
+            ],
+            "repair_hints": {
+                "reason": "Use material-level aggregation for this stock question.",
+                "preferred_entity_set": "A_MatlStkInAcctMod",
+                "preferred_select_fields": [
+                    "Material",
+                    "Plant",
+                    "MaterialBaseUnit",
+                    "MatlWrhsStkQtyInMatlBaseUnit",
+                ],
+                "preferred_result_transform": {
+                    "type": "aggregate",
+                    "group_by": ["Material", "Plant", "MaterialBaseUnit"],
+                    "sum_fields": ["MatlWrhsStkQtyInMatlBaseUnit"],
+                },
+                "forbidden_fields_unless_requested": [
+                    "Batch",
+                    "StorageLocation",
+                    "InventoryStockType",
+                    "InventorySpecialStockType",
+                ],
+                "presentation_kind": "table",
+            },
+            "source": "skill_grounded_result_verifier",
+        }
+
+    @staticmethod
     def _field_list_output_static_check(
         request: AgentRequest,
         plan: QueryPlan,
@@ -373,6 +453,18 @@ class LlmResultVerifierAgent:
             "history",
         )
         return any(term in text for term in purchase_order_terms) and any(term in text for term in history_terms)
+
+    @staticmethod
+    def _looks_like_material_level_stock_request(request: AgentRequest) -> bool:
+        text = f"{request.resolved_user_input or ''} {request.user_input or ''}".lower()
+        stock_terms = ("库存", "stock", "inventory")
+        material_level_terms = ("物料层级", "物料级", "物料层面", "material level", "by material")
+        detail_terms = ("批次", "batch", "库存地点", "storage location", "库存类型", "stock type")
+        return (
+            any(term in text for term in stock_terms)
+            and any(term in text for term in material_level_terms)
+            and not any(term in text for term in detail_terms)
+        )
 
     @staticmethod
     def _explicitly_asks_for_pricing(request: AgentRequest) -> bool:
@@ -515,6 +607,12 @@ class LlmResultVerifierAgent:
 
     @staticmethod
     def _filter_repair_hints(repair_hints: dict[str, Any], schema_context_summary: dict[str, Any]) -> dict[str, Any]:
+        repair_hints = dict(repair_hints or {})
+        preferred_filters = repair_hints.get("preferred_filters", [])
+        if not isinstance(preferred_filters, list):
+            preferred_filters = []
+        repair_hints["preferred_filters"] = preferred_filters
+
         available_fields = schema_context_summary.get("available_fields", [])
         if not available_fields:
             return repair_hints
@@ -524,7 +622,7 @@ class LlmResultVerifierAgent:
             if isinstance(item, dict)
         }
         filtered_filters = []
-        for item in repair_hints.get("preferred_filters", []):
+        for item in preferred_filters:
             if not isinstance(item, dict):
                 continue
             key = (str(item.get("entity_set", "")), str(item.get("field", "")))

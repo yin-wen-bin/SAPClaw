@@ -13,6 +13,7 @@ from sap_odata_agent.application.plan_critic import PlanCritic
 from sap_odata_agent.application.planner_guardrail import PlannerGuardrail
 from sap_odata_agent.application.presentation_verifier import PresentationVerifier
 from sap_odata_agent.application.context_gate import ContextCarryGate
+from sap_odata_agent.application.result_transformer import ResultTransformer
 from sap_odata_agent.application.schema_feasibility_validator import SchemaFeasibilityValidator
 from sap_odata_agent.domain.models import (
     AgentRequest,
@@ -124,6 +125,7 @@ class AgentOrchestrator:
         self.diagnostic_critic = DiagnosticCritic()
         self.failure_attributor = FailureAttributor()
         self.presentation_verifier = PresentationVerifier()
+        self.result_transformer = ResultTransformer()
 
     def run(self, request: AgentRequest) -> AgentResponse:
         if self.use_llm_first_pipeline:
@@ -1577,7 +1579,7 @@ class AgentOrchestrator:
                 "success": bool(path_attempts and path_attempts[-1].success and final_data is not None),
                 "plan": plan,
                 "attempts": path_attempts,
-                "data": final_data,
+                "data": self.result_transformer.apply(plan, final_data),
             }
 
         compiled_request = self._timed_call(
@@ -1600,7 +1602,7 @@ class AgentOrchestrator:
             return {"success": False, "plan": plan, "attempts": attempts, "data": None}
 
         final_plan = plan
-        final_data = execution.response_preview
+        final_data = self.result_transformer.apply(final_plan, execution.response_preview)
         return {
             "success": True,
             "plan": final_plan,

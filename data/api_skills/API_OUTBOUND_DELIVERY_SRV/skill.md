@@ -65,7 +65,8 @@ Keep `data/index/API_OUTBOUND_DELIVERY_SRV` as the schema ground truth. This ski
 - Use `A_OutbDeliveryHeader` when the user asks for delivery documents at header/list level.
 - For customer wording without a more specific partner role, filter `A_OutbDeliveryHeader.SoldToParty eq '<customer>'`. If the user explicitly says ship-to or receiver, use `A_OutbDeliveryHeader.ShipToParty eq '<customer>'`.
 - For already shipped / goods issue completed semantics, filter `A_OutbDeliveryHeader.OverallGoodsMovementStatus eq 'C'`.
-- For not yet billed semantics, filter `A_OutbDeliveryHeader.OverallDelivReltdBillgStatus eq 'A'`. For not fully billed / open billing wording, use `A_OutbDeliveryHeader.OverallDelivReltdBillgStatus ne 'C'` when the user allows partially billed deliveries.
+- For Chinese wording such as `还没开票`, `未开票`, `未完成开票`, `未完全开票`, and for open/not-fully-billed wording, filter `A_OutbDeliveryHeader.OverallDelivReltdBillgStatus ne 'C'`. This keeps partially billed but still open deliveries in scope. Billing-status value `A` alone is only suitable when the user explicitly asks for deliveries where billing has not started at all.
+- Do not combine the open-billing filter above with a separate billing-status value `A` restriction for the same user phrase. For `还没开票` or open billing wording, use only `ne 'C'`; adding a value `A` restriction narrows the result incorrectly.
 - Select `DeliveryDocument`, `DeliveryDate`, `SoldToParty`, `ShipToParty`, `OverallGoodsMovementStatus`, and `OverallDelivReltdBillgStatus`.
 - Use `API_BILLING_DOCUMENT_SRV` only when the user asks for actual billing documents, invoice numbers, invoice dates, or billing document details, or when the outbound delivery billing status fields cannot answer the business question.
 
@@ -73,7 +74,7 @@ Keep `data/index/API_OUTBOUND_DELIVERY_SRV` as the schema ground truth. This ski
 
 - For requests such as `query customer 17100003 delivery documents' billing items`, use this API as the source step and `API_BILLING_DOCUMENT_SRV` as the target API.
 - Step 1: query `A_OutbDeliveryHeader` by `A_OutbDeliveryHeader.SoldToParty` and select only `A_OutbDeliveryHeader.DeliveryDocument`, `A_OutbDeliveryHeader.SoldToParty`, `A_OutbDeliveryHeader.OverallGoodsMovementStatus`, and `A_OutbDeliveryHeader.OverallDelivReltdBillgStatus`.
-- Step 2: query `API_BILLING_DOCUMENT_SRV.A_BillingDocumentItem` by binding `A_OutbDeliveryHeader.DeliveryDocument` to `A_BillingDocumentItem.ReferenceSDDocument`.
+- Step 2: query `API_BILLING_DOCUMENT_SRV.A_BillingDocumentItem` by binding `A_OutbDeliveryHeader.DeliveryDocument` to `API_BILLING_DOCUMENT_SRV.A_BillingDocumentItem.ReferenceSDDocument`.
 - Do not ask the user for specific delivery document numbers when the customer filter can produce the delivery document scope.
 
 ### Product Master Data For Customer Delivery Items
@@ -81,7 +82,7 @@ Keep `data/index/API_OUTBOUND_DELIVERY_SRV` as the schema ground truth. This ski
 - For requests such as `查询客户17100003交货单里的物料主数据`, use this API as the source step and `API_PRODUCT_SRV` as the target API.
 - Step 1: query `A_OutbDeliveryHeader` by `A_OutbDeliveryHeader.SoldToParty` and select only `A_OutbDeliveryHeader.DeliveryDocument` and `A_OutbDeliveryHeader.SoldToParty`.
 - Step 2: query `A_OutbDeliveryItem` by binding `A_OutbDeliveryHeader.DeliveryDocument` to `A_OutbDeliveryItem.DeliveryDocument`; select only `A_OutbDeliveryItem.DeliveryDocument`, `A_OutbDeliveryItem.DeliveryDocumentItem`, and `A_OutbDeliveryItem.Material`; add filter `A_OutbDeliveryItem.Material ne ''`.
-- Step 3: query `API_PRODUCT_SRV.A_Product` by binding `A_OutbDeliveryItem.Material` to `A_Product.Product`; select only `A_Product.Product`, `A_Product.ProductType`, `A_Product.ProductGroup`, and `A_Product.BaseUnit`.
+- Step 3: query `API_PRODUCT_SRV.A_Product` by binding `A_OutbDeliveryItem.Material` to `API_PRODUCT_SRV.A_Product.Product`; select only `API_PRODUCT_SRV.A_Product.Product`, `API_PRODUCT_SRV.A_Product.ProductType`, `API_PRODUCT_SRV.A_Product.ProductGroup`, and `API_PRODUCT_SRV.A_Product.BaseUnit`.
 - Keep upstream delivery/item scope bounded to the first page unless the user explicitly asks for every matching delivery item.
 
 ### Detail Query

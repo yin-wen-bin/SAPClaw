@@ -50,7 +50,7 @@ Keep `data/index/API_MRP_MATERIALS_SRV_01` as the schema ground truth. This skil
 
 - For MRP material stock requests (`MRP物料的库存`), use `API_MRP_MATERIALS_SRV_01` together with `API_MATERIAL_STOCK_SRV`.
 - Step 1: query `A_MRPMaterial` by `A_MRPMaterial.MRPPlant` and select `A_MRPMaterial.Material`, `A_MRPMaterial.MRPPlant`, and `A_MRPMaterial.MRPArea`.
-- Step 2: query `API_MATERIAL_STOCK_SRV.A_MatlStkInAcctMod` by binding `A_MatlStkInAcctMod.Material` from Step 1 and filtering/binding `A_MatlStkInAcctMod.Plant` to the same plant.
+- Step 2: query `API_MATERIAL_STOCK_SRV.A_MatlStkInAcctMod` by binding `API_MATERIAL_STOCK_SRV.A_MatlStkInAcctMod.Material` from Step 1 and filtering/binding `API_MATERIAL_STOCK_SRV.A_MatlStkInAcctMod.Plant` to the same plant.
 
 ### Detail Query
 

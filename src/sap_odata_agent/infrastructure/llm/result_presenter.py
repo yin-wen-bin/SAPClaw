@@ -78,6 +78,15 @@ class LlmResultPresenter:
                 {"name": item.name, "value": item.value, "value_type": item.value_type}
                 for item in getattr(plan, "function_parameters", [])
             ],
+            "result_transform": (
+                {
+                    "type": plan.result_transform.type,
+                    "group_by": plan.result_transform.group_by,
+                    "sum_fields": plan.result_transform.sum_fields,
+                }
+                if plan.result_transform is not None
+                else None
+            ),
             "response_directive": plan.response_directive,
             "result_count": self._total_count(data, records),
             "displayed_count": len(records),
@@ -92,6 +101,7 @@ class LlmResultPresenter:
                 "sap_displayed_count": (data or {}).get("displayed_count"),
                 "primary_entity_set": (data or {}).get("primary_entity_set"),
                 "final_step_entity_set": (data or {}).get("final_step_entity_set"),
+                "result_transform": (data or {}).get("result_transform"),
                 "has_results": bool(raw_records),
             },
         }

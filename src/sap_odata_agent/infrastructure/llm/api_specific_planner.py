@@ -13,6 +13,7 @@ from sap_odata_agent.domain.models import (
     ExecutionStep,
     FilterCondition,
     QueryPlan,
+    ResultTransform,
     StepBinding,
 )
 from sap_odata_agent.infrastructure.indexing.index_loader import LocalIndexSnapshot
@@ -66,6 +67,7 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
         materialized = self._apply_skill_filter_patterns(materialized, request, schema_context)
         materialized = self._apply_skill_preferred_filter_fields(materialized, request, schema_context)
         materialized = self._apply_skill_select_only_patterns(materialized, request, schema_context)
+        materialized = self._apply_skill_result_transform_patterns(materialized, request, schema_context)
         materialized = self._clear_skill_resolved_clarification(materialized)
         materialized = self._remove_unrequested_temporal_filters(materialized, request)
         materialized = self._apply_company_code_chart_of_accounts_bridge(materialized, request, schema_context)
@@ -127,6 +129,11 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             "target_fields": [],
             "business_level": "header | item | schedule_line | partner | address | account_assignment | status | history | unknown",
             "presentation": {"kind": "text | table", "reason": ""},
+            "result_transform": {
+                "type": "none | aggregate",
+                "group_by": ["FieldName"],
+                "sum_fields": ["NumericFieldName"],
+            },
             "response_directive": "",
             "rationale": "",
         }
@@ -166,6 +173,7 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             "14. Treat bare \"with/include/show/display\" field-list wording as requested output fields, not filters. Add filters only for explicit restrictions, comparisons, literal values, true/false requirements, nonzero/open/closed conditions, schema-verified business conditions, or a matching api_skill Common Planning Pattern.\n\n"
             "15. If schema_context.service_names contains multiple services, every multi_step step must include service_name. Use cross-service join_hints or shared key fields to bridge between services, and only use entity sets and fields from that step's service.\n\n"
             "16. If the user provides a company code and asks for G/L account records in a chart-of-accounts-scoped API, first query API_COMPANYCODE_SRV.A_CompanyCode.ChartOfAccounts and bind that value to the G/L account step. Do not use the company code literal as A_GLAccountInChartOfAccounts.ChartOfAccounts.\n\n"
+            "17. If the user asks for an output level such as material level, plant level, storage-location level, batch level, or another summarized level, choose fields for the raw SAP query and set result_transform.type=aggregate with schema-valid group_by and sum_fields. The program will execute the aggregation; do not calculate totals in text.\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )
@@ -551,6 +559,88 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             planner_diagnostics={
                 **(plan.planner_diagnostics or {}),
                 "api_skill_applied_select_only": applied,
+            },
+        )
+
+    @staticmethod
+    def _apply_skill_result_transform_patterns(
+        plan: QueryPlan,
+        request: AgentRequest,
+        schema_context: dict[str, Any],
+    ) -> QueryPlan:
+        requirements = LlmApiSpecificPlanner._matching_skill_result_transform_requirements(request, schema_context)
+        if not requirements:
+            return plan
+
+        def applicable_requirement(entity_set: str) -> dict[str, Any] | None:
+            for requirement in requirements:
+                if requirement.get("entity_set") != entity_set:
+                    continue
+                fields = [*requirement.get("group_by", []), *requirement.get("sum_fields", [])]
+                if all(LlmApiSpecificPlanner._schema_entity_has_field(schema_context, entity_set, field) for field in fields):
+                    return requirement
+            return None
+
+        applied: dict[str, Any] | None = None
+        if plan.steps:
+            updated_steps: list[ExecutionStep] = []
+            for step in plan.steps:
+                requirement = applicable_requirement(step.entity_set)
+                if requirement is None:
+                    updated_steps.append(step)
+                    continue
+                fields = [*requirement["group_by"], *requirement["sum_fields"]]
+                selected = LlmDynamicPathPlanner._dedupe_fields([*list(step.select_fields or []), *fields])
+                updated_steps.append(
+                    replace(
+                        step,
+                        select_fields=selected,
+                        response_summary_fields=fields,
+                    )
+                )
+                if applied is None:
+                    applied = {**requirement, "step_id": step.step_id}
+            if applied is None:
+                return plan
+            transform = ResultTransform(
+                type="aggregate",
+                group_by=list(applied["group_by"]),
+                sum_fields=list(applied["sum_fields"]),
+            )
+            target_step = next(
+                (step for step in updated_steps if step.step_id == applied.get("step_id")),
+                updated_steps[-1],
+            )
+            return replace(
+                plan,
+                select_fields=list(target_step.select_fields or []),
+                response_summary_fields=[*transform.group_by, *transform.sum_fields],
+                target_entity_set=target_step.entity_set,
+                steps=updated_steps,
+                result_transform=transform,
+                planner_diagnostics={
+                    **(plan.planner_diagnostics or {}),
+                    "api_skill_applied_result_transform": applied,
+                },
+            )
+
+        requirement = applicable_requirement(plan.entity_set)
+        if requirement is None:
+            return plan
+        fields = [*requirement["group_by"], *requirement["sum_fields"]]
+        transform = ResultTransform(
+            type="aggregate",
+            group_by=list(requirement["group_by"]),
+            sum_fields=list(requirement["sum_fields"]),
+        )
+        return replace(
+            plan,
+            select_fields=LlmDynamicPathPlanner._dedupe_fields([*list(plan.select_fields or []), *fields]),
+            response_summary_fields=fields,
+            result_transform=transform,
+            planner_diagnostics={
+                **(plan.planner_diagnostics or {}),
+                "api_skill_applied_result_transform": requirement,
             },
         )
 
@@ -1192,6 +1282,71 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
         return sorted(by_entity.values(), key=lambda item: int(item.get("match_score") or 0), reverse=True)
 
     @staticmethod
+    def _matching_skill_result_transform_requirements(
+        request: AgentRequest,
+        schema_context: dict[str, Any],
+    ) -> list[dict[str, Any]]:
+        request_text = f"{request.resolved_user_input or ''} {request.user_input or ''}".strip()
+        if not request_text:
+            return []
+        requirements: list[dict[str, Any]] = []
+        seen: set[tuple[str, tuple[str, ...], tuple[str, ...]]] = set()
+        for line in LlmApiSpecificPlanner._iter_skill_lines(schema_context):
+            lowered = line.lower()
+            if "result_transform" not in lowered or "aggregate" not in lowered:
+                continue
+            score = LlmApiSpecificPlanner._skill_line_match_score(line, request_text)
+            if score <= 0:
+                continue
+            group_refs = LlmApiSpecificPlanner._extract_skill_field_refs_after_marker(line, "group_by")
+            sum_refs = LlmApiSpecificPlanner._extract_skill_field_refs_after_marker(line, "sum_fields")
+            if not group_refs or not sum_refs:
+                continue
+            entity_sets = {entity for entity, _ in [*group_refs, *sum_refs] if entity}
+            if len(entity_sets) != 1:
+                continue
+            entity_set = next(iter(entity_sets))
+            group_by = [field for entity, field in group_refs if entity == entity_set]
+            sum_fields = [field for entity, field in sum_refs if entity == entity_set]
+            if not group_by or not sum_fields:
+                continue
+            key = (entity_set, tuple(group_by), tuple(sum_fields))
+            if key in seen:
+                continue
+            seen.add(key)
+            requirements.append(
+                {
+                    "entity_set": entity_set,
+                    "group_by": group_by,
+                    "sum_fields": sum_fields,
+                    "source": "api_skill_result_transform",
+                    "skill_line": line,
+                    "match_score": score,
+                }
+            )
+        return sorted(requirements, key=lambda item: int(item.get("match_score") or 0), reverse=True)
+
+    @staticmethod
+    def _extract_skill_field_refs_after_marker(line: str, marker: str) -> list[tuple[str, str]]:
+        pattern = re.compile(
+            rf"{re.escape(marker)}\s*[:=]\s*(?P<body>.*?)(?:;\s*[A-Za-z_]+\s*[:=]|$)",
+            flags=re.IGNORECASE,
+        )
+        match = pattern.search(line)
+        if not match:
+            return []
+        body = match.group("body")
+        refs: list[tuple[str, str]] = []
+        for field_match in re.finditer(
+            r"`(?P<entity>[A-Za-z_][A-Za-z0-9_]*)\.(?P<field>[A-Za-z_][A-Za-z0-9_]*)`",
+            body,
+        ):
+            ref = (field_match.group("entity"), field_match.group("field"))
+            if ref not in refs:
+                refs.append(ref)
+        return refs
+
+    @staticmethod
     def _iter_skill_lines(schema_context: dict[str, Any]) -> list[str]:
         skills: list[dict[str, Any]] = []
         api_skill = schema_context.get("api_skill")
@@ -1265,6 +1420,21 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
                 continue
             if str(field.get("entity_set") or "") == entity_set and str(field.get("field_name") or "") == field_name:
                 return field.get("filterable", True) is not False
+        return False
+
+    @staticmethod
+    def _schema_entity_has_field(schema_context: dict[str, Any], entity_set: str, field_name: str) -> bool:
+        for entity in schema_context.get("entities", []):
+            if not isinstance(entity, dict) or str(entity.get("entity_set") or "") != entity_set:
+                continue
+            for field in entity.get("fields", []):
+                if isinstance(field, dict) and str(field.get("field_name") or "") == field_name:
+                    return True
+        for field in schema_context.get("candidate_fields", []):
+            if not isinstance(field, dict):
+                continue
+            if str(field.get("entity_set") or "") == entity_set and str(field.get("field_name") or "") == field_name:
+                return True
         return False
 
     @staticmethod

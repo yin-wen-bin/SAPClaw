@@ -65,16 +65,7 @@ class LlmApiRouter:
         )
         try:
             raw = self._complete_nonempty_json_text(self._system_prompt(), user_prompt, max_tokens=1600)
-            try:
-                parsed = LlmStructuredIntentPlanner._parse_json_object(raw)
-            except json.JSONDecodeError:
-                repaired_raw = self._complete_nonempty_json_text(
-                    self._json_repair_system_prompt(),
-                    self._json_repair_prompt(raw, example),
-                    max_tokens=1200,
-                    attempts=1,
-                )
-                parsed = LlmStructuredIntentPlanner._parse_json_object(repaired_raw)
+            parsed = self._parse_route_json_with_repair(raw, user_prompt, example)
         except Exception as exc:
             fallback = self._unavailable_route(api_catalog)
             fallback.raw_response = {"accepted": False, "reason": f"api_router_failed:{exc}"}
@@ -103,6 +94,60 @@ class LlmApiRouter:
             f"{json.dumps(example, ensure_ascii=False, indent=2)}\n\n"
             "Malformed response:\n"
             f"{raw_response}"
+        )
+
+    def _parse_route_json_with_repair(
+        self,
+        raw_response: str,
+        original_user_prompt: str,
+        example: dict[str, Any],
+    ) -> dict[str, Any]:
+        try:
+            return LlmStructuredIntentPlanner._parse_json_object(raw_response)
+        except json.JSONDecodeError:
+            repaired_raw = self._complete_nonempty_json_text(
+                self._json_repair_system_prompt(),
+                self._json_repair_prompt(raw_response, example),
+                max_tokens=1200,
+                attempts=1,
+            )
+            try:
+                return LlmStructuredIntentPlanner._parse_json_object(repaired_raw)
+            except json.JSONDecodeError:
+                regenerated_raw = self._complete_nonempty_json_text(
+                    self._system_prompt(),
+                    self._strict_regenerate_prompt(
+                        original_user_prompt=original_user_prompt,
+                        raw_response=raw_response,
+                        repaired_response=repaired_raw,
+                        example=example,
+                    ),
+                    max_tokens=1600,
+                    attempts=1,
+                )
+                return LlmStructuredIntentPlanner._parse_json_object(regenerated_raw)
+
+    @staticmethod
+    def _strict_regenerate_prompt(
+        *,
+        original_user_prompt: str,
+        raw_response: str,
+        repaired_response: str,
+        example: dict[str, Any],
+    ) -> str:
+        return (
+            "The API router produced invalid JSON, and the JSON repair response was still invalid. "
+            "Regenerate the API routing decision from the original input. Return exactly one valid JSON object. "
+            "Do not use markdown. Do not add prose. Do not choose a programmatic fallback; use the catalog, "
+            "feedback memories, top fields, and skill guidance in the original input.\n\n"
+            "Expected JSON shape:\n"
+            f"{json.dumps(example, ensure_ascii=False, indent=2)}\n\n"
+            "Original router prompt:\n"
+            f"{original_user_prompt}\n\n"
+            "First malformed response:\n"
+            f"{LlmApiRouter._truncate(raw_response, 1200)}\n\n"
+            "Invalid repair response:\n"
+            f"{LlmApiRouter._truncate(repaired_response, 1200)}"
         )
 
     def _complete_nonempty_json_text(

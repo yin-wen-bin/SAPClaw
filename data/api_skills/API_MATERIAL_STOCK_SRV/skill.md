@@ -9,50 +9,63 @@ Keep `data/index/API_MATERIAL_STOCK_SRV` as the schema ground truth. This skill 
 ## When To Use
 
 - The user asks for current stock, inventory balance, stock quantity, stock by plant, stock by storage location, stock by batch, or stock by serial number.
-- The user asks for stock in account model or stock-specific inventory attributes.
-- Use this API when the user says "库存", "物料库存", "当前库存", "库存数量", "库存地点库存", "工厂库存", "批次库存", "库存基本单位", or "序列号库存".
+- The user asks "库存", "当前库存", "物料库存", "库存数量", "工厂库存", "库存地点库存", "批次库存", "物料层级库存", "物料级库存", or "序列号库存".
+- Use this API for stock-balance questions, not for movement history.
 
 ## When Not To Use
 
 - Do not use this API for material movement history, goods receipt history, purchase orders, purchase requisitions, supplier invoices, product master attributes, or ATP availability calculations.
 - Do not use this API to explain how stock changed over time.
+- Do not route availability-check wording such as "是否有货", "是否可用", "可用量", "能否满足", or "今天/明天/某日期是否有货" here when `API_PRODUCT_AVAILY_INFO_BASIC` is available.
 
 ## Key Entities
 
-- `A_MaterialStock`: material-level stock data and base unit.
-- `A_MatlStkInAcctMod`: stock balances in account model.
+- `A_MaterialStock`: material-level master stock record and base unit.
+- `A_MatlStkInAcctMod`: current stock balances in account model. Use this for quantities and stock dimensions.
 - `A_MaterialSerialNumber`: serial-number level stock data.
 
 ## Business Semantics
 
 - This API is a current stock view. It is not a ledger of movements.
-- Use this API for stock balance/listing wording such as "库存", "当前库存", "库存数量", or "按库存地点/批次/库存类型查看库存".
-- Do not treat availability-check wording such as "是否有货", "是否可用", "可用量", "能否满足", or "今天/明天/某日期是否有货" as a stock-balance question when the availability API is available. Those intents belong to `API_PRODUCT_AVAILY_INFO_BASIC`.
-- Material, plant, storage location, batch, stock type, special stock, customer, supplier, and serial number are common stock dimensions.
-- For stock history or goods movement details, use the material document API.
+- Material, plant, storage location, batch, stock type, special stock, customer, supplier, and serial number are stock dimensions.
 - Preserve material IDs, plants, storage locations, batches, and serial numbers exactly.
-- "库存" without a history or movement phrase means current stock and should route here.
-- "物料库存基本单位" uses `A_MaterialStock.MaterialBaseUnit`.
-- "按工厂/库存地点/批次/库存类型区分的库存" uses `A_MatlStkInAcctMod`.
-- "序列号库存" uses `A_MaterialSerialNumber`.
+- For stock history or goods movement details, use the material document API.
+- `A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit` is the quantity field for stock balance in material base unit.
+- `A_MatlStkInAcctMod.MaterialBaseUnit` is the stock quantity unit.
+
+## Stock Output Levels
+
+- "物料层级库存", "物料级库存", "物料层面库存", "material level stock", or "by material stock" means the answer must be aggregated by material, plant, and unit. It must not be displayed at batch, storage-location, stock-type, or special-stock detail unless the user explicitly asks for those breakdowns.
+- "批次层级库存", "按批次库存", or "batch stock" means include `A_MatlStkInAcctMod.Batch`.
+- "库存地点层级库存", "按库存地点库存", or "storage-location stock" means include `A_MatlStkInAcctMod.StorageLocation`.
+- "库存类型层级库存", "按库存类型库存", or "stock-type stock" means include `A_MatlStkInAcctMod.InventoryStockType`.
 
 ## Common Planning Patterns
 
 ### Stock By Material
 
-- Query `A_MaterialStock` for general stock records by material.
-- Query `A_MatlStkInAcctMod` when the user asks for detailed stock quantities by stock account dimensions.
+- Query `A_MaterialStock` for material base unit or material stock master records.
+- Query `A_MatlStkInAcctMod` when the user asks for stock quantity.
 - Filter `A_MaterialStock.Material` or `A_MatlStkInAcctMod.Material` when the user provides a material.
 - Select `A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit` when the user asks for stock quantity.
 
+### Material-Level Stock
+
+- For requests such as "查询物料2211在工厂1710的物料层级库存", answer from `A_MatlStkInAcctMod`.
+- Filter `A_MatlStkInAcctMod.Material` and `A_MatlStkInAcctMod.Plant` when material and plant are provided.
+- For material-level stock requests such as "物料层级", "物料层级库存", "物料层级的库存", or "物料级库存", select only `A_MatlStkInAcctMod.Material`, `A_MatlStkInAcctMod.Plant`, `A_MatlStkInAcctMod.MaterialBaseUnit`, and `A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit`.
+- For material-level stock requests such as "物料层级", "物料层级库存", "物料层级的库存", or "物料级库存", use result_transform aggregate: group_by: `A_MatlStkInAcctMod.Material`, `A_MatlStkInAcctMod.Plant`, `A_MatlStkInAcctMod.MaterialBaseUnit`; sum_fields: `A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit`.
+- Do not select `A_MatlStkInAcctMod.Batch`, `A_MatlStkInAcctMod.StorageLocation`, `A_MatlStkInAcctMod.InventoryStockType`, or `A_MatlStkInAcctMod.InventorySpecialStockType` unless the user explicitly asks for that detail level.
+
 ### Stock By Location
 
-- Use plant, storage location, and batch filters on the stock entity that contains the requested dimensions.
-- Use `A_MatlStkInAcctMod.Plant`, `A_MatlStkInAcctMod.StorageLocation`, and `A_MatlStkInAcctMod.InventoryStockType` for plant/storage-location/stock-type breakdowns.
+- Use `A_MatlStkInAcctMod.Plant`, `A_MatlStkInAcctMod.StorageLocation`, and `A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit` for plant/storage-location stock breakdowns.
+- Include `A_MatlStkInAcctMod.Batch` only when the user asks for batch-level stock.
+- Include `A_MatlStkInAcctMod.InventoryStockType` only when the user asks for stock-type breakdown.
 
 ### Production Order Component Stock
 
-- For production order component stock / 生产订单组件库存 requests, use `API_PRODUCTION_ORDER_2_SRV` together with `API_MATERIAL_STOCK_SRV`.
+- For production order component stock requests, use `API_PRODUCTION_ORDER_2_SRV` together with `API_MATERIAL_STOCK_SRV`.
 - Step 1: query `API_PRODUCTION_ORDER_2_SRV.A_ProductionOrderComponent_2` filtered by plant and select `ManufacturingOrder`, `Material`, and `Plant`.
 - Step 2: query `API_MATERIAL_STOCK_SRV.A_MatlStkInAcctMod` filtered by the same plant and bind component `Material` to stock `Material`.
 - Select stock dimensions and quantity fields such as `Material`, `Plant`, `StorageLocation`, `InventoryStockType`, and `MatlWrhsStkQtyInMatlBaseUnit`.
@@ -60,10 +73,10 @@ Keep `data/index/API_MATERIAL_STOCK_SRV` as the schema ground truth. This skill 
 
 ### MRP Material Stock
 
-- For MRP material stock requests (`MRP物料的库存`), use `API_MRP_MATERIALS_SRV_01` together with `API_MATERIAL_STOCK_SRV`.
-- Step 1: query `API_MRP_MATERIALS_SRV_01.A_MRPMaterial` by `A_MRPMaterial.MRPPlant` when the user provides a plant. Select `A_MRPMaterial.Material`, `A_MRPMaterial.MRPPlant`, and `A_MRPMaterial.MRPArea`.
+- For MRP material stock requests, use `API_MRP_MATERIALS_SRV_01` together with `API_MATERIAL_STOCK_SRV`.
+- Step 1: query `API_MRP_MATERIALS_SRV_01.A_MRPMaterial` by `API_MRP_MATERIALS_SRV_01.A_MRPMaterial.MRPPlant` when the user provides a plant. Select `API_MRP_MATERIALS_SRV_01.A_MRPMaterial.Material`, `API_MRP_MATERIALS_SRV_01.A_MRPMaterial.MRPPlant`, and `API_MRP_MATERIALS_SRV_01.A_MRPMaterial.MRPArea`.
 - Step 2: query `A_MatlStkInAcctMod` by binding `A_MatlStkInAcctMod.Material` from Step 1 and filtering/binding `A_MatlStkInAcctMod.Plant` to the same plant. Select `A_MatlStkInAcctMod.Material`, `A_MatlStkInAcctMod.Plant`, `A_MatlStkInAcctMod.StorageLocation`, `A_MatlStkInAcctMod.InventoryStockType`, and `A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit`.
-- Do not answer MRP material stock by querying stock with only `A_MatlStkInAcctMod.Plant`; first constrain materials through `A_MRPMaterial`.
+- Do not answer MRP material stock by querying stock with only `A_MatlStkInAcctMod.Plant`; first constrain materials through `API_MRP_MATERIALS_SRV_01.A_MRPMaterial`.
 
 ### Serial Number Stock
 

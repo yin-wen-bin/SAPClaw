@@ -125,6 +125,30 @@ def _write_index(root: Path) -> None:
         (service_dir / name).write_text("[]", encoding="utf-8")
 
 
+def _api_test_schema_context() -> dict:
+    return {
+        "service_name": "API_TEST",
+        "entities": [
+            {
+                "service_name": "API_TEST",
+                "entity_set": "A_Test",
+                "key_fields": ["Document"],
+                "default_select_fields": ["Document", "Amount"],
+                "fields": [
+                    {"entity_set": "A_Test", "field_name": "Document", "data_type": "Edm.String", "filterable": True},
+                    {"entity_set": "A_Test", "field_name": "Amount", "data_type": "Edm.Decimal", "filterable": True},
+                    {"entity_set": "A_Test", "field_name": "Period", "data_type": "Edm.String", "filterable": True},
+                ],
+            }
+        ],
+        "candidate_fields": [
+            {"entity_set": "A_Test", "field_name": "Document", "data_type": "Edm.String", "filterable": True},
+            {"entity_set": "A_Test", "field_name": "Amount", "data_type": "Edm.Decimal", "filterable": True},
+            {"entity_set": "A_Test", "field_name": "Period", "data_type": "Edm.String", "filterable": True},
+        ],
+    }
+
+
 def _write_company_gl_index(root: Path) -> None:
     company_dir = root / "API_COMPANYCODE_SRV"
     company_dir.mkdir(parents=True)
@@ -280,6 +304,75 @@ def _write_profit_center_index(root: Path) -> None:
     (service_dir / "fields.json").write_text(json.dumps(fields), encoding="utf-8")
     for name in ["relations.json", "entity_graph.json", "lookup_paths.json", "business_terms.json"]:
         (service_dir / name).write_text("[]", encoding="utf-8")
+
+
+def test_api_specific_planner_materializes_llm_result_transform(tmp_path: Path) -> None:
+    _write_index(tmp_path)
+    client = CapturingClient(
+        {
+            "plan_kind": "direct",
+            "service_name": "API_TEST",
+            "entity_set": "A_Test",
+            "select_fields": ["Document"],
+            "filters": [],
+            "presentation": {"kind": "table", "reason": "summarized list"},
+            "result_transform": {
+                "type": "aggregate",
+                "group_by": ["Document"],
+                "sum_fields": ["Amount"],
+            },
+        }
+    )
+    planner = LlmApiSpecificPlanner(index_root=str(tmp_path), llm_client=client)
+
+    plan = planner.plan_for_api(
+        AgentRequest(user_input="show amount by document"),
+        ApiRouteDecision(selected_apis=[SelectedApi("API_TEST", 0.9)]),
+        _api_test_schema_context(),
+    )
+
+    assert plan.result_transform is not None
+    assert plan.result_transform.group_by == ["Document"]
+    assert plan.result_transform.sum_fields == ["Amount"]
+    assert plan.select_fields == ["Document", "Amount"]
+    assert plan.response_summary_fields == ["Document", "Amount"]
+
+
+def test_api_specific_planner_applies_skill_result_transform_pattern(tmp_path: Path) -> None:
+    _write_index(tmp_path)
+    client = CapturingClient(
+        {
+            "plan_kind": "direct",
+            "service_name": "API_TEST",
+            "entity_set": "A_Test",
+            "select_fields": ["Document", "Amount", "Period"],
+            "filters": [],
+            "presentation": {"kind": "table", "reason": "raw list"},
+        }
+    )
+    planner = LlmApiSpecificPlanner(index_root=str(tmp_path), llm_client=client)
+    schema_context = {
+        **_api_test_schema_context(),
+        "api_skill": {
+            "service_name": "API_TEST",
+            "summary": (
+                "For requests such as document level amount, answer from `A_Test`. "
+                "Select only `A_Test.Document` and `A_Test.Amount`. "
+                "Use result_transform aggregate: group_by: `A_Test.Document`; sum_fields: `A_Test.Amount`."
+            ),
+        },
+    }
+
+    plan = planner.plan_for_api(
+        AgentRequest(user_input="show document level amount"),
+        ApiRouteDecision(selected_apis=[SelectedApi("API_TEST", 0.9)]),
+        schema_context,
+    )
+
+    assert plan.result_transform is not None
+    assert plan.result_transform.group_by == ["Document"]
+    assert plan.result_transform.sum_fields == ["Amount"]
+    assert plan.select_fields == ["Document", "Amount"]
 
 
 def test_api_specific_planner_includes_api_skill_in_prompt(tmp_path: Path) -> None:

@@ -229,7 +229,8 @@ def test_outbound_delivery_skill_documents_delivered_not_billed_pattern() -> Non
 
     assert "Delivered But Not Billed Delivery Documents" in skill.content
     assert "A_OutbDeliveryHeader.OverallGoodsMovementStatus eq 'C'" in skill.content
-    assert "A_OutbDeliveryHeader.OverallDelivReltdBillgStatus eq 'A'" in skill.content
+    assert "A_OutbDeliveryHeader.OverallDelivReltdBillgStatus ne 'C'" in skill.content
+    assert "A_OutbDeliveryHeader.OverallDelivReltdBillgStatus eq 'A'" not in skill.content
 
 
 def test_outbound_delivery_skill_documents_product_master_pattern() -> None:
@@ -375,6 +376,17 @@ def test_material_stock_skill_documents_mrp_material_stock_pattern() -> None:
     assert "API_MRP_MATERIALS_SRV_01" in skill.content
     assert "A_MRPMaterial.Material" in skill.content
     assert "A_MatlStkInAcctMod.Material" in skill.content
+
+
+def test_material_stock_skill_documents_material_level_aggregation() -> None:
+    skill = ApiSkillProvider(skill_root="data/api_skills").load("API_MATERIAL_STOCK_SRV")
+    assert skill is not None
+
+    assert "Material-Level Stock" in skill.content
+    assert "物料层级库存" in skill.content
+    assert "result_transform aggregate" in skill.content
+    assert "A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit" in skill.content
+    assert "Do not select `A_MatlStkInAcctMod.Batch`" in skill.content
 
 
 def test_planned_orders_skill_documents_component_material_pattern() -> None:

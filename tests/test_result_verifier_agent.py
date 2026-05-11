@@ -1,4 +1,4 @@
-from sap_odata_agent.domain.models import AgentRequest, FilterCondition, QueryConstraints, QueryPlan, QueryShape
+from sap_odata_agent.domain.models import AgentRequest, FilterCondition, QueryConstraints, QueryPlan, QueryShape, ResultTransform
 from sap_odata_agent.infrastructure.llm.result_verifier_agent import LlmResultVerifierAgent
 
 
@@ -197,6 +197,50 @@ def test_result_verifier_allows_filled_product_sales_tax_classification() -> Non
     assert result["passed"] is True
 
 
+def test_result_verifier_handles_null_preferred_filters_from_llm() -> None:
+    verifier = LlmResultVerifierAgent(
+        llm_client=StaticJsonClient(
+            {
+                "passed": False,
+                "issues": [
+                    {
+                        "code": "unsupported_business_conclusion",
+                        "message": "Returned data does not prove the requested business status.",
+                        "blocking": True,
+                    }
+                ],
+                "repair_hints": {"reason": "Try a status field instead.", "preferred_filters": None},
+            }
+        )
+    )
+
+    result = verifier.verify(
+        request=AgentRequest(user_input="query open purchase order items"),
+        plan=QueryPlan(
+            service_name="API_PURCHASEORDER_PROCESS_SRV",
+            entity_set="A_PurchaseOrderItem",
+            select_fields=["PurchaseOrder", "PurchaseOrderItem"],
+            filters=[],
+        ),
+        data={
+            "result_count": 1,
+            "results": [{"PurchaseOrder": "4500001513", "PurchaseOrderItem": "10"}],
+        },
+        schema_context_summary={
+            "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+            "available_fields": [
+                {
+                    "entity_set": "A_PurchaseOrderItem",
+                    "field_name": "IsCompletelyDelivered",
+                }
+            ],
+        },
+    )
+
+    assert result["passed"] is False
+    assert result["repair_hints"]["preferred_filters"] == []
+
+
 def test_result_verifier_blocks_purchase_order_history_answered_by_pricing_only() -> None:
     verifier = LlmResultVerifierAgent(enabled=False)
     plan = QueryPlan(
@@ -255,6 +299,77 @@ def test_result_verifier_allows_purchase_order_history_when_user_asks_for_pricin
             "results": [{"PurchaseOrder": "4500001513", "ConditionType": "PBXX"}],
         },
         schema_context_summary={"service_name": "API_PURCHASEORDER_PROCESS_SRV"},
+    )
+
+    assert result["passed"] is True
+
+
+def test_result_verifier_blocks_material_level_stock_returned_by_batch() -> None:
+    verifier = LlmResultVerifierAgent(enabled=False)
+
+    result = verifier.verify(
+        request=AgentRequest(user_input="查询物料2211在工厂1710的物料层级的库存"),
+        plan=QueryPlan(
+            service_name="API_MATERIAL_STOCK_SRV",
+            entity_set="A_MatlStkInAcctMod",
+            select_fields=["Material", "Plant", "Batch", "MatlWrhsStkQtyInMatlBaseUnit"],
+            response_summary_fields=["Material", "Plant", "Batch", "MatlWrhsStkQtyInMatlBaseUnit"],
+            filters=[
+                FilterCondition(field="Material", operator="eq", value="2211"),
+                FilterCondition(field="Plant", operator="eq", value="1710"),
+            ],
+        ),
+        data={
+            "result_count": 1,
+            "results": [
+                {
+                    "Material": "2211",
+                    "Plant": "1710",
+                    "Batch": "B1",
+                    "MatlWrhsStkQtyInMatlBaseUnit": "10",
+                }
+            ],
+        },
+        schema_context_summary={"service_name": "API_MATERIAL_STOCK_SRV"},
+    )
+
+    assert result["passed"] is False
+    assert result["issues"][0]["code"] == "wrong_business_level_for_material_stock"
+    assert result["repair_hints"]["preferred_result_transform"] == {
+        "type": "aggregate",
+        "group_by": ["Material", "Plant", "MaterialBaseUnit"],
+        "sum_fields": ["MatlWrhsStkQtyInMatlBaseUnit"],
+    }
+
+
+def test_result_verifier_accepts_material_level_stock_aggregation() -> None:
+    verifier = LlmResultVerifierAgent(enabled=False)
+
+    result = verifier.verify(
+        request=AgentRequest(user_input="查询物料2211在工厂1710的物料层级的库存"),
+        plan=QueryPlan(
+            service_name="API_MATERIAL_STOCK_SRV",
+            entity_set="A_MatlStkInAcctMod",
+            select_fields=["Material", "Plant", "MaterialBaseUnit", "MatlWrhsStkQtyInMatlBaseUnit"],
+            response_summary_fields=["Material", "Plant", "MaterialBaseUnit", "MatlWrhsStkQtyInMatlBaseUnit"],
+            result_transform=ResultTransform(
+                type="aggregate",
+                group_by=["Material", "Plant", "MaterialBaseUnit"],
+                sum_fields=["MatlWrhsStkQtyInMatlBaseUnit"],
+            ),
+        ),
+        data={
+            "result_count": 1,
+            "results": [
+                {
+                    "Material": "2211",
+                    "Plant": "1710",
+                    "MaterialBaseUnit": "PC",
+                    "MatlWrhsStkQtyInMatlBaseUnit": "10",
+                }
+            ],
+        },
+        schema_context_summary={"service_name": "API_MATERIAL_STOCK_SRV"},
     )
 
     assert result["passed"] is True

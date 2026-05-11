@@ -256,6 +256,13 @@ class FunctionParameter:
 
 
 @dataclass(slots=True)
+class ResultTransform:
+    type: str = ""
+    group_by: list[str] = field(default_factory=list)
+    sum_fields: list[str] = field(default_factory=list)
+
+
+@dataclass(slots=True)
 class StepBinding:
     field: str
     source_step_id: str
@@ -303,6 +310,7 @@ class QueryPlan:
     path_id: str | None = None
     steps: list[ExecutionStep] = field(default_factory=list)
     function_parameters: list[FunctionParameter] = field(default_factory=list)
+    result_transform: ResultTransform | None = None
 
 
 @dataclass(slots=True)

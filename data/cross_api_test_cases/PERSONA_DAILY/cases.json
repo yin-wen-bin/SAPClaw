@@ -1,0 +1,340 @@
+[
+  {
+    "id": "PERSONA-DAILY-001",
+    "api": "PERSONA_DAILY",
+    "persona": "general_finance_staff",
+    "scenario": "supplier_invoice_list",
+    "user_input": "列出供应商17300003的供应商发票",
+    "expected_api": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "expected_apis": ["API_SUPPLIERINVOICE_PROCESS_SRV"],
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {
+      "steps": [
+        {
+          "id": "invoices",
+          "url": "/sap/opu/odata/sap/API_SUPPLIERINVOICE_PROCESS_SRV/A_SupplierInvoice?$select=SupplierInvoice,FiscalYear,CompanyCode,InvoicingParty,DocumentDate,PostingDate,InvoiceGrossAmount&$filter=InvoicingParty eq '17300003'&$top=50",
+          "key_fields": ["SupplierInvoice", "FiscalYear"]
+        }
+      ]
+    },
+    "comparison": {"type": "key_subset", "keys": ["SupplierInvoice", "FiscalYear"], "required_fields": ["SupplierInvoice", "FiscalYear", "InvoicingParty"]}
+  },
+  {
+    "id": "PERSONA-DAILY-002",
+    "api": "PERSONA_DAILY",
+    "persona": "general_finance_staff",
+    "scenario": "supplier_purchase_orders_open_invoice",
+    "user_input": "查询供应商17300003还有哪些采购订单没完成发票",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_apis": ["API_PURCHASEORDER_PROCESS_SRV"],
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {
+      "steps": [
+        {
+          "id": "orders",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder?$select=PurchaseOrder,Supplier,CompanyCode,PurchaseOrderDate&$filter=Supplier eq '17300003'&$top=100",
+          "key_fields": ["PurchaseOrder"]
+        },
+        {
+          "id": "items",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem?$select=PurchaseOrder,PurchaseOrderItem,Material,IsFinallyInvoiced&$filter=IsFinallyInvoiced eq false&$top=50",
+          "key_fields": ["PurchaseOrder", "PurchaseOrderItem"],
+          "bind": {"source_step": "orders", "source_field": "PurchaseOrder", "target_field": "PurchaseOrder"}
+        }
+      ]
+    },
+    "comparison": {"type": "key_subset", "keys": ["PurchaseOrder", "PurchaseOrderItem"], "required_fields": ["PurchaseOrder", "PurchaseOrderItem", "IsFinallyInvoiced"]}
+  },
+  {
+    "id": "PERSONA-DAILY-003",
+    "api": "PERSONA_DAILY",
+    "persona": "general_finance_staff",
+    "scenario": "customer_billing_documents",
+    "user_input": "列出客户17100003的开票凭证",
+    "expected_api": "API_BILLING_DOCUMENT_SRV",
+    "expected_apis": ["API_BILLING_DOCUMENT_SRV"],
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {
+      "steps": [
+        {
+          "id": "billings",
+          "url": "/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV/A_BillingDocument?$select=BillingDocument,SoldToParty,CompanyCode,BillingDocumentDate,TotalNetAmount,TransactionCurrency&$filter=SoldToParty eq '17100003'&$top=50",
+          "key_fields": ["BillingDocument"]
+        }
+      ]
+    },
+    "comparison": {"type": "key_subset", "keys": ["BillingDocument"], "required_fields": ["BillingDocument", "SoldToParty"]}
+  },
+  {
+    "id": "PERSONA-DAILY-004",
+    "api": "PERSONA_DAILY",
+    "persona": "general_finance_staff",
+    "scenario": "journal_items_with_cost_center",
+    "user_input": "查询公司1710带成本中心的财务行项目",
+    "expected_api": "API_JOURNALENTRYITEMBASIC_SRV",
+    "expected_apis": ["API_JOURNALENTRYITEMBASIC_SRV"],
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {
+      "steps": [
+        {
+          "id": "items",
+          "url": "/sap/opu/odata/sap/API_JOURNALENTRYITEMBASIC_SRV/A_JournalEntryItemBasic?$select=ID,CompanyCode,GLAccount,CostCenter,AmountInCompanyCodeCurrency,CompanyCodeCurrency&$filter=CompanyCode eq '1710' and CostCenter ne ''&$top=50",
+          "key_fields": ["ID"]
+        }
+      ]
+    },
+    "comparison": {"type": "key_subset", "keys": ["ID"], "required_fields": ["ID", "CompanyCode", "CostCenter"]}
+  },
+  {
+    "id": "PERSONA-DAILY-005",
+    "api": "PERSONA_DAILY",
+    "persona": "general_finance_staff",
+    "scenario": "material_stock_by_storage_location",
+    "user_input": "查询物料TG0011在工厂1710各库存地点的库存数量",
+    "expected_api": "API_MATERIAL_STOCK_SRV",
+    "expected_apis": ["API_MATERIAL_STOCK_SRV"],
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {
+      "steps": [
+        {
+          "id": "stock",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_STOCK_SRV/A_MatlStkInAcctMod?$select=Material,Plant,StorageLocation,InventoryStockType,MaterialBaseUnit,MatlWrhsStkQtyInMatlBaseUnit&$filter=Material eq 'TG0011' and Plant eq '1710'&$top=50",
+          "key_fields": ["Material", "Plant", "StorageLocation", "InventoryStockType"]
+        }
+      ]
+    },
+    "comparison": {"type": "key_subset", "keys": ["Material", "Plant", "StorageLocation", "InventoryStockType"], "required_fields": ["Material", "Plant", "StorageLocation", "MatlWrhsStkQtyInMatlBaseUnit"]}
+  },
+  {
+    "id": "PERSONA-DAILY-006",
+    "api": "PERSONA_DAILY",
+    "persona": "finance_manager",
+    "scenario": "company_gl_line_item_amounts",
+    "user_input": "查看公司1710的总账行项目金额",
+    "expected_api": "API_GLACCOUNTLINEITEM",
+    "expected_apis": ["API_GLACCOUNTLINEITEM"],
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {
+      "steps": [
+        {
+          "id": "items",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=CompanyCode,FiscalYear,AccountingDocument,Ledger,GLAccount,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710'&$top=50",
+          "key_fields": ["CompanyCode", "FiscalYear", "AccountingDocument", "Ledger", "GLAccount"]
+        }
+      ]
+    },
+    "comparison": {"type": "key_subset", "keys": ["CompanyCode", "FiscalYear", "AccountingDocument", "Ledger", "GLAccount"], "required_fields": ["CompanyCode", "AccountingDocument", "GLAccount", "AmountInCompanyCodeCurrency"]}
+  },
+  {
+    "id": "PERSONA-DAILY-007",
+    "api": "PERSONA_DAILY",
+    "persona": "finance_manager",
+    "scenario": "company_expense_accounts",
+    "user_input": "查询公司1710的费用类科目",
+    "expected_api": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "expected_apis": ["API_COMPANYCODE_SRV", "API_GLACCOUNTINCHARTOFACCOUNTS_SRV"],
+    "require_all_expected_apis": true,
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {
+      "steps": [
+        {
+          "id": "company",
+          "url": "/sap/opu/odata/sap/API_COMPANYCODE_SRV/A_CompanyCode?$select=CompanyCode,ChartOfAccounts&$filter=CompanyCode eq '1710'&$top=5",
+          "key_fields": ["CompanyCode"]
+        },
+        {
+          "id": "accounts",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTINCHARTOFACCOUNTS_SRV/A_GLAccountInChartOfAccounts?$select=ChartOfAccounts,GLAccount,GLAccountType,IsProfitLossAccount,ProfitLossAccountType&$filter=IsProfitLossAccount eq true&$top=50",
+          "key_fields": ["ChartOfAccounts", "GLAccount"],
+          "bind": {"source_step": "company", "source_field": "ChartOfAccounts", "target_field": "ChartOfAccounts"}
+        }
+      ]
+    },
+    "comparison": {"type": "key_subset", "keys": ["ChartOfAccounts", "GLAccount"], "required_fields": ["ChartOfAccounts", "GLAccount", "IsProfitLossAccount"]}
+  },
+  {
+    "id": "PERSONA-DAILY-008",
+    "api": "PERSONA_DAILY",
+    "persona": "finance_manager",
+    "scenario": "customer_unbilled_sales_orders",
+    "user_input": "查询客户17100003未完全开票的销售订单",
+    "expected_api": "API_SALES_ORDER_SRV",
+    "expected_apis": ["API_SALES_ORDER_SRV"],
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {
+      "steps": [
+        {
+          "id": "orders",
+          "url": "/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder?$select=SalesOrder,SoldToParty,SalesOrganization,OverallDeliveryStatus,OverallOrdReltdBillgStatus&$filter=SoldToParty eq '17100003' and OverallOrdReltdBillgStatus ne 'C'&$top=50",
+          "key_fields": ["SalesOrder"]
+        }
+      ]
+    },
+    "comparison": {"type": "key_subset", "keys": ["SalesOrder"], "required_fields": ["SalesOrder", "SoldToParty", "OverallOrdReltdBillgStatus"]}
+  },
+  {
+    "id": "PERSONA-DAILY-009",
+    "api": "PERSONA_DAILY",
+    "persona": "finance_manager",
+    "scenario": "customer_shipped_not_billed_deliveries",
+    "user_input": "查询客户17100003已发货但还没开票的交货单",
+    "expected_api": "API_OUTBOUND_DELIVERY_SRV",
+    "expected_apis": ["API_OUTBOUND_DELIVERY_SRV"],
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {
+      "steps": [
+        {
+          "id": "deliveries",
+          "url": "/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV/A_OutbDeliveryHeader?$select=DeliveryDocument,SoldToParty,ActualGoodsMovementDate,OverallGoodsMovementStatus,OverallDelivReltdBillgStatus&$filter=SoldToParty eq '17100003' and OverallGoodsMovementStatus eq 'C' and OverallDelivReltdBillgStatus ne 'C'&$top=50",
+          "key_fields": ["DeliveryDocument"]
+        }
+      ]
+    },
+    "comparison": {"type": "count_and_key_subset", "keys": ["DeliveryDocument"], "required_fields": ["DeliveryDocument", "SoldToParty", "OverallGoodsMovementStatus", "OverallDelivReltdBillgStatus"]}
+  },
+  {
+    "id": "PERSONA-DAILY-010",
+    "api": "PERSONA_DAILY",
+    "persona": "finance_manager",
+    "scenario": "production_component_stock",
+    "user_input": "查询工厂1710生产订单组件的库存",
+    "expected_api": "API_PRODUCTION_ORDER_2_SRV",
+    "expected_apis": ["API_PRODUCTION_ORDER_2_SRV", "API_MATERIAL_STOCK_SRV"],
+    "require_all_expected_apis": true,
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {
+      "steps": [
+        {
+          "id": "components",
+          "url": "/sap/opu/odata/sap/API_PRODUCTION_ORDER_2_SRV/A_ProductionOrderComponent_2?$select=ManufacturingOrder,Material,Plant,RequiredQuantity&$filter=Plant eq '1710'&$top=50",
+          "key_fields": ["Material"]
+        },
+        {
+          "id": "stock",
+          "url": "/sap/opu/odata/sap/API_MATERIAL_STOCK_SRV/A_MatlStkInAcctMod?$select=Material,Plant,StorageLocation,InventoryStockType,MatlWrhsStkQtyInMatlBaseUnit&$filter=Plant eq '1710'&$top=50",
+          "key_fields": ["Material", "Plant", "StorageLocation", "InventoryStockType"],
+          "bind": {"source_step": "components", "source_field": "Material", "target_field": "Material"}
+        }
+      ]
+    },
+    "comparison": {"type": "key_subset", "keys": ["Material", "Plant", "StorageLocation", "InventoryStockType"], "required_fields": ["Material", "Plant", "MatlWrhsStkQtyInMatlBaseUnit"]}
+  },
+  {
+    "id": "PERSONA-DAILY-011",
+    "api": "PERSONA_DAILY",
+    "persona": "cio",
+    "scenario": "company_open_delivery_purchase_orders",
+    "user_input": "列出公司1710没有完全交货的采购订单项目",
+    "expected_api": "API_PURCHASEORDER_PROCESS_SRV",
+    "expected_apis": ["API_PURCHASEORDER_PROCESS_SRV"],
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {
+      "steps": [
+        {
+          "id": "orders",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder?$select=PurchaseOrder,CompanyCode,Supplier&$filter=CompanyCode eq '1710'&$top=100",
+          "key_fields": ["PurchaseOrder"]
+        },
+        {
+          "id": "items",
+          "url": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem?$select=PurchaseOrder,PurchaseOrderItem,Material,IsCompletelyDelivered&$filter=IsCompletelyDelivered eq false&$top=50",
+          "key_fields": ["PurchaseOrder", "PurchaseOrderItem"],
+          "bind": {"source_step": "orders", "source_field": "PurchaseOrder", "target_field": "PurchaseOrder"}
+        }
+      ]
+    },
+    "comparison": {"type": "key_subset", "keys": ["PurchaseOrder", "PurchaseOrderItem"], "required_fields": ["PurchaseOrder", "PurchaseOrderItem", "IsCompletelyDelivered"]}
+  },
+  {
+    "id": "PERSONA-DAILY-012",
+    "api": "PERSONA_DAILY",
+    "persona": "cio",
+    "scenario": "deliveries_after_actual_goods_issue_date",
+    "user_input": "列出发货日期大于2023.03.20的交货单",
+    "expected_api": "API_OUTBOUND_DELIVERY_SRV",
+    "expected_apis": ["API_OUTBOUND_DELIVERY_SRV"],
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {
+      "steps": [
+        {
+          "id": "deliveries",
+          "url": "/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV/A_OutbDeliveryHeader?$select=DeliveryDocument,ActualGoodsMovementDate,DeliveryDate,SoldToParty,OverallGoodsMovementStatus,OverallDelivReltdBillgStatus&$filter=ActualGoodsMovementDate gt datetime'2023-03-20T00:00:00'&$top=50",
+          "key_fields": ["DeliveryDocument"]
+        }
+      ]
+    },
+    "comparison": {"type": "key_subset", "keys": ["DeliveryDocument"], "required_fields": ["DeliveryDocument", "ActualGoodsMovementDate"]}
+  },
+  {
+    "id": "PERSONA-DAILY-013",
+    "api": "PERSONA_DAILY",
+    "persona": "cio",
+    "scenario": "production_order_status_by_plant",
+    "user_input": "查询工厂1710生产订单的状态",
+    "expected_api": "API_PRODUCTION_ORDER_2_SRV",
+    "expected_apis": ["API_PRODUCTION_ORDER_2_SRV"],
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {
+      "steps": [
+        {
+          "id": "orders",
+          "url": "/sap/opu/odata/sap/API_PRODUCTION_ORDER_2_SRV/A_ProductionOrder_2?$select=ManufacturingOrder,Material,ProductionPlant,ManufacturingOrderType&$filter=ProductionPlant eq '1710'&$top=50",
+          "key_fields": ["ManufacturingOrder"]
+        },
+        {
+          "id": "status",
+          "url": "/sap/opu/odata/sap/API_PRODUCTION_ORDER_2_SRV/A_ProductionOrderStatus_2?$select=ManufacturingOrder,StatusCode,StatusName,StatusShortName&$top=50",
+          "key_fields": ["ManufacturingOrder", "StatusCode"],
+          "bind": {"source_step": "orders", "source_field": "ManufacturingOrder", "target_field": "ManufacturingOrder"}
+        }
+      ]
+    },
+    "comparison": {"type": "key_subset", "keys": ["ManufacturingOrder", "StatusCode"], "required_fields": ["ManufacturingOrder", "StatusCode"]}
+  },
+  {
+    "id": "PERSONA-DAILY-014",
+    "api": "PERSONA_DAILY",
+    "persona": "cio",
+    "scenario": "material_mrp_supply_demand",
+    "user_input": "查询物料TG0011在工厂1710的MRP供需项目",
+    "expected_api": "API_MRP_MATERIALS_SRV_01",
+    "expected_apis": ["API_MRP_MATERIALS_SRV_01"],
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {
+      "steps": [
+        {
+          "id": "mrp_items",
+          "url": "/sap/opu/odata/sap/API_MRP_MATERIALS_SRV_01/SupplyDemandItems?$select=Material,MRPPlant,MRPArea,MRPElement,MRPElementItem,MRPElementCategory&$filter=Material eq 'TG0011' and MRPPlant eq '1710'&$top=5",
+          "key_fields": ["Material", "MRPPlant", "MRPArea", "MRPElement", "MRPElementItem"]
+        }
+      ]
+    },
+    "comparison": {"type": "key_subset", "keys": ["Material", "MRPPlant", "MRPArea", "MRPElement", "MRPElementItem"], "required_fields": ["Material", "MRPPlant", "MRPElement"]}
+  },
+  {
+    "id": "PERSONA-DAILY-015",
+    "api": "PERSONA_DAILY",
+    "persona": "cio",
+    "scenario": "sales_order_billing_documents",
+    "user_input": "查询销售订单3773对应的开票凭证",
+    "expected_api": "API_BILLING_DOCUMENT_SRV",
+    "expected_apis": ["API_BILLING_DOCUMENT_SRV"],
+    "expected_capability": {"route": true, "plan": true, "execute": true, "present": true, "clarify": false, "unsupported": false},
+    "baseline": {
+      "steps": [
+        {
+          "id": "items",
+          "url": "/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV/A_BillingDocumentItem?$select=BillingDocument,BillingDocumentItem,SalesDocument,SalesDocumentItem,Material,BillingQuantity&$filter=SalesDocument eq '3773'&$top=50",
+          "key_fields": ["BillingDocument"]
+        },
+        {
+          "id": "billings",
+          "url": "/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV/A_BillingDocument?$select=BillingDocument,SoldToParty,CompanyCode,BillingDocumentDate,OverallBillingStatus&$top=50",
+          "key_fields": ["BillingDocument"],
+          "bind": {"source_step": "items", "source_field": "BillingDocument", "target_field": "BillingDocument"}
+        }
+      ]
+    },
+    "comparison": {"type": "key_subset", "keys": ["BillingDocument"], "required_fields": ["BillingDocument", "BillingDocumentDate"]}
+  }
+]

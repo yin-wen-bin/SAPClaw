@@ -58,11 +58,12 @@ Keep `data/index/API_BILLING_DOCUMENT_SRV` as the schema ground truth. This skil
 - Do not route through `A_BillingDocumentPartner` unless the user explicitly asks for a non-sold-to partner role. If a partner bridge is required, the final result must still include the customer relationship needed by the user question.
 - Do not continue to pricing, item pricing, text, or PDF/function operations unless the user explicitly asks for those details.
 
-### Sales Order Billing Items
+### Sales Order Billing Documents
 
-- For requests such as `query billing documents for sales order 3773` or `query invoices for sales order 3773`, query `A_BillingDocumentItem` directly.
-- Use filter field `A_BillingDocumentItem.SalesDocument` with the sales order number from the user; do not use `A_BillingDocumentItem.OrderID` for this business meaning because it can return no rows even when `SalesDocument` has the source sales order.
-- Select only `A_BillingDocumentItem.BillingDocument`, `A_BillingDocumentItem.BillingDocumentItem`, `A_BillingDocumentItem.SalesDocument`, `A_BillingDocumentItem.SalesDocumentItem`, `A_BillingDocumentItem.Material`, and `A_BillingDocumentItem.BillingQuantity`.
+- For requests such as `query billing documents for sales order 3773`, `query invoices for sales order 3773`, or `查询销售订单3773对应的开票凭证`, first query `A_BillingDocumentItem` by the sales order, then return billing document headers.
+- Step 1: query `A_BillingDocumentItem` with `A_BillingDocumentItem.SalesDocument eq '<sales order>'`; do not use `A_BillingDocumentItem.OrderID` for this business meaning because it can return no rows even when `SalesDocument` has the source sales order. Select `BillingDocument`, `BillingDocumentItem`, `SalesDocument`, and `SalesDocumentItem`.
+- Step 2: query `A_BillingDocument` by binding `A_BillingDocumentItem.BillingDocument` to `A_BillingDocument.BillingDocument`. The final answer should include header fields such as `BillingDocument`, `BillingDocumentDate`, `SoldToParty`, `CompanyCode`, and `OverallBillingStatus`.
+- Query `A_BillingDocumentItem` directly only when the user explicitly asks for billing items, invoice line items, `开票项目`, `行项目`, material, quantity, or item-level details.
 
 ### Delivery Billing Items
 
@@ -77,7 +78,7 @@ Keep `data/index/API_BILLING_DOCUMENT_SRV` as the schema ground truth. This skil
 - For requests such as `查询客户17100003开票项目里的物料主数据`, use this API as the source step and `API_PRODUCT_SRV` as the target API.
 - Step 1: query `A_BillingDocument` by `A_BillingDocument.SoldToParty` and select only `A_BillingDocument.BillingDocument` and `A_BillingDocument.SoldToParty`.
 - Step 2: query `A_BillingDocumentItem` by binding `A_BillingDocument.BillingDocument` to `A_BillingDocumentItem.BillingDocument`; select only `A_BillingDocumentItem.BillingDocument`, `A_BillingDocumentItem.BillingDocumentItem`, and `A_BillingDocumentItem.Material`; add filter `A_BillingDocumentItem.Material ne ''`.
-- Step 3: query `API_PRODUCT_SRV.A_Product` by binding `A_BillingDocumentItem.Material` to `A_Product.Product`; select only `A_Product.Product`, `A_Product.ProductType`, `A_Product.ProductGroup`, and `A_Product.BaseUnit`.
+- Step 3: query `API_PRODUCT_SRV.A_Product` by binding `A_BillingDocumentItem.Material` to `API_PRODUCT_SRV.A_Product.Product`; select only `API_PRODUCT_SRV.A_Product.Product`, `API_PRODUCT_SRV.A_Product.ProductType`, `API_PRODUCT_SRV.A_Product.ProductGroup`, and `API_PRODUCT_SRV.A_Product.BaseUnit`.
 - Keep upstream billing/item scope bounded to the first page unless the user explicitly asks for every matching billing item.
 
 ### Detail Query
