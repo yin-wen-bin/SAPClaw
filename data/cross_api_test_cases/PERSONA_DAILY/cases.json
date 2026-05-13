@@ -263,7 +263,7 @@
         }
       ]
     },
-    "comparison": {"type": "key_subset", "keys": ["DeliveryDocument"], "required_fields": ["DeliveryDocument", "ActualGoodsMovementDate"]}
+    "comparison": {"type": "count_and_key_subset", "keys": ["DeliveryDocument"], "required_fields": ["DeliveryDocument", "ActualGoodsMovementDate"]}
   },
   {
     "id": "PERSONA-DAILY-013",

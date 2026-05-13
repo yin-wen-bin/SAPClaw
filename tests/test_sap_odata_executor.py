@@ -361,6 +361,67 @@ def test_multi_step_executor_expands_multiple_previous_values_into_in_filter() -
     assert data["result_count"] == 2
 
 
+def test_multi_step_executor_returns_empty_when_source_step_has_no_rows() -> None:
+    class StubExecutor(SapODataExecutor):
+        def _perform_request(self, compiled_request: CompiledRequest) -> dict[str, str | int]:
+            assert "A_PurchaseOrderScheduleLine?" in compiled_request.url
+            return {
+                "status_code": 200,
+                "content_type": "application/json",
+                "body": '{"d":{"__count":"0","results":[]}}',
+            }
+
+    executor = StubExecutor(_build_executor().config)
+    compiler = BasicODataCompiler(base_url="https://sap.example.com")
+    multi_step = MultiStepSapExecutor(compiler=compiler, executor=executor)
+    plan = QueryPlan(
+        service_name="API_PURCHASEORDER_PROCESS_SRV",
+        entity_set="A_PurchaseOrderItem",
+        plan_kind="multi_step",
+        target_entity_set="A_PurchaseOrderItem",
+        steps=[
+            ExecutionStep(
+                step_id="po_schedule_lines",
+                entity_set="A_PurchaseOrderScheduleLine",
+                select_fields=["PurchasingDocument"],
+                filters=[
+                    FilterCondition(
+                        field="ScheduleLineDeliveryDate",
+                        operator="eq",
+                        value="2026-05-14",
+                        value_type="datetime",
+                    )
+                ],
+                top=50,
+            ),
+            ExecutionStep(
+                step_id="po_items",
+                entity_set="A_PurchaseOrderItem",
+                select_fields=["PurchaseOrder", "Plant"],
+                filter_from_previous=[
+                    StepBinding(
+                        field="PurchaseOrder",
+                        source_step_id="po_schedule_lines",
+                        source_field="PurchasingDocument",
+                    )
+                ],
+                top=50,
+            ),
+        ],
+    )
+
+    attempts, data = multi_step.execute_plan(plan, starting_attempt_number=1)
+
+    assert len(attempts) == 2
+    assert attempts[0].success is True
+    assert attempts[1].success is True
+    assert attempts[1].request.url == "empty://A_PurchaseOrderItem"
+    assert data is not None
+    assert data["result_count"] == 0
+    assert data["results"] == []
+    assert data["step_results"]["po_items"]["result_count"] == 0
+
+
 def test_multi_step_executor_can_bind_empty_string_key_values() -> None:
     class StubExecutor(SapODataExecutor):
         def _perform_request(self, compiled_request: CompiledRequest) -> dict[str, str | int]:

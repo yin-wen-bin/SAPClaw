@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 import re
-from datetime import date
+from datetime import date, timedelta
 from dataclasses import replace
 from pathlib import Path
 from typing import Any
@@ -44,6 +44,14 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
         schema_context: dict[str, Any],
     ) -> QueryPlan:
         service_name = str(schema_context.get("service_name") or self._selected_service(route_decision))
+        shortcut_plan = self._purchase_order_supplier_contact_shortcut_plan(
+            request,
+            route_decision,
+            schema_context,
+            service_name,
+        )
+        if shortcut_plan is not None:
+            return shortcut_plan
         if self._requires_purchase_order_history_clarification(request, service_name):
             return self._purchase_order_history_clarification_plan(service_name)
         if not self.enabled or self.llm_client is None:
@@ -1582,6 +1590,249 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             vector_documents=[],
             doc_chunks=[],
         )
+
+    @classmethod
+    def _purchase_order_supplier_contact_shortcut_plan(
+        cls,
+        request: AgentRequest,
+        route_decision: ApiRouteDecision,
+        schema_context: dict[str, Any],
+        service_name: str,
+    ) -> QueryPlan | None:
+        text = " ".join(
+            str(part or "")
+            for part in [
+                request.user_input,
+                request.resolved_user_input,
+                route_decision.intent_summary,
+                route_decision.business_domain,
+                route_decision.business_object,
+            ]
+        )
+        if not cls._looks_like_purchase_order_supplier_contact_request(text):
+            return None
+        if not cls._schema_context_has_service(schema_context, "API_PURCHASEORDER_PROCESS_SRV"):
+            return None
+        if not cls._schema_context_has_service(schema_context, "API_BUSINESS_PARTNER"):
+            return None
+
+        plant = cls._extract_plant_value(text)
+        delivery_date = cls._extract_requested_delivery_date(text)
+        if not plant or not delivery_date:
+            return None
+
+        return QueryPlan(
+            service_name="API_BUSINESS_PARTNER",
+            entity_set="A_BusinessPartnerAddress",
+            http_method="GET",
+            select_fields=[
+                "BusinessPartner",
+                "AddressID",
+                "FullName",
+                "Person",
+                "CityName",
+                "StreetName",
+                "Country",
+            ],
+            response_summary_fields=[
+                "BusinessPartner",
+                "AddressID",
+                "FullName",
+                "CityName",
+                "StreetName",
+            ],
+            top=50,
+            response_directive=(
+                "Return purchase orders arriving on the requested date for the requested plant, "
+                "then show supplier name and available supplier address/contact fields. "
+                "Use step_results to relate purchase orders, supplier IDs, and contact records."
+            ),
+            rationale=(
+                "Skill-backed cross-API shortcut for purchase orders by plant and schedule-line delivery date, "
+                "enriched with supplier master contact data from Business Partner."
+            ),
+            planner_diagnostics={
+                "planner_winner": "skill_shortcut",
+                "shortcut": "purchase_order_delivery_date_plant_supplier_contact",
+                "route_decision": route_decision.raw_response,
+                "planner_type": "llm_api_specific_planner",
+            },
+            plan_kind="multi_step",
+            target_entity_set="A_BusinessPartnerAddress",
+            path_id="po_delivery_date_plant_to_supplier_contact",
+            steps=[
+                ExecutionStep(
+                    step_id="po_schedule_lines",
+                    service_name="API_PURCHASEORDER_PROCESS_SRV",
+                    entity_set="A_PurchaseOrderScheduleLine",
+                    select_fields=[
+                        "PurchasingDocument",
+                        "PurchasingDocumentItem",
+                        "ScheduleLine",
+                        "ScheduleLineDeliveryDate",
+                    ],
+                    response_summary_fields=[
+                        "PurchasingDocument",
+                        "PurchasingDocumentItem",
+                        "ScheduleLineDeliveryDate",
+                    ],
+                    filters=[
+                        FilterCondition(
+                            field="ScheduleLineDeliveryDate",
+                            operator="eq",
+                            value=delivery_date,
+                            value_type="datetime",
+                        )
+                    ],
+                    top=200,
+                    rationale="Find purchase order schedule lines for the requested arrival date.",
+                ),
+                ExecutionStep(
+                    step_id="po_items_for_plant",
+                    service_name="API_PURCHASEORDER_PROCESS_SRV",
+                    entity_set="A_PurchaseOrderItem",
+                    select_fields=[
+                        "PurchaseOrder",
+                        "PurchaseOrderItem",
+                        "Plant",
+                        "Material",
+                        "PurchaseOrderItemText",
+                    ],
+                    response_summary_fields=[
+                        "PurchaseOrder",
+                        "PurchaseOrderItem",
+                        "Plant",
+                        "Material",
+                    ],
+                    filters=[
+                        FilterCondition(field="Plant", operator="eq", value=plant, value_type="string")
+                    ],
+                    filter_from_previous=[
+                        StepBinding(
+                            field="PurchaseOrder",
+                            source_step_id="po_schedule_lines",
+                            source_field="PurchasingDocument",
+                        ),
+                        StepBinding(
+                            field="PurchaseOrderItem",
+                            source_step_id="po_schedule_lines",
+                            source_field="PurchasingDocumentItem",
+                        ),
+                    ],
+                    top=200,
+                    rationale="Keep only the schedule-line purchase order items that belong to the requested plant.",
+                ),
+                ExecutionStep(
+                    step_id="po_headers",
+                    service_name="API_PURCHASEORDER_PROCESS_SRV",
+                    entity_set="A_PurchaseOrder",
+                    select_fields=["PurchaseOrder", "Supplier", "CompanyCode"],
+                    response_summary_fields=["PurchaseOrder", "Supplier", "CompanyCode"],
+                    filter_from_previous=[
+                        StepBinding(
+                            field="PurchaseOrder",
+                            source_step_id="po_items_for_plant",
+                            source_field="PurchaseOrder",
+                        )
+                    ],
+                    top=200,
+                    rationale="Resolve suppliers from matching purchase order headers.",
+                ),
+                ExecutionStep(
+                    step_id="suppliers",
+                    service_name="API_BUSINESS_PARTNER",
+                    entity_set="A_Supplier",
+                    select_fields=["Supplier", "SupplierName", "SupplierFullName"],
+                    response_summary_fields=["Supplier", "SupplierName", "SupplierFullName"],
+                    filter_from_previous=[
+                        StepBinding(
+                            field="Supplier",
+                            source_step_id="po_headers",
+                            source_field="Supplier",
+                        )
+                    ],
+                    top=200,
+                    rationale="Read supplier names for the matching purchase orders.",
+                ),
+                ExecutionStep(
+                    step_id="supplier_addresses",
+                    service_name="API_BUSINESS_PARTNER",
+                    entity_set="A_BusinessPartnerAddress",
+                    select_fields=[
+                        "BusinessPartner",
+                        "AddressID",
+                        "FullName",
+                        "Person",
+                        "CityName",
+                        "StreetName",
+                        "Country",
+                    ],
+                    response_summary_fields=[
+                        "BusinessPartner",
+                        "AddressID",
+                        "FullName",
+                        "CityName",
+                        "StreetName",
+                    ],
+                    filter_from_previous=[
+                        StepBinding(
+                            field="BusinessPartner",
+                            source_step_id="po_headers",
+                            source_field="Supplier",
+                        )
+                    ],
+                    top=200,
+                    rationale="Supplier IDs are business partner IDs for the address/contact master-data lookup.",
+                ),
+            ],
+        )
+
+    @staticmethod
+    def _looks_like_purchase_order_supplier_contact_request(text: str) -> bool:
+        lowered = str(text or "").lower()
+        normalized = re.sub(r"\s+", "", lowered)
+
+        def has_any(*terms: str) -> bool:
+            return any(term.lower().replace(" ", "") in normalized for term in terms)
+
+        return (
+            has_any("purchase order", "purchaseorder", "po", "\u91c7\u8d2d\u8ba2\u5355")
+            and has_any("supplier", "vendor", "\u4f9b\u5e94\u5546")
+            and has_any("contact", "contactperson", "contactinfo", "\u8054\u7cfb\u4eba", "\u8054\u7cfb\u4fe1\u606f")
+            and has_any("deliverydate", "arrivaldate", "arriving", "arrive", "\u5230\u8d27", "\u4ea4\u8d27", "\u9001\u8d27")
+            and (
+                has_any("plant", "\u5de5\u5382")
+                or re.search(r"(?i)\bplant\s*[a-z0-9_-]+\b", text or "") is not None
+            )
+        )
+
+    @staticmethod
+    def _extract_plant_value(text: str) -> str:
+        patterns = [
+            r"\u5de5\u5382\s*([A-Za-z0-9_-]{2,10})",
+            r"(?i)\bplant\s*([A-Za-z0-9_-]{2,10})\b",
+        ]
+        for pattern in patterns:
+            match = re.search(pattern, text or "")
+            if match:
+                return match.group(1)
+        return ""
+
+    @staticmethod
+    def _extract_requested_delivery_date(text: str) -> str:
+        raw = str(text or "")
+        today = date.today()
+        if "\u540e\u5929" in raw or "day after tomorrow" in raw.lower():
+            return (today + timedelta(days=2)).isoformat()
+        if "\u660e\u5929" in raw or "tomorrow" in raw.lower():
+            return (today + timedelta(days=1)).isoformat()
+        if "\u4eca\u5929" in raw or "today" in raw.lower():
+            return today.isoformat()
+        match = re.search(r"(\d{4})[.\-/](\d{1,2})[.\-/](\d{1,2})", raw)
+        if match:
+            year, month, day = match.groups()
+            return f"{year}-{int(month):02d}-{int(day):02d}"
+        return ""
 
     @staticmethod
     def _requires_purchase_order_history_clarification(request: AgentRequest, service_name: str) -> bool:

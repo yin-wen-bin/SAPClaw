@@ -133,12 +133,13 @@ def test_sales_order_and_outbound_delivery_catalog_expose_document_reference_fie
     ]
     assert delivery["top_answer_fields"][:4] == [
         "A_OutbDeliveryHeader.DeliveryDocument",
+        "A_OutbDeliveryHeader.ActualGoodsMovementDate",
         "A_OutbDeliveryHeader.DeliveryDate",
         "A_OutbDeliveryHeader.SoldToParty",
-        "A_OutbDeliveryHeader.ShipToParty",
     ]
     assert "A_OutbDeliveryHeader.OverallGoodsMovementStatus" in delivery["top_answer_fields"][:8]
     assert "A_OutbDeliveryHeader.OverallDelivReltdBillgStatus" in delivery["top_answer_fields"][:8]
+    assert "A_OutbDeliveryHeader.ActualGoodsMovementDate" in delivery["top_filter_fields"][:12]
     assert "A_OutbDeliveryItem.ReferenceSDDocument" in delivery["top_answer_fields"]
     assert "A_OutbDeliveryItem.ReferenceSDDocumentItem" in delivery["top_answer_fields"]
 
@@ -231,6 +232,15 @@ def test_outbound_delivery_skill_documents_delivered_not_billed_pattern() -> Non
     assert "A_OutbDeliveryHeader.OverallGoodsMovementStatus eq 'C'" in skill.content
     assert "A_OutbDeliveryHeader.OverallDelivReltdBillgStatus ne 'C'" in skill.content
     assert "A_OutbDeliveryHeader.OverallDelivReltdBillgStatus eq 'A'" not in skill.content
+
+
+def test_outbound_delivery_skill_documents_shipping_date_pattern() -> None:
+    skill = ApiSkillProvider(skill_root="data/api_skills").load("API_OUTBOUND_DELIVERY_SRV")
+    assert skill is not None
+
+    assert "Actual Shipping Date For Delivery Documents" in skill.content
+    assert "A_OutbDeliveryHeader.ActualGoodsMovementDate" in skill.content
+    assert "Do not use `A_OutbDeliveryHeader.DeliveryDate` for `发货日期`" in skill.content
 
 
 def test_outbound_delivery_skill_documents_product_master_pattern() -> None:
@@ -544,11 +554,11 @@ def test_outbound_delivery_answer_fields_start_with_header_delivery_status() -> 
 
     assert delivery["top_answer_fields"][:6] == [
         "A_OutbDeliveryHeader.DeliveryDocument",
+        "A_OutbDeliveryHeader.ActualGoodsMovementDate",
         "A_OutbDeliveryHeader.DeliveryDate",
         "A_OutbDeliveryHeader.SoldToParty",
         "A_OutbDeliveryHeader.ShipToParty",
         "A_OutbDeliveryHeader.OverallGoodsMovementStatus",
-        "A_OutbDeliveryHeader.OverallDelivReltdBillgStatus",
     ]
 
 

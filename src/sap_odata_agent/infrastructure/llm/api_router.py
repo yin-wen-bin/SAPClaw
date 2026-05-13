@@ -31,6 +31,9 @@ class LlmApiRouter:
         latest_clarification_case: dict[str, Any] | None = None,
         feedback_memories: list[dict[str, Any]] | None = None,
     ) -> ApiRouteDecision:
+        shortcut = self._purchase_order_supplier_contact_route_decision(user_input, api_catalog)
+        if shortcut is not None:
+            return shortcut
         if not self.enabled or self.llm_client is None:
             return self._unavailable_route(api_catalog)
         payload = {
@@ -75,6 +78,63 @@ class LlmApiRouter:
     @staticmethod
     def _system_prompt() -> str:
         return f"{GLOBAL_SAP_ODATA_PROMPT}\n\n{API_ROUTER_TASK_PROMPT}"
+
+    @staticmethod
+    def _purchase_order_supplier_contact_route_decision(
+        user_input: str,
+        api_catalog: list[dict[str, Any]],
+    ) -> ApiRouteDecision | None:
+        if not LlmApiRouter._looks_like_purchase_order_supplier_contact_request(user_input):
+            return None
+        valid_services = {str(item.get("service_name") or "") for item in api_catalog}
+        po_service = "API_PURCHASEORDER_PROCESS_SRV"
+        bp_service = "API_BUSINESS_PARTNER"
+        if po_service not in valid_services or bp_service not in valid_services:
+            return None
+        selected = [
+            SelectedApi(
+                service_name=po_service,
+                confidence=0.9,
+                reason="High-confidence purchase-order delivery-date and plant scope.",
+            ),
+            SelectedApi(
+                service_name=bp_service,
+                confidence=0.85,
+                reason="Supplier contact information is business partner master data.",
+            ),
+        ]
+        raw_response = {
+            "resolved_user_input": user_input,
+            "should_carry_context": False,
+            "selected_apis": [
+                {"service_name": item.service_name, "confidence": item.confidence, "reason": item.reason}
+                for item in selected
+            ],
+            "requires_multi_api": True,
+            "intent_summary": (
+                "Find purchase orders by plant and schedule-line delivery date, then enrich matching suppliers "
+                "with business partner contact/address information."
+            ),
+            "business_domain": "Purchasing / Supplier Master Data",
+            "business_object": "Purchase Order Supplier Contact",
+            "needs_clarification": False,
+            "clarification_question": "",
+            "clarification_options": [],
+            "router_shortcut": "purchase_order_supplier_contact",
+        }
+        return ApiRouteDecision(
+            resolved_user_input=user_input,
+            should_carry_context=False,
+            selected_apis=selected,
+            requires_multi_api=True,
+            intent_summary=str(raw_response["intent_summary"]),
+            business_domain=str(raw_response["business_domain"]),
+            business_object=str(raw_response["business_object"]),
+            needs_clarification=False,
+            clarification_question=None,
+            clarification_options=[],
+            raw_response=raw_response,
+        )
 
     @staticmethod
     def _json_repair_system_prompt() -> str:
@@ -448,6 +508,7 @@ class LlmApiRouter:
         selected = self._repair_cost_center_master_route(selected, valid_services, user_input)
         selected = self._repair_journal_entry_item_route(selected, valid_services, user_input)
         selected = self._repair_gl_account_line_item_route(selected, valid_services, user_input)
+        selected = self._repair_purchase_order_supplier_contact_route(selected, valid_services, user_input)
         selected = self._repair_skill_declared_companion_apis(
             selected,
             user_input=user_input,
@@ -504,6 +565,10 @@ class LlmApiRouter:
             clarification_question = None
             clarification_options = []
         if selected and needs_clarification and self._looks_like_master_attribute_request(user_input):
+            needs_clarification = False
+            clarification_question = None
+            clarification_options = []
+        if selected and needs_clarification and self._looks_like_purchase_order_supplier_contact_request(user_input):
             needs_clarification = False
             clarification_question = None
             clarification_options = []
@@ -776,6 +841,75 @@ class LlmApiRouter:
             )
         )
         return has_company and has_gl
+
+    @staticmethod
+    def _repair_purchase_order_supplier_contact_route(
+        selected: list[SelectedApi],
+        valid_services: set[str],
+        user_input: str,
+    ) -> list[SelectedApi]:
+        po_service = "API_PURCHASEORDER_PROCESS_SRV"
+        bp_service = "API_BUSINESS_PARTNER"
+        if po_service not in valid_services or bp_service not in valid_services:
+            return selected
+        if not LlmApiRouter._looks_like_purchase_order_supplier_contact_request(user_input):
+            return selected
+
+        selected_names = {item.service_name for item in selected}
+        repaired = [item for item in selected if item.service_name in valid_services]
+        if po_service not in selected_names:
+            repaired.insert(
+                0,
+                SelectedApi(
+                    service_name=po_service,
+                    confidence=0.78,
+                    reason="Purchase-order delivery scope must be resolved from the purchase order API.",
+                ),
+            )
+        if bp_service not in selected_names:
+            repaired.append(
+                SelectedApi(
+                    service_name=bp_service,
+                    confidence=0.72,
+                    reason="Supplier contact details must be resolved from business partner master data.",
+                )
+            )
+
+        deduped: list[SelectedApi] = []
+        seen: set[str] = set()
+        for item in repaired:
+            if item.service_name in seen:
+                continue
+            deduped.append(item)
+            seen.add(item.service_name)
+        return deduped
+
+    @staticmethod
+    def _looks_like_purchase_order_supplier_contact_request(user_input: str) -> bool:
+        normalized = LlmApiRouter._normalize_match_text(user_input)
+        if not normalized:
+            return False
+
+        def has_any(*terms: str) -> bool:
+            return any(LlmApiRouter._normalize_match_text(term) in normalized for term in terms)
+
+        has_purchase_order = has_any("purchase order", "purchaseorder", "po", "\u91c7\u8d2d\u8ba2\u5355")
+        has_supplier = has_any("supplier", "vendor", "\u4f9b\u5e94\u5546")
+        has_contact = has_any("contact", "contact person", "contact info", "\u8054\u7cfb\u4eba", "\u8054\u7cfb\u4fe1\u606f")
+        has_delivery_scope = has_any(
+            "delivery date",
+            "arrival date",
+            "arriving",
+            "arrive",
+            "\u5230\u8d27",
+            "\u4ea4\u8d27",
+            "\u9001\u8d27",
+        )
+        has_plant = has_any("plant", "\u5de5\u5382") or re.search(
+            r"(?i)\bplant\s*[a-z0-9_-]+\b",
+            user_input or "",
+        ) is not None
+        return has_purchase_order and has_supplier and has_contact and has_delivery_scope and has_plant
 
     @staticmethod
     def _repair_gl_account_line_item_route(

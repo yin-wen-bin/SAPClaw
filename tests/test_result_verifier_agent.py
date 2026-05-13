@@ -373,3 +373,88 @@ def test_result_verifier_accepts_material_level_stock_aggregation() -> None:
     )
 
     assert result["passed"] is True
+
+
+def test_result_verifier_blocks_outbound_delivery_shipping_date_from_delivery_date() -> None:
+    verifier = LlmResultVerifierAgent(enabled=False)
+
+    result = verifier.verify(
+        request=AgentRequest(user_input="列出发货日期大于2023.03.20的交货单"),
+        plan=QueryPlan(
+            service_name="API_OUTBOUND_DELIVERY_SRV",
+            entity_set="A_OutbDeliveryHeader",
+            select_fields=["DeliveryDocument", "DeliveryDate"],
+            response_summary_fields=["DeliveryDocument", "DeliveryDate"],
+            filters=[
+                FilterCondition(
+                    field="DeliveryDate",
+                    operator="gt",
+                    value="2023-03-20T00:00:00",
+                    value_type="datetime",
+                )
+            ],
+        ),
+        data={
+            "result_count": 1,
+            "results": [{"DeliveryDocument": "80000001", "DeliveryDate": "/Date(1679270400000)/"}],
+        },
+        schema_context_summary={
+            "service_name": "API_OUTBOUND_DELIVERY_SRV",
+            "api_skill": {
+                "summary": (
+                    "For 发货日期 delivery lists, use A_OutbDeliveryHeader.ActualGoodsMovementDate. "
+                    "Do not use A_OutbDeliveryHeader.DeliveryDate for 发货日期; DeliveryDate means 交货日期."
+                )
+            },
+        },
+    )
+
+    assert result["passed"] is False
+    assert result["issues"][0]["code"] == "wrong_business_level_for_outbound_delivery_shipping_date"
+    assert result["repair_hints"]["preferred_filters"] == [
+        {
+            "entity_set": "A_OutbDeliveryHeader",
+            "field": "ActualGoodsMovementDate",
+            "operator": "gt",
+            "value": "2023-03-20T00:00:00",
+            "value_type": "datetime",
+        }
+    ]
+    assert result["repair_hints"]["forbidden_fields_unless_requested"] == ["DeliveryDate"]
+
+
+def test_result_verifier_accepts_outbound_delivery_actual_shipping_date() -> None:
+    verifier = LlmResultVerifierAgent(enabled=False)
+
+    result = verifier.verify(
+        request=AgentRequest(user_input="列出发货日期大于2023.03.20的交货单"),
+        plan=QueryPlan(
+            service_name="API_OUTBOUND_DELIVERY_SRV",
+            entity_set="A_OutbDeliveryHeader",
+            select_fields=["DeliveryDocument", "ActualGoodsMovementDate"],
+            response_summary_fields=["DeliveryDocument", "ActualGoodsMovementDate"],
+            filters=[
+                FilterCondition(
+                    field="ActualGoodsMovementDate",
+                    operator="gt",
+                    value="2023-03-20T00:00:00",
+                    value_type="datetime",
+                )
+            ],
+        ),
+        data={
+            "result_count": 1,
+            "results": [{"DeliveryDocument": "80000001", "ActualGoodsMovementDate": "/Date(1679270400000)/"}],
+        },
+        schema_context_summary={
+            "service_name": "API_OUTBOUND_DELIVERY_SRV",
+            "api_skill": {
+                "summary": (
+                    "For 发货日期 delivery lists, use A_OutbDeliveryHeader.ActualGoodsMovementDate. "
+                    "Do not use A_OutbDeliveryHeader.DeliveryDate for 发货日期; DeliveryDate means 交货日期."
+                )
+            },
+        },
+    )
+
+    assert result["passed"] is True

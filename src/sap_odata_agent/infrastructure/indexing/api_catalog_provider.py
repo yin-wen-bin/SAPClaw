@@ -534,6 +534,7 @@ class ApiCatalogProvider:
                 "A_OutbDeliveryItem.DeliveryRelatedBillingStatus",
                 "A_OutbDeliveryHeader.OrderID",
                 "A_OutbDeliveryHeader.DeliveryDocument",
+                "A_OutbDeliveryHeader.ActualGoodsMovementDate",
                 "A_OutbDeliveryHeader.DeliveryDate",
                 "A_OutbDeliveryItem.OrderID",
                 "A_OutbDeliveryItem.DeliveryDocument",
@@ -605,6 +606,7 @@ class ApiCatalogProvider:
         if service_name == "API_OUTBOUND_DELIVERY_SRV":
             return [
                 "A_OutbDeliveryHeader.DeliveryDocument",
+                "A_OutbDeliveryHeader.ActualGoodsMovementDate",
                 "A_OutbDeliveryHeader.DeliveryDate",
                 "A_OutbDeliveryHeader.SoldToParty",
                 "A_OutbDeliveryHeader.ShipToParty",

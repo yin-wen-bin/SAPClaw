@@ -173,6 +173,13 @@ class LlmResultVerifierAgent:
         material_stock_level_result = LlmResultVerifierAgent._material_stock_level_static_check(request, plan, data)
         if material_stock_level_result is not None:
             return material_stock_level_result
+        outbound_shipping_date_result = LlmResultVerifierAgent._outbound_delivery_shipping_date_static_check(
+            request,
+            plan,
+            schema_context_summary,
+        )
+        if outbound_shipping_date_result is not None:
+            return outbound_shipping_date_result
         field_list_result = LlmResultVerifierAgent._field_list_output_static_check(request, plan, data)
         if field_list_result is not None:
             return field_list_result
@@ -360,6 +367,74 @@ class LlmResultVerifierAgent:
         }
 
     @staticmethod
+    def _outbound_delivery_shipping_date_static_check(
+        request: AgentRequest,
+        plan: QueryPlan,
+        schema_context_summary: dict[str, Any],
+    ) -> dict[str, Any] | None:
+        if not LlmResultVerifierAgent._looks_like_outbound_delivery_shipping_date_request(request):
+            return None
+        if plan.service_name != "API_OUTBOUND_DELIVERY_SRV":
+            return None
+        skill_text = json.dumps(schema_context_summary.get("api_skill", {}), ensure_ascii=False)
+        if "ActualGoodsMovementDate" not in skill_text or "DeliveryDate" not in skill_text:
+            return None
+
+        selected_fields = set(plan.select_fields or []) | set(plan.response_summary_fields or [])
+        filter_fields = {condition.field for condition in plan.filters or []}
+        for step in plan.steps or []:
+            selected_fields.update(step.select_fields or [])
+            selected_fields.update(step.response_summary_fields or [])
+            filter_fields.update(condition.field for condition in step.filters or [])
+        if "ActualGoodsMovementDate" in selected_fields or "ActualGoodsMovementDate" in filter_fields:
+            return None
+        if "DeliveryDate" not in selected_fields and "DeliveryDate" not in filter_fields:
+            return None
+
+        preferred_filters = []
+        for condition in plan.filters or []:
+            if condition.field == "DeliveryDate":
+                preferred_filters.append(
+                    {
+                        "entity_set": "A_OutbDeliveryHeader",
+                        "field": "ActualGoodsMovementDate",
+                        "operator": condition.operator,
+                        "value": condition.value,
+                        "value_type": condition.value_type,
+                    }
+                )
+        preferred_select_fields = [
+            "DeliveryDocument",
+            "ActualGoodsMovementDate",
+            "SoldToParty",
+            "ShipToParty",
+            "OverallGoodsMovementStatus",
+        ]
+        return {
+            "passed": False,
+            "issues": [
+                {
+                    "code": "wrong_business_level_for_outbound_delivery_shipping_date",
+                    "message": (
+                        "The user asked for outbound delivery shipping date, but the plan used DeliveryDate. "
+                        "The API skill identifies ActualGoodsMovementDate as the actual shipping/goods issue date; "
+                        "DeliveryDate is the delivery date."
+                    ),
+                    "blocking": True,
+                }
+            ],
+            "repair_hints": {
+                "reason": "Use the outbound delivery actual goods movement date for shipping-date wording.",
+                "preferred_entity_set": "A_OutbDeliveryHeader",
+                "preferred_select_fields": preferred_select_fields,
+                "preferred_filters": preferred_filters,
+                "forbidden_fields_unless_requested": ["DeliveryDate"],
+                "presentation_kind": "table",
+            },
+            "source": "skill_grounded_result_verifier",
+        }
+
+    @staticmethod
     def _field_list_output_static_check(
         request: AgentRequest,
         plan: QueryPlan,
@@ -464,6 +539,27 @@ class LlmResultVerifierAgent:
             any(term in text for term in stock_terms)
             and any(term in text for term in material_level_terms)
             and not any(term in text for term in detail_terms)
+        )
+
+    @staticmethod
+    def _looks_like_outbound_delivery_shipping_date_request(request: AgentRequest) -> bool:
+        text = f"{request.resolved_user_input or ''} {request.user_input or ''}".lower()
+        delivery_terms = ("交货单", "outbound delivery", "delivery document", "delivery documents")
+        shipping_date_terms = (
+            "发货日期",
+            "实际发货日期",
+            "出货日期",
+            "goods issue date",
+            "actual goods movement date",
+            "shipping date",
+            "shipped after",
+            "shipped before",
+        )
+        delivery_date_terms = ("交货日期", "requested delivery date", "delivery due date")
+        return (
+            any(term in text for term in delivery_terms)
+            and any(term in text for term in shipping_date_terms)
+            and not any(term in text for term in delivery_date_terms)
         )
 
     @staticmethod

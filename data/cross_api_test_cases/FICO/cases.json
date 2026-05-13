@@ -1,0 +1,2274 @@
+[
+  {
+    "id": "FICO-XAPI-001",
+    "api": "FICO",
+    "report_id": "FI_REPORT_001",
+    "report_name": "G/L总账行项目查询",
+    "source_scenario_id": "FI_REPORT_001_SCENARIO_001",
+    "scenario": "gl_line_items_by_account_period",
+    "user_input": "查询公司1710下总账科目10010000在2023年12月的所有发生明细",
+    "business_purpose": "查看费用、收入、银行、暂估等科目的发生明细",
+    "expected_api": "API_GLACCOUNTLINEITEM",
+    "expected_apis": [
+      "API_GLACCOUNTLINEITEM"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "line_items",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,GLAccount,PostingDate,DocumentDate,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and GLAccount eq '10010000' and PostingDate ge datetime'2023-12-01T00:00:00' and PostingDate le datetime'2023-12-31T23:59:59'&$top=100",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "CompanyCode",
+        "GLAccount",
+        "PostingDate",
+        "AccountingDocument"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-002",
+    "api": "FICO",
+    "report_id": "FI_REPORT_001",
+    "report_name": "G/L总账行项目查询",
+    "source_scenario_id": "FI_REPORT_001_SCENARIO_002",
+    "scenario": "gl_open_items_by_key_date",
+    "user_input": "查询公司1710下总账科目21100000截至2024年12月31日还没有清账的项目",
+    "business_purpose": "用于GR/IR、暂估、往来过渡科目清账检查",
+    "expected_api": "API_GLACCOUNTLINEITEM",
+    "expected_apis": [
+      "API_GLACCOUNTLINEITEM"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "open_items",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,GLAccount,PostingDate,ClearingDate,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and GLAccount eq '21100000' and PostingDate le datetime'2024-12-31T23:59:59' and ClearingDate eq null&$top=100",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "CompanyCode",
+        "GLAccount",
+        "ClearingDate"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-003",
+    "api": "FICO",
+    "report_id": "FI_REPORT_001",
+    "report_name": "G/L总账行项目查询",
+    "source_scenario_id": "FI_REPORT_001_SCENARIO_003",
+    "scenario": "gl_cleared_items_by_clearing_date",
+    "user_input": "查询公司1710下总账科目21100000在2024年已经清账的项目和清账日期",
+    "business_purpose": "查看哪些项目已经被清账，以及对应的清账凭证",
+    "expected_api": "API_GLACCOUNTLINEITEM",
+    "expected_apis": [
+      "API_GLACCOUNTLINEITEM"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "cleared_items",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,GLAccount,PostingDate,ClearingDate,ClearingDocFiscalYear,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and GLAccount eq '21100000' and ClearingDate ge datetime'2024-01-01T00:00:00' and ClearingDate le datetime'2024-12-31T23:59:59'&$top=100",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "GLAccount",
+        "ClearingDate",
+        "AccountingDocument"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-004",
+    "api": "FICO",
+    "report_id": "FI_REPORT_001",
+    "report_name": "G/L总账行项目查询",
+    "source_scenario_id": "FI_REPORT_001_SCENARIO_004",
+    "scenario": "gl_line_items_by_cost_or_profit_center",
+    "user_input": "查询公司1710下总账科目66000000按成本中心和利润中心归集的费用明细",
+    "business_purpose": "分析费用归属、利润中心损益、成本中心费用发生情况",
+    "expected_api": "API_GLACCOUNTLINEITEM",
+    "expected_apis": [
+      "API_GLACCOUNTLINEITEM"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "cost_center_items",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,GLAccount,CostCenter,ProfitCenter,PostingDate,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and GLAccount eq '66000000' and CostCenter ne ''&$top=100",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "GLAccount",
+        "CostCenter",
+        "AmountInCompanyCodeCurrency"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-005",
+    "api": "FICO",
+    "report_id": "FI_REPORT_001",
+    "report_name": "G/L总账行项目查询",
+    "source_scenario_id": "FI_REPORT_001_SCENARIO_005",
+    "scenario": "gl_exception_items_by_document_type_user_amount",
+    "user_input": "查询公司1710在2024年由手工凭证产生的大额总账项目",
+    "business_purpose": "查找异常手工凭证、大额凭证、错误科目过账等项目",
+    "expected_api": "API_OPLACCTGDOCITEMCUBE_SRV",
+    "expected_apis": [
+      "API_OPLACCTGDOCITEMCUBE_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "large_manual_items",
+          "url": "/sap/opu/odata/sap/API_OPLACCTGDOCITEMCUBE_SRV/A_OperationalAcctgDocItemCube?$select=CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,GLAccount,AccountingDocumentType,AccountingDocCreatedByUser,PostingDate,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and FiscalYear eq '2024' and AccountingDocumentType eq 'SA' and AmountInCompanyCodeCurrency ge 10000&$top=100",
+          "key_fields": [
+            "CompanyCode",
+            "FiscalYear",
+            "AccountingDocument",
+            "AccountingDocumentItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem"
+      ],
+      "required_fields": [
+        "AccountingDocumentType",
+        "AccountingDocCreatedByUser",
+        "AmountInCompanyCodeCurrency"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-006",
+    "api": "FICO",
+    "report_id": "FI_REPORT_002",
+    "report_name": "G/L科目余额表",
+    "source_scenario_id": "FI_REPORT_002_SCENARIO_001",
+    "scenario": "gl_account_balance_debit_credit_ending",
+    "user_input": "查询公司1710下总账科目10010000在2023年第12期的期初、借方、贷方和期末余额",
+    "business_purpose": "查看指定科目的余额变化情况",
+    "expected_api": "C_TRIALBALANCE_CDS",
+    "expected_apis": [
+      "C_TRIALBALANCE_CDS"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "balance",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,StartingBalanceAmtInCoCodeCrcy,DebitAmountInCoCodeCrcy,CreditAmountInCoCodeCrcy,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012' and GLAccount eq '10010000'&$top=100",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "GLAccount",
+        "StartingBalanceAmtInCoCodeCrcy",
+        "DebitAmountInCoCodeCrcy",
+        "CreditAmountInCoCodeCrcy",
+        "EndingBalanceAmtInCoCodeCrcy"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-007",
+    "api": "FICO",
+    "report_id": "FI_REPORT_002",
+    "report_name": "G/L科目余额表",
+    "source_scenario_id": "FI_REPORT_002_SCENARIO_002",
+    "scenario": "gl_account_monthly_balance_trend",
+    "user_input": "查询公司1710下总账科目10010000在2023年每个月的余额变化",
+    "business_purpose": "分析费用、收入、资产负债类科目的月度趋势",
+    "expected_api": "C_TRIALBALANCE_CDS",
+    "expected_apis": [
+      "C_TRIALBALANCE_CDS"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "monthly_balances",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,FiscalYearPeriod,GLAccount,DebitAmountInCoCodeCrcy,CreditAmountInCoCodeCrcy,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and GLAccount eq '10010000'&$top=100",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "FiscalPeriod",
+        "GLAccount",
+        "EndingBalanceAmtInCoCodeCrcy"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-008",
+    "api": "FICO",
+    "report_id": "FI_REPORT_002",
+    "report_name": "G/L科目余额表",
+    "source_scenario_id": "FI_REPORT_002_SCENARIO_003",
+    "scenario": "same_gl_account_balance_across_company_codes",
+    "user_input": "查询总账科目10010000在各公司代码2023年第12期的余额",
+    "business_purpose": "支持集团或多公司财务余额核对",
+    "expected_api": "C_TRIALBALANCE_CDS",
+    "expected_apis": [
+      "C_TRIALBALANCE_CDS"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "company_balances",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,CompanyCodeName,FiscalYear,FiscalPeriod,GLAccount,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and FiscalYear eq '2023' and FiscalPeriod eq '012' and GLAccount eq '10010000'&$top=100",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "CompanyCode",
+        "GLAccount",
+        "EndingBalanceAmtInCoCodeCrcy"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-009",
+    "api": "FICO",
+    "report_id": "FI_REPORT_002",
+    "report_name": "G/L科目余额表",
+    "source_scenario_id": "FI_REPORT_002_SCENARIO_004",
+    "scenario": "gl_balance_drilldown_to_line_items",
+    "user_input": "从公司1710总账科目10010000在2023年第12期的余额下钻查看凭证明细",
+    "business_purpose": "从余额异常追溯到具体会计凭证和行项目",
+    "expected_api": "C_TRIALBALANCE_CDS",
+    "expected_apis": [
+      "C_TRIALBALANCE_CDS",
+      "API_GLACCOUNTLINEITEM"
+    ],
+    "require_all_expected_apis": true,
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "balance",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=CompanyCode,FiscalYear,GLAccount,FiscalPeriod,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012' and GLAccount eq '10010000'&$top=5",
+          "key_fields": [
+            "CompanyCode",
+            "FiscalYear",
+            "GLAccount"
+          ]
+        },
+        {
+          "id": "line_items",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,GLAccount,PostingDate,AmountInCompanyCodeCurrency&$top=100",
+          "key_fields": [
+            "ID"
+          ],
+          "bindings": [
+            {
+              "source_step": "balance",
+              "source_field": "CompanyCode",
+              "target_field": "CompanyCode"
+            },
+            {
+              "source_step": "balance",
+              "source_field": "FiscalYear",
+              "target_field": "FiscalYear"
+            },
+            {
+              "source_step": "balance",
+              "source_field": "GLAccount",
+              "target_field": "GLAccount"
+            }
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "AccountingDocument",
+        "GLAccount",
+        "AmountInCompanyCodeCurrency"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-010",
+    "api": "FICO",
+    "report_id": "FI_REPORT_002",
+    "report_name": "G/L科目余额表",
+    "source_scenario_id": "FI_REPORT_002_SCENARIO_005",
+    "scenario": "gl_account_balance_by_ledger",
+    "user_input": "查询公司1710下总账科目10010000在不同分类账下2023年第12期的余额",
+    "business_purpose": "分析本地准则、集团准则或其他平行分类账之间的余额差异",
+    "expected_api": "C_TRIALBALANCE_CDS",
+    "expected_apis": [
+      "C_TRIALBALANCE_CDS",
+      "API_LEDGER_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "ledger_balances",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,EndingBalanceAmtInCoCodeCrcy&$filter=CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012' and GLAccount eq '10010000'&$top=100",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "Ledger",
+        "GLAccount",
+        "EndingBalanceAmtInCoCodeCrcy"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-011",
+    "api": "FICO",
+    "report_id": "FI_REPORT_003",
+    "report_name": "试算平衡表",
+    "source_scenario_id": "FI_REPORT_003_SCENARIO_001",
+    "scenario": "company_trial_balance_for_period",
+    "user_input": "查询公司1710在2023年第12期的完整试算平衡表",
+    "business_purpose": "月结时确认借贷是否平衡",
+    "expected_api": "C_TRIALBALANCE_CDS",
+    "expected_apis": [
+      "C_TRIALBALANCE_CDS"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "trial_balance",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,GLAccountHierarchyName,DebitAmountInCoCodeCrcy,CreditAmountInCoCodeCrcy,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012'&$top=100",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "GLAccount",
+        "DebitAmountInCoCodeCrcy",
+        "CreditAmountInCoCodeCrcy",
+        "EndingBalanceAmtInCoCodeCrcy"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-012",
+    "api": "FICO",
+    "report_id": "FI_REPORT_003",
+    "report_name": "试算平衡表",
+    "source_scenario_id": "FI_REPORT_003_SCENARIO_002",
+    "scenario": "trial_balance_by_gl_account_range",
+    "user_input": "查询公司1710在2023年第12期科目10000000到39999999范围内的试算余额",
+    "business_purpose": "分析资产、负债、收入、费用等指定科目区间的余额",
+    "expected_api": "C_TRIALBALANCE_CDS",
+    "expected_apis": [
+      "C_TRIALBALANCE_CDS"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "trial_balance_range",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,DebitAmountInCoCodeCrcy,CreditAmountInCoCodeCrcy,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012' and GLAccount ge '10000000' and GLAccount le '39999999'&$top=100",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "GLAccount",
+        "EndingBalanceAmtInCoCodeCrcy"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-013",
+    "api": "FICO",
+    "report_id": "FI_REPORT_003",
+    "report_name": "试算平衡表",
+    "source_scenario_id": "FI_REPORT_003_SCENARIO_003",
+    "scenario": "trial_balance_by_ledger",
+    "user_input": "按分类账0L查询公司1710在2023年第12期的试算表",
+    "business_purpose": "比较主分类账与平行分类账的试算余额",
+    "expected_api": "C_TRIALBALANCE_CDS",
+    "expected_apis": [
+      "C_TRIALBALANCE_CDS",
+      "API_LEDGER_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "ledger_trial_balance",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,DebitAmountInCoCodeCrcy,CreditAmountInCoCodeCrcy,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012'&$top=100",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "Ledger",
+        "CompanyCode",
+        "GLAccount"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-014",
+    "api": "FICO",
+    "report_id": "FI_REPORT_003",
+    "report_name": "试算平衡表",
+    "source_scenario_id": "FI_REPORT_003_SCENARIO_004",
+    "scenario": "trial_balance_by_profit_center_or_segment",
+    "user_input": "按利润中心查看公司1710在2023年第12期的试算表",
+    "business_purpose": "支持事业部、利润中心或分部维度的财务分析",
+    "expected_api": "C_TRIALBALANCE_CDS",
+    "expected_apis": [
+      "C_TRIALBALANCE_CDS",
+      "API_PROFITCENTER_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "profit_center_trial_balance",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,ProfitCenter,Segment,DebitAmountInCoCodeCrcy,CreditAmountInCoCodeCrcy,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012' and ProfitCenter ne ''&$top=100",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "ProfitCenter",
+        "GLAccount",
+        "EndingBalanceAmtInCoCodeCrcy"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-015",
+    "api": "FICO",
+    "report_id": "FI_REPORT_003",
+    "report_name": "试算平衡表",
+    "source_scenario_id": "FI_REPORT_003_SCENARIO_005",
+    "scenario": "trial_balance_compare_current_prior_period",
+    "user_input": "比较公司1710在2023年第12期和第11期试算余额的变化",
+    "business_purpose": "月结检查大额波动、异常余额或异常发生额",
+    "expected_api": "C_TRIALBALANCE_CDS",
+    "expected_apis": [
+      "C_TRIALBALANCE_CDS"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "current_period",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012'&$top=100",
+          "key_fields": [
+            "ID"
+          ]
+        },
+        {
+          "id": "prior_period",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '011'&$top=100",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "FiscalPeriod",
+        "GLAccount",
+        "EndingBalanceAmtInCoCodeCrcy"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-016",
+    "api": "FICO",
+    "report_id": "FI_REPORT_004",
+    "report_name": "资产负债表与损益表",
+    "source_scenario_id": "FI_REPORT_004_SCENARIO_001",
+    "scenario": "balance_sheet_accounts_and_balances",
+    "user_input": "查询公司1710在2023年第12期资产负债表科目的余额",
+    "business_purpose": "出具月度、季度或年度资产负债表",
+    "expected_api": "C_TRIALBALANCE_CDS",
+    "expected_apis": [
+      "C_TRIALBALANCE_CDS"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "balance_sheet",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,GLAccountHierarchyName,IsBalanceSheetAccount,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012' and IsBalanceSheetAccount eq 'X'&$top=100",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "GLAccount",
+        "IsBalanceSheetAccount",
+        "EndingBalanceAmtInCoCodeCrcy"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-017",
+    "api": "FICO",
+    "report_id": "FI_REPORT_004",
+    "report_name": "资产负债表与损益表",
+    "source_scenario_id": "FI_REPORT_004_SCENARIO_002",
+    "scenario": "profit_loss_accounts_for_company_chart",
+    "user_input": "查询公司1710使用的科目表里哪些是损益类科目",
+    "business_purpose": "查看收入、成本、费用、利润等经营成果",
+    "expected_api": "API_COMPANYCODE_SRV",
+    "expected_apis": [
+      "API_COMPANYCODE_SRV",
+      "API_GLACCOUNTINCHARTOFACCOUNTS_SRV"
+    ],
+    "require_all_expected_apis": true,
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "company",
+          "url": "/sap/opu/odata/sap/API_COMPANYCODE_SRV/A_CompanyCode?$select=CompanyCode,ChartOfAccounts,Currency,Company&$filter=CompanyCode eq '1710'&$top=5",
+          "key_fields": [
+            "CompanyCode"
+          ]
+        },
+        {
+          "id": "pl_accounts",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTINCHARTOFACCOUNTS_SRV/A_GLAccountInChartOfAccounts?$select=ChartOfAccounts,GLAccount,GLAccountType,IsProfitLossAccount,ProfitLossAccountType&$filter=IsProfitLossAccount eq true&$top=100",
+          "key_fields": [
+            "ChartOfAccounts",
+            "GLAccount"
+          ],
+          "bind": {
+            "source_step": "company",
+            "source_field": "ChartOfAccounts",
+            "target_field": "ChartOfAccounts"
+          }
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ChartOfAccounts",
+        "GLAccount"
+      ],
+      "required_fields": [
+        "ChartOfAccounts",
+        "GLAccount",
+        "IsProfitLossAccount"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-018",
+    "api": "FICO",
+    "report_id": "FI_REPORT_004",
+    "report_name": "资产负债表与损益表",
+    "source_scenario_id": "FI_REPORT_004_SCENARIO_003",
+    "scenario": "financial_statement_current_and_cumulative_amounts",
+    "user_input": "查看公司1710在2023年第12期各科目的本期借贷发生额和期末累计余额",
+    "business_purpose": "区分当月发生额与年度累计金额",
+    "expected_api": "C_TRIALBALANCE_CDS",
+    "expected_apis": [
+      "C_TRIALBALANCE_CDS"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "statement_amounts",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,DebitAmountInCoCodeCrcy,CreditAmountInCoCodeCrcy,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012'&$top=100",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "DebitAmountInCoCodeCrcy",
+        "CreditAmountInCoCodeCrcy",
+        "EndingBalanceAmtInCoCodeCrcy"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-019",
+    "api": "FICO",
+    "report_id": "FI_REPORT_004",
+    "report_name": "资产负债表与损益表",
+    "source_scenario_id": "FI_REPORT_004_SCENARIO_004",
+    "scenario": "profit_loss_by_profit_center_or_segment",
+    "user_input": "按利润中心查看公司1710在2023年第12期的损益金额",
+    "business_purpose": "支持内部管理报表和事业部损益分析",
+    "expected_api": "C_TRIALBALANCE_CDS",
+    "expected_apis": [
+      "C_TRIALBALANCE_CDS",
+      "API_PROFITCENTER_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "profit_center_statement",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,ProfitCenter,Segment,DebitAmountInCoCodeCrcy,CreditAmountInCoCodeCrcy,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012' and ProfitCenter ne ''&$top=100",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "ProfitCenter",
+        "GLAccount",
+        "EndingBalanceAmtInCoCodeCrcy"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-020",
+    "api": "FICO",
+    "report_id": "FI_REPORT_004",
+    "report_name": "资产负债表与损益表",
+    "source_scenario_id": "FI_REPORT_004_SCENARIO_005",
+    "scenario": "financial_statement_node_drilldown_to_gl_items",
+    "user_input": "从公司1710财务报表里的总账科目10010000下钻到2023年第12期的凭证明细",
+    "business_purpose": "从财务报表金额追溯到科目余额和具体会计凭证",
+    "expected_api": "C_TRIALBALANCE_CDS",
+    "expected_apis": [
+      "C_TRIALBALANCE_CDS",
+      "API_GLACCOUNTLINEITEM"
+    ],
+    "require_all_expected_apis": true,
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "node_balance",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=CompanyCode,FiscalYear,FiscalPeriod,GLAccount,GLAccountHierarchyName,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012' and GLAccount eq '10010000'&$top=5",
+          "key_fields": [
+            "CompanyCode",
+            "FiscalYear",
+            "GLAccount"
+          ]
+        },
+        {
+          "id": "line_items",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,GLAccount,PostingDate,AmountInCompanyCodeCurrency&$top=100",
+          "key_fields": [
+            "ID"
+          ],
+          "bindings": [
+            {
+              "source_step": "node_balance",
+              "source_field": "CompanyCode",
+              "target_field": "CompanyCode"
+            },
+            {
+              "source_step": "node_balance",
+              "source_field": "FiscalYear",
+              "target_field": "FiscalYear"
+            },
+            {
+              "source_step": "node_balance",
+              "source_field": "GLAccount",
+              "target_field": "GLAccount"
+            }
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "AccountingDocument",
+        "GLAccount",
+        "AmountInCompanyCodeCurrency"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-021",
+    "api": "FICO",
+    "report_id": "FI_REPORT_005",
+    "report_name": "会计凭证查询",
+    "source_scenario_id": "FI_REPORT_005_SCENARIO_001",
+    "scenario": "journal_entry_by_document_number",
+    "user_input": "查询公司1710在2017年的会计凭证5100000001的行项目",
+    "business_purpose": "查看凭证抬头、行项目、金额、科目和文本信息",
+    "expected_api": "API_GLACCOUNTLINEITEM",
+    "expected_apis": [
+      "API_GLACCOUNTLINEITEM"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "document_items",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,GLAccount,DocumentItemText,PostingDate,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and FiscalYear eq '2017' and AccountingDocument eq '5100000001'&$top=100",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "AccountingDocument",
+        "AccountingDocumentItem",
+        "GLAccount"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-022",
+    "api": "FICO",
+    "report_id": "FI_REPORT_005",
+    "report_name": "会计凭证查询",
+    "source_scenario_id": "FI_REPORT_005_SCENARIO_002",
+    "scenario": "trace_business_reference_to_fi_document",
+    "user_input": "根据业务参考凭证5100000001追溯它产生的财务凭证行项目",
+    "business_purpose": "分析采购、库存、销售业务产生的会计分录",
+    "expected_api": "API_OPLACCTGDOCITEMCUBE_SRV",
+    "expected_apis": [
+      "API_OPLACCTGDOCITEMCUBE_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "fi_from_reference",
+          "url": "/sap/opu/odata/sap/API_OPLACCTGDOCITEMCUBE_SRV/A_OperationalAcctgDocItemCube?$select=CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,GLAccount,OriginalReferenceDocument,ReferenceDocumentType,AmountInCompanyCodeCurrency&$filter=OriginalReferenceDocument eq '5100000001'&$top=100",
+          "key_fields": [
+            "CompanyCode",
+            "FiscalYear",
+            "AccountingDocument",
+            "AccountingDocumentItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem"
+      ],
+      "required_fields": [
+        "OriginalReferenceDocument",
+        "AccountingDocument",
+        "GLAccount"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-023",
+    "api": "FICO",
+    "report_id": "FI_REPORT_005",
+    "report_name": "会计凭证查询",
+    "source_scenario_id": "FI_REPORT_005_SCENARIO_003",
+    "scenario": "journal_entry_clearing_relationship",
+    "user_input": "查询公司1710会计凭证5100000001的清账关系和清账日期",
+    "business_purpose": "判断发票、付款、收款是否已经完成清账",
+    "expected_api": "API_GLACCOUNTLINEITEM",
+    "expected_apis": [
+      "API_GLACCOUNTLINEITEM"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "clearing",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,GLAccount,ClearingDate,ClearingDocFiscalYear,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and AccountingDocument eq '5100000001'&$top=100",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "AccountingDocument",
+        "ClearingDate"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-024",
+    "api": "FICO",
+    "report_id": "FI_REPORT_005",
+    "report_name": "会计凭证查询",
+    "source_scenario_id": "FI_REPORT_005_SCENARIO_004",
+    "scenario": "journal_entry_tax_code_and_amount",
+    "user_input": "查询2017年供应商发票里的税码和税额",
+    "business_purpose": "检查进项税、销项税、税额计算和税科目入账是否正确",
+    "expected_api": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "expected_apis": [
+      "API_SUPPLIERINVOICE_PROCESS_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "invoice_taxes",
+          "url": "/sap/opu/odata/sap/API_SUPPLIERINVOICE_PROCESS_SRV/A_SupplierInvoiceTax?$select=FiscalYear,SupplierInvoice,SupplierInvoiceTaxCounter,TaxCode,DocumentCurrency,TaxAmount,TaxBaseAmountInTransCrcy&$filter=FiscalYear eq '2017'&$top=100",
+          "key_fields": [
+            "FiscalYear",
+            "SupplierInvoice",
+            "SupplierInvoiceTaxCounter"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "FiscalYear",
+        "SupplierInvoice",
+        "SupplierInvoiceTaxCounter"
+      ],
+      "required_fields": [
+        "TaxCode",
+        "TaxAmount"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-025",
+    "api": "FICO",
+    "report_id": "FI_REPORT_005",
+    "report_name": "会计凭证查询",
+    "source_scenario_id": "FI_REPORT_005_SCENARIO_005",
+    "scenario": "supplier_invoice_reversal_relationship",
+    "user_input": "查询供应商发票5100000001是否存在反冲或被反冲关系",
+    "business_purpose": "支持审计追踪、错误凭证分析和反记账确认",
+    "expected_api": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "expected_apis": [
+      "API_SUPPLIERINVOICE_PROCESS_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "reversal_status",
+          "url": "/sap/opu/odata/sap/API_SUPPLIERINVOICE_PROCESS_SRV/A_SupplierInvoice?$select=FiscalYear,SupplierInvoice,CompanyCode,DocumentDate,PostingDate,InvoicingParty,IsReversal,IsReversed&$filter=SupplierInvoice eq '5100000001'&$top=100",
+          "key_fields": [
+            "FiscalYear",
+            "SupplierInvoice"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "FiscalYear",
+        "SupplierInvoice"
+      ],
+      "required_fields": [
+        "SupplierInvoice",
+        "IsReversal",
+        "IsReversed"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-026",
+    "api": "FICO",
+    "report_id": "FI_REPORT_006",
+    "report_name": "供应商行项目查询",
+    "source_scenario_id": "FI_REPORT_006_SCENARIO_001",
+    "scenario": "supplier_open_items",
+    "user_input": "查询公司1710供应商17300003截至2024年12月31日的未清应付项目",
+    "business_purpose": "确认尚未付款的发票、贷项凭证、预付款等项目",
+    "expected_api": "API_GLACCOUNTLINEITEM",
+    "expected_apis": [
+      "API_GLACCOUNTLINEITEM",
+      "API_OPLACCTGDOCITEMCUBE_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "supplier_open_items",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,GLAccount,Supplier,PostingDate,ClearingDate,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and Supplier eq '17300003' and PostingDate le datetime'2024-12-31T23:59:59' and ClearingDate eq null&$top=100",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "Supplier",
+        "ClearingDate",
+        "AmountInCompanyCodeCurrency"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-027",
+    "api": "FICO",
+    "report_id": "FI_REPORT_006",
+    "report_name": "供应商行项目查询",
+    "source_scenario_id": "FI_REPORT_006_SCENARIO_002",
+    "scenario": "supplier_cleared_items",
+    "user_input": "查询公司1710供应商17300003在2024年已经清账的应付项目",
+    "business_purpose": "查看历史付款、清账凭证以及付款对应的发票",
+    "expected_api": "API_GLACCOUNTLINEITEM",
+    "expected_apis": [
+      "API_GLACCOUNTLINEITEM"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "supplier_cleared_items",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,GLAccount,Supplier,PostingDate,ClearingDate,ClearingDocFiscalYear,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and Supplier eq '17300003' and ClearingDate ge datetime'2024-01-01T00:00:00' and ClearingDate le datetime'2024-12-31T23:59:59'&$top=100",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "Supplier",
+        "ClearingDate",
+        "AccountingDocument"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-028",
+    "api": "FICO",
+    "report_id": "FI_REPORT_006",
+    "report_name": "供应商行项目查询",
+    "source_scenario_id": "FI_REPORT_006_SCENARIO_003",
+    "scenario": "supplier_items_due_soon",
+    "user_input": "查询公司1710供应商17300003在2026年5月20日前到期的应付项目",
+    "business_purpose": "准备付款建议、付款计划和现金流预测",
+    "expected_api": "API_OPLACCTGDOCITEMCUBE_SRV",
+    "expected_apis": [
+      "API_OPLACCTGDOCITEMCUBE_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "supplier_due_items",
+          "url": "/sap/opu/odata/sap/API_OPLACCTGDOCITEMCUBE_SRV/A_OperationalAcctgDocItemCube?$select=CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Supplier,SupplierName,GLAccount,NetDueDate,CashDiscount1DueDate,ClearingDate,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and Supplier eq '17300003' and NetDueDate le datetime'2026-05-20T23:59:59' and ClearingDate eq null&$top=100",
+          "key_fields": [
+            "CompanyCode",
+            "FiscalYear",
+            "AccountingDocument",
+            "AccountingDocumentItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem"
+      ],
+      "required_fields": [
+        "Supplier",
+        "NetDueDate",
+        "AmountInCompanyCodeCurrency"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-029",
+    "api": "FICO",
+    "report_id": "FI_REPORT_006",
+    "report_name": "供应商行项目查询",
+    "source_scenario_id": "FI_REPORT_006_SCENARIO_004",
+    "scenario": "supplier_payment_blocked_invoices",
+    "user_input": "查询公司1710供应商17300003被付款冻结的发票",
+    "business_purpose": "找出无法进入付款流程的供应商发票",
+    "expected_api": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "expected_apis": [
+      "API_SUPPLIERINVOICE_PROCESS_SRV",
+      "API_OPLACCTGDOCITEMCUBE_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "blocked_invoices",
+          "url": "/sap/opu/odata/sap/API_SUPPLIERINVOICE_PROCESS_SRV/A_SupplierInvoice?$select=FiscalYear,SupplierInvoice,CompanyCode,DocumentDate,PostingDate,InvoicingParty,DocumentCurrency,InvoiceGrossAmount,PaymentBlockingReason&$filter=CompanyCode eq '1710' and InvoicingParty eq '17300003' and PaymentBlockingReason ne ''&$top=100",
+          "key_fields": [
+            "FiscalYear",
+            "SupplierInvoice"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "FiscalYear",
+        "SupplierInvoice"
+      ],
+      "required_fields": [
+        "InvoicingParty",
+        "PaymentBlockingReason",
+        "InvoiceGrossAmount"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-030",
+    "api": "FICO",
+    "report_id": "FI_REPORT_006",
+    "report_name": "供应商行项目查询",
+    "source_scenario_id": "FI_REPORT_006_SCENARIO_005",
+    "scenario": "supplier_special_gl_items",
+    "user_input": "查询公司1710供应商17300003的特殊总账项目",
+    "business_purpose": "查看供应商预付款、保证金、押金等特殊往来项目",
+    "expected_api": "API_GLACCOUNTLINEITEM",
+    "expected_apis": [
+      "API_GLACCOUNTLINEITEM",
+      "API_OPLACCTGDOCITEMCUBE_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "supplier_special_gl",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,Supplier,GLAccount,SpecialGLCode,PostingDate,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and Supplier eq '17300003' and SpecialGLCode ne ''&$top=100",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "Supplier",
+        "SpecialGLCode",
+        "AmountInCompanyCodeCurrency"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-031",
+    "api": "FICO",
+    "report_id": "FI_REPORT_007",
+    "report_name": "客户行项目查询",
+    "source_scenario_id": "FI_REPORT_007_SCENARIO_001",
+    "scenario": "customer_open_items",
+    "user_input": "查询公司1710客户17100003截至2024年12月31日还没收款清账的项目",
+    "business_purpose": "查看尚未收款或尚未清账的应收发票",
+    "expected_api": "API_GLACCOUNTLINEITEM",
+    "expected_apis": [
+      "API_GLACCOUNTLINEITEM",
+      "API_OPLACCTGDOCITEMCUBE_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "customer_open_items",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,GLAccount,Customer,PostingDate,ClearingDate,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and Customer eq '17100003' and PostingDate le datetime'2024-12-31T23:59:59' and ClearingDate eq null&$top=100",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "Customer",
+        "ClearingDate",
+        "AmountInCompanyCodeCurrency"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-032",
+    "api": "FICO",
+    "report_id": "FI_REPORT_007",
+    "report_name": "客户行项目查询",
+    "source_scenario_id": "FI_REPORT_007_SCENARIO_002",
+    "scenario": "customer_cleared_items",
+    "user_input": "查询公司1710客户17100003在2024年已经清账的应收项目",
+    "business_purpose": "查看收款历史、清账关系和已结清应收项目",
+    "expected_api": "API_GLACCOUNTLINEITEM",
+    "expected_apis": [
+      "API_GLACCOUNTLINEITEM"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "customer_cleared_items",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,GLAccount,Customer,PostingDate,ClearingDate,ClearingDocFiscalYear,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and Customer eq '17100003' and ClearingDate ge datetime'2024-01-01T00:00:00' and ClearingDate le datetime'2024-12-31T23:59:59'&$top=100",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "Customer",
+        "ClearingDate",
+        "AccountingDocument"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-033",
+    "api": "FICO",
+    "report_id": "FI_REPORT_007",
+    "report_name": "客户行项目查询",
+    "source_scenario_id": "FI_REPORT_007_SCENARIO_003",
+    "scenario": "customer_overdue_open_items",
+    "user_input": "查询公司1710客户17100003截至2026年5月13日已经逾期未收款的项目",
+    "business_purpose": "支持催收、账龄分析和信用风险管理",
+    "expected_api": "API_OPLACCTGDOCITEMCUBE_SRV",
+    "expected_apis": [
+      "API_OPLACCTGDOCITEMCUBE_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "customer_overdue_items",
+          "url": "/sap/opu/odata/sap/API_OPLACCTGDOCITEMCUBE_SRV/A_OperationalAcctgDocItemCube?$select=CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Customer,CustomerName,GLAccount,NetDueDate,ClearingDate,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and Customer eq '17100003' and NetDueDate lt datetime'2026-05-13T00:00:00' and ClearingDate eq null&$top=100",
+          "key_fields": [
+            "CompanyCode",
+            "FiscalYear",
+            "AccountingDocument",
+            "AccountingDocumentItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem"
+      ],
+      "required_fields": [
+        "Customer",
+        "NetDueDate",
+        "AmountInCompanyCodeCurrency"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-034",
+    "api": "FICO",
+    "report_id": "FI_REPORT_007",
+    "report_name": "客户行项目查询",
+    "source_scenario_id": "FI_REPORT_007_SCENARIO_004",
+    "scenario": "customer_special_gl_items",
+    "user_input": "查询公司1710客户17100003的特殊总账项目",
+    "business_purpose": "查看客户预收款、保证金、押金等特殊往来项目",
+    "expected_api": "API_GLACCOUNTLINEITEM",
+    "expected_apis": [
+      "API_GLACCOUNTLINEITEM",
+      "API_OPLACCTGDOCITEMCUBE_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "customer_special_gl",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,Customer,GLAccount,SpecialGLCode,PostingDate,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and Customer eq '17100003' and SpecialGLCode ne ''&$top=100",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "Customer",
+        "SpecialGLCode",
+        "AmountInCompanyCodeCurrency"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-035",
+    "api": "FICO",
+    "report_id": "FI_REPORT_007",
+    "report_name": "客户行项目查询",
+    "source_scenario_id": "FI_REPORT_007_SCENARIO_005",
+    "scenario": "customer_receivables_by_sales_org_profit_center",
+    "user_input": "按销售组织和利润中心分析公司1710客户17100003的应收明细",
+    "business_purpose": "分析不同业务单元、销售组织或利润中心的应收账款情况",
+    "expected_api": "API_GLACCOUNTLINEITEM",
+    "expected_apis": [
+      "API_GLACCOUNTLINEITEM"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "customer_ar_by_sales_org",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,Customer,SalesOrganization,DistributionChannel,ProfitCenter,GLAccount,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and Customer eq '17100003' and SalesOrganization ne ''&$top=100",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "Customer",
+        "SalesOrganization",
+        "ProfitCenter"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-036",
+    "api": "FICO",
+    "report_id": "FI_REPORT_008",
+    "report_name": "供应商账龄与应付到期分析",
+    "source_scenario_id": "FI_REPORT_008_SCENARIO_001",
+    "scenario": "supplier_open_payables_aging",
+    "user_input": "查询公司1710供应商17300003截至2026年5月13日的未清应付款账龄",
+    "business_purpose": "查看应付款按到期天数或账龄区间的分布",
+    "expected_api": "API_OPLACCTGDOCITEMCUBE_SRV",
+    "expected_apis": [
+      "API_OPLACCTGDOCITEMCUBE_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "supplier_open_aging",
+          "url": "/sap/opu/odata/sap/API_OPLACCTGDOCITEMCUBE_SRV/A_OperationalAcctgDocItemCube?$select=CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Supplier,SupplierName,NetDueDate,ClearingDate,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and Supplier eq '17300003' and ClearingDate eq null&$top=100",
+          "key_fields": [
+            "CompanyCode",
+            "FiscalYear",
+            "AccountingDocument",
+            "AccountingDocumentItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem"
+      ],
+      "required_fields": [
+        "Supplier",
+        "NetDueDate",
+        "AmountInCompanyCodeCurrency"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-037",
+    "api": "FICO",
+    "report_id": "FI_REPORT_008",
+    "report_name": "供应商账龄与应付到期分析",
+    "source_scenario_id": "FI_REPORT_008_SCENARIO_002",
+    "scenario": "supplier_overdue_payables",
+    "user_input": "查询公司1710供应商17300003截至2026年5月13日已经逾期的应付款",
+    "business_purpose": "判断是否存在超过付款期限的应付款",
+    "expected_api": "API_OPLACCTGDOCITEMCUBE_SRV",
+    "expected_apis": [
+      "API_OPLACCTGDOCITEMCUBE_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "supplier_overdue",
+          "url": "/sap/opu/odata/sap/API_OPLACCTGDOCITEMCUBE_SRV/A_OperationalAcctgDocItemCube?$select=CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Supplier,SupplierName,NetDueDate,ClearingDate,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and Supplier eq '17300003' and NetDueDate lt datetime'2026-05-13T00:00:00' and ClearingDate eq null&$top=100",
+          "key_fields": [
+            "CompanyCode",
+            "FiscalYear",
+            "AccountingDocument",
+            "AccountingDocumentItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem"
+      ],
+      "required_fields": [
+        "Supplier",
+        "NetDueDate",
+        "ClearingDate"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-038",
+    "api": "FICO",
+    "report_id": "FI_REPORT_008",
+    "report_name": "供应商账龄与应付到期分析",
+    "source_scenario_id": "FI_REPORT_008_SCENARIO_003",
+    "scenario": "supplier_payables_due_next_days",
+    "user_input": "查询公司1710供应商17300003在2026年5月13日到2026年5月20日之间到期的付款",
+    "business_purpose": "制定付款计划和资金计划",
+    "expected_api": "API_OPLACCTGDOCITEMCUBE_SRV",
+    "expected_apis": [
+      "API_OPLACCTGDOCITEMCUBE_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "supplier_due_next_days",
+          "url": "/sap/opu/odata/sap/API_OPLACCTGDOCITEMCUBE_SRV/A_OperationalAcctgDocItemCube?$select=CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Supplier,SupplierName,NetDueDate,ClearingDate,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and Supplier eq '17300003' and NetDueDate ge datetime'2026-05-13T00:00:00' and NetDueDate le datetime'2026-05-20T23:59:59' and ClearingDate eq null&$top=100",
+          "key_fields": [
+            "CompanyCode",
+            "FiscalYear",
+            "AccountingDocument",
+            "AccountingDocumentItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem"
+      ],
+      "required_fields": [
+        "Supplier",
+        "NetDueDate",
+        "AmountInCompanyCodeCurrency"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-039",
+    "api": "FICO",
+    "report_id": "FI_REPORT_008",
+    "report_name": "供应商账龄与应付到期分析",
+    "source_scenario_id": "FI_REPORT_008_SCENARIO_004",
+    "scenario": "supplier_payables_by_reconciliation_account",
+    "user_input": "按统驭科目查看公司1710供应商17300003的应付余额结构",
+    "business_purpose": "分析主要供应商、供应商组或统驭科目的应付款结构",
+    "expected_api": "API_GLACCOUNTLINEITEM",
+    "expected_apis": [
+      "API_GLACCOUNTLINEITEM"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "supplier_by_gl",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,Supplier,GLAccount,PostingDate,ClearingDate,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and Supplier eq '17300003'&$top=100",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "Supplier",
+        "GLAccount",
+        "AmountInCompanyCodeCurrency"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-040",
+    "api": "FICO",
+    "report_id": "FI_REPORT_008",
+    "report_name": "供应商账龄与应付到期分析",
+    "source_scenario_id": "FI_REPORT_008_SCENARIO_005",
+    "scenario": "ap_aging_reconcile_to_supplier_line_items",
+    "user_input": "月结时核对公司1710供应商17300003的应付账龄和供应商未清行项目",
+    "business_purpose": "确认账龄报表与FBL1N供应商未清项目金额一致",
+    "expected_api": "API_OPLACCTGDOCITEMCUBE_SRV",
+    "expected_apis": [
+      "API_OPLACCTGDOCITEMCUBE_SRV",
+      "API_GLACCOUNTLINEITEM"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "aging_items",
+          "url": "/sap/opu/odata/sap/API_OPLACCTGDOCITEMCUBE_SRV/A_OperationalAcctgDocItemCube?$select=CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Supplier,NetDueDate,ClearingDate,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and Supplier eq '17300003' and ClearingDate eq null&$top=100",
+          "key_fields": [
+            "CompanyCode",
+            "FiscalYear",
+            "AccountingDocument",
+            "AccountingDocumentItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem"
+      ],
+      "required_fields": [
+        "Supplier",
+        "ClearingDate",
+        "AmountInCompanyCodeCurrency"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-041",
+    "api": "FICO",
+    "report_id": "FI_REPORT_009",
+    "report_name": "客户账龄与应收账款到期分析",
+    "source_scenario_id": "FI_REPORT_009_SCENARIO_001",
+    "scenario": "customer_open_receivables_aging",
+    "user_input": "查询公司1710客户17100003截至2026年5月13日的未清应收账龄",
+    "business_purpose": "查看应收账款按账龄区间的分布",
+    "expected_api": "API_OPLACCTGDOCITEMCUBE_SRV",
+    "expected_apis": [
+      "API_OPLACCTGDOCITEMCUBE_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "customer_open_aging",
+          "url": "/sap/opu/odata/sap/API_OPLACCTGDOCITEMCUBE_SRV/A_OperationalAcctgDocItemCube?$select=CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Customer,CustomerName,NetDueDate,ClearingDate,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and Customer eq '17100003' and ClearingDate eq null&$top=100",
+          "key_fields": [
+            "CompanyCode",
+            "FiscalYear",
+            "AccountingDocument",
+            "AccountingDocumentItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem"
+      ],
+      "required_fields": [
+        "Customer",
+        "NetDueDate",
+        "AmountInCompanyCodeCurrency"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-042",
+    "api": "FICO",
+    "report_id": "FI_REPORT_009",
+    "report_name": "客户账龄与应收账款到期分析",
+    "source_scenario_id": "FI_REPORT_009_SCENARIO_002",
+    "scenario": "overdue_customer_list",
+    "user_input": "查询公司1710截至2026年5月13日已经逾期的客户清单",
+    "business_purpose": "支持客户催收和逾期账款跟进",
+    "expected_api": "API_OPLACCTGDOCITEMCUBE_SRV",
+    "expected_apis": [
+      "API_OPLACCTGDOCITEMCUBE_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "overdue_customers",
+          "url": "/sap/opu/odata/sap/API_OPLACCTGDOCITEMCUBE_SRV/A_OperationalAcctgDocItemCube?$select=CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Customer,CustomerName,NetDueDate,ClearingDate,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and Customer ne '' and NetDueDate lt datetime'2026-05-13T00:00:00' and ClearingDate eq null&$top=100",
+          "key_fields": [
+            "CompanyCode",
+            "FiscalYear",
+            "AccountingDocument",
+            "AccountingDocumentItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem"
+      ],
+      "required_fields": [
+        "Customer",
+        "NetDueDate",
+        "AmountInCompanyCodeCurrency"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-043",
+    "api": "FICO",
+    "report_id": "FI_REPORT_009",
+    "report_name": "客户账龄与应收账款到期分析",
+    "source_scenario_id": "FI_REPORT_009_SCENARIO_003",
+    "scenario": "large_overdue_receivables",
+    "user_input": "查询公司1710截至2026年5月13日金额超过10000的逾期应收项目",
+    "business_purpose": "识别重大信用风险和重点催收对象",
+    "expected_api": "API_OPLACCTGDOCITEMCUBE_SRV",
+    "expected_apis": [
+      "API_OPLACCTGDOCITEMCUBE_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "large_overdue_ar",
+          "url": "/sap/opu/odata/sap/API_OPLACCTGDOCITEMCUBE_SRV/A_OperationalAcctgDocItemCube?$select=CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Customer,CustomerName,NetDueDate,ClearingDate,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and Customer ne '' and NetDueDate lt datetime'2026-05-13T00:00:00' and ClearingDate eq null and AmountInCompanyCodeCurrency ge 10000&$top=100",
+          "key_fields": [
+            "CompanyCode",
+            "FiscalYear",
+            "AccountingDocument",
+            "AccountingDocumentItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem"
+      ],
+      "required_fields": [
+        "Customer",
+        "NetDueDate",
+        "AmountInCompanyCodeCurrency"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-044",
+    "api": "FICO",
+    "report_id": "FI_REPORT_009",
+    "report_name": "客户账龄与应收账款到期分析",
+    "source_scenario_id": "FI_REPORT_009_SCENARIO_004",
+    "scenario": "ar_aging_by_customer_group_sales_org_profit_center",
+    "user_input": "按客户组、销售组织和利润中心分析公司1710的应收账龄",
+    "business_purpose": "分析不同客户群、销售组织或业务单元的回款风险",
+    "expected_api": "API_GLACCOUNTLINEITEM",
+    "expected_apis": [
+      "API_GLACCOUNTLINEITEM",
+      "API_OPLACCTGDOCITEMCUBE_SRV"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "ar_by_customer_group",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,Customer,CustomerGroup,SalesOrganization,ProfitCenter,GLAccount,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and Customer ne '' and CustomerGroup ne ''&$top=100",
+          "key_fields": [
+            "ID"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "ID"
+      ],
+      "required_fields": [
+        "Customer",
+        "CustomerGroup",
+        "SalesOrganization"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-045",
+    "api": "FICO",
+    "report_id": "FI_REPORT_009",
+    "report_name": "客户账龄与应收账款到期分析",
+    "source_scenario_id": "FI_REPORT_009_SCENARIO_005",
+    "scenario": "ar_aging_reconcile_to_customer_line_items",
+    "user_input": "月结时核对公司1710客户17100003的应收账龄和客户未清行项目",
+    "business_purpose": "确认账龄报表与FBL5N客户未清项目金额一致",
+    "expected_api": "API_OPLACCTGDOCITEMCUBE_SRV",
+    "expected_apis": [
+      "API_OPLACCTGDOCITEMCUBE_SRV",
+      "API_GLACCOUNTLINEITEM"
+    ],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": true,
+      "present": true,
+      "clarify": false,
+      "unsupported": false
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "ar_aging_items",
+          "url": "/sap/opu/odata/sap/API_OPLACCTGDOCITEMCUBE_SRV/A_OperationalAcctgDocItemCube?$select=CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Customer,NetDueDate,ClearingDate,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and Customer eq '17100003' and ClearingDate eq null&$top=100",
+          "key_fields": [
+            "CompanyCode",
+            "FiscalYear",
+            "AccountingDocument",
+            "AccountingDocumentItem"
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem"
+      ],
+      "required_fields": [
+        "Customer",
+        "ClearingDate",
+        "AmountInCompanyCodeCurrency"
+      ]
+    }
+  },
+  {
+    "id": "FICO-XAPI-046",
+    "api": "FICO",
+    "report_id": "FI_REPORT_010",
+    "report_name": "固定资产历史表与资产明细",
+    "source_scenario_id": "FI_REPORT_010_SCENARIO_001",
+    "scenario": "asset_history_sheet_by_asset_class",
+    "user_input": "查询公司1710在2023年的固定资产历史表，按资产类别查看期初、购置、报废、折旧和期末净值",
+    "business_purpose": "查看资产期初、购置、报废、折旧和期末净值",
+    "expected_capability": {
+      "route": false,
+      "plan": false,
+      "execute": false,
+      "present": true,
+      "clarify": false,
+      "unsupported": true,
+      "unsupported_reason": "当前已接入 API 中没有固定资产主数据、资产历史表或折旧范围余额 API；供应商发票资产行项目只能覆盖资产采购入账片段。"
+    },
+    "comparison": {
+      "type": "unsupported",
+      "keys": [],
+      "required_fields": []
+    }
+  },
+  {
+    "id": "FICO-XAPI-047",
+    "api": "FICO",
+    "report_id": "FI_REPORT_010",
+    "report_name": "固定资产历史表与资产明细",
+    "source_scenario_id": "FI_REPORT_010_SCENARIO_002",
+    "scenario": "single_fixed_asset_detail",
+    "user_input": "查询公司1710固定资产100000的原值、累计折旧、账面净值和资产主数据",
+    "business_purpose": "查看单项资产的原值、累计折旧、账面净值和资产主数据",
+    "expected_capability": {
+      "route": false,
+      "plan": false,
+      "execute": false,
+      "present": true,
+      "clarify": false,
+      "unsupported": true,
+      "unsupported_reason": "当前已接入 API 中没有固定资产主数据和资产余额 API，无法可靠回答单项资产原值、折旧和净值。"
+    },
+    "comparison": {
+      "type": "unsupported",
+      "keys": [],
+      "required_fields": []
+    }
+  },
+  {
+    "id": "FICO-XAPI-048",
+    "api": "FICO",
+    "report_id": "FI_REPORT_010",
+    "report_name": "固定资产历史表与资产明细",
+    "source_scenario_id": "FI_REPORT_010_SCENARIO_003",
+    "scenario": "current_period_asset_additions",
+    "user_input": "查询公司1710在2023年12月新增资本化的固定资产",
+    "business_purpose": "核对采购转固、在建工程转固和手工新增资产",
+    "expected_capability": {
+      "route": false,
+      "plan": false,
+      "execute": false,
+      "present": true,
+      "clarify": false,
+      "unsupported": true,
+      "unsupported_reason": "当前只有供应商发票资产行项目片段，缺少固定资产资本化日期和资产主记录 API，不能完整识别本期新增固定资产。"
+    },
+    "comparison": {
+      "type": "unsupported",
+      "keys": [],
+      "required_fields": []
+    }
+  },
+  {
+    "id": "FICO-XAPI-049",
+    "api": "FICO",
+    "report_id": "FI_REPORT_010",
+    "report_name": "固定资产历史表与资产明细",
+    "source_scenario_id": "FI_REPORT_010_SCENARIO_004",
+    "scenario": "asset_retirement_sale_transfer_records",
+    "user_input": "查询公司1710在2023年12月发生的固定资产报废、出售或转移记录",
+    "business_purpose": "检查资产减少、资产转移、资产出售是否正确入账",
+    "expected_capability": {
+      "route": false,
+      "plan": false,
+      "execute": false,
+      "present": true,
+      "clarify": false,
+      "unsupported": true,
+      "unsupported_reason": "当前没有固定资产交易类型、资产转移和报废明细 API，不能可靠区分资产报废、出售和转移。"
+    },
+    "comparison": {
+      "type": "unsupported",
+      "keys": [],
+      "required_fields": []
+    }
+  },
+  {
+    "id": "FICO-XAPI-050",
+    "api": "FICO",
+    "report_id": "FI_REPORT_010",
+    "report_name": "固定资产历史表与资产明细",
+    "source_scenario_id": "FI_REPORT_010_SCENARIO_005",
+    "scenario": "asset_depreciation_by_area_and_cost_center",
+    "user_input": "查询公司1710在2023年12月按折旧范围和成本中心汇总的固定资产折旧金额",
+    "business_purpose": "月结时核对折旧运行结果与会计分录",
+    "expected_capability": {
+      "route": false,
+      "plan": false,
+      "execute": false,
+      "present": true,
+      "clarify": false,
+      "unsupported": true,
+      "unsupported_reason": "当前没有固定资产折旧范围和折旧运行结果 API；GL 行项目可看折旧凭证，但不能按资产折旧范围完整核对。"
+    },
+    "comparison": {
+      "type": "unsupported",
+      "keys": [],
+      "required_fields": []
+    }
+  }
+]

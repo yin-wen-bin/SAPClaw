@@ -7,12 +7,53 @@ const quickPrompts = [
   "供应商17300003的 shipping condition 是什么？",
 ];
 
+function Icon({ children }) {
+  return (
+    <svg className="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      {children}
+    </svg>
+  );
+}
+
+function SearchIcon() {
+  return (
+    <Icon>
+      <path d="m15.8 15.8 4.2 4.2" />
+      <circle cx="10.5" cy="10.5" r="6.5" />
+    </Icon>
+  );
+}
+
+function RefreshIcon() {
+  return (
+    <Icon>
+      <path d="M20 6v5h-5" />
+      <path d="M4 18v-5h5" />
+      <path d="M18.1 9A7 7 0 0 0 6.2 6.4L4 8.7" />
+      <path d="M5.9 15A7 7 0 0 0 17.8 17.6L20 15.3" />
+    </Icon>
+  );
+}
+
 const initialForm = {
   user_input: quickPrompts[0],
-  conversation_id: "demo-001",
+  conversation_id: "",
   mode: "read_only",
   llm_profile_id: "",
 };
+
+function generateConversationId(now = new Date()) {
+  const pad = (value, length = 2) => String(value).padStart(length, "0");
+  return [
+    now.getFullYear(),
+    pad(now.getMonth() + 1),
+    pad(now.getDate()),
+    pad(now.getHours()),
+    pad(now.getMinutes()),
+    pad(now.getSeconds()),
+    pad(now.getMilliseconds(), 3),
+  ].join("");
+}
 
 function formatJson(value) {
   if (value == null) {
@@ -124,6 +165,39 @@ function buildLocalDisplayPage(current, nextSkip) {
   };
 }
 
+function buildPaginationPageItems(currentPage, totalPages) {
+  if (!Number.isFinite(totalPages) || totalPages <= 1) {
+    return [1];
+  }
+  if (totalPages <= 7) {
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
+  }
+
+  const pages = new Set([1, totalPages, currentPage - 1, currentPage, currentPage + 1]);
+  if (currentPage <= 3) {
+    pages.add(2);
+    pages.add(3);
+    pages.add(4);
+  }
+  if (currentPage >= totalPages - 2) {
+    pages.add(totalPages - 3);
+    pages.add(totalPages - 2);
+    pages.add(totalPages - 1);
+  }
+
+  const sortedPages = [...pages]
+    .filter((page) => page >= 1 && page <= totalPages)
+    .sort((left, right) => left - right);
+
+  return sortedPages.flatMap((page, index) => {
+    const previous = sortedPages[index - 1];
+    if (index > 0 && page - previous > 1) {
+      return ["ellipsis", page];
+    }
+    return [page];
+  });
+}
+
 function statusLabel(item) {
   if (item?.needs_clarification) {
     return "待澄清";
@@ -192,21 +266,18 @@ function summarizeResultData(data, preferredFields = []) {
   return (preferred.length > 0 ? preferred : entries).slice(0, 8);
 }
 
-function HealthBadge({ health }) {
-  const className = health === "ok" ? "ok" : health === "fail" ? "fail" : "pending";
-  const text = health === "ok" ? "后端正常" : health === "fail" ? "后端异常" : "检查中";
-  return <span className={`status-pill ${className}`}>{text}</span>;
-}
-
 function HistoryList({ history, historyError, onRefresh, onSelect }) {
   return (
-    <section className="panel history-panel">
+    <section className="panel history-panel" id="history">
       <div className="panel-header">
         <div>
           <h2>最近查询</h2>
         </div>
         <button type="button" className="secondary-button compact-button" onClick={onRefresh}>
-          刷新
+          <span className="button-label">
+            <RefreshIcon />
+            刷新
+          </span>
         </button>
       </div>
 
@@ -231,17 +302,51 @@ function HistoryList({ history, historyError, onRefresh, onSelect }) {
   );
 }
 
-function QueryResultCard({ result, onNextPage, pageLoading }) {
+function QueryHistoryStrip({ history, onApply }) {
+  const recentItems = history.filter((item) => item?.user_input).slice(0, 3);
+
+  return (
+    <div className="query-history-strip" aria-label="历史查询记录">
+      <div className="query-history-head">
+        <span>历史查询记录</span>
+        <strong>最近 3 条</strong>
+      </div>
+      {recentItems.length > 0 ? (
+        <div className="query-history-grid">
+          {recentItems.map((item) => (
+            <button
+              key={item.case_id || item.user_input}
+              type="button"
+              className="query-history-card"
+              onClick={() => onApply(item.user_input)}
+              title="点击后只复制问题到查询框"
+            >
+              <strong>{item.user_input}</strong>
+              <span>{item.entity_set || statusLabel(item)}</span>
+            </button>
+          ))}
+        </div>
+      ) : (
+        <p className="history-empty">暂无历史查询记录。</p>
+      )}
+    </div>
+  );
+}
+
+function QueryResultCard({ result, onPageChange, pageLoading }) {
   const presentation = result?.presentation;
   if (!presentation) {
     return null;
   }
   const pagination = result?.data?.pagination || null;
-  const pageNumber = pagination?.page_number || 1;
-  const pageSize = pagination?.page_size || presentation.rows?.length || 0;
   const displayedCount = result?.data?.displayed_count || presentation.rows?.length || 0;
   const totalCount = result?.data?.result_count || displayedCount;
-  const hasNext = Boolean(pagination?.has_next && pagination?.next_skip != null);
+  const pageSizeValue = Number(pagination?.display_limit || pagination?.page_size || displayedCount || 50);
+  const pageSize = Number.isFinite(pageSizeValue) && pageSizeValue > 0 ? pageSizeValue : 50;
+  const currentSkip = Number(pagination?.skip || 0);
+  const pageNumber = pagination?.page_number || Math.floor(currentSkip / pageSize) + 1;
+  const totalPages = Math.max(1, Math.ceil(totalCount / pageSize));
+  const pageItems = buildPaginationPageItems(pageNumber, totalPages);
 
   return (
     <article className="card card-wide result-answer-card">
@@ -253,13 +358,28 @@ function QueryResultCard({ result, onNextPage, pageLoading }) {
       {presentation.text ? <p className="answer-text">{presentation.text}</p> : null}
       {pagination ? (
         <div className="pagination-bar">
-          <span>第 {pageNumber} 页</span>
-          <span>每页 {pageSize} 条</span>
-          <span>本页显示 {displayedCount} 条</span>
           <span>总计 {totalCount} 条</span>
-          <button type="button" className="secondary-button compact-button" onClick={onNextPage} disabled={!hasNext || pageLoading}>
-            {pageLoading ? "加载中..." : "查看下一页"}
-          </button>
+          <span>本页显示 {displayedCount} 条</span>
+          <div className="pagination-pages" aria-label="结果页码">
+            {pageItems.map((item, index) =>
+              item === "ellipsis" ? (
+                <span key={`ellipsis-${index}`} className="pagination-ellipsis" aria-hidden="true">
+                  ...
+                </span>
+              ) : (
+                <button
+                  key={item}
+                  type="button"
+                  className={`secondary-button compact-button pagination-page-button${item === pageNumber ? " active" : ""}`}
+                  onClick={() => onPageChange(item)}
+                  disabled={pageLoading || item === pageNumber}
+                  aria-current={item === pageNumber ? "page" : undefined}
+                >
+                  {item}
+                </button>
+              ),
+            )}
+          </div>
         </div>
       ) : null}
 
@@ -799,7 +919,7 @@ function DetailSection({ title, children, defaultOpen = false }) {
 
 function LoadingResultPanel() {
   return (
-    <section className="panel result-panel loading-result-panel" aria-live="polite" aria-busy="true">
+    <section className="panel result-panel loading-result-panel" id="results" aria-live="polite" aria-busy="true">
       <div className="loading-orbit" aria-hidden="true">
         <span />
       </div>
@@ -816,7 +936,7 @@ function LoadingResultPanel() {
   );
 }
 
-function ResultPanel({ result, selectedHistory, feedbackProps, onNextPage, pageLoading, loading }) {
+function ResultPanel({ result, selectedHistory, feedbackProps, onPageChange, pageLoading, loading }) {
   const summaryRows = useMemo(
     () => summarizeResultData(result?.data, result?.plan?.response_summary_fields || []),
     [result],
@@ -829,15 +949,15 @@ function ResultPanel({ result, selectedHistory, feedbackProps, onNextPage, pageL
 
   if (!result) {
     return (
-      <section className="panel result-panel empty-state">
+      <section className="panel result-panel empty-state" id="results">
         <h2>执行结果</h2>
-        <p>首屏只保留主结果和必要操作。诊断信息、计划和原始数据收进折叠区，避免页面过载。</p>
+        <p>暂无执行结果。</p>
       </section>
     );
   }
 
   return (
-    <section className="panel result-panel">
+    <section className="panel result-panel" id="results">
       <div className="panel-header result-header">
         <div>
           <h2>执行结果</h2>
@@ -849,7 +969,7 @@ function ResultPanel({ result, selectedHistory, feedbackProps, onNextPage, pageL
       </div>
 
       <div className="result-main-stack">
-        <QueryResultCard result={result} onNextPage={onNextPage} pageLoading={pageLoading} />
+        <QueryResultCard result={result} onPageChange={onPageChange} pageLoading={pageLoading} />
         <ClarificationCard result={result} />
       </div>
 
@@ -911,7 +1031,6 @@ export default function App() {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [health, setHealth] = useState("checking");
   const [history, setHistory] = useState([]);
   const [historyError, setHistoryError] = useState("");
   const [selectedHistory, setSelectedHistory] = useState(null);
@@ -967,31 +1086,6 @@ export default function App() {
     loadHistory();
   }, []);
 
-  useEffect(() => {
-    let active = true;
-
-    async function checkHealth() {
-      try {
-        const response = await fetch("/health");
-        if (!response.ok) {
-          throw new Error("health check failed");
-        }
-        if (active) {
-          setHealth("ok");
-        }
-      } catch {
-        if (active) {
-          setHealth("fail");
-        }
-      }
-    }
-
-    checkHealth();
-    return () => {
-      active = false;
-    };
-  }, []);
-
   function resetFeedback(resultPayload) {
     setFeedbackMessage("");
     setFeedbackForm({
@@ -1004,6 +1098,12 @@ export default function App() {
   async function handleSubmit(event) {
     event.preventDefault();
     const startedAt = performance.now();
+    const keepConversationId = Boolean(result?.needs_clarification && form.conversation_id);
+    const conversationId = keepConversationId ? form.conversation_id : generateConversationId();
+    if (!keepConversationId) {
+      setForm((current) => ({ ...current, conversation_id: "" }));
+    }
+    setForm((current) => ({ ...current, conversation_id: conversationId }));
     setLoading(true);
     setError("");
     setResult(null);
@@ -1012,7 +1112,7 @@ export default function App() {
     setLastDurationMs(null);
 
     try {
-      const requestPayload = { ...form };
+      const requestPayload = { ...form, conversation_id: conversationId };
       if (!requestPayload.llm_profile_id) {
         delete requestPayload.llm_profile_id;
       }
@@ -1045,13 +1145,18 @@ export default function App() {
     }
   }
 
-  async function handleNextPage() {
+  async function handlePageChange(targetPage) {
     const pagination = result?.data?.pagination || null;
-    if (!result?.case_id || !pagination?.has_next || pagination.next_skip == null) {
+    const displayedCount = result?.data?.displayed_count || result?.presentation?.rows?.length || 0;
+    const pageSizeValue = Number(pagination?.display_limit || pagination?.page_size || displayedCount || 50);
+    const pageSize = Number.isFinite(pageSizeValue) && pageSizeValue > 0 ? pageSizeValue : 50;
+    const targetSkip = (Number(targetPage) - 1) * pageSize;
+    const currentSkip = Number(pagination?.skip || 0);
+    if (!result?.case_id || !pagination || !Number.isFinite(targetSkip) || targetSkip < 0 || targetSkip === currentSkip) {
       return;
     }
 
-    const localPage = buildLocalDisplayPage(result, pagination.next_skip);
+    const localPage = buildLocalDisplayPage(result, targetSkip);
     if (localPage) {
       setResult(localPage);
       return;
@@ -1067,12 +1172,12 @@ export default function App() {
         },
         body: JSON.stringify({
           case_id: result.case_id,
-          skip: pagination.next_skip,
+          skip: targetSkip,
         }),
       });
       const payload = await response.json();
       if (!response.ok || !payload.success) {
-        throw new Error(payload.detail || "下一页加载失败");
+        throw new Error(payload.detail || "页码加载失败");
       }
       setResult((current) =>
         current
@@ -1086,7 +1191,7 @@ export default function App() {
           : current,
       );
     } catch (pageError) {
-      setError(pageError.message || "下一页加载失败");
+      setError(pageError.message || "页码加载失败");
     } finally {
       setPageLoading(false);
     }
@@ -1101,10 +1206,14 @@ export default function App() {
     setForm((current) => ({ ...current, user_input: prompt }));
   }
 
+  function clearConversationId() {
+    setForm((current) => ({ ...current, conversation_id: "" }));
+  }
+
   function loadHistoryItem(item) {
     setForm({
       user_input: item.user_input || "",
-      conversation_id: item.conversation_id || "demo-001",
+      conversation_id: "",
       mode: item.mode || "read_only",
       llm_profile_id: item.llm_profile_id || form.llm_profile_id || defaultProfileId || "",
     });
@@ -1162,30 +1271,18 @@ export default function App() {
 
   return (
     <div className="app-shell">
-      <header className="hero">
+      <section className="hero">
         <div className="hero-copy">
-          <div className="hero-topline">
-            <div>
-              <h1>SAP Claw</h1>
-            </div>
-            <HealthBadge health={health} />
-          </div>
-
-          <p className="hero-text">用自然语言操作SAP。</p>
-
-          <div className="quick-prompts">
-            {quickPrompts.map((prompt) => (
-              <button key={prompt} type="button" className="prompt-chip" onClick={() => applyPrompt(prompt)}>
-                {prompt}
-              </button>
-            ))}
+          <div className="hero-title-block">
+            <h1>SAPClaw</h1>
+            <p className="hero-tagline">用自然语言操作SAP</p>
           </div>
         </div>
-      </header>
+      </section>
 
       <main className="workspace">
         <section className="content-column">
-          <section className="panel form-panel form-panel-wide">
+          <section className="panel form-panel form-panel-wide" id="query">
             <div className="panel-header">
               <div>
                 <h2>查询内容</h2>
@@ -1193,10 +1290,13 @@ export default function App() {
               {loading ? <span className="status-pill pending">执行中</span> : null}
             </div>
 
+            <QueryHistoryStrip history={history} onApply={applyPrompt} />
+
             <form onSubmit={handleSubmit} className="query-form">
               <label>
                 <textarea
                   name="user_input"
+                  aria-label="查询内容"
                   rows="5"
                   value={form.user_input}
                   onChange={handleChange}
@@ -1205,15 +1305,28 @@ export default function App() {
               </label>
 
               <div className="inline-fields">
-                <label>
-                  <span>会话 ID</span>
-                  <input
-                    name="conversation_id"
-                    value={form.conversation_id}
-                    onChange={handleChange}
-                    placeholder="demo-001"
-                  />
-                </label>
+                <div className="field-group session-field">
+                  <div className="field-label-row">
+                    <span>会话 ID</span>
+                  </div>
+                  <div className="session-input-wrap">
+                    <input
+                      name="conversation_id"
+                      value={form.conversation_id}
+                      readOnly
+                      aria-readonly="true"
+                      placeholder="点击开始查询后自动生成"
+                    />
+                    <button
+                      type="button"
+                      className="clear-session-button"
+                      onClick={clearConversationId}
+                      disabled={loading || !form.conversation_id}
+                    >
+                      清除
+                    </button>
+                  </div>
+                </div>
 
                 <label>
                   <span>执行模式</span>
@@ -1238,7 +1351,10 @@ export default function App() {
 
               <div className="actions">
                 <button type="submit" disabled={loading}>
-                  {loading ? "执行中..." : "开始查询"}
+                  <span className="button-label">
+                    {loading ? <span className="button-spinner" aria-hidden="true" /> : <SearchIcon />}
+                    {loading ? "执行中..." : "开始查询"}
+                  </span>
                 </button>
                 <span className="duration-label">
                   查询总耗时：{loading ? "计算中..." : formatDuration(lastDurationMs)}
@@ -1252,7 +1368,7 @@ export default function App() {
           <ResultPanel
             result={result}
             selectedHistory={selectedHistory}
-            onNextPage={handleNextPage}
+            onPageChange={handlePageChange}
             pageLoading={pageLoading}
             loading={loading}
             feedbackProps={{

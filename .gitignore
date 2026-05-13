@@ -16,3 +16,4 @@ data/cross_api_test_runs/
 frontend/node_modules/
 frontend/dist/
 data/cases/
+docs/project-learning-guide.md

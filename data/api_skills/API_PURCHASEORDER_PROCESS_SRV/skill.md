@@ -80,6 +80,19 @@ Keep `data/index/API_PURCHASEORDER_PROCESS_SRV` as the schema ground truth. This
 - Select `PurchaseOrder`, `PurchaseOrderItem`, `ScheduleLine`, and `ScheduleLineDeliveryDate`.
 - Enrich to item or header only when the user asks for fields not present on schedule lines.
 
+### Plant Delivery Date Purchase Orders With Supplier Contact
+
+- Use this pattern when the user asks for purchase orders arriving/due for delivery at a plant on a relative or explicit date and asks for supplier contact information.
+- Use `A_PurchaseOrderScheduleLine.ScheduleLineDeliveryDate` for "到货", "交货日期", "arriving", or "delivery date" wording.
+- Use `A_PurchaseOrderItem.Plant` for the plant restriction.
+- Resolve suppliers from `A_PurchaseOrder.Supplier`.
+- This is a cross-API question: use `API_PURCHASEORDER_PROCESS_SRV` for purchase order schedule/item/header data, then use `API_BUSINESS_PARTNER` for supplier master/address/contact data.
+- Recommended steps:
+  - Query `A_PurchaseOrderScheduleLine` by `ScheduleLineDeliveryDate`.
+  - Query `A_PurchaseOrderItem` bound by purchase order/item and filter `Plant`.
+  - Query `A_PurchaseOrder` bound by `PurchaseOrder` to get `Supplier`.
+  - Query `API_BUSINESS_PARTNER.A_Supplier` and `API_BUSINESS_PARTNER.A_BusinessPartnerAddress` bound by supplier/business partner to get available supplier contact/address fields.
+
 ### Purchase Order History Wording
 
 - If the user asks for "purchase order history", "PO history", or "采购订单历史记录" without specifying the history type, ask a clarification before execution.

@@ -50,6 +50,12 @@ Keep `data/index/API_OUTBOUND_DELIVERY_SRV` as the schema ground truth. This ski
 - Apply user-provided identifiers, dates, statuses, organizational units, material/product IDs, customer/supplier IDs, and document numbers as filters when corresponding filterable fields exist.
 - Keep `$select` focused on key fields plus fields needed to answer the question.
 
+### Actual Shipping Date For Delivery Documents
+
+- For Chinese wording such as `发货日期`, `实际发货日期`, `出货日期`, or English wording such as `goods issue date`, `actual goods movement date`, and shipped-after/shipped-before delivery lists, use `A_OutbDeliveryHeader.ActualGoodsMovementDate`.
+- For date comparisons on that wording, filter `A_OutbDeliveryHeader.ActualGoodsMovementDate` with the user's date and select `DeliveryDocument`, `ActualGoodsMovementDate`, `SoldToParty`, `ShipToParty`, and `OverallGoodsMovementStatus`.
+- Do not use `A_OutbDeliveryHeader.DeliveryDate` for `发货日期`; `DeliveryDate` means `交货日期`. Use `DeliveryDate` only when the user explicitly says `交货日期`, requested delivery date, or delivery due date.
+
 ### Delivery Documents For A Sales Order
 
 - For requests such as `query delivery documents for sales order 3773` or `查询销售订单3773的交货单`, use `API_OUTBOUND_DELIVERY_SRV` directly.

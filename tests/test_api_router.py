@@ -151,6 +151,52 @@ def test_api_router_retries_transport_failure_without_business_fallback() -> Non
     assert decision.selected_apis[0].service_name == "API_PURCHASEORDER_PROCESS_SRV"
 
 
+def test_api_router_repairs_purchase_order_supplier_contact_route() -> None:
+    catalog = [
+        {
+            "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+            "short_description": "Purchase order processing API.",
+            "primary_business_objects": ["Purchase Order"],
+            "top_entities": ["A_PurchaseOrder", "A_PurchaseOrderItem", "A_PurchaseOrderScheduleLine"],
+        },
+        {
+            "service_name": "API_BUSINESS_PARTNER",
+            "short_description": "Business partner master data API.",
+            "primary_business_objects": ["Supplier", "Business Partner"],
+            "top_entities": ["A_Supplier", "A_BusinessPartnerAddress"],
+        },
+    ]
+    valid = {
+        "resolved_user_input": "\u67e5\u8be2\u5de5\u53821710\u660e\u5929\u5230\u8d27\u7684\u91c7\u8d2d\u8ba2\u5355\u7684\u4f9b\u5e94\u5546\u8054\u7cfb\u4eba\u4fe1\u606f",
+        "should_carry_context": False,
+        "selected_apis": [
+            {
+                "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+                "confidence": 0.8,
+                "reason": "Purchase order delivery date query.",
+            }
+        ],
+        "requires_multi_api": True,
+        "intent_summary": "Purchase order supplier contact lookup.",
+        "business_domain": "Purchasing",
+        "business_object": "Purchase Order",
+        "needs_clarification": True,
+        "clarification_question": "Need contact scope?",
+        "clarification_options": [],
+    }
+    client = SequencedClient([json.dumps(valid)])
+    router = LlmApiRouter(llm_client=client, enabled=True, allow_default_fallback=False)
+
+    decision = router.route(valid["resolved_user_input"], catalog)
+
+    assert [item.service_name for item in decision.selected_apis] == [
+        "API_PURCHASEORDER_PROCESS_SRV",
+        "API_BUSINESS_PARTNER",
+    ]
+    assert decision.requires_multi_api is True
+    assert decision.needs_clarification is False
+
+
 def test_api_router_prompt_includes_api_skill_summary() -> None:
     valid = {
         "resolved_user_input": "query unreceived purchase orders",

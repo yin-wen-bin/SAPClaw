@@ -674,6 +674,22 @@ class MultiStepSapExecutor:
                 previous_payload = step_results.get(binding.source_step_id)
                 values = self._extract_values(previous_payload, binding.source_field)
                 if not values:
+                    if self._payload_has_no_rows(previous_payload):
+                        empty_preview = self._empty_response_preview(step.top)
+                        attempt = ExecutionAttempt(
+                            attempt_number=attempt_number,
+                            request=CompiledRequest(method=step.http_method, url=f"empty://{step.entity_set}"),
+                            success=True,
+                            step_id=step.step_id,
+                            status_code=200,
+                            response_preview=empty_preview,
+                            extracted_values={},
+                            error_message=None,
+                        )
+                        attempts.append(attempt)
+                        step_results[step.step_id] = empty_preview
+                        final_data = empty_preview
+                        return attempts, self._build_merged_data(plan, attempts, final_data)
                     attempt = ExecutionAttempt(
                         attempt_number=attempt_number,
                         request=CompiledRequest(method=step.http_method, url=f"unresolved://{step.entity_set}"),
@@ -733,6 +749,9 @@ class MultiStepSapExecutor:
         if final_data is None:
             return attempts, None
 
+        return attempts, self._build_merged_data(plan, attempts, final_data)
+
+    def _build_merged_data(self, plan: QueryPlan, attempts: list[ExecutionAttempt], final_data: dict) -> dict:
         structured_step_results = self._build_step_results(plan, attempts)
         primary_step_id = self._choose_primary_step_id(plan, structured_step_results)
         primary_step = structured_step_results.get(primary_step_id, {}) if primary_step_id else {}
@@ -782,7 +801,40 @@ class MultiStepSapExecutor:
             "final_step_id": attempts[-1].step_id if attempts else None,
             "final_step_entity_set": merged_data["final_step_entity_set"],
         }
-        return attempts, merged_data
+        return merged_data
+
+    @staticmethod
+    def _payload_has_no_rows(data: dict | None) -> bool:
+        if not data:
+            return False
+        for key in ("_all_results", "results"):
+            value = data.get(key)
+            if isinstance(value, list):
+                return len(value) == 0
+        try:
+            return int(data.get("result_count", -1)) == 0
+        except (TypeError, ValueError):
+            return False
+
+    @staticmethod
+    def _empty_response_preview(top: int | None = None) -> dict:
+        page_size = int(top or 50)
+        return {
+            "result_count": 0,
+            "returned_count": 0,
+            "displayed_count": 0,
+            "results": [],
+            "_all_results": [],
+            "_result_window_start": 0,
+            "pagination": {
+                "page_size": page_size,
+                "display_limit": min(page_size, 50),
+                "skip": 0,
+                "page_number": 1,
+                "has_next": False,
+                "next_skip": None,
+            },
+        }
 
     @staticmethod
     def _extract_values(data: dict | None, field_name: str) -> list[object]:

@@ -18,6 +18,11 @@ class CapturingClient:
         return json.dumps(self.response)
 
 
+class FailingClient:
+    def complete_json(self, system_prompt: str, user_prompt: str, max_tokens: int = 900) -> str:
+        raise AssertionError("shortcut plan should not call the LLM")
+
+
 def _write_index(root: Path) -> None:
     service_dir = root / "API_TEST"
     service_dir.mkdir(parents=True)
@@ -147,6 +152,55 @@ def _api_test_schema_context() -> dict:
             {"entity_set": "A_Test", "field_name": "Period", "data_type": "Edm.String", "filterable": True},
         ],
     }
+
+
+def test_api_specific_planner_shortcuts_po_supplier_contact_cross_api(monkeypatch) -> None:
+    import sap_odata_agent.infrastructure.llm.api_specific_planner as planner_module
+
+    real_date = planner_module.date
+
+    class FixedDate:
+        @classmethod
+        def today(cls):
+            return real_date(2026, 5, 13)
+
+    monkeypatch.setattr(planner_module, "date", FixedDate)
+    planner = LlmApiSpecificPlanner(llm_client=FailingClient(), enabled=True)
+    user_input = "\u67e5\u8be2\u5de5\u53821710\u660e\u5929\u5230\u8d27\u7684\u91c7\u8d2d\u8ba2\u5355\u7684\u4f9b\u5e94\u5546\u8054\u7cfb\u4eba\u4fe1\u606f"
+    route = ApiRouteDecision(
+        selected_apis=[
+            SelectedApi("API_PURCHASEORDER_PROCESS_SRV", 0.8, "purchase orders"),
+            SelectedApi("API_BUSINESS_PARTNER", 0.7, "supplier contact"),
+        ],
+        requires_multi_api=True,
+        intent_summary="Purchase orders arriving tomorrow for plant 1710 with supplier contact details.",
+        business_domain="Purchasing",
+        business_object="Purchase Order",
+        raw_response={"requires_multi_api": True},
+    )
+    schema_context = {
+        "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+        "service_names": ["API_PURCHASEORDER_PROCESS_SRV", "API_BUSINESS_PARTNER"],
+        "multi_api": True,
+    }
+
+    plan = planner.plan_for_api(AgentRequest(user_input=user_input), route, schema_context)
+
+    assert plan.plan_kind == "multi_step"
+    assert plan.planner_diagnostics["planner_winner"] == "skill_shortcut"
+    assert [step.service_name for step in plan.steps] == [
+        "API_PURCHASEORDER_PROCESS_SRV",
+        "API_PURCHASEORDER_PROCESS_SRV",
+        "API_PURCHASEORDER_PROCESS_SRV",
+        "API_BUSINESS_PARTNER",
+        "API_BUSINESS_PARTNER",
+    ]
+    assert plan.steps[0].entity_set == "A_PurchaseOrderScheduleLine"
+    assert plan.steps[0].filters[0].field == "ScheduleLineDeliveryDate"
+    assert plan.steps[0].filters[0].value == "2026-05-14"
+    assert plan.steps[1].filters[0].field == "Plant"
+    assert plan.steps[1].filters[0].value == "1710"
+    assert plan.steps[-1].entity_set == "A_BusinessPartnerAddress"
 
 
 def _write_company_gl_index(root: Path) -> None:

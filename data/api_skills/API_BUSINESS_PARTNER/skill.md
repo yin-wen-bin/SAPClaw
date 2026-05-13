@@ -65,6 +65,13 @@ Keep `data/index/API_BUSINESS_PARTNER` as the schema ground truth. This skill pr
   - phone list: query `A_AddressPhoneNumber` directly and select `AddressID`, `Person`, `OrdinalNumber`, `PhoneNumber`, `InternationalPhoneNumber`, and `IsDefaultPhoneNumber`.
   - fax list: query `A_AddressFaxNumber` directly and select `AddressID`, `Person`, `OrdinalNumber`, `FaxNumber`, `InternationalFaxNumber`, and `IsDefaultFaxNumber`.
 
+### Supplier Contact Enrichment From Purchase Orders
+
+- If another API has resolved a supplier ID from a purchase order, use that supplier ID as the business partner key for supplier contact enrichment.
+- Query `A_Supplier` with `Supplier` to return `SupplierName` and `SupplierFullName`.
+- Query `A_BusinessPartnerAddress` with `BusinessPartner` equal to the supplier ID to return available supplier address/contact fields such as `AddressID`, `FullName`, `Person`, `CityName`, and `StreetName`.
+- Only query `A_AddressEmailAddress` or `A_AddressPhoneNumber` when the user specifically asks for email or phone numbers, because some suppliers have address records without maintained email/phone rows.
+
 ### Customer Master Data
 
 - Query `A_Customer` for customer master data.
