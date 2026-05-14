@@ -160,6 +160,61 @@ def _write_function_index(root: Path) -> None:
     )
 
 
+def _write_trial_balance_index(root: Path) -> None:
+    service_dir = root / "C_TRIALBALANCE_CDS"
+    service_dir.mkdir(parents=True)
+    (service_dir / "services.json").write_text(
+        json.dumps([{"service_name": "C_TRIALBALANCE_CDS", "entity_sets": ["C_TRIALBALANCE", "C_TRIALBALANCEResults"]}]),
+        encoding="utf-8",
+    )
+    (service_dir / "entities.json").write_text(
+        json.dumps(
+            [
+                {
+                    "service_name": "C_TRIALBALANCE_CDS",
+                    "entity_set": "C_TRIALBALANCE",
+                    "entity_type": "C_TRIALBALANCEParameters",
+                    "key_fields": ["P_FromPostingDate", "P_ToPostingDate"],
+                    "navigation_properties": ["Results"],
+                    "supported_methods": ["GET"],
+                },
+                {
+                    "service_name": "C_TRIALBALANCE_CDS",
+                    "entity_set": "C_TRIALBALANCEResults",
+                    "entity_type": "C_TRIALBALANCEResult",
+                    "key_fields": ["ID"],
+                    "supported_methods": ["GET"],
+                },
+            ]
+        ),
+        encoding="utf-8",
+    )
+    fields = []
+    for field_name in [
+        "Ledger",
+        "CompanyCode",
+        "FiscalYear",
+        "FiscalPeriod",
+        "GLAccount",
+        "EndingBalanceAmtInCoCodeCrcy",
+    ]:
+        fields.append(
+            {
+                "service_name": "C_TRIALBALANCE_CDS",
+                "entity_set": "C_TRIALBALANCEResults",
+                "field_name": field_name,
+                "data_type": "Edm.Decimal" if field_name.endswith("Crcy") else "Edm.String",
+                "filterable": not field_name.endswith("Crcy"),
+                "selectable": True,
+            }
+        )
+    (service_dir / "fields.json").write_text(json.dumps(fields), encoding="utf-8")
+    for name in ("relations.json", "entity_graph.json", "lookup_paths.json", "business_terms.json"):
+        (service_dir / name).write_text("[]", encoding="utf-8")
+    (service_dir / "vector_documents.jsonl").write_text("", encoding="utf-8")
+    (service_dir / "doc_chunks.jsonl").write_text("", encoding="utf-8")
+
+
 def _write_cross_service_index(root: Path) -> None:
     company_dir = root / "API_COMPANY"
     gl_dir = root / "API_GL"
@@ -346,6 +401,32 @@ def test_schema_feasibility_accepts_complete_function_import_plan(tmp_path: Path
 
     assert result.passed is True
     assert result.coverage["filter_fields"] == []
+
+
+def test_schema_feasibility_accepts_parameterized_trial_balance_results_path(tmp_path: Path) -> None:
+    _write_trial_balance_index(tmp_path)
+    validator = SchemaFeasibilityValidator(index_root=tmp_path, service_name="C_TRIALBALANCE_CDS")
+    plan = QueryPlan(
+        service_name="C_TRIALBALANCE_CDS",
+        entity_set=(
+            "C_TRIALBALANCE("
+            "P_FromPostingDate=datetime'2020-01-01T00:00:00',"
+            "P_ToPostingDate=datetime'2020-12-31T00:00:00'"
+            ")/Results"
+        ),
+        select_fields=["Ledger", "CompanyCode", "FiscalYear", "GLAccount", "EndingBalanceAmtInCoCodeCrcy"],
+        filters=[
+            FilterCondition(field="Ledger", operator="eq", value="0L"),
+            FilterCondition(field="CompanyCode", operator="eq", value="1710"),
+            FilterCondition(field="FiscalYear", operator="eq", value="2020"),
+        ],
+        top=50,
+    )
+
+    result = validator.validate(AgentRequest(user_input="query 2020 company 1710 account balances"), plan)
+
+    assert result.passed is True
+    assert any(item.startswith("entity_path_normalized:") for item in result.evidence)
 
 
 def test_schema_feasibility_accepts_cross_service_multistep_plan(tmp_path: Path) -> None:

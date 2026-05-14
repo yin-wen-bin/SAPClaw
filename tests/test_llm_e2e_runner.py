@@ -1,9 +1,13 @@
 from sap_odata_agent.tools.run_llm_e2e_tests import (
+    _baseline_final_result,
     _compare,
     _expected_api_matches,
     _is_rate_limited_result,
     _iter_step_bindings,
+    _run_baseline,
+    _selected_services,
 )
+from sap_odata_agent.domain.models import CompiledRequest, ExecutionAttempt
 
 
 def test_compare_fails_when_frontend_omits_required_fields() -> None:
@@ -87,6 +91,92 @@ def test_compare_key_subset_passes_when_baseline_and_frontend_are_empty() -> Non
     assert result["failed_layer"] is None
 
 
+def test_baseline_final_result_applies_aggregate_transform() -> None:
+    case = {
+        "expected_api": "API_TEST",
+        "baseline": {
+            "result_transform": {
+                "type": "aggregate",
+                "group_by": ["CostCenter", "ProfitCenter"],
+                "sum_fields": ["Amount"],
+            }
+        },
+        "comparison": {"keys": ["CostCenter", "ProfitCenter", "Amount"]},
+    }
+    final_step = {
+        "result_count": 3,
+        "returned_count": 3,
+        "key_fields": ["Document"],
+        "keys": [{"Document": "1"}, {"Document": "2"}, {"Document": "3"}],
+        "results": [
+            {"CostCenter": "C1", "ProfitCenter": "P1", "Amount": "10.00"},
+            {"CostCenter": "C1", "ProfitCenter": "P1", "Amount": "2.50"},
+            {"CostCenter": "C2", "ProfitCenter": "P2", "Amount": "3"},
+        ],
+    }
+
+    result = _baseline_final_result(case, final_step)
+
+    assert result["result_count"] == 2
+    assert result["keys"] == [
+        {"CostCenter": "C1", "ProfitCenter": "P1", "Amount": "12.5"},
+        {"CostCenter": "C2", "ProfitCenter": "P2", "Amount": "3"},
+    ]
+
+
+def test_run_baseline_skips_bound_step_when_source_has_no_values(tmp_path, monkeypatch) -> None:
+    import sap_odata_agent.tools.run_llm_e2e_tests as runner_module
+
+    class FakeExecutor:
+        def __init__(self) -> None:
+            self.calls = 0
+
+        def execute(self, compiled_request: CompiledRequest, attempt_number: int) -> ExecutionAttempt:
+            self.calls += 1
+            return ExecutionAttempt(
+                attempt_number=attempt_number,
+                request=compiled_request,
+                success=True,
+                status_code=200,
+                response_preview={"result_count": 0, "returned_count": 0, "results": [], "_all_results": []},
+            )
+
+    class FakeSettings:
+        sap_base_url = "http://sap.example"
+
+    executor = FakeExecutor()
+    monkeypatch.setattr(runner_module, "get_sap_executor", lambda: executor)
+    monkeypatch.setattr(runner_module, "get_settings", lambda: FakeSettings())
+    case = {
+        "id": "CASE-001",
+        "api": "FICO",
+        "baseline": {
+            "steps": [
+                {
+                    "id": "headers",
+                    "url": "/sap/opu/odata/sap/API_TEST/Header?$select=Document&$top=5",
+                    "key_fields": ["Document"],
+                },
+                {
+                    "id": "items",
+                    "url": "/sap/opu/odata/sap/API_TEST/Item?$select=Document,Item&$top=5",
+                    "key_fields": ["Document", "Item"],
+                    "bindings": [
+                        {"source_step": "headers", "source_field": "Document", "target_field": "Document"}
+                    ],
+                },
+            ]
+        },
+    }
+
+    baseline = _run_baseline(case, tmp_path)
+
+    assert executor.calls == 1
+    assert baseline["success"] is True
+    assert baseline["steps"][1]["skipped"] is True
+    assert baseline["final"]["result_count"] == 0
+
+
 def test_rate_limit_result_detection() -> None:
     result = {
         "comparison": {
@@ -109,6 +199,24 @@ def test_expected_apis_can_require_all_services() -> None:
     frontend = {"selected_api": "API_B", "selected_apis": ["API_B"]}
 
     assert _expected_api_matches(case, frontend) is False
+
+
+def test_selected_services_includes_planner_diagnostic_schema_context() -> None:
+    class Plan:
+        service_name = "C_TRIALBALANCE_CDS"
+        steps = []
+        planner_diagnostics = {
+            "llm_dynamic_path_planner": {
+                "schema_context": {
+                    "service_names": ["C_TRIALBALANCE_CDS", "API_GLACCOUNTLINEITEM"]
+                }
+            }
+        }
+
+    class Response:
+        plan = Plan()
+
+    assert _selected_services(Response()) == ["C_TRIALBALANCE_CDS", "API_GLACCOUNTLINEITEM"]
 
 
 def test_key_subset_allows_count_match_when_baseline_page_is_smaller() -> None:

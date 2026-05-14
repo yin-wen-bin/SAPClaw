@@ -432,6 +432,8 @@ class LlmApiRouter:
             ("company", "companycode", "company code", "公司", "公司代码", "法人公司"),
             ("chartofaccounts", "chart of accounts", "科目表", "会计科目表"),
             ("glaccount", "g/l account", "general ledger account", "总账科目", "会计科目", "科目"),
+            ("balance", "trial balance", "account balance", "余额", "试算", "科目余额"),
+            ("drilldown", "drill down", "line item", "line items", "下钻", "凭证明细", "行项目"),
             ("expense", "profitloss", "profit and loss", "费用", "损益", "损益类", "收入", "资产负债"),
             ("journalentry", "journal entry", "line item", "财务行项目", "日记账", "凭证行项目", "总账行项目"),
             ("functionalarea", "functional area", "职能范围", "功能范围"),
@@ -507,6 +509,7 @@ class LlmApiRouter:
         )
         selected = self._repair_cost_center_master_route(selected, valid_services, user_input)
         selected = self._repair_journal_entry_item_route(selected, valid_services, user_input)
+        selected = self._repair_operational_accounting_exception_route(selected, valid_services, user_input)
         selected = self._repair_gl_account_line_item_route(selected, valid_services, user_input)
         selected = self._repair_purchase_order_supplier_contact_route(selected, valid_services, user_input)
         selected = self._repair_skill_declared_companion_apis(
@@ -692,6 +695,9 @@ class LlmApiRouter:
             return True
 
         synonym_groups = (
+            ("glaccount", "g/l account", "general ledger account", "总账科目", "会计科目", "科目"),
+            ("balance", "trial balance", "account balance", "余额", "试算", "科目余额"),
+            ("drilldown", "drill down", "line item", "line items", "下钻", "凭证明细", "行项目"),
             ("supplier", "vendor", "供应商"),
             ("material", "product", "物料", "产品"),
             ("name", "names", "名称"),
@@ -919,8 +925,10 @@ class LlmApiRouter:
     ) -> list[SelectedApi]:
         line_item_service = "API_GLACCOUNTLINEITEM"
         journal_service = "API_JOURNALENTRYITEMBASIC_SRV"
+        operational_item_service = "API_OPLACCTGDOCITEMCUBE_SRV"
         company_service = "API_COMPANYCODE_SRV"
         ledger_service = "API_LEDGER_SRV"
+        trial_balance_service = "C_TRIALBALANCE_CDS"
         if line_item_service not in valid_services:
             return selected
         if not LlmApiRouter._looks_like_gl_account_line_item_request(user_input):
@@ -944,7 +952,8 @@ class LlmApiRouter:
         repaired = [
             item
             for item in selected
-            if item.service_name not in {journal_service, company_service, line_item_service}
+            if item.service_name
+            not in {journal_service, operational_item_service, company_service, line_item_service, trial_balance_service}
         ]
         if (
             LlmApiRouter._looks_like_leading_ledger_request(user_input)
@@ -980,7 +989,111 @@ class LlmApiRouter:
             "general ledger line item",
             "general ledger line items",
         )
-        return any(marker in text for marker in markers)
+        if any(marker in text for marker in markers):
+            return True
+
+        gl_account_markers = (
+            "总账科目",
+            "g/l科目",
+            "g/l account",
+            "gl account",
+            "general ledger account",
+        )
+        line_item_semantics = (
+            "发生明细",
+            "明细账",
+            "未清项目",
+            "未清项目日期",
+            "已清项目",
+            "还没有清账",
+            "没有清账",
+            "尚未清账",
+            "已经清账",
+            "清账日期",
+            "clearing date",
+            "open item",
+            "open items",
+            "cleared item",
+            "cleared items",
+            "not cleared",
+            "line item detail",
+            "line item details",
+            "费用明细",
+            "科目明细",
+            "归集",
+        )
+        has_line_item_semantics = any(marker in text for marker in line_item_semantics)
+        if not has_line_item_semantics:
+            return False
+        if any(marker in text for marker in gl_account_markers):
+            return True
+        has_account_number = re.search(
+            r"(?:科目|account)\s*[:：#-]?\s*[a-z0-9]{4,}",
+            str(user_input or ""),
+            flags=re.IGNORECASE,
+        )
+        return has_account_number is not None
+
+    @staticmethod
+    def _repair_operational_accounting_exception_route(
+        selected: list[SelectedApi],
+        valid_services: set[str],
+        user_input: str,
+    ) -> list[SelectedApi]:
+        operational_item_service = "API_OPLACCTGDOCITEMCUBE_SRV"
+        if operational_item_service not in valid_services:
+            return selected
+        if not LlmApiRouter._looks_like_operational_accounting_exception_request(user_input):
+            return selected
+        selected_names = {item.service_name for item in selected}
+        if operational_item_service in selected_names:
+            return selected
+        replaced_services = {
+            "API_GLACCOUNTLINEITEM",
+            "API_JOURNALENTRYITEMBASIC_SRV",
+            "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+        }
+        repaired = [item for item in selected if item.service_name not in replaced_services]
+        repaired.append(
+            SelectedApi(
+                service_name=operational_item_service,
+                confidence=0.76,
+                reason="Accounting exception wording with manual document type, creator, or amount threshold should use the operational accounting document item cube.",
+            )
+        )
+        return repaired
+
+    @staticmethod
+    def _looks_like_operational_accounting_exception_request(user_input: str) -> bool:
+        text = str(user_input or "").lower()
+        exception_markers = (
+            "手工凭证",
+            "凭证类型",
+            "过账用户",
+            "大额",
+            "金额超过",
+            "金额大于",
+            "异常项目",
+            "manual document",
+            "document type",
+            "created by",
+            "large amount",
+            "amount over",
+            "amount greater",
+        )
+        accounting_scope_markers = (
+            "总账项目",
+            "会计凭证",
+            "财务凭证",
+            "会计项目",
+            "accounting document",
+            "accounting item",
+            "g/l item",
+            "gl item",
+        )
+        return any(marker in text for marker in exception_markers) and any(
+            marker in text for marker in accounting_scope_markers
+        )
 
     @staticmethod
     def _repair_journal_entry_item_route(

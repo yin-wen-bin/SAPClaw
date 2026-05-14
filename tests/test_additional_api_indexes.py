@@ -82,11 +82,22 @@ def test_api_catalog_exposes_answer_fields_for_router_selection() -> None:
     catalog = ApiCatalogProvider(index_root="data/index").load()
     journal = next(item for item in catalog if item["service_name"] == "API_JOURNALENTRYITEMBASIC_SRV")
     line_item = next(item for item in catalog if item["service_name"] == "API_GLACCOUNTLINEITEM")
+    operational_cube = next(item for item in catalog if item["service_name"] == "API_OPLACCTGDOCITEMCUBE_SRV")
+    trial_balance = next(item for item in catalog if item["service_name"] == "C_TRIALBALANCE_CDS")
 
     assert "A_JournalEntryItemBasic.GLAccountName" in journal["top_answer_fields"]
     assert "A_JournalEntryItemBasic.CompanyCodeName" in journal["top_answer_fields"]
+    assert "GLAccountLineItem.ClearingDate" in line_item["top_filter_fields"]
+    assert "GLAccountLineItem.PostingDate" in line_item["top_filter_fields"]
+    assert "GLAccountLineItem.ClearingDate" in line_item["top_answer_fields"]
+    assert "GLAccountLineItem.CompanyCodeCurrency" in line_item["top_answer_fields"]
     assert "GLAccountLineItem.GLAccountName" not in line_item["top_answer_fields"]
     assert "GLAccountLineItem.CompanyCodeName" not in line_item["top_answer_fields"]
+    assert "A_OperationalAcctgDocItemCube.AccountingDocumentType" in operational_cube["top_filter_fields"]
+    assert "A_OperationalAcctgDocItemCube.AccountingDocCreatedByUser" in operational_cube["top_answer_fields"]
+    assert "A_OperationalAcctgDocItemCube.AmountInCompanyCodeCurrency" in operational_cube["top_answer_fields"]
+    assert "C_TRIALBALANCEResults.FiscalPeriod" in trial_balance["top_filter_fields"]
+    assert "C_TRIALBALANCEResults.EndingBalanceAmtInCoCodeCrcy" in trial_balance["top_answer_fields"]
 
 
 def test_company_code_catalog_prioritizes_chart_of_accounts_for_router() -> None:

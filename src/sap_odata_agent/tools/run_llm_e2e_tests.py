@@ -12,7 +12,8 @@ from typing import Any
 from uuid import uuid4
 
 from sap_odata_agent.api.app_dependencies import get_orchestrator, get_sap_executor
-from sap_odata_agent.domain.models import AgentRequest, CompiledRequest
+from sap_odata_agent.application.result_transformer import ResultTransformer
+from sap_odata_agent.domain.models import AgentRequest, CompiledRequest, QueryPlan, ResultTransform
 from sap_odata_agent.infrastructure.config.settings import get_settings
 
 
@@ -242,10 +243,37 @@ def _run_baseline(case: dict[str, Any], case_root: Path = CASE_ROOT) -> dict[str
 
     for index, step in enumerate(case["baseline"]["steps"], start=1):
         url = _absolute_url(settings.sap_base_url, step["url"])
+        skip_reason = ""
         for bind in _iter_step_bindings(step):
             source_output = step_outputs[bind["source_step"]]
             values = _extract_values(source_output["results"], bind["source_field"])
+            if not values:
+                skip_reason = (
+                    f"Skipped because binding source `{bind['source_step']}.{bind['source_field']}` "
+                    "returned no values."
+                )
+                break
             url = _append_binding_filter(url, bind["target_field"], values)
+
+        if skip_reason:
+            step_output = {
+                "id": step["id"],
+                "success": True,
+                "status_code": None,
+                "request_url": url,
+                "error_message": None,
+                "result_count": 0,
+                "returned_count": 0,
+                "key_fields": step.get("key_fields", []),
+                "keys": [],
+                "results": [],
+                "skipped": True,
+                "skip_reason": skip_reason,
+                "attempt": None,
+            }
+            baseline_steps.append(step_output)
+            step_outputs[step["id"]] = step_output
+            break
 
         attempt = executor.execute(CompiledRequest(method="GET", url=url), attempt_number=index)
         attempt_dict = _to_jsonable(attempt)
@@ -269,21 +297,61 @@ def _run_baseline(case: dict[str, Any], case_root: Path = CASE_ROOT) -> dict[str
             break
 
     final_step = baseline_steps[-1] if baseline_steps else {}
+    final_result = _baseline_final_result(case, final_step)
     baseline = {
         "success": bool(final_step.get("success")),
         "steps": baseline_steps,
-        "final": {
-            "result_count": final_step.get("result_count", 0),
-            "returned_count": final_step.get("returned_count", 0),
-            "key_fields": final_step.get("key_fields", []),
-            "keys": final_step.get("keys", []),
-            "results": final_step.get("results", []),
-        },
+        "final": final_result,
     }
     baseline_path = case_root / case["api"] / "baselines" / f"{case['id']}.json"
     baseline_path.parent.mkdir(parents=True, exist_ok=True)
     baseline_path.write_text(json.dumps(baseline, ensure_ascii=False, indent=2), encoding="utf-8")
     return baseline
+
+
+def _baseline_final_result(case: dict[str, Any], final_step: dict[str, Any]) -> dict[str, Any]:
+    result = {
+        "result_count": final_step.get("result_count", 0),
+        "returned_count": final_step.get("returned_count", 0),
+        "key_fields": final_step.get("key_fields", []),
+        "keys": final_step.get("keys", []),
+        "results": final_step.get("results", []),
+    }
+    transform_spec = (case.get("baseline") or {}).get("result_transform")
+    if not isinstance(transform_spec, dict):
+        return result
+    if str(transform_spec.get("type") or "").lower() != "aggregate":
+        return result
+    group_by = [str(item) for item in transform_spec.get("group_by", []) if str(item).strip()]
+    sum_fields = [str(item) for item in transform_spec.get("sum_fields", []) if str(item).strip()]
+    if not group_by or not sum_fields:
+        return result
+
+    transformer = ResultTransformer()
+    transformed = transformer.apply(
+        QueryPlan(
+            service_name=str(case.get("expected_api") or case.get("api") or ""),
+            entity_set="",
+            result_transform=ResultTransform(type="aggregate", group_by=group_by, sum_fields=sum_fields),
+        ),
+        {
+            "result_count": result["result_count"],
+            "returned_count": result["returned_count"],
+            "results": result["results"],
+            "_all_results": result["results"],
+        },
+    )
+    if not isinstance(transformed, dict):
+        return result
+    key_fields = case.get("comparison", {}).get("keys") or group_by
+    return {
+        "result_count": transformed.get("result_count", 0),
+        "returned_count": transformed.get("returned_count", 0),
+        "key_fields": key_fields,
+        "keys": _key_set(transformed.get("results", []), key_fields),
+        "results": transformed.get("results", []),
+        "result_transform": transformed.get("result_transform"),
+    }
 
 
 def _iter_step_bindings(step: dict[str, Any]) -> list[dict[str, str]]:
@@ -346,16 +414,34 @@ def _run_frontend(case: dict[str, Any], run_id: str, *, shared_conversation: boo
 
 def _selected_services(response: Any) -> list[str]:
     services: list[str] = []
+
+    def add_service(value: Any) -> None:
+        service_name = str(value or "").strip()
+        if service_name:
+            services.append(service_name)
+
+    def add_schema_context_services(value: Any) -> None:
+        if isinstance(value, dict):
+            schema_context = value.get("schema_context")
+            if isinstance(schema_context, dict):
+                for service_name in schema_context.get("service_names", []) or []:
+                    add_service(service_name)
+                add_service(schema_context.get("service_name"))
+            for nested in value.values():
+                add_schema_context_services(nested)
+        elif isinstance(value, list):
+            for item in value:
+                add_schema_context_services(item)
+
     plan = getattr(response, "plan", None)
     if plan is None:
         return services
     service_name = getattr(plan, "service_name", None)
-    if service_name:
-        services.append(str(service_name))
+    add_service(service_name)
     for step in getattr(plan, "steps", []) or []:
         step_service = getattr(step, "service_name", None)
-        if step_service:
-            services.append(str(step_service))
+        add_service(step_service)
+    add_schema_context_services(getattr(plan, "planner_diagnostics", {}) or {})
     return list(dict.fromkeys(services))
 
 

@@ -1092,6 +1092,177 @@ def test_api_router_repairs_gl_line_item_route_to_dedicated_api() -> None:
     assert decision.raw_response["selected_apis"][0]["service_name"] == "API_GLACCOUNTLINEITEM"
 
 
+def test_api_router_repairs_gl_open_item_route_to_line_item_api() -> None:
+    response = {
+        "resolved_user_input": "查询公司1710下总账科目21100000截至2024年12月31日还没有清账的项目",
+        "should_carry_context": False,
+        "selected_apis": [
+            {
+                "service_name": "API_JOURNALENTRYITEMBASIC_SRV",
+                "confidence": 0.86,
+                "reason": "The user asks for journal entry items by company code and G/L account.",
+            }
+        ],
+        "requires_multi_api": False,
+        "intent_summary": "Query open G/L account items by key date.",
+        "business_domain": "Finance",
+        "business_object": "G/L Open Item",
+        "needs_clarification": False,
+        "clarification_question": "",
+        "clarification_options": [],
+    }
+    catalog = [
+        {"service_name": "API_JOURNALENTRYITEMBASIC_SRV", "short_description": "Journal entry item API."},
+        {"service_name": "API_GLACCOUNTLINEITEM", "short_description": "G/L account line item API."},
+    ]
+    client = SequencedClient([json.dumps(response)])
+    router = LlmApiRouter(llm_client=client, enabled=True, allow_default_fallback=False)
+
+    decision = router.route("查询公司1710下总账科目21100000截至2024年12月31日还没有清账的项目", catalog)
+
+    assert [item.service_name for item in decision.selected_apis] == ["API_GLACCOUNTLINEITEM"]
+    assert decision.raw_response["selected_apis"][0]["service_name"] == "API_GLACCOUNTLINEITEM"
+
+
+def test_api_router_repairs_open_item_balance_route_from_trial_balance() -> None:
+    response = {
+        "resolved_user_input": "查询科目13100000的余额，公司代码为1710，未清项目日期为今天",
+        "should_carry_context": False,
+        "selected_apis": [
+            {
+                "service_name": "C_TRIALBALANCE_CDS",
+                "confidence": 0.87,
+                "reason": "The user asks for a G/L account balance.",
+            }
+        ],
+        "requires_multi_api": False,
+        "intent_summary": "Query G/L account open item balance by key date.",
+        "business_domain": "Finance",
+        "business_object": "G/L Open Item Balance",
+        "needs_clarification": False,
+        "clarification_question": "",
+        "clarification_options": [],
+    }
+    catalog = [
+        {"service_name": "C_TRIALBALANCE_CDS", "short_description": "Trial balance API."},
+        {"service_name": "API_GLACCOUNTLINEITEM", "short_description": "G/L account line item API."},
+    ]
+    client = SequencedClient([json.dumps(response)])
+    router = LlmApiRouter(llm_client=client, enabled=True, allow_default_fallback=False)
+
+    decision = router.route("查询科目13100000的余额，公司代码为1710，未清项目日期为今天", catalog)
+
+    assert [item.service_name for item in decision.selected_apis] == ["API_GLACCOUNTLINEITEM"]
+    assert decision.raw_response["selected_apis"][0]["service_name"] == "API_GLACCOUNTLINEITEM"
+
+
+def test_api_router_adds_trial_balance_companion_for_gl_balance_drilldown() -> None:
+    response = {
+        "resolved_user_input": "从公司1710总账科目10010000在2023年第12期的余额下钻查看凭证明细",
+        "should_carry_context": False,
+        "selected_apis": [
+            {
+                "service_name": "API_GLACCOUNTLINEITEM",
+                "confidence": 0.88,
+                "reason": "The user asks for G/L account line item drilldown details.",
+            }
+        ],
+        "requires_multi_api": False,
+        "intent_summary": "Drill down from G/L account balance to accounting document line items.",
+        "business_domain": "Finance",
+        "business_object": "G/L Balance Drilldown",
+        "needs_clarification": False,
+        "clarification_question": "",
+        "clarification_options": [],
+    }
+    catalog = [
+        {
+            "service_name": "API_GLACCOUNTLINEITEM",
+            "short_description": "G/L account line item API.",
+            "api_skill_summary": (
+                "For balance drilldown wording such as `余额下钻`, `从余额下钻查看凭证明细`, "
+                "or `drill down from G/L account balance to line items`, use companion API "
+                "`C_TRIALBALANCE_CDS` with `API_GLACCOUNTLINEITEM`."
+            ),
+        },
+        {"service_name": "C_TRIALBALANCE_CDS", "short_description": "Trial balance API."},
+    ]
+    client = SequencedClient([json.dumps(response)])
+    router = LlmApiRouter(llm_client=client, enabled=True, allow_default_fallback=False)
+
+    decision = router.route("从公司1710总账科目10010000在2023年第12期的余额下钻查看凭证明细", catalog)
+
+    assert [item.service_name for item in decision.selected_apis] == [
+        "API_GLACCOUNTLINEITEM",
+        "C_TRIALBALANCE_CDS",
+    ]
+    assert decision.requires_multi_api is True
+
+
+def test_api_router_repairs_gl_expense_detail_route_to_line_item_api() -> None:
+    response = {
+        "resolved_user_input": "查询公司1710下总账科目66000000按成本中心和利润中心归集的费用明细",
+        "should_carry_context": False,
+        "selected_apis": [
+            {
+                "service_name": "API_OPLACCTGDOCITEMCUBE_SRV",
+                "confidence": 0.86,
+                "reason": "The user asks for operational accounting items by company code, G/L account, and cost center.",
+            }
+        ],
+        "requires_multi_api": False,
+        "intent_summary": "Query G/L account expense details by cost center and profit center.",
+        "business_domain": "Finance",
+        "business_object": "G/L Line Item",
+        "needs_clarification": False,
+        "clarification_question": "",
+        "clarification_options": [],
+    }
+    catalog = [
+        {"service_name": "API_OPLACCTGDOCITEMCUBE_SRV", "short_description": "Operational accounting item cube."},
+        {"service_name": "API_GLACCOUNTLINEITEM", "short_description": "G/L account line item API."},
+    ]
+    client = SequencedClient([json.dumps(response)])
+    router = LlmApiRouter(llm_client=client, enabled=True, allow_default_fallback=False)
+
+    decision = router.route("查询公司1710下总账科目66000000按成本中心和利润中心归集的费用明细", catalog)
+
+    assert [item.service_name for item in decision.selected_apis] == ["API_GLACCOUNTLINEITEM"]
+    assert decision.raw_response["selected_apis"][0]["service_name"] == "API_GLACCOUNTLINEITEM"
+
+
+def test_api_router_repairs_accounting_exception_route_to_operational_cube() -> None:
+    response = {
+        "resolved_user_input": "查询公司1710在2024年由手工凭证产生且金额超过10000的大额总账项目",
+        "should_carry_context": False,
+        "selected_apis": [
+            {
+                "service_name": "API_GLACCOUNTLINEITEM",
+                "confidence": 0.82,
+                "reason": "The user asks for G/L items.",
+            }
+        ],
+        "requires_multi_api": False,
+        "intent_summary": "Query large manual accounting document items.",
+        "business_domain": "Finance",
+        "business_object": "Accounting Document Item",
+        "needs_clarification": False,
+        "clarification_question": "",
+        "clarification_options": [],
+    }
+    catalog = [
+        {"service_name": "API_GLACCOUNTLINEITEM", "short_description": "G/L account line item API."},
+        {"service_name": "API_OPLACCTGDOCITEMCUBE_SRV", "short_description": "Operational accounting item cube."},
+    ]
+    client = SequencedClient([json.dumps(response)])
+    router = LlmApiRouter(llm_client=client, enabled=True, allow_default_fallback=False)
+
+    decision = router.route("查询公司1710在2024年由手工凭证产生且金额超过10000的大额总账项目", catalog)
+
+    assert [item.service_name for item in decision.selected_apis] == ["API_OPLACCTGDOCITEMCUBE_SRV"]
+    assert decision.raw_response["selected_apis"][0]["service_name"] == "API_OPLACCTGDOCITEMCUBE_SRV"
+
+
 def test_api_router_keeps_ledger_bridge_for_leading_gl_line_items() -> None:
     response = {
         "resolved_user_input": "查询公司1710主导ledger的总账行项目",

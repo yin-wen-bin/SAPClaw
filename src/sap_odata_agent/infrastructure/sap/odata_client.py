@@ -22,6 +22,9 @@ from sap_odata_agent.domain.models import (
 
 
 CDS_VIEW_ONLY_SERVICES = frozenset({"I_PurchaseOrderHistoryAPI01"})
+AUTO_KEY_SELECT_EXCLUSIONS = {
+    ("C_TRIALBALANCE_CDS", "C_TRIALBALANCEResults"): frozenset({"ID"}),
+}
 
 
 @dataclass(slots=True)
@@ -188,6 +191,8 @@ class BasicODataCompiler:
         fields = [str(field) for field in select_fields if str(field).strip()]
         existing = set(fields)
         for key_field in self._entity_key_fields(service_name, entity_set):
+            if key_field in AUTO_KEY_SELECT_EXCLUSIONS.get((str(service_name), str(entity_set)), frozenset()):
+                continue
             if key_field and key_field not in existing:
                 fields.append(key_field)
                 existing.add(key_field)
@@ -321,6 +326,8 @@ class BasicODataCompiler:
                 if raw_value is not None
             ]
             return f"({' or '.join(or_parts)})" if or_parts else f"{field} eq ''"
+        if str(item.value_type or "").lower() in {"null", "edm.null", "null_keyword", "odata.null"}:
+            return f"{field} {operator} null"
         escaped = value.replace("'", "''")
         if operator == "contains":
             return f"substringof('{escaped}',{field}) eq true"
@@ -329,6 +336,8 @@ class BasicODataCompiler:
     @staticmethod
     def _compile_literal(value: str, value_type: str) -> str:
         normalized_type = str(value_type or "").lower()
+        if normalized_type in {"null", "edm.null", "null_keyword", "odata.null"}:
+            return "null"
         if normalized_type in {"boolean", "bool", "edm.boolean"}:
             normalized_value = str(value).strip().lower()
             if normalized_value in {"true", "1", "yes"}:

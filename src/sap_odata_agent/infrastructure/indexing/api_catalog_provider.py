@@ -500,6 +500,35 @@ class ApiCatalogProvider:
                 "A_GLAccountText.GLAccount",
                 "A_GLAccountText.Language",
             ]
+        if service_name == "API_GLACCOUNTLINEITEM":
+            return [
+                "GLAccountLineItem.CompanyCode",
+                "GLAccountLineItem.GLAccount",
+                "GLAccountLineItem.PostingDate",
+                "GLAccountLineItem.ClearingDate",
+                "GLAccountLineItem.AccountingDocument",
+                "GLAccountLineItem.AccountingDocumentItem",
+                "GLAccountLineItem.Ledger",
+                "GLAccountLineItem.FiscalYear",
+            ]
+        if service_name == "API_OPLACCTGDOCITEMCUBE_SRV":
+            return [
+                "A_OperationalAcctgDocItemCube.CompanyCode",
+                "A_OperationalAcctgDocItemCube.FiscalYear",
+                "A_OperationalAcctgDocItemCube.AccountingDocumentType",
+                "A_OperationalAcctgDocItemCube.AccountingDocCreatedByUser",
+                "A_OperationalAcctgDocItemCube.AmountInCompanyCodeCurrency",
+                "A_OperationalAcctgDocItemCube.GLAccount",
+                "A_OperationalAcctgDocItemCube.PostingDate",
+            ]
+        if service_name == "C_TRIALBALANCE_CDS":
+            return [
+                "C_TRIALBALANCEResults.Ledger",
+                "C_TRIALBALANCEResults.CompanyCode",
+                "C_TRIALBALANCEResults.FiscalYear",
+                "C_TRIALBALANCEResults.FiscalPeriod",
+                "C_TRIALBALANCEResults.GLAccount",
+            ]
         if service_name == "API_JOURNALENTRYITEMBASIC_SRV":
             return [
                 "A_JournalEntryItemBasic.CompanyCode",
@@ -588,6 +617,45 @@ class ApiCatalogProvider:
                 "A_JournalEntryItemBasic.GLAccount",
                 "A_JournalEntryItemBasic.GLAccountName",
                 "A_JournalEntryItemBasic.AmountInCompanyCodeCurrency",
+            ]
+        if service_name == "API_GLACCOUNTLINEITEM":
+            return [
+                "GLAccountLineItem.ID",
+                "GLAccountLineItem.CompanyCode",
+                "GLAccountLineItem.FiscalYear",
+                "GLAccountLineItem.AccountingDocument",
+                "GLAccountLineItem.AccountingDocumentItem",
+                "GLAccountLineItem.Ledger",
+                "GLAccountLineItem.GLAccount",
+                "GLAccountLineItem.CompanyCodeCurrency",
+                "GLAccountLineItem.PostingDate",
+                "GLAccountLineItem.ClearingDate",
+                "GLAccountLineItem.AmountInCompanyCodeCurrency",
+            ]
+        if service_name == "API_OPLACCTGDOCITEMCUBE_SRV":
+            return [
+                "A_OperationalAcctgDocItemCube.CompanyCode",
+                "A_OperationalAcctgDocItemCube.FiscalYear",
+                "A_OperationalAcctgDocItemCube.AccountingDocument",
+                "A_OperationalAcctgDocItemCube.AccountingDocumentItem",
+                "A_OperationalAcctgDocItemCube.GLAccount",
+                "A_OperationalAcctgDocItemCube.PostingDate",
+                "A_OperationalAcctgDocItemCube.AccountingDocumentType",
+                "A_OperationalAcctgDocItemCube.AccountingDocCreatedByUser",
+                "A_OperationalAcctgDocItemCube.AmountInCompanyCodeCurrency",
+            ]
+        if service_name == "C_TRIALBALANCE_CDS":
+            return [
+                "C_TRIALBALANCEResults.ID",
+                "C_TRIALBALANCEResults.Ledger",
+                "C_TRIALBALANCEResults.CompanyCode",
+                "C_TRIALBALANCEResults.FiscalYear",
+                "C_TRIALBALANCEResults.FiscalPeriod",
+                "C_TRIALBALANCEResults.GLAccount",
+                "C_TRIALBALANCEResults.StartingBalanceAmtInCoCodeCrcy",
+                "C_TRIALBALANCEResults.DebitAmountInCoCodeCrcy",
+                "C_TRIALBALANCEResults.CreditAmountInCoCodeCrcy",
+                "C_TRIALBALANCEResults.EndingBalanceAmtInCoCodeCrcy",
             ]
         if service_name == "API_SALES_ORDER_SRV":
             return [

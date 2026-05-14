@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from dataclasses import asdict
 from typing import Any
 
@@ -50,6 +51,9 @@ class SchemaFeasibilityValidator:
         evidence: list[str] = []
         coverage: dict[str, list[str]] = {"answer_fields": [], "filter_fields": []}
         entity_sets = {entity.get("entity_set", "") for entity in snapshot.entities}
+        plan_metadata_entity_set = self._metadata_entity_set(snapshot, plan.entity_set)
+        if plan_metadata_entity_set != plan.entity_set:
+            evidence.append(f"entity_path_normalized:{plan.entity_set}->{plan_metadata_entity_set}")
         function_imports = {
             str(item.get("name", "") or item.get("entity_set", "")): item
             for item in function_imports_from_snapshot(snapshot)
@@ -77,7 +81,7 @@ class SchemaFeasibilityValidator:
                     entity_set=plan.entity_set,
                 )
             )
-        elif not is_function_import and plan.entity_set not in entity_sets:
+        elif not is_function_import and plan_metadata_entity_set not in entity_sets:
             violations.append(
                 FeasibilityViolation(
                     code="entity_not_found",
@@ -105,7 +109,7 @@ class SchemaFeasibilityValidator:
             selected_fields = self._selected_fields(plan)
             filter_fields = self._step_filter_fields(plan.steps)
         else:
-            entity_field_map = self._field_map(snapshot, plan.entity_set)
+            entity_field_map = self._field_map(snapshot, plan_metadata_entity_set)
             self._validate_direct_fields(plan, entity_field_map, violations)
             selected_fields = set(plan.select_fields or [])
             filter_fields = {condition.field for condition in plan.filters or []}
@@ -260,7 +264,10 @@ class SchemaFeasibilityValidator:
                     )
                 )
                 continue
-            field_map = self._field_map(snapshot, step.entity_set)
+            step_metadata_entity_set = self._metadata_entity_set(snapshot, step.entity_set)
+            if step_metadata_entity_set != step.entity_set:
+                evidence.append(f"step_entity_path_normalized:{step.step_id}:{step.entity_set}->{step_metadata_entity_set}")
+            field_map = self._field_map(snapshot, step_metadata_entity_set)
             if not field_map:
                 violations.append(
                     FeasibilityViolation(
@@ -380,7 +387,10 @@ class SchemaFeasibilityValidator:
                 )
             )
             return
-        field_map = self._field_map(snapshot, entity_set)
+        metadata_entity_set = self._metadata_entity_set(snapshot, entity_set)
+        if metadata_entity_set != entity_set:
+            evidence.append(f"result_transform_entity_path_normalized:{entity_set}->{metadata_entity_set}")
+        field_map = self._field_map(snapshot, metadata_entity_set)
         selected_fields = self._selected_fields(plan)
         for field_name in transform.group_by:
             if field_name not in field_map:
@@ -538,6 +548,49 @@ class SchemaFeasibilityValidator:
             for field in snapshot.fields
             if field.get("entity_set") == entity_set and field.get("field_name")
         }
+
+    @staticmethod
+    def _metadata_entity_set(snapshot, entity_set: str) -> str:
+        entity_sets = {
+            str(entity.get("entity_set", ""))
+            for entity in snapshot.entities
+            if entity.get("entity_set")
+        }
+        raw = str(entity_set or "")
+        if raw in entity_sets:
+            return raw
+
+        path = raw.split("?", 1)[0].strip("/")
+        if not path or ("/" not in path and "(" not in path):
+            return raw
+
+        segments = [segment for segment in path.split("/") if segment]
+        if not segments:
+            return raw
+        base = re.sub(r"\(.*\)$", "", segments[0])
+        navigation = re.sub(r"\(.*\)$", "", segments[-1]) if len(segments) > 1 else ""
+        candidates = []
+        if base and navigation:
+            candidates.append(f"{base}{navigation}")
+        if navigation:
+            candidates.append(navigation)
+        if base:
+            candidates.append(base)
+        for candidate in candidates:
+            if candidate in entity_sets:
+                return candidate
+
+        base_lower = base.lower()
+        navigation_lower = navigation.lower()
+        for entity in entity_sets:
+            lowered = entity.lower()
+            if navigation_lower and lowered == f"{base_lower}{navigation_lower}":
+                return entity
+        for entity in entity_sets:
+            lowered = entity.lower()
+            if navigation_lower and lowered.endswith(navigation_lower) and lowered.startswith(base_lower):
+                return entity
+        return raw
 
     @staticmethod
     def _selected_fields(plan: QueryPlan) -> set[str]:

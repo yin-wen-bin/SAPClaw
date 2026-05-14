@@ -1,5 +1,6 @@
 import pytest
 import json
+import urllib.parse
 
 from sap_odata_agent.domain.models import FilterCondition, FunctionParameter, QueryPlan
 from sap_odata_agent.infrastructure.sap.odata_client import BasicODataCompiler, BasicPlanValidator
@@ -51,6 +52,36 @@ def test_compiler_uses_odata_v2_substringof_for_contains_filter() -> None:
 
     assert "substringof('trea',BusinessPartnerFullName) eq true" in compiled.url
     assert "BusinessPartnerFullName contains 'trea'" not in compiled.url
+
+
+def test_compiler_keeps_null_filter_literal_unquoted() -> None:
+    plan = QueryPlan(
+        service_name="API_GLACCOUNTLINEITEM",
+        entity_set="GLAccountLineItem",
+        select_fields=["AccountingDocument", "ClearingDate"],
+        filters=[FilterCondition(field="ClearingDate", operator="eq", value="null", value_type="null")],
+        top=50,
+    )
+
+    compiled = BasicODataCompiler(base_url="https://sap.example.com").compile(plan)
+
+    assert "ClearingDate eq null" in compiled.url
+    assert "ClearingDate eq 'null'" not in compiled.url
+
+
+def test_compiler_accepts_null_keyword_value_type_alias() -> None:
+    plan = QueryPlan(
+        service_name="API_GLACCOUNTLINEITEM",
+        entity_set="GLAccountLineItem",
+        select_fields=["AccountingDocument", "ClearingDate"],
+        filters=[FilterCondition(field="ClearingDate", operator="eq", value="null", value_type="null_keyword")],
+        top=50,
+    )
+
+    compiled = BasicODataCompiler(base_url="https://sap.example.com").compile(plan)
+
+    assert "ClearingDate eq null" in compiled.url
+    assert "ClearingDate eq 'null'" not in compiled.url
 
 
 def test_compiler_maps_versioned_index_service_name_to_sap_runtime_path() -> None:
@@ -174,6 +205,71 @@ def test_compiler_includes_entity_key_fields_from_index(tmp_path) -> None:
     ).compile(plan)
 
     assert "$select=ControllingArea,ProfitCenter,District,ValidityEndDate" in compiled.url
+
+
+def test_compiler_does_not_auto_select_trial_balance_synthetic_id(tmp_path) -> None:
+    service_dir = tmp_path / "data" / "index" / "C_TRIALBALANCE_CDS"
+    service_dir.mkdir(parents=True)
+    (service_dir / "entities.json").write_text(
+        json.dumps(
+            [
+                {
+                    "entity_set": "C_TRIALBALANCEResults",
+                    "key_fields": ["ID"],
+                }
+            ]
+        ),
+        encoding="utf-8",
+    )
+    plan = QueryPlan(
+        service_name="C_TRIALBALANCE_CDS",
+        entity_set="C_TRIALBALANCEResults",
+        select_fields=["CompanyCode", "FiscalYear", "GLAccount", "EndingBalanceAmtInCoCodeCrcy"],
+        top=5,
+    )
+
+    compiled = BasicODataCompiler(
+        base_url="https://sap.example.com",
+        index_root=tmp_path / "data" / "index",
+    ).compile(plan)
+
+    assert "$select=CompanyCode,FiscalYear,GLAccount,EndingBalanceAmtInCoCodeCrcy" in compiled.url
+    assert "ID" not in urllib.parse.parse_qs(urllib.parse.urlsplit(compiled.url).query)["$select"][0].split(",")
+
+
+def test_compiler_preserves_parameterized_trial_balance_results_path(tmp_path) -> None:
+    service_dir = tmp_path / "data" / "index" / "C_TRIALBALANCE_CDS"
+    service_dir.mkdir(parents=True)
+    (service_dir / "entities.json").write_text(
+        json.dumps([{"entity_set": "C_TRIALBALANCEResults", "key_fields": ["ID"]}]),
+        encoding="utf-8",
+    )
+    plan = QueryPlan(
+        service_name="C_TRIALBALANCE_CDS",
+        entity_set=(
+            "C_TRIALBALANCE("
+            "P_FromPostingDate=datetime'2020-01-01T00:00:00',"
+            "P_ToPostingDate=datetime'2020-12-31T00:00:00'"
+            ")/Results"
+        ),
+        select_fields=["CompanyCode", "FiscalYear", "GLAccount", "EndingBalanceAmtInCoCodeCrcy"],
+        filters=[
+            FilterCondition(field="Ledger", operator="eq", value="0L"),
+            FilterCondition(field="CompanyCode", operator="eq", value="1710"),
+        ],
+        top=50,
+    )
+
+    compiled = BasicODataCompiler(
+        base_url="https://sap.example.com",
+        index_root=tmp_path / "data" / "index",
+    ).compile(plan)
+
+    assert "/C_TRIALBALANCE(P_FromPostingDate=datetime'2020-01-01T00:00:00'," in compiled.url
+    assert "P_ToPostingDate=datetime'2020-12-31T00:00:00')/Results?" in compiled.url
+    assert "$filter=Ledger eq '0L' and CompanyCode eq '1710'" in compiled.url
+    selected = urllib.parse.parse_qs(urllib.parse.urlsplit(compiled.url).query)["$select"][0].split(",")
+    assert selected == ["CompanyCode", "FiscalYear", "GLAccount", "EndingBalanceAmtInCoCodeCrcy"]
 
 
 def test_compiler_uses_unquoted_boolean_literals() -> None:

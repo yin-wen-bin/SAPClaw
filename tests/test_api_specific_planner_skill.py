@@ -77,6 +77,14 @@ def _write_index(root: Path) -> None:
                 {
                     "service_name": "API_TEST",
                     "entity_set": "A_Test",
+                    "field_name": "LineItemIsCompleted",
+                    "data_type": "Edm.Boolean",
+                    "filterable": True,
+                    "selectable": True,
+                },
+                {
+                    "service_name": "API_TEST",
+                    "entity_set": "A_Test",
                     "field_name": "FunctionalArea",
                     "data_type": "Edm.String",
                     "filterable": True,
@@ -87,6 +95,46 @@ def _write_index(root: Path) -> None:
                     "entity_set": "A_Test",
                     "field_name": "Amount",
                     "data_type": "Edm.Decimal",
+                    "filterable": True,
+                    "selectable": True,
+                },
+                {
+                    "service_name": "API_TEST",
+                    "entity_set": "A_Test",
+                    "field_name": "CompanyCode",
+                    "data_type": "Edm.String",
+                    "filterable": True,
+                    "selectable": True,
+                },
+                {
+                    "service_name": "API_TEST",
+                    "entity_set": "A_Test",
+                    "field_name": "GLAccount",
+                    "data_type": "Edm.String",
+                    "filterable": True,
+                    "selectable": True,
+                },
+                {
+                    "service_name": "API_TEST",
+                    "entity_set": "A_Test",
+                    "field_name": "CompanyCodeCurrency",
+                    "data_type": "Edm.String",
+                    "filterable": True,
+                    "selectable": True,
+                },
+                {
+                    "service_name": "API_TEST",
+                    "entity_set": "A_Test",
+                    "field_name": "PostingDate",
+                    "data_type": "Edm.DateTime",
+                    "filterable": True,
+                    "selectable": True,
+                },
+                {
+                    "service_name": "API_TEST",
+                    "entity_set": "A_Test",
+                    "field_name": "ClearingDate",
+                    "data_type": "Edm.DateTime",
                     "filterable": True,
                     "selectable": True,
                 },
@@ -201,6 +249,124 @@ def test_api_specific_planner_shortcuts_po_supplier_contact_cross_api(monkeypatc
     assert plan.steps[1].filters[0].field == "Plant"
     assert plan.steps[1].filters[0].value == "1710"
     assert plan.steps[-1].entity_set == "A_BusinessPartnerAddress"
+
+
+def test_api_specific_planner_shortcuts_gl_balance_drilldown_cross_api() -> None:
+    planner = LlmApiSpecificPlanner(llm_client=FailingClient(), enabled=True)
+    user_input = "\u4ece\u516c\u53f81710\u603b\u8d26\u79d1\u76ee10010000\u57282023\u5e74\u7b2c12\u671f\u7684\u4f59\u989d\u4e0b\u94bb\u67e5\u770b\u51ed\u8bc1\u660e\u7ec6"
+    route = ApiRouteDecision(
+        selected_apis=[
+            SelectedApi("C_TRIALBALANCE_CDS", 0.8, "G/L account balance"),
+            SelectedApi("API_GLACCOUNTLINEITEM", 0.7, "journal entry line items"),
+        ],
+        requires_multi_api=True,
+        intent_summary="Drill down from G/L account balance to accounting line items.",
+        business_domain="Finance",
+        business_object="G/L Account Balance",
+        raw_response={"requires_multi_api": True},
+    )
+    schema_context = {
+        "service_name": "C_TRIALBALANCE_CDS",
+        "service_names": ["C_TRIALBALANCE_CDS", "API_GLACCOUNTLINEITEM"],
+        "multi_api": True,
+    }
+
+    plan = planner.plan_for_api(AgentRequest(user_input=user_input), route, schema_context)
+
+    assert plan.plan_kind == "multi_step"
+    assert plan.planner_diagnostics["planner_winner"] == "skill_shortcut"
+    assert plan.planner_diagnostics["shortcut"] == "gl_balance_drilldown_to_line_items"
+    assert [step.service_name for step in plan.steps] == ["C_TRIALBALANCE_CDS", "API_GLACCOUNTLINEITEM"]
+    assert plan.steps[0].entity_set == (
+        "C_TRIALBALANCE("
+        "P_FromPostingDate=datetime'2023-12-01T00:00:00',"
+        "P_ToPostingDate=datetime'2023-12-31T00:00:00'"
+        ")/Results"
+    )
+    assert plan.steps[1].entity_set == "GLAccountLineItem"
+    balance_filters = {filter_condition.field: filter_condition.value for filter_condition in plan.steps[0].filters}
+    assert balance_filters == {
+        "Ledger": "0L",
+        "CompanyCode": "1710",
+        "FiscalYear": "2023",
+        "FiscalPeriod": "012",
+        "GLAccount": "10010000",
+    }
+    assert [(binding.field, binding.source_step_id, binding.source_field) for binding in plan.steps[1].filter_from_previous] == [
+        ("CompanyCode", "balance", "CompanyCode"),
+        ("FiscalYear", "balance", "FiscalYear"),
+        ("GLAccount", "balance", "GLAccount"),
+    ]
+
+
+def test_api_specific_planner_shortcuts_gl_line_items_by_account_month() -> None:
+    planner = LlmApiSpecificPlanner(llm_client=FailingClient(), enabled=True)
+    user_input = "\u67e5\u8be2\u516c\u53f81710\u4e0b\u603b\u8d26\u79d1\u76ee10010000\u57282023\u5e7412\u6708\u7684\u6240\u6709\u53d1\u751f\u660e\u7ec6"
+    route = ApiRouteDecision(
+        selected_apis=[SelectedApi("API_GLACCOUNTLINEITEM", 0.9, "G/L account line items")],
+        intent_summary="G/L account line items by company, account, and posting month.",
+        business_domain="Finance",
+        business_object="G/L Account Line Item",
+        raw_response={"selected_apis": [{"service_name": "API_GLACCOUNTLINEITEM"}]},
+    )
+    schema_context = {
+        "service_name": "API_GLACCOUNTLINEITEM",
+        "service_names": ["API_GLACCOUNTLINEITEM"],
+    }
+
+    plan = planner.plan_for_api(AgentRequest(user_input=user_input), route, schema_context)
+
+    assert plan.plan_kind == "direct"
+    assert plan.service_name == "API_GLACCOUNTLINEITEM"
+    assert plan.entity_set == "GLAccountLineItem"
+    assert plan.planner_diagnostics["shortcut"] == "gl_line_items_by_account_period"
+    filters = [(item.field, item.operator, item.value, item.value_type) for item in plan.filters]
+    assert filters == [
+        ("CompanyCode", "eq", "1710", "string"),
+        ("GLAccount", "eq", "10010000", "string"),
+        ("PostingDate", "ge", "2023-12-01T00:00:00", "datetime"),
+        ("PostingDate", "le", "2023-12-31T23:59:59", "datetime"),
+    ]
+    assert "AccountingDocument" in plan.select_fields
+    assert "AmountInCompanyCodeCurrency" in plan.select_fields
+
+
+def test_api_specific_planner_shortcuts_parameterized_trial_balance_year() -> None:
+    planner = LlmApiSpecificPlanner(llm_client=FailingClient(), enabled=True)
+    route = ApiRouteDecision(
+        selected_apis=[SelectedApi("C_TRIALBALANCE_CDS", 0.9, "G/L account balances")],
+        intent_summary="Trial balance for all G/L accounts by company and fiscal year.",
+        business_domain="Finance",
+        business_object="G/L Account Balance",
+        raw_response={"selected_apis": [{"service_name": "C_TRIALBALANCE_CDS"}]},
+    )
+    schema_context = {
+        "service_name": "C_TRIALBALANCE_CDS",
+        "service_names": ["C_TRIALBALANCE_CDS"],
+    }
+
+    plan = planner.plan_for_api(
+        AgentRequest(user_input="\u67e5\u8be22020\u5e74\u516c\u53f81710\u6240\u6709\u79d1\u76ee\u7684\u4f59\u989d"),
+        route,
+        schema_context,
+    )
+
+    assert plan.plan_kind == "direct"
+    assert plan.service_name == "C_TRIALBALANCE_CDS"
+    assert plan.entity_set == (
+        "C_TRIALBALANCE("
+        "P_FromPostingDate=datetime'2020-01-01T00:00:00',"
+        "P_ToPostingDate=datetime'2020-12-31T00:00:00'"
+        ")/Results"
+    )
+    assert plan.planner_diagnostics["shortcut"] == "trial_balance_parameterized_results"
+    assert plan.planner_diagnostics["metadata_entity_set"] == "C_TRIALBALANCEResults"
+    assert [(item.field, item.operator, item.value, item.value_type) for item in plan.filters] == [
+        ("Ledger", "eq", "0L", "string"),
+        ("CompanyCode", "eq", "1710", "string"),
+        ("FiscalYear", "eq", "2020", "string"),
+    ]
+    assert "EndingBalanceAmtInCoCodeCrcy" in plan.select_fields
 
 
 def _write_company_gl_index(root: Path) -> None:
@@ -563,6 +729,588 @@ def test_api_specific_planner_applies_matching_skill_boolean_filter(tmp_path: Pa
         ("IsClosed", "eq", "false", "boolean")
     ]
     assert plan.planner_diagnostics["api_skill_applied_filters"][0]["source"] == "api_skill_filter"
+
+
+def test_api_specific_planner_applies_matching_skill_null_filter(tmp_path: Path) -> None:
+    _write_index(tmp_path)
+    client = CapturingClient(
+        {
+            "plan_kind": "direct",
+            "service_name": "API_TEST",
+            "entity_set": "A_Test",
+            "http_method": "GET",
+            "select_fields": ["Document"],
+            "filters": [],
+            "presentation": {"kind": "table", "reason": "list result"},
+            "rationale": "The user asks for open items.",
+        }
+    )
+    planner = LlmApiSpecificPlanner(index_root=tmp_path, llm_client=client)
+    schema_context = {
+        "service_name": "API_TEST",
+        "entities": [
+            {
+                "entity_set": "A_Test",
+                "fields": [
+                    {"field_name": "Document", "filterable": True},
+                    {"field_name": "ClearingDate", "filterable": True},
+                ],
+            }
+        ],
+        "api_skill": {
+            "service_name": "API_TEST",
+            "summary": "For open items or not cleared wording, add filter `A_Test.ClearingDate eq null`.",
+            "content": "",
+        },
+    }
+
+    plan = planner.plan_for_api(
+        AgentRequest(user_input="show not cleared open items"),
+        ApiRouteDecision(selected_apis=[SelectedApi(service_name="API_TEST", confidence=1.0, reason="test")]),
+        schema_context,
+    )
+
+    assert [(item.field, item.operator, item.value, item.value_type) for item in plan.filters] == [
+        ("ClearingDate", "eq", "null", "null")
+    ]
+    assert plan.planner_diagnostics["api_skill_applied_filters"][0]["source"] == "api_skill_filter"
+
+
+def test_api_specific_planner_corrects_existing_skill_null_filter_value_type(tmp_path: Path) -> None:
+    _write_index(tmp_path)
+    client = CapturingClient(
+        {
+            "plan_kind": "direct",
+            "service_name": "API_TEST",
+            "entity_set": "A_Test",
+            "http_method": "GET",
+            "select_fields": ["Document", "ClearingDate"],
+            "filters": [{"field": "ClearingDate", "operator": "eq", "value": "null", "value_type": "null_keyword"}],
+            "presentation": {"kind": "table", "reason": "list result"},
+            "rationale": "The LLM used a nonstandard null value type.",
+        }
+    )
+    planner = LlmApiSpecificPlanner(index_root=tmp_path, llm_client=client)
+    schema_context = {
+        "service_name": "API_TEST",
+        "entities": [
+            {
+                "entity_set": "A_Test",
+                "fields": [
+                    {"field_name": "Document", "filterable": True},
+                    {"field_name": "ClearingDate", "filterable": True},
+                ],
+            }
+        ],
+        "api_skill": {
+            "service_name": "API_TEST",
+            "summary": "For open items or not cleared wording, add filter `A_Test.ClearingDate eq null`.",
+            "content": "",
+        },
+    }
+
+    plan = planner.plan_for_api(
+        AgentRequest(user_input="show not cleared open items"),
+        ApiRouteDecision(selected_apis=[SelectedApi(service_name="API_TEST", confidence=1.0, reason="test")]),
+        schema_context,
+    )
+
+    assert [(item.field, item.operator, item.value, item.value_type) for item in plan.filters] == [
+        ("ClearingDate", "eq", "null", "null")
+    ]
+
+
+def test_api_specific_planner_ignores_numeric_only_skill_match_and_removes_null_conflict(tmp_path: Path) -> None:
+    _write_index(tmp_path)
+    client = CapturingClient(
+        {
+            "plan_kind": "direct",
+            "service_name": "API_TEST",
+            "entity_set": "A_Test",
+            "http_method": "GET",
+            "select_fields": ["Document", "ClearingDate"],
+            "filters": [
+                {"field": "FiscalYear", "operator": "eq", "value": "2024", "value_type": "string"},
+                {"field": "ClearingDate", "operator": "eq", "value": "null", "value_type": "null"},
+            ],
+            "presentation": {"kind": "table", "reason": "list result"},
+            "rationale": "The LLM incorrectly mixed open-item and cleared-item semantics.",
+        }
+    )
+    planner = LlmApiSpecificPlanner(index_root=tmp_path, llm_client=client)
+    schema_context = {
+        "service_name": "API_TEST",
+        "entities": [
+            {
+                "entity_set": "A_Test",
+                "fields": [
+                    {"field_name": "Document", "filterable": True},
+                    {"field_name": "FiscalYear", "filterable": True},
+                    {"field_name": "ClearingDate", "filterable": True},
+                ],
+            }
+        ],
+        "api_skill": {
+            "service_name": "API_TEST",
+            "summary": (
+                "For Chinese open item wording such as `未清项目`, `还没有清账`, or `尚未清账`, "
+                "filter `A_Test.ClearingDate eq null`. If the user provides a key date such as "
+                "`截至2024年12月31日`, also filter `A_Test.PostingDate le <user_date>`.\n"
+                "For cleared item wording such as `已清项目` or `已经清账`, "
+                "filter `A_Test.ClearingDate ne null`. If the user provides a clearing year such as `2024年`, "
+                "filter `A_Test.ClearingDate ge <user_year_start>` and "
+                "`A_Test.ClearingDate le <user_year_end>`.\n"
+                "For cleared item wording such as `已清项目` or `已经清账`, do not filter `A_Test.FiscalYear` "
+                "unless the user explicitly asks for accounting year."
+            ),
+            "content": "",
+        },
+    }
+
+    plan = planner.plan_for_api(
+        AgentRequest(user_input="查询公司1710下总账科目21100000在2024年已经清账的项目和清账日期"),
+        ApiRouteDecision(selected_apis=[SelectedApi(service_name="API_TEST", confidence=1.0, reason="test")]),
+        schema_context,
+    )
+
+    assert [(item.field, item.operator, item.value, item.value_type) for item in plan.filters] == [
+        ("ClearingDate", "ne", "null", "null"),
+        ("ClearingDate", "ge", "2024-01-01T00:00:00", "datetime"),
+        ("ClearingDate", "le", "2024-12-31T23:59:59", "datetime"),
+    ]
+
+
+def test_api_specific_planner_applies_matching_skill_user_date_filter(tmp_path: Path) -> None:
+    _write_index(tmp_path)
+    client = CapturingClient(
+        {
+            "plan_kind": "direct",
+            "service_name": "API_TEST",
+            "entity_set": "A_Test",
+            "http_method": "GET",
+            "select_fields": ["Document"],
+            "filters": [],
+            "presentation": {"kind": "table", "reason": "list result"},
+            "rationale": "The user asks for open items by key date.",
+        }
+    )
+    planner = LlmApiSpecificPlanner(index_root=tmp_path, llm_client=client)
+    schema_context = {
+        "service_name": "API_TEST",
+        "entities": [
+            {
+                "entity_set": "A_Test",
+                "fields": [
+                    {"field_name": "Document", "filterable": True},
+                    {"field_name": "ClearingDate", "filterable": True},
+                    {"field_name": "PostingDate", "filterable": True},
+                ],
+            }
+        ],
+        "api_skill": {
+            "service_name": "API_TEST",
+            "summary": (
+                "For Chinese open item wording such as `未清项目`, `还没有清账`, or `尚未清账`, "
+                "filter `A_Test.ClearingDate eq null`. If the user provides a key date such as "
+                "`截至2024年12月31日`, also filter `A_Test.PostingDate le <user_date>`."
+            ),
+            "content": "",
+        },
+    }
+
+    plan = planner.plan_for_api(
+        AgentRequest(user_input="查询公司1710下总账科目21100000截至2024年12月31日还没有清账的项目"),
+        ApiRouteDecision(selected_apis=[SelectedApi(service_name="API_TEST", confidence=1.0, reason="test")]),
+        schema_context,
+    )
+
+    assert [(item.field, item.operator, item.value, item.value_type) for item in plan.filters] == [
+        ("ClearingDate", "eq", "null", "null"),
+        ("PostingDate", "le", "2024-12-31T23:59:59", "datetime"),
+    ]
+    assert [item["field"] for item in plan.planner_diagnostics["api_skill_applied_filters"]] == [
+        "ClearingDate",
+        "PostingDate",
+    ]
+
+
+def test_api_specific_planner_applies_open_item_balance_key_date_transform(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    import sap_odata_agent.infrastructure.llm.api_specific_planner as planner_module
+
+    real_date = planner_module.date
+
+    class FixedDate:
+        @classmethod
+        def today(cls):
+            return real_date(2026, 5, 14)
+
+    monkeypatch.setattr(planner_module, "date", FixedDate)
+    _write_index(tmp_path)
+    client = CapturingClient(
+        {
+            "plan_kind": "direct",
+            "service_name": "API_TEST",
+            "entity_set": "A_Test",
+            "http_method": "GET",
+            "select_fields": ["CompanyCode", "GLAccount", "Amount"],
+            "filters": [
+                {"field": "CompanyCode", "operator": "eq", "value": "1710", "value_type": "string"},
+                {"field": "GLAccount", "operator": "eq", "value": "13100000", "value_type": "string"},
+            ],
+            "presentation": {"kind": "table", "reason": "open item balance"},
+            "rationale": "The user asks for an open item balance by key date.",
+        }
+    )
+    planner = LlmApiSpecificPlanner(index_root=tmp_path, llm_client=client)
+    schema_context = {
+        "service_name": "API_TEST",
+        "entities": [
+            {
+                "entity_set": "A_Test",
+                "fields": [
+                    {"field_name": "CompanyCode", "data_type": "Edm.String", "filterable": True},
+                    {"field_name": "GLAccount", "data_type": "Edm.String", "filterable": True},
+                    {"field_name": "CompanyCodeCurrency", "data_type": "Edm.String", "filterable": True},
+                    {"field_name": "Amount", "data_type": "Edm.Decimal", "filterable": True},
+                    {"field_name": "PostingDate", "data_type": "Edm.DateTime", "filterable": True},
+                    {"field_name": "ClearingDate", "data_type": "Edm.DateTime", "filterable": True},
+                ],
+            }
+        ],
+        "api_skill": {
+            "service_name": "API_TEST",
+            "summary": (
+                "For Chinese open-item balance wording such as `科目...余额` with `未清项目日期`, "
+                "`未清项目余额`, or `open item balance`, select only `A_Test.CompanyCode`, "
+                "`A_Test.GLAccount`, `A_Test.CompanyCodeCurrency`, `A_Test.PostingDate`, "
+                "`A_Test.ClearingDate`, and `A_Test.Amount`; filter `A_Test.ClearingDate eq null` "
+                "and `A_Test.PostingDate le <user_date>` when the user provides a key date such as "
+                "`今天`, `today`, or `截至2024年12月31日`; result_transform: aggregate; "
+                "group_by: `A_Test.CompanyCode`, `A_Test.GLAccount`, `A_Test.CompanyCodeCurrency`; "
+                "sum_fields: `A_Test.Amount`."
+            ),
+            "content": "",
+        },
+    }
+
+    plan = planner.plan_for_api(
+        AgentRequest(user_input="查询科目13100000的余额，公司代码为1710，未清项目日期为今天"),
+        ApiRouteDecision(selected_apis=[SelectedApi(service_name="API_TEST", confidence=1.0, reason="test")]),
+        schema_context,
+    )
+
+    assert [(item.field, item.operator, item.value, item.value_type) for item in plan.filters] == [
+        ("CompanyCode", "eq", "1710", "string"),
+        ("GLAccount", "eq", "13100000", "string"),
+        ("ClearingDate", "eq", "null", "null"),
+        ("PostingDate", "le", "2026-05-14T23:59:59", "datetime"),
+    ]
+    assert plan.result_transform is not None
+    assert plan.result_transform.group_by == ["CompanyCode", "GLAccount", "CompanyCodeCurrency"]
+    assert plan.result_transform.sum_fields == ["Amount"]
+    assert plan.response_summary_fields == ["CompanyCode", "GLAccount", "CompanyCodeCurrency", "Amount"]
+
+
+def test_api_specific_planner_does_not_apply_cost_center_pattern_to_balance_drilldown(tmp_path: Path) -> None:
+    _write_index(tmp_path)
+    client = CapturingClient(
+        {
+            "plan_kind": "direct",
+            "service_name": "API_TEST",
+            "entity_set": "A_Test",
+            "http_method": "GET",
+            "select_fields": ["Document", "CompanyCode", "GLAccount", "Amount"],
+            "filters": [
+                {"field": "CompanyCode", "operator": "eq", "value": "1710", "value_type": "string"},
+                {"field": "GLAccount", "operator": "eq", "value": "10010000", "value_type": "string"},
+            ],
+            "presentation": {"kind": "table", "reason": "balance drilldown"},
+            "rationale": "The user asks to drill down from balance to accounting document details.",
+        }
+    )
+    planner = LlmApiSpecificPlanner(index_root=tmp_path, llm_client=client)
+    schema_context = {
+        "service_name": "API_TEST",
+        "entities": [
+            {
+                "entity_set": "A_Test",
+                "fields": [
+                    {"field_name": "Document", "data_type": "Edm.String", "filterable": True},
+                    {"field_name": "CompanyCode", "data_type": "Edm.String", "filterable": True},
+                    {"field_name": "GLAccount", "data_type": "Edm.String", "filterable": True},
+                    {"field_name": "CostCenter", "data_type": "Edm.String", "filterable": True},
+                    {"field_name": "ProfitCenter", "data_type": "Edm.String", "filterable": True},
+                    {"field_name": "Amount", "data_type": "Edm.Decimal", "filterable": True},
+                ],
+            }
+        ],
+        "api_skill": {
+            "service_name": "API_TEST",
+            "summary": (
+                "For Chinese wording such as `总账科目...按成本中心和利润中心归集的费用明细`, "
+                "select only `A_Test.Document`, `A_Test.CompanyCode`, `A_Test.GLAccount`, "
+                "`A_Test.CostCenter`, `A_Test.ProfitCenter`, and `A_Test.Amount`; "
+                "filter `A_Test.CostCenter ne ''`; result_transform: aggregate; "
+                "group_by: `A_Test.CostCenter`, `A_Test.ProfitCenter`; sum_fields: `A_Test.Amount`."
+            ),
+            "content": "",
+        },
+    }
+
+    plan = planner.plan_for_api(
+        AgentRequest(user_input="从公司1710总账科目10010000在2023年第12期的余额下钻查看凭证明细"),
+        ApiRouteDecision(selected_apis=[SelectedApi(service_name="API_TEST", confidence=1.0, reason="test")]),
+        schema_context,
+    )
+
+    assert [(item.field, item.operator, item.value) for item in plan.filters] == [
+        ("CompanyCode", "eq", "1710"),
+        ("GLAccount", "eq", "10010000"),
+    ]
+    assert plan.result_transform is None
+    assert "CostCenter" not in plan.select_fields
+
+
+def test_api_specific_planner_applies_matching_skill_year_and_amount_filters(tmp_path: Path) -> None:
+    _write_index(tmp_path)
+    client = CapturingClient(
+        {
+            "plan_kind": "direct",
+            "service_name": "API_TEST",
+            "entity_set": "A_Test",
+            "http_method": "GET",
+            "select_fields": ["Document"],
+            "filters": [],
+            "presentation": {"kind": "table", "reason": "list result"},
+            "rationale": "The user asks for large manual accounting items.",
+        }
+    )
+    planner = LlmApiSpecificPlanner(index_root=tmp_path, llm_client=client)
+    schema_context = {
+        "service_name": "API_TEST",
+        "entities": [
+            {
+                "entity_set": "A_Test",
+                "fields": [
+                    {"field_name": "Document", "filterable": True},
+                    {"field_name": "AccountingDocumentType", "filterable": True},
+                    {"field_name": "FiscalYear", "filterable": True},
+                    {"field_name": "Amount", "filterable": True},
+                ],
+            }
+        ],
+        "api_skill": {
+            "service_name": "API_TEST",
+            "summary": (
+                "For wording such as `手工凭证产生且金额超过10000的大额总账项目`, "
+                "filter `A_Test.AccountingDocumentType eq 'SA'`, `A_Test.FiscalYear eq <user_year>`, "
+                "and `A_Test.Amount ge <user_amount>`."
+            ),
+            "content": "",
+        },
+    }
+
+    plan = planner.plan_for_api(
+        AgentRequest(user_input="查询公司1710在2024年由手工凭证产生且金额超过10000的大额总账项目"),
+        ApiRouteDecision(selected_apis=[SelectedApi(service_name="API_TEST", confidence=1.0, reason="test")]),
+        schema_context,
+    )
+
+    assert [(item.field, item.operator, item.value, item.value_type) for item in plan.filters] == [
+        ("AccountingDocumentType", "eq", "SA", "string"),
+        ("FiscalYear", "eq", "2024", "string"),
+        ("Amount", "ge", "10000", "decimal"),
+    ]
+
+
+def test_api_specific_planner_applies_matching_skill_period_filter(tmp_path: Path) -> None:
+    _write_index(tmp_path)
+    client = CapturingClient(
+        {
+            "plan_kind": "direct",
+            "service_name": "API_TEST",
+            "entity_set": "A_Test",
+            "http_method": "GET",
+            "select_fields": ["Document"],
+            "filters": [],
+            "presentation": {"kind": "table", "reason": "list result"},
+            "rationale": "The user asks for period balance.",
+        }
+    )
+    planner = LlmApiSpecificPlanner(index_root=tmp_path, llm_client=client)
+    schema_context = {
+        "service_name": "API_TEST",
+        "entities": [
+            {
+                "entity_set": "A_Test",
+                "fields": [
+                    {"field_name": "Document", "filterable": True},
+                    {"field_name": "Ledger", "filterable": True},
+                    {"field_name": "FiscalYear", "filterable": True},
+                    {"field_name": "FiscalPeriod", "filterable": True},
+                ],
+            }
+        ],
+        "api_skill": {
+            "service_name": "API_TEST",
+            "summary": (
+                "For Chinese wording such as `总账科目...在2023年第12期的期初、借方、贷方和期末余额`, "
+                "filter `A_Test.Ledger eq '0L'`, `A_Test.FiscalYear eq <user_year>`, "
+                "and `A_Test.FiscalPeriod eq <user_period>`."
+            ),
+            "content": "",
+        },
+    }
+
+    plan = planner.plan_for_api(
+        AgentRequest(user_input="查询公司1710下总账科目10010000在2023年第12期的期初、借方、贷方和期末余额"),
+        ApiRouteDecision(selected_apis=[SelectedApi(service_name="API_TEST", confidence=1.0, reason="test")]),
+        schema_context,
+    )
+
+    assert [(item.field, item.operator, item.value, item.value_type) for item in plan.filters] == [
+        ("Ledger", "eq", "0L", "string"),
+        ("FiscalYear", "eq", "2023", "string"),
+        ("FiscalPeriod", "eq", "012", "string"),
+    ]
+
+
+def test_api_specific_planner_replaces_duplicate_skill_filter_operator(tmp_path: Path) -> None:
+    _write_index(tmp_path)
+    client = CapturingClient(
+        {
+            "plan_kind": "direct",
+            "service_name": "API_TEST",
+            "entity_set": "A_Test",
+            "http_method": "GET",
+            "select_fields": ["Document", "PostingDate"],
+            "filters": [{"field": "PostingDate", "operator": "le", "value": "2024-12-31", "value_type": "date"}],
+            "presentation": {"kind": "table", "reason": "list result"},
+            "rationale": "The LLM used a start-of-day date filter.",
+        }
+    )
+    planner = LlmApiSpecificPlanner(index_root=tmp_path, llm_client=client)
+    schema_context = {
+        "service_name": "API_TEST",
+        "entities": [
+            {
+                "entity_set": "A_Test",
+                "fields": [
+                    {"field_name": "Document", "filterable": True},
+                    {"field_name": "PostingDate", "filterable": True},
+                ],
+            }
+        ],
+        "api_skill": {
+            "service_name": "API_TEST",
+            "summary": "For key date wording such as `截至2024年12月31日`, filter `A_Test.PostingDate le <user_date>`.",
+            "content": "",
+        },
+    }
+
+    plan = planner.plan_for_api(
+        AgentRequest(user_input="查询截至2024年12月31日的项目"),
+        ApiRouteDecision(selected_apis=[SelectedApi(service_name="API_TEST", confidence=1.0, reason="test")]),
+        schema_context,
+    )
+
+    assert [(item.field, item.operator, item.value, item.value_type) for item in plan.filters] == [
+        ("PostingDate", "le", "2024-12-31T23:59:59", "datetime")
+    ]
+
+
+def test_api_specific_planner_removes_matching_skill_discouraged_filter(tmp_path: Path) -> None:
+    _write_index(tmp_path)
+    client = CapturingClient(
+        {
+            "plan_kind": "direct",
+            "service_name": "API_TEST",
+            "entity_set": "A_Test",
+            "http_method": "GET",
+            "select_fields": ["Document", "LineItemIsCompleted"],
+            "filters": [
+                {"field": "LineItemIsCompleted", "operator": "eq", "value": "false", "value_type": "boolean"}
+            ],
+            "presentation": {"kind": "table", "reason": "list result"},
+            "rationale": "The LLM chose a less stable completion flag for open items.",
+        }
+    )
+    planner = LlmApiSpecificPlanner(index_root=tmp_path, llm_client=client)
+    schema_context = {
+        "service_name": "API_TEST",
+        "entities": [
+            {
+                "entity_set": "A_Test",
+                "fields": [
+                    {"field_name": "Document", "filterable": True},
+                    {"field_name": "LineItemIsCompleted", "filterable": True},
+                ],
+            }
+        ],
+        "api_skill": {
+            "service_name": "API_TEST",
+            "summary": (
+                "For open items or not cleared wording, do not filter `A_Test.LineItemIsCompleted` "
+                "unless the user explicitly asks for line item completion status."
+            ),
+            "content": "",
+        },
+    }
+
+    plan = planner.plan_for_api(
+        AgentRequest(user_input="show not cleared open items"),
+        ApiRouteDecision(selected_apis=[SelectedApi(service_name="API_TEST", confidence=1.0, reason="test")]),
+        schema_context,
+    )
+
+    assert plan.filters == []
+    assert plan.planner_diagnostics["api_skill_removed_filters"][0]["field"] == "LineItemIsCompleted"
+
+
+def test_api_specific_planner_applies_matching_skill_order_by(tmp_path: Path) -> None:
+    _write_index(tmp_path)
+    client = CapturingClient(
+        {
+            "plan_kind": "direct",
+            "service_name": "API_TEST",
+            "entity_set": "A_Test",
+            "http_method": "GET",
+            "select_fields": ["Document"],
+            "filters": [],
+            "presentation": {"kind": "table", "reason": "list result"},
+            "rationale": "The user asks for open documents.",
+        }
+    )
+    planner = LlmApiSpecificPlanner(index_root=tmp_path, llm_client=client)
+    schema_context = {
+        "service_name": "API_TEST",
+        "entities": [
+            {
+                "entity_set": "A_Test",
+                "fields": [
+                    {"field_name": "Document", "filterable": True},
+                    {"field_name": "IsClosed", "filterable": True},
+                ],
+            }
+        ],
+        "api_skill": {
+            "service_name": "API_TEST",
+            "summary": "For open documents, add filter `A_Test.IsClosed eq false`; order_by: `A_Test.Document`.",
+            "content": "",
+        },
+    }
+
+    plan = planner.plan_for_api(
+        AgentRequest(user_input="show open documents"),
+        ApiRouteDecision(selected_apis=[SelectedApi(service_name="API_TEST", confidence=1.0, reason="test")]),
+        schema_context,
+    )
+
+    assert plan.order_by == ["Document"]
+    assert plan.planner_diagnostics["api_skill_applied_order_by"][0]["fields"] == ["Document"]
 
 
 def test_api_specific_planner_applies_matching_skill_string_status_filter(tmp_path: Path) -> None:
@@ -1105,7 +1853,10 @@ def test_plan_repairer_applies_skill_patterns_to_repaired_plan(tmp_path: Path) -
             "entity_set": "A_Test",
             "http_method": "GET",
             "select_fields": ["Document", "FunctionalArea"],
-            "filters": [{"field": "FunctionalArea", "operator": "ne", "value": "", "value_type": "string"}],
+            "filters": [
+                {"field": "FunctionalArea", "operator": "ne", "value": "", "value_type": "string"},
+                {"field": "LineItemIsCompleted", "operator": "eq", "value": "false", "value_type": "boolean"},
+            ],
             "presentation": {"kind": "table", "reason": "list result"},
             "rationale": "Repaired from critic feedback.",
         }
@@ -1128,7 +1879,9 @@ def test_plan_repairer_applies_skill_patterns_to_repaired_plan(tmp_path: Path) -
             "summary": (
                 "For wording such as `line items with functional area`, select only "
                 "`A_Test.Document`, `A_Test.FunctionalArea`, and `A_Test.Amount`, and add "
-                "filter `A_Test.FunctionalArea ne ''`."
+                "filter `A_Test.FunctionalArea ne ''`; order_by: `A_Test.Document`.\n"
+                "For wording such as `line items with functional area`, do not filter "
+                "`A_Test.LineItemIsCompleted` unless the user explicitly asks for completion status."
             ),
             "content": "",
         },
@@ -1148,6 +1901,8 @@ def test_plan_repairer_applies_skill_patterns_to_repaired_plan(tmp_path: Path) -
     assert [(item.field, item.operator, item.value) for item in plan.filters] == [
         ("FunctionalArea", "ne", "")
     ]
+    assert plan.order_by == ["Document"]
+    assert plan.planner_diagnostics["api_skill_removed_filters"][0]["field"] == "LineItemIsCompleted"
 
 
 def test_api_specific_planner_bridges_company_code_to_chart_of_accounts(tmp_path: Path) -> None:

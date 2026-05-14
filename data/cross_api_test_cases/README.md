@@ -2,8 +2,8 @@
 
 This folder stores module-oriented cross-API test scenarios for FI, CO, SD, MM, and PP.
 
-Each module has 20 business-language cases. A case contains deterministic SAP OData baseline
-steps and an LLM-first frontend-chain question. Baselines are captured under
+Most modules have 20 business-language cases; PP contains an expanded 50-case suite.
+A case contains deterministic SAP OData baseline steps and an LLM-first frontend-chain question. Baselines are captured under
 `{MODULE}/baselines/`; run outputs are stored separately under `data/cross_api_test_runs`.
 
 Rules:

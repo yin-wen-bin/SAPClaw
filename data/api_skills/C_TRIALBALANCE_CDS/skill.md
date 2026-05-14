@@ -37,7 +37,9 @@ Keep `data/index/C_TRIALBALANCE_CDS` as the schema ground truth. This skill prov
 
 - Primary business scope: The service enables you to retrieve starting, credit and debit balances for G/L accounts per fiscal year period. You can read data for period-based balances. You cannot read data for day-based balances. You need to provide the time frame for the selection in a date format and you need to provide the level of aggregation in a $select clause..
 - Use the service description, entity descriptions, and field descriptions from `data/index/C_TRIALBALANCE_CDS` to infer user intent.
-- Use `C_TRIALBALANCEResults` for user questions about trial balance rows, G/L account balances, debit amounts, credit amounts, ending balances, and balance sheet account indicators.
+- Use the parameterized resource path `C_TRIALBALANCE(P_FromPostingDate=datetime'<start>',P_ToPostingDate=datetime'<end>')/Results` for user questions about trial balance rows, G/L account balances, debit amounts, credit amounts, ending balances, and balance sheet account indicators. Validate fields against metadata entity `C_TRIALBALANCEResults`.
+- Do not execute `C_TRIALBALANCEResults` as a bare entity set. SAP requires the date parameters on `C_TRIALBALANCE` before navigating to `/Results`.
+- Do not use this API when a balance question also asks for open items, clearing status, `未清项目`, `未清项目日期`, `open item date`, or key-date open-item balance. Route those requests to `API_GLACCOUNTLINEITEM` and aggregate `GLAccountLineItem.AmountInCompanyCodeCurrency` after applying open-item filters.
 - `Ledger`, `CompanyCode`, and `GLAccount` are valid selectable/filterable fields on `C_TRIALBALANCEResults`. If the user supplies ledger and company code, apply both filters directly on `C_TRIALBALANCEResults`.
 - Trial balance amount fields on `C_TRIALBALANCEResults` include `StartingBalanceAmtInCoCodeCrcy`, `DebitAmountInCoCodeCrcy`, `CreditAmountInCoCodeCrcy`, and `EndingBalanceAmtInCoCodeCrcy`. These fields are selectable result measures; do not reject a plan just because they are not filter fields.
 - In a trial balance question, "order balances" means balances by the `OrderID` dimension on `C_TRIALBALANCEResults`. Select `OrderID` plus balance amount fields. Do not route this wording to `OrderIDResults` or `IsBalanceSheetAccountResults`.
@@ -56,8 +58,13 @@ Keep `data/index/C_TRIALBALANCE_CDS` as the schema ground truth. This skill prov
 
 ### Trial Balance Rows
 
-- For "trial balance" or "G/L account balance" questions, prefer a direct query on `C_TRIALBALANCEResults`.
+- For "trial balance" or "G/L account balance" questions, use `C_TRIALBALANCE(P_FromPostingDate=datetime'<start>',P_ToPostingDate=datetime'<end>')/Results`, with fields and filters validated against `C_TRIALBALANCEResults`.
+- For G/L account balance questions that mention open items, clearing status, `未清项目`, `未清项目日期`, `open item date`, or key date, do not plan on `C_TRIALBALANCEResults`; route to `API_GLACCOUNTLINEITEM`.
 - If the user provides company code and ledger, use filters such as `CompanyCode eq '1710'` and `Ledger eq '0L'`.
+- If the user gives only a fiscal year such as `2020年`, set `P_FromPostingDate=datetime'2020-01-01T00:00:00'` and `P_ToPostingDate=datetime'2020-12-31T00:00:00'`.
+- If the user gives a fiscal period or month, set `P_FromPostingDate` and `P_ToPostingDate` to the corresponding calendar month range, then also filter `FiscalYear` and `FiscalPeriod` when those fields are needed.
+- For Chinese wording such as `总账科目...在2023年第12期的期初、借方、贷方和期末余额`, select only `C_TRIALBALANCEResults.ID`, `C_TRIALBALANCEResults.Ledger`, `C_TRIALBALANCEResults.CompanyCode`, `C_TRIALBALANCEResults.FiscalYear`, `C_TRIALBALANCEResults.FiscalPeriod`, `C_TRIALBALANCEResults.GLAccount`, `C_TRIALBALANCEResults.StartingBalanceAmtInCoCodeCrcy`, `C_TRIALBALANCEResults.DebitAmountInCoCodeCrcy`, `C_TRIALBALANCEResults.CreditAmountInCoCodeCrcy`, and `C_TRIALBALANCEResults.EndingBalanceAmtInCoCodeCrcy`; filter `C_TRIALBALANCEResults.Ledger eq '0L'`, `C_TRIALBALANCEResults.FiscalYear eq <user_year>`, and `C_TRIALBALANCEResults.FiscalPeriod eq <user_period>` unless the user explicitly provides another ledger.
+- `C_TRIALBALANCEResults` requires a concrete `CompanyCode` filter. If the user asks for `各公司代码`, `所有公司代码`, or all company codes without listing explicit company codes, ask for the company-code scope instead of planning an unfiltered trial-balance request.
 - For debit/credit amount questions, select `Ledger`, `CompanyCode`, `GLAccount`, `DebitAmountInCoCodeCrcy`, `CreditAmountInCoCodeCrcy`, and an ending balance field such as `EndingBalanceAmtInCoCodeCrcy`.
 - For order balance dimension questions, select `Ledger`, `CompanyCode`, `GLAccount`, `OrderID`, and `EndingBalanceAmtInCoCodeCrcy`; include debit/credit fields when the user asks for movements.
 - For balance sheet account indicator questions, select `Ledger`, `CompanyCode`, `GLAccount`, `IsBalanceSheetAccount`, and any requested balance fields.

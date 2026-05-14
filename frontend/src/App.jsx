@@ -925,7 +925,7 @@ function LoadingResultPanel() {
       </div>
       <div>
         <h2>正在执行查询</h2>
-        <p>系统正在选择 API、生成查询计划并请求 SAP。结果返回前，旧查询结果已清除。</p>
+        <p>系统正在选择 API、生成查询计划并请求 SAP。</p>
       </div>
       <div className="loading-steps">
         <span />

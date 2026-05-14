@@ -26,7 +26,13 @@
           "id": "line_items",
           "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,GLAccount,PostingDate,DocumentDate,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and GLAccount eq '10010000' and PostingDate ge datetime'2023-12-01T00:00:00' and PostingDate le datetime'2023-12-31T23:59:59'&$top=100",
           "key_fields": [
-            "ID"
+            "CompanyCode",
+            "FiscalYear",
+            "AccountingDocument",
+            "AccountingDocumentItem",
+            "Ledger",
+            "GLAccount",
+            "PostingDate"
           ]
         }
       ]
@@ -34,7 +40,13 @@
     "comparison": {
       "type": "key_subset",
       "keys": [
-        "ID"
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem",
+        "Ledger",
+        "GLAccount",
+        "PostingDate"
       ],
       "required_fields": [
         "CompanyCode",
@@ -69,9 +81,15 @@
       "steps": [
         {
           "id": "open_items",
-          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,GLAccount,PostingDate,ClearingDate,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and GLAccount eq '21100000' and PostingDate le datetime'2024-12-31T23:59:59' and ClearingDate eq null&$top=100",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,GLAccount,PostingDate,ClearingDate,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and GLAccount eq '21100000' and PostingDate le datetime'2024-12-31T23:59:59' and ClearingDate eq null&$orderby=CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,GLAccount,PostingDate&$top=100",
           "key_fields": [
-            "ID"
+            "CompanyCode",
+            "FiscalYear",
+            "AccountingDocument",
+            "AccountingDocumentItem",
+            "Ledger",
+            "GLAccount",
+            "PostingDate"
           ]
         }
       ]
@@ -79,7 +97,13 @@
     "comparison": {
       "type": "key_subset",
       "keys": [
-        "ID"
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem",
+        "Ledger",
+        "GLAccount",
+        "PostingDate"
       ],
       "required_fields": [
         "CompanyCode",
@@ -113,9 +137,15 @@
       "steps": [
         {
           "id": "cleared_items",
-          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,GLAccount,PostingDate,ClearingDate,ClearingDocFiscalYear,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and GLAccount eq '21100000' and ClearingDate ge datetime'2024-01-01T00:00:00' and ClearingDate le datetime'2024-12-31T23:59:59'&$top=100",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,GLAccount,PostingDate,ClearingDate,ClearingDocFiscalYear,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and GLAccount eq '21100000' and ClearingDate ne null and ClearingDate ge datetime'2024-01-01T00:00:00' and ClearingDate le datetime'2024-12-31T23:59:59'&$orderby=CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,GLAccount,PostingDate&$top=100",
           "key_fields": [
-            "ID"
+            "CompanyCode",
+            "FiscalYear",
+            "AccountingDocument",
+            "AccountingDocumentItem",
+            "Ledger",
+            "GLAccount",
+            "PostingDate"
           ]
         }
       ]
@@ -123,7 +153,13 @@
     "comparison": {
       "type": "key_subset",
       "keys": [
-        "ID"
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem",
+        "Ledger",
+        "GLAccount",
+        "PostingDate"
       ],
       "required_fields": [
         "GLAccount",
@@ -159,19 +195,37 @@
           "id": "cost_center_items",
           "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,GLAccount,CostCenter,ProfitCenter,PostingDate,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and GLAccount eq '66000000' and CostCenter ne ''&$top=100",
           "key_fields": [
-            "ID"
+            "CompanyCode",
+            "FiscalYear",
+            "AccountingDocument",
+            "AccountingDocumentItem",
+            "Ledger",
+            "GLAccount",
+            "PostingDate"
           ]
         }
-      ]
+      ],
+      "result_transform": {
+        "type": "aggregate",
+        "group_by": [
+          "CostCenter",
+          "ProfitCenter"
+        ],
+        "sum_fields": [
+          "AmountInCompanyCodeCurrency"
+        ]
+      }
     },
     "comparison": {
-      "type": "key_subset",
+      "type": "key_set",
       "keys": [
-        "ID"
+        "CostCenter",
+        "ProfitCenter",
+        "AmountInCompanyCodeCurrency"
       ],
       "required_fields": [
-        "GLAccount",
         "CostCenter",
+        "ProfitCenter",
         "AmountInCompanyCodeCurrency"
       ]
     }
@@ -183,7 +237,7 @@
     "report_name": "G/L总账行项目查询",
     "source_scenario_id": "FI_REPORT_001_SCENARIO_005",
     "scenario": "gl_exception_items_by_document_type_user_amount",
-    "user_input": "查询公司1710在2024年由手工凭证产生的大额总账项目",
+    "user_input": "查询公司1710在2024年由手工凭证产生且金额超过10000的大额总账项目",
     "business_purpose": "查找异常手工凭证、大额凭证、错误科目过账等项目",
     "expected_api": "API_OPLACCTGDOCITEMCUBE_SRV",
     "expected_apis": [
@@ -331,33 +385,17 @@
     ],
     "expected_capability": {
       "route": true,
-      "plan": true,
-      "execute": true,
+      "plan": false,
+      "execute": false,
       "present": true,
-      "clarify": false,
-      "unsupported": false
-    },
-    "baseline": {
-      "steps": [
-        {
-          "id": "company_balances",
-          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,CompanyCodeName,FiscalYear,FiscalPeriod,GLAccount,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and FiscalYear eq '2023' and FiscalPeriod eq '012' and GLAccount eq '10010000'&$top=100",
-          "key_fields": [
-            "ID"
-          ]
-        }
-      ]
+      "clarify": true,
+      "unsupported": true,
+      "unsupported_reason": "C_TRIALBALANCE_CDS requires a CompanyCode filter on C_TRIALBALANCEResults. The user asks for all company codes without listing concrete company codes, so the agent should ask for company-code scope or report that the query is not executable as stated."
     },
     "comparison": {
-      "type": "key_subset",
-      "keys": [
-        "ID"
-      ],
-      "required_fields": [
-        "CompanyCode",
-        "GLAccount",
-        "EndingBalanceAmtInCoCodeCrcy"
-      ]
+      "type": "unsupported",
+      "keys": [],
+      "required_fields": []
     }
   },
   {
@@ -454,25 +492,45 @@
       "clarify": false,
       "unsupported": false
     },
-    "baseline": {
-      "steps": [
-        {
-          "id": "ledger_balances",
-          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,EndingBalanceAmtInCoCodeCrcy&$filter=CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012' and GLAccount eq '10010000'&$top=100",
-          "key_fields": [
-            "ID"
-          ]
-        }
-      ]
-    },
-    "comparison": {
-      "type": "key_subset",
-      "keys": [
-        "ID"
-      ],
-      "required_fields": [
-        "Ledger",
-        "GLAccount",
+      "baseline": {
+        "steps": [
+          {
+            "id": "ledgers",
+            "url": "/sap/opu/odata/sap/API_LEDGER_SRV/A_Ledger?$select=Ledger,IsLeadingLedger&$top=20",
+            "key_fields": [
+              "Ledger"
+            ]
+          },
+          {
+            "id": "ledger_balances",
+            "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,EndingBalanceAmtInCoCodeCrcy&$filter=CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012' and GLAccount eq '10010000'&$top=100",
+            "key_fields": [
+              "Ledger",
+              "CompanyCode",
+              "FiscalYear",
+              "GLAccount"
+            ],
+            "bindings": [
+              {
+                "source_step": "ledgers",
+                "source_field": "Ledger",
+                "target_field": "Ledger"
+              }
+            ]
+          }
+        ]
+      },
+      "comparison": {
+        "type": "key_subset",
+        "keys": [
+          "Ledger",
+          "CompanyCode",
+          "FiscalYear",
+          "GLAccount"
+        ],
+        "required_fields": [
+          "Ledger",
+          "GLAccount",
         "EndingBalanceAmtInCoCodeCrcy"
       ]
     }
@@ -1069,10 +1127,10 @@
     "id": "FICO-XAPI-023",
     "api": "FICO",
     "report_id": "FI_REPORT_005",
-    "report_name": "会计凭证查询",
-    "source_scenario_id": "FI_REPORT_005_SCENARIO_003",
-    "scenario": "journal_entry_clearing_relationship",
-    "user_input": "查询公司1710会计凭证5100000001的清账关系和清账日期",
+      "report_name": "会计凭证查询",
+      "source_scenario_id": "FI_REPORT_005_SCENARIO_003",
+      "scenario": "journal_entry_clearing_relationship",
+      "user_input": "查询公司1710在2017年会计凭证5100000001的清账关系和清账日期",
     "business_purpose": "判断发票、付款、收款是否已经完成清账",
     "expected_api": "API_GLACCOUNTLINEITEM",
     "expected_apis": [
@@ -1088,12 +1146,12 @@
     },
     "baseline": {
       "steps": [
-        {
-          "id": "clearing",
-          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,GLAccount,ClearingDate,ClearingDocFiscalYear,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and AccountingDocument eq '5100000001'&$top=100",
-          "key_fields": [
-            "ID"
-          ]
+          {
+            "id": "clearing",
+            "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,GLAccount,ClearingDate,ClearingDocFiscalYear,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and FiscalYear eq '2017' and AccountingDocument eq '5100000001'&$top=100",
+            "key_fields": [
+              "ID"
+            ]
         }
       ]
     },

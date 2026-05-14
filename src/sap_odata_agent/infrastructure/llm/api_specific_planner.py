@@ -52,6 +52,27 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
         )
         if shortcut_plan is not None:
             return shortcut_plan
+        shortcut_plan = self._trial_balance_rows_shortcut_plan(
+            request,
+            route_decision,
+            schema_context,
+        )
+        if shortcut_plan is not None:
+            return shortcut_plan
+        shortcut_plan = self._gl_balance_drilldown_shortcut_plan(
+            request,
+            route_decision,
+            schema_context,
+        )
+        if shortcut_plan is not None:
+            return shortcut_plan
+        shortcut_plan = self._gl_line_items_by_account_period_shortcut_plan(
+            request,
+            route_decision,
+            schema_context,
+        )
+        if shortcut_plan is not None:
+            return shortcut_plan
         if self._requires_purchase_order_history_clarification(request, service_name):
             return self._purchase_order_history_clarification_plan(service_name)
         if not self.enabled or self.llm_client is None:
@@ -74,7 +95,9 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             return self._invalid_plan_for_service(service_name, "llm_plan_not_materializable", schema_context, parsed)
         materialized = self._apply_skill_filter_patterns(materialized, request, schema_context)
         materialized = self._apply_skill_preferred_filter_fields(materialized, request, schema_context)
+        materialized = self._apply_skill_discouraged_filters(materialized, request, schema_context)
         materialized = self._apply_skill_select_only_patterns(materialized, request, schema_context)
+        materialized = self._apply_skill_order_by_patterns(materialized, request, schema_context)
         materialized = self._apply_skill_result_transform_patterns(materialized, request, schema_context)
         materialized = self._clear_skill_resolved_clarification(materialized)
         materialized = self._remove_unrequested_temporal_filters(materialized, request)
@@ -304,14 +327,49 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             value = requirement["value"]
             value_type = requirement["value_type"]
             changed = False
-            if any(
-                item.field == field
-                and item.operator.lower() == operator
-                and LlmApiSpecificPlanner._normalise_filter_literal(item.value) == LlmApiSpecificPlanner._normalise_filter_literal(value)
-                for item in filters
-            ):
-                pass
+            existing_index = next(
+                (
+                    index
+                    for index, item in enumerate(filters)
+                    if item.field == field
+                    and item.operator.lower() == operator
+                    and LlmApiSpecificPlanner._normalise_filter_literal(item.value)
+                    == LlmApiSpecificPlanner._normalise_filter_literal(value)
+                ),
+                None,
+            )
+            if existing_index is not None:
+                existing = filters[existing_index]
+                existing_type = LlmApiSpecificPlanner._normalise_value_type(existing.value_type)
+                required_type = LlmApiSpecificPlanner._normalise_value_type(value_type)
+                if existing_type != required_type or (required_type == "null" and existing.value_type != value_type):
+                    filters[existing_index] = replace(existing, value=value, value_type=value_type)
+                    changed = True
             else:
+                if LlmApiSpecificPlanner._normalise_value_type(value_type) == "null" and operator in {"eq", "ne"}:
+                    opposite_operator = "ne" if operator == "eq" else "eq"
+                    before = len(filters)
+                    filters[:] = [
+                        item
+                        for item in filters
+                        if not (
+                            item.field == field
+                            and item.operator.lower() == opposite_operator
+                            and LlmApiSpecificPlanner._normalise_value_type(item.value_type) == "null"
+                            and LlmApiSpecificPlanner._normalise_filter_literal(item.value) == "null"
+                        )
+                    ]
+                    if len(filters) != before:
+                        changed = True
+                same_field_operator_indexes = [
+                    index
+                    for index, item in enumerate(filters)
+                    if item.field == field and item.operator.lower() == operator
+                ]
+                if same_field_operator_indexes:
+                    remove_indexes = set(same_field_operator_indexes)
+                    filters[:] = [item for index, item in enumerate(filters) if index not in remove_indexes]
+                    changed = True
                 filters.append(FilterCondition(field=field, operator=operator, value=value, value_type=value_type))
                 changed = True
             select_only_fields = LlmApiSpecificPlanner._skill_line_select_only_fields(
@@ -459,6 +517,65 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
         )
 
     @staticmethod
+    def _apply_skill_discouraged_filters(
+        plan: QueryPlan,
+        request: AgentRequest,
+        schema_context: dict[str, Any],
+    ) -> QueryPlan:
+        requirements = LlmApiSpecificPlanner._matching_skill_discouraged_filters(request, schema_context)
+        if not requirements:
+            return plan
+
+        removed: list[dict[str, Any]] = []
+
+        def keep_filter(condition: FilterCondition, entity_set: str) -> bool:
+            for requirement in requirements:
+                requirement_entity = str(requirement.get("entity_set") or "")
+                if requirement_entity and requirement_entity != entity_set:
+                    continue
+                if condition.field != requirement["field"]:
+                    continue
+                removed.append(
+                    {
+                        "entity_set": entity_set,
+                        "field": condition.field,
+                        "operator": condition.operator,
+                        "value": condition.value,
+                        "source": "api_skill_discouraged_filter",
+                        "skill_line": requirement.get("skill_line", ""),
+                    }
+                )
+                return False
+            return True
+
+        changed = False
+        steps = list(plan.steps or [])
+        if steps:
+            updated_steps: list[ExecutionStep] = []
+            for step in steps:
+                original_filters = list(step.filters or [])
+                filtered = [condition for condition in original_filters if keep_filter(condition, step.entity_set)]
+                if len(filtered) != len(original_filters):
+                    changed = True
+                updated_steps.append(replace(step, filters=filtered))
+            steps = updated_steps
+        else:
+            original_filters = list(plan.filters or [])
+            filtered = [condition for condition in original_filters if keep_filter(condition, plan.entity_set)]
+            if len(filtered) != len(original_filters):
+                changed = True
+
+        if not changed:
+            return plan
+        diagnostics = {
+            **(plan.planner_diagnostics or {}),
+            "api_skill_removed_filters": removed,
+        }
+        if steps:
+            return replace(plan, steps=steps, planner_diagnostics=diagnostics)
+        return replace(plan, filters=filtered, planner_diagnostics=diagnostics)
+
+    @staticmethod
     def _apply_skill_select_only_patterns(
         plan: QueryPlan,
         request: AgentRequest,
@@ -567,6 +684,58 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             planner_diagnostics={
                 **(plan.planner_diagnostics or {}),
                 "api_skill_applied_select_only": applied,
+            },
+        )
+
+    @staticmethod
+    def _apply_skill_order_by_patterns(
+        plan: QueryPlan,
+        request: AgentRequest,
+        schema_context: dict[str, Any],
+    ) -> QueryPlan:
+        requirements = LlmApiSpecificPlanner._matching_skill_order_by_requirements(request, schema_context)
+        if not requirements:
+            return plan
+
+        applied: list[dict[str, Any]] = []
+
+        def order_for_entity(entity_set: str) -> tuple[list[str] | None, dict[str, Any] | None]:
+            for requirement in requirements:
+                if requirement["entity_set"] != entity_set:
+                    continue
+                return list(requirement["fields"]), requirement
+            return None, None
+
+        steps = list(plan.steps or [])
+        if steps:
+            changed = False
+            updated_steps: list[ExecutionStep] = []
+            for step_index, step in enumerate(steps):
+                order_by, requirement = order_for_entity(step.entity_set)
+                if order_by is None or requirement is None:
+                    updated_steps.append(step)
+                    continue
+                if list(step.order_by or []) != order_by:
+                    changed = True
+                applied.append({**requirement, "step_id": step.step_id, "step_index": step_index})
+                updated_steps.append(replace(step, order_by=order_by))
+            if not changed:
+                return plan
+            return replace(
+                plan,
+                steps=updated_steps,
+                planner_diagnostics={**(plan.planner_diagnostics or {}), "api_skill_applied_order_by": applied},
+            )
+
+        order_by, requirement = order_for_entity(plan.entity_set)
+        if order_by is None or requirement is None or list(plan.order_by or []) == order_by:
+            return plan
+        return replace(
+            plan,
+            order_by=order_by,
+            planner_diagnostics={
+                **(plan.planner_diagnostics or {}),
+                "api_skill_applied_order_by": [{**requirement, "entity_set": plan.entity_set}],
             },
         )
 
@@ -843,6 +1012,8 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             if not LlmApiSpecificPlanner._is_temporal_field(condition.field):
                 return True
             value = str(condition.value if condition.value is not None else "").strip("'\"")
+            if str(condition.value_type or "").lower() in {"null", "edm.null"} or value.lower() == "null":
+                return True
             if value and value in request_text:
                 return True
             removed.append(
@@ -884,7 +1055,36 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
     @staticmethod
     def _has_temporal_intent(request_text: str) -> bool:
         text = str(request_text or "").lower()
+        if re.search(r"\d{4}\s*年\s*\d{1,2}\s*月\s*\d{1,2}\s*(?:日|号)?", text):
+            return True
+        if re.search(r"\d{4}[.\-/]\d{1,2}[.\-/]\d{1,2}", text):
+            return True
+        if re.search(r"第\s*\d{1,3}\s*期", text):
+            return True
         markers = (
+            "日期",
+            "期间",
+            "年度",
+            "年份",
+            "财年",
+            "会计年度",
+            "会计期间",
+            "月份",
+            "月度",
+            "今天",
+            "昨天",
+            "明天",
+            "今年",
+            "本年",
+            "去年",
+            "明年",
+            "截至",
+            "截止",
+            "之前",
+            "之后",
+            "早于",
+            "晚于",
+            "到期",
             "日期",
             "期间",
             "年度",
@@ -1111,13 +1311,17 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
         requirements: list[dict[str, str]] = []
         seen: set[tuple[str, str, str, str]] = set()
         for line in LlmApiSpecificPlanner._iter_skill_lines(schema_context):
-            if not re.search(r"\s(?:eq|ne)\s", line, flags=re.IGNORECASE):
+            if not re.search(r"\s(?:eq|ne|gt|ge|lt|le)\s", line, flags=re.IGNORECASE):
                 continue
             if not LlmApiSpecificPlanner._skill_line_matches_request(line, request_text):
                 continue
             for match in re.finditer(
                 r"`?(?:(?P<entity>[A-Za-z_][A-Za-z0-9_]*)\.)?(?P<field>[A-Za-z_][A-Za-z0-9_]*)\s+"
-                r"(?P<operator>eq|ne)\s+(?P<literal>true|false|''|\"\"|'[^']{1,40}'|\"[^\"]{1,40}\")`?",
+                r"(?P<operator>eq|ne|gt|ge|lt|le)\s+"
+                r"(?P<literal>"
+                r"datetimeoffset'[^']{1,80}'|datetime'[^']{1,80}'|"
+                r"null|true|false|<user_amount>|<user_period>|<user_year>|<user_year_start>|<user_year_end>|<user_date>|<date>|''|\"\"|'[^']{1,80}'|\"[^\"]{1,80}\""
+                r")`?",
                 line,
                 flags=re.IGNORECASE,
             ):
@@ -1130,9 +1334,10 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
                 raw_literal = match.group("literal")
                 if not field:
                     continue
-                if "<" in raw_literal or ">" in raw_literal:
+                literal_result = LlmApiSpecificPlanner._skill_filter_literal(raw_literal, request_text, operator)
+                if literal_result is None:
                     continue
-                value, value_type = LlmApiSpecificPlanner._skill_filter_literal(raw_literal)
+                value, value_type = literal_result
                 key = (entity_set, field, operator, LlmApiSpecificPlanner._normalise_filter_literal(value))
                 if key in seen:
                     continue
@@ -1208,15 +1413,126 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
         return sorted(requirements, key=lambda item: int(item.get("match_score") or 0), reverse=True)
 
     @staticmethod
-    def _skill_filter_literal(raw_literal: str) -> tuple[str, str]:
+    def _matching_skill_discouraged_filters(
+        request: AgentRequest,
+        schema_context: dict[str, Any],
+    ) -> list[dict[str, Any]]:
+        request_text = f"{request.resolved_user_input or ''} {request.user_input or ''}".strip()
+        if not request_text:
+            return []
+        markers = ("do not filter", "do not add filter", "do not use filter")
+        requirements: list[dict[str, Any]] = []
+        seen: set[tuple[str, str]] = set()
+        for line in LlmApiSpecificPlanner._iter_skill_lines(schema_context):
+            lowered = line.lower()
+            marker_positions = [lowered.find(marker) for marker in markers if marker in lowered]
+            if not marker_positions:
+                continue
+            score = LlmApiSpecificPlanner._skill_line_match_score(line, request_text)
+            if score <= 0:
+                continue
+            body = line[min(marker_positions) :]
+            unless_index = body.lower().find(" unless ")
+            if unless_index >= 0:
+                body = body[:unless_index]
+            for match in re.finditer(
+                r"`(?:(?P<entity>[A-Za-z_][A-Za-z0-9_]*)\.)?(?P<field>[A-Za-z_][A-Za-z0-9_]*)`",
+                body,
+            ):
+                entity_set = match.group("entity") or ""
+                field = match.group("field") or ""
+                if not field:
+                    continue
+                key = (entity_set, field)
+                if key in seen:
+                    continue
+                seen.add(key)
+                requirements.append(
+                    {
+                        "entity_set": entity_set,
+                        "field": field,
+                        "source": "api_skill_discouraged_filter",
+                        "skill_line": line,
+                        "match_score": score,
+                    }
+                )
+        return sorted(requirements, key=lambda item: int(item.get("match_score") or 0), reverse=True)
+
+    @staticmethod
+    def _skill_filter_literal(
+        raw_literal: str,
+        request_text: str = "",
+        operator: str = "eq",
+    ) -> tuple[str, str] | None:
         literal = str(raw_literal or "").strip()
-        if literal.lower() in {"true", "false"}:
-            return literal.lower(), "boolean"
+        lowered = literal.lower()
+        if lowered in {"true", "false"}:
+            return lowered, "boolean"
+        if lowered == "null":
+            return "null", "null"
+        if lowered == "<user_year>":
+            year_value = LlmApiSpecificPlanner._extract_requested_year(request_text)
+            if not year_value:
+                return None
+            return year_value, "string"
+        if lowered == "<user_period>":
+            period_value = LlmApiSpecificPlanner._extract_requested_period(request_text)
+            if not period_value:
+                return None
+            return period_value, "string"
+        if lowered == "<user_amount>":
+            amount_value = LlmApiSpecificPlanner._extract_requested_amount_threshold(request_text)
+            if not amount_value:
+                return None
+            return amount_value, "decimal"
+        if lowered in {"<user_year_start>", "<user_year_end>"}:
+            year_value = LlmApiSpecificPlanner._extract_requested_year(request_text)
+            if not year_value:
+                return None
+            if lowered == "<user_year_start>":
+                return f"{year_value}-01-01T00:00:00", "datetime"
+            return f"{year_value}-12-31T23:59:59", "datetime"
+        if lowered in {"<date>", "<user_date>"}:
+            date_value = LlmApiSpecificPlanner._extract_requested_delivery_date(request_text)
+            if not date_value:
+                return None
+            return LlmApiSpecificPlanner._skill_date_placeholder_value(date_value, operator), "datetime"
+        datetime_match = re.fullmatch(r"(?i)(datetimeoffset|datetime)'(.+)'", literal)
+        if datetime_match:
+            literal_type = datetime_match.group(1).lower()
+            value = datetime_match.group(2).strip()
+            if any(marker in value.lower() for marker in ("<date>", "<user_date>", "<user_year_start>", "<user_year_end>")):
+                date_value = LlmApiSpecificPlanner._extract_requested_delivery_date(request_text)
+                year_value = LlmApiSpecificPlanner._extract_requested_year(request_text)
+                if "<user_year_start>" in value.lower() or "<user_year_end>" in value.lower():
+                    if not year_value:
+                        return None
+                    value = re.sub(r"(?i)<user_year_start>", f"{year_value}-01-01T00:00:00", value)
+                    value = re.sub(r"(?i)<user_year_end>", f"{year_value}-12-31T23:59:59", value)
+                if "<date>" in value.lower() or "<user_date>" in value.lower():
+                    if not date_value:
+                        return None
+                    value = re.sub(r"(?i)<user_date>|<date>", date_value, value)
+            value_type = "datetimeoffset" if literal_type == "datetimeoffset" else "datetime"
+            return value, value_type
         return literal.strip("'\""), "string"
 
     @staticmethod
     def _normalise_filter_literal(value: Any) -> str:
         return str(value if value is not None else "").strip("'\"").lower()
+
+    @staticmethod
+    def _normalise_value_type(value_type: Any) -> str:
+        normalized = str(value_type or "").strip().lower()
+        if normalized in {"null", "edm.null", "null_keyword", "odata.null"}:
+            return "null"
+        return normalized
+
+    @staticmethod
+    def _skill_date_placeholder_value(iso_date: str, operator: str) -> str:
+        if str(operator or "").lower() in {"le", "lt"}:
+            return f"{iso_date}T23:59:59"
+        return f"{iso_date}T00:00:00"
 
     @staticmethod
     def _skill_line_select_only_fields(line: str, entity_set: str) -> list[str]:
@@ -1284,6 +1600,55 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
                     "entity_set": entity_set,
                     "fields": fields,
                     "source": "api_skill_select_only",
+                    "skill_line": line,
+                    "match_score": score,
+                }
+        return sorted(by_entity.values(), key=lambda item: int(item.get("match_score") or 0), reverse=True)
+
+    @staticmethod
+    def _matching_skill_order_by_requirements(
+        request: AgentRequest,
+        schema_context: dict[str, Any],
+    ) -> list[dict[str, Any]]:
+        request_text = f"{request.resolved_user_input or ''} {request.user_input or ''}".strip()
+        if not request_text:
+            return []
+        by_entity: dict[str, dict[str, Any]] = {}
+        for line in LlmApiSpecificPlanner._iter_skill_lines(schema_context):
+            lowered = line.lower()
+            if "order_by" not in lowered and "order by" not in lowered:
+                continue
+            score = LlmApiSpecificPlanner._skill_line_match_score(line, request_text)
+            if score <= 0:
+                continue
+            refs = LlmApiSpecificPlanner._extract_skill_field_refs_after_marker(line, "order_by")
+            if not refs:
+                marker_match = re.search(r"order\s+by\s+(?P<body>.*)$", line, flags=re.IGNORECASE)
+                body = marker_match.group("body") if marker_match else ""
+                refs = [
+                    (match.group("entity"), match.group("field"))
+                    for match in re.finditer(
+                        r"`(?P<entity>[A-Za-z_][A-Za-z0-9_]*)\.(?P<field>[A-Za-z_][A-Za-z0-9_]*)`",
+                        body,
+                    )
+                ]
+            fields_by_entity: dict[str, list[str]] = {}
+            for entity_set, field in refs:
+                if not entity_set or not field:
+                    continue
+                fields = fields_by_entity.setdefault(entity_set, [])
+                if field not in fields:
+                    fields.append(field)
+            for entity_set, fields in fields_by_entity.items():
+                if not fields:
+                    continue
+                existing = by_entity.get(entity_set)
+                if existing is not None and int(existing.get("match_score") or 0) >= score:
+                    continue
+                by_entity[entity_set] = {
+                    "entity_set": entity_set,
+                    "fields": fields,
+                    "source": "api_skill_order_by",
                     "skill_line": line,
                     "match_score": score,
                 }
@@ -1385,7 +1750,19 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
         score = 0
         if normalized_request and (normalized_request in normalized_line or normalized_line in normalized_request):
             score += min(len(normalized_request), len(normalized_line))
+        for snippet in re.findall(r"`([^`]+)`", line):
+            if snippet and snippet in request_text:
+                score += len(snippet) * 2
+        generic_chinese_phrases = {
+            "公司代码",
+            "会计年度",
+            "会计期间",
+            "总账科目",
+            "分类账",
+        }
         for phrase in re.findall(r"[\u4e00-\u9fff]{4,}", line):
+            if phrase in generic_chinese_phrases:
+                continue
             if phrase in request_text:
                 score += len(phrase) * len(phrase)
         stopwords = {
@@ -1405,8 +1782,14 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             "records",
             "documents",
         }
-        request_tokens = set(re.findall(r"[A-Za-z0-9]{4,}", request_text.lower())) - stopwords
-        line_tokens = set(re.findall(r"[A-Za-z0-9]{4,}", line.lower())) - stopwords
+        request_tokens = {
+            token
+            for token in re.findall(r"[A-Za-z0-9]{4,}", request_text.lower())
+            if not token.isdigit()
+        } - stopwords
+        line_tokens = {
+            token for token in re.findall(r"[A-Za-z0-9]{4,}", line.lower()) if not token.isdigit()
+        } - stopwords
         score += 5 * len(request_tokens.intersection(line_tokens))
         return score
 
@@ -1590,6 +1973,508 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             vector_documents=[],
             doc_chunks=[],
         )
+
+    @classmethod
+    def _gl_line_items_by_account_period_shortcut_plan(
+        cls,
+        request: AgentRequest,
+        route_decision: ApiRouteDecision,
+        schema_context: dict[str, Any],
+    ) -> QueryPlan | None:
+        text = " ".join(
+            str(part or "")
+            for part in [
+                request.user_input,
+                request.resolved_user_input,
+                route_decision.intent_summary,
+                route_decision.business_domain,
+                route_decision.business_object,
+            ]
+        )
+        if not cls._looks_like_gl_line_item_request(text):
+            return None
+        if not cls._schema_context_has_service(schema_context, "API_GLACCOUNTLINEITEM"):
+            return None
+
+        company_code = cls._extract_company_code_for_gl_balance(text)
+        gl_account = cls._extract_gl_account_for_gl_balance(text)
+        date_range = cls._extract_month_date_range_for_gl_line_items(text)
+        if not (company_code and gl_account and date_range):
+            return None
+
+        start_value, end_value = date_range
+        return QueryPlan(
+            service_name="API_GLACCOUNTLINEITEM",
+            entity_set="GLAccountLineItem",
+            http_method="GET",
+            select_fields=[
+                "ID",
+                "CompanyCode",
+                "FiscalYear",
+                "AccountingDocument",
+                "AccountingDocumentItem",
+                "Ledger",
+                "GLAccount",
+                "PostingDate",
+                "DocumentDate",
+                "AmountInCompanyCodeCurrency",
+            ],
+            response_summary_fields=[
+                "CompanyCode",
+                "FiscalYear",
+                "AccountingDocument",
+                "AccountingDocumentItem",
+                "GLAccount",
+                "PostingDate",
+                "AmountInCompanyCodeCurrency",
+            ],
+            filters=[
+                FilterCondition(field="CompanyCode", operator="eq", value=company_code, value_type="string"),
+                FilterCondition(field="GLAccount", operator="eq", value=gl_account, value_type="string"),
+                FilterCondition(field="PostingDate", operator="ge", value=start_value, value_type="datetime"),
+                FilterCondition(field="PostingDate", operator="le", value=end_value, value_type="datetime"),
+            ],
+            top=100,
+            response_directive=(
+                "Present the G/L account line items for the requested company, account, and posting month. "
+                "Include accounting document, item, posting date, debit/credit context when available, and amount."
+            ),
+            rationale="Skill-backed direct plan for G/L account line items by company, account, and posting month.",
+            planner_diagnostics={
+                "planner_winner": "skill_shortcut",
+                "shortcut": "gl_line_items_by_account_period",
+                "route_decision": route_decision.raw_response,
+                "planner_type": "llm_api_specific_planner",
+            },
+        )
+
+    @staticmethod
+    def _trial_balance_select_fields() -> list[str]:
+        return [
+            "Ledger",
+            "CompanyCode",
+            "CompanyCodeName",
+            "FiscalYear",
+            "FiscalPeriod",
+            "GLAccount",
+            "GLAccountHierarchyName",
+            "StartingBalanceAmtInCoCodeCrcy",
+            "DebitAmountInCoCodeCrcy",
+            "CreditAmountInCoCodeCrcy",
+            "EndingBalanceAmtInCoCodeCrcy",
+        ]
+
+    @classmethod
+    def _trial_balance_rows_shortcut_plan(
+        cls,
+        request: AgentRequest,
+        route_decision: ApiRouteDecision,
+        schema_context: dict[str, Any],
+    ) -> QueryPlan | None:
+        text = " ".join(
+            str(part or "")
+            for part in [
+                request.user_input,
+                request.resolved_user_input,
+                route_decision.intent_summary,
+                route_decision.business_domain,
+                route_decision.business_object,
+            ]
+        )
+        if not cls._looks_like_trial_balance_rows_request(text):
+            return None
+        if not cls._schema_context_has_service(schema_context, "C_TRIALBALANCE_CDS"):
+            return None
+
+        company_code = cls._extract_company_code_for_gl_balance(text)
+        fiscal_year = cls._extract_fiscal_year_for_gl_balance(text)
+        if not (company_code and fiscal_year):
+            return None
+
+        fiscal_period = cls._extract_fiscal_period_for_gl_balance(text)
+        date_range = cls._trial_balance_parameter_date_range(fiscal_year, fiscal_period)
+        if date_range is None:
+            return None
+        start_value, end_value = date_range
+        entity_path = cls._trial_balance_results_entity_path(start_value, end_value)
+
+        filters = [
+            FilterCondition(field="Ledger", operator="eq", value="0L", value_type="string"),
+            FilterCondition(field="CompanyCode", operator="eq", value=company_code, value_type="string"),
+            FilterCondition(field="FiscalYear", operator="eq", value=fiscal_year, value_type="string"),
+        ]
+        if fiscal_period:
+            filters.append(
+                FilterCondition(field="FiscalPeriod", operator="eq", value=fiscal_period, value_type="string")
+            )
+        gl_account = cls._extract_gl_account_for_gl_balance(text)
+        if gl_account:
+            filters.append(FilterCondition(field="GLAccount", operator="eq", value=gl_account, value_type="string"))
+
+        select_fields = cls._trial_balance_select_fields()
+        return QueryPlan(
+            service_name="C_TRIALBALANCE_CDS",
+            entity_set=entity_path,
+            http_method="GET",
+            select_fields=select_fields,
+            response_summary_fields=select_fields,
+            filters=filters,
+            top=50,
+            response_directive=(
+                "Present trial balance rows for the requested company code and fiscal year or period. "
+                "State the total result count and current page size when pagination metadata is available."
+            ),
+            rationale=(
+                "Skill-backed direct plan for parameterized C_TRIALBALANCE_CDS. "
+                "The service requires P_FromPostingDate and P_ToPostingDate before navigating to Results."
+            ),
+            planner_diagnostics={
+                "planner_winner": "skill_shortcut",
+                "shortcut": "trial_balance_parameterized_results",
+                "trial_balance_parameters": {
+                    "P_FromPostingDate": start_value,
+                    "P_ToPostingDate": end_value,
+                },
+                "metadata_entity_set": "C_TRIALBALANCEResults",
+                "route_decision": route_decision.raw_response,
+                "planner_type": "llm_api_specific_planner",
+            },
+        )
+
+    @staticmethod
+    def _looks_like_trial_balance_rows_request(text: str) -> bool:
+        normalized = re.sub(r"\s+", "", str(text or "").lower())
+
+        def has_any(*terms: str) -> bool:
+            return any(term.lower().replace(" ", "") in normalized for term in terms)
+
+        has_balance = has_any(
+            "trialbalance",
+            "glaccountbalance",
+            "g/laccountbalance",
+            "balance",
+            "\u8bd5\u7b97\u5e73\u8861",
+            "\u8bd5\u7b97\u8868",
+            "\u4f59\u989d",
+        )
+        has_account_scope = has_any(
+            "glaccount",
+            "g/laccount",
+            "generalledgeraccount",
+            "\u603b\u8d26\u79d1\u76ee",
+            "\u4f1a\u8ba1\u79d1\u76ee",
+            "\u6240\u6709\u79d1\u76ee",
+            "\u79d1\u76ee",
+        )
+        blocked_detail_scope = has_any(
+            "openitem",
+            "lineitem",
+            "lineitems",
+            "drilldown",
+            "drillinto",
+            "\u672a\u6e05\u9879\u76ee",
+            "\u6e05\u8d26",
+            "\u884c\u9879\u76ee",
+            "\u51ed\u8bc1\u660e\u7ec6",
+            "\u53d1\u751f\u660e\u7ec6",
+            "\u660e\u7ec6",
+            "\u4e0b\u94bb",
+        )
+        return has_balance and has_account_scope and not blocked_detail_scope
+
+    @staticmethod
+    def _trial_balance_parameter_date_range(fiscal_year: str, fiscal_period: str = "") -> tuple[str, str] | None:
+        try:
+            year = int(fiscal_year)
+        except (TypeError, ValueError):
+            return None
+        if not fiscal_period:
+            return f"{year:04d}-01-01T00:00:00", f"{year:04d}-12-31T00:00:00"
+
+        try:
+            period = int(fiscal_period)
+        except (TypeError, ValueError):
+            return None
+        if period < 1:
+            return None
+        if period > 12:
+            return f"{year:04d}-01-01T00:00:00", f"{year:04d}-12-31T00:00:00"
+        start_date = date(year, period, 1)
+        end_date = date(year, 12, 31) if period == 12 else date(year, period + 1, 1) - timedelta(days=1)
+        return f"{start_date.isoformat()}T00:00:00", f"{end_date.isoformat()}T00:00:00"
+
+    @staticmethod
+    def _trial_balance_results_entity_path(start_value: str, end_value: str) -> str:
+        return (
+            "C_TRIALBALANCE("
+            f"P_FromPostingDate=datetime'{start_value}',"
+            f"P_ToPostingDate=datetime'{end_value}'"
+            ")/Results"
+        )
+
+    @staticmethod
+    def _looks_like_gl_line_item_request(text: str) -> bool:
+        normalized = re.sub(r"\s+", "", str(text or "").lower())
+
+        def has_any(*terms: str) -> bool:
+            return any(term.lower().replace(" ", "") in normalized for term in terms)
+
+        has_gl_account = has_any(
+            "glaccount",
+            "g/laccount",
+            "generalledgeraccount",
+            "\u603b\u8d26\u79d1\u76ee",
+            "\u4f1a\u8ba1\u79d1\u76ee",
+            "\u79d1\u76ee",
+        )
+        has_line_item = has_any(
+            "lineitem",
+            "lineitems",
+            "journalentry",
+            "\u884c\u9879\u76ee",
+            "\u51ed\u8bc1\u660e\u7ec6",
+            "\u53d1\u751f\u660e\u7ec6",
+            "\u660e\u7ec6",
+        )
+        return has_gl_account and has_line_item
+
+    @staticmethod
+    def _extract_month_date_range_for_gl_line_items(text: str) -> tuple[str, str] | None:
+        patterns = (
+            "(20\\d{2}|19\\d{2})\\s*\u5e74\\s*(\\d{1,2})\\s*\u6708",
+            "(20\\d{2}|19\\d{2})[./-](\\d{1,2})(?![./-]\\d)",
+        )
+        for pattern in patterns:
+            match = re.search(pattern, text or "")
+            if not match:
+                continue
+            year = int(match.group(1))
+            month = int(match.group(2))
+            if month < 1 or month > 12:
+                return None
+            start_date = date(year, month, 1)
+            if month == 12:
+                end_date = date(year, 12, 31)
+            else:
+                end_date = date(year, month + 1, 1) - timedelta(days=1)
+            return f"{start_date.isoformat()}T00:00:00", f"{end_date.isoformat()}T23:59:59"
+        return None
+
+    @classmethod
+    def _gl_balance_drilldown_shortcut_plan(
+        cls,
+        request: AgentRequest,
+        route_decision: ApiRouteDecision,
+        schema_context: dict[str, Any],
+    ) -> QueryPlan | None:
+        text = " ".join(
+            str(part or "")
+            for part in [
+                request.user_input,
+                request.resolved_user_input,
+                route_decision.intent_summary,
+                route_decision.business_domain,
+                route_decision.business_object,
+            ]
+        )
+        if not cls._looks_like_gl_balance_drilldown_request(text):
+            return None
+        if not cls._schema_context_has_service(schema_context, "C_TRIALBALANCE_CDS"):
+            return None
+        if not cls._schema_context_has_service(schema_context, "API_GLACCOUNTLINEITEM"):
+            return None
+
+        company_code = cls._extract_company_code_for_gl_balance(text)
+        gl_account = cls._extract_gl_account_for_gl_balance(text)
+        fiscal_year = cls._extract_fiscal_year_for_gl_balance(text)
+        fiscal_period = cls._extract_fiscal_period_for_gl_balance(text)
+        if not (company_code and gl_account and fiscal_year and fiscal_period):
+            return None
+        date_range = cls._trial_balance_parameter_date_range(fiscal_year, fiscal_period)
+        if date_range is None:
+            return None
+        trial_balance_entity_path = cls._trial_balance_results_entity_path(*date_range)
+
+        balance_filters = [
+            FilterCondition(field="Ledger", operator="eq", value="0L", value_type="string"),
+            FilterCondition(field="CompanyCode", operator="eq", value=company_code, value_type="string"),
+            FilterCondition(field="FiscalYear", operator="eq", value=fiscal_year, value_type="string"),
+            FilterCondition(field="FiscalPeriod", operator="eq", value=fiscal_period, value_type="string"),
+            FilterCondition(field="GLAccount", operator="eq", value=gl_account, value_type="string"),
+        ]
+
+        return QueryPlan(
+            service_name="C_TRIALBALANCE_CDS",
+            entity_set=trial_balance_entity_path,
+            http_method="GET",
+            select_fields=[
+                "CompanyCode",
+                "FiscalYear",
+                "GLAccount",
+                "FiscalPeriod",
+                "EndingBalanceAmtInCoCodeCrcy",
+            ],
+            response_summary_fields=[
+                "CompanyCode",
+                "FiscalYear",
+                "GLAccount",
+                "FiscalPeriod",
+                "EndingBalanceAmtInCoCodeCrcy",
+            ],
+            filters=balance_filters,
+            top=5,
+            response_directive=(
+                "Use the trial balance step to establish the requested company, fiscal year, period, "
+                "and G/L account scope. Then present the underlying G/L line items returned by the "
+                "GLAccountLineItem step. If the balance scope returns no rows, explain that there are "
+                "no line items to drill into for the requested scope."
+            ),
+            rationale=(
+                "Skill-backed cross-API shortcut for drilling from a G/L account balance into "
+                "underlying journal entry line items."
+            ),
+            planner_diagnostics={
+                "planner_winner": "skill_shortcut",
+                "shortcut": "gl_balance_drilldown_to_line_items",
+                "trial_balance_parameters": {
+                    "P_FromPostingDate": date_range[0],
+                    "P_ToPostingDate": date_range[1],
+                },
+                "metadata_entity_set": "C_TRIALBALANCEResults",
+                "route_decision": route_decision.raw_response,
+                "planner_type": "llm_api_specific_planner",
+            },
+            plan_kind="multi_step",
+            target_entity_set="GLAccountLineItem",
+            path_id="trial_balance_to_gl_account_line_items",
+            steps=[
+                ExecutionStep(
+                    step_id="balance",
+                    service_name="C_TRIALBALANCE_CDS",
+                    entity_set=trial_balance_entity_path,
+                    select_fields=[
+                        "CompanyCode",
+                        "FiscalYear",
+                        "GLAccount",
+                        "FiscalPeriod",
+                        "EndingBalanceAmtInCoCodeCrcy",
+                    ],
+                    response_summary_fields=[
+                        "CompanyCode",
+                        "FiscalYear",
+                        "GLAccount",
+                        "FiscalPeriod",
+                        "EndingBalanceAmtInCoCodeCrcy",
+                    ],
+                    filters=balance_filters,
+                    top=5,
+                    rationale="Establish the requested G/L account balance scope before line-item drilldown.",
+                ),
+                ExecutionStep(
+                    step_id="line_items",
+                    service_name="API_GLACCOUNTLINEITEM",
+                    entity_set="GLAccountLineItem",
+                    select_fields=[
+                        "ID",
+                        "CompanyCode",
+                        "FiscalYear",
+                        "AccountingDocument",
+                        "AccountingDocumentItem",
+                        "Ledger",
+                        "GLAccount",
+                        "PostingDate",
+                        "AmountInCompanyCodeCurrency",
+                    ],
+                    response_summary_fields=[
+                        "ID",
+                        "CompanyCode",
+                        "FiscalYear",
+                        "AccountingDocument",
+                        "AccountingDocumentItem",
+                        "GLAccount",
+                        "PostingDate",
+                        "AmountInCompanyCodeCurrency",
+                    ],
+                    filter_from_previous=[
+                        StepBinding(field="CompanyCode", source_step_id="balance", source_field="CompanyCode"),
+                        StepBinding(field="FiscalYear", source_step_id="balance", source_field="FiscalYear"),
+                        StepBinding(field="GLAccount", source_step_id="balance", source_field="GLAccount"),
+                    ],
+                    top=100,
+                    rationale="Read journal entry line items for the balance scope returned by Trial Balance.",
+                ),
+            ],
+        )
+
+    @staticmethod
+    def _looks_like_gl_balance_drilldown_request(text: str) -> bool:
+        normalized = re.sub(r"\s+", "", str(text or "").lower())
+
+        def has_any(*terms: str) -> bool:
+            return any(term.lower().replace(" ", "") in normalized for term in terms)
+
+        has_gl_account = has_any(
+            "glaccount",
+            "g/laccount",
+            "generalledgeraccount",
+            "\u603b\u8d26\u79d1\u76ee",
+            "\u4f1a\u8ba1\u79d1\u76ee",
+            "\u79d1\u76ee",
+        )
+        has_balance = has_any("balance", "trialbalance", "\u4f59\u989d", "\u8bd5\u7b97\u5e73\u8861")
+        has_drilldown = has_any(
+            "drilldown",
+            "drillinto",
+            "lineitem",
+            "lineitems",
+            "\u4e0b\u94bb",
+            "\u51ed\u8bc1\u660e\u7ec6",
+            "\u884c\u9879\u76ee",
+        )
+        return has_gl_account and has_balance and has_drilldown
+
+    @staticmethod
+    def _extract_company_code_for_gl_balance(text: str) -> str:
+        patterns = (
+            "(?:\u516c\u53f8(?:\u4ee3\u7801)?|company\\s*code|company)\\s*[:\uff1a=\\-\\s]*(\\d{3,8})",
+            "(\\d{3,8})\\s*(?:\u516c\u53f8(?:\u4ee3\u7801)?|company\\s*code|company)",
+        )
+        for pattern in patterns:
+            match = re.search(pattern, text or "", flags=re.IGNORECASE)
+            if match:
+                return match.group(1)
+        return ""
+
+    @staticmethod
+    def _extract_gl_account_for_gl_balance(text: str) -> str:
+        patterns = (
+            "(?:\u603b\u8d26\u79d1\u76ee|\u4f1a\u8ba1\u79d1\u76ee|\u79d1\u76ee|g/l\\s*account|gl\\s*account)"
+            "\\s*[:\uff1a=\\-\\s]*(\\d{4,12})",
+            "(\\d{4,12})\\s*(?:\u603b\u8d26\u79d1\u76ee|\u4f1a\u8ba1\u79d1\u76ee|\u79d1\u76ee)",
+        )
+        for pattern in patterns:
+            match = re.search(pattern, text or "", flags=re.IGNORECASE)
+            if match:
+                return match.group(1)
+        return ""
+
+    @staticmethod
+    def _extract_fiscal_year_for_gl_balance(text: str) -> str:
+        match = re.search("(?<!\\d)(20\\d{2}|19\\d{2})\\s*(?:\u5e74|\\b)", text or "")
+        return match.group(1) if match else ""
+
+    @staticmethod
+    def _extract_fiscal_period_for_gl_balance(text: str) -> str:
+        patterns = (
+            "\u7b2c\\s*(\\d{1,3})\\s*\u671f",
+            "(?:\u4f1a\u8ba1\u671f\u95f4|\u671f\u95f4|period)\\s*[:\uff1a=\\-\\s]*(\\d{1,3})",
+            "(?:20\\d{2}|19\\d{2})[./-](\\d{1,3})",
+        )
+        for pattern in patterns:
+            match = re.search(pattern, text or "", flags=re.IGNORECASE)
+            if match:
+                return f"{int(match.group(1)):03d}"
+        return ""
 
     @classmethod
     def _purchase_order_supplier_contact_shortcut_plan(
@@ -1832,6 +2717,46 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
         if match:
             year, month, day = match.groups()
             return f"{year}-{int(month):02d}-{int(day):02d}"
+        match = re.search(r"(\d{4})\s*年\s*(\d{1,2})\s*月\s*(\d{1,2})\s*(?:日|号)?", raw)
+        if match:
+            year, month, day = match.groups()
+            return f"{year}-{int(month):02d}-{int(day):02d}"
+        return ""
+
+    @staticmethod
+    def _extract_requested_year(text: str) -> str:
+        raw = str(text or "")
+        match = re.search(r"(?<!\d)(20\d{2}|19\d{2})(?:\s*年|\b)", raw)
+        if match:
+            return match.group(1)
+        return ""
+
+    @staticmethod
+    def _extract_requested_amount_threshold(text: str) -> str:
+        raw = str(text or "")
+        patterns = (
+            r"(?:金额|amount)[^\d]{0,8}(?:超过|大于|不低于|至少|>=|>|over|greater than|at least)\s*([0-9]+(?:\.[0-9]+)?)",
+            r"(?:超过|大于|不低于|至少|>=|>|over|greater than|at least)\s*([0-9]+(?:\.[0-9]+)?)",
+        )
+        for pattern in patterns:
+            match = re.search(pattern, raw, flags=re.IGNORECASE)
+            if match:
+                return match.group(1)
+        return ""
+
+    @staticmethod
+    def _extract_requested_period(text: str) -> str:
+        raw = str(text or "")
+        patterns = (
+            r"第\s*(\d{1,3})\s*期",
+            r"(?:会计期间|期间|period)\s*(\d{1,3})",
+            r"(\d{4})[./-](\d{1,3})",
+        )
+        for pattern in patterns:
+            match = re.search(pattern, raw, flags=re.IGNORECASE)
+            if match:
+                value = match.group(2) if len(match.groups()) >= 2 and match.group(2) else match.group(1)
+                return f"{int(value):03d}"
         return ""
 
     @staticmethod
