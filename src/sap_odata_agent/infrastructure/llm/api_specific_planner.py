@@ -99,6 +99,7 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
         materialized = self._apply_skill_select_only_patterns(materialized, request, schema_context)
         materialized = self._apply_skill_order_by_patterns(materialized, request, schema_context)
         materialized = self._apply_skill_result_transform_patterns(materialized, request, schema_context)
+        materialized = self._suppress_detail_query_aggregation(materialized, request)
         materialized = self._clear_skill_resolved_clarification(materialized)
         materialized = self._remove_unrequested_temporal_filters(materialized, request)
         materialized = self._apply_company_code_chart_of_accounts_bridge(materialized, request, schema_context)
@@ -1304,16 +1305,17 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
     def _matching_skill_filter_requirements(
         request: AgentRequest,
         schema_context: dict[str, Any],
-    ) -> list[dict[str, str]]:
+    ) -> list[dict[str, Any]]:
         request_text = f"{request.resolved_user_input or ''} {request.user_input or ''}".strip()
         if not request_text:
             return []
-        requirements: list[dict[str, str]] = []
+        requirements: list[dict[str, Any]] = []
         seen: set[tuple[str, str, str, str]] = set()
         for line in LlmApiSpecificPlanner._iter_skill_lines(schema_context):
             if not re.search(r"\s(?:eq|ne|gt|ge|lt|le)\s", line, flags=re.IGNORECASE):
                 continue
-            if not LlmApiSpecificPlanner._skill_line_matches_request(line, request_text):
+            match_score = LlmApiSpecificPlanner._skill_line_match_score(line, request_text)
+            if match_score <= 0:
                 continue
             for match in re.finditer(
                 r"`?(?:(?P<entity>[A-Za-z_][A-Za-z0-9_]*)\.)?(?P<field>[A-Za-z_][A-Za-z0-9_]*)\s+"
@@ -1352,9 +1354,45 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
                         "value_type": value_type,
                         "source": source,
                         "skill_line": line,
+                        "match_score": match_score,
                     }
                 )
-        return requirements
+        return LlmApiSpecificPlanner._prune_conflicting_skill_filter_requirements(requirements)
+
+    @staticmethod
+    def _prune_conflicting_skill_filter_requirements(requirements: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        """Keep the most relevant skill state filter when skill lines disagree.
+
+        API skills can contain both open and cleared variants for the same field.
+        A broad shared phrase such as "应付项目" must not let a lower-relevance
+        `ClearingDate ne null` line override the higher-relevance
+        `ClearingDate eq null` line for an open-item request.
+        """
+
+        sorted_requirements = sorted(
+            requirements,
+            key=lambda item: int(item.get("match_score") or 0),
+            reverse=True,
+        )
+        selected: list[dict[str, Any]] = []
+        null_state_fields: set[tuple[str, str]] = set()
+        for item in sorted_requirements:
+            key = (str(item.get("entity_set") or ""), str(item.get("field") or ""))
+            value_type = LlmApiSpecificPlanner._normalise_value_type(item.get("value_type"))
+            value = LlmApiSpecificPlanner._normalise_filter_literal(item.get("value"))
+            operator = str(item.get("operator") or "").lower()
+            is_null_state = value_type == "null" and value == "null" and operator in {"eq", "ne"}
+            if key in null_state_fields:
+                continue
+            if is_null_state:
+                selected = [
+                    existing
+                    for existing in selected
+                    if (str(existing.get("entity_set") or ""), str(existing.get("field") or "")) != key
+                ]
+                null_state_fields.add(key)
+            selected.append(item)
+        return selected
 
     @staticmethod
     def _matching_skill_preferred_filter_fields(
@@ -1662,6 +1700,8 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
         request_text = f"{request.resolved_user_input or ''} {request.user_input or ''}".strip()
         if not request_text:
             return []
+        if not LlmApiSpecificPlanner._request_mentions_aggregation(request_text):
+            return []
         requirements: list[dict[str, Any]] = []
         seen: set[tuple[str, tuple[str, ...], tuple[str, ...]]] = set()
         for line in LlmApiSpecificPlanner._iter_skill_lines(schema_context):
@@ -1698,6 +1738,60 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
                 }
             )
         return sorted(requirements, key=lambda item: int(item.get("match_score") or 0), reverse=True)
+
+    @staticmethod
+    def _request_mentions_aggregation(request_text: str) -> bool:
+        value = str(request_text or "").lower()
+        markers = (
+            "余额",
+            "合计",
+            "汇总",
+            "总额",
+            "累计",
+            "分组",
+            "层级",
+            "balance",
+            "total",
+            "sum",
+            "aggregate",
+            "group by",
+        )
+        return any(marker in value for marker in markers)
+
+    @staticmethod
+    def _suppress_detail_query_aggregation(plan: QueryPlan, request: AgentRequest) -> QueryPlan:
+        transform = plan.result_transform
+        if transform is None or transform.type != "aggregate":
+            return plan
+        request_text = f"{request.resolved_user_input or ''} {request.user_input or ''}".strip()
+        value = request_text.lower()
+        detail_markers = ("明细", "项目", "清单", "列表", "line item", "line items", "detail", "details", "list")
+        strong_aggregate_markers = (
+            "余额",
+            "合计",
+            "汇总",
+            "总额",
+            "累计",
+            "分组",
+            "层级",
+            "balance",
+            "total",
+            "sum",
+            "aggregate",
+            "group by",
+        )
+        if not any(marker in value for marker in detail_markers):
+            return plan
+        if any(marker in value for marker in strong_aggregate_markers):
+            return plan
+        diagnostics = {
+            **(plan.planner_diagnostics or {}),
+            "suppressed_result_transform": {
+                "previous_type": transform.type,
+                "reason": "detail_query_without_explicit_aggregation",
+            },
+        }
+        return replace(plan, result_transform=ResultTransform(type="none"), planner_diagnostics=diagnostics)
 
     @staticmethod
     def _extract_skill_field_refs_after_marker(line: str, marker: str) -> list[tuple[str, str]]:
@@ -2048,9 +2142,10 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             },
         )
 
-    @staticmethod
-    def _trial_balance_select_fields() -> list[str]:
-        return [
+    @classmethod
+    def _trial_balance_select_fields(cls, text: str = "") -> list[str]:
+        fields = [
+            "ID",
             "Ledger",
             "CompanyCode",
             "CompanyCodeName",
@@ -2063,6 +2158,13 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             "CreditAmountInCoCodeCrcy",
             "EndingBalanceAmtInCoCodeCrcy",
         ]
+        if cls._text_has_any(text, "profit center", "利润中心"):
+            fields.extend(["ProfitCenter", "ProfitCenterName", "Segment", "SegmentName"])
+        if cls._text_has_any(text, "segment", "分部", "段"):
+            fields.extend(["Segment", "SegmentName"])
+        if cls._text_has_any(text, "balance sheet", "资产负债", "损益"):
+            fields.append("IsBalanceSheetAccount")
+        return list(dict.fromkeys(fields))
 
     @classmethod
     def _trial_balance_rows_shortcut_plan(
@@ -2098,11 +2200,13 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
         start_value, end_value = date_range
         entity_path = cls._trial_balance_results_entity_path(start_value, end_value)
 
+        all_ledgers_requested = cls._trial_balance_request_all_ledgers(text)
         filters = [
-            FilterCondition(field="Ledger", operator="eq", value="0L", value_type="string"),
             FilterCondition(field="CompanyCode", operator="eq", value=company_code, value_type="string"),
             FilterCondition(field="FiscalYear", operator="eq", value=fiscal_year, value_type="string"),
         ]
+        if not all_ledgers_requested:
+            filters.insert(0, FilterCondition(field="Ledger", operator="eq", value="0L", value_type="string"))
         if fiscal_period:
             filters.append(
                 FilterCondition(field="FiscalPeriod", operator="eq", value=fiscal_period, value_type="string")
@@ -2110,8 +2214,68 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
         gl_account = cls._extract_gl_account_for_gl_balance(text)
         if gl_account:
             filters.append(FilterCondition(field="GLAccount", operator="eq", value=gl_account, value_type="string"))
+        if cls._text_has_any(text, "profit center", "利润中心"):
+            filters.append(FilterCondition(field="ProfitCenter", operator="ne", value="", value_type="string"))
+        if cls._text_has_any(text, "segment", "分部", "段"):
+            filters.append(FilterCondition(field="Segment", operator="ne", value="", value_type="string"))
 
-        select_fields = cls._trial_balance_select_fields()
+        select_fields = cls._trial_balance_select_fields(text)
+        if all_ledgers_requested and cls._schema_context_has_service(schema_context, "API_LEDGER_SRV"):
+            return QueryPlan(
+                service_name="C_TRIALBALANCE_CDS",
+                entity_set=entity_path,
+                http_method="GET",
+                select_fields=select_fields,
+                response_summary_fields=select_fields,
+                filters=filters,
+                top=100,
+                response_directive=(
+                    "Present trial balance rows for each ledger returned by the ledger master step. "
+                    "Compare balances by Ledger when multiple ledgers have data."
+                ),
+                rationale=(
+                    "Skill-backed multi-step plan for all-ledger trial balance. "
+                    "C_TRIALBALANCE_CDS requires a single Ledger filter, so the Ledger values are fanned out."
+                ),
+                planner_diagnostics={
+                    "planner_winner": "skill_shortcut",
+                    "shortcut": "trial_balance_all_ledgers_fanout",
+                    "trial_balance_parameters": {
+                        "P_FromPostingDate": start_value,
+                        "P_ToPostingDate": end_value,
+                    },
+                    "metadata_entity_set": "C_TRIALBALANCEResults",
+                    "route_decision": route_decision.raw_response,
+                    "planner_type": "llm_api_specific_planner",
+                },
+                plan_kind="multi_step",
+                target_entity_set=entity_path,
+                path_id="ledger_master_to_trial_balance_results",
+                steps=[
+                    ExecutionStep(
+                        step_id="ledgers",
+                        service_name="API_LEDGER_SRV",
+                        entity_set="A_Ledger",
+                        select_fields=["Ledger", "IsLeadingLedger"],
+                        response_summary_fields=["Ledger", "IsLeadingLedger"],
+                        top=20,
+                        rationale="Read available ledgers for the system.",
+                    ),
+                    ExecutionStep(
+                        step_id="ledger_balances",
+                        service_name="C_TRIALBALANCE_CDS",
+                        entity_set=entity_path,
+                        select_fields=select_fields,
+                        response_summary_fields=select_fields,
+                        filters=filters,
+                        filter_from_previous=[
+                            StepBinding(field="Ledger", source_step_id="ledgers", source_field="Ledger", fanout=True)
+                        ],
+                        top=100,
+                        rationale="Read trial balance rows once per Ledger because SAP requires a single Ledger filter.",
+                    ),
+                ],
+            )
         return QueryPlan(
             service_name="C_TRIALBALANCE_CDS",
             entity_set=entity_path,
@@ -2156,6 +2320,7 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             "\u8bd5\u7b97\u5e73\u8861",
             "\u8bd5\u7b97\u8868",
             "\u4f59\u989d",
+            "\u635f\u76ca",
         )
         has_account_scope = has_any(
             "glaccount",
@@ -2165,6 +2330,14 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             "\u4f1a\u8ba1\u79d1\u76ee",
             "\u6240\u6709\u79d1\u76ee",
             "\u79d1\u76ee",
+        )
+        has_statement_scope = has_any(
+            "trialbalance",
+            "\u8bd5\u7b97\u5e73\u8861",
+            "\u8bd5\u7b97\u8868",
+            "\u8bd5\u7b97\u4f59\u989d",
+            "\u8d22\u52a1\u62a5\u8868",
+            "\u635f\u76ca",
         )
         blocked_detail_scope = has_any(
             "openitem",
@@ -2180,7 +2353,32 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             "\u660e\u7ec6",
             "\u4e0b\u94bb",
         )
-        return has_balance and has_account_scope and not blocked_detail_scope
+        return has_balance and (has_account_scope or has_statement_scope) and not blocked_detail_scope
+
+    @staticmethod
+    def _text_has_any(text: str, *terms: str) -> bool:
+        normalized = re.sub(r"\s+", "", str(text or "").lower())
+        return any(str(term or "").lower().replace(" ", "") in normalized for term in terms)
+
+    @classmethod
+    def _trial_balance_request_all_ledgers(cls, text: str) -> bool:
+        return cls._text_has_any(
+            text,
+            "different ledger",
+            "different ledgers",
+            "all ledger",
+            "all ledgers",
+            "by ledger",
+            "parallel ledger",
+            "parallel ledgers",
+            "不同分类账",
+            "各分类账",
+            "所有分类账",
+            "平行分类账",
+            "按分类账",
+            "不同ledger",
+            "各ledger",
+        )
 
     @staticmethod
     def _trial_balance_parameter_date_range(fiscal_year: str, fiscal_period: str = "") -> tuple[str, str] | None:
@@ -2382,6 +2580,8 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
                         "AccountingDocumentItem",
                         "Ledger",
                         "GLAccount",
+                        "FiscalPeriod",
+                        "FiscalYearPeriod",
                         "PostingDate",
                         "AmountInCompanyCodeCurrency",
                     ],
@@ -2392,6 +2592,8 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
                         "AccountingDocument",
                         "AccountingDocumentItem",
                         "GLAccount",
+                        "FiscalPeriod",
+                        "FiscalYearPeriod",
                         "PostingDate",
                         "AmountInCompanyCodeCurrency",
                     ],

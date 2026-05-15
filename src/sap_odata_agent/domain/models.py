@@ -267,6 +267,7 @@ class StepBinding:
     field: str
     source_step_id: str
     source_field: str
+    fanout: bool = False
 
 
 @dataclass(slots=True)

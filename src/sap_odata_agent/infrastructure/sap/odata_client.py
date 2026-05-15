@@ -9,11 +9,13 @@ import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
+from itertools import product
 from pathlib import Path
 
 from sap_odata_agent.domain.models import (
     CompiledRequest,
     ExecutionAttempt,
+    ExecutionStep,
     FilterCondition,
     FunctionParameter,
     QueryPlan,
@@ -326,7 +328,7 @@ class BasicODataCompiler:
                 if raw_value is not None
             ]
             return f"({' or '.join(or_parts)})" if or_parts else f"{field} eq ''"
-        if str(item.value_type or "").lower() in {"null", "edm.null", "null_keyword", "odata.null"}:
+        if str(item.value_type or "").lower() in {"null", "edm.null", "null_keyword", "odata.null"} or str(value).strip().lower() == "null":
             return f"{field} {operator} null"
         escaped = value.replace("'", "''")
         if operator == "contains":
@@ -336,7 +338,7 @@ class BasicODataCompiler:
     @staticmethod
     def _compile_literal(value: str, value_type: str) -> str:
         normalized_type = str(value_type or "").lower()
-        if normalized_type in {"null", "edm.null", "null_keyword", "odata.null"}:
+        if normalized_type in {"null", "edm.null", "null_keyword", "odata.null"} or str(value).strip().lower() == "null":
             return "null"
         if normalized_type in {"boolean", "bool", "edm.boolean"}:
             normalized_value = str(value).strip().lower()
@@ -679,6 +681,7 @@ class MultiStepSapExecutor:
         for step in plan.steps:
             runtime_filters = list(step.filters)
             extracted_values: dict[str, object] = {}
+            fanout_bindings: list[tuple[str, list[object]]] = []
             for binding in step.filter_from_previous:
                 previous_payload = step_results.get(binding.source_step_id)
                 values = self._extract_values(previous_payload, binding.source_field)
@@ -714,6 +717,10 @@ class MultiStepSapExecutor:
                     )
                     attempts.append(attempt)
                     return attempts, None
+                if binding.fanout and len(values) > 1:
+                    fanout_bindings.append((binding.field, values))
+                    extracted_values[binding.field] = values
+                    continue
                 if len(values) == 1:
                     runtime_filters.append(
                         FilterCondition(
@@ -732,6 +739,25 @@ class MultiStepSapExecutor:
                         )
                     )
                     extracted_values[binding.field] = values
+
+            if fanout_bindings:
+                fanout_attempts, fanout_data = self._execute_fanout_step(
+                    plan=plan,
+                    step=step,
+                    base_filters=runtime_filters,
+                    fanout_bindings=fanout_bindings,
+                    starting_attempt_number=attempt_number,
+                )
+                for attempt in fanout_attempts:
+                    attempt.step_id = step.step_id
+                    attempt.extracted_values = {**extracted_values, **(attempt.extracted_values or {})}
+                attempts.extend(fanout_attempts)
+                if any(not attempt.success for attempt in fanout_attempts):
+                    return attempts, None
+                step_results[step.step_id] = fanout_data or {}
+                final_data = fanout_data
+                attempt_number += len(fanout_attempts)
+                continue
 
             step_plan = QueryPlan(
                 service_name=step.service_name or plan.service_name,
@@ -759,6 +785,79 @@ class MultiStepSapExecutor:
             return attempts, None
 
         return attempts, self._build_merged_data(plan, attempts, final_data)
+
+    def _execute_fanout_step(
+        self,
+        *,
+        plan: QueryPlan,
+        step: ExecutionStep,
+        base_filters: list[FilterCondition],
+        fanout_bindings: list[tuple[str, list[object]]],
+        starting_attempt_number: int,
+    ) -> tuple[list[ExecutionAttempt], dict | None]:
+        attempts: list[ExecutionAttempt] = []
+        previews: list[dict] = []
+        fields = [field for field, _values in fanout_bindings]
+        value_sets = [[str(value) for value in values] for _field, values in fanout_bindings]
+        for offset, values in enumerate(product(*value_sets)):
+            fanout_filters = list(base_filters)
+            extracted = dict(zip(fields, values, strict=True))
+            for field, value in extracted.items():
+                fanout_filters.append(FilterCondition(field=field, operator="eq", value=value))
+            step_plan = QueryPlan(
+                service_name=step.service_name or plan.service_name,
+                entity_set=step.entity_set,
+                http_method=step.http_method,
+                select_fields=step.select_fields,
+                response_summary_fields=step.response_summary_fields,
+                filters=fanout_filters,
+                order_by=step.order_by,
+                top=step.top,
+                plan_kind="direct",
+            )
+            compiled = self.compiler.compile(step_plan)
+            attempt = self.executor.execute(compiled, starting_attempt_number + offset)
+            attempt.extracted_values = extracted
+            attempts.append(attempt)
+            if not attempt.success:
+                return attempts, None
+            previews.append(attempt.response_preview or {})
+        return attempts, self._merge_fanout_previews(previews, step.top)
+
+    def _merge_fanout_previews(self, previews: list[dict], top: int | None) -> dict:
+        all_results: list[dict] = []
+        total_count = 0
+        for preview in previews:
+            results = preview.get("_all_results")
+            if not isinstance(results, list):
+                results = preview.get("results", [])
+            if not isinstance(results, list):
+                results = []
+            all_results.extend(item for item in results if isinstance(item, dict))
+            try:
+                total_count += int(preview.get("result_count", len(results)) or 0)
+            except (TypeError, ValueError):
+                total_count += len(results)
+        page_size = top or len(all_results) or 20
+        display_limit = min(page_size, self.executor.MAX_PREVIEW_ROWS)
+        displayed_results = all_results[:display_limit]
+        has_next = len(displayed_results) < len(all_results)
+        return {
+            "result_count": total_count,
+            "returned_count": len(all_results),
+            "displayed_count": len(displayed_results),
+            "results": displayed_results,
+            "_all_results": all_results,
+            "_result_window_start": 0,
+            "pagination": {
+                "page_size": page_size,
+                "display_limit": display_limit,
+                "skip": 0,
+                "page_number": 1,
+                "has_next": has_next,
+                "next_skip": len(displayed_results) if has_next else None,
+            },
+        }
 
     def _build_merged_data(self, plan: QueryPlan, attempts: list[ExecutionAttempt], final_data: dict) -> dict:
         structured_step_results = self._build_step_results(plan, attempts)

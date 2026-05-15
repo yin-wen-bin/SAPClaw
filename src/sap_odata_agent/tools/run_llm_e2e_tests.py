@@ -7,6 +7,7 @@ import traceback
 import urllib.parse
 from dataclasses import asdict, is_dataclass
 from datetime import datetime
+from itertools import product
 from pathlib import Path
 from typing import Any
 from uuid import uuid4
@@ -244,6 +245,7 @@ def _run_baseline(case: dict[str, Any], case_root: Path = CASE_ROOT) -> dict[str
     for index, step in enumerate(case["baseline"]["steps"], start=1):
         url = _absolute_url(settings.sap_base_url, step["url"])
         skip_reason = ""
+        fanout_bindings: list[dict[str, Any]] = []
         for bind in _iter_step_bindings(step):
             source_output = step_outputs[bind["source_step"]]
             values = _extract_values(source_output["results"], bind["source_field"])
@@ -253,6 +255,9 @@ def _run_baseline(case: dict[str, Any], case_root: Path = CASE_ROOT) -> dict[str
                     "returned no values."
                 )
                 break
+            if bind.get("fanout") and len(values) > 1:
+                fanout_bindings.append({**bind, "values": values})
+                continue
             url = _append_binding_filter(url, bind["target_field"], values)
 
         if skip_reason:
@@ -274,6 +279,14 @@ def _run_baseline(case: dict[str, Any], case_root: Path = CASE_ROOT) -> dict[str
             baseline_steps.append(step_output)
             step_outputs[step["id"]] = step_output
             break
+
+        if fanout_bindings:
+            step_output = _run_baseline_fanout_step(executor, step, url, fanout_bindings, index)
+            baseline_steps.append(step_output)
+            step_outputs[step["id"]] = step_output
+            if not step_output["success"]:
+                break
+            continue
 
         attempt = executor.execute(CompiledRequest(method="GET", url=url), attempt_number=index)
         attempt_dict = _to_jsonable(attempt)
@@ -307,6 +320,61 @@ def _run_baseline(case: dict[str, Any], case_root: Path = CASE_ROOT) -> dict[str
     baseline_path.parent.mkdir(parents=True, exist_ok=True)
     baseline_path.write_text(json.dumps(baseline, ensure_ascii=False, indent=2), encoding="utf-8")
     return baseline
+
+
+def _run_baseline_fanout_step(
+    executor: Any,
+    step: dict[str, Any],
+    base_url: str,
+    fanout_bindings: list[dict[str, Any]],
+    attempt_number: int,
+) -> dict[str, Any]:
+    fields = [str(binding["target_field"]) for binding in fanout_bindings]
+    value_sets = [[str(value) for value in binding.get("values", [])] for binding in fanout_bindings]
+    attempts: list[dict[str, Any]] = []
+    results: list[dict[str, Any]] = []
+    result_count = 0
+    request_urls: list[str] = []
+    for offset, values in enumerate(product(*value_sets)):
+        url = base_url
+        extracted = dict(zip(fields, values, strict=True))
+        for field, value in extracted.items():
+            url = _append_binding_filter(url, field, [value])
+        attempt = executor.execute(CompiledRequest(method="GET", url=url), attempt_number=attempt_number + offset)
+        attempts.append(_to_jsonable(attempt))
+        request_urls.append(attempt.request.url)
+        step_results = _extract_results(attempt.response_preview)
+        results.extend(step_results)
+        result_count += _result_count(attempt.response_preview, step_results)
+        if not attempt.success:
+            return {
+                "id": step["id"],
+                "success": False,
+                "status_code": attempt.status_code,
+                "request_url": attempt.request.url,
+                "request_urls": request_urls,
+                "error_message": attempt.error_message,
+                "result_count": result_count,
+                "returned_count": len(results),
+                "key_fields": step.get("key_fields", []),
+                "keys": _key_set(results, step.get("key_fields", [])),
+                "results": results,
+                "attempts": attempts,
+            }
+    return {
+        "id": step["id"],
+        "success": True,
+        "status_code": 200,
+        "request_url": request_urls[-1] if request_urls else base_url,
+        "request_urls": request_urls,
+        "error_message": None,
+        "result_count": result_count,
+        "returned_count": len(results),
+        "key_fields": step.get("key_fields", []),
+        "keys": _key_set(results, step.get("key_fields", [])),
+        "results": results,
+        "attempts": attempts,
+    }
 
 
 def _baseline_final_result(case: dict[str, Any], final_step: dict[str, Any]) -> dict[str, Any]:
@@ -354,7 +422,7 @@ def _baseline_final_result(case: dict[str, Any], final_step: dict[str, Any]) -> 
     }
 
 
-def _iter_step_bindings(step: dict[str, Any]) -> list[dict[str, str]]:
+def _iter_step_bindings(step: dict[str, Any]) -> list[dict[str, Any]]:
     raw_bindings: list[Any] = []
     for key in ("bind", "binds", "bindings", "filter_from_previous"):
         value = step.get(key)
@@ -363,7 +431,7 @@ def _iter_step_bindings(step: dict[str, Any]) -> list[dict[str, str]]:
         elif isinstance(value, dict):
             raw_bindings.append(value)
 
-    bindings: list[dict[str, str]] = []
+    bindings: list[dict[str, Any]] = []
     for raw in raw_bindings:
         if not isinstance(raw, dict):
             continue
@@ -376,6 +444,7 @@ def _iter_step_bindings(step: dict[str, Any]) -> list[dict[str, str]]:
                     "source_step": str(source_step),
                     "source_field": str(source_field),
                     "target_field": str(target_field),
+                    "fanout": bool(raw.get("fanout", False)),
                 }
             )
     return bindings

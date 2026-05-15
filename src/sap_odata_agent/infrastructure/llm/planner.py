@@ -2218,6 +2218,7 @@ class LlmStructuredIntentPlanner(RetrievalAwareIntentPlanner):
                         field=field_name,
                         source_step_id=str(raw_binding.get("source_step_id", "") or ""),
                         source_field=str(raw_binding.get("source_field", "") or ""),
+                        fanout=bool(raw_binding.get("fanout", False)),
                     )
                 )
             if index == 1 and not filters:
@@ -2239,6 +2240,9 @@ class LlmStructuredIntentPlanner(RetrievalAwareIntentPlanner):
 
     @staticmethod
     def _filter_value_type(raw_filter: dict[str, Any], field_metadata: dict[str, Any]) -> str:
+        value = raw_filter.get("value")
+        if str(value).strip().lower() == "null":
+            return "null"
         explicit_type = raw_filter.get("value_type")
         if isinstance(explicit_type, str) and explicit_type.strip():
             return explicit_type.strip()

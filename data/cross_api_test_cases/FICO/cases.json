@@ -305,7 +305,7 @@
       "steps": [
         {
           "id": "balance",
-          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,StartingBalanceAmtInCoCodeCrcy,DebitAmountInCoCodeCrcy,CreditAmountInCoCodeCrcy,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012' and GLAccount eq '10010000'&$top=100",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCE(P_FromPostingDate=datetime'2023-12-01T00:00:00',P_ToPostingDate=datetime'2023-12-31T00:00:00')/Results?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,StartingBalanceAmtInCoCodeCrcy,DebitAmountInCoCodeCrcy,CreditAmountInCoCodeCrcy,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012' and GLAccount eq '10010000'&$top=100",
           "key_fields": [
             "ID"
           ]
@@ -351,7 +351,7 @@
       "steps": [
         {
           "id": "monthly_balances",
-          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,FiscalYearPeriod,GLAccount,DebitAmountInCoCodeCrcy,CreditAmountInCoCodeCrcy,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and GLAccount eq '10010000'&$top=100",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCE(P_FromPostingDate=datetime'2023-01-01T00:00:00',P_ToPostingDate=datetime'2023-12-31T00:00:00')/Results?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,FiscalYearPeriod,GLAccount,DebitAmountInCoCodeCrcy,CreditAmountInCoCodeCrcy,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and GLAccount eq '10010000'&$top=100",
           "key_fields": [
             "ID"
           ]
@@ -425,7 +425,7 @@
       "steps": [
         {
           "id": "balance",
-          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=CompanyCode,FiscalYear,GLAccount,FiscalPeriod,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012' and GLAccount eq '10010000'&$top=5",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCE(P_FromPostingDate=datetime'2023-12-01T00:00:00',P_ToPostingDate=datetime'2023-12-31T00:00:00')/Results?$select=CompanyCode,FiscalYear,GLAccount,FiscalPeriod,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012' and GLAccount eq '10010000'&$top=5",
           "key_fields": [
             "CompanyCode",
             "FiscalYear",
@@ -492,45 +492,46 @@
       "clarify": false,
       "unsupported": false
     },
-      "baseline": {
-        "steps": [
-          {
-            "id": "ledgers",
-            "url": "/sap/opu/odata/sap/API_LEDGER_SRV/A_Ledger?$select=Ledger,IsLeadingLedger&$top=20",
-            "key_fields": [
-              "Ledger"
-            ]
-          },
-          {
-            "id": "ledger_balances",
-            "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,EndingBalanceAmtInCoCodeCrcy&$filter=CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012' and GLAccount eq '10010000'&$top=100",
-            "key_fields": [
-              "Ledger",
-              "CompanyCode",
-              "FiscalYear",
-              "GLAccount"
-            ],
-            "bindings": [
-              {
-                "source_step": "ledgers",
-                "source_field": "Ledger",
-                "target_field": "Ledger"
-              }
-            ]
-          }
-        ]
-      },
-      "comparison": {
-        "type": "key_subset",
-        "keys": [
-          "Ledger",
-          "CompanyCode",
-          "FiscalYear",
-          "GLAccount"
-        ],
-        "required_fields": [
-          "Ledger",
-          "GLAccount",
+    "baseline": {
+      "steps": [
+        {
+          "id": "ledgers",
+          "url": "/sap/opu/odata/sap/API_LEDGER_SRV/A_Ledger?$select=Ledger,IsLeadingLedger&$top=20",
+          "key_fields": [
+            "Ledger"
+          ]
+        },
+        {
+          "id": "ledger_balances",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCE(P_FromPostingDate=datetime'2023-12-01T00:00:00',P_ToPostingDate=datetime'2023-12-31T00:00:00')/Results?$select=Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,EndingBalanceAmtInCoCodeCrcy&$filter=CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012' and GLAccount eq '10010000'&$top=100",
+          "key_fields": [
+            "Ledger",
+            "CompanyCode",
+            "FiscalYear",
+            "GLAccount"
+          ],
+          "bindings": [
+            {
+              "source_step": "ledgers",
+              "source_field": "Ledger",
+              "target_field": "Ledger",
+              "fanout": true
+            }
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "key_subset",
+      "keys": [
+        "Ledger",
+        "CompanyCode",
+        "FiscalYear",
+        "GLAccount"
+      ],
+      "required_fields": [
+        "Ledger",
+        "GLAccount",
         "EndingBalanceAmtInCoCodeCrcy"
       ]
     }
@@ -560,7 +561,7 @@
       "steps": [
         {
           "id": "trial_balance",
-          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,GLAccountHierarchyName,DebitAmountInCoCodeCrcy,CreditAmountInCoCodeCrcy,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012'&$top=100",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCE(P_FromPostingDate=datetime'2023-12-01T00:00:00',P_ToPostingDate=datetime'2023-12-31T00:00:00')/Results?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,GLAccountHierarchyName,DebitAmountInCoCodeCrcy,CreditAmountInCoCodeCrcy,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012'&$top=100",
           "key_fields": [
             "ID"
           ]
@@ -605,7 +606,7 @@
       "steps": [
         {
           "id": "trial_balance_range",
-          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,DebitAmountInCoCodeCrcy,CreditAmountInCoCodeCrcy,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012' and GLAccount ge '10000000' and GLAccount le '39999999'&$top=100",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCE(P_FromPostingDate=datetime'2023-12-01T00:00:00',P_ToPostingDate=datetime'2023-12-31T00:00:00')/Results?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,DebitAmountInCoCodeCrcy,CreditAmountInCoCodeCrcy,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012' and GLAccount ge '10000000' and GLAccount le '39999999'&$top=100",
           "key_fields": [
             "ID"
           ]
@@ -649,7 +650,7 @@
       "steps": [
         {
           "id": "ledger_trial_balance",
-          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,DebitAmountInCoCodeCrcy,CreditAmountInCoCodeCrcy,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012'&$top=100",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCE(P_FromPostingDate=datetime'2023-12-01T00:00:00',P_ToPostingDate=datetime'2023-12-31T00:00:00')/Results?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,DebitAmountInCoCodeCrcy,CreditAmountInCoCodeCrcy,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012'&$top=100",
           "key_fields": [
             "ID"
           ]
@@ -694,9 +695,15 @@
       "steps": [
         {
           "id": "profit_center_trial_balance",
-          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,ProfitCenter,Segment,DebitAmountInCoCodeCrcy,CreditAmountInCoCodeCrcy,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012' and ProfitCenter ne ''&$top=100",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCE(P_FromPostingDate=datetime'2023-12-01T00:00:00',P_ToPostingDate=datetime'2023-12-31T00:00:00')/Results?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,ProfitCenter,Segment,DebitAmountInCoCodeCrcy,CreditAmountInCoCodeCrcy,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012' and ProfitCenter ne ''&$top=100",
           "key_fields": [
-            "ID"
+            "Ledger",
+            "CompanyCode",
+            "FiscalYear",
+            "FiscalPeriod",
+            "GLAccount",
+            "ProfitCenter",
+            "Segment"
           ]
         }
       ]
@@ -704,7 +711,13 @@
     "comparison": {
       "type": "key_subset",
       "keys": [
-        "ID"
+        "Ledger",
+        "CompanyCode",
+        "FiscalYear",
+        "FiscalPeriod",
+        "GLAccount",
+        "ProfitCenter",
+        "Segment"
       ],
       "required_fields": [
         "ProfitCenter",
@@ -737,17 +750,25 @@
     "baseline": {
       "steps": [
         {
-          "id": "current_period",
-          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012'&$top=100",
+          "id": "prior_period",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCE(P_FromPostingDate=datetime'2023-11-01T00:00:00',P_ToPostingDate=datetime'2023-11-30T00:00:00')/Results?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '011'&$top=100",
           "key_fields": [
-            "ID"
+            "Ledger",
+            "CompanyCode",
+            "FiscalYear",
+            "FiscalPeriod",
+            "GLAccount"
           ]
         },
         {
-          "id": "prior_period",
-          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '011'&$top=100",
+          "id": "current_period",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCE(P_FromPostingDate=datetime'2023-12-01T00:00:00',P_ToPostingDate=datetime'2023-12-31T00:00:00')/Results?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012'&$top=100",
           "key_fields": [
-            "ID"
+            "Ledger",
+            "CompanyCode",
+            "FiscalYear",
+            "FiscalPeriod",
+            "GLAccount"
           ]
         }
       ]
@@ -755,7 +776,11 @@
     "comparison": {
       "type": "key_subset",
       "keys": [
-        "ID"
+        "Ledger",
+        "CompanyCode",
+        "FiscalYear",
+        "FiscalPeriod",
+        "GLAccount"
       ],
       "required_fields": [
         "FiscalPeriod",
@@ -789,7 +814,7 @@
       "steps": [
         {
           "id": "balance_sheet",
-          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,GLAccountHierarchyName,IsBalanceSheetAccount,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012' and IsBalanceSheetAccount eq 'X'&$top=100",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCE(P_FromPostingDate=datetime'2023-12-01T00:00:00',P_ToPostingDate=datetime'2023-12-31T00:00:00')/Results?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,GLAccountHierarchyName,IsBalanceSheetAccount,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012' and IsBalanceSheetAccount eq 'X'&$top=100",
           "key_fields": [
             "ID"
           ]
@@ -893,7 +918,7 @@
       "steps": [
         {
           "id": "statement_amounts",
-          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,DebitAmountInCoCodeCrcy,CreditAmountInCoCodeCrcy,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012'&$top=100",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCE(P_FromPostingDate=datetime'2023-12-01T00:00:00',P_ToPostingDate=datetime'2023-12-31T00:00:00')/Results?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,DebitAmountInCoCodeCrcy,CreditAmountInCoCodeCrcy,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012'&$top=100",
           "key_fields": [
             "ID"
           ]
@@ -938,9 +963,15 @@
       "steps": [
         {
           "id": "profit_center_statement",
-          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,ProfitCenter,Segment,DebitAmountInCoCodeCrcy,CreditAmountInCoCodeCrcy,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012' and ProfitCenter ne ''&$top=100",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCE(P_FromPostingDate=datetime'2023-12-01T00:00:00',P_ToPostingDate=datetime'2023-12-31T00:00:00')/Results?$select=ID,Ledger,CompanyCode,FiscalYear,FiscalPeriod,GLAccount,ProfitCenter,Segment,DebitAmountInCoCodeCrcy,CreditAmountInCoCodeCrcy,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012' and ProfitCenter ne ''&$top=100",
           "key_fields": [
-            "ID"
+            "Ledger",
+            "CompanyCode",
+            "FiscalYear",
+            "FiscalPeriod",
+            "GLAccount",
+            "ProfitCenter",
+            "Segment"
           ]
         }
       ]
@@ -948,7 +979,13 @@
     "comparison": {
       "type": "key_subset",
       "keys": [
-        "ID"
+        "Ledger",
+        "CompanyCode",
+        "FiscalYear",
+        "FiscalPeriod",
+        "GLAccount",
+        "ProfitCenter",
+        "Segment"
       ],
       "required_fields": [
         "ProfitCenter",
@@ -984,7 +1021,7 @@
       "steps": [
         {
           "id": "node_balance",
-          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCEResults?$select=CompanyCode,FiscalYear,FiscalPeriod,GLAccount,GLAccountHierarchyName,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012' and GLAccount eq '10010000'&$top=5",
+          "url": "/sap/opu/odata/sap/C_TRIALBALANCE_CDS/C_TRIALBALANCE(P_FromPostingDate=datetime'2023-12-01T00:00:00',P_ToPostingDate=datetime'2023-12-31T00:00:00')/Results?$select=CompanyCode,FiscalYear,FiscalPeriod,GLAccount,GLAccountHierarchyName,EndingBalanceAmtInCoCodeCrcy&$filter=Ledger eq '0L' and CompanyCode eq '1710' and FiscalYear eq '2023' and FiscalPeriod eq '012' and GLAccount eq '10010000'&$top=5",
           "key_fields": [
             "CompanyCode",
             "FiscalYear",
@@ -995,7 +1032,12 @@
           "id": "line_items",
           "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,GLAccount,PostingDate,AmountInCompanyCodeCurrency&$top=100",
           "key_fields": [
-            "ID"
+            "CompanyCode",
+            "FiscalYear",
+            "AccountingDocument",
+            "AccountingDocumentItem",
+            "Ledger",
+            "GLAccount"
           ],
           "bindings": [
             {
@@ -1020,7 +1062,12 @@
     "comparison": {
       "type": "key_subset",
       "keys": [
-        "ID"
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem",
+        "Ledger",
+        "GLAccount"
       ],
       "required_fields": [
         "AccountingDocument",
@@ -1056,7 +1103,12 @@
           "id": "document_items",
           "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,GLAccount,DocumentItemText,PostingDate,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and FiscalYear eq '2017' and AccountingDocument eq '5100000001'&$top=100",
           "key_fields": [
-            "ID"
+            "CompanyCode",
+            "FiscalYear",
+            "AccountingDocument",
+            "AccountingDocumentItem",
+            "Ledger",
+            "GLAccount"
           ]
         }
       ]
@@ -1064,7 +1116,12 @@
     "comparison": {
       "type": "key_subset",
       "keys": [
-        "ID"
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem",
+        "Ledger",
+        "GLAccount"
       ],
       "required_fields": [
         "AccountingDocument",
@@ -1082,9 +1139,9 @@
     "scenario": "trace_business_reference_to_fi_document",
     "user_input": "根据业务参考凭证5100000001追溯它产生的财务凭证行项目",
     "business_purpose": "分析采购、库存、销售业务产生的会计分录",
-    "expected_api": "API_OPLACCTGDOCITEMCUBE_SRV",
+    "expected_api": "API_GLACCOUNTLINEITEM",
     "expected_apis": [
-      "API_OPLACCTGDOCITEMCUBE_SRV"
+      "API_GLACCOUNTLINEITEM"
     ],
     "expected_capability": {
       "route": true,
@@ -1098,12 +1155,14 @@
       "steps": [
         {
           "id": "fi_from_reference",
-          "url": "/sap/opu/odata/sap/API_OPLACCTGDOCITEMCUBE_SRV/A_OperationalAcctgDocItemCube?$select=CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,GLAccount,OriginalReferenceDocument,ReferenceDocumentType,AmountInCompanyCodeCurrency&$filter=OriginalReferenceDocument eq '5100000001'&$top=100",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ReferenceDocument,CompanyCode,FiscalYear,FiscalPeriod,AccountingDocument,AccountingDocumentItem,Ledger,GLAccount,PostingDate,DocumentDate,AmountInCompanyCodeCurrency,CompanyCodeCurrency,DebitCreditCode,ID&$filter=ReferenceDocument eq '5100000001'&$top=100",
           "key_fields": [
             "CompanyCode",
             "FiscalYear",
             "AccountingDocument",
-            "AccountingDocumentItem"
+            "AccountingDocumentItem",
+            "Ledger",
+            "GLAccount"
           ]
         }
       ]
@@ -1114,10 +1173,12 @@
         "CompanyCode",
         "FiscalYear",
         "AccountingDocument",
-        "AccountingDocumentItem"
+        "AccountingDocumentItem",
+        "Ledger",
+        "GLAccount"
       ],
       "required_fields": [
-        "OriginalReferenceDocument",
+        "ReferenceDocument",
         "AccountingDocument",
         "GLAccount"
       ]
@@ -1127,10 +1188,10 @@
     "id": "FICO-XAPI-023",
     "api": "FICO",
     "report_id": "FI_REPORT_005",
-      "report_name": "会计凭证查询",
-      "source_scenario_id": "FI_REPORT_005_SCENARIO_003",
-      "scenario": "journal_entry_clearing_relationship",
-      "user_input": "查询公司1710在2017年会计凭证5100000001的清账关系和清账日期",
+    "report_name": "会计凭证查询",
+    "source_scenario_id": "FI_REPORT_005_SCENARIO_003",
+    "scenario": "journal_entry_clearing_relationship",
+    "user_input": "查询公司1710在2017年会计凭证5100000001的清账关系和清账日期",
     "business_purpose": "判断发票、付款、收款是否已经完成清账",
     "expected_api": "API_GLACCOUNTLINEITEM",
     "expected_apis": [
@@ -1146,19 +1207,29 @@
     },
     "baseline": {
       "steps": [
-          {
-            "id": "clearing",
-            "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,GLAccount,ClearingDate,ClearingDocFiscalYear,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and FiscalYear eq '2017' and AccountingDocument eq '5100000001'&$top=100",
-            "key_fields": [
-              "ID"
-            ]
+        {
+          "id": "clearing",
+          "url": "/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/GLAccountLineItem?$select=ID,CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger,GLAccount,ClearingDate,ClearingAccountingDocument,ClearingDocFiscalYear,AmountInCompanyCodeCurrency&$filter=CompanyCode eq '1710' and FiscalYear eq '2017' and AccountingDocument eq '5100000001'&$top=100",
+          "key_fields": [
+            "CompanyCode",
+            "FiscalYear",
+            "AccountingDocument",
+            "AccountingDocumentItem",
+            "Ledger",
+            "GLAccount"
+          ]
         }
       ]
     },
     "comparison": {
       "type": "key_subset",
       "keys": [
-        "ID"
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem",
+        "Ledger",
+        "GLAccount"
       ],
       "required_fields": [
         "AccountingDocument",

@@ -46,12 +46,30 @@ Keep `data/index/API_SUPPLIERINVOICE_PROCESS_SRV` as the schema ground truth. Th
 
 - Query `A_SupplierInvoice` for header-level invoice questions such as invoice number, supplier, company code, fiscal year, posting date, document date, or invoice status when available.
 
+### Payment Blocking
+
+- For supplier invoice payment-block wording such as `付款冻结`, `被冻结付款`, `被付款冻结的发票`, `payment block`, or `blocked invoices`, query `A_SupplierInvoice`.
+- Select `A_SupplierInvoice.FiscalYear`, `A_SupplierInvoice.SupplierInvoice`, `A_SupplierInvoice.CompanyCode`, `A_SupplierInvoice.DocumentDate`, `A_SupplierInvoice.PostingDate`, `A_SupplierInvoice.InvoicingParty`, `A_SupplierInvoice.DocumentCurrency`, `A_SupplierInvoice.InvoiceGrossAmount`, and `A_SupplierInvoice.PaymentBlockingReason`.
+- Filter `A_SupplierInvoice.CompanyCode` and `A_SupplierInvoice.InvoicingParty` when provided, and use `A_SupplierInvoice.PaymentBlockingReason ne ''` when the user asks for blocked invoices without specifying a blocking reason.
+- Do not ask whether the user means invoice header or accounting item when the request is specifically for supplier invoices blocked for payment; `A_SupplierInvoice.PaymentBlockingReason` is the header-level field to start with.
+
+### Reversal Status
+
+- For supplier invoice reversal, cancellation, reversed, reversal relationship, or "has this invoice been reversed" wording, query `A_SupplierInvoice`.
+- When the user provides a supplier invoice number, filter `SupplierInvoice eq <invoice_number>`.
+- Select `A_SupplierInvoice.SupplierInvoice`, `A_SupplierInvoice.FiscalYear`, `A_SupplierInvoice.CompanyCode`, `A_SupplierInvoice.DocumentDate`, `A_SupplierInvoice.PostingDate`, `A_SupplierInvoice.InvoicingParty`, `A_SupplierInvoice.IsReversal`, and `A_SupplierInvoice.IsReversed`.
+- Do not ask for clarification when the user only asks whether the invoice is a reversal or has been reversed; answer from `IsReversal` and `IsReversed`.
+
 ### Invoice Items With Purchase Order Reference
 
 - Query `A_SuplrInvcItemPurOrdRef` when the user asks for invoices tied to purchase orders or PO item references.
 
 ### Taxes And Withholding
 
+- For supplier invoice tax code/tax amount wording such as `税码`, `税额`, `TaxCode`, or `TaxAmount`, query `A_SupplierInvoiceTax`; it is the dedicated supplier invoice tax entity.
+- Select `A_SupplierInvoiceTax.FiscalYear`, `A_SupplierInvoiceTax.SupplierInvoice`, `A_SupplierInvoiceTax.SupplierInvoiceTaxCounter`, `A_SupplierInvoiceTax.TaxCode`, `A_SupplierInvoiceTax.DocumentCurrency`, `A_SupplierInvoiceTax.TaxAmount`, and `A_SupplierInvoiceTax.TaxBaseAmountInTransCrcy`.
+- If the user provides a fiscal year, filter `A_SupplierInvoiceTax.FiscalYear eq <year>`. If the user provides a supplier invoice number, filter `A_SupplierInvoiceTax.SupplierInvoice eq <invoice_number>`.
+- Do not ask whether the user means header-level or item-level tax when the request is simply for supplier invoice tax code and tax amount; start with `A_SupplierInvoiceTax`.
 - Query `A_SupplierInvoiceTax` for invoice tax details.
 - Query `A_SuplrInvcHeaderWhldgTax` for withholding tax details.
 

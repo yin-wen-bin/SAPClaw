@@ -337,6 +337,9 @@ class LlmDynamicPathPlanner:
         if not select_fields:
             select_fields = self._default_fields(entity, field_map)
         filters = self._materialize_filters(parsed.get("filters", []), field_map)
+        for condition in filters:
+            if condition.field not in select_fields:
+                select_fields.append(condition.field)
         target_field = str(parsed.get("target_field") or "") or None
         result_transform = self._materialize_result_transform(
             parsed.get("result_transform"),
@@ -830,6 +833,9 @@ class LlmDynamicPathPlanner:
         return parameters
 
     def _filter_value_type(raw_filter: dict[str, Any], field_metadata: dict[str, Any]) -> str:
+        value = raw_filter.get("value")
+        if str(value).strip().lower() == "null":
+            return "null"
         explicit_type = raw_filter.get("value_type")
         if isinstance(explicit_type, str) and explicit_type.strip():
             return explicit_type.strip()
@@ -872,7 +878,14 @@ class LlmDynamicPathPlanner:
             if not source_field and field_name:
                 source_field = field_name
             if field_name and source_step_id and source_field:
-                bindings.append(StepBinding(field=field_name, source_step_id=source_step_id, source_field=source_field))
+                bindings.append(
+                    StepBinding(
+                        field=field_name,
+                        source_step_id=source_step_id,
+                        source_field=source_field,
+                        fanout=bool(binding.get("fanout", False)),
+                    )
+                )
         return bindings
 
     @staticmethod

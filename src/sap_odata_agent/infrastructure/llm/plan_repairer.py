@@ -67,6 +67,7 @@ class LlmPlanRepairer(LlmApiSpecificPlanner):
         materialized = self._apply_skill_select_only_patterns(materialized, request, schema_context)
         materialized = self._apply_skill_order_by_patterns(materialized, request, schema_context)
         materialized = self._apply_skill_result_transform_patterns(materialized, request, schema_context)
+        materialized = self._suppress_detail_query_aggregation(materialized, request)
         materialized = self._clear_skill_resolved_clarification(materialized)
         materialized = self._remove_unrequested_temporal_filters(materialized, request)
         materialized = self._apply_company_code_chart_of_accounts_bridge(materialized, request, schema_context)

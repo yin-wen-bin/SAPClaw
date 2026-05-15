@@ -479,6 +479,21 @@ class LlmApiRouter:
             return text
         return text[: max_chars - 3].rstrip() + "..."
 
+    @staticmethod
+    def _contains_any_marker(user_input: str, markers: tuple[str, ...]) -> bool:
+        raw = str(user_input or "").lower()
+        compact_raw = re.sub(r"\s+", "", raw)
+        normalized = LlmApiRouter._normalize_match_text(user_input)
+        for marker in markers:
+            marker_text = str(marker or "").lower()
+            marker_compact = re.sub(r"\s+", "", marker_text)
+            if marker_compact and marker_compact in compact_raw:
+                return True
+            normalized_marker = LlmApiRouter._normalize_match_text(marker_text)
+            if normalized_marker and normalized_marker in normalized:
+                return True
+        return False
+
     def _materialize(
         self,
         parsed: dict[str, Any],
@@ -508,6 +523,8 @@ class LlmApiRouter:
             company_code_scoped_gl_request,
         )
         selected = self._repair_cost_center_master_route(selected, valid_services, user_input)
+        selected = self._repair_trial_balance_route(selected, valid_services, user_input)
+        selected = self._repair_operational_ap_ar_due_aging_route(selected, valid_services, user_input)
         selected = self._repair_journal_entry_item_route(selected, valid_services, user_input)
         selected = self._repair_operational_accounting_exception_route(selected, valid_services, user_input)
         selected = self._repair_gl_account_line_item_route(selected, valid_services, user_input)
@@ -544,7 +561,23 @@ class LlmApiRouter:
             needs_clarification = False
             clarification_question = None
             clarification_options = []
+        if selected and needs_clarification and self._looks_like_resolvable_trial_balance_request(selected, user_input):
+            needs_clarification = False
+            clarification_question = None
+            clarification_options = []
         if selected and needs_clarification and self._looks_like_resolvable_journal_entry_dimension_request(selected, user_input):
+            needs_clarification = False
+            clarification_question = None
+            clarification_options = []
+        if selected and needs_clarification and self._looks_like_reference_to_fi_line_item_request(user_input):
+            needs_clarification = False
+            clarification_question = None
+            clarification_options = []
+        if selected and needs_clarification and self._looks_like_ap_ar_due_aging_request(user_input):
+            needs_clarification = False
+            clarification_question = None
+            clarification_options = []
+        if selected and needs_clarification and self._looks_like_resolvable_gl_line_item_request(selected, user_input):
             needs_clarification = False
             clarification_question = None
             clarification_options = []
@@ -918,6 +951,236 @@ class LlmApiRouter:
         return has_purchase_order and has_supplier and has_contact and has_delivery_scope and has_plant
 
     @staticmethod
+    def _repair_trial_balance_route(
+        selected: list[SelectedApi],
+        valid_services: set[str],
+        user_input: str,
+    ) -> list[SelectedApi]:
+        trial_balance_service = "C_TRIALBALANCE_CDS"
+        line_item_service = "API_GLACCOUNTLINEITEM"
+        ledger_service = "API_LEDGER_SRV"
+        if trial_balance_service not in valid_services:
+            return selected
+        if not LlmApiRouter._looks_like_trial_balance_financial_statement_request(user_input):
+            return selected
+
+        selected_names = {item.service_name for item in selected}
+        drilldown = LlmApiRouter._looks_like_trial_balance_drilldown_request(user_input)
+        replaced_services = {
+            "API_JOURNALENTRYITEMBASIC_SRV",
+            "API_OPLACCTGDOCITEMCUBE_SRV",
+            "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+            "API_COMPANYCODE_SRV",
+        }
+        if drilldown:
+            replaced_services.discard(line_item_service)
+        repaired = [item for item in selected if item.service_name not in replaced_services]
+        if trial_balance_service not in selected_names:
+            repaired.insert(
+                0,
+                SelectedApi(
+                    service_name=trial_balance_service,
+                    confidence=0.78,
+                    reason=(
+                        "Trial balance, G/L balance, financial statement balance, and P&L amount "
+                        "wording should use the parameterized trial balance API."
+                    ),
+                ),
+            )
+        if drilldown and line_item_service in valid_services and line_item_service not in selected_names:
+            repaired.append(
+                SelectedApi(
+                    service_name=line_item_service,
+                    confidence=0.7,
+                    reason="Financial statement or balance drilldown needs G/L line items as the detail API.",
+                )
+            )
+        if (
+            LlmApiRouter._looks_like_trial_balance_all_ledgers_request(user_input)
+            and ledger_service in valid_services
+            and ledger_service not in {item.service_name for item in repaired}
+        ):
+            repaired.append(
+                SelectedApi(
+                    service_name=ledger_service,
+                    confidence=0.65,
+                    reason="All-ledger trial balance requests need the ledger master API to enumerate ledgers.",
+                )
+            )
+        return repaired
+
+    @staticmethod
+    def _looks_like_trial_balance_financial_statement_request(user_input: str) -> bool:
+        balance_markers = (
+            "trialbalance",
+            "glaccountbalance",
+            "g/laccountbalance",
+            "financialstatement",
+            "balancesheet",
+            "profitandloss",
+            "profitloss",
+            "试算表",
+            "试算平衡",
+            "科目余额",
+            "总账余额",
+            "总账科目余额",
+            "余额",
+            "财务报表",
+            "资产负债表",
+            "损益表",
+            "损益金额",
+        )
+        blocked_detail_markers = ("openitem", "未清项目", "未清项", "清账关系")
+        return LlmApiRouter._contains_any_marker(user_input, balance_markers) and not LlmApiRouter._contains_any_marker(
+            user_input, blocked_detail_markers
+        )
+
+    @staticmethod
+    def _looks_like_trial_balance_drilldown_request(user_input: str) -> bool:
+        return LlmApiRouter._looks_like_trial_balance_financial_statement_request(
+            user_input
+        ) and LlmApiRouter._contains_any_marker(
+            user_input,
+            (
+                "drilldown",
+                "drillinto",
+                "lineitem",
+                "lineitems",
+                "下钻",
+                "凭证明细",
+                "行项目",
+                "明细",
+            ),
+        )
+
+    @staticmethod
+    def _looks_like_trial_balance_all_ledgers_request(user_input: str) -> bool:
+        return LlmApiRouter._contains_any_marker(
+            user_input,
+            (
+                "differentledger",
+                "differentledgers",
+                "allledger",
+                "allledgers",
+                "byledger",
+                "parallelledger",
+                "parallelledgers",
+                "不同分类账",
+                "各分类账",
+                "所有分类账",
+                "平行分类账",
+                "按分类账",
+                "不同ledger",
+                "各ledger",
+            ),
+        )
+
+    @staticmethod
+    def _looks_like_resolvable_trial_balance_request(
+        selected: list[SelectedApi],
+        user_input: str,
+    ) -> bool:
+        if "C_TRIALBALANCE_CDS" not in {item.service_name for item in selected}:
+            return False
+        text = str(user_input or "")
+        has_company = re.search(r"(?:公司(?:代码)?|company\s*code|company)\s*[:：=\-\s]*(\d{3,8})", text, re.I)
+        has_year = re.search(r"(?<!\d)(20\d{2}|19\d{2})\s*(?:年|\b)", text)
+        return bool(has_company and has_year and LlmApiRouter._looks_like_trial_balance_financial_statement_request(text))
+
+    @staticmethod
+    def _repair_operational_ap_ar_due_aging_route(
+        selected: list[SelectedApi],
+        valid_services: set[str],
+        user_input: str,
+    ) -> list[SelectedApi]:
+        operational_item_service = "API_OPLACCTGDOCITEMCUBE_SRV"
+        line_item_service = "API_GLACCOUNTLINEITEM"
+        if operational_item_service not in valid_services:
+            return selected
+        if not LlmApiRouter._looks_like_ap_ar_due_aging_request(user_input):
+            return selected
+        selected_names = {item.service_name for item in selected}
+        repaired = [
+            item
+            for item in selected
+            if item.service_name
+            not in {
+                "API_JOURNALENTRYITEMBASIC_SRV",
+                "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+                "C_TRIALBALANCE_CDS",
+                "API_COMPANYCODE_SRV",
+            }
+        ]
+        if operational_item_service not in selected_names:
+            repaired.insert(
+                0,
+                SelectedApi(
+                    service_name=operational_item_service,
+                    confidence=0.78,
+                    reason="AP/AR aging, overdue, net due date, and payment block wording needs operational accounting item fields.",
+                ),
+            )
+        if (
+            LlmApiRouter._looks_like_ap_ar_reconciliation_request(user_input)
+            and line_item_service in valid_services
+            and line_item_service not in {item.service_name for item in repaired}
+        ):
+            repaired.append(
+                SelectedApi(
+                    service_name=line_item_service,
+                    confidence=0.65,
+                    reason="Reconciliation wording also needs G/L line items for the open-item detail side.",
+                )
+            )
+        return repaired
+
+    @staticmethod
+    def _looks_like_ap_ar_due_aging_request(user_input: str) -> bool:
+        partner_scope = (
+            "supplier",
+            "vendor",
+            "customer",
+            "ap",
+            "ar",
+            "供应商",
+            "客户",
+            "应付",
+            "应收",
+            "付款",
+            "收款",
+        )
+        due_aging_scope = (
+            "aging",
+            "overdue",
+            "duedate",
+            "netduedate",
+            "paymentblock",
+            "paymentblocked",
+            "账龄",
+            "逾期",
+            "到期",
+            "付款冻结",
+            "冻结",
+            "未清应付",
+            "未清应收",
+            "还没收款",
+            "未收款",
+            "应付项目",
+            "应收项目",
+        )
+        return LlmApiRouter._contains_any_marker(user_input, partner_scope) and LlmApiRouter._contains_any_marker(
+            user_input, due_aging_scope
+        )
+
+    @staticmethod
+    def _looks_like_ap_ar_reconciliation_request(user_input: str) -> bool:
+        return LlmApiRouter._contains_any_marker(
+            user_input, ("reconcile", "reconciliation", "核对", "对账")
+        ) and LlmApiRouter._contains_any_marker(
+            user_input, ("lineitem", "lineitems", "行项目", "明细")
+        )
+
+    @staticmethod
     def _repair_gl_account_line_item_route(
         selected: list[SelectedApi],
         valid_services: set[str],
@@ -931,9 +1194,73 @@ class LlmApiRouter:
         trial_balance_service = "C_TRIALBALANCE_CDS"
         if line_item_service not in valid_services:
             return selected
+        if LlmApiRouter._looks_like_reference_to_fi_line_item_request(user_input):
+            repaired = [item for item in selected if item.service_name != line_item_service]
+            repaired.insert(
+                0,
+                SelectedApi(
+                    service_name=line_item_service,
+                    confidence=0.78,
+                    reason="Reference-document tracing to FI/accounting line items should use GLAccountLineItem.ReferenceDocument first.",
+                ),
+            )
+            return repaired
+        if LlmApiRouter._looks_like_ar_dimension_analysis_request(user_input):
+            repaired = [
+                item
+                for item in selected
+                if item.service_name
+                not in {journal_service, operational_item_service, company_service, line_item_service, trial_balance_service}
+            ]
+            repaired.insert(
+                0,
+                SelectedApi(
+                    service_name=line_item_service,
+                    confidence=0.78,
+                    reason="AR dimension analysis by customer group, sales organization, or profit center needs G/L line item dimensions.",
+                ),
+            )
+            return repaired
         if not LlmApiRouter._looks_like_gl_account_line_item_request(user_input):
             return selected
         selected_names = {item.service_name for item in selected}
+        if LlmApiRouter._looks_like_partner_special_gl_item_request(user_input):
+            repaired = [
+                item
+                for item in selected
+                if item.service_name
+                not in {
+                    "API_BUSINESS_PARTNER",
+                    journal_service,
+                    operational_item_service,
+                    company_service,
+                    line_item_service,
+                    trial_balance_service,
+                }
+            ]
+            repaired.insert(
+                0,
+                SelectedApi(
+                    service_name=line_item_service,
+                    confidence=0.78,
+                    reason="Partner special G/L item wording needs transaction line items with SpecialGLCode.",
+                ),
+            )
+            return repaired
+        if (
+            operational_item_service in selected_names
+            and LlmApiRouter._looks_like_ap_ar_due_aging_request(user_input)
+        ):
+            if line_item_service in selected_names:
+                return selected
+            return [
+                *selected,
+                SelectedApi(
+                    service_name=line_item_service,
+                    confidence=0.65,
+                    reason="Open-item detail wording also needs G/L line items alongside operational AP/AR due-date data.",
+                ),
+            ]
         if line_item_service in selected_names and journal_service not in selected_names:
             if (
                 LlmApiRouter._looks_like_leading_ledger_request(user_input)
@@ -979,6 +1306,49 @@ class LlmApiRouter:
     @staticmethod
     def _looks_like_gl_account_line_item_request(user_input: str) -> bool:
         text = str(user_input or "").lower()
+        if LlmApiRouter._looks_like_reference_to_fi_line_item_request(user_input):
+            return True
+        if LlmApiRouter._looks_like_ar_dimension_analysis_request(user_input):
+            return True
+        explicit_line_item_terms = (
+            "glaccountlineitem",
+            "generalledgerlineitem",
+            "journalentrylineitem",
+            "总账行项目",
+            "总账科目明细",
+            "会计凭证行项目",
+            "财务凭证行项目",
+            "凭证明细",
+            "行项目",
+        )
+        if LlmApiRouter._contains_any_marker(user_input, explicit_line_item_terms):
+            return True
+        if LlmApiRouter._looks_like_ap_ar_due_aging_request(user_input) and not any(
+            LlmApiRouter._contains_any_marker(user_input, (term,))
+            for term in ("未清行项目", "行项目", "明细", "核对", "对账")
+        ):
+            return False
+        partner_line_item_terms = (
+            "未清项目",
+            "未清应付项目",
+            "未清应收项目",
+            "还没收款清账",
+            "已清项目",
+            "已经清账",
+            "清账日期",
+            "清账关系",
+            "特殊总账",
+            "统驭科目",
+            "应付余额结构",
+            "应收明细",
+            "应付项目",
+            "应收项目",
+        )
+        partner_scope_terms = ("供应商", "客户", "supplier", "vendor", "customer", "应付", "应收")
+        if LlmApiRouter._contains_any_marker(user_input, partner_line_item_terms) and LlmApiRouter._contains_any_marker(
+            user_input, partner_scope_terms
+        ):
+            return True
         markers = (
             "总账行项目",
             "总账行项目清单",
@@ -1033,6 +1403,40 @@ class LlmApiRouter:
             flags=re.IGNORECASE,
         )
         return has_account_number is not None
+
+    @staticmethod
+    def _looks_like_reference_to_fi_line_item_request(user_input: str) -> bool:
+        reference_terms = (
+            "ReferenceDocument",
+            "reference document",
+            "business reference",
+            "业务参考凭证",
+            "参考凭证",
+            "源凭证",
+        )
+        accounting_terms = (
+            "财务凭证行项目",
+            "会计凭证行项目",
+            "财务凭证",
+            "会计凭证",
+            "FI document",
+            "accounting document",
+            "journal entry",
+        )
+        trace_terms = (
+            "追溯",
+            "产生",
+            "生成",
+            "对应",
+            "line item",
+            "line items",
+            "行项目",
+        )
+        return (
+            LlmApiRouter._contains_any_marker(user_input, reference_terms)
+            and LlmApiRouter._contains_any_marker(user_input, accounting_terms)
+            and LlmApiRouter._contains_any_marker(user_input, trace_terms)
+        )
 
     @staticmethod
     def _repair_operational_accounting_exception_route(
@@ -1376,6 +1780,60 @@ class LlmApiRouter:
             ):
                 return True
         return False
+
+    @staticmethod
+    def _looks_like_partner_special_gl_item_request(user_input: str) -> bool:
+        return LlmApiRouter._contains_any_marker(
+            user_input,
+            ("特殊总账", "special g/l", "special gl", "specialgl", "special general ledger"),
+        ) and LlmApiRouter._contains_any_marker(
+            user_input,
+            ("项目", "明细", "行项目", "供应商", "客户", "supplier", "vendor", "customer", "item", "line item"),
+        )
+
+    @staticmethod
+    def _looks_like_ar_dimension_analysis_request(user_input: str) -> bool:
+        return LlmApiRouter._contains_any_marker(
+            user_input,
+            ("应收", "客户", "receivable", "ar", "customer"),
+        ) and LlmApiRouter._contains_any_marker(
+            user_input,
+            (
+                "客户组",
+                "销售组织",
+                "利润中心",
+                "customergroup",
+                "customer group",
+                "salesorganization",
+                "sales organization",
+                "profitcenter",
+                "profit center",
+            ),
+        )
+
+    @staticmethod
+    def _looks_like_resolvable_gl_line_item_request(selected: list[SelectedApi], user_input: str) -> bool:
+        if "API_GLACCOUNTLINEITEM" not in {item.service_name for item in selected}:
+            return False
+        if not LlmApiRouter._looks_like_gl_account_line_item_request(user_input):
+            return False
+        return LlmApiRouter._contains_any_marker(
+            user_input,
+            (
+                "公司",
+                "公司代码",
+                "供应商",
+                "客户",
+                "科目",
+                "凭证",
+                "supplier",
+                "vendor",
+                "customer",
+                "company",
+                "company code",
+                "gl account",
+            ),
+        )
 
     @staticmethod
     def _looks_like_leading_ledger_request(user_input: str) -> bool:
