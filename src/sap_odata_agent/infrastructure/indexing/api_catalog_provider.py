@@ -338,6 +338,7 @@ class ApiCatalogProvider:
 
         ranked: list[tuple[float, str]] = []
         seen: set[str] = set()
+        suppressed = ApiCatalogProvider._suppressed_answer_fields(snapshot.service_name)
         for field in snapshot.fields or []:
             if field.get("selectable") is False:
                 continue
@@ -346,6 +347,8 @@ class ApiCatalogProvider:
             if not entity_set or not field_name:
                 continue
             qualified = f"{entity_set}.{field_name}"
+            if qualified in suppressed:
+                continue
             if qualified in seen:
                 continue
             seen.add(qualified)
@@ -383,7 +386,7 @@ class ApiCatalogProvider:
         pinned = [
             field
             for field in ApiCatalogProvider._pinned_answer_fields(snapshot.service_name)
-            if field in seen
+            if field in seen and field not in suppressed
         ]
         result = list(dict.fromkeys(pinned))
         for _, qualified in ranked:
@@ -393,6 +396,12 @@ class ApiCatalogProvider:
             if len(result) >= max_count:
                 break
         return result[:max_count]
+
+    @staticmethod
+    def _suppressed_answer_fields(service_name: str) -> set[str]:
+        if service_name == "API_GLACCOUNTLINEITEM":
+            return {"GLAccountLineItem.ID"}
+        return set()
 
     @staticmethod
     def _pinned_filter_fields(service_name: str) -> list[str]:
@@ -652,7 +661,6 @@ class ApiCatalogProvider:
             ]
         if service_name == "API_GLACCOUNTLINEITEM":
             return [
-                "GLAccountLineItem.ID",
                 "GLAccountLineItem.CompanyCode",
                 "GLAccountLineItem.FiscalYear",
                 "GLAccountLineItem.AccountingDocument",

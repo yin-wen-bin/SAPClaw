@@ -91,6 +91,7 @@ def test_api_catalog_exposes_answer_fields_for_router_selection() -> None:
     assert "GLAccountLineItem.PostingDate" in line_item["top_filter_fields"]
     assert "GLAccountLineItem.ClearingDate" in line_item["top_answer_fields"]
     assert "GLAccountLineItem.CompanyCodeCurrency" in line_item["top_answer_fields"]
+    assert "GLAccountLineItem.ID" not in line_item["top_answer_fields"]
     assert "GLAccountLineItem.GLAccountName" not in line_item["top_answer_fields"]
     assert "GLAccountLineItem.CompanyCodeName" not in line_item["top_answer_fields"]
     assert "A_OperationalAcctgDocItemCube.AccountingDocumentType" in operational_cube["top_filter_fields"]
@@ -763,6 +764,34 @@ def test_schema_context_grounds_api_skill_referenced_stock_quantity_field() -> N
         match["matched_field"] == "A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit"
         for match in summary["skill_field_matches"]
     )
+
+
+def test_business_partner_schema_context_exposes_supplier_profile_fields() -> None:
+    provider = SchemaContextProvider(index_root="data/index")
+    skill = ApiSkillProvider(skill_root="data/api_skills").load("API_BUSINESS_PARTNER")
+    assert skill is not None
+
+    context = provider.build(
+        "API_BUSINESS_PARTNER",
+        "查询供应商17300003的基本信息",
+    )
+    context = provider.enrich_with_api_skill(context, skill.as_prompt_payload())
+    summary = provider.summarize(context)
+
+    available_fields = {
+        (field["entity_set"], field["field_name"])
+        for field in summary["available_fields"]
+    }
+    skill_matches = {
+        match["matched_field"]
+        for match in summary["skill_field_matches"]
+    }
+
+    assert ("A_Supplier", "SupplierName") in available_fields
+    assert ("A_Supplier", "SupplierFullName") in available_fields
+    assert ("A_BusinessPartnerAddress", "StreetName") in available_fields
+    assert "A_Supplier.SupplierName" in skill_matches
+    assert "A_BusinessPartnerAddress.AddressID" in skill_matches
 
 
 def test_product_availability_index_is_marked_as_function_style_limited() -> None:

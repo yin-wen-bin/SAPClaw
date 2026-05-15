@@ -106,6 +106,7 @@ Metadata matching rules:
 11. Use schema_context.api_skill and schema_context.api_skills as API-specific learned guidance for business semantics, common planning patterns, and pitfalls.
 12. API skills are not schema authority. If schema_context.api_skill or schema_context.api_skills mention an entity or field that is absent from schema_context, do not use it.
 13. Distinguish requested output attributes from filters. Wording like "with/include/show/display <field names or status indicators>" usually means select those fields. Treat them as filters only when the user provides an explicit restriction, comparison, literal value, or phrase such as only/where/true/false/nonzero.
+14. For generic master-data profile requests such as "basic information", "details", "profile", "overview", "基本信息", "详情", "概况", or "主数据", infer a business-friendly answer field set from the business object. Prefer identity, name/full-name/description, address, country/region/city/street/postal-code, and contact fields. Do not blindly copy default_select_fields when they are mostly administrative, blocking, authorization, creation, or account-group fields.
 """.strip()
 
 
@@ -140,6 +141,7 @@ Planning rules:
 20. If schema_context.service.service_kind is CDS_VIEW_ONLY or schema_context.service.odata_runtime_available is false, return no_feasible_plan; do not produce a /sap/opu/odata/sap/... plan.
 21. Do not convert requested output fields into filters. Bare "with/include/show/display" field-list wording should populate select_fields; it should not create filters unless there is an explicit comparison, literal target value, only/where phrase, true/false requirement, or nonzero/open/closed business condition.
 22. If schema_context contains multiple service_names, a multi_step plan may cross APIs. In that case every step must include service_name, and each step may use only entity sets and fields that belong to that service. Use cross-service join_hints or shared key fields for bindings.
+23. For master-data "basic information/profile/detail/overview" requests, choose select_fields and response_summary_fields that match what a business user expects to read. Prefer object ID plus name/full name/description and, when schema-valid, address/contact fields. Avoid returning mainly control fields such as block flags, authorization group, created-by, creation date, or account group unless the user explicitly asks for status/control/audit/accounting setup.
 """.strip()
 
 

@@ -43,12 +43,18 @@ Keep `data/index/API_BUSINESS_PARTNER` as the schema ground truth. This skill pr
 - Phrases such as "business partner email list", "business partner phone list", or "business partner fax list" identify the master-data domain. They do not by themselves require returning the `BusinessPartner` ID unless the user explicitly asks for business partner number/ID/details.
 - Company-code and purchasing-organization data are role-specific extensions, not general business partner attributes.
 - Supplier company-code payment terms are maintained on `A_SupplierCompany.PaymentTerms`, not on the general `A_Supplier` or `A_BusinessPartner` entity.
+- For a generic "basic information", "profile", "details", "overview", "basic master data", `基本信息`, `详情`, `概况`, or `主数据` request, output fields should be business-facing. Prefer IDs, names, address, and contact fields. Do not return mainly account group, blocking, authorization, creation, or audit fields unless the user asks for those controls.
 
 ## Common Planning Patterns
 
 ### Supplier Master Data
 
 - Query `A_Supplier` when the user provides a supplier ID or asks for supplier master details.
+- For a supplier basic information/profile request, select `A_Supplier.Supplier`, `A_Supplier.SupplierName`, and `A_Supplier.SupplierFullName` first. Do not make `A_Supplier.SupplierAccountGroup`, `A_Supplier.PurchasingIsBlocked`, `A_Supplier.PostingIsBlocked`, `A_Supplier.PaymentIsBlockedForSupplier`, `A_Supplier.AuthorizationGroup`, `A_Supplier.CreationDate`, or `A_Supplier.CreatedByUser` the main output fields unless the user asks for account group, block/freeze status, authorization, or creation/audit information.
+- For a broad supplier basic information/profile/detail/overview request that is not limited to name or status, use this multi-step profile lookup by default so address fields are returned with the supplier identity:
+  - Step 1: query `A_Supplier` by `A_Supplier.Supplier`; select `A_Supplier.Supplier`, `A_Supplier.SupplierName`, and `A_Supplier.SupplierFullName`.
+  - Step 2: query `A_BusinessPartnerAddress` with `A_BusinessPartnerAddress.BusinessPartner` bound from `A_Supplier.Supplier`; select `A_BusinessPartnerAddress.BusinessPartner`, `A_BusinessPartnerAddress.AddressID`, `A_BusinessPartnerAddress.FullName`, `A_BusinessPartnerAddress.StreetName`, `A_BusinessPartnerAddress.CityName`, `A_BusinessPartnerAddress.PostalCode`, `A_BusinessPartnerAddress.Country`, and `A_BusinessPartnerAddress.Person`.
+  - Step 3 only when phone/email/fax is requested or contact details are explicitly expected: query `A_AddressPhoneNumber` by `A_AddressPhoneNumber.AddressID` and select `A_AddressPhoneNumber.AddressID`, `A_AddressPhoneNumber.Person`, `A_AddressPhoneNumber.PhoneNumber`, and `A_AddressPhoneNumber.InternationalPhoneNumber`; or query `A_AddressEmailAddress` by `A_AddressEmailAddress.AddressID` and select `A_AddressEmailAddress.AddressID`, `A_AddressEmailAddress.Person`, and `A_AddressEmailAddress.EmailAddress`.
 - For supplier name plus freeze/block status, query `A_Supplier` directly and select `Supplier`, `SupplierName`, `SupplierFullName`, `PaymentIsBlockedForSupplier`, `PostingIsBlocked`, and `PurchasingIsBlocked`.
 - Use `A_SupplierCompany` for supplier company-code data.
 - For supplier company-code payment terms, query `A_SupplierCompany` and select `Supplier`, `CompanyCode`, `CompanyCodeName`, and `PaymentTerms`.
@@ -75,6 +81,7 @@ Keep `data/index/API_BUSINESS_PARTNER` as the schema ground truth. This skill pr
 ### Customer Master Data
 
 - Query `A_Customer` for customer master data.
+- For a customer basic information/profile request, select `A_Customer.Customer`, `A_Customer.CustomerName`, `A_Customer.CustomerFullName`, and `A_Customer.BPCustomerFullName` first. Do not make `A_Customer.CustomerAccountGroup`, `A_Customer.BillingIsBlockedForCustomer`, `A_Customer.AuthorizationGroup`, `A_Customer.CreationDate`, or `A_Customer.CreatedByUser` the main output fields unless the user asks for account group, block status, authorization, or creation/audit information.
 - Use `A_CustomerCompany` for company-code data and `A_CustomerSalesArea` for sales-area data.
 
 ## Pitfalls

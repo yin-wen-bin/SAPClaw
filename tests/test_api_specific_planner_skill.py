@@ -329,6 +329,8 @@ def test_api_specific_planner_shortcuts_gl_line_items_by_account_month() -> None
     ]
     assert "AccountingDocument" in plan.select_fields
     assert "AmountInCompanyCodeCurrency" in plan.select_fields
+    assert "ID" not in plan.select_fields
+    assert "ID" not in plan.response_summary_fields
 
 
 def test_api_specific_planner_shortcuts_parameterized_trial_balance_year() -> None:
@@ -1450,6 +1452,149 @@ def test_api_specific_planner_applies_matching_skill_select_only_without_filter(
     assert plan.select_fields == ["Document", "IsClosed"]
     assert plan.response_summary_fields == ["Document", "IsClosed"]
     assert plan.planner_diagnostics["api_skill_applied_select_only"][0]["source"] == "api_skill_select_only"
+
+
+def test_api_specific_planner_removes_skill_discouraged_output_fields(tmp_path: Path) -> None:
+    _write_index(tmp_path)
+    client = CapturingClient(
+        {
+            "plan_kind": "direct",
+            "service_name": "API_TEST",
+            "entity_set": "A_Test",
+            "http_method": "GET",
+            "select_fields": ["Document", "Amount", "IsClosed"],
+            "response_summary_fields": ["Document", "Amount", "IsClosed"],
+            "filters": [],
+            "presentation": {"kind": "table", "reason": "profile"},
+        }
+    )
+    planner = LlmApiSpecificPlanner(index_root=tmp_path, llm_client=client)
+    schema_context = {
+        "service_name": "API_TEST",
+        "entities": [
+            {
+                "entity_set": "A_Test",
+                "fields": [
+                    {"field_name": "Document", "filterable": True},
+                    {"field_name": "Amount", "filterable": True},
+                    {"field_name": "IsClosed", "filterable": True},
+                ],
+            }
+        ],
+        "api_skill": {
+            "service_name": "API_TEST",
+            "summary": (
+                "For basic information requests, do not make `A_Test.IsClosed` the main output fields "
+                "unless the user asks for status/control information."
+            ),
+        },
+    }
+
+    plan = planner.plan_for_api(
+        AgentRequest(user_input="show document basic information"),
+        ApiRouteDecision(selected_apis=[SelectedApi("API_TEST", 1.0)]),
+        schema_context,
+    )
+
+    assert plan.select_fields == ["Document", "Amount"]
+    assert plan.response_summary_fields == ["Document", "Amount"]
+    assert plan.planner_diagnostics["api_skill_removed_select_fields"] == [
+        {"entity_set": "A_Test", "field": "IsClosed"}
+    ]
+
+
+def test_api_specific_planner_keeps_discouraged_output_when_user_requests_status(tmp_path: Path) -> None:
+    _write_index(tmp_path)
+    client = CapturingClient(
+        {
+            "plan_kind": "direct",
+            "service_name": "API_TEST",
+            "entity_set": "A_Test",
+            "http_method": "GET",
+            "select_fields": ["Document", "IsClosed"],
+            "response_summary_fields": ["Document", "IsClosed"],
+            "filters": [],
+            "presentation": {"kind": "table", "reason": "status"},
+        }
+    )
+    planner = LlmApiSpecificPlanner(index_root=tmp_path, llm_client=client)
+    schema_context = {
+        "service_name": "API_TEST",
+        "entities": [
+            {
+                "entity_set": "A_Test",
+                "fields": [
+                    {"field_name": "Document", "filterable": True},
+                    {"field_name": "IsClosed", "filterable": True},
+                ],
+            }
+        ],
+        "api_skill": {
+            "service_name": "API_TEST",
+            "summary": (
+                "For basic information requests, do not make `A_Test.IsClosed` the main output fields "
+                "unless the user asks for status/control information."
+            ),
+        },
+    }
+
+    plan = planner.plan_for_api(
+        AgentRequest(user_input="show document status"),
+        ApiRouteDecision(selected_apis=[SelectedApi("API_TEST", 1.0)]),
+        schema_context,
+    )
+
+    assert plan.select_fields == ["Document", "IsClosed"]
+    assert plan.response_summary_fields == ["Document", "IsClosed"]
+
+
+def test_api_specific_planner_applies_global_skill_discouraged_output_fields(tmp_path: Path) -> None:
+    _write_index(tmp_path)
+    client = CapturingClient(
+        {
+            "plan_kind": "direct",
+            "service_name": "API_TEST",
+            "entity_set": "A_Test",
+            "http_method": "GET",
+            "select_fields": ["Document", "Amount", "IsClosed"],
+            "response_summary_fields": ["Document", "Amount", "IsClosed"],
+            "filters": [],
+            "presentation": {"kind": "table", "reason": "list"},
+        }
+    )
+    planner = LlmApiSpecificPlanner(index_root=tmp_path, llm_client=client)
+    schema_context = {
+        "service_name": "API_TEST",
+        "entities": [
+            {
+                "entity_set": "A_Test",
+                "fields": [
+                    {"field_name": "Document", "filterable": True},
+                    {"field_name": "Amount", "filterable": True},
+                    {"field_name": "IsClosed", "filterable": True},
+                ],
+            }
+        ],
+        "api_skill": {
+            "service_name": "API_TEST",
+            "summary": (
+                "For all `A_Test` record/list outputs, do not return `A_Test.IsClosed` as an answer "
+                "or main output field because it is a technical key."
+            ),
+        },
+    }
+
+    plan = planner.plan_for_api(
+        AgentRequest(user_input="show customer open items"),
+        ApiRouteDecision(selected_apis=[SelectedApi("API_TEST", 1.0)]),
+        schema_context,
+    )
+
+    assert plan.select_fields == ["Document", "Amount"]
+    assert plan.response_summary_fields == ["Document", "Amount"]
+    assert plan.planner_diagnostics["api_skill_removed_select_fields"] == [
+        {"entity_set": "A_Test", "field": "IsClosed"}
+    ]
 
 
 def test_api_specific_planner_promotes_skill_target_step_when_enrichment_is_forbidden(tmp_path: Path) -> None:

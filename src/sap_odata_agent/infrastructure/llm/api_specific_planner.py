@@ -97,6 +97,7 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
         materialized = self._apply_skill_preferred_filter_fields(materialized, request, schema_context)
         materialized = self._apply_skill_discouraged_filters(materialized, request, schema_context)
         materialized = self._apply_skill_select_only_patterns(materialized, request, schema_context)
+        materialized = self._apply_skill_discouraged_select_fields(materialized, request, schema_context)
         materialized = self._apply_skill_order_by_patterns(materialized, request, schema_context)
         materialized = self._apply_skill_result_transform_patterns(materialized, request, schema_context)
         materialized = self._suppress_detail_query_aggregation(materialized, request)
@@ -206,6 +207,7 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             "15. If schema_context.service_names contains multiple services, every multi_step step must include service_name. Use cross-service join_hints or shared key fields to bridge between services, and only use entity sets and fields from that step's service.\n\n"
             "16. If the user provides a company code and asks for G/L account records in a chart-of-accounts-scoped API, first query API_COMPANYCODE_SRV.A_CompanyCode.ChartOfAccounts and bind that value to the G/L account step. Do not use the company code literal as A_GLAccountInChartOfAccounts.ChartOfAccounts.\n\n"
             "17. If the user asks for an output level such as material level, plant level, storage-location level, batch level, or another summarized level, choose fields for the raw SAP query and set result_transform.type=aggregate with schema-valid group_by and sum_fields. The program will execute the aggregation; do not calculate totals in text.\n\n"
+            "18. For master-data basic information/profile/detail/overview requests, actively choose the most business-relevant select_fields and response_summary_fields from schema_context instead of copying default_select_fields. Prefer object ID plus name/full-name/description, address, country/region/city/street/postal-code, and contact fields when schema-valid. Avoid returning mainly block flags, authorization group, creation fields, or account group unless the user asks for status/control/audit/accounting setup.\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )
@@ -686,6 +688,101 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
                 **(plan.planner_diagnostics or {}),
                 "api_skill_applied_select_only": applied,
             },
+        )
+
+    @staticmethod
+    def _apply_skill_discouraged_select_fields(
+        plan: QueryPlan,
+        request: AgentRequest,
+        schema_context: dict[str, Any],
+    ) -> QueryPlan:
+        requirements = LlmApiSpecificPlanner._matching_skill_discouraged_select_fields(request, schema_context)
+        if not requirements:
+            return plan
+
+        removed: list[dict[str, Any]] = []
+
+        def removable_fields(entity_set: str) -> set[str]:
+            fields: set[str] = set()
+            for requirement in requirements:
+                requirement_entity = str(requirement.get("entity_set") or "")
+                if requirement_entity and requirement_entity != entity_set:
+                    continue
+                fields.add(str(requirement.get("field") or ""))
+            return {field for field in fields if field}
+
+        def remove_from_fields(
+            entity_set: str,
+            select_fields: list[str],
+            summary_fields: list[str],
+            protected_fields: set[str],
+        ) -> tuple[list[str], list[str]]:
+            blocked = removable_fields(entity_set) - protected_fields
+            if not blocked:
+                return select_fields, summary_fields
+            new_select = [field for field in select_fields if field not in blocked]
+            new_summary = [field for field in summary_fields if field not in blocked]
+            for field in select_fields:
+                if field in blocked:
+                    removed.append({"entity_set": entity_set, "field": field})
+            return new_select, new_summary
+
+        steps = list(plan.steps or [])
+        changed = False
+        if steps:
+            source_fields_by_step = {
+                binding.source_step_id: binding.source_field
+                for step in steps
+                for binding in step.filter_from_previous
+                if binding.source_step_id and binding.source_field
+            }
+            updated_steps: list[ExecutionStep] = []
+            for step in steps:
+                protected = {condition.field for condition in step.filters}
+                if step.step_id in source_fields_by_step:
+                    protected.add(source_fields_by_step[step.step_id])
+                protected.update(binding.field for binding in step.filter_from_previous)
+                new_select, new_summary = remove_from_fields(
+                    step.entity_set,
+                    list(step.select_fields or []),
+                    list(step.response_summary_fields or []),
+                    protected,
+                )
+                if new_select != list(step.select_fields or []) or new_summary != list(step.response_summary_fields or []):
+                    changed = True
+                updated_steps.append(
+                    replace(step, select_fields=new_select, response_summary_fields=new_summary)
+                )
+            steps = updated_steps
+        else:
+            protected = {condition.field for condition in plan.filters}
+            new_select, new_summary = remove_from_fields(
+                plan.entity_set,
+                list(plan.select_fields or []),
+                list(plan.response_summary_fields or []),
+                protected,
+            )
+            changed = new_select != list(plan.select_fields or []) or new_summary != list(plan.response_summary_fields or [])
+
+        if not changed:
+            return plan
+        diagnostics = {
+            **(plan.planner_diagnostics or {}),
+            "api_skill_removed_select_fields": removed,
+        }
+        if steps:
+            return replace(
+                plan,
+                select_fields=list(steps[-1].select_fields or []),
+                response_summary_fields=list(steps[-1].response_summary_fields or []),
+                steps=steps,
+                planner_diagnostics=diagnostics,
+            )
+        return replace(
+            plan,
+            select_fields=new_select,
+            response_summary_fields=new_summary,
+            planner_diagnostics=diagnostics,
         )
 
     @staticmethod
@@ -1382,7 +1479,7 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             value = LlmApiSpecificPlanner._normalise_filter_literal(item.get("value"))
             operator = str(item.get("operator") or "").lower()
             is_null_state = value_type == "null" and value == "null" and operator in {"eq", "ne"}
-            if key in null_state_fields:
+            if key in null_state_fields and is_null_state:
                 continue
             if is_null_state:
                 selected = [
@@ -1644,6 +1741,93 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
         return sorted(by_entity.values(), key=lambda item: int(item.get("match_score") or 0), reverse=True)
 
     @staticmethod
+    def _matching_skill_discouraged_select_fields(
+        request: AgentRequest,
+        schema_context: dict[str, Any],
+    ) -> list[dict[str, Any]]:
+        request_text = f"{request.resolved_user_input or ''} {request.user_input or ''}".strip()
+        if not request_text:
+            return []
+        requirements: list[dict[str, Any]] = []
+        seen: set[tuple[str, str]] = set()
+        markers = (
+            "do not make",
+            "do not return",
+            "avoid returning",
+            "not the main output",
+            "main output fields",
+        )
+        for line in LlmApiSpecificPlanner._iter_skill_lines(schema_context):
+            lowered = line.lower()
+            if not any(marker in lowered for marker in markers):
+                continue
+            score = LlmApiSpecificPlanner._skill_line_match_score(line, request_text)
+            if score <= 0 and not LlmApiSpecificPlanner._is_global_skill_select_warning(line):
+                continue
+            score = max(score, 1)
+            if LlmApiSpecificPlanner._request_explicitly_asks_for_discouraged_output(line, request_text):
+                continue
+            for match in re.finditer(
+                r"`(?P<entity>[A-Za-z_][A-Za-z0-9_]*)\.(?P<field>[A-Za-z_][A-Za-z0-9_]*)`",
+                line,
+            ):
+                entity_set = match.group("entity")
+                field = match.group("field")
+                key = (entity_set, field)
+                if key in seen:
+                    continue
+                seen.add(key)
+                requirements.append(
+                    {
+                        "entity_set": entity_set,
+                        "field": field,
+                        "source": "api_skill_discouraged_select_field",
+                        "skill_line": line,
+                        "match_score": score,
+                    }
+                )
+        return sorted(requirements, key=lambda item: int(item.get("match_score") or 0), reverse=True)
+
+    @staticmethod
+    def _is_global_skill_select_warning(line: str) -> bool:
+        lowered = str(line or "").lower()
+        return any(
+            marker in lowered
+            for marker in (
+                "for all",
+                "for any",
+                "all record",
+                "all line-item",
+                "all line item",
+                "any record",
+                "any line-item",
+                "any line item",
+            )
+        )
+
+    @staticmethod
+    def _request_explicitly_asks_for_discouraged_output(line: str, request_text: str) -> bool:
+        lowered_request = str(request_text or "").lower()
+        lowered_line = str(line or "").lower()
+        unless_index = lowered_line.find("unless")
+        if unless_index < 0:
+            return False
+        marker_groups = [
+            ("account group", "accountgroup", "账户组", "科目组"),
+            ("block", "blocked", "freeze", "frozen", "冻结"),
+            ("authorization", "权限", "授权"),
+            ("creation", "created", "audit", "创建", "审计"),
+            ("status", "control", "状态", "控制"),
+        ]
+        unless_text = lowered_line[unless_index:]
+        for markers in marker_groups:
+            if not any(marker in unless_text for marker in markers):
+                continue
+            if any(marker in lowered_request for marker in markers):
+                return True
+        return False
+
+    @staticmethod
     def _matching_skill_order_by_requirements(
         request: AgentRequest,
         schema_context: dict[str, Any],
@@ -1755,6 +1939,7 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             "sum",
             "aggregate",
             "group by",
+            "level",
         )
         return any(marker in value for marker in markers)
 
@@ -2102,7 +2287,6 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             entity_set="GLAccountLineItem",
             http_method="GET",
             select_fields=[
-                "ID",
                 "CompanyCode",
                 "FiscalYear",
                 "AccountingDocument",
@@ -2573,7 +2757,6 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
                     service_name="API_GLACCOUNTLINEITEM",
                     entity_set="GLAccountLineItem",
                     select_fields=[
-                        "ID",
                         "CompanyCode",
                         "FiscalYear",
                         "AccountingDocument",
@@ -2586,7 +2769,6 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
                         "AmountInCompanyCodeCurrency",
                     ],
                     response_summary_fields=[
-                        "ID",
                         "CompanyCode",
                         "FiscalYear",
                         "AccountingDocument",

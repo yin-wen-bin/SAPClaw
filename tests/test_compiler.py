@@ -237,6 +237,30 @@ def test_compiler_does_not_auto_select_trial_balance_synthetic_id(tmp_path) -> N
     assert "ID" not in urllib.parse.parse_qs(urllib.parse.urlsplit(compiled.url).query)["$select"][0].split(",")
 
 
+def test_compiler_removes_gl_line_item_technical_id_from_select(tmp_path) -> None:
+    service_dir = tmp_path / "data" / "index" / "API_GLACCOUNTLINEITEM"
+    service_dir.mkdir(parents=True)
+    (service_dir / "entities.json").write_text(
+        json.dumps([{"entity_set": "GLAccountLineItem", "key_fields": ["ID"]}]),
+        encoding="utf-8",
+    )
+    plan = QueryPlan(
+        service_name="API_GLACCOUNTLINEITEM",
+        entity_set="GLAccountLineItem",
+        select_fields=["ID", "CompanyCode", "FiscalYear", "AccountingDocument"],
+        top=50,
+    )
+
+    compiled = BasicODataCompiler(
+        base_url="https://sap.example.com",
+        index_root=tmp_path / "data" / "index",
+    ).compile(plan)
+
+    selected = urllib.parse.parse_qs(urllib.parse.urlsplit(compiled.url).query)["$select"][0].split(",")
+    assert selected == ["CompanyCode", "FiscalYear", "AccountingDocument"]
+    assert "ID" not in selected
+
+
 def test_compiler_preserves_parameterized_trial_balance_results_path(tmp_path) -> None:
     service_dir = tmp_path / "data" / "index" / "C_TRIALBALANCE_CDS"
     service_dir.mkdir(parents=True)

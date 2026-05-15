@@ -26,6 +26,7 @@ from sap_odata_agent.domain.models import (
 CDS_VIEW_ONLY_SERVICES = frozenset({"I_PurchaseOrderHistoryAPI01"})
 AUTO_KEY_SELECT_EXCLUSIONS = {
     ("C_TRIALBALANCE_CDS", "C_TRIALBALANCEResults"): frozenset({"ID"}),
+    ("API_GLACCOUNTLINEITEM", "GLAccountLineItem"): frozenset({"ID"}),
 }
 
 
@@ -190,10 +191,15 @@ class BasicODataCompiler:
         entity_set: str,
         select_fields: list[str],
     ) -> list[str]:
-        fields = [str(field) for field in select_fields if str(field).strip()]
+        excluded_key_fields = AUTO_KEY_SELECT_EXCLUSIONS.get((str(service_name), str(entity_set)), frozenset())
+        fields = [
+            str(field)
+            for field in select_fields
+            if str(field).strip() and str(field) not in excluded_key_fields
+        ]
         existing = set(fields)
         for key_field in self._entity_key_fields(service_name, entity_set):
-            if key_field in AUTO_KEY_SELECT_EXCLUSIONS.get((str(service_name), str(entity_set)), frozenset()):
+            if key_field in excluded_key_fields:
                 continue
             if key_field and key_field not in existing:
                 fields.append(key_field)

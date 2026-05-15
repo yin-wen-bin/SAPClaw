@@ -628,6 +628,7 @@ class SchemaContextProvider:
                 field_name in candidate_field_names
                 or field_name in set(entity.get("key_fields", []) or [])
                 or field_name in set(entity.get("default_select_fields", []) or [])
+                or self._is_business_profile_field(field)
                 or self._is_business_status_field(field)
             ):
                 fields.append(self._field_payload(field, 0.0))
@@ -904,6 +905,45 @@ class SchemaContextProvider:
         return any(marker in text for marker in positive_markers) and not any(
             marker in text for marker in negative_markers
         )
+
+    @staticmethod
+    def _is_business_profile_field(field: dict[str, Any]) -> bool:
+        field_name = str(field.get("field_name", "") or "")
+        normalized = field_name.lower()
+        negative_markers = {
+            "authorization",
+            "createdby",
+            "creation",
+            "blocked",
+            "block",
+            "accountgroup",
+            "deletion",
+            "tax",
+            "payment",
+            "posting",
+            "naturalperson",
+        }
+        if any(marker in normalized for marker in negative_markers):
+            return False
+
+        profile_markers = {
+            "name",
+            "fullname",
+            "description",
+            "address",
+            "street",
+            "city",
+            "postal",
+            "country",
+            "region",
+            "phone",
+            "email",
+            "fax",
+            "contact",
+        }
+        if any(marker in normalized for marker in profile_markers):
+            return True
+        return normalized in {"person", "personnumber", "personfullname"}
 
     @staticmethod
     def _document_payload(documents: list[RetrievedDocument]) -> list[dict[str, Any]]:

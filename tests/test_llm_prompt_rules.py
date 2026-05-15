@@ -106,6 +106,29 @@ def test_api_planner_prompt_supports_cross_service_multistep_steps() -> None:
     assert "every multi_step step must include service_name" in prompt
 
 
+def test_api_planner_prompt_asks_llm_to_choose_basic_profile_fields() -> None:
+    prompt = LlmApiSpecificPlanner._user_prompt(
+        AgentRequest(user_input="查询供应商17300003的基本信息"),
+        route_decision=type(
+            "Route",
+            (),
+            {
+                "resolved_user_input": "",
+                "selected_apis": [],
+                "intent_summary": "",
+                "business_domain": "",
+                "business_object": "",
+            },
+        )(),
+        schema_context={"service_name": "API_BUSINESS_PARTNER"},
+    )
+
+    assert "basic information/profile/detail/overview" in QUERY_PLANNER_TASK_PROMPT
+    assert "actively choose the most business-relevant select_fields" in prompt
+    assert "Do not blindly copy default_select_fields" in METADATA_MATCHING_TASK_PROMPT
+    assert "Avoid returning mainly block flags" in prompt
+
+
 def test_api_planner_prompt_omits_function_imports_for_plain_read_queries() -> None:
     route_decision = ApiRouteDecision(
         selected_apis=[SelectedApi("API_OUTBOUND_DELIVERY_SRV", confidence=0.9)],
