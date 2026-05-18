@@ -188,7 +188,7 @@ def _build_page_presentation(entry: dict[str, Any], data: dict[str, Any]) -> dic
         if isinstance(row, dict)
     ]
     if not columns and clean_results:
-        columns = list(clean_results[0].keys())[:8]
+        columns = list(clean_results[0].keys())
 
     rows = [{column: row.get(column, "") for column in columns} for row in clean_results]
     pagination = data.get("pagination") if isinstance(data.get("pagination"), dict) else {}

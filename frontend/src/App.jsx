@@ -128,7 +128,7 @@ function buildLocalDisplayPage(current, nextSkip) {
   const rawRows = allResults.slice(localOffset, localOffset + displayLimit);
   const cleanRows = rawRows.map(cleanResultRow);
   const existingColumns = Array.isArray(current?.presentation?.columns) ? current.presentation.columns : [];
-  const columns = existingColumns.length > 0 ? existingColumns : Object.keys(cleanRows[0] || {}).slice(0, 8);
+  const columns = existingColumns.length > 0 ? existingColumns : Object.keys(cleanRows[0] || {});
   const rows = cleanRows.map((row) => Object.fromEntries(columns.map((column) => [column, row[column] ?? ""])));
   const totalCount = Number(data.result_count || allResults.length);
   const displayedCount = rows.length;
@@ -263,7 +263,7 @@ function summarizeResultData(data, preferredFields = []) {
     .map((field) => entries.find(([key]) => key === field))
     .filter(Boolean);
 
-  return (preferred.length > 0 ? preferred : entries).slice(0, 8);
+  return preferred.length > 0 ? preferred : entries;
 }
 
 function HistoryList({ history, historyError, onRefresh, onSelect }) {
@@ -302,7 +302,7 @@ function HistoryList({ history, historyError, onRefresh, onSelect }) {
   );
 }
 
-function QueryHistoryStrip({ history, onApply }) {
+function QueryHistoryStrip({ history, onApply, disabled = false }) {
   const recentItems = history.filter((item) => item?.user_input).slice(0, 3);
 
   return (
@@ -319,6 +319,7 @@ function QueryHistoryStrip({ history, onApply }) {
               type="button"
               className="query-history-card"
               onClick={() => onApply(item.user_input)}
+              disabled={disabled}
               title="点击后只复制问题到查询框"
             >
               <strong>{item.user_input}</strong>
@@ -329,6 +330,25 @@ function QueryHistoryStrip({ history, onApply }) {
       ) : (
         <p className="history-empty">暂无历史查询记录。</p>
       )}
+    </div>
+  );
+}
+
+function QueryLoadingPanel() {
+  return (
+    <div className="query-loading-panel" role="status" aria-live="polite" aria-busy="true">
+      <div className="loading-orbit" aria-hidden="true">
+        <span />
+      </div>
+      <div>
+        <h3>正在执行查询</h3>
+        <p>系统正在选择 API、生成查询计划并请求 SAP。</p>
+      </div>
+      <div className="loading-steps" aria-hidden="true">
+        <span />
+        <span />
+        <span />
+      </div>
     </div>
   );
 }
@@ -917,35 +937,12 @@ function DetailSection({ title, children, defaultOpen = false }) {
   );
 }
 
-function LoadingResultPanel() {
-  return (
-    <section className="panel result-panel loading-result-panel" id="results" aria-live="polite" aria-busy="true">
-      <div className="loading-orbit" aria-hidden="true">
-        <span />
-      </div>
-      <div>
-        <h2>正在执行查询</h2>
-        <p>系统正在选择 API、生成查询计划并请求 SAP。</p>
-      </div>
-      <div className="loading-steps">
-        <span />
-        <span />
-        <span />
-      </div>
-    </section>
-  );
-}
-
 function ResultPanel({ result, selectedHistory, feedbackProps, onPageChange, pageLoading, loading }) {
   const summaryRows = useMemo(
     () => summarizeResultData(result?.data, result?.plan?.response_summary_fields || []),
     [result],
   );
   const totalDurationMs = getTotalDuration(result);
-
-  if (loading) {
-    return <LoadingResultPanel />;
-  }
 
   if (!result) {
     return (
@@ -1199,10 +1196,16 @@ export default function App() {
 
   function handleChange(event) {
     const { name, value } = event.target;
+    if (loading && name === "user_input") {
+      return;
+    }
     setForm((current) => ({ ...current, [name]: value }));
   }
 
   function applyPrompt(prompt) {
+    if (loading) {
+      return;
+    }
     setForm((current) => ({ ...current, user_input: prompt }));
   }
 
@@ -1211,6 +1214,9 @@ export default function App() {
   }
 
   function loadHistoryItem(item) {
+    if (loading) {
+      return;
+    }
     setForm({
       user_input: item.user_input || "",
       conversation_id: "",
@@ -1290,16 +1296,20 @@ export default function App() {
               {loading ? <span className="status-pill pending">执行中</span> : null}
             </div>
 
-            <QueryHistoryStrip history={history} onApply={applyPrompt} />
+            <QueryHistoryStrip history={history} onApply={applyPrompt} disabled={loading} />
+            {loading ? <QueryLoadingPanel /> : null}
 
             <form onSubmit={handleSubmit} className="query-form">
               <label>
                 <textarea
+                  className="query-textarea"
                   name="user_input"
                   aria-label="查询内容"
                   rows="5"
                   value={form.user_input}
                   onChange={handleChange}
+                  readOnly={loading}
+                  aria-readonly={loading ? "true" : undefined}
                   placeholder="例如：供应商17300003的 shipping condition 是什么？"
                 />
               </label>

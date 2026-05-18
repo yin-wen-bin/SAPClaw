@@ -401,6 +401,8 @@ class ApiCatalogProvider:
     def _suppressed_answer_fields(service_name: str) -> set[str]:
         if service_name == "API_GLACCOUNTLINEITEM":
             return {"GLAccountLineItem.ID"}
+        if service_name == "C_TRIALBALANCE_CDS":
+            return {"C_TRIALBALANCEResults.ID"}
         return set()
 
     @staticmethod
@@ -726,12 +728,12 @@ class ApiCatalogProvider:
             ]
         if service_name == "C_TRIALBALANCE_CDS":
             return [
-                "C_TRIALBALANCEResults.ID",
                 "C_TRIALBALANCEResults.Ledger",
                 "C_TRIALBALANCEResults.CompanyCode",
                 "C_TRIALBALANCEResults.FiscalYear",
                 "C_TRIALBALANCEResults.FiscalPeriod",
                 "C_TRIALBALANCEResults.GLAccount",
+                "C_TRIALBALANCEResults.EndingBalanceAmtInCoCodeCrcy",
                 "C_TRIALBALANCEResults.ProfitCenter",
                 "C_TRIALBALANCEResults.ProfitCenterName",
                 "C_TRIALBALANCEResults.Segment",
@@ -740,7 +742,6 @@ class ApiCatalogProvider:
                 "C_TRIALBALANCEResults.StartingBalanceAmtInCoCodeCrcy",
                 "C_TRIALBALANCEResults.DebitAmountInCoCodeCrcy",
                 "C_TRIALBALANCEResults.CreditAmountInCoCodeCrcy",
-                "C_TRIALBALANCEResults.EndingBalanceAmtInCoCodeCrcy",
             ]
         if service_name == "API_SALES_ORDER_SRV":
             return [

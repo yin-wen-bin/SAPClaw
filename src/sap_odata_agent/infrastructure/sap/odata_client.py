@@ -191,7 +191,7 @@ class BasicODataCompiler:
         entity_set: str,
         select_fields: list[str],
     ) -> list[str]:
-        excluded_key_fields = AUTO_KEY_SELECT_EXCLUSIONS.get((str(service_name), str(entity_set)), frozenset())
+        excluded_key_fields = self._auto_key_select_exclusions(service_name, entity_set)
         fields = [
             str(field)
             for field in select_fields
@@ -205,6 +205,17 @@ class BasicODataCompiler:
                 fields.append(key_field)
                 existing.add(key_field)
         return fields
+
+    @staticmethod
+    def _auto_key_select_exclusions(service_name: str, entity_set: str) -> frozenset[str]:
+        service_key = str(service_name)
+        entity_key = str(entity_set)
+        exact = AUTO_KEY_SELECT_EXCLUSIONS.get((service_key, entity_key))
+        if exact is not None:
+            return exact
+        if service_key == "C_TRIALBALANCE_CDS" and entity_key.endswith("/Results"):
+            return AUTO_KEY_SELECT_EXCLUSIONS.get((service_key, "C_TRIALBALANCEResults"), frozenset())
+        return frozenset()
 
     def _entity_key_fields(self, service_name: str, entity_set: str) -> list[str]:
         if self.index_root is None or not service_name or not entity_set:

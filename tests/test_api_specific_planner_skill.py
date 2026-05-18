@@ -368,7 +368,48 @@ def test_api_specific_planner_shortcuts_parameterized_trial_balance_year() -> No
         ("CompanyCode", "eq", "1710", "string"),
         ("FiscalYear", "eq", "2020", "string"),
     ]
+    assert "ID" not in plan.select_fields
+    assert "ID" not in plan.response_summary_fields
     assert "EndingBalanceAmtInCoCodeCrcy" in plan.select_fields
+    assert plan.response_summary_fields[:6] == [
+        "CompanyCode",
+        "FiscalYear",
+        "FiscalPeriod",
+        "GLAccount",
+        "GLAccountHierarchyName",
+        "EndingBalanceAmtInCoCodeCrcy",
+    ]
+
+
+def test_api_specific_planner_trial_balance_account_year_prioritizes_balance_field() -> None:
+    planner = LlmApiSpecificPlanner(llm_client=FailingClient(), enabled=True)
+    route = ApiRouteDecision(
+        selected_apis=[SelectedApi("C_TRIALBALANCE_CDS", 0.9, "G/L account balance")],
+        intent_summary="G/L account balance by company and fiscal year.",
+        business_domain="Finance",
+        business_object="G/L Account Balance",
+        raw_response={"selected_apis": [{"service_name": "C_TRIALBALANCE_CDS"}]},
+    )
+    schema_context = {
+        "service_name": "C_TRIALBALANCE_CDS",
+        "service_names": ["C_TRIALBALANCE_CDS"],
+    }
+
+    plan = planner.plan_for_api(
+        AgentRequest(user_input="查询科目11002050在公司1710下，2020年的余额"),
+        route,
+        schema_context,
+    )
+
+    assert [(item.field, item.operator, item.value, item.value_type) for item in plan.filters] == [
+        ("Ledger", "eq", "0L", "string"),
+        ("CompanyCode", "eq", "1710", "string"),
+        ("FiscalYear", "eq", "2020", "string"),
+        ("GLAccount", "eq", "11002050", "string"),
+    ]
+    assert "ID" not in plan.select_fields
+    assert "ID" not in plan.response_summary_fields
+    assert "EndingBalanceAmtInCoCodeCrcy" in plan.response_summary_fields[:8]
 
 
 def _write_company_gl_index(root: Path) -> None:

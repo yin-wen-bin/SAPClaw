@@ -102,10 +102,10 @@ class PresentationVerifier:
         clean_records = PresentationVerifier._records_from_data(data, request)
         if not clean_records:
             return []
-        column_list = columns or list(clean_records[0].keys())[:8]
+        column_list = columns or list(clean_records[0].keys())
         rows = [{column: record.get(column, "") for column in column_list} for record in clean_records]
         if PresentationVerifier._rows_have_no_values(rows):
-            column_list = list(clean_records[0].keys())[:8]
+            column_list = list(clean_records[0].keys())
             rows = [{column: record.get(column, "") for column in column_list} for record in clean_records]
         return rows
 

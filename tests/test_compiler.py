@@ -224,7 +224,7 @@ def test_compiler_does_not_auto_select_trial_balance_synthetic_id(tmp_path) -> N
     plan = QueryPlan(
         service_name="C_TRIALBALANCE_CDS",
         entity_set="C_TRIALBALANCEResults",
-        select_fields=["CompanyCode", "FiscalYear", "GLAccount", "EndingBalanceAmtInCoCodeCrcy"],
+        select_fields=["ID", "CompanyCode", "FiscalYear", "GLAccount", "EndingBalanceAmtInCoCodeCrcy"],
         top=5,
     )
 
@@ -294,6 +294,7 @@ def test_compiler_preserves_parameterized_trial_balance_results_path(tmp_path) -
     assert "$filter=Ledger eq '0L' and CompanyCode eq '1710'" in compiled.url
     selected = urllib.parse.parse_qs(urllib.parse.urlsplit(compiled.url).query)["$select"][0].split(",")
     assert selected == ["CompanyCode", "FiscalYear", "GLAccount", "EndingBalanceAmtInCoCodeCrcy"]
+    assert "ID" not in selected
 
 
 def test_compiler_uses_unquoted_boolean_literals() -> None:

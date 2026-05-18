@@ -2329,21 +2329,46 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
     @classmethod
     def _trial_balance_select_fields(cls, text: str = "") -> list[str]:
         fields = [
-            "ID",
             "Ledger",
             "CompanyCode",
-            "CompanyCodeName",
             "FiscalYear",
             "FiscalPeriod",
             "GLAccount",
             "GLAccountHierarchyName",
+            "EndingBalanceAmtInCoCodeCrcy",
+            "CompanyCodeName",
             "StartingBalanceAmtInCoCodeCrcy",
             "DebitAmountInCoCodeCrcy",
             "CreditAmountInCoCodeCrcy",
-            "EndingBalanceAmtInCoCodeCrcy",
         ]
         if cls._text_has_any(text, "profit center", "利润中心"):
             fields.extend(["ProfitCenter", "ProfitCenterName", "Segment", "SegmentName"])
+        if cls._text_has_any(text, "segment", "分部", "段"):
+            fields.extend(["Segment", "SegmentName"])
+        if cls._text_has_any(text, "balance sheet", "资产负债", "损益"):
+            fields.append("IsBalanceSheetAccount")
+        return list(dict.fromkeys(fields))
+
+    @classmethod
+    def _trial_balance_summary_fields(cls, text: str = "") -> list[str]:
+        base_fields = [
+            "CompanyCode",
+            "FiscalYear",
+            "FiscalPeriod",
+            "GLAccount",
+            "GLAccountHierarchyName",
+        ]
+        amount_fields = ["EndingBalanceAmtInCoCodeCrcy"]
+        if cls._text_has_any(text, "期初", "借方", "贷方", "starting balance", "debit", "credit"):
+            amount_fields = [
+                "StartingBalanceAmtInCoCodeCrcy",
+                "DebitAmountInCoCodeCrcy",
+                "CreditAmountInCoCodeCrcy",
+                "EndingBalanceAmtInCoCodeCrcy",
+            ]
+        fields = [*base_fields, *amount_fields, "Ledger", "CompanyCodeName"]
+        if cls._text_has_any(text, "profit center", "利润中心"):
+            fields.extend(["ProfitCenter", "ProfitCenterName"])
         if cls._text_has_any(text, "segment", "分部", "段"):
             fields.extend(["Segment", "SegmentName"])
         if cls._text_has_any(text, "balance sheet", "资产负债", "损益"):
@@ -2404,13 +2429,14 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             filters.append(FilterCondition(field="Segment", operator="ne", value="", value_type="string"))
 
         select_fields = cls._trial_balance_select_fields(text)
+        summary_fields = cls._trial_balance_summary_fields(text)
         if all_ledgers_requested and cls._schema_context_has_service(schema_context, "API_LEDGER_SRV"):
             return QueryPlan(
                 service_name="C_TRIALBALANCE_CDS",
                 entity_set=entity_path,
                 http_method="GET",
                 select_fields=select_fields,
-                response_summary_fields=select_fields,
+                response_summary_fields=summary_fields,
                 filters=filters,
                 top=100,
                 response_directive=(
@@ -2450,7 +2476,7 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
                         service_name="C_TRIALBALANCE_CDS",
                         entity_set=entity_path,
                         select_fields=select_fields,
-                        response_summary_fields=select_fields,
+                        response_summary_fields=summary_fields,
                         filters=filters,
                         filter_from_previous=[
                             StepBinding(field="Ledger", source_step_id="ledgers", source_field="Ledger", fanout=True)
@@ -2465,7 +2491,7 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             entity_set=entity_path,
             http_method="GET",
             select_fields=select_fields,
-            response_summary_fields=select_fields,
+            response_summary_fields=summary_fields,
             filters=filters,
             top=50,
             response_directive=(

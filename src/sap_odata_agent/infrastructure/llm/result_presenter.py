@@ -175,7 +175,7 @@ class LlmResultPresenter:
             kind=kind,
             title=title,
             text=text,
-            columns=columns[:8],
+            columns=columns,
             rows=rows[:50],
         )
 
@@ -229,7 +229,7 @@ class LlmResultPresenter:
                 len(rows),
                 self._pagination_skip(data),
             ),
-            columns=columns[:8],
+            columns=columns,
             rows=rows[:50],
         )
 

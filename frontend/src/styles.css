@@ -355,23 +355,6 @@ button:disabled {
   gap: 20px;
 }
 
-.loading-result-panel {
-  min-height: 360px;
-  place-items: center;
-  text-align: center;
-}
-
-.loading-result-panel h2 {
-  margin: 0;
-}
-
-.loading-result-panel p {
-  max-width: 520px;
-  margin: 12px 0 0;
-  color: var(--muted);
-  line-height: 1.7;
-}
-
 .loading-orbit {
   position: relative;
   width: 76px;
@@ -545,11 +528,23 @@ button:disabled {
 
 .summary-row {
   display: grid;
-  grid-template-columns: minmax(110px, 170px) 1fr;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: start;
   gap: 14px;
   padding: 10px 12px;
   border-radius: 14px;
   background: #f5f0e7;
+  min-width: 0;
+}
+
+.summary-row span,
+.summary-row strong,
+.history-review-row span,
+.history-review-block span,
+.diagnostic-item span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .summary-row span,
@@ -1249,11 +1244,6 @@ pre {
   background: var(--accent-soft);
 }
 
-.loading-result-panel {
-  justify-items: center;
-  min-height: 320px;
-}
-
 .loading-orbit {
   width: min(280px, 80%);
   height: 4px;
@@ -1948,6 +1938,76 @@ pre {
 /* Compact query controls */
 .query-form .inline-fields {
   align-items: end;
+}
+
+.query-textarea[readonly] {
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.66);
+  cursor: wait;
+}
+
+.query-loading-panel {
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+  padding: 24px 16px;
+  border: 1px solid rgba(0, 102, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.78);
+  text-align: center;
+}
+
+.query-loading-panel .loading-orbit {
+  width: min(280px, 80%);
+  height: 4px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 999px;
+  background: #d8e9ff;
+}
+
+.query-loading-panel .loading-orbit::before {
+  inset: 0;
+  width: 42%;
+  border: 0;
+  border-radius: inherit;
+  background: var(--accent);
+  animation: progress-sweep 1.2s ease-in-out infinite;
+}
+
+.query-loading-panel .loading-orbit span {
+  display: none;
+}
+
+.query-loading-panel h3 {
+  margin: 0;
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+.query-loading-panel p {
+  margin: 10px 0 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.query-loading-panel .loading-steps {
+  display: flex;
+  gap: 8px;
+}
+
+.query-loading-panel .loading-steps span {
+  width: 32px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--accent);
+  opacity: 0.35;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.query-history-card:disabled {
+  cursor: wait;
+  opacity: 0.58;
 }
 
 .query-form .inline-fields label,

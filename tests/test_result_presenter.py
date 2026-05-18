@@ -86,6 +86,30 @@ def test_result_presenter_uses_table_when_llm_requests_it() -> None:
     assert len(presentation.rows) == 2
 
 
+def test_result_presenter_keeps_all_requested_table_columns() -> None:
+    fields = [f"Field{index}" for index in range(1, 11)]
+    presenter = LlmResultPresenter(enabled=False)
+    plan = QueryPlan(
+        service_name="API_TEST",
+        entity_set="A_Test",
+        select_fields=fields,
+        response_summary_fields=fields,
+    )
+    data = {
+        "result_count": 2,
+        "results": [
+            {field: f"value-{index}-{field}" for field in fields}
+            for index in range(2)
+        ],
+    }
+
+    presentation = presenter.present(AgentRequest(user_input="列出所有需要字段"), plan, data)
+
+    assert presentation.kind == "table"
+    assert presentation.columns == fields
+    assert len(presentation.columns) == 10
+
+
 def test_result_presenter_prompt_includes_multi_step_results() -> None:
     client = StubClient(
         json.dumps(

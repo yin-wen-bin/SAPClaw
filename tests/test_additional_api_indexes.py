@@ -99,6 +99,7 @@ def test_api_catalog_exposes_answer_fields_for_router_selection() -> None:
     assert "A_OperationalAcctgDocItemCube.AmountInCompanyCodeCurrency" in operational_cube["top_answer_fields"]
     assert "C_TRIALBALANCEResults.FiscalPeriod" in trial_balance["top_filter_fields"]
     assert "C_TRIALBALANCEResults.EndingBalanceAmtInCoCodeCrcy" in trial_balance["top_answer_fields"]
+    assert "C_TRIALBALANCEResults.ID" not in trial_balance["top_answer_fields"]
 
 
 def test_company_code_catalog_prioritizes_chart_of_accounts_for_router() -> None:
