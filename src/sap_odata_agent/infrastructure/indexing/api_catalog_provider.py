@@ -622,6 +622,25 @@ class ApiCatalogProvider:
                 "A_ProductionOrder_2.ManufacturingOrder",
                 "A_ProductionOrder_2.Material",
             ]
+        if service_name == "I_ProductionVersion":
+            return [
+                "I_ProductionVersion.Material",
+                "I_ProductionVersion.Plant",
+                "I_ProductionVersion.ProductionVersion",
+                "I_ProductionVersion.ValidityStartDate",
+                "I_ProductionVersion.ValidityEndDate",
+                "I_ProductionVersion.MaterialMinLotSizeQuantity",
+                "I_ProductionVersion.MaterialMaxLotSizeQuantity",
+                "I_ProductionVersion.ProductionVersionStatus",
+                "I_ProductionVersion.ProductionVersionIsLocked",
+                "I_ProductionVersion.BillOfMaterialVariantUsage",
+                "I_ProductionVersion.BillOfMaterialVariant",
+                "I_ProductionVersion.BillOfOperationsType",
+                "I_ProductionVersion.BillOfOperationsGroup",
+                "I_ProductionVersion.BillOfOperationsVariant",
+                "I_ProductionVersion.ProductionLine",
+                "I_ProductionVersion.ProductionSupplyArea",
+            ]
         return []
 
     @staticmethod
@@ -801,6 +820,25 @@ class ApiCatalogProvider:
                 "A_ProductionOrder_2.Material",
                 "A_ProductionOrder_2.ProductionPlant",
             ]
+        if service_name == "I_ProductionVersion":
+            return [
+                "I_ProductionVersion.Material",
+                "I_ProductionVersion.Plant",
+                "I_ProductionVersion.ProductionVersion",
+                "I_ProductionVersion.ProductionVersionText",
+                "I_ProductionVersion.ValidityStartDate",
+                "I_ProductionVersion.ValidityEndDate",
+                "I_ProductionVersion.MaterialMinLotSizeQuantity",
+                "I_ProductionVersion.MaterialMaxLotSizeQuantity",
+                "I_ProductionVersion.ProductionVersionStatus",
+                "I_ProductionVersion.BillOfMaterialVariantUsage",
+                "I_ProductionVersion.BillOfMaterialVariant",
+                "I_ProductionVersion.BillOfOperationsType",
+                "I_ProductionVersion.BillOfOperationsGroup",
+                "I_ProductionVersion.BillOfOperationsVariant",
+                "I_ProductionVersion.ProductionLine",
+                "I_ProductionVersion.ProductionSupplyArea",
+            ]
         return []
 
     @staticmethod
@@ -833,7 +871,7 @@ class ApiCatalogProvider:
     @staticmethod
     def _humanize_entity_set(entity_set: str) -> str:
         name = str(entity_set or "")
-        for prefix in ("A_", "C_"):
+        for prefix in ("A_", "C_", "I_"):
             if name.startswith(prefix):
                 name = name[len(prefix) :]
         replacements = {

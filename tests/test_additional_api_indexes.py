@@ -628,6 +628,57 @@ def test_purchase_order_history_index_is_cds_view_only() -> None:
     assert all(entity.get("runtime_kind") == "CDS_VIEW_ONLY" for entity in snapshot.entities)
 
 
+def test_production_version_index_is_cds_view_only_and_cataloged() -> None:
+    snapshot = LocalIndexLoader(index_root="data/index").load("I_ProductionVersion")
+    service = snapshot.services[0]
+    entity = snapshot.entities[0]
+    catalog = ApiCatalogProvider(index_root="data/index").load()
+    production_version = next(item for item in catalog if item["service_name"] == "I_ProductionVersion")
+
+    assert service["service_kind"] == "CDS_VIEW_ONLY"
+    assert service["base_path"] == "cds://I_ProductionVersion"
+    assert service["runtime_available"] is False
+    assert service["odata_runtime_available"] is False
+    assert entity["entity_set"] == "I_ProductionVersion"
+    assert entity["key_fields"] == ["Material", "Plant", "ProductionVersion"]
+    assert production_version["primary_business_objects"][:1] == ["Production Version"]
+    assert "I_ProductionVersion.Material" in production_version["top_filter_fields"]
+    assert "I_ProductionVersion.Plant" in production_version["top_filter_fields"]
+    assert "I_ProductionVersion.ProductionVersion" in production_version["top_answer_fields"]
+    assert "I_ProductionVersion.BillOfMaterialVariant" in production_version["top_answer_fields"]
+    assert "I_ProductionVersion.BillOfOperationsGroup" in production_version["top_answer_fields"]
+
+
+def test_production_version_schema_context_loads_assignment_fields() -> None:
+    provider = SchemaContextProvider(index_root="data/index")
+    skill = ApiSkillProvider(skill_root="data/api_skills").load("I_ProductionVersion")
+    assert skill is not None
+
+    context = provider.build(
+        "I_ProductionVersion",
+        "production version for material TG0011 plant 1710 with BOM and routing assignment",
+    )
+    context = provider.enrich_with_api_skill(context, skill.as_prompt_payload())
+    summary = provider.summarize(context)
+
+    available_fields = {
+        (field["entity_set"], field["field_name"])
+        for field in summary["available_fields"]
+    }
+    skill_matches = {
+        match["matched_field"]
+        for match in summary["skill_field_matches"]
+    }
+
+    assert ("I_ProductionVersion", "Material") in available_fields
+    assert ("I_ProductionVersion", "Plant") in available_fields
+    assert ("I_ProductionVersion", "ProductionVersion") in available_fields
+    assert ("I_ProductionVersion", "BillOfMaterialVariant") in available_fields
+    assert ("I_ProductionVersion", "BillOfOperationsGroup") in available_fields
+    assert "I_ProductionVersion.BillOfMaterialVariant" in skill_matches
+    assert "I_ProductionVersion.BillOfOperationsGroup" in skill_matches
+
+
 def test_purchase_order_schema_context_loads_business_fields() -> None:
     context = SchemaContextProvider(index_root="data/index").build(
         "API_PURCHASEORDER_PROCESS_SRV",

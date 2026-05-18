@@ -23,7 +23,7 @@ from sap_odata_agent.domain.models import (
 )
 
 
-CDS_VIEW_ONLY_SERVICES = frozenset({"I_PurchaseOrderHistoryAPI01"})
+CDS_VIEW_ONLY_SERVICES = frozenset({"I_PurchaseOrderHistoryAPI01", "I_ProductionVersion"})
 AUTO_KEY_SELECT_EXCLUSIONS = {
     ("C_TRIALBALANCE_CDS", "C_TRIALBALANCEResults"): frozenset({"ID"}),
     ("API_GLACCOUNTLINEITEM", "GLAccountLineItem"): frozenset({"ID"}),

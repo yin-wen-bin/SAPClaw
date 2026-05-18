@@ -1,0 +1,242 @@
+[
+  {
+    "id": "PV-001",
+    "api": "I_ProductionVersion",
+    "scenario": "material_plant_production_versions",
+    "user_input": "查询物料TG0011在工厂1710有哪些生产版本",
+    "expected_api": "I_ProductionVersion",
+    "expected_apis": ["I_ProductionVersion"],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": false,
+      "present": true,
+      "clarify": false,
+      "unsupported": true
+    },
+    "baseline": {
+      "steps": []
+    },
+    "comparison": {
+      "type": "unsupported_route",
+      "keys": ["Material", "Plant", "ProductionVersion"],
+      "required_fields": ["Material", "Plant", "ProductionVersion"]
+    }
+  },
+  {
+    "id": "PV-002",
+    "api": "I_ProductionVersion",
+    "scenario": "production_version_bom_and_routing_assignment",
+    "user_input": "查询物料TG0011在工厂1710的生产版本对应哪个BOM和工艺路线",
+    "expected_api": "I_ProductionVersion",
+    "expected_apis": ["I_ProductionVersion"],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": false,
+      "present": true,
+      "clarify": false,
+      "unsupported": true
+    },
+    "baseline": {
+      "steps": []
+    },
+    "comparison": {
+      "type": "unsupported_route",
+      "keys": ["Material", "Plant", "ProductionVersion"],
+      "required_fields": ["Material", "Plant", "ProductionVersion", "BillOfMaterialVariant", "BillOfOperationsGroup"]
+    }
+  },
+  {
+    "id": "PV-003",
+    "api": "I_ProductionVersion",
+    "scenario": "valid_production_version_by_date",
+    "user_input": "查询物料TG0011在工厂1710今天有效的生产版本",
+    "expected_api": "I_ProductionVersion",
+    "expected_apis": ["I_ProductionVersion"],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": false,
+      "present": true,
+      "clarify": false,
+      "unsupported": true
+    },
+    "baseline": {
+      "steps": []
+    },
+    "comparison": {
+      "type": "unsupported_route",
+      "keys": ["Material", "Plant", "ProductionVersion"],
+      "required_fields": ["Material", "Plant", "ProductionVersion", "ValidityStartDate", "ValidityEndDate"]
+    }
+  },
+  {
+    "id": "PV-004",
+    "api": "I_ProductionVersion",
+    "scenario": "valid_production_version_by_lot_size",
+    "user_input": "生产100个TG0011时，工厂1710应该用哪个生产版本",
+    "expected_api": "I_ProductionVersion",
+    "expected_apis": ["I_ProductionVersion"],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": false,
+      "present": true,
+      "clarify": false,
+      "unsupported": true
+    },
+    "baseline": {
+      "steps": []
+    },
+    "comparison": {
+      "type": "unsupported_route",
+      "keys": ["Material", "Plant", "ProductionVersion"],
+      "required_fields": ["Material", "Plant", "ProductionVersion", "MaterialMinLotSizeQuantity", "MaterialMaxLotSizeQuantity"]
+    }
+  },
+  {
+    "id": "PV-005",
+    "api": "I_ProductionVersion",
+    "scenario": "locked_or_inactive_production_versions",
+    "user_input": "列出工厂1710中被锁定或不能使用的生产版本",
+    "expected_api": "I_ProductionVersion",
+    "expected_apis": ["I_ProductionVersion"],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": false,
+      "present": true,
+      "clarify": false,
+      "unsupported": true
+    },
+    "baseline": {
+      "steps": []
+    },
+    "comparison": {
+      "type": "unsupported_route",
+      "keys": ["Material", "Plant", "ProductionVersion"],
+      "required_fields": ["Material", "Plant", "ProductionVersion", "ProductionVersionStatus", "ProductionVersionIsLocked"]
+    }
+  },
+  {
+    "id": "PV-006",
+    "api": "I_ProductionVersion",
+    "scenario": "production_version_check_status",
+    "user_input": "查看物料TG0011在工厂1710的生产版本检查状态是否正常",
+    "expected_api": "I_ProductionVersion",
+    "expected_apis": ["I_ProductionVersion"],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": false,
+      "present": true,
+      "clarify": false,
+      "unsupported": true
+    },
+    "baseline": {
+      "steps": []
+    },
+    "comparison": {
+      "type": "unsupported_route",
+      "keys": ["Material", "Plant", "ProductionVersion"],
+      "required_fields": ["Material", "Plant", "ProductionVersion", "BOMCheckStatus", "ProductionVersionLastCheckDate"]
+    }
+  },
+  {
+    "id": "PV-007",
+    "api": "I_ProductionVersion",
+    "scenario": "production_line_assignment",
+    "user_input": "查询物料TG0011在工厂1710的生产版本分配到哪条生产线",
+    "expected_api": "I_ProductionVersion",
+    "expected_apis": ["I_ProductionVersion"],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": false,
+      "present": true,
+      "clarify": false,
+      "unsupported": true
+    },
+    "baseline": {
+      "steps": []
+    },
+    "comparison": {
+      "type": "unsupported_route",
+      "keys": ["Material", "Plant", "ProductionVersion"],
+      "required_fields": ["Material", "Plant", "ProductionVersion", "ProductionLine"]
+    }
+  },
+  {
+    "id": "PV-008",
+    "api": "I_ProductionVersion",
+    "scenario": "production_supply_area_assignment",
+    "user_input": "查询物料TG0011在工厂1710的生产版本使用哪个生产供应区",
+    "expected_api": "I_ProductionVersion",
+    "expected_apis": ["I_ProductionVersion"],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": false,
+      "present": true,
+      "clarify": false,
+      "unsupported": true
+    },
+    "baseline": {
+      "steps": []
+    },
+    "comparison": {
+      "type": "unsupported_route",
+      "keys": ["Material", "Plant", "ProductionVersion"],
+      "required_fields": ["Material", "Plant", "ProductionVersion", "ProductionSupplyArea"]
+    }
+  },
+  {
+    "id": "PV-009",
+    "api": "I_ProductionVersion",
+    "scenario": "planning_execution_bom_difference",
+    "user_input": "检查物料TG0011在工厂1710的生产版本，计划BOM和执行BOM是否一致",
+    "expected_api": "I_ProductionVersion",
+    "expected_apis": ["I_ProductionVersion"],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": false,
+      "present": true,
+      "clarify": false,
+      "unsupported": true
+    },
+    "baseline": {
+      "steps": []
+    },
+    "comparison": {
+      "type": "unsupported_route",
+      "keys": ["Material", "Plant", "ProductionVersion"],
+      "required_fields": ["Material", "Plant", "ProductionVersion", "PlanningAndExecutionBOMIsDiff", "ExecBillOfMaterialVariant"]
+    }
+  },
+  {
+    "id": "PV-010",
+    "api": "I_ProductionVersion",
+    "scenario": "repetitive_manufacturing_allowed_versions",
+    "user_input": "列出工厂1710中允许重复制造的生产版本",
+    "expected_api": "I_ProductionVersion",
+    "expected_apis": ["I_ProductionVersion"],
+    "expected_capability": {
+      "route": true,
+      "plan": true,
+      "execute": false,
+      "present": true,
+      "clarify": false,
+      "unsupported": true
+    },
+    "baseline": {
+      "steps": []
+    },
+    "comparison": {
+      "type": "unsupported_route",
+      "keys": ["Material", "Plant", "ProductionVersion"],
+      "required_fields": ["Material", "Plant", "ProductionVersion", "ProdnVersIsAllowedForRptvMfg"]
+    }
+  }
+]

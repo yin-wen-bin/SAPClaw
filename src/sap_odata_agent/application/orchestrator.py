@@ -647,6 +647,77 @@ class AgentOrchestrator:
                 "api_skill": api_skill,
             }
         schema_context = self._attach_multi_api_skills(schema_context, timings)
+        pre_schema_context_summary = self.schema_context_provider.summarize(schema_context)
+        if self._primary_service_is_cds_view_only(schema_context):
+            final_message = self._cds_view_only_final_message(selected_service, schema_context)
+            entity_set = self._first_schema_entity_set(schema_context) or "UNKNOWN_ENTITY"
+            unsupported_plan = QueryPlan(
+                service_name=selected_service,
+                entity_set=entity_set,
+                rationale=final_message,
+                planner_diagnostics={
+                    "route_decision": route_decision.raw_response,
+                    "schema_context_summary": pre_schema_context_summary,
+                    "cds_view_only": True,
+                },
+                plan_kind="unsupported",
+            )
+            validation_issues = [
+                ValidationIssue(
+                    severity="error",
+                    message=final_message,
+                    field="service_name",
+                )
+            ]
+            latest_critic_findings = [
+                CriticFinding(
+                    code="cds_view_only_service",
+                    message=final_message,
+                    severity="error",
+                    blocking=True,
+                )
+            ]
+            failure_attribution = FailureAttribution(
+                category="cds_view_only_service",
+                root_cause=final_message,
+                evidence=[self._primary_service_runtime_notes(schema_context)],
+            )
+            response = AgentResponse(
+                success=False,
+                plan=unsupported_plan,
+                validation_issues=validation_issues,
+                attempts=[],
+                data=None,
+                presentation=ResultPresentation(
+                    kind="text",
+                    title="Query cannot be executed",
+                    text=final_message,
+                ),
+                final_message=final_message,
+                needs_clarification=False,
+                clarification_question=None,
+                clarification_options=[],
+                critic_findings=latest_critic_findings,
+                failure_attribution=failure_attribution,
+                presentation_verification=PresentationVerification(passed=True, issues=[]),
+            )
+            self._attach_timing(response, timings, run_started_at)
+            response.case_id = self._save_case(
+                request,
+                effective_request,
+                context,
+                placeholder_plan,
+                unsupported_plan,
+                [],
+                response,
+                critic_findings=latest_critic_findings,
+                failure_attribution=failure_attribution,
+                route_decision=route_decision,
+                planning_attempts=[],
+                schema_context_summary=pre_schema_context_summary,
+            )
+            return response
+
         if self._route_uses_shortcut(route_decision):
             schema_research = self._shortcut_schema_research(route_decision)
         else:
@@ -1373,6 +1444,46 @@ class AgentOrchestrator:
             "api_skills": skills,
             "api_skill": enriched_context.get("api_skill") or skills[0],
         }
+
+    @staticmethod
+    def _primary_service_payload(schema_context: dict) -> dict:
+        service = schema_context.get("service")
+        if isinstance(service, dict):
+            return service
+        services = schema_context.get("services")
+        if isinstance(services, list) and services and isinstance(services[0], dict):
+            return services[0]
+        return {}
+
+    @classmethod
+    def _primary_service_is_cds_view_only(cls, schema_context: dict) -> bool:
+        service = cls._primary_service_payload(schema_context)
+        return str(service.get("service_kind") or "").upper() == "CDS_VIEW_ONLY"
+
+    @classmethod
+    def _primary_service_runtime_notes(cls, schema_context: dict) -> str:
+        service = cls._primary_service_payload(schema_context)
+        return str(service.get("runtime_notes") or "")
+
+    @staticmethod
+    def _first_schema_entity_set(schema_context: dict) -> str:
+        entities = schema_context.get("entities")
+        if isinstance(entities, list):
+            for entity in entities:
+                if isinstance(entity, dict) and str(entity.get("entity_set") or "").strip():
+                    return str(entity["entity_set"])
+        return ""
+
+    @classmethod
+    def _cds_view_only_final_message(cls, service_name: str, schema_context: dict) -> str:
+        runtime_notes = cls._primary_service_runtime_notes(schema_context)
+        detail = f" {runtime_notes}" if runtime_notes else ""
+        return (
+            f"{service_name} is available only as a CDS view/API view in the current index. "
+            "It is not exposed as a SAP Gateway OData service in this agent, so no SAP OData "
+            "request was executed. Expose the CDS view through an OData service binding or "
+            f"use a CDS/ABAP SQL-capable access path before executing this query.{detail}"
+        )
 
     @staticmethod
     def _looks_like_standalone_query(user_input: str) -> bool:

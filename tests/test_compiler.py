@@ -25,6 +25,15 @@ def test_compiler_rejects_cds_view_only_service() -> None:
         BasicODataCompiler(base_url="https://sap.example.com").compile(plan)
 
 
+def test_compiler_rejects_production_version_cds_view_only_service() -> None:
+    plan = QueryPlan(service_name="I_ProductionVersion", entity_set="I_ProductionVersion")
+
+    issues = BasicPlanValidator().validate(plan)
+    assert any("CDS_VIEW_ONLY" in issue.message for issue in issues)
+    with pytest.raises(ValueError, match="CDS_VIEW_ONLY"):
+        BasicODataCompiler(base_url="https://sap.example.com").compile(plan)
+
+
 def test_compiler_builds_basic_odata_url() -> None:
     plan = QueryPlan(
         service_name="API_BUSINESS_PARTNER",

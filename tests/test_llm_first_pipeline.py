@@ -60,6 +60,57 @@ class StaticSchemaContextProvider:
         return {"service_name": schema_context["service_name"], "entity_count": 1}
 
 
+class CdsOnlyRouter:
+    def route(self, user_input, api_catalog, recent_cases=None, latest_clarification_case=None, feedback_memories=None):
+        return ApiRouteDecision(
+            resolved_user_input=user_input,
+            selected_apis=[SelectedApi(service_name="I_ProductionVersion", confidence=0.99, reason="cds view")],
+            intent_summary="Query production version master data",
+            raw_response={"selected_apis": [{"service_name": "I_ProductionVersion"}]},
+        )
+
+
+class CdsOnlySchemaContextProvider:
+    def __init__(self):
+        self.last_query = None
+
+    def build(self, service_name, query, route_decision=None, retrieved_documents=None, feedback_memories=None):
+        self.last_query = query
+        return {
+            "service_name": service_name,
+            "service": {
+                "service_name": service_name,
+                "service_kind": "CDS_VIEW_ONLY",
+                "runtime_available": False,
+                "odata_runtime_available": False,
+                "runtime_notes": "CDS API view only; do not execute through SAP Gateway.",
+            },
+            "services": [
+                {
+                    "service_name": service_name,
+                    "service_kind": "CDS_VIEW_ONLY",
+                    "runtime_available": False,
+                    "odata_runtime_available": False,
+                    "runtime_notes": "CDS API view only; do not execute through SAP Gateway.",
+                }
+            ],
+            "entities": [{"entity_set": "I_ProductionVersion"}],
+            "candidate_fields": [],
+        }
+
+    def enrich_with_api_skill(self, schema_context, api_skill):
+        return schema_context
+
+    @staticmethod
+    def summarize(schema_context):
+        service = schema_context.get("service", {})
+        return {
+            "service_name": schema_context["service_name"],
+            "service": service,
+            "entity_count": 1,
+        }
+
+
 class InitialPlanner:
     def __init__(self):
         self.calls = 0
@@ -114,6 +165,11 @@ class ServiceAwarePlanner:
             select_fields=[field],
             rationale=f"service-aware plan for {service_name}",
         )
+
+
+class NoCallPlanner:
+    def plan_for_api(self, *args, **kwargs):
+        raise AssertionError("CDS-only service should not reach API-specific planner")
 
 
 class RepairPlanner:
@@ -558,6 +614,24 @@ def test_llm_first_pipeline_fails_fast_when_router_selects_no_api(tmp_path: Path
     assert response.plan.service_name == "UNKNOWN_SERVICE"
     assert response.failure_attribution is not None
     assert response.failure_attribution.category == "api_routing_failed"
+
+
+def test_llm_first_pipeline_short_circuits_cds_view_only_service(tmp_path: Path) -> None:
+    response = _orchestrator(
+        tmp_path,
+        api_router=CdsOnlyRouter(),
+        schema_context_provider=CdsOnlySchemaContextProvider(),
+        api_specific_planner=NoCallPlanner(),
+    ).run(AgentRequest(user_input="query material production versions"))
+
+    assert response.success is False
+    assert response.attempts == []
+    assert response.plan.service_name == "I_ProductionVersion"
+    assert response.plan.entity_set == "I_ProductionVersion"
+    assert response.plan.plan_kind == "unsupported"
+    assert response.failure_attribution is not None
+    assert response.failure_attribution.category == "cds_view_only_service"
+    assert "no SAP OData request was executed" in response.final_message
 
 
 def test_llm_first_pipeline_reroutes_after_repair_request(tmp_path: Path) -> None:

@@ -1,0 +1,1365 @@
+[
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "Material",
+    "label": "Material",
+    "business_aliases": [
+      "Material",
+      "Product",
+      "Finished Product",
+      "Material Number",
+      "??"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Material Number",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "Plant",
+    "label": "Plant",
+    "business_aliases": [
+      "Plant",
+      "Production Plant",
+      "??",
+      "????"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Plant",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "ProductionVersion",
+    "label": "Production Version",
+    "business_aliases": [
+      "Production Version",
+      "????"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Production Version",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "ProductionVersionText",
+    "label": "Production Version Text",
+    "business_aliases": [
+      "Production Version Text"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Short text or description of the production version",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "ValidityStartDate",
+    "label": "Validity Start Date",
+    "business_aliases": [
+      "Validity Start Date",
+      "Valid From",
+      "??????"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Start date for production version validity",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "ValidityEndDate",
+    "label": "Validity End Date",
+    "business_aliases": [
+      "Validity End Date",
+      "Valid To",
+      "??????"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "End date for production version validity",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "MaterialMinLotSizeQuantity",
+    "label": "Minimum Lot Size",
+    "business_aliases": [
+      "Minimum Lot Size",
+      "????"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Minimum lot size quantity for the production version",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "MaterialMaxLotSizeQuantity",
+    "label": "Maximum Lot Size",
+    "business_aliases": [
+      "Maximum Lot Size",
+      "????"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Maximum lot size quantity for the production version",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "MaterialBaseUnit",
+    "label": "Material Base Unit",
+    "business_aliases": [
+      "Material Base Unit"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Base unit of measure for the material",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "ProductionVersionStatus",
+    "label": "Production Version Status",
+    "business_aliases": [
+      "Production Version Status"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Status of the production version",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "ProductionVersionIsLocked",
+    "label": "Production Version Is Locked",
+    "business_aliases": [
+      "Production Version Is Locked"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Indicates whether the production version is locked",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "ProdnVersIsAllowedForRptvMfg",
+    "label": "Allowed For Repetitive Manufacturing",
+    "business_aliases": [
+      "Allowed For Repetitive Manufacturing"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Indicates whether the production version is allowed for repetitive manufacturing",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "RateBasedPlanningStatus",
+    "label": "Rate-Based Planning Status",
+    "business_aliases": [
+      "Rate-Based Planning Status"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Status for rate-based planning",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "PreliminaryPlanningStatus",
+    "label": "Preliminary Planning Status",
+    "business_aliases": [
+      "Preliminary Planning Status"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Status for preliminary planning",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "BOMCheckStatus",
+    "label": "BOM Check Status",
+    "business_aliases": [
+      "BOM Check Status"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "BOM check status for the production version",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "ProductionVersionLastCheckDate",
+    "label": "Last Check Date",
+    "business_aliases": [
+      "Last Check Date"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Date when the production version was last checked",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "PlanningAndExecutionBOMIsDiff",
+    "label": "Planning And Execution BOM Is Different",
+    "business_aliases": [
+      "Planning And Execution BOM Is Different"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Indicates whether planning and execution BOM assignments differ",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "HasVersionCtrldBOMAndRouting",
+    "label": "Has Version-Controlled BOM And Routing",
+    "business_aliases": [
+      "Has Version-Controlled BOM And Routing"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Indicates whether the production version uses version-controlled BOM and routing",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "BillOfMaterialVariantUsage",
+    "label": "BOM Usage",
+    "business_aliases": [
+      "BOM Usage",
+      "BOM??",
+      "??????"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Bill of material variant usage assigned to the production version",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "BillOfMaterialVariant",
+    "label": "Alternative BOM",
+    "business_aliases": [
+      "Alternative BOM",
+      "BOM Alternative",
+      "??BOM"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Bill of material variant or alternative BOM assigned to the production version",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "ExecBillOfMaterialVariantUsage",
+    "label": "Execution BOM Usage",
+    "business_aliases": [
+      "Execution BOM Usage"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Execution bill of material variant usage",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "ExecBillOfMaterialVariant",
+    "label": "Execution Alternative BOM",
+    "business_aliases": [
+      "Execution Alternative BOM"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Execution bill of material variant or alternative BOM",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "BillOfOperationsType",
+    "label": "Bill Of Operations Type",
+    "business_aliases": [
+      "Bill Of Operations Type"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Bill of operations type, for example routing or master recipe type",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "BillOfOperationsGroup",
+    "label": "Bill Of Operations Group",
+    "business_aliases": [
+      "Bill Of Operations Group",
+      "Routing Group",
+      "Task List Group",
+      "?????",
+      "????"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Bill of operations group assigned to the production version",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "BillOfOperationsVariant",
+    "label": "Bill Of Operations Variant",
+    "business_aliases": [
+      "Bill Of Operations Variant",
+      "Routing Group Counter",
+      "Group Counter",
+      "???????"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Bill of operations variant or group counter",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "ExecBillOfOperationsType",
+    "label": "Execution Bill Of Operations Type",
+    "business_aliases": [
+      "Execution Bill Of Operations Type"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Execution bill of operations type",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "ExecBillOfOperationsGroup",
+    "label": "Execution Bill Of Operations Group",
+    "business_aliases": [
+      "Execution Bill Of Operations Group"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Execution bill of operations group",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "ExecBillOfOperationsVariant",
+    "label": "Execution Bill Of Operations Variant",
+    "business_aliases": [
+      "Execution Bill Of Operations Variant"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Execution bill of operations variant or group counter",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "ProductionLine",
+    "label": "Production Line",
+    "business_aliases": [
+      "Production Line",
+      "Line",
+      "???"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Production line assigned to the production version",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "ProductionSupplyArea",
+    "label": "Production Supply Area",
+    "business_aliases": [
+      "Production Supply Area",
+      "PSA",
+      "?????"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Production supply area assigned to the production version",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "IssuingStorageLocation",
+    "label": "Issuing Storage Location",
+    "business_aliases": [
+      "Issuing Storage Location"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Issuing storage location for production staging",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "ReceivingStorageLocation",
+    "label": "Receiving Storage Location",
+    "business_aliases": [
+      "Receiving Storage Location"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Receiving storage location",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "Warehouse",
+    "label": "Warehouse",
+    "business_aliases": [
+      "Warehouse"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Warehouse number",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "DestinationStorageBin",
+    "label": "Destination Storage Bin",
+    "business_aliases": [
+      "Destination Storage Bin"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Destination storage bin",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "MainProduct",
+    "label": "Main Product",
+    "business_aliases": [
+      "Main Product"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Main product for the production version",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "OriginalBatchReferenceMaterial",
+    "label": "Original Batch Reference Material",
+    "business_aliases": [
+      "Original Batch Reference Material"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Original batch reference material",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "ProductionVersionGroup",
+    "label": "Production Version Group",
+    "business_aliases": [
+      "Production Version Group"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Production version group",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "DistributionKey",
+    "label": "Distribution Key",
+    "business_aliases": [
+      "Distribution Key"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Distribution key",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "QuantityDistributionKey",
+    "label": "Quantity Distribution Key",
+    "business_aliases": [
+      "Quantity Distribution Key"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Quantity distribution key",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "MaterialCostApportionmentStruc",
+    "label": "Cost Apportionment Structure",
+    "business_aliases": [
+      "Cost Apportionment Structure"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Material cost apportionment structure",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "ChangeNumber",
+    "label": "Change Number",
+    "business_aliases": [
+      "Change Number"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Change number",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "ChangeHistoryCount",
+    "label": "Change History Count",
+    "business_aliases": [
+      "Change History Count"
+    ],
+    "data_type": "Edm.Int32",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Change history counter",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "CreationDate",
+    "label": "Creation Date",
+    "business_aliases": [
+      "Creation Date"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Creation date",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "CreatedByUser",
+    "label": "Created By User",
+    "business_aliases": [
+      "Created By User"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "User who created the production version",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "LastChangeDate",
+    "label": "Last Change Date",
+    "business_aliases": [
+      "Last Change Date"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Last change date",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "field_name": "LastChangedByUser",
+    "label": "Last Changed By User",
+    "business_aliases": [
+      "Last Changed By User"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "User who last changed the production version",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  }
+]
