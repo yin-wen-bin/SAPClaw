@@ -111,7 +111,7 @@ class LlmResultPresenter:
             "Choose the best presentation format:\n"
             "- Use text when the user asked for a single fact or short answer.\n"
             "- Use table when the user asked for a list, comparison, ranking, or multiple rows.\n"
-            "- Keep answers in Chinese.\n"
+            "- Keep answers in the same natural language as latest_user_input. If latest_user_input is Chinese, answer in Chinese.\n"
             "- Prefer concise business wording instead of raw field names when you can do so faithfully.\n\n"
             "- Do not invent values that are not returned by SAP.\n"
             "- Preserve SAP codes exactly as returned.\n\n"

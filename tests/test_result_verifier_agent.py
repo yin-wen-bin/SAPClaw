@@ -37,6 +37,7 @@ def test_result_verifier_prompt_allows_empty_list_results() -> None:
     assert "business object name" in prompt
     assert "detail child entities" in prompt
     assert "field-list wording" in prompt
+    assert "same natural language as user_input" in prompt
 
 
 def test_result_verifier_static_passes_field_list_output_request_without_filters() -> None:
@@ -77,6 +78,63 @@ def test_result_verifier_static_passes_field_list_output_request_without_filters
 
     assert result["passed"] is True
     assert result["source"] == "field_list_static_result_verifier"
+
+
+def test_result_verifier_accepts_unconfirmed_production_order_empty_string_indicator() -> None:
+    verifier = LlmResultVerifierAgent(enabled=False)
+
+    result = verifier.verify(
+        request=AgentRequest(user_input="\u67e5\u8be2\u5de5\u53821710\u4e0b\uff0c\u6240\u6709\u672a\u786e\u8ba4\u7684\u751f\u4ea7\u8ba2\u5355"),
+        plan=QueryPlan(
+            service_name="API_PRODUCTION_ORDER_2_SRV",
+            entity_set="A_ProductionOrder_2",
+            select_fields=["ManufacturingOrder", "ProductionPlant", "OrderIsConfirmed"],
+            filters=[
+                FilterCondition(field="ProductionPlant", operator="eq", value="1710"),
+                FilterCondition(field="OrderIsConfirmed", operator="eq", value=""),
+            ],
+        ),
+        data={
+            "result_count": 1,
+            "results": [
+                {
+                    "ManufacturingOrder": "1000000",
+                    "ProductionPlant": "1710",
+                    "OrderIsConfirmed": "",
+                }
+            ],
+        },
+        schema_context_summary={"service_name": "API_PRODUCTION_ORDER_2_SRV"},
+    )
+
+    assert result["passed"] is True
+    assert result["source"] == "skill_grounded_result_verifier"
+
+
+def test_result_verifier_localizes_english_issue_for_chinese_request() -> None:
+    result = LlmResultVerifierAgent._materialize(
+        {
+            "passed": False,
+            "issues": [
+                {
+                    "code": "invalid_filter_value",
+                    "message": "The plan uses an empty string as filter value.",
+                    "blocking": True,
+                }
+            ],
+            "repair_hints": {
+                "reason": "Use a valid status indicator.",
+                "preferred_filters": [],
+            },
+        },
+        {},
+        AgentRequest(user_input="\u67e5\u8be2\u5de5\u53821710\u4e0b\uff0c\u6240\u6709\u672a\u786e\u8ba4\u7684\u751f\u4ea7\u8ba2\u5355"),
+    )
+
+    assert result["passed"] is False
+    assert result["issues"][0]["message"].startswith("\u7ed3\u679c\u6821\u9a8c\u672a\u901a\u8fc7")
+    assert "The plan uses" not in result["issues"][0]["message"]
+    assert result["repair_hints"]["reason"].startswith("\u8bf7\u4f7f\u7528")
 
 
 def test_result_verifier_drops_unrequested_document_date_and_debit_credit_fields() -> None:

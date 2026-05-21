@@ -1267,7 +1267,7 @@ export default function App() {
       setSelectedHistory(payload.entry || null);
       setFeedbackForm((current) => ({ ...current, status }));
       setFeedbackMessage(status === "correct" ? "已标记为正确。" : "已记录错误反馈。");
-      await loadHistory();
+      loadHistory();
     } catch (submitError) {
       setFeedbackMessage(submitError.message || "反馈提交失败");
     } finally {

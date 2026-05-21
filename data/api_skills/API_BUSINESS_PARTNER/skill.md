@@ -64,6 +64,7 @@ Keep `data/index/API_BUSINESS_PARTNER` as the schema ground truth. This skill pr
 
 - Query `A_BusinessPartner` or `A_Supplier` to identify the business partner.
 - Query `A_BusinessPartnerAddress` for address records.
+- For supplier address lookups, binding `A_Supplier.Supplier` to `A_BusinessPartnerAddress.BusinessPartner` is valid. In this API, the supplier ID is the business partner key used by address records. Do not add a top-level `Supplier` filter on `A_BusinessPartnerAddress`; put the supplier filter on the `A_Supplier` step and bind the address step with `BusinessPartner`.
 - Query `A_AddressEmailAddress` or `A_AddressPhoneNumber` when email or phone details are requested.
 - Query `A_AddressFaxNumber` when fax details are requested.
 - For general communication lists:

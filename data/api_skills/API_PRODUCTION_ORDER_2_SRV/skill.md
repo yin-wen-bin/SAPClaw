@@ -57,6 +57,14 @@ Keep `data/index/API_PRODUCTION_ORDER_2_SRV` as the schema ground truth. This sk
 - "Production order resource tool records" means `A_ProductionRsceTools_2`. Select identifying fields such as `MfgOrderOpProdnRsceToolIntID`, `OrderInternalBillOfOperations`, `ProductionResourceTool`, `ProdnRsceToolCategory`, `ProdnRsceToolCategoryName`, `ProdnRsceToolControlProfile`, `ProdnRsceToolPlant`, and `OrderOperationInternalID`. Do not route this wording to master recipe secondary resources or production routing unless the user explicitly mentions master recipes or routings.
 - "Production order item serial number records" means `A_ProdnOrderItemSerialNumber`. Select `ManufacturingOrder`, `ManufacturingOrderItem`, `SerialNumber`, `SerialNumberProfile`, `Product`, `ProductionPlant`, `ManufacturingOrderCategory`, and `ManufacturingOrderType`.
 
+### Production Order Confirmation Status
+
+- For "unconfirmed production orders" / "未确认的生产订单", query `A_ProductionOrder_2`.
+- Filter by `A_ProductionOrder_2.ProductionPlant` when the user provides a plant.
+- Use `A_ProductionOrder_2.OrderIsConfirmed eq ''` for unconfirmed orders. This field is an SAP string indicator (`Edm.String`, max length 1), not an OData boolean. Do not use boolean literal `false` or string value `'false'`.
+- Use `A_ProductionOrder_2.OrderIsConfirmed eq 'X'` for confirmed orders.
+- Select `ManufacturingOrder`, `Material`, `ProductionPlant`, `ManufacturingOrderType`, and `OrderIsConfirmed`.
+
 ### Production Order Operations
 
 - For production order operation / 工序 requests, use `A_ProductionOrderOperation_2`.

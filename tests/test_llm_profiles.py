@@ -135,6 +135,31 @@ def test_profile_config_creates_anthropic_compatible_client(monkeypatch, tmp_pat
     assert client.api_path == "/v1/messages"
 
 
+def test_default_kimi_profile_can_use_anthropic_messages(monkeypatch, tmp_path):
+    monkeypatch.setattr(profiles_module, "get_settings", lambda: _profile_settings(tmp_path / "missing.json"))
+    monkeypatch.setattr(
+        profiles_module,
+        "_get_setting",
+        lambda *keys, default="": {
+            "KIMI_API_KEY": "kimi-key",
+            "KIMI_MODEL": "kimi-for-coding",
+            "KIMI_BASE_URL": "https://api.kimi.com/coding/v1",
+            "KIMI_PROTOCOL": "anthropic_messages",
+            "KIMI_API_PATH": "/messages",
+        }.get(keys[0], default),
+    )
+    _clear_profile_caches()
+
+    profile = profiles_module.get_llm_profile("kimi-default")
+    client = profiles_module.create_llm_client(profile)
+
+    assert profile.enabled is True
+    assert profile.protocol == "anthropic_messages"
+    assert isinstance(client, AnthropicCompatibleMessagesClient)
+    assert client.model == "kimi-for-coding"
+    assert client.api_path == "/messages"
+
+
 def test_unknown_profile_is_rejected(monkeypatch, tmp_path):
     monkeypatch.setattr(profiles_module, "get_settings", lambda: _profile_settings(tmp_path / "missing.json"))
     _clear_profile_caches()

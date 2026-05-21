@@ -305,7 +305,7 @@ class LlmDynamicPathPlanner:
                 http_method=str(parsed.get("http_method") or "GET").upper(),
                 select_fields=final_step.select_fields,
                 response_summary_fields=final_summary_fields,
-                filters=steps[0].filters,
+                filters=[],
                 top=final_step.top,
                 requires_confirmation=bool(parsed.get("requires_confirmation", False)),
                 response_directive=self._response_directive(parsed),

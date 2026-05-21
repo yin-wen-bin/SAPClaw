@@ -149,6 +149,7 @@ class LlmResultVerifierAgent:
             "8. If the result is semantically unreliable, set passed=false and give repair_hints.\n"
             "9. Do not block for presentation wording; only block data/plan support issues.\n"
             "10. repair_hints must only recommend fields listed in schema_context_summary.available_fields; do not invent field names.\n"
+            "10a. Return issue.message and repair_hints.reason in the same natural language as user_input. Keep SAP technical field names unchanged.\n"
             "11. For unreceived/undelivered/open receipt questions, prefer actual completion/status or received/open quantity fields over expected/required/configuration flags. If the user explicitly asks for orders that need goods receipt but are not yet received, the API skill may define expected=true plus completion=false as the correct combination.\n\n"
             "12. A successful SAP response with result_count=0 can be a correct answer for a list query. Do not reject only because there are no rows or because a repair might find related rows. Block an empty result only when the plan clearly used the wrong entity, omitted a required user filter, or omitted required answer fields.\n"
             "13. Do not require enrichment identifiers that the user did not explicitly ask for. For address communication list questions, address-level keys plus the requested email, phone, or fax fields are sufficient unless the user explicitly asks to include business partner details.\n\n"
@@ -180,6 +181,11 @@ class LlmResultVerifierAgent:
         )
         if outbound_shipping_date_result is not None:
             return outbound_shipping_date_result
+        production_order_confirmation_result = (
+            LlmResultVerifierAgent._production_order_confirmation_static_check(request, plan)
+        )
+        if production_order_confirmation_result is not None:
+            return production_order_confirmation_result
         field_list_result = LlmResultVerifierAgent._field_list_output_static_check(request, plan, data)
         if field_list_result is not None:
             return field_list_result
@@ -508,6 +514,32 @@ class LlmResultVerifierAgent:
         }
 
     @staticmethod
+    def _production_order_confirmation_static_check(
+        request: AgentRequest,
+        plan: QueryPlan,
+    ) -> dict[str, Any] | None:
+        if plan.service_name not in {"API_PRODUCTION_ORDER_2_SRV", "API_PROCESS_ORDER_2_SRV"}:
+            return None
+        if plan.entity_set not in {"A_ProductionOrder_2", "A_ProcessOrder_2"}:
+            return None
+        if not LlmResultVerifierAgent._looks_like_unconfirmed_order_request(request):
+            return None
+        has_unconfirmed_filter = any(
+            condition.field == "OrderIsConfirmed"
+            and condition.operator == "eq"
+            and condition.value == ""
+            for condition in plan.filters or []
+        )
+        if not has_unconfirmed_filter:
+            return None
+        return {
+            "passed": True,
+            "issues": [],
+            "repair_hints": {},
+            "source": "skill_grounded_result_verifier",
+        }
+
+    @staticmethod
     def _looks_like_product_tax_classification_request(request: AgentRequest) -> bool:
         text = f"{request.resolved_user_input or ''} {request.user_input or ''}".lower()
         return ("税分类" in text or "税收分类" in text or "tax classification" in text) and (
@@ -561,6 +593,27 @@ class LlmResultVerifierAgent:
             and any(term in text for term in shipping_date_terms)
             and not any(term in text for term in delivery_date_terms)
         )
+
+    @staticmethod
+    def _looks_like_unconfirmed_order_request(request: AgentRequest) -> bool:
+        text = f"{request.resolved_user_input or ''} {request.user_input or ''}".lower()
+        order_terms = (
+            "生产订单",
+            "process order",
+            "production order",
+            "manufacturing order",
+        )
+        unconfirmed_terms = (
+            "未确认",
+            "没有确认",
+            "尚未确认",
+            "未报工",
+            "未完成确认",
+            "unconfirmed",
+            "not confirmed",
+            "without confirmation",
+        )
+        return any(term in text for term in order_terms) and any(term in text for term in unconfirmed_terms)
 
     @staticmethod
     def _explicitly_asks_for_pricing(request: AgentRequest) -> bool:
@@ -651,6 +704,8 @@ class LlmResultVerifierAgent:
                 message,
             ):
                 continue
+            if request is not None:
+                message = LlmResultVerifierAgent._localize_issue_message_for_request(request, message)
             issues.append(
                 {
                     "code": code,
@@ -665,12 +720,38 @@ class LlmResultVerifierAgent:
             passed = False
         repair_hints = parsed.get("repair_hints", {}) if isinstance(parsed.get("repair_hints"), dict) else {}
         repair_hints = LlmResultVerifierAgent._filter_repair_hints(repair_hints, schema_context_summary or {})
+        if request is not None:
+            repair_hints = LlmResultVerifierAgent._localize_repair_hints_for_request(request, repair_hints)
         return {
             "passed": passed,
             "issues": issues,
             "repair_hints": repair_hints,
             "source": "llm_result_verifier_agent",
         }
+
+    @staticmethod
+    def _localize_issue_message_for_request(request: AgentRequest, message: str) -> str:
+        user_text = request.resolved_user_input or request.user_input or ""
+        if not LlmResultVerifierAgent._looks_chinese(user_text):
+            return message
+        if LlmResultVerifierAgent._looks_chinese(message):
+            return message
+        return "结果校验未通过：返回数据无法可靠支持用户提出的业务结论。请根据校验提示重新规划查询。"
+
+    @staticmethod
+    def _localize_repair_hints_for_request(request: AgentRequest, repair_hints: dict[str, Any]) -> dict[str, Any]:
+        if not LlmResultVerifierAgent._looks_chinese(request.resolved_user_input or request.user_input or ""):
+            return repair_hints
+        reason = repair_hints.get("reason")
+        if not isinstance(reason, str) or not reason.strip() or LlmResultVerifierAgent._looks_chinese(reason):
+            return repair_hints
+        localized = dict(repair_hints)
+        localized["reason"] = "请使用能直接支持用户业务意图的实体、字段和过滤条件重新规划查询。"
+        return localized
+
+    @staticmethod
+    def _looks_chinese(text: str) -> bool:
+        return any("\u4e00" <= char <= "\u9fff" for char in str(text or ""))
 
     @staticmethod
     def _is_spurious_unrequested_field_requirement(

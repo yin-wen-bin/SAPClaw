@@ -2,11 +2,10 @@ from __future__ import annotations
 
 import json
 from dataclasses import dataclass
-from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
-from sap_odata_agent.infrastructure.config.settings import _get_setting, get_settings
+from sap_odata_agent.infrastructure.config.settings import DEFAULT_ENV_FILE, _get_setting, get_settings
 from sap_odata_agent.infrastructure.llm.planner import (
     AnthropicCompatibleMessagesClient,
     OpenAiCompatibleChatClient,
@@ -91,13 +90,42 @@ def create_llm_client(profile: LlmProfile):
     raise ValueError(f"Unsupported LLM profile protocol: {profile.protocol}")
 
 
-@lru_cache(maxsize=1)
+_PROFILE_REGISTRY_CACHE: tuple[tuple[Any, ...], LlmProfileRegistry] | None = None
+
+
 def get_profile_registry() -> LlmProfileRegistry:
+    global _PROFILE_REGISTRY_CACHE
     settings = get_settings()
     config_path = Path(settings.llm_profiles_path)
+    signature = (
+        _file_signature(DEFAULT_ENV_FILE),
+        str(config_path),
+        _file_signature(config_path),
+    )
+    if _PROFILE_REGISTRY_CACHE is not None and _PROFILE_REGISTRY_CACHE[0] == signature:
+        return _PROFILE_REGISTRY_CACHE[1]
     if config_path.exists():
-        return _registry_from_file(config_path)
-    return _default_registry(settings)
+        registry = _registry_from_file(config_path)
+    else:
+        registry = _default_registry(settings)
+    _PROFILE_REGISTRY_CACHE = (signature, registry)
+    return registry
+
+
+def _clear_profile_registry_cache() -> None:
+    global _PROFILE_REGISTRY_CACHE
+    _PROFILE_REGISTRY_CACHE = None
+
+
+get_profile_registry.cache_clear = _clear_profile_registry_cache  # type: ignore[attr-defined]
+
+
+def _file_signature(path: Path) -> tuple[str, int, int]:
+    try:
+        stat = path.stat()
+    except FileNotFoundError:
+        return (str(path), 0, 0)
+    return (str(path), stat.st_mtime_ns, stat.st_size)
 
 
 def get_llm_profile(profile_id: str | None = None) -> LlmProfile:
@@ -140,6 +168,7 @@ def _registry_from_file(path: Path) -> LlmProfileRegistry:
 
 
 def _default_registry(settings) -> LlmProfileRegistry:
+    kimi_protocol = _get_protocol_setting("KIMI_PROTOCOL", default="openai_chat")
     profiles = (
         LlmProfile(
             id="minimax-default",
@@ -184,8 +213,8 @@ def _default_registry(settings) -> LlmProfileRegistry:
             model=_get_setting("KIMI_MODEL"),
             base_url=_get_setting("KIMI_BASE_URL", default="https://api.moonshot.cn/v1"),
             api_key_env="KIMI_API_KEY",
-            protocol="openai_chat",
-            api_path=_get_setting("KIMI_API_PATH", default="/chat/completions"),
+            protocol=kimi_protocol,
+            api_path=_get_setting("KIMI_API_PATH", default=_default_api_path(kimi_protocol)),
             timeout_ms=settings.llm_timeout_ms,
             verify_ssl=settings.llm_verify_ssl,
         ),
@@ -247,6 +276,13 @@ def _resolve_config_value(raw: dict[str, Any], key: str) -> str:
 
 def _default_api_path(protocol: str) -> str:
     return "/v1/messages" if protocol == "anthropic_messages" else "/v1/chat/completions"
+
+
+def _get_protocol_setting(key: str, *, default: str) -> str:
+    protocol = _get_setting(key, default=default).strip() or default
+    if protocol not in SUPPORTED_PROTOCOLS:
+        raise ValueError(f"Unsupported LLM profile protocol: {protocol}")
+    return protocol
 
 
 def _validate_profiles(profiles: tuple[LlmProfile, ...]) -> None:

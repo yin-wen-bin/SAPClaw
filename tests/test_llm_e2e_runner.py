@@ -1,13 +1,15 @@
 from sap_odata_agent.tools.run_llm_e2e_tests import (
     _baseline_final_result,
+    _build_summary,
     _compare,
     _expected_api_matches,
     _is_rate_limited_result,
     _iter_step_bindings,
     _run_baseline,
+    _run_frontend,
     _selected_services,
 )
-from sap_odata_agent.domain.models import CompiledRequest, ExecutionAttempt
+from sap_odata_agent.domain.models import AgentResponse, CompiledRequest, ExecutionAttempt, QueryPlan
 
 
 def test_compare_fails_when_frontend_omits_required_fields() -> None:
@@ -53,9 +55,9 @@ def test_iter_step_bindings_supports_multiple_binding_shapes() -> None:
     }
 
     assert _iter_step_bindings(step) == [
-        {"source_step": "a", "source_field": "Document", "target_field": "ReferenceDocument"},
-        {"source_step": "b", "source_field": "Item", "target_field": "ReferenceItem"},
-        {"source_step": "c", "source_field": "Group", "target_field": "TargetGroup"},
+        {"source_step": "a", "source_field": "Document", "target_field": "ReferenceDocument", "fanout": False},
+        {"source_step": "b", "source_field": "Item", "target_field": "ReferenceItem", "fanout": False},
+        {"source_step": "c", "source_field": "Group", "target_field": "TargetGroup", "fanout": False},
     ]
 
 
@@ -334,3 +336,81 @@ def test_compare_accepts_required_any_field_group() -> None:
     result = _compare(case, baseline, frontend, baseline_only=False, front_only=False)
 
     assert result["passed"] is True
+
+
+def test_run_frontend_uses_requested_llm_profile(monkeypatch) -> None:
+    import sap_odata_agent.tools.run_llm_e2e_tests as runner_module
+
+    class FakeProfile:
+        id = "kimi-default"
+        enabled = True
+
+        def public_payload(self) -> dict:
+            return {
+                "id": self.id,
+                "label": "KIMI",
+                "provider": "kimi",
+                "model": "kimi-for-coding",
+                "protocol": "anthropic_messages",
+                "enabled": True,
+            }
+
+    orchestrator_profile_ids = []
+    requests = []
+
+    class FakeOrchestrator:
+        def run(self, request):
+            requests.append(request)
+            return AgentResponse(
+                success=True,
+                plan=QueryPlan(service_name="API_TEST", entity_set="A_Test"),
+                validation_issues=[],
+                attempts=[],
+                data={"result_count": 0, "returned_count": 0, "results": []},
+                case_id="case-1",
+            )
+
+    monkeypatch.setattr(runner_module, "get_llm_profile", lambda profile_id: FakeProfile())
+    monkeypatch.setattr(
+        runner_module,
+        "get_orchestrator_for_profile",
+        lambda profile_id: orchestrator_profile_ids.append(profile_id) or FakeOrchestrator(),
+    )
+
+    result = _run_frontend(
+        {"id": "CASE-001", "user_input": "query something"},
+        "run-1",
+        llm_profile_id="kimi-default",
+    )
+
+    assert orchestrator_profile_ids == ["kimi-default"]
+    assert requests[0].llm_profile_id == "kimi-default"
+    assert result["llm_profile_id"] == "kimi-default"
+    assert result["llm_profile"]["provider"] == "kimi"
+    assert result["llm_profile"]["model"] == "kimi-for-coding"
+
+
+def test_build_summary_records_llm_profile() -> None:
+    summary = _build_summary(
+        "run-1",
+        [
+            {
+                "case_id": "CASE-001",
+                "api": "API_TEST",
+                "scenario": "basic query",
+                "status": "passed",
+                "failed_layer": None,
+            }
+        ],
+        llm_profile={
+            "id": "kimi-default",
+            "label": "KIMI",
+            "provider": "kimi",
+            "model": "kimi-for-coding",
+            "protocol": "anthropic_messages",
+            "enabled": True,
+        },
+    )
+
+    assert summary["llm_profile"]["id"] == "kimi-default"
+    assert summary["llm_profile"]["model"] == "kimi-for-coding"

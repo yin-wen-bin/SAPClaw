@@ -31,7 +31,13 @@ class LlmApiRouter:
         latest_clarification_case: dict[str, Any] | None = None,
         feedback_memories: list[dict[str, Any]] | None = None,
     ) -> ApiRouteDecision:
+        shortcut = self._product_master_attribute_route_decision(user_input, api_catalog)
+        if shortcut is not None:
+            return shortcut
         shortcut = self._purchase_order_supplier_contact_route_decision(user_input, api_catalog)
+        if shortcut is not None:
+            return shortcut
+        shortcut = self._purchase_order_filter_route_decision(user_input, api_catalog)
         if shortcut is not None:
             return shortcut
         if not self.enabled or self.llm_client is None:
@@ -78,6 +84,109 @@ class LlmApiRouter:
     @staticmethod
     def _system_prompt() -> str:
         return f"{GLOBAL_SAP_ODATA_PROMPT}\n\n{API_ROUTER_TASK_PROMPT}"
+
+    @staticmethod
+    def _product_master_attribute_route_decision(
+        user_input: str,
+        api_catalog: list[dict[str, Any]],
+    ) -> ApiRouteDecision | None:
+        if not LlmApiRouter._looks_like_product_master_attribute_request(user_input):
+            return None
+        valid_services = {str(item.get("service_name") or "") for item in api_catalog}
+        service_name = "API_PRODUCT_SRV"
+        if service_name not in valid_services:
+            return None
+        selected = [
+            SelectedApi(
+                service_name=service_name,
+                confidence=0.96,
+                reason=(
+                    "High-confidence product/material master-data attribute request. "
+                    "Use API_PRODUCT_SRV for product-level attributes such as BaseUnit, ProductGroup, and ProductType."
+                ),
+            )
+        ]
+        raw_response = {
+            "resolved_user_input": user_input,
+            "should_carry_context": False,
+            "selected_apis": [
+                {"service_name": item.service_name, "confidence": item.confidence, "reason": item.reason}
+                for item in selected
+            ],
+            "requires_multi_api": False,
+            "intent_summary": "Retrieve product/material master-data attributes.",
+            "business_domain": "Product Master Data",
+            "business_object": "Product/Material",
+            "needs_clarification": False,
+            "clarification_question": "",
+            "clarification_options": [],
+            "router_shortcut": "product_master_attribute",
+        }
+        return ApiRouteDecision(
+            resolved_user_input=user_input,
+            should_carry_context=False,
+            selected_apis=selected,
+            requires_multi_api=False,
+            intent_summary=str(raw_response["intent_summary"]),
+            business_domain=str(raw_response["business_domain"]),
+            business_object=str(raw_response["business_object"]),
+            needs_clarification=False,
+            clarification_question=None,
+            clarification_options=[],
+            raw_response=raw_response,
+        )
+
+    @staticmethod
+    def _purchase_order_filter_route_decision(
+        user_input: str,
+        api_catalog: list[dict[str, Any]],
+    ) -> ApiRouteDecision | None:
+        if not LlmApiRouter._looks_like_purchase_order_filter_request(user_input):
+            return None
+        valid_services = {str(item.get("service_name") or "") for item in api_catalog}
+        service_name = "API_PURCHASEORDER_PROCESS_SRV"
+        if service_name not in valid_services:
+            return None
+        selected = [
+            SelectedApi(
+                service_name=service_name,
+                confidence=0.96,
+                reason=(
+                    "High-confidence purchase order transaction request. "
+                    "Use API_PURCHASEORDER_PROCESS_SRV for supplier, material, plant, company code, date, "
+                    "receipt, invoice, and status scoped purchase order queries."
+                ),
+            )
+        ]
+        raw_response = {
+            "resolved_user_input": user_input,
+            "should_carry_context": False,
+            "selected_apis": [
+                {"service_name": item.service_name, "confidence": item.confidence, "reason": item.reason}
+                for item in selected
+            ],
+            "requires_multi_api": False,
+            "intent_summary": "Retrieve purchase orders using user-provided business filters.",
+            "business_domain": "Purchasing",
+            "business_object": "Purchase Order",
+            "needs_clarification": False,
+            "clarification_question": "",
+            "clarification_options": [],
+            "router_shortcut": "purchase_order_filter",
+        }
+        return ApiRouteDecision(
+            resolved_user_input=user_input,
+            should_carry_context=False,
+            selected_apis=selected,
+            requires_multi_api=False,
+            intent_summary=str(raw_response["intent_summary"]),
+            business_domain=str(raw_response["business_domain"]),
+            business_object=str(raw_response["business_object"]),
+            needs_clarification=False,
+            clarification_question=None,
+            clarification_options=[],
+            raw_response=raw_response,
+        )
 
     @staticmethod
     def _purchase_order_supplier_contact_route_decision(
@@ -493,6 +602,136 @@ class LlmApiRouter:
             if normalized_marker and normalized_marker in normalized:
                 return True
         return False
+
+    @staticmethod
+    def _looks_like_product_master_attribute_request(user_input: str) -> bool:
+        raw = str(user_input or "").lower()
+        normalized = LlmApiRouter._normalize_match_text(user_input)
+        object_markers = (
+            "物料",
+            "产品",
+            "material",
+            "product",
+        )
+        attribute_markers = (
+            "base unit",
+            "baseunit",
+            "base uom",
+            "baseuom",
+            "basic unit",
+            "基本单位",
+            "基础单位",
+            "基本计量单位",
+            "基础计量单位",
+            "计量单位",
+            "物料组",
+            "产品组",
+            "material group",
+            "materialgroup",
+            "product group",
+            "productgroup",
+            "物料类型",
+            "产品类型",
+            "product type",
+            "producttype",
+            "主数据",
+            "master data",
+            "basic data",
+            "base data",
+        )
+        transactional_markers = (
+            "采购订单",
+            "销售订单",
+            "生产订单",
+            "计划订单",
+            "交货单",
+            "开票",
+            "库存",
+            "有货",
+            "可用",
+            "物料凭证",
+            "bom",
+            "routing",
+            "purchase order",
+            "sales order",
+            "production order",
+            "planned order",
+            "delivery",
+            "billing",
+            "stock",
+            "inventory",
+            "available",
+            "availability",
+            "material document",
+        )
+        return (
+            LlmApiRouter._contains_any_marker(raw, object_markers)
+            and LlmApiRouter._contains_any_marker(raw, attribute_markers)
+            and not LlmApiRouter._contains_any_marker(raw, transactional_markers)
+            and bool(normalized)
+        )
+
+    @staticmethod
+    def _looks_like_purchase_order_filter_request(user_input: str) -> bool:
+        raw = str(user_input or "").lower()
+        normalized = LlmApiRouter._normalize_match_text(user_input)
+        if not normalized:
+            return False
+        purchase_order_markers = (
+            "采购订单",
+            "purchase order",
+            "purchaseorder",
+        )
+        filter_markers = (
+            "供应商",
+            "供货商",
+            "vendor",
+            "supplier",
+            "物料",
+            "material",
+            "产品",
+            "product",
+            "工厂",
+            "plant",
+            "公司代码",
+            "公司",
+            "company code",
+            "company",
+            "交货日期",
+            "到货",
+            "delivery date",
+            "creation date",
+            "创建日期",
+            "未收货",
+            "未完全收货",
+            "未完全交货",
+            "未清发票",
+            "未开票",
+            "收货",
+            "发票",
+            "状态",
+            "status",
+            "open invoice",
+            "unreceived",
+            "undelivered",
+        )
+        excluded_markers = (
+            "联系人",
+            "联系方式",
+            "联系电话",
+            "contact",
+            "phone",
+            "email",
+            "address",
+        )
+        has_purchase_order = LlmApiRouter._contains_any_marker(raw, purchase_order_markers)
+        has_filter = LlmApiRouter._contains_any_marker(raw, filter_markers)
+        has_identifier = bool(re.search(r"\b[A-Za-z]*\d[A-Za-z0-9_-]{2,}\b", raw))
+        return (
+            has_purchase_order
+            and (has_filter or has_identifier)
+            and not LlmApiRouter._contains_any_marker(raw, excluded_markers)
+        )
 
     def _materialize(
         self,

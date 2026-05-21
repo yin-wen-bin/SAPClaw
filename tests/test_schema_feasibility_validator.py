@@ -344,6 +344,30 @@ def test_schema_feasibility_reports_planner_failure_for_unknown_placeholder(tmp_
     assert findings[0].message == "Planner LLM timed out before producing an executable query plan. No SAP request was executed."
 
 
+def test_schema_feasibility_localizes_planner_failure_for_chinese_request(tmp_path: Path) -> None:
+    _write_index(tmp_path)
+    validator = SchemaFeasibilityValidator(index_root=tmp_path, service_name="API_TEST")
+    plan = QueryPlan(
+        service_name="API_TEST",
+        entity_set="UNKNOWN_ENTITY",
+        planner_diagnostics={
+            "llm_dynamic_path_planner": {
+                "accepted": False,
+                "reason": "repair_llm_error:HTTP Error 429: Too Many Requests",
+            }
+        },
+    )
+
+    result = validator.validate(
+        AgentRequest(user_input="\u67e5\u8be2\u5de5\u53821710\u4e0b\uff0c\u6240\u6709\u672a\u786e\u8ba4\u7684\u751f\u4ea7\u8ba2\u5355"),
+        plan,
+    )
+
+    assert result.passed is False
+    assert result.violations[0].code == "planner_failed"
+    assert result.violations[0].message.startswith("Planner \u672a\u80fd\u751f\u6210\u53ef\u6267\u884c")
+
+
 def test_schema_feasibility_accepts_direct_entity_covering_answer_and_filter(tmp_path: Path) -> None:
     _write_index(tmp_path)
     validator = SchemaFeasibilityValidator(index_root=tmp_path, service_name="API_TEST")

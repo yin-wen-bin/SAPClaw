@@ -38,6 +38,57 @@ def _catalog() -> list[dict]:
     ]
 
 
+def _product_catalog() -> list[dict]:
+    return [
+        {
+            "service_name": "API_PRODUCT_SRV",
+            "short_description": "Product/material master data API.",
+            "primary_business_objects": ["Product", "Material"],
+            "top_entities": ["A_Product", "A_ProductDescription"],
+            "top_filter_fields": ["A_Product.Product"],
+            "top_answer_fields": ["A_Product.Product", "A_Product.BaseUnit", "A_Product.ProductGroup"],
+        }
+    ]
+
+
+def test_api_router_shortcuts_product_master_attribute_query_without_llm() -> None:
+    client = SequencedClient([RuntimeError("LLM should not be called")])
+    router = LlmApiRouter(llm_client=client, enabled=True, allow_default_fallback=False)
+
+    decision = router.route("查询物料TG0011的base unit和物料组", _product_catalog())
+
+    assert client.calls == []
+    assert decision.selected_apis[0].service_name == "API_PRODUCT_SRV"
+    assert decision.raw_response["router_shortcut"] == "product_master_attribute"
+    assert decision.needs_clarification is False
+
+
+def test_api_router_product_master_attribute_shortcut_excludes_transactional_queries() -> None:
+    assert LlmApiRouter._looks_like_product_master_attribute_request("查询物料TG0011的base unit和物料组")
+    assert not LlmApiRouter._looks_like_product_master_attribute_request("查询物料TG0011的采购订单")
+    assert not LlmApiRouter._looks_like_product_master_attribute_request("查询物料TG0011在工厂1710是否有货")
+
+
+def test_api_router_shortcuts_supplier_purchase_order_query_without_llm() -> None:
+    client = SequencedClient([RuntimeError("LLM should not be called")])
+    router = LlmApiRouter(llm_client=client, enabled=True, allow_default_fallback=False)
+
+    decision = router.route("查询供应商1730003的采购订单", _catalog())
+
+    assert client.calls == []
+    assert decision.selected_apis[0].service_name == "API_PURCHASEORDER_PROCESS_SRV"
+    assert decision.raw_response["router_shortcut"] == "purchase_order_filter"
+    assert decision.needs_clarification is False
+
+
+def test_api_router_purchase_order_filter_shortcut_requires_scope() -> None:
+    assert LlmApiRouter._looks_like_purchase_order_filter_request("查询供应商1730003的采购订单")
+    assert LlmApiRouter._looks_like_purchase_order_filter_request("查询物料TG0011的采购订单")
+    assert LlmApiRouter._looks_like_purchase_order_filter_request("查询工厂1710的未收货采购订单")
+    assert not LlmApiRouter._looks_like_purchase_order_filter_request("query purchase orders")
+    assert not LlmApiRouter._looks_like_purchase_order_filter_request("查询工厂1710明天到货的采购订单的供应商联系人信息")
+
+
 def test_api_router_repairs_malformed_json_without_business_fallback() -> None:
     repaired = {
         "resolved_user_input": "query open invoice purchase orders",

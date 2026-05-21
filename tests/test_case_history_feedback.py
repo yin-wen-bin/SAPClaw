@@ -166,6 +166,56 @@ def test_case_repository_persists_feedback_and_can_search_it(tmp_path: Path) -> 
     assert matched[0]["case_id"] == "case-1"
 
 
+def test_case_repository_appends_feedback_without_rewriting_history_file(tmp_path: Path) -> None:
+    history_path = tmp_path / "cases.jsonl"
+    feedback_path = tmp_path / "feedback_events.jsonl"
+    repository = JsonlCaseRepository(str(history_path), feedback_path=str(feedback_path))
+    repository.save(
+        _make_case(
+            case_id="case-1",
+            user_input="supplier basic info",
+            conversation_id="conv-1",
+            final_status="success",
+        )
+    )
+    history_before = history_path.read_bytes()
+
+    updated = repository.update_feedback(case_id="case-1", status="correct")
+
+    assert updated is not None
+    assert updated["feedback"]["status"] == "correct"
+    assert history_path.read_bytes() == history_before
+
+    events = [json.loads(line) for line in feedback_path.read_text(encoding="utf-8").splitlines()]
+    assert len(events) == 1
+    assert events[0]["case_id"] == "case-1"
+    assert events[0]["status"] == "correct"
+
+    assert repository.get_by_case_id("case-1")["feedback"]["status"] == "correct"
+    assert repository.list_recent(limit=1)[0]["feedback"]["status"] == "correct"
+
+
+def test_case_repository_uses_latest_feedback_event(tmp_path: Path) -> None:
+    repository = JsonlCaseRepository(str(tmp_path / "cases.jsonl"))
+    repository.save(
+        _make_case(
+            case_id="case-1",
+            user_input="material stock",
+            conversation_id="conv-1",
+            final_status="success",
+        )
+    )
+
+    repository.update_feedback(case_id="case-1", status="incorrect", comment="old")
+    repository.update_feedback(case_id="case-1", status="correct", comment="new")
+
+    entry = repository.get_by_case_id("case-1")
+    assert entry is not None
+    assert entry["feedback"]["status"] == "correct"
+    assert entry["feedback"]["comment"] == "new"
+    assert repository.search_feedback("material stock old", limit=3) == []
+
+
 def test_case_repository_reuses_cache_and_detects_external_history_changes(tmp_path: Path) -> None:
     path = tmp_path / "cases.jsonl"
     repository = JsonlCaseRepository(str(path))

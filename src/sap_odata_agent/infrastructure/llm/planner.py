@@ -2046,7 +2046,7 @@ class LlmStructuredIntentPlanner(RetrievalAwareIntentPlanner):
                         http_method=str(parsed.get("http_method", fallback_plan.http_method)).upper(),
                         select_fields=final_step.select_fields,
                         response_summary_fields=self._choose_final_summary_fields(final_step.select_fields, target_field),
-                        filters=materialized_steps[0].filters,
+                        filters=[],
                         top=final_step.top,
                         requires_confirmation=bool(parsed.get("requires_confirmation", False)),
                         needs_clarification=bool(parsed.get("needs_clarification", False)),

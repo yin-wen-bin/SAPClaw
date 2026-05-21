@@ -32,16 +32,25 @@ class JsonlCaseRepository:
         "多久",
     }
 
-    def __init__(self, file_path: str, memory_path: str | None = None) -> None:
+    def __init__(
+        self,
+        file_path: str,
+        memory_path: str | None = None,
+        feedback_path: str | None = None,
+    ) -> None:
         self.file_path = Path(file_path)
         self.file_path.parent.mkdir(parents=True, exist_ok=True)
         self.memory_path = Path(memory_path) if memory_path else self.file_path.with_name("feedback_memory.jsonl")
         self.memory_path.parent.mkdir(parents=True, exist_ok=True)
+        self.feedback_path = Path(feedback_path) if feedback_path else self.file_path.with_name("feedback_events.jsonl")
+        self.feedback_path.parent.mkdir(parents=True, exist_ok=True)
         self._cache_lock = RLock()
         self._entries_cache: list[dict[str, Any]] | None = None
         self._entries_signature: tuple[int, int] | None = None
         self._memory_cache: list[dict[str, Any]] | None = None
         self._memory_signature: tuple[int, int] | None = None
+        self._feedback_cache: list[dict[str, Any]] | None = None
+        self._feedback_signature: tuple[int, int] | None = None
 
     def save(self, record: CaseRecord) -> None:
         payload = self._normalize_json(record.to_dict())
@@ -58,7 +67,7 @@ class JsonlCaseRepository:
                 self._entries_signature = None
 
     def list_recent(self, limit: int = 20, conversation_id: str | None = None) -> list[dict[str, Any]]:
-        entries = list(self._load_entries())
+        entries = self._entries_with_feedback()
         if conversation_id:
             entries = [
                 entry
@@ -69,9 +78,10 @@ class JsonlCaseRepository:
         return entries[: max(1, limit)]
 
     def get_by_case_id(self, case_id: str) -> dict[str, Any] | None:
+        feedback_by_case_id = self._feedback_by_case_id()
         for entry in self._load_entries():
             if entry.get("case_id") == case_id:
-                return entry
+                return self._entry_with_feedback(entry, feedback_by_case_id)
         return None
 
     def update_feedback(
@@ -81,24 +91,31 @@ class JsonlCaseRepository:
         comment: str = "",
         expected_result: str = "",
     ) -> dict[str, Any] | None:
+        feedback = {
+            "status": status,
+            "comment": comment,
+            "expected_result": expected_result,
+            "created_at": datetime.now().astimezone().isoformat(),
+        }
         with self._cache_lock:
-            entries = self._load_entries()
-            updated: dict[str, Any] | None = None
-            for entry in entries:
-                if entry.get("case_id") != case_id:
-                    continue
-                entry["feedback"] = {
-                    "status": status,
-                    "comment": comment,
-                    "expected_result": expected_result,
-                    "created_at": datetime.now().astimezone().isoformat(),
-                }
-                updated = entry
-                break
-            if updated is None:
-                return None
-            self._write_entries(entries)
-            return updated
+            entry: dict[str, Any] | None = None
+            cache_is_current = (
+                self._entries_cache is not None
+                and self._entries_signature == self._file_signature(self.file_path)
+            )
+            if cache_is_current:
+                entry = next((item for item in self._entries_cache or [] if item.get("case_id") == case_id), None)
+                if entry is None:
+                    return None
+            elif status != "correct":
+                entry = next((item for item in self._load_entries() if item.get("case_id") == case_id), None)
+                if entry is None:
+                    return None
+
+            self._append_feedback_event(case_id, feedback)
+            if entry is None:
+                return {"case_id": case_id, "feedback": feedback}
+            return self._entry_with_feedback(entry, {case_id: feedback})
 
     def save_feedback_memory(self, case_id: str, memory: dict[str, Any]) -> None:
         payload = {
@@ -164,7 +181,7 @@ class JsonlCaseRepository:
         if not query_terms:
             return []
         candidates: list[tuple[float, dict[str, Any]]] = []
-        for entry in self._load_entries():
+        for entry in self._entries_with_feedback():
             feedback = entry.get("feedback") or {}
             if feedback.get("status") != "incorrect":
                 continue
@@ -219,6 +236,60 @@ class JsonlCaseRepository:
             self._entries_signature = signature
             return self._entries_cache
 
+    def _entries_with_feedback(self) -> list[dict[str, Any]]:
+        feedback_by_case_id = self._feedback_by_case_id()
+        return [self._entry_with_feedback(entry, feedback_by_case_id) for entry in self._load_entries()]
+
+    @staticmethod
+    def _entry_with_feedback(
+        entry: dict[str, Any],
+        feedback_by_case_id: dict[str, dict[str, Any]],
+    ) -> dict[str, Any]:
+        merged = dict(entry)
+        case_id = entry.get("case_id")
+        if isinstance(case_id, str) and case_id in feedback_by_case_id:
+            merged["feedback"] = feedback_by_case_id[case_id]
+        return merged
+
+    def _feedback_by_case_id(self) -> dict[str, dict[str, Any]]:
+        feedback_by_case_id: dict[str, dict[str, Any]] = {}
+        for event in self._load_feedback_entries():
+            case_id = event.get("case_id")
+            if not isinstance(case_id, str) or not case_id:
+                continue
+            feedback = self._feedback_from_event(event)
+            if feedback:
+                feedback_by_case_id[case_id] = feedback
+        return feedback_by_case_id
+
+    @staticmethod
+    def _feedback_from_event(event: dict[str, Any]) -> dict[str, Any] | None:
+        nested_feedback = event.get("feedback")
+        if isinstance(nested_feedback, dict):
+            return dict(nested_feedback)
+        status = event.get("status")
+        if not isinstance(status, str) or not status:
+            return None
+        return {
+            "status": status,
+            "comment": str(event.get("comment") or ""),
+            "expected_result": str(event.get("expected_result") or ""),
+            "created_at": str(event.get("created_at") or ""),
+        }
+
+    def _append_feedback_event(self, case_id: str, feedback: dict[str, Any]) -> None:
+        event = self._normalize_json({"case_id": case_id, **feedback})
+        before_signature = self._file_signature(self.feedback_path)
+        with self.feedback_path.open("a", encoding="utf-8") as handle:
+            handle.write(json.dumps(event, ensure_ascii=False, default=str) + "\n")
+        after_signature = self._file_signature(self.feedback_path)
+        if self._feedback_cache is not None and self._feedback_signature == before_signature:
+            self._feedback_cache.append(event)
+            self._feedback_signature = after_signature
+        else:
+            self._feedback_cache = None
+            self._feedback_signature = None
+
     def _write_entries(self, entries: list[dict[str, Any]]) -> None:
         with self._cache_lock:
             normalized_entries = [self._normalize_json(entry) for entry in entries]
@@ -253,6 +324,30 @@ class JsonlCaseRepository:
             self._memory_cache = entries
             self._memory_signature = signature
             return self._memory_cache
+
+    def _load_feedback_entries(self) -> list[dict[str, Any]]:
+        with self._cache_lock:
+            signature = self._file_signature(self.feedback_path)
+            if self._feedback_cache is not None and self._feedback_signature == signature:
+                return self._feedback_cache
+            if signature == (0, 0):
+                self._feedback_cache = []
+                self._feedback_signature = signature
+                return self._feedback_cache
+            entries: list[dict[str, Any]] = []
+            for raw_line in self.feedback_path.read_text(encoding="utf-8", errors="ignore").splitlines():
+                line = raw_line.strip()
+                if not line:
+                    continue
+                try:
+                    parsed = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+                if isinstance(parsed, dict):
+                    entries.append(parsed)
+            self._feedback_cache = entries
+            self._feedback_signature = signature
+            return self._feedback_cache
 
     @staticmethod
     def _file_signature(path: Path) -> tuple[int, int]:

@@ -12,10 +12,11 @@ from pathlib import Path
 from typing import Any
 from uuid import uuid4
 
-from sap_odata_agent.api.app_dependencies import get_orchestrator, get_sap_executor
+from sap_odata_agent.api.app_dependencies import get_orchestrator_for_profile, get_sap_executor
 from sap_odata_agent.application.result_transformer import ResultTransformer
 from sap_odata_agent.domain.models import AgentRequest, CompiledRequest, QueryPlan, ResultTransform
 from sap_odata_agent.infrastructure.config.settings import get_settings
+from sap_odata_agent.infrastructure.llm.profiles import get_llm_profile
 
 
 CASE_ROOT = Path("data/api_test_cases")
@@ -39,9 +40,17 @@ def main() -> None:
     parser.add_argument("--rate-limit-retries", type=int, default=1, help="Retry a case when the LLM provider returns HTTP 429.")
     parser.add_argument("--rate-limit-sleep-seconds", type=float, default=30.0, help="Sleep before retrying an HTTP 429 case.")
     parser.add_argument("--shared-conversation", action="store_true", help="Reuse one conversation across cases. Default is one isolated conversation per case.")
+    parser.add_argument("--llm-profile-id", default="", help="LLM profile id for the frontend/e2e chain, for example kimi-default or minimax-default.")
     args = parser.parse_args()
 
     run_id = args.run_id or datetime.now().strftime("%Y%m%d_%H%M%S")
+    effective_llm_profile_id, llm_profile = _resolve_llm_profile(args.llm_profile_id)
+    print(
+        "LLM profile: "
+        f"{llm_profile.get('id') or 'none'} / "
+        f"{llm_profile.get('provider') or 'unknown'} / "
+        f"{llm_profile.get('model') or 'unconfigured'}"
+    )
     case_root = Path(args.case_root)
     run_root = Path(args.run_root)
     run_dir = run_root / run_id
@@ -69,6 +78,8 @@ def main() -> None:
             rate_limit_retries=max(0, args.rate_limit_retries),
             rate_limit_sleep_seconds=max(0.0, args.rate_limit_sleep_seconds),
             shared_conversation=args.shared_conversation,
+            llm_profile_id=effective_llm_profile_id,
+            llm_profile=llm_profile,
         )
         out_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
         results.append(result)
@@ -76,7 +87,7 @@ def main() -> None:
         if args.case_delay_seconds > 0:
             time.sleep(args.case_delay_seconds)
 
-    summary = _build_summary(run_id, results)
+    summary = _build_summary(run_id, results, llm_profile=llm_profile)
     (run_dir / "summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
     failures = [item for item in results if item["status"] != "passed"]
     (run_dir / "failures.json").write_text(json.dumps(failures, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -114,11 +125,17 @@ def _run_case(
     front_only: bool,
     use_existing_baseline: bool,
     shared_conversation: bool = False,
+    llm_profile_id: str | None = None,
+    llm_profile: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     started_at = datetime.now().astimezone().isoformat()
     expects_unsupported = bool(case.get("expected_capability", {}).get("unsupported"))
     baseline = None if front_only or expects_unsupported else _load_or_run_baseline(case, case_root, use_existing_baseline)
-    frontend = None if baseline_only else _run_frontend(case, run_id, shared_conversation=shared_conversation)
+    frontend = (
+        None
+        if baseline_only
+        else _run_frontend(case, run_id, shared_conversation=shared_conversation, llm_profile_id=llm_profile_id)
+    )
     comparison = _compare(case, baseline, frontend, baseline_only=baseline_only, front_only=front_only)
     return {
         "run_id": run_id,
@@ -126,6 +143,8 @@ def _run_case(
         "api": case["api"],
         "scenario": case["scenario"],
         "user_input": case["user_input"],
+        "llm_profile_id": llm_profile_id,
+        "llm_profile": llm_profile,
         "started_at": started_at,
         "finished_at": datetime.now().astimezone().isoformat(),
         "status": "passed" if comparison["passed"] else "failed",
@@ -147,6 +166,8 @@ def _run_case_with_retries(
     rate_limit_retries: int,
     rate_limit_sleep_seconds: float,
     shared_conversation: bool,
+    llm_profile_id: str | None,
+    llm_profile: dict[str, Any] | None,
 ) -> dict[str, Any]:
     attempts = max(1, rate_limit_retries + 1)
     last_result: dict[str, Any] | None = None
@@ -160,16 +181,24 @@ def _run_case_with_retries(
                 front_only=front_only,
                 use_existing_baseline=use_existing_baseline,
                 shared_conversation=shared_conversation,
+                llm_profile_id=llm_profile_id,
+                llm_profile=llm_profile,
             )
         except Exception as exc:  # pragma: no cover - runtime protection for long SAP/LLM runs
-            result = _runtime_failure(case, run_id, exc)
+            result = _runtime_failure(case, run_id, exc, llm_profile_id=llm_profile_id, llm_profile=llm_profile)
         if not _is_rate_limited_result(result) or index >= attempts - 1:
             if index:
                 result["rate_limit_retry_count"] = index
             return result
         last_result = result
         time.sleep(rate_limit_sleep_seconds)
-    return last_result or _runtime_failure(case, run_id, RuntimeError("Case retry loop did not run."))
+    return last_result or _runtime_failure(
+        case,
+        run_id,
+        RuntimeError("Case retry loop did not run."),
+        llm_profile_id=llm_profile_id,
+        llm_profile=llm_profile,
+    )
 
 
 def _load_or_run_baseline(
@@ -183,7 +212,14 @@ def _load_or_run_baseline(
     return _run_baseline(case, case_root)
 
 
-def _runtime_failure(case: dict[str, Any], run_id: str, exc: Exception) -> dict[str, Any]:
+def _runtime_failure(
+    case: dict[str, Any],
+    run_id: str,
+    exc: Exception,
+    *,
+    llm_profile_id: str | None = None,
+    llm_profile: dict[str, Any] | None = None,
+) -> dict[str, Any]:
     stack = traceback.format_exc()
     failed_layer = _infer_exception_layer(stack)
     return {
@@ -192,6 +228,8 @@ def _runtime_failure(case: dict[str, Any], run_id: str, exc: Exception) -> dict[
         "api": case["api"],
         "scenario": case["scenario"],
         "user_input": case["user_input"],
+        "llm_profile_id": llm_profile_id,
+        "llm_profile": llm_profile,
         "started_at": datetime.now().astimezone().isoformat(),
         "finished_at": datetime.now().astimezone().isoformat(),
         "status": "failed",
@@ -450,13 +488,29 @@ def _iter_step_bindings(step: dict[str, Any]) -> list[dict[str, Any]]:
     return bindings
 
 
-def _run_frontend(case: dict[str, Any], run_id: str, *, shared_conversation: bool = False) -> dict[str, Any]:
-    orchestrator = get_orchestrator()
+def _resolve_llm_profile(profile_id: str | None) -> tuple[str | None, dict[str, Any]]:
+    profile = get_llm_profile(profile_id or None)
+    if profile_id and not profile.enabled:
+        raise RuntimeError(f"LLM profile is not configured: {profile.id}")
+    effective_profile_id = profile.id if profile.enabled else None
+    return effective_profile_id, profile.public_payload()
+
+
+def _run_frontend(
+    case: dict[str, Any],
+    run_id: str,
+    *,
+    shared_conversation: bool = False,
+    llm_profile_id: str | None = None,
+) -> dict[str, Any]:
+    effective_profile_id, llm_profile = _resolve_llm_profile(llm_profile_id)
+    orchestrator = get_orchestrator_for_profile(effective_profile_id)
     conversation_id = f"eval-{run_id}" if shared_conversation else f"eval-{run_id}-{case['id']}"
     response = orchestrator.run(
         AgentRequest(
             user_input=case["user_input"],
             conversation_id=conversation_id,
+            llm_profile_id=effective_profile_id,
         )
     )
     response_dict = _to_jsonable(response)
@@ -466,6 +520,8 @@ def _run_frontend(case: dict[str, Any], run_id: str, *, shared_conversation: boo
         "success": response.success,
         "needs_clarification": response.needs_clarification,
         "case_id": response.case_id,
+        "llm_profile_id": effective_profile_id,
+        "llm_profile": llm_profile,
         "selected_api": response.plan.service_name,
         "selected_apis": _selected_services(response),
         "entity_set": response.plan.entity_set,
@@ -699,11 +755,17 @@ def _baseline_scope_limited(baseline: dict[str, Any]) -> bool:
         return False
 
 
-def _build_summary(run_id: str, results: list[dict[str, Any]]) -> dict[str, Any]:
+def _build_summary(
+    run_id: str,
+    results: list[dict[str, Any]],
+    *,
+    llm_profile: dict[str, Any] | None = None,
+) -> dict[str, Any]:
     failed = [item for item in results if item["status"] != "passed"]
     return {
         "run_id": run_id,
         "created_at": datetime.now().astimezone().isoformat(),
+        "llm_profile": llm_profile,
         "total": len(results),
         "passed": len(results) - len(failed),
         "failed": len(failed),

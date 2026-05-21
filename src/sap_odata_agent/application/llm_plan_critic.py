@@ -40,7 +40,11 @@ class LlmPlanCritic:
             return [
                 CriticFinding(
                     code="llm_critic_unavailable",
-                    message=f"LLM plan critic skipped after client error: {exc}",
+                    message=self._localize_message(
+                        request,
+                        f"LLM plan critic skipped after client error: {exc}",
+                        "LLM 计划评审因客户端错误跳过，请查看执行详情。",
+                    ),
                     severity="warning",
                     blocking=False,
                 )
@@ -60,6 +64,13 @@ class LlmPlanCritic:
                 continue
             if self._is_spurious_unrequested_name_field_finding(request, code, message):
                 continue
+            if self._is_spurious_supplier_address_binding_finding(plan, code, message):
+                continue
+            message = self._localize_message(
+                request,
+                message,
+                "计划评审未通过：当前查询计划无法可靠支持用户提出的业务问题。",
+            )
             severity = str(item.get("severity", "warning") or "warning")
             blocking = bool(item.get("blocking", False))
             findings.append(
@@ -169,9 +180,19 @@ class LlmPlanCritic:
             "- Block if an identifier field is used as the answer when the user asked for another attribute.\n"
             "- Block if the plan cannot apply the user's requested filter.\n"
             "- When schema_research is available, use it as the primary semantic evidence for field suitability and risks.\n"
+            "- Return finding.message in the same natural language as user_input/resolved_user_input. Keep SAP technical field names unchanged.\n"
             "- Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )
+
+    @staticmethod
+    def _localize_message(request: AgentRequest, message: str, chinese_fallback: str) -> str:
+        user_text = f"{request.resolved_user_input or ''} {request.user_input or ''}"
+        if not any("\u4e00" <= char <= "\u9fff" for char in user_text):
+            return message
+        if any("\u4e00" <= char <= "\u9fff" for char in message):
+            return message
+        return chinese_fallback
 
     @staticmethod
     def _is_spurious_field_list_missing_filter(
@@ -240,3 +261,43 @@ class LlmPlanCritic:
             "text",
         )
         return not any(marker in user_text for marker in requested_name_markers)
+
+    @staticmethod
+    def _is_spurious_supplier_address_binding_finding(
+        plan: QueryPlan,
+        code: str,
+        message: str,
+    ) -> bool:
+        normalized = f"{code} {message}".lower()
+        if "wrong_field" not in normalized and "field_semantics" not in normalized:
+            return False
+        if "supplier" not in normalized or "businesspartner" not in normalized:
+            return False
+        if plan.service_name != "API_BUSINESS_PARTNER":
+            return False
+        if plan.filters:
+            return False
+        steps_by_id = {step.step_id: step for step in plan.steps or []}
+        supplier_step_ids = {
+            step.step_id
+            for step in plan.steps or []
+            if step.entity_set == "A_Supplier"
+            and (
+                "Supplier" in set(step.select_fields or [])
+                or any(condition.field == "Supplier" for condition in step.filters or [])
+            )
+        }
+        if not supplier_step_ids:
+            return False
+        for step in plan.steps or []:
+            if step.entity_set != "A_BusinessPartnerAddress":
+                continue
+            for binding in step.filter_from_previous or []:
+                if (
+                    binding.field == "BusinessPartner"
+                    and binding.source_field == "Supplier"
+                    and binding.source_step_id in supplier_step_ids
+                    and binding.source_step_id in steps_by_id
+                ):
+                    return True
+        return False

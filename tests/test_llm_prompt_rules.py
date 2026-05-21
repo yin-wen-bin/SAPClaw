@@ -3,7 +3,17 @@ from __future__ import annotations
 import json
 
 from sap_odata_agent.application.llm_plan_critic import LlmPlanCritic
-from sap_odata_agent.domain.models import AgentRequest, ApiRouteDecision, QueryConstraints, QueryPlan, QueryShape, SelectedApi
+from sap_odata_agent.domain.models import (
+    AgentRequest,
+    ApiRouteDecision,
+    ExecutionStep,
+    FilterCondition,
+    QueryConstraints,
+    QueryPlan,
+    QueryShape,
+    SelectedApi,
+    StepBinding,
+)
 from sap_odata_agent.infrastructure.llm.api_specific_planner import LlmApiSpecificPlanner
 from sap_odata_agent.infrastructure.llm.plan_repairer import LlmPlanRepairer
 from sap_odata_agent.infrastructure.llm.prompts import (
@@ -318,6 +328,7 @@ def test_plan_critic_requires_explicit_filter_intent_before_missing_filters() ->
     assert "Report missing_filters only when" in prompt
     assert "filter_concepts\": []" in prompt
     assert "target_field_concepts" in prompt
+    assert "same natural language as user_input" in prompt
 
 
 def test_llm_plan_critic_drops_spurious_missing_filters_for_field_list_output() -> None:
@@ -356,6 +367,37 @@ def test_llm_plan_critic_drops_spurious_missing_filters_for_field_list_output() 
     assert findings == []
 
 
+def test_llm_plan_critic_localizes_english_blocking_message_for_chinese_request() -> None:
+    critic = LlmPlanCritic(
+        llm_client=StaticJsonClient(
+            {
+                "pass": False,
+                "findings": [
+                    {
+                        "code": "wrong_field_semantics",
+                        "message": "The plan uses an empty string as filter value.",
+                        "severity": "error",
+                        "blocking": True,
+                    }
+                ],
+            }
+        )
+    )
+    request = AgentRequest(user_input="\u67e5\u8be2\u5de5\u53821710\u4e0b\uff0c\u6240\u6709\u672a\u786e\u8ba4\u7684\u751f\u4ea7\u8ba2\u5355")
+    plan = QueryPlan(
+        service_name="API_PRODUCTION_ORDER_2_SRV",
+        entity_set="A_ProductionOrder_2",
+        select_fields=["ManufacturingOrder", "ProductionPlant", "OrderIsConfirmed"],
+        filters=[],
+    )
+
+    findings = critic.review(request, context=None, plan=plan)
+
+    assert len(findings) == 1
+    assert findings[0].message.startswith("\u8ba1\u5212\u8bc4\u5ba1\u672a\u901a\u8fc7")
+    assert "The plan uses" not in findings[0].message
+
+
 def test_llm_plan_critic_drops_unrequested_name_field_requirement() -> None:
     critic = LlmPlanCritic(
         llm_client=StaticJsonClient(
@@ -381,6 +423,62 @@ def test_llm_plan_critic_drops_unrequested_name_field_requirement() -> None:
     )
 
     findings = critic.review(request, context=None, plan=plan)
+
+    assert findings == []
+
+
+def test_llm_plan_critic_accepts_supplier_to_business_partner_address_binding() -> None:
+    critic = LlmPlanCritic(
+        llm_client=StaticJsonClient(
+            {
+                "pass": False,
+                "findings": [
+                    {
+                        "code": "wrong_field_semantics",
+                        "message": (
+                            "Supplier from A_Supplier is bound to BusinessPartner on "
+                            "A_BusinessPartnerAddress, and the fields have different semantics."
+                        ),
+                        "severity": "error",
+                        "blocking": True,
+                    }
+                ],
+            }
+        )
+    )
+    plan = QueryPlan(
+        service_name="API_BUSINESS_PARTNER",
+        entity_set="A_BusinessPartnerAddress",
+        select_fields=["BusinessPartner", "AddressID", "CityName"],
+        response_summary_fields=["BusinessPartner", "CityName"],
+        filters=[],
+        plan_kind="multi_step",
+        target_entity_set="A_BusinessPartnerAddress",
+        steps=[
+            ExecutionStep(
+                step_id="step_1",
+                service_name="API_BUSINESS_PARTNER",
+                entity_set="A_Supplier",
+                select_fields=["Supplier", "SupplierName"],
+                filters=[FilterCondition(field="Supplier", operator="eq", value="17300003")],
+            ),
+            ExecutionStep(
+                step_id="step_2",
+                service_name="API_BUSINESS_PARTNER",
+                entity_set="A_BusinessPartnerAddress",
+                select_fields=["BusinessPartner", "AddressID", "CityName"],
+                filter_from_previous=[
+                    StepBinding(field="BusinessPartner", source_step_id="step_1", source_field="Supplier")
+                ],
+            ),
+        ],
+    )
+
+    findings = critic.review(
+        AgentRequest(user_input="\u4f9b\u5e94\u554617300003\u7684\u57ce\u5e02\u662f\u4ec0\u4e48"),
+        context=None,
+        plan=plan,
+    )
 
     assert findings == []
 

@@ -263,6 +263,7 @@ def test_dynamic_path_planner_materializes_llm_multistep_email_to_bp(tmp_path: P
     plan = planner.plan(request, context)
 
     assert plan.plan_kind == "multi_step"
+    assert plan.filters == []
     assert plan.steps[0].filters[0].value == "info@10300006.com"
     assert plan.steps[-1].entity_set == "A_BusinessPartner"
     assert plan.steps[-1].filter_from_previous[0].source_step_id == "resolve_bp_address"

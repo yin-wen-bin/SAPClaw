@@ -65,11 +65,7 @@ class SchemaFeasibilityValidator:
             violations.append(
                 FeasibilityViolation(
                     code="planner_llm_timeout" if planner_timed_out else "planner_failed",
-                    message=(
-                        "Planner LLM timed out before producing an executable query plan. No SAP request was executed."
-                        if planner_timed_out
-                        else f"Planner did not produce an executable schema plan: {planner_failure_reason}"
-                    ),
+                    message=self._planner_failure_message(request, planner_failure_reason, planner_timed_out),
                     entity_set=plan.entity_set,
                 )
             )
@@ -178,6 +174,19 @@ class SchemaFeasibilityValidator:
         if plan.entity_set == "UNKNOWN_ENTITY" and accepted is False and reason:
             return reason
         return ""
+
+    @staticmethod
+    def _planner_failure_message(request: AgentRequest, reason: str, timed_out: bool) -> str:
+        user_text = f"{request.resolved_user_input or ''} {request.user_input or ''}"
+        if any("\u4e00" <= char <= "\u9fff" for char in user_text):
+            if timed_out:
+                return "Planner LLM 在生成可执行查询计划前超时，未向 SAP 发起请求。"
+            return f"Planner 未能生成可执行的 schema 查询计划：{reason}"
+        return (
+            "Planner LLM timed out before producing an executable query plan. No SAP request was executed."
+            if timed_out
+            else f"Planner did not produce an executable schema plan: {reason}"
+        )
 
     @staticmethod
     def _is_timeout_text(text: str) -> bool:
