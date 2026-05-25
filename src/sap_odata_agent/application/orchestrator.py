@@ -13,6 +13,7 @@ from sap_odata_agent.application.plan_critic import PlanCritic
 from sap_odata_agent.application.planner_guardrail import PlannerGuardrail
 from sap_odata_agent.application.presentation_verifier import PresentationVerifier
 from sap_odata_agent.application.context_gate import ContextCarryGate
+from sap_odata_agent.application.progress import publish_progress_event
 from sap_odata_agent.application.result_transformer import ResultTransformer
 from sap_odata_agent.application.schema_feasibility_validator import SchemaFeasibilityValidator
 from sap_odata_agent.domain.models import (
@@ -2176,10 +2177,11 @@ class AgentOrchestrator:
         **kwargs,
     ):
         started_at = time.perf_counter()
+        publish_progress_event(key=key, label=label, status="running")
         try:
             result = func(*args, **kwargs)
         except Exception as exc:
-            self._record_timing(
+            timing_entry = self._record_timing(
                 timings,
                 key=key,
                 label=label,
@@ -2187,8 +2189,21 @@ class AgentOrchestrator:
                 success=False,
                 error_message=str(exc),
             )
+            publish_progress_event(
+                key=key,
+                label=label,
+                status="failed",
+                duration_ms=timing_entry.get("duration_ms"),
+                error_message=str(exc),
+            )
             raise
-        self._record_timing(timings, key=key, label=label, started_at=started_at, success=True)
+        timing_entry = self._record_timing(timings, key=key, label=label, started_at=started_at, success=True)
+        publish_progress_event(
+            key=key,
+            label=label,
+            status="succeeded",
+            duration_ms=timing_entry.get("duration_ms"),
+        )
         return result
 
     @staticmethod
@@ -2200,7 +2215,7 @@ class AgentOrchestrator:
         started_at: float,
         success: bool,
         error_message: str | None = None,
-    ) -> None:
+    ) -> dict:
         entry = {
             "key": key,
             "label": label,
@@ -2210,6 +2225,7 @@ class AgentOrchestrator:
         if error_message:
             entry["error_message"] = error_message
         timings.append(entry)
+        return entry
 
     def _attach_timing(self, response: AgentResponse, timings: list[dict], started_at: float) -> None:
         response.timings = [dict(item) for item in timings]

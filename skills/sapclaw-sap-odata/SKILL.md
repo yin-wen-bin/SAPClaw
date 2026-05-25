@@ -1,4 +1,4 @@
-﻿---
+---
 name: sapclaw-sap-odata
 description: Use this skill when an agent needs to answer SAP business questions by calling the local SAPClaw SAP OData natural-language query service. Trigger for SAP OData, SAP master data, supplier, customer, purchase order, sales order, invoice, inventory, material, finance, controlling, production, or cross-API SAP lookup requests.
 ---

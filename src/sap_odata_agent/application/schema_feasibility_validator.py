@@ -249,6 +249,7 @@ class SchemaFeasibilityValidator:
                         entity_set=plan.entity_set,
                     )
                 )
+            self._validate_filter_value(condition, field, plan.entity_set, violations)
 
     def _validate_steps(
         self,
@@ -299,7 +300,8 @@ class SchemaFeasibilityValidator:
                         )
                     )
             for condition in step.filters or []:
-                if condition.field not in field_map:
+                field = field_map.get(condition.field)
+                if field is None:
                     violations.append(
                         FeasibilityViolation(
                             code="step_filter_field_not_in_entity",
@@ -309,6 +311,8 @@ class SchemaFeasibilityValidator:
                             step_id=step.step_id,
                         )
                     )
+                    continue
+                self._validate_filter_value(condition, field, step.entity_set, violations, step.step_id)
             for binding in step.filter_from_previous or []:
                 if binding.field not in field_map:
                     violations.append(
@@ -456,6 +460,46 @@ class SchemaFeasibilityValidator:
 
     def _load_snapshot(self, service_name: str):
         return self.loader.load(service_name)
+
+    @staticmethod
+    def _validate_filter_value(
+        condition,
+        field: dict[str, Any],
+        entity_set: str,
+        violations: list[FeasibilityViolation],
+        step_id: str | None = None,
+    ) -> None:
+        data_type = str(field.get("data_type") or field.get("value_type") or field.get("type") or "")
+        if SchemaFeasibilityValidator._normalize_value_type(data_type) != "boolean":
+            return
+        value = str(condition.value if condition.value is not None else "").strip().strip("'\"").lower()
+        if value == "":
+            violations.append(
+                FeasibilityViolation(
+                    code="boolean_filter_empty_value",
+                    message=(
+                        f"Boolean field `{condition.field}` on `{entity_set}` cannot use an empty string filter value. "
+                        "Use boolean literal `true` or `false`."
+                    ),
+                    field=condition.field,
+                    entity_set=entity_set,
+                    step_id=step_id,
+                )
+            )
+            return
+        if value not in {"true", "false", "1", "0", "yes", "no"}:
+            violations.append(
+                FeasibilityViolation(
+                    code="boolean_filter_invalid_value",
+                    message=(
+                        f"Boolean field `{condition.field}` on `{entity_set}` used invalid value `{condition.value}`. "
+                        "Use boolean literal `true` or `false`."
+                    ),
+                    field=condition.field,
+                    entity_set=entity_set,
+                    step_id=step_id,
+                )
+            )
 
     @staticmethod
     def _validate_function_import(

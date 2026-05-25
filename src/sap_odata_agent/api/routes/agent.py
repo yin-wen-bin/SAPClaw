@@ -4,6 +4,7 @@ import urllib.parse
 from typing import Any, Literal
 
 from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 
 from sap_odata_agent.api.app_dependencies import (
@@ -12,6 +13,7 @@ from sap_odata_agent.api.app_dependencies import (
     get_orchestrator_for_profile,
     get_sap_executor,
 )
+from sap_odata_agent.application.progress import get_progress_broker, progress_context, publish_progress_event
 from sap_odata_agent.domain.models import AgentRequest, CompiledRequest, ExecutionMode
 from sap_odata_agent.infrastructure.llm.profiles import (
     describe_llm_profile,
@@ -47,6 +49,20 @@ def read_model_profiles() -> dict[str, Any]:
     return get_llm_profiles_payload()
 
 
+@router.get("/progress/{conversation_id}")
+def stream_query_progress(conversation_id: str) -> StreamingResponse:
+    broker = get_progress_broker()
+    return StreamingResponse(
+        broker.subscribe(conversation_id),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "Connection": "keep-alive",
+            "X-Accel-Buffering": "no",
+        },
+    )
+
+
 @router.post("/query")
 def run_query(payload: QueryRequestModel) -> dict[str, Any]:
     try:
@@ -63,7 +79,25 @@ def run_query(payload: QueryRequestModel) -> dict[str, Any]:
         mode=payload.mode,
         llm_profile_id=effective_profile_id,
     )
-    response = orchestrator.run(request)
+    with progress_context(payload.conversation_id):
+        publish_progress_event(key="query.received", label="接收查询请求", status="running")
+        try:
+            response = orchestrator.run(request)
+        except Exception as exc:
+            publish_progress_event(
+                key="query.failed",
+                label="查询失败",
+                status="failed",
+                error_message=str(exc),
+                terminal=True,
+            )
+            raise
+        publish_progress_event(
+            key="query.completed",
+            label="查询完成" if response.success else "查询已结束",
+            status="succeeded" if response.success else "completed",
+            terminal=True,
+        )
     llm_profile = describe_llm_profile(effective_profile_id)
     return {
         "case_id": response.case_id,

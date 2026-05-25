@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const quickPrompts = [
   "查询客户300001的基本信息",
@@ -334,16 +334,72 @@ function QueryHistoryStrip({ history, onApply, disabled = false }) {
   );
 }
 
-function QueryLoadingPanel() {
+const progressStatusLabels = {
+  running: "正在执行",
+  succeeded: "已完成",
+  failed: "执行失败",
+  completed: "已结束",
+};
+
+function formatProgressStatus(event) {
+  if (!event) {
+    return "正在建立进度连接";
+  }
+  const status = progressStatusLabels[event.status] || event.status || "处理中";
+  const duration =
+    Number.isFinite(Number(event.duration_ms)) && Number(event.duration_ms) >= 0
+      ? ` · ${formatDuration(Number(event.duration_ms))}`
+      : "";
+  return `${status}${duration}`;
+}
+
+function mergeProgressEvent(events, nextEvent) {
+  if (!nextEvent) {
+    return events;
+  }
+  const eventKey = nextEvent.key || nextEvent.label || String(nextEvent.sequence || "");
+  if (!eventKey) {
+    return [...events, nextEvent].slice(-30);
+  }
+  const existingIndex = events.findIndex((event) => (event.key || event.label || String(event.sequence || "")) === eventKey);
+  if (existingIndex < 0) {
+    return [...events, nextEvent].slice(-30);
+  }
+  const merged = [...events];
+  merged[existingIndex] = {
+    ...merged[existingIndex],
+    ...nextEvent,
+  };
+  return merged.slice(-30);
+}
+
+function QueryLoadingPanel({ progressEvent, progressEvents = [] }) {
+  const currentEvent = progressEvent || progressEvents[progressEvents.length - 1] || null;
+  const recentEvents = progressEvents.slice(-4).reverse();
   return (
     <div className="query-loading-panel" role="status" aria-live="polite" aria-busy="true">
       <div className="loading-orbit" aria-hidden="true">
         <span />
       </div>
+      <div className="loading-status-live">
+        <p className="loading-kicker">实时查询状态</p>
+        <h3>{currentEvent?.label || "准备开始查询"}</h3>
+        <p>{formatProgressStatus(currentEvent)}</p>
+      </div>
       <div>
         <h3>正在执行查询</h3>
         <p>系统正在选择 API、生成查询计划并请求 SAP。</p>
       </div>
+      {recentEvents.length > 0 ? (
+        <div className="loading-progress-list" aria-label="最近查询步骤">
+          {recentEvents.map((event) => (
+            <div className="loading-progress-row" key={event.key || event.label || event.sequence}>
+              <span>{event.label}</span>
+              <strong>{formatProgressStatus(event)}</strong>
+            </div>
+          ))}
+        </div>
+      ) : null}
       <div className="loading-steps" aria-hidden="true">
         <span />
         <span />
@@ -1037,6 +1093,9 @@ export default function App() {
   const [pageLoading, setPageLoading] = useState(false);
   const [modelProfiles, setModelProfiles] = useState([]);
   const [defaultProfileId, setDefaultProfileId] = useState("");
+  const [progressEvents, setProgressEvents] = useState([]);
+  const [currentProgressEvent, setCurrentProgressEvent] = useState(null);
+  const progressSourceRef = useRef(null);
   const [feedbackForm, setFeedbackForm] = useState({
     status: "",
     comment: "",
@@ -1081,6 +1140,12 @@ export default function App() {
   useEffect(() => {
     loadModelProfiles();
     loadHistory();
+    return () => {
+      if (progressSourceRef.current) {
+        progressSourceRef.current.close();
+        progressSourceRef.current = null;
+      }
+    };
   }, []);
 
   function resetFeedback(resultPayload) {
@@ -1090,6 +1155,50 @@ export default function App() {
       comment: resultPayload?.feedback?.comment || "",
       expected_result: resultPayload?.feedback?.expected_result || "",
     });
+  }
+
+  function closeProgressStream(source = progressSourceRef.current) {
+    if (source) {
+      source.close();
+    }
+    if (progressSourceRef.current === source) {
+      progressSourceRef.current = null;
+    }
+  }
+
+  function startProgressStream(conversationId) {
+    closeProgressStream();
+    const initialProgress = {
+      key: "frontend.started",
+      label: "准备开始查询",
+      status: "running",
+      sequence: 0,
+    };
+    setProgressEvents([initialProgress]);
+    setCurrentProgressEvent(initialProgress);
+
+    if (!conversationId || typeof EventSource === "undefined") {
+      return null;
+    }
+
+    const source = new EventSource(`/api/v1/agent/progress/${encodeURIComponent(conversationId)}`);
+    progressSourceRef.current = source;
+    source.addEventListener("progress", (message) => {
+      try {
+        const event = JSON.parse(message.data);
+        setCurrentProgressEvent(event);
+        setProgressEvents((current) => mergeProgressEvent(current, event));
+        if (event.terminal) {
+          closeProgressStream(source);
+        }
+      } catch {
+        // Ignore malformed progress events; the main query response remains authoritative.
+      }
+    });
+    source.onerror = () => {
+      closeProgressStream(source);
+    };
+    return source;
   }
 
   async function handleSubmit(event) {
@@ -1107,6 +1216,7 @@ export default function App() {
     setSelectedHistory(null);
     setFeedbackMessage("");
     setLastDurationMs(null);
+    const progressSource = startProgressStream(conversationId);
 
     try {
       const requestPayload = { ...form, conversation_id: conversationId };
@@ -1138,6 +1248,7 @@ export default function App() {
       setResult(null);
       setError(submitError.message || "查询失败");
     } finally {
+      closeProgressStream(progressSource);
       setLoading(false);
     }
   }
@@ -1200,13 +1311,6 @@ export default function App() {
       return;
     }
     setForm((current) => ({ ...current, [name]: value }));
-  }
-
-  function applyPrompt(prompt) {
-    if (loading) {
-      return;
-    }
-    setForm((current) => ({ ...current, user_input: prompt }));
   }
 
   function clearConversationId() {
@@ -1296,8 +1400,7 @@ export default function App() {
               {loading ? <span className="status-pill pending">执行中</span> : null}
             </div>
 
-            <QueryHistoryStrip history={history} onApply={applyPrompt} disabled={loading} />
-            {loading ? <QueryLoadingPanel /> : null}
+            {loading ? <QueryLoadingPanel progressEvent={currentProgressEvent} progressEvents={progressEvents} /> : null}
 
             <form onSubmit={handleSubmit} className="query-form">
               <label>

@@ -99,6 +99,20 @@ For any external, shared, or reverse-proxy deployment:
 
 See `SECURITY.md` for the release security policy.
 
+## Disclaimer
+
+SAPClaw is a personal testing and experimental tool for exploring natural-language access to SAP OData APIs.
+
+This project is provided for learning, prototyping, and internal evaluation purposes only. It is not intended for production use, financial reporting, compliance decisions, or any business-critical operation.
+
+The tool may generate incorrect API routes, query plans, filters, field selections, summaries, or business interpretations. Users are responsible for verifying all results directly against the source SAP system before relying on them.
+
+This project does not include any warranty of accuracy, completeness, availability, security, or fitness for a particular purpose. Use it at your own risk.
+
+Do not commit or publish real credentials, API keys, SAP connection details, customer data, supplier data, financial data, or other confidential business information.
+
+SAP, SAP S/4HANA, and related product names are trademarks or registered trademarks of SAP SE or its affiliates.
+
 ## Tests
 
 ```powershell

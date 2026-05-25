@@ -106,6 +106,7 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
         materialized = self._apply_company_code_chart_of_accounts_bridge(materialized, request, schema_context)
         materialized = self._apply_profit_center_company_assignment_bridge(materialized, request, schema_context)
         materialized = self._normalize_profit_center_assignment_bindings(materialized)
+        materialized = self._normalize_boolean_empty_filter_values(materialized, request, schema_context)
         return replace(
             materialized,
             service_name=materialized.service_name or service_name,
@@ -194,20 +195,21 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             "2. Use filter_from_previous objects exactly as {\"field\": target_field_on_current_step, \"source_step_id\": previous_step_id, \"source_field\": field_selected_by_previous_step}.\n"
             "3. Select every source_field in its source step and every binding field in its target step.\n"
             "4. Set filter.value_type from the schema field data_type; use boolean for Edm.Boolean filters.\n\n"
-            "5. Use schema_context.schema_research when present as the primary business-semantic analysis.\n"
-            "6. Distinguish requirement/expected flags from completion/open status fields; do not treat similarly named fields as equivalent.\n\n"
-            "7. If the intended target entity does not contain the binding target field, insert an intermediate bridge entity that contains both the previous join field and the final target key.\n"
-            "8. For example, do not bind BusinessPartner directly onto an entity that only has Supplier or Customer; first use an entity that contains BusinessPartner and Supplier/Customer, then bind the final key.\n\n"
-            "9. For function imports listed in schema_context.function_imports, set plan_kind=function_import and put inputs in function_parameters using the exact parameter names and value_type from schema_context.\n"
-            "10. Do not put function import inputs in filters and do not set top/select/order_by for function_import plans.\n\n"
-            "11. If schema_context.api_skill or schema_context.api_skills identify a more specific entity for the user's business meaning, prefer that entity over a less specific similarly named field. Do not conclude 'not maintained' from a blank less specific field until the skill-preferred entity has been checked.\n\n"
-            "12. If schema_context.api_skill or schema_context.api_skills contains a Common Planning Pattern that matches the user's wording, treat that pattern as schema-verified business guidance: use its entity, select fields, and filters when those fields exist in schema_context.\n\n"
-            "13. Treat document history requests as ambiguous unless schema_context exposes a true history, movement, receipt, invoice, or change-history entity. Do not answer a history request by returning only pricing, notes, account assignments, or other detail child entities.\n\n"
-            "14. Treat bare \"with/include/show/display\" field-list wording as requested output fields, not filters. Add filters only for explicit restrictions, comparisons, literal values, true/false requirements, nonzero/open/closed conditions, schema-verified business conditions, or a matching api_skill Common Planning Pattern.\n\n"
-            "15. If schema_context.service_names contains multiple services, every multi_step step must include service_name. Use cross-service join_hints or shared key fields to bridge between services, and only use entity sets and fields from that step's service.\n\n"
-            "16. If the user provides a company code and asks for G/L account records in a chart-of-accounts-scoped API, first query API_COMPANYCODE_SRV.A_CompanyCode.ChartOfAccounts and bind that value to the G/L account step. Do not use the company code literal as A_GLAccountInChartOfAccounts.ChartOfAccounts.\n\n"
-            "17. If the user asks for an output level such as material level, plant level, storage-location level, batch level, or another summarized level, choose fields for the raw SAP query and set result_transform.type=aggregate with schema-valid group_by and sum_fields. The program will execute the aggregation; do not calculate totals in text.\n\n"
-            "18. For master-data basic information/profile/detail/overview requests, actively choose the most business-relevant select_fields and response_summary_fields from schema_context instead of copying default_select_fields. Prefer object ID plus name/full-name/description, address, country/region/city/street/postal-code, and contact fields when schema-valid. Avoid returning mainly block flags, authorization group, creation fields, or account group unless the user asks for status/control/audit/accounting setup.\n\n"
+            "5. For Edm.Boolean filters, value must be exactly true or false. For negative wording such as not, un-, false, no, 没有, 没, 不, or 未下达/未确认/未完成/未交货/未收货/未开票, use false. Never use an empty string for an Edm.Boolean field. Empty strings are only valid for schema string indicator fields.\n\n"
+            "6. Use schema_context.schema_research when present as the primary business-semantic analysis.\n"
+            "7. Distinguish requirement/expected flags from completion/open status fields; do not treat similarly named fields as equivalent.\n\n"
+            "8. If the intended target entity does not contain the binding target field, insert an intermediate bridge entity that contains both the previous join field and the final target key.\n"
+            "9. For example, do not bind BusinessPartner directly onto an entity that only has Supplier or Customer; first use an entity that contains BusinessPartner and Supplier/Customer, then bind the final key.\n\n"
+            "10. For function imports listed in schema_context.function_imports, set plan_kind=function_import and put inputs in function_parameters using the exact parameter names and value_type from schema_context.\n"
+            "11. Do not put function import inputs in filters and do not set top/select/order_by for function_import plans.\n\n"
+            "12. If schema_context.api_skill or schema_context.api_skills identify a more specific entity for the user's business meaning, prefer that entity over a less specific similarly named field. Do not conclude 'not maintained' from a blank less specific field until the skill-preferred entity has been checked.\n\n"
+            "13. If schema_context.api_skill or schema_context.api_skills contains a Common Planning Pattern that matches the user's wording, treat that pattern as schema-verified business guidance: use its entity, select fields, and filters when those fields exist in schema_context.\n\n"
+            "14. Treat document history requests as ambiguous unless schema_context exposes a true history, movement, receipt, invoice, or change-history entity. Do not answer a history request by returning only pricing, notes, account assignments, or other detail child entities.\n\n"
+            "15. Treat bare \"with/include/show/display\" field-list wording as requested output fields, not filters. Add filters only for explicit restrictions, comparisons, literal values, true/false requirements, nonzero/open/closed conditions, schema-verified business conditions, or a matching api_skill Common Planning Pattern.\n\n"
+            "16. If schema_context.service_names contains multiple services, every multi_step step must include service_name. Use cross-service join_hints or shared key fields to bridge between services, and only use entity sets and fields from that step's service.\n\n"
+            "17. If the user provides a company code and asks for G/L account records in a chart-of-accounts-scoped API, first query API_COMPANYCODE_SRV.A_CompanyCode.ChartOfAccounts and bind that value to the G/L account step. Do not use the company code literal as A_GLAccountInChartOfAccounts.ChartOfAccounts.\n\n"
+            "18. If the user asks for an output level such as material level, plant level, storage-location level, batch level, or another summarized level, choose fields for the raw SAP query and set result_transform.type=aggregate with schema-valid group_by and sum_fields. The program will execute the aggregation; do not calculate totals in text.\n\n"
+            "19. For master-data basic information/profile/detail/overview requests, actively choose the most business-relevant select_fields and response_summary_fields from schema_context instead of copying default_select_fields. Prefer object ID plus name/full-name/description, address, country/region/city/street/postal-code, and contact fields when schema-valid. Avoid returning mainly block flags, authorization group, creation fields, or account group unless the user asks for status/control/audit/accounting setup.\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )
@@ -978,6 +980,185 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
                 "api_skill_cleared_clarification": True,
             },
         )
+
+    @staticmethod
+    def _normalize_boolean_empty_filter_values(
+        plan: QueryPlan,
+        request: AgentRequest,
+        schema_context: dict[str, Any],
+    ) -> QueryPlan:
+        if not LlmApiSpecificPlanner._request_has_negative_boolean_intent(request):
+            return plan
+
+        changes: list[dict[str, str]] = []
+
+        def normalize_filters(
+            filters: list[FilterCondition],
+            *,
+            service_name: str,
+            entity_set: str,
+            step_id: str = "",
+        ) -> list[FilterCondition]:
+            updated: list[FilterCondition] = []
+            for condition in filters:
+                field_metadata = LlmApiSpecificPlanner._schema_field_metadata(
+                    schema_context,
+                    service_name,
+                    entity_set,
+                    condition.field,
+                )
+                if not LlmApiSpecificPlanner._is_boolean_filter(condition, field_metadata):
+                    updated.append(condition)
+                    continue
+                normalized_value = LlmApiSpecificPlanner._normalise_filter_literal(condition.value)
+                if normalized_value:
+                    updated.append(condition)
+                    continue
+                value_type = (
+                    str((field_metadata or {}).get("value_type") or (field_metadata or {}).get("data_type") or "")
+                    or condition.value_type
+                    or "Edm.Boolean"
+                )
+                updated.append(replace(condition, value="false", value_type=value_type))
+                changes.append(
+                    {
+                        "service_name": service_name,
+                        "entity_set": entity_set,
+                        "field": condition.field,
+                        "from": str(condition.value),
+                        "to": "false",
+                        "step_id": step_id,
+                    }
+                )
+            return updated
+
+        if plan.steps:
+            updated_steps: list[ExecutionStep] = []
+            for step in plan.steps:
+                step_service = step.service_name or plan.service_name
+                updated_steps.append(
+                    replace(
+                        step,
+                        filters=normalize_filters(
+                            list(step.filters or []),
+                            service_name=step_service,
+                            entity_set=step.entity_set,
+                            step_id=step.step_id,
+                        ),
+                    )
+                )
+            if not changes:
+                return plan
+            return replace(
+                plan,
+                steps=updated_steps,
+                planner_diagnostics={
+                    **(plan.planner_diagnostics or {}),
+                    "normalized_boolean_empty_filters": changes,
+                },
+            )
+
+        updated_filters = normalize_filters(
+            list(plan.filters or []),
+            service_name=plan.service_name,
+            entity_set=plan.entity_set,
+        )
+        if not changes:
+            return plan
+        return replace(
+            plan,
+            filters=updated_filters,
+            planner_diagnostics={
+                **(plan.planner_diagnostics or {}),
+                "normalized_boolean_empty_filters": changes,
+            },
+        )
+
+    @staticmethod
+    def _request_has_negative_boolean_intent(request: AgentRequest) -> bool:
+        text = f"{request.resolved_user_input or ''} {request.user_input or ''}".strip().lower()
+        if not text:
+            return False
+        compact = re.sub(r"\s+", "", text)
+        chinese_markers = (
+            "未下达",
+            "未释放",
+            "未发布",
+            "未确认",
+            "未完成",
+            "未交货",
+            "未收货",
+            "未开票",
+            "未清",
+            "未结",
+            "未关闭",
+            "未删除",
+            "未冻结",
+            "未锁定",
+            "未激活",
+            "未处理",
+            "没有",
+            "没",
+            "不",
+        )
+        if any(marker in compact for marker in chinese_markers):
+            return True
+        return bool(
+            re.search(
+                r"\b(not|unreleased|unconfirmed|undelivered|unbilled|uncleared|unfinished|incomplete|without|false|no)\b",
+                text,
+            )
+        )
+
+    @staticmethod
+    def _schema_field_metadata(
+        schema_context: dict[str, Any],
+        service_name: str,
+        entity_set: str,
+        field_name: str,
+    ) -> dict[str, Any] | None:
+        service = str(service_name or "")
+        entity = str(entity_set or "")
+        field = str(field_name or "")
+        if not entity or not field:
+            return None
+        for schema_entity in schema_context.get("entities", []):
+            if not isinstance(schema_entity, dict):
+                continue
+            if str(schema_entity.get("entity_set") or "") != entity:
+                continue
+            entity_service = str(schema_entity.get("service_name") or service)
+            if service and entity_service and entity_service != service:
+                continue
+            for candidate in schema_entity.get("fields", []):
+                if isinstance(candidate, dict) and str(candidate.get("field_name") or "") == field:
+                    return candidate
+        for candidate in schema_context.get("candidate_fields", []):
+            if not isinstance(candidate, dict):
+                continue
+            if str(candidate.get("entity_set") or "") != entity:
+                continue
+            candidate_service = str(candidate.get("service_name") or service)
+            if service and candidate_service and candidate_service != service:
+                continue
+            if str(candidate.get("field_name") or "") == field:
+                return candidate
+        return None
+
+    @staticmethod
+    def _is_boolean_filter(condition: FilterCondition, field_metadata: dict[str, Any] | None) -> bool:
+        value_types = [
+            condition.value_type,
+            (field_metadata or {}).get("value_type"),
+            (field_metadata or {}).get("data_type"),
+            (field_metadata or {}).get("type"),
+        ]
+        return any(LlmApiSpecificPlanner._is_boolean_value_type(value_type) for value_type in value_types)
+
+    @staticmethod
+    def _is_boolean_value_type(value_type: Any) -> bool:
+        normalized = str(value_type or "").strip().lower().replace("edm.", "")
+        return normalized in {"bool", "boolean"}
 
     @staticmethod
     def _apply_company_code_chart_of_accounts_bridge(
