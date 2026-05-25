@@ -726,10 +726,11 @@ class LlmApiRouter:
         )
         has_purchase_order = LlmApiRouter._contains_any_marker(raw, purchase_order_markers)
         has_filter = LlmApiRouter._contains_any_marker(raw, filter_markers)
-        has_identifier = bool(re.search(r"\b[A-Za-z]*\d[A-Za-z0-9_-]{2,}\b", raw))
+        has_identifier = bool(re.search(r"(?<![A-Za-z0-9_])[A-Za-z]*\d[A-Za-z0-9_-]{2,}", raw))
         return (
             has_purchase_order
-            and (has_filter or has_identifier)
+            and has_filter
+            and has_identifier
             and not LlmApiRouter._contains_any_marker(raw, excluded_markers)
         )
 
@@ -1215,17 +1216,18 @@ class LlmApiRouter:
             replaced_services.discard(line_item_service)
         repaired = [item for item in selected if item.service_name not in replaced_services]
         if trial_balance_service not in selected_names:
-            repaired.insert(
-                0,
-                SelectedApi(
-                    service_name=trial_balance_service,
-                    confidence=0.78,
-                    reason=(
-                        "Trial balance, G/L balance, financial statement balance, and P&L amount "
-                        "wording should use the parameterized trial balance API."
-                    ),
+            trial_balance_api = SelectedApi(
+                service_name=trial_balance_service,
+                confidence=0.78,
+                reason=(
+                    "Trial balance, G/L balance, financial statement balance, and P&L amount "
+                    "wording should use the parameterized trial balance API."
                 ),
             )
+            if drilldown and any(item.service_name == line_item_service for item in repaired):
+                repaired.append(trial_balance_api)
+            else:
+                repaired.insert(0, trial_balance_api)
         if drilldown and line_item_service in valid_services and line_item_service not in selected_names:
             repaired.append(
                 SelectedApi(
@@ -1463,6 +1465,8 @@ class LlmApiRouter:
         if not LlmApiRouter._looks_like_gl_account_line_item_request(user_input):
             return selected
         selected_names = {item.service_name for item in selected}
+        if journal_service in selected_names and LlmApiRouter._looks_like_journal_entry_item_request(user_input):
+            return selected
         if LlmApiRouter._looks_like_partner_special_gl_item_request(user_input):
             repaired = [
                 item
@@ -1750,8 +1754,6 @@ class LlmApiRouter:
         if journal_service not in valid_services:
             return selected
         if not LlmApiRouter._looks_like_journal_entry_item_request(user_input):
-            return selected
-        if LlmApiRouter._looks_like_gl_account_line_item_request(user_input):
             return selected
         selected_names = {item.service_name for item in selected}
         if journal_service in selected_names:

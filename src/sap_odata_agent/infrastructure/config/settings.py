@@ -72,10 +72,15 @@ class Settings:
     llm_profiles_path: str = field(default_factory=lambda: _get_setting("LLM_PROFILES_PATH", default="env/llm_profiles.json"))
     llm_verify_ssl: bool = field(default_factory=lambda: _get_setting("LLM_VERIFY_SSL", default="true").lower() == "true")
     llm_timeout_ms: int = field(default_factory=lambda: int(_get_setting("LLM_TIMEOUT_MS", default="45000")))
+    internal_api_keys: str = field(default_factory=lambda: _get_setting("SAPCLAW_API_KEYS"))
 
     @property
     def llm_enabled(self) -> bool:
         return bool(self.llm_base_url and self.llm_model and self.llm_api_key)
+
+    @property
+    def internal_api_key_values(self) -> list[str]:
+        return [key.strip() for key in self.internal_api_keys.split(",") if key.strip()]
 
 
 def get_settings() -> Settings:

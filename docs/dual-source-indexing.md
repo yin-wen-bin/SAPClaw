@@ -1,59 +1,55 @@
-# Dual-Source Indexing
+﻿# Dual-Source Indexing
 
-这套脚手架把两类来源合并成一份本地索引：
+SAPClaw builds local API indexes by combining two sources:
 
-1. SAP 实例运行时 `$metadata`
-2. 本地 OpenAPI JSON 文档
+1. Live SAP OData `$metadata`.
+2. Local SAP OpenAPI JSON specifications.
 
-## 为什么要双源
+The generated index is required at runtime, but it is not published in this repository because it can contain customer-specific SAP metadata and large generated artifacts.
 
-- `$metadata` 提供运行时真实可用的 entity、field、navigation
-- OpenAPI JSON 提供更丰富的字段描述、操作说明和外部文档链接
-- 两者冲突时，以 `$metadata` 作为运行时事实来源
-
-## 输出目录
+## Output Layout
 
 ```text
 data/index/<service_name>/
   raw/
     <service_name>.metadata.xml
-    <openapi-json-file-name>
+    <openapi-json-file-name>.json
   services.json
   entities.json
   fields.json
   relations.json
   business_terms.json
   doc_chunks.jsonl
+  vector_documents.jsonl
   build_summary.json
 ```
 
-## 命令
+`data/index/`, `data/metadata/`, and raw API files are ignored by Git.
 
-```bash
-python -m sap_odata_agent.tools.build_dual_source_index \
-  --sap-service-name API_BUSINESS_PARTNER \
-  --openapi-json "C:\\Users\\Fujitsu\\Desktop\\OP_API_BUSINESS_PARTNER_SRV.json"
+## Build Command
+
+Example:
+
+```powershell
+python -m sap_odata_agent.tools.build_dual_source_index `
+  --sap-service-name API_BUSINESS_PARTNER `
+  --openapi-json "<LOCAL_OPENAPI_JSON_FILE>"
 ```
 
-如果希望输出目录名和 SAP 实际服务名不同，可以补：
+If the local index directory name should differ from the SAP service name, pass:
 
-```bash
---index-service-name API_BUSINESS_PARTNER
+```powershell
+--index-service-name <LOCAL_INDEX_SERVICE_NAME>
 ```
 
-## 当前脚手架会做什么
+## Inputs
 
-- 从 `env/.env` 读取 SAP 连接配置
-- 请求 `/$metadata`
-- 解析 entity set、entity type、field、navigation
-- 读取本地 OpenAPI JSON
-- 解析 path、schema、field description、tag
-- 合并为本地索引
-- 把原始 XML 和 JSON 一起落盘
+- SAP connection values are read from `env/.env` or environment variables.
+- The builder requests the SAP service `$metadata`.
+- The builder parses the local OpenAPI JSON file.
+- The merged result is written to `data/index/<service_name>/`.
 
-## 代码入口
+## Code Entry Points
 
-- 构建器：
-  [dual_source_index_builder.py](../src/sap_odata_agent/infrastructure/indexing/dual_source_index_builder.py)
-- CLI：
-  [build_dual_source_index.py](../src/sap_odata_agent/tools/build_dual_source_index.py)
+- Builder: `src/sap_odata_agent/infrastructure/indexing/dual_source_index_builder.py`
+- CLI: `src/sap_odata_agent/tools/build_dual_source_index.py`

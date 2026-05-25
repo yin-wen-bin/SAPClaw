@@ -1,89 +1,109 @@
-# SAP Claw
+﻿# SAPClaw
 
-这是一个面向 SAP OData 场景的 Agent 骨架项目。
+SAPClaw is a local-first SAP OData natural-language query agent. It uses an LLM to route a user's business question to SAP APIs, build an executable OData plan, validate the plan against indexed SAP metadata, execute read-only SAP requests, and present the result in a business-friendly format.
 
-当前版本先解决三件事：
+The project is designed for private SAP landscapes. Public repository artifacts intentionally exclude local SAP metadata, raw API specifications, evaluation cases, credentials, generated frontend bundles, dependency folders, and runtime caches.
 
-1. 把用户自然语言请求转成结构化查询意图，而不是直接让模型自由拼 OData。
-2. 在执行前增加规则校验和 OData 编译层，降低幻觉和危险写操作风险。
-3. 把成功和失败案例都沉淀下来，为后续 RAG、向量检索和本地小模型提供训练素材。
+## Architecture
 
-## 当前架构
+- FastAPI backend for query orchestration and UI APIs.
+- React frontend under `frontend/`.
+- LLM-first SAP OData pipeline: API router, schema context provider, API-specific planner, plan repair, schema validator, SAP executor, result verifier, and presenter.
+- API skill files under `data/api_skills/` for API-specific business knowledge.
+- Local index files under `data/index/` at runtime. These files are not published and must be generated or copied locally.
 
-- `src/sap_odata_agent/api`
-  - FastAPI 接口层，承接 UI 请求。
-- `src/sap_odata_agent/application`
-  - Agent 编排层，负责检索、规划、校验、执行、自修复和案例保存。
-- `src/sap_odata_agent/domain`
-  - 核心数据结构和端口协议。
-- `src/sap_odata_agent/infrastructure`
-  - LLM、SAP OData、文档检索、案例存储等基础设施实现。
-- `docs/architecture.md`
-  - 详细架构说明和演进路线。
+## Repository Contents
 
-## 请求链路
+Published:
 
-`UI -> Retriever -> Planner -> Validator -> Compiler -> SAP Executor -> Repair Loop -> Case Memory`
+- `src/`: backend application and agent tooling.
+- `frontend/`: frontend source.
+- `data/api_skills/`: API-specific planning guidance.
+- `docs/`: public operational documentation.
+- `skills/`: optional SAPClaw agent skill integration.
+- `tests/`: unit and integration tests that do not contain SAP credentials.
 
-## MVP 范围
+Not published:
 
-- 只读查询优先
-- 最多有限次自修复
-- 支持本地文档检索和案例沉淀
-- 为后续接入向量库和小模型预留接口
+- `env/`, `.env`, `.env.*`
+- `data/index/`
+- `data/metadata/`
+- `data/api_test_cases/`
+- `data/cross_api_test_cases/`
+- `raw/`
+- `frontend/dist/`
+- `frontend/node_modules/`
 
-## 快速启动
+## Setup
 
-```bash
+```powershell
 python -m venv .venv
-.venv\Scripts\activate
-pip install -e .[dev]
-uvicorn sap_odata_agent.api.app:create_app --factory --reload
+.\.venv\Scripts\activate
+pip install -e .[dev,agent]
 ```
 
-启动后可访问：
+Create local configuration:
 
-- `GET /health`
-- `POST /api/v1/agent/query`
-- `GET /` React 前端页面（当 `frontend/dist` 已构建时）
-
-## 前端开发
-
-最小 React 前端在 `frontend/` 目录下。
-
-开发模式：
-
-```bash
-cd frontend
-npm install
-npm run dev
+```powershell
+Copy-Item .env.example env\.env
 ```
 
-生产构建并由 FastAPI 托管：
+Then edit `env/.env` with your SAP and LLM credentials. Do not commit `env/.env`.
 
-```bash
-cd frontend
-npm run build
-cd ..
-uvicorn sap_odata_agent.api.app:create_app --factory --reload
+## Runtime Data
+
+SAPClaw needs local API index files to route and validate SAP OData requests. By default the backend reads them from:
+
+```text
+data/index/
 ```
 
-Windows 一键启动：
+Build or copy the index files locally before running real SAP queries. Raw SAP OpenAPI and metadata artifacts should remain local and are intentionally ignored by Git.
 
-```bat
-start_agent_ui.bat
+## Run The Backend
+
+```powershell
+python -m uvicorn sap_odata_agent.api.app:create_app --factory --host 127.0.0.1 --port 8000
 ```
 
-这个脚本会自动：
+Health check:
 
-1. 检查并安装前端依赖
-2. 构建 React 前端
-3. 设置 `PYTHONPATH`
-4. 启动 FastAPI 并打开浏览器
+```powershell
+Invoke-RestMethod http://127.0.0.1:8000/health
+```
 
-## 下一步建议
+## Run The Frontend
 
-1. 导入真实 SAP OData `$metadata` 并做结构化解析。
-2. 接入真实 LLM planner，而不是当前的占位实现。
-3. 把成功/失败案例与检索上下文一起落盘。
-4. 增加只读/写操作权限控制和人工确认机制。
+```powershell
+npm install --prefix frontend
+npm run dev --prefix frontend
+```
+
+For a production build:
+
+```powershell
+npm run build --prefix frontend
+```
+
+## External Access And Authentication
+
+SAPClaw should be bound to `127.0.0.1` for local development.
+
+For any external, shared, or reverse-proxy deployment:
+
+- Set `SAPCLAW_API_KEYS` to one or more high-entropy API keys.
+- Require callers of the public query endpoint to send `X-API-Key`.
+- Put SAPClaw behind HTTPS and an authenticated reverse proxy.
+- Do not expose `env/`, local index files, raw SAP metadata, or test case assets.
+- Treat `/api/v1/agent/*` as a local UI/agent integration surface unless you add equivalent gateway authentication in front of it.
+
+See `SECURITY.md` for the release security policy.
+
+## Tests
+
+```powershell
+python -m pytest -q
+npm run build --prefix frontend
+```
+
+Some tests exercise local API index behavior and require `data/index/` to exist in the developer environment.

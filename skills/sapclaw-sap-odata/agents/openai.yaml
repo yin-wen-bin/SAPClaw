@@ -1,0 +1,14 @@
+interface:
+  display_name: "SAPClaw SAP OData"
+  short_description: "Query SAP OData through the local SAPClaw agent."
+  default_prompt: "Use $sapclaw-sap-odata to answer an SAP business question through the local SAPClaw service."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "sapclaw"
+      description: "Local SAPClaw MCP server exposing sapclaw_* tools."
+      transport: "stdio"
+
+policy:
+  allow_implicit_invocation: true
