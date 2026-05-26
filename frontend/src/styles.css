@@ -2610,6 +2610,207 @@ pre {
   background: rgba(255, 122, 122, 0.12);
 }
 
+.query-terminal-backdrop {
+  position: fixed;
+  inset: 28px;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at top, rgba(43, 194, 138, 0.14), transparent 34%),
+    rgba(8, 13, 12, 0.62);
+  border: 1px solid rgba(122, 255, 198, 0.12);
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+}
+
+.query-terminal-dialog {
+  width: min(860px, calc(100vw - 32px));
+  height: min(620px, 100%);
+  max-height: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(122, 255, 198, 0.28);
+  border-radius: 14px;
+  background: #07110e;
+  color: #d9ffe9;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.36);
+}
+
+.terminal-titlebar {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(122, 255, 198, 0.16);
+  background: linear-gradient(180deg, #111a17, #0b1512);
+}
+
+.terminal-titlebar h3 {
+  margin: 0;
+  overflow: hidden;
+  color: #eafff2;
+  font-family: "Cascadia Mono", "Consolas", monospace;
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.terminal-window-controls {
+  display: flex;
+  gap: 7px;
+}
+
+.terminal-window-controls span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff6860;
+}
+
+.terminal-window-controls span:nth-child(2) {
+  background: #ffbd4a;
+}
+
+.terminal-window-controls span:nth-child(3) {
+  background: #45d483;
+}
+
+.terminal-connection {
+  padding: 3px 8px;
+  border: 1px solid rgba(122, 255, 198, 0.24);
+  border-radius: 999px;
+  color: #76f0b1;
+  font-family: "Cascadia Mono", "Consolas", monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.terminal-body {
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  gap: 12px;
+  height: calc(100% - 43px);
+  min-height: 0;
+  overflow: hidden;
+  padding: 16px;
+  font-family: "Cascadia Mono", "Consolas", monospace;
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.terminal-command-block {
+  display: grid;
+  gap: 5px;
+  padding: 12px;
+  border: 1px solid rgba(122, 255, 198, 0.16);
+  border-radius: 10px;
+  background: rgba(1, 10, 7, 0.72);
+}
+
+.terminal-command-block p {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 8px;
+  margin: 0;
+  min-width: 0;
+}
+
+.terminal-command-block span:last-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: #d9ffe9;
+}
+
+.terminal-prompt {
+  color: #45d483;
+  font-weight: 800;
+}
+
+.terminal-current {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid rgba(69, 212, 131, 0.28);
+  border-radius: 10px;
+  background: rgba(69, 212, 131, 0.1);
+}
+
+.terminal-current span,
+.terminal-current em {
+  color: #7df4b7;
+  font-size: 0.74rem;
+  font-style: normal;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.terminal-current strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: #f0fff7;
+  font-weight: 800;
+}
+
+.terminal-log-list {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  list-style: none;
+}
+
+.terminal-log-row {
+  display: grid;
+  grid-template-columns: 72px 78px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 1px solid rgba(122, 255, 198, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.terminal-log-time {
+  color: rgba(217, 255, 233, 0.58);
+}
+
+.terminal-log-status {
+  color: #76f0b1;
+  font-weight: 800;
+}
+
+.terminal-status-failed {
+  color: #ff8a8a;
+}
+
+.terminal-status-succeeded,
+.terminal-status-completed {
+  color: #a9f7c8;
+}
+
+.terminal-log-label {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: #e9fff2;
+}
+
+.terminal-log-duration {
+  color: #97bdaa;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;
@@ -2664,5 +2865,30 @@ pre {
   .history-review-row span,
   .summary-row strong {
     text-align: left;
+  }
+
+  .query-terminal-backdrop {
+    inset: 14px;
+    padding: 14px;
+  }
+
+  .query-terminal-dialog {
+    height: min(620px, 100%);
+  }
+
+  .terminal-body {
+    height: calc(100% - 43px);
+    padding: 12px;
+    font-size: 0.78rem;
+  }
+
+  .terminal-current,
+  .terminal-log-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .terminal-log-duration {
+    white-space: normal;
   }
 }

@@ -1340,6 +1340,8 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             return True
         if re.search(r"第\s*\d{1,3}\s*期", text):
             return True
+        if re.search(r"(?:本|这|这个|上|上个|下|下个|前|前一|后|后一)\s*(?:周|星期|礼拜)", text):
+            return True
         markers = (
             "日期",
             "期间",
@@ -1350,6 +1352,20 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             "会计期间",
             "月份",
             "月度",
+            "本周",
+            "这周",
+            "本星期",
+            "这个星期",
+            "这星期",
+            "本礼拜",
+            "这个礼拜",
+            "这礼拜",
+            "上周",
+            "上星期",
+            "上礼拜",
+            "下周",
+            "下星期",
+            "下礼拜",
             "今天",
             "昨天",
             "明天",
@@ -1388,6 +1404,12 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             "today",
             "yesterday",
             "tomorrow",
+            "this week",
+            "current week",
+            "last week",
+            "previous week",
+            "next week",
+            "week to date",
             "current year",
             "fiscal",
         )

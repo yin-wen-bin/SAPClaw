@@ -1753,6 +1753,66 @@ def test_api_specific_planner_removes_unrequested_temporal_filter(tmp_path: Path
     assert plan.planner_diagnostics["removed_unrequested_temporal_filters"][0]["field"] == "FiscalYear"
 
 
+def test_api_specific_planner_keeps_week_temporal_filter(tmp_path: Path) -> None:
+    _write_index(tmp_path)
+    client = CapturingClient(
+        {
+            "plan_kind": "direct",
+            "service_name": "API_TEST",
+            "entity_set": "A_Test",
+            "select_fields": ["Document", "PostingDate"],
+            "response_summary_fields": ["Document", "PostingDate"],
+            "filters": [
+                {"field": "PostingDate", "operator": "ge", "value": "2026-05-25T00:00:00", "value_type": "datetime"},
+                {"field": "PostingDate", "operator": "le", "value": "2026-05-31T23:59:59", "value_type": "datetime"},
+            ],
+            "top": 50,
+            "presentation": {"kind": "table", "reason": "list result"},
+        }
+    )
+    planner = LlmApiSpecificPlanner(index_root=tmp_path, llm_client=client)
+    schema_context = {
+        "service_name": "API_TEST",
+        "entities": [
+            {
+                "entity_set": "A_Test",
+                "fields": [{"field_name": "Document"}, {"field_name": "PostingDate"}],
+            }
+        ],
+        "candidate_fields": [
+            {"entity_set": "A_Test", "field_name": "Document"},
+            {"entity_set": "A_Test", "field_name": "PostingDate", "filterable": True},
+        ],
+    }
+
+    plan = planner.plan_for_api(
+        AgentRequest(user_input="查询本周到货的采购订单"),
+        ApiRouteDecision(selected_apis=[SelectedApi(service_name="API_TEST")]),
+        schema_context,
+    )
+
+    assert [(condition.field, condition.operator) for condition in plan.filters] == [
+        ("PostingDate", "ge"),
+        ("PostingDate", "le"),
+    ]
+    assert "removed_unrequested_temporal_filters" not in plan.planner_diagnostics
+
+
+def test_api_specific_planner_recognizes_common_week_temporal_phrases() -> None:
+    phrases = [
+        "查询这周到货的采购订单",
+        "查询本星期到货的采购订单",
+        "查询下周到货的采购订单",
+        "查询上周到货的采购订单",
+        "show purchase orders arriving this week",
+        "show purchase orders arriving next week",
+        "show purchase orders from last week",
+    ]
+
+    for phrase in phrases:
+        assert LlmApiSpecificPlanner._has_temporal_intent(phrase), phrase
+
+
 def test_api_specific_planner_skill_pattern_can_clear_clarification(tmp_path: Path) -> None:
     _write_index(tmp_path)
     client = CapturingClient(

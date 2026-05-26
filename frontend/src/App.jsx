@@ -353,6 +353,22 @@ function formatProgressStatus(event) {
   return `${status}${duration}`;
 }
 
+function formatProgressTime(event) {
+  if (!event?.created_at) {
+    return "--:--:--";
+  }
+  const createdAt = new Date(event.created_at);
+  if (Number.isNaN(createdAt.getTime())) {
+    return "--:--:--";
+  }
+  return createdAt.toLocaleTimeString("zh-CN", {
+    hour12: false,
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  });
+}
+
 function mergeProgressEvent(events, nextEvent) {
   if (!nextEvent) {
     return events;
@@ -373,38 +389,100 @@ function mergeProgressEvent(events, nextEvent) {
   return merged.slice(-30);
 }
 
-function QueryLoadingPanel({ progressEvent, progressEvents = [] }) {
+function getProgressDisplayRows(progressEvents, currentEvent) {
+  const rows = progressEvents.length > 0 ? [...progressEvents] : [currentEvent].filter(Boolean);
+  const statusRank = (status) => {
+    if (status === "running") {
+      return 0;
+    }
+    if (status === "failed") {
+      return 1;
+    }
+    return 2;
+  };
+  const eventOrder = (event, index) => {
+    const sequence = Number(event?.sequence);
+    if (Number.isFinite(sequence)) {
+      return sequence;
+    }
+    const createdAt = Date.parse(event?.created_at || "");
+    if (Number.isFinite(createdAt)) {
+      return createdAt;
+    }
+    return index;
+  };
+  return rows
+    .map((event, index) => ({ event, order: eventOrder(event, index) }))
+    .sort((leftItem, rightItem) => {
+      const left = leftItem.event;
+      const right = rightItem.event;
+      const rankDelta = statusRank(left.status) - statusRank(right.status);
+      if (rankDelta !== 0) {
+        return rankDelta;
+      }
+      return rightItem.order - leftItem.order;
+    })
+    .map((item) => item.event);
+}
+
+function QueryLoadingPanel({ progressEvent, progressEvents = [], conversationId = "", userInput = "" }) {
   const currentEvent = progressEvent || progressEvents[progressEvents.length - 1] || null;
-  const recentEvents = progressEvents.slice(-4).reverse();
+  const terminalRows = getProgressDisplayRows(progressEvents, currentEvent);
   return (
-    <div className="query-loading-panel" role="status" aria-live="polite" aria-busy="true">
-      <div className="loading-orbit" aria-hidden="true">
-        <span />
-      </div>
-      <div className="loading-status-live">
-        <p className="loading-kicker">实时查询状态</p>
-        <h3>{currentEvent?.label || "准备开始查询"}</h3>
-        <p>{formatProgressStatus(currentEvent)}</p>
-      </div>
-      <div>
-        <h3>正在执行查询</h3>
-        <p>系统正在选择 API、生成查询计划并请求 SAP。</p>
-      </div>
-      {recentEvents.length > 0 ? (
-        <div className="loading-progress-list" aria-label="最近查询步骤">
-          {recentEvents.map((event) => (
-            <div className="loading-progress-row" key={event.key || event.label || event.sequence}>
-              <span>{event.label}</span>
-              <strong>{formatProgressStatus(event)}</strong>
-            </div>
-          ))}
+    <div className="query-terminal-backdrop" role="presentation">
+      <section
+        className="query-terminal-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="query-terminal-title"
+        aria-describedby="query-terminal-current"
+      >
+        <div className="terminal-titlebar">
+          <div className="terminal-window-controls" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </div>
+          <h3 id="query-terminal-title">SAPClaw terminal</h3>
+          <span className="terminal-connection">live</span>
         </div>
-      ) : null}
-      <div className="loading-steps" aria-hidden="true">
-        <span />
-        <span />
-        <span />
-      </div>
+
+        <div className="terminal-body" role="status" aria-live="polite" aria-busy="true">
+          <div className="terminal-command-block">
+            <p>
+              <span className="terminal-prompt">$</span>
+              <span>sapclaw query --session {conversationId || "auto"}</span>
+            </p>
+            {userInput ? (
+              <p>
+                <span className="terminal-prompt">&gt;</span>
+                <span>{userInput}</span>
+              </p>
+            ) : null}
+          </div>
+
+          <div className="terminal-current" id="query-terminal-current">
+            <span>current</span>
+            <strong>{currentEvent?.label || "等待后端开始处理"}</strong>
+            <em>{formatProgressStatus(currentEvent)}</em>
+          </div>
+
+          <ol className="terminal-log-list" aria-label="查询执行进度">
+            {terminalRows.map((event) => (
+              <li className="terminal-log-row" key={event.key || event.label || event.sequence}>
+                <span className="terminal-log-time">{formatProgressTime(event)}</span>
+                <span className={`terminal-log-status terminal-status-${event.status || "running"}`}>
+                  {progressStatusLabels[event.status] || event.status || "处理中"}
+                </span>
+                <span className="terminal-log-label">{event.label}</span>
+                {Number.isFinite(Number(event.duration_ms)) && Number(event.duration_ms) >= 0 ? (
+                  <span className="terminal-log-duration">{formatDuration(Number(event.duration_ms))}</span>
+                ) : null}
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
     </div>
   );
 }
@@ -1174,7 +1252,7 @@ export default function App() {
       status: "running",
       sequence: 0,
     };
-    setProgressEvents([initialProgress]);
+    setProgressEvents([]);
     setCurrentProgressEvent(initialProgress);
 
     if (!conversationId || typeof EventSource === "undefined") {
@@ -1400,8 +1478,6 @@ export default function App() {
               {loading ? <span className="status-pill pending">执行中</span> : null}
             </div>
 
-            {loading ? <QueryLoadingPanel progressEvent={currentProgressEvent} progressEvents={progressEvents} /> : null}
-
             <form onSubmit={handleSubmit} className="query-form">
               <label>
                 <textarea
@@ -1465,7 +1541,7 @@ export default function App() {
               <div className="actions">
                 <button type="submit" disabled={loading}>
                   <span className="button-label">
-                    {loading ? <span className="button-spinner" aria-hidden="true" /> : <SearchIcon />}
+                    {loading ? null : <SearchIcon />}
                     {loading ? "执行中..." : "开始查询"}
                   </span>
                 </button>
@@ -1511,6 +1587,14 @@ export default function App() {
           />
         </section>
       </main>
+      {loading ? (
+        <QueryLoadingPanel
+          progressEvent={currentProgressEvent}
+          progressEvents={progressEvents}
+          conversationId={form.conversation_id}
+          userInput={form.user_input}
+        />
+      ) : null}
     </div>
   );
 }
