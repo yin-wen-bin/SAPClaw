@@ -132,20 +132,6 @@ npm run build --prefix frontend
 
 部分测试会检查本地 API 索引行为，需要开发环境中存在 `data/index/`。
 
-## 外部访问与鉴权
-
-本地开发时，SAPClaw 应绑定在 `127.0.0.1`。
-
-如果部署到外部、共享环境或反向代理后方：
-
-- 设置 `SAPCLAW_API_KEYS`，使用一个或多个高强度 API key。
-- 要求调用公开查询接口时携带 `X-API-Key`。
-- 将 SAPClaw 放在 HTTPS 和已鉴权的反向代理之后。
-- 不要暴露 `env/`、本地索引文件、原始 SAP metadata 或测试用例资产。
-- 除非在网关层增加等效鉴权，否则将 `/api/v1/agent/*` 视为本地 UI/Agent 集成接口。
-
-安全策略见 `SECURITY.md`。
-
 ## 免责声明
 
 SAPClaw 是一个用于探索 SAP OData API 自然语言访问能力的个人测试和实验工具。
