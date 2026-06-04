@@ -1,0 +1,25 @@
+[
+  {
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_MATERIAL_STOCK_SRV",
+    "description": "This service enables you to retrieve material stock information using the OData protocol with filter data provided in the payload. It can be consumed by external warehouse applications.",
+    "entity_sets": [
+      "A_MaterialSerialNumber",
+      "A_MaterialStock",
+      "A_MatlStkInAcctMod"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "https://sap.example.local/sap/opu/odata/sap/API_MATERIAL_STOCK_SRV/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/f6/8f51a4dc2e46779877a10a301d9138/frameset.htm",
+    "openapi_version": "1.1.0"
+  }
+]

@@ -1,0 +1,999 @@
+[
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmt",
+    "field_name": "MRPArea",
+    "label": "MRP 范围",
+    "business_aliases": [
+      "MRP 范围"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "MRP 范围",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmt",
+    "field_name": "Plant",
+    "label": "工厂",
+    "business_aliases": [
+      "工厂"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "工厂",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmt",
+    "field_name": "PlndIndepRqmtAcctAssgmtCat",
+    "label": "科目分配类别",
+    "business_aliases": [
+      "科目分配类别"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "科目分配类别",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmt",
+    "field_name": "PlndIndepRqmtInternalID",
+    "label": "PIR 指针",
+    "business_aliases": [
+      "PIR 指针",
+      "独立需求指针"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "独立需求指针",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmt",
+    "field_name": "PlndIndepRqmtIsActive",
+    "label": "激活",
+    "business_aliases": [
+      "激活",
+      "标识：版本已激活"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "标识：版本已激活",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmt",
+    "field_name": "PlndIndepRqmtLastChgdDateTime",
+    "label": "时戳",
+    "business_aliases": [
+      "时戳",
+      "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)"
+    ],
+    "data_type": "Edm.DateTimeOffset",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmt",
+    "field_name": "PlndIndepRqmtType",
+    "label": "需求类型",
+    "business_aliases": [
+      "需求类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "需求类型",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmt",
+    "field_name": "PlndIndepRqmtVersion",
+    "label": "版本",
+    "business_aliases": [
+      "版本",
+      "独立需求的版本号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "独立需求的版本号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmt",
+    "field_name": "Product",
+    "label": "物料",
+    "business_aliases": [
+      "物料",
+      "物料编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmt",
+    "field_name": "RequirementPlan",
+    "label": "需求计划",
+    "business_aliases": [
+      "需求计划"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "需求计划",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmt",
+    "field_name": "RequirementPlanIsExternal",
+    "label": "外部计划",
+    "business_aliases": [
+      "外部计划",
+      "指示需求计划为外部计划"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "指示需求计划为外部计划",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmt",
+    "field_name": "RequirementSegment",
+    "label": "需求细分",
+    "business_aliases": [
+      "需求细分"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "需求细分",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmt",
+    "field_name": "Update_mc",
+    "label": "Dyn. Method Control",
+    "business_aliases": [
+      "Dyn. Method Control"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": false,
+    "sortable": false,
+    "allowed_operators": [],
+    "description": "Dyn. Method Control",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmt",
+    "field_name": "WBSElement",
+    "label": "WBS 要素",
+    "business_aliases": [
+      "WBS 要素"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "WBS 要素",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmt",
+    "field_name": "to_PlndIndepRqmtItem_oc",
+    "label": "Dynamic CbA-Control",
+    "business_aliases": [
+      "Dynamic CbA-Control"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": false,
+    "sortable": false,
+    "allowed_operators": [],
+    "description": "Dynamic CbA-Control",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmtItem",
+    "field_name": "LastChangeDate",
+    "label": "上次更改",
+    "business_aliases": [
+      "上次更改",
+      "上次更改的日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "上次更改的日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmtItem",
+    "field_name": "LastChangedByUser",
+    "label": "更改人",
+    "business_aliases": [
+      "更改人",
+      "更改对象的人员姓名"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "更改对象的人员姓名",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmtItem",
+    "field_name": "MRPArea",
+    "label": "MRP 范围",
+    "business_aliases": [
+      "MRP 范围"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "MRP 范围",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmtItem",
+    "field_name": "PeriodType",
+    "label": "期间类型",
+    "business_aliases": [
+      "期间类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "期间类型",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmtItem",
+    "field_name": "PlannedQuantity",
+    "label": "计划数量",
+    "business_aliases": [
+      "计划数量"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "计划数量",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmtItem",
+    "field_name": "Plant",
+    "label": "工厂",
+    "business_aliases": [
+      "工厂"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "工厂",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmtItem",
+    "field_name": "PlndIndepRqmtInternalID",
+    "label": "PIR 指针",
+    "business_aliases": [
+      "PIR 指针",
+      "独立需求指针"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "独立需求指针",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmtItem",
+    "field_name": "PlndIndepRqmtLastChgdDateTime",
+    "label": "时戳",
+    "business_aliases": [
+      "时戳",
+      "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)"
+    ],
+    "data_type": "Edm.DateTimeOffset",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmtItem",
+    "field_name": "PlndIndepRqmtPeriod",
+    "label": "期间",
+    "business_aliases": [
+      "期间",
+      "期间文本"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "期间文本",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmtItem",
+    "field_name": "PlndIndepRqmtPeriodStartDate",
+    "label": "工作日日期",
+    "business_aliases": [
+      "工作日日期",
+      "工作日的日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "工作日的日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmtItem",
+    "field_name": "PlndIndepRqmtType",
+    "label": "需求类型",
+    "business_aliases": [
+      "需求类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "需求类型",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmtItem",
+    "field_name": "PlndIndepRqmtVersion",
+    "label": "版本",
+    "business_aliases": [
+      "版本",
+      "独立需求的版本号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "独立需求的版本号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmtItem",
+    "field_name": "Product",
+    "label": "物料",
+    "business_aliases": [
+      "物料",
+      "物料编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmtItem",
+    "field_name": "RequirementPlan",
+    "label": "需求计划",
+    "business_aliases": [
+      "需求计划"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "需求计划",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmtItem",
+    "field_name": "RequirementSegment",
+    "label": "需求细分",
+    "business_aliases": [
+      "需求细分"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "需求细分",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmtItem",
+    "field_name": "UnitOfMeasure",
+    "label": "基本计量单位",
+    "business_aliases": [
+      "基本计量单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "基本计量单位",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmtItem",
+    "field_name": "Update_mc",
+    "label": "Dyn. Method Control",
+    "business_aliases": [
+      "Dyn. Method Control"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": false,
+    "sortable": false,
+    "allowed_operators": [],
+    "description": "Dyn. Method Control",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmtItem",
+    "field_name": "WithdrawalQuantity",
+    "label": "领料数量",
+    "business_aliases": [
+      "领料数量"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "领料数量",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmtItem",
+    "field_name": "WorkingDayDate",
+    "label": "工作日日期",
+    "business_aliases": [
+      "工作日日期",
+      "工作日的日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "工作日的日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  }
+]

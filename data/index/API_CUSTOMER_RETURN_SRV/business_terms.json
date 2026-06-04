@@ -1,0 +1,6310 @@
+[
+  {
+    "term": "Customer Return Overview Status",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Header Partner",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Header Pricing Element",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Header Related Object",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Header Text",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Returns Order Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Returns Order Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "SD 凭证货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "TransactionCurrency"
+    ],
+    "synonyms": [
+      "凭证货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "上次更改日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "LastChangeDate"
+    ],
+    "synonyms": [
+      "更改日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交货冻结",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "DeliveryBlockReason"
+    ],
+    "synonyms": [
+      "交货冻结（凭证抬头）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交货冻结（凭证抬头）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "DeliveryBlockReason"
+    ],
+    "synonyms": [
+      "交货冻结"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "产品组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "OrganizationDivision"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款方式",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "PaymentMethod"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CustomerPaymentTerms"
+    ],
+    "synonyms": [
+      "付款条件代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款条件代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CustomerPaymentTerms"
+    ],
+    "synonyms": [
+      "付款条件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "信用检查的总体状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "TotalCreditCheckStatus"
+    ],
+    "synonyms": [
+      "信用状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "信用状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "TotalCreditCheckStatus"
+    ],
+    "synonyms": [
+      "信用检查的总体状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "先前凭证类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "ReferenceSDDocumentCategory"
+    ],
+    "synonyms": [
+      "先前销售和分销凭证的凭证类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "先前销售和分销凭证的凭证类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "ReferenceSDDocumentCategory"
+    ],
+    "synonyms": [
+      "先前凭证类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "净值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "TotalNetAmount"
+    ],
+    "synonyms": [
+      "销售凭证的凭证货币净值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证审批状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "SalesDocApprovalStatus"
+    ],
+    "synonyms": [
+      "审批状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CustomerReturnDate"
+    ],
+    "synonyms": [
+      "凭证日期 (接收/发送日期)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证日期 (接收/发送日期)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CustomerReturnDate"
+    ],
+    "synonyms": [
+      "凭证日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "TransactionCurrency"
+    ],
+    "synonyms": [
+      "SD 凭证货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分配",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "AssignmentReference"
+    ],
+    "synonyms": [
+      "分配编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分配编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "AssignmentReference"
+    ],
+    "synonyms": [
+      "分配"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分销渠道",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "DistributionChannel"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建人",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CreatedByUser"
+    ],
+    "synonyms": [
+      "负责创建对象的人员姓名"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CreationDate"
+    ],
+    "synonyms": [
+      "记录创建日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "AccountingDocExternalReference"
+    ],
+    "synonyms": [
+      "参考凭证号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "ReferenceSDDocument"
+    ],
+    "synonyms": [
+      "参考凭证的凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考凭证号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "AccountingDocExternalReference"
+    ],
+    "synonyms": [
+      "参考"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考凭证的凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "ReferenceSDDocument"
+    ],
+    "synonyms": [
+      "参考凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "售达方",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "SoldToParty"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "IncotermsClassification"
+    ],
+    "synonyms": [
+      "国际贸易条款（第 1 部分）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款(部分2)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "IncotermsTransferLocation"
+    ],
+    "synonyms": [
+      "国际贸易条款（第 2 部分）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款位置 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "IncotermsLocation1"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款位置 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "IncotermsLocation2"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款版本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "IncotermsVersion"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款（第 1 部分）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "IncotermsClassification"
+    ],
+    "synonyms": [
+      "国际贸易条款"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款（第 2 部分）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "IncotermsTransferLocation"
+    ],
+    "synonyms": [
+      "国际贸易条款(部分2)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "处理标识编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "RetsMgmtProcess"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "处理状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "RetsMgmtProcessingStatus"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "备选税收分类",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CustomerTaxClassification1"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "外部业务系统标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "SenderBusinessSystemName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "定价和汇率的日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "PricingDate"
+    ],
+    "synonyms": [
+      "定价日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "定价日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "PricingDate"
+    ],
+    "synonyms": [
+      "定价和汇率的日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "审批状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "SalesDocApprovalStatus"
+    ],
+    "synonyms": [
+      "凭证审批状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "审批请求原因",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CustomerReturnApprovalReason"
+    ],
+    "synonyms": [
+      "审批请求原因标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "审批请求原因标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CustomerReturnApprovalReason"
+    ],
+    "synonyms": [
+      "审批请求原因"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "PurchaseOrderByCustomer"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户参考日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CustomerPurchaseOrderDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户的税收分类 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CustomerTaxClassification2"
+    ],
+    "synonyms": [
+      "客户税收分类 2"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户的税收分类 5",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CustomerTaxClassification5"
+    ],
+    "synonyms": [
+      "客户税收分类 5"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户的税收分类 6",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CustomerTaxClassification6"
+    ],
+    "synonyms": [
+      "客户税收分类 6"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户的税收分类 7",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CustomerTaxClassification7"
+    ],
+    "synonyms": [
+      "客户税收分类 7"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户的税收分类 8",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CustomerTaxClassification8"
+    ],
+    "synonyms": [
+      "客户税收分类 8"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户的税收分类 9",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CustomerTaxClassification9"
+    ],
+    "synonyms": [
+      "客户税收分类 9"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户税分类 3",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CustomerTaxClassification3"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户税收分类 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CustomerTaxClassification2"
+    ],
+    "synonyms": [
+      "客户的税收分类 2"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户税收分类 4",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CustomerTaxClassification4"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户税收分类 5",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CustomerTaxClassification5"
+    ],
+    "synonyms": [
+      "客户的税收分类 5"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户税收分类 6",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CustomerTaxClassification6"
+    ],
+    "synonyms": [
+      "客户的税收分类 6"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户税收分类 7",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CustomerTaxClassification7"
+    ],
+    "synonyms": [
+      "客户的税收分类 7"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户税收分类 8",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CustomerTaxClassification8"
+    ],
+    "synonyms": [
+      "客户的税收分类 8"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户税收分类 9",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CustomerTaxClassification9"
+    ],
+    "synonyms": [
+      "客户的税收分类 9"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户退货",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CustomerReturn"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户退货类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CustomerReturnType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户采购订单类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CustomerPurchaseOrderType"
+    ],
+    "synonyms": [
+      "采购订单类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "开票冻结",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "HeaderBillingBlockReason"
+    ],
+    "synonyms": [
+      "销售与分销凭证中的开票冻结"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总体处理状态（抬头/所有项目）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "OverallSDProcessStatus"
+    ],
+    "synonyms": [
+      "总体状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总体状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "OverallSDProcessStatus"
+    ],
+    "synonyms": [
+      "总体处理状态（抬头/所有项目）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "拒绝状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "OverallSDDocumentRejectionSts"
+    ],
+    "synonyms": [
+      "拒绝状态（所有项目）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "拒绝状态（所有项目）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "OverallSDDocumentRejectionSts"
+    ],
+    "synonyms": [
+      "拒绝状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "更改日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "LastChangeDate"
+    ],
+    "synonyms": [
+      "上次更改日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物流状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "RetsMgmtLogProcgStatus"
+    ],
+    "synonyms": [
+      "退货的物流处理状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "装运类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "ShippingType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "要求的交货日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "RequestedDeliveryDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单原因",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "SDDocumentReason"
+    ],
+    "synonyms": [
+      "订单原因（业务交易原因）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单原因（业务交易原因）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "SDDocumentReason"
+    ],
+    "synonyms": [
+      "订单原因"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "记录创建日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CreationDate"
+    ],
+    "synonyms": [
+      "创建日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "负责创建对象的人员姓名",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CreatedByUser"
+    ],
+    "synonyms": [
+      "创建人"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "退款状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "RetsMgmtCompnProcgStatus"
+    ],
+    "synonyms": [
+      "退货退款确定的状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "退货的物流处理状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "RetsMgmtLogProcgStatus"
+    ],
+    "synonyms": [
+      "物流状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "退货退款确定的状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "RetsMgmtCompnProcgStatus"
+    ],
+    "synonyms": [
+      "退款状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购订单类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "CustomerPurchaseOrderType"
+    ],
+    "synonyms": [
+      "客户采购订单类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售与分销凭证中的开票冻结",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "HeaderBillingBlockReason"
+    ],
+    "synonyms": [
+      "开票冻结"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售凭证的凭证货币净值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "TotalNetAmount"
+    ],
+    "synonyms": [
+      "净值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售办事处",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "SalesOffice"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "SalesDistrict"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "SalesGroup"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售组织",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "SalesOrganization"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturn",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "时戳"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "CMR 拒绝原因",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ReturnsRefundRjcnReason"
+    ],
+    "synonyms": [
+      "贷项凭单请求的拒绝原因"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "CRM 对象 GUID",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "CRMObjectUUID"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "CRM 对象标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "CRMObjectID"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "CRM 对象类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "CRMObjectType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "CRM 逻辑系统",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "CRMLogicalSystem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Characteristic Value 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ProductCharacteristic1"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Characteristic Value 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ProductCharacteristic2"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Characteristic Value 3",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ProductCharacteristic3"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Cross-Plant Configurable Material",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "CrossPlantConfigurableProduct"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Date for Pricing and Exchange Rate",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "PricingDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Fashion Collection",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ProductCollection"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Fashion Theme",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ProductTheme"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item Partner",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Item Pricing Element",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Item Related Object",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Item Text",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Item Value Added Service",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Return Process Step",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Returns Order Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Returns Order Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "SD 凭证货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "TransactionCurrency"
+    ],
+    "synonyms": [
+      "凭证货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Schedule Line",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Season Completeness Indicator",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "SeasonCompletenessStatus"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Serial Number",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "上级项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "HigherLevelItem"
+    ],
+    "synonyms": [
+      "物料清单结构中的上级项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "下一个后续活动",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "NextFllwUpActivityForMatlInsp"
+    ],
+    "synonyms": [
+      "物料检验中下一个后续活动的缺省值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交货优先级",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "DeliveryPriority"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "CustomerPaymentTerms"
+    ],
+    "synonyms": [
+      "付款条件代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款条件代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "CustomerPaymentTerms"
+    ],
+    "synonyms": [
+      "付款条件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "体积",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ItemVolume"
+    ],
+    "synonyms": [
+      "项目体积"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "体积单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ItemVolumeUnit"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "Supplier"
+    ],
+    "synonyms": [
+      "供应商科目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商 RMA 编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "SupplierRetMatlAuthzn"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商科目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "Supplier"
+    ],
+    "synonyms": [
+      "供应商"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供货装置",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ReplacementMatlSupplyingPlant"
+    ],
+    "synonyms": [
+      "替换物料的供货工厂"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "净值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "NetAmount"
+    ],
+    "synonyms": [
+      "凭证项目的凭证货币净值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "净重",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ItemNetWeight"
+    ],
+    "synonyms": [
+      "项目净重"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "TransactionCurrency"
+    ],
+    "synonyms": [
+      "SD 凭证货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证项目状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ReturnsDocumentStatus"
+    ],
+    "synonyms": [
+      "项目状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证项目的凭证货币净值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "NetAmount"
+    ],
+    "synonyms": [
+      "净值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "利润中心",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ProfitCenter"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ReferenceSDDocument"
+    ],
+    "synonyms": [
+      "参考凭证的凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考凭证的凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ReferenceSDDocument"
+    ],
+    "synonyms": [
+      "参考凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考凭证类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ReferenceSDDocumentCategory"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ReferenceSDDocumentItem"
+    ],
+    "synonyms": [
+      "参考项目的项目号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考项目的项目号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ReferenceSDDocumentItem"
+    ],
+    "synonyms": [
+      "参考项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "后续活动",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "CustRetItmFollowUpActivity"
+    ],
+    "synonyms": [
+      "后续活动代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "后续活动代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "CustRetItmFollowUpActivity"
+    ],
+    "synonyms": [
+      "后续活动"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "IncotermsClassification"
+    ],
+    "synonyms": [
+      "国际贸易条款（第 1 部分）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款(部分2)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "IncotermsTransferLocation"
+    ],
+    "synonyms": [
+      "国际贸易条款（第 2 部分）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款位置 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "IncotermsLocation1"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款位置 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "IncotermsLocation2"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款（第 1 部分）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "IncotermsClassification"
+    ],
+    "synonyms": [
+      "国际贸易条款"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款（第 2 部分）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "IncotermsTransferLocation"
+    ],
+    "synonyms": [
+      "国际贸易条款(部分2)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "处理标识编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "RetsMgmtProcess"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "处理状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "RetsMgmtItmProcgStatus"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "存储地点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "StorageLocation"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "审批",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "RetsMgmtProcessingBlock"
+    ],
+    "synonyms": [
+      "审批冻结"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "审批冻结",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "RetsMgmtProcessingBlock"
+    ],
+    "synonyms": [
+      "审批"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "审批状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ReturnsDocumentApprovalStatus"
+    ],
+    "synonyms": [
+      "退货处理的批准状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户 RMA 编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "CustRetMatlAuthzn"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "PurchaseOrderByCustomer"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户所用的物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "MaterialByCustomer"
+    ],
+    "synonyms": [
+      "客户物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户检验代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "CustomerRetMatlInspResultCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "MaterialByCustomer"
+    ],
+    "synonyms": [
+      "客户所用的物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户退货",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "CustomerReturn"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户退货项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "CustomerReturnItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ProductionPlant"
+    ],
+    "synonyms": [
+      "工厂(自有或外部)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "NextPlantForFollowUpActivity"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂(自有或外部)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ProductionPlant"
+    ],
+    "synonyms": [
+      "工厂"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已请求数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "RequestedQuantity"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已请求数量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "RequestedQuantityUnit"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "开票冻结",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ItemBillingBlockReason"
+    ],
+    "synonyms": [
+      "项目的出具发票冻结"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总体处理状态（项目）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "SDProcessStatus"
+    ],
+    "synonyms": [
+      "总体状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总体状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "SDProcessStatus"
+    ],
+    "synonyms": [
+      "总体处理状态（项目）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批次",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "Batch"
+    ],
+    "synonyms": [
+      "批次编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批次编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "Batch"
+    ],
+    "synonyms": [
+      "批次"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "拒绝原因",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "SalesDocumentRjcnReason"
+    ],
+    "synonyms": [
+      "销售凭证的拒绝原因"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "拒绝状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "SDDocumentRejectionStatus"
+    ],
+    "synonyms": [
+      "拒绝状态（项目）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "拒绝状态（项目）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "SDDocumentRejectionStatus"
+    ],
+    "synonyms": [
+      "拒绝状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "替换数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ReplacementMaterialQuantity"
+    ],
+    "synonyms": [
+      "替换物料数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "替换物料数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ReplacementMaterialQuantity"
+    ],
+    "synonyms": [
+      "替换数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "替换物料的供货工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ReplacementMatlSupplyingPlant"
+    ],
+    "synonyms": [
+      "供货装置"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "替换物料计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ReplacementMaterialQtyUnit"
+    ],
+    "synonyms": [
+      "替换计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "替换计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ReplacementMaterialQtyUnit"
+    ],
+    "synonyms": [
+      "替换物料计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "检验代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "RetMatlInspResultCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "毛重",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ItemGrossWeight"
+    ],
+    "synonyms": [
+      "项目的毛重"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料检验中下一个后续活动的缺省值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "NextFllwUpActivityForMatlInsp"
+    ],
+    "synonyms": [
+      "下一个后续活动"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料清单结构中的上级项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "HigherLevelItem"
+    ],
+    "synonyms": [
+      "上级项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料的税分类",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ProductTaxClassification1"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料的税分类",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ProductTaxClassification2"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料的税分类",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ProductTaxClassification3"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料的税分类",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ProductTaxClassification4"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料的税分类",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ProductTaxClassification5"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料的税分类",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ProductTaxClassification6"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料的税分类",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ProductTaxClassification7"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料的税分类",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ProductTaxClassification8"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料的税分类",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ProductTaxClassification9"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "MaterialGroup"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物流状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "RetsMgmtItmLogProcgStatus"
+    ],
+    "synonyms": [
+      "退货的物流处理状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "置换物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ReplacementMaterial"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "装运点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ShippingPoint"
+    ],
+    "synonyms": [
+      "装运点/收货点"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "装运点/收货点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ShippingPoint"
+    ],
+    "synonyms": [
+      "装运点"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "装运类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ShippingType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "贷项凭单请求的拒绝原因",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ReturnsRefundRjcnReason"
+    ],
+    "synonyms": [
+      "CMR 拒绝原因"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "转运工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ReturnsTransshipmentPlant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "退款代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ReturnsRefundExtent"
+    ],
+    "synonyms": [
+      "退货退款代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "退款处理",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ReturnsRefundProcgMode"
+    ],
+    "synonyms": [
+      "退货的退款处理模式"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "退款状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "RetsMgmtItmCompnProcgStatus"
+    ],
+    "synonyms": [
+      "退货退款确定的状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "退款类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ReturnsRefundType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "退货原因",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ReturnReason"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "退货处理的批准状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ReturnsDocumentApprovalStatus"
+    ],
+    "synonyms": [
+      "审批状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "退货的物流处理状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "RetsMgmtItmLogProcgStatus"
+    ],
+    "synonyms": [
+      "物流状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "退货的退款处理模式",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ReturnsRefundProcgMode"
+    ],
+    "synonyms": [
+      "退款处理"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "退货退款代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ReturnsRefundExtent"
+    ],
+    "synonyms": [
+      "退款代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "退货退款确定的状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "RetsMgmtItmCompnProcgStatus"
+    ],
+    "synonyms": [
+      "退款状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "重量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ItemWeightUnit"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售凭证的拒绝原因",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "SalesDocumentRjcnReason"
+    ],
+    "synonyms": [
+      "拒绝原因"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售凭证项目类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "CustomerReturnItemCategory"
+    ],
+    "synonyms": [
+      "项目类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售订单项目短文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "CustomerReturnItemText"
+    ],
+    "synonyms": [
+      "项目描述"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "需求细分",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "RequirementSegment"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目体积",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ItemVolume"
+    ],
+    "synonyms": [
+      "体积"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目净重",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ItemNetWeight"
+    ],
+    "synonyms": [
+      "净重"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目描述",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "CustomerReturnItemText"
+    ],
+    "synonyms": [
+      "销售订单项目短文本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ReturnsDocumentStatus"
+    ],
+    "synonyms": [
+      "凭证项目状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目的出具发票冻结",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ItemBillingBlockReason"
+    ],
+    "synonyms": [
+      "开票冻结"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目的毛重",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "ItemGrossWeight"
+    ],
+    "synonyms": [
+      "毛重"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "CustomerReturnItemCategory"
+    ],
+    "synonyms": [
+      "销售凭证项目类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "RetsMgmtProcessItem"
+    ],
+    "synonyms": [
+      "项目编号处理中"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目编号处理中",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItem",
+    "mapped_fields": [
+      "RetsMgmtProcessItem"
+    ],
+    "synonyms": [
+      "项目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item Partner",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPartner",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Returns Order Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPartner",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Returns Order Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPartner",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "供应商",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPartner",
+    "mapped_fields": [
+      "Supplier"
+    ],
+    "synonyms": [
+      "供应商科目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商科目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPartner",
+    "mapped_fields": [
+      "Supplier"
+    ],
+    "synonyms": [
+      "供应商"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "合作伙伴职能",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPartner",
+    "mapped_fields": [
+      "PartnerFunction"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "员工号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPartner",
+    "mapped_fields": [
+      "Personnel"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPartner",
+    "mapped_fields": [
+      "Customer"
+    ],
+    "synonyms": [
+      "客户编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPartner",
+    "mapped_fields": [
+      "Customer"
+    ],
+    "synonyms": [
+      "客户"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "联系人",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPartner",
+    "mapped_fields": [
+      "ContactPerson"
+    ],
+    "synonyms": [
+      "联系人编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "联系人编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPartner",
+    "mapped_fields": [
+      "ContactPerson"
+    ],
+    "synonyms": [
+      "联系人"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售和分销凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPartner",
+    "mapped_fields": [
+      "CustomerReturn"
+    ],
+    "synonyms": [
+      "销售和分销凭证号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售和分销凭证号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPartner",
+    "mapped_fields": [
+      "CustomerReturn"
+    ],
+    "synonyms": [
+      "销售和分销凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售和分销凭证的项目号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPartner",
+    "mapped_fields": [
+      "CustomerReturnItem"
+    ],
+    "synonyms": [
+      "项目(SD)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目(SD)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPartner",
+    "mapped_fields": [
+      "CustomerReturnItem"
+    ],
+    "synonyms": [
+      "销售和分销凭证的项目号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item Pricing Element",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Returns Order Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Returns Order Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "SD 凭证货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "TransactionCurrency"
+    ],
+    "synonyms": [
+      "凭证货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "代扣税代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "WithholdingTaxCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "公司间开票",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "CndnIsRelevantForIntcoBilling"
+    ],
+    "synonyms": [
+      "公司间开票的条件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "公司间开票的条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "CndnIsRelevantForIntcoBilling"
+    ],
+    "synonyms": [
+      "公司间开票"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证中的条件单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionQuantityUnit"
+    ],
+    "synonyms": [
+      "条件单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "TransactionCurrency"
+    ],
+    "synonyms": [
+      "SD 凭证货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发票清单条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "CndnIsRelevantForInvoiceList"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "变式条件键值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "VariantCondition"
+    ],
+    "synonyms": [
+      "变式键值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "变式键值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "VariantCondition"
+    ],
+    "synonyms": [
+      "变式条件键值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "定价与应计有关  (例如, 运费)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "IsRelevantForAccrual"
+    ],
+    "synonyms": [
+      "应计项"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "定价单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionQuantity"
+    ],
+    "synonyms": [
+      "条件定价单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "定价控制",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionControl"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "定价时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "PricingDateTime"
+    ],
+    "synonyms": [
+      "有效期自"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已手动更改",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionIsManuallyChanged"
+    ],
+    "synonyms": [
+      "已手动更改条件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已手动更改条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionIsManuallyChanged"
+    ],
+    "synonyms": [
+      "已手动更改"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "应计项",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "IsRelevantForAccrual"
+    ],
+    "synonyms": [
+      "定价与应计有关  (例如, 运费)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效期自",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "PricingDateTime"
+    ],
+    "synonyms": [
+      "定价时戳"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "未激活条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionInactiveReason"
+    ],
+    "synonyms": [
+      "条件未激活"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionAmount"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionQuantityUnit"
+    ],
+    "synonyms": [
+      "凭证中的条件单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件因子",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "FactorForConditionBasisValue"
+    ],
+    "synonyms": [
+      "条件基本值的因子"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件因子",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "PeriodFactorForCndnBasisValue"
+    ],
+    "synonyms": [
+      "条件基础因子（期间）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件基准",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionBaseValue"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件基本值的因子",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "FactorForConditionBasisValue"
+    ],
+    "synonyms": [
+      "条件因子"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件基础因子（期间）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "PeriodFactorForCndnBasisValue"
+    ],
+    "synonyms": [
+      "条件因子"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件定价单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionQuantity"
+    ],
+    "synonyms": [
+      "定价单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件未激活",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionInactiveReason"
+    ],
+    "synonyms": [
+      "未激活条件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件来源",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionOrigin"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件用作统计",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionIsForStatistics"
+    ],
+    "synonyms": [
+      "统计"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件的序号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionSequentialNumber"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件的计算类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionCalculationType"
+    ],
+    "synonyms": [
+      "计算类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件等级计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionScaleBasisUnit"
+    ],
+    "synonyms": [
+      "等级计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件类",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionClass"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionCategory"
+    ],
+    "synonyms": [
+      "条件类别（示例：税收、运费、价格、成本）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件类别（示例：税收、运费、价格、成本）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionCategory"
+    ],
+    "synonyms": [
+      "条件类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件舍入差额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "CndnRoundingOffDiffAmount"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "PricingProcedureCounter"
+    ],
+    "synonyms": [
+      "计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件计数器 (抬头)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "PrcgProcedureCounterForHeader"
+    ],
+    "synonyms": [
+      "计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件记录编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionRecord"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件金额或百分比",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionRateValue"
+    ],
+    "synonyms": [
+      "金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件项目号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "CustomerReturnItem"
+    ],
+    "synonyms": [
+      "项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "步骤编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "PricingProcedureStep"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "用于变式配置",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionIsForConfiguration"
+    ],
+    "synonyms": [
+      "用于变式配置的条件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "用于变式配置的条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionIsForConfiguration"
+    ],
+    "synonyms": [
+      "用于变式配置"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "TaxCode"
+    ],
+    "synonyms": [
+      "销售/购买税代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "等级基本值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionScaleBasisValue"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "等级基础",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "PricingScaleBasis"
+    ],
+    "synonyms": [
+      "等级基础标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "等级基础标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "PricingScaleBasis"
+    ],
+    "synonyms": [
+      "等级基础"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "等级类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "PricingScaleType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "等级计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionScaleBasisUnit"
+    ],
+    "synonyms": [
+      "条件等级计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "等级货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionScaleBasisCurrency"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "组条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "IsGroupCondition"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "结构条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "StructureCondition"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "统计",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionIsForStatistics"
+    ],
+    "synonyms": [
+      "条件用作统计"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "PricingProcedureCounter"
+    ],
+    "synonyms": [
+      "条件计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "PrcgProcedureCounterForHeader"
+    ],
+    "synonyms": [
+      "条件计数器 (抬头)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计算类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionCalculationType"
+    ],
+    "synonyms": [
+      "条件的计算类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionCurrency"
+    ],
+    "synonyms": [
+      "货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionCurrency"
+    ],
+    "synonyms": [
+      "货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "ConditionRateValue"
+    ],
+    "synonyms": [
+      "条件金额或百分比"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售/购买税代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "TaxCode"
+    ],
+    "synonyms": [
+      "税码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "CustomerReturn"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "mapped_fields": [
+      "CustomerReturnItem"
+    ],
+    "synonyms": [
+      "条件项目号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item Related Object",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemRelatedObj",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Returns Order Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemRelatedObj",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Returns Order Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemRelatedObj",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "SD 凭证的相关对象参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemRelatedObj",
+    "mapped_fields": [
+      "SDDocRelatedObjectReference1"
+    ],
+    "synonyms": [
+      "相关对象参考"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "SD 凭证的相关对象参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemRelatedObj",
+    "mapped_fields": [
+      "SDDocRelatedObjectReference2"
+    ],
+    "synonyms": [
+      "相关对象参考"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "SD 凭证的相关对象类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemRelatedObj",
+    "mapped_fields": [
+      "SDDocumentRelatedObjectType"
+    ],
+    "synonyms": [
+      "相关对象类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "SD 凭证的相关对象系统",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemRelatedObj",
+    "mapped_fields": [
+      "SDDocRelatedObjectSystem"
+    ],
+    "synonyms": [
+      "相关对象系统"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "SD 凭证相关对象的序号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemRelatedObj",
+    "mapped_fields": [
+      "SDDocRelatedObjectSequenceNmbr"
+    ],
+    "synonyms": [
+      "序号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "序号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemRelatedObj",
+    "mapped_fields": [
+      "SDDocRelatedObjectSequenceNmbr"
+    ],
+    "synonyms": [
+      "SD 凭证相关对象的序号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "相关对象参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemRelatedObj",
+    "mapped_fields": [
+      "SDDocRelatedObjectReference1"
+    ],
+    "synonyms": [
+      "SD 凭证的相关对象参考"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "相关对象参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemRelatedObj",
+    "mapped_fields": [
+      "SDDocRelatedObjectReference2"
+    ],
+    "synonyms": [
+      "SD 凭证的相关对象参考"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "相关对象类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemRelatedObj",
+    "mapped_fields": [
+      "SDDocumentRelatedObjectType"
+    ],
+    "synonyms": [
+      "SD 凭证的相关对象类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "相关对象系统",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemRelatedObj",
+    "mapped_fields": [
+      "SDDocRelatedObjectSystem"
+    ],
+    "synonyms": [
+      "SD 凭证的相关对象系统"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售订单",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemRelatedObj",
+    "mapped_fields": [
+      "CustomerReturn"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售订单项",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemRelatedObj",
+    "mapped_fields": [
+      "CustomerReturnItem"
+    ],
+    "synonyms": [
+      "项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemRelatedObj",
+    "mapped_fields": [
+      "CustomerReturnItem"
+    ],
+    "synonyms": [
+      "销售订单项"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item Text",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemText",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Returns Order Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemText",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Returns Order Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemText",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "字符串",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemText",
+    "mapped_fields": [
+      "LongText"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户退货",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemText",
+    "mapped_fields": [
+      "CustomerReturn"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户退货项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemText",
+    "mapped_fields": [
+      "CustomerReturnItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "文本标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemText",
+    "mapped_fields": [
+      "LongTextID"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "语言代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnItemText",
+    "mapped_fields": [
+      "Language"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Customer Return Overview Status",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnOverviewStatus",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnOverviewStatus",
+    "mapped_fields": [
+      "ReturnsDocument"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "处理标识编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnOverviewStatus",
+    "mapped_fields": [
+      "RetsMgmtProcess"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "处理状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnOverviewStatus",
+    "mapped_fields": [
+      "RetsMgmtProcessingStatus"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物流状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnOverviewStatus",
+    "mapped_fields": [
+      "RetsMgmtLogProcgStatus"
+    ],
+    "synonyms": [
+      "退货的物流处理状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "退款状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnOverviewStatus",
+    "mapped_fields": [
+      "RetsMgmtCompnProcgStatus"
+    ],
+    "synonyms": [
+      "退货退款确定的状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "退货的物流处理状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnOverviewStatus",
+    "mapped_fields": [
+      "RetsMgmtLogProcgStatus"
+    ],
+    "synonyms": [
+      "物流状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "退货退款确定的状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnOverviewStatus",
+    "mapped_fields": [
+      "RetsMgmtCompnProcgStatus"
+    ],
+    "synonyms": [
+      "退款状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Header Partner",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPartner",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Returns Order Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPartner",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "供应商",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPartner",
+    "mapped_fields": [
+      "Supplier"
+    ],
+    "synonyms": [
+      "供应商科目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商科目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPartner",
+    "mapped_fields": [
+      "Supplier"
+    ],
+    "synonyms": [
+      "供应商"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "合作伙伴职能",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPartner",
+    "mapped_fields": [
+      "PartnerFunction"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "员工号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPartner",
+    "mapped_fields": [
+      "Personnel"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPartner",
+    "mapped_fields": [
+      "Customer"
+    ],
+    "synonyms": [
+      "客户编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPartner",
+    "mapped_fields": [
+      "Customer"
+    ],
+    "synonyms": [
+      "客户"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "联系人",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPartner",
+    "mapped_fields": [
+      "ContactPerson"
+    ],
+    "synonyms": [
+      "联系人编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "联系人编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPartner",
+    "mapped_fields": [
+      "ContactPerson"
+    ],
+    "synonyms": [
+      "联系人"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售和分销凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPartner",
+    "mapped_fields": [
+      "CustomerReturn"
+    ],
+    "synonyms": [
+      "销售和分销凭证号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售和分销凭证号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPartner",
+    "mapped_fields": [
+      "CustomerReturn"
+    ],
+    "synonyms": [
+      "销售和分销凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Header Pricing Element",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Returns Order Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "SD 凭证货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "TransactionCurrency"
+    ],
+    "synonyms": [
+      "凭证货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "代扣税代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "WithholdingTaxCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "公司间开票",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "CndnIsRelevantForIntcoBilling"
+    ],
+    "synonyms": [
+      "公司间开票的条件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "公司间开票的条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "CndnIsRelevantForIntcoBilling"
+    ],
+    "synonyms": [
+      "公司间开票"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证中的条件单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionQuantityUnit"
+    ],
+    "synonyms": [
+      "条件单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "TransactionCurrency"
+    ],
+    "synonyms": [
+      "SD 凭证货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "变式条件键值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "VariantCondition"
+    ],
+    "synonyms": [
+      "变式键值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "变式键值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "VariantCondition"
+    ],
+    "synonyms": [
+      "变式条件键值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "定价单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionQuantity"
+    ],
+    "synonyms": [
+      "条件定价单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "定价控制",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionControl"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "定价时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "PricingDateTime"
+    ],
+    "synonyms": [
+      "有效期自"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已手动更改",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionIsManuallyChanged"
+    ],
+    "synonyms": [
+      "已手动更改条件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已手动更改条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionIsManuallyChanged"
+    ],
+    "synonyms": [
+      "已手动更改"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效期自",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "PricingDateTime"
+    ],
+    "synonyms": [
+      "定价时戳"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "未激活条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionInactiveReason"
+    ],
+    "synonyms": [
+      "条件未激活"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionAmount"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionQuantityUnit"
+    ],
+    "synonyms": [
+      "凭证中的条件单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件因子",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "FactorForConditionBasisValue"
+    ],
+    "synonyms": [
+      "条件基本值的因子"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件因子",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "PeriodFactorForCndnBasisValue"
+    ],
+    "synonyms": [
+      "条件基础因子（期间）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件基准",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionBaseValue"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件基本值的因子",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "FactorForConditionBasisValue"
+    ],
+    "synonyms": [
+      "条件因子"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件基础因子（期间）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "PeriodFactorForCndnBasisValue"
+    ],
+    "synonyms": [
+      "条件因子"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件定价单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionQuantity"
+    ],
+    "synonyms": [
+      "定价单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件未激活",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionInactiveReason"
+    ],
+    "synonyms": [
+      "未激活条件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件来源",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionOrigin"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件用作统计",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionIsForStatistics"
+    ],
+    "synonyms": [
+      "统计"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件的序号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionSequentialNumber"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件的计算类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionCalculationType"
+    ],
+    "synonyms": [
+      "计算类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件等级计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionScaleBasisUnit"
+    ],
+    "synonyms": [
+      "等级计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件类",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionClass"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionCategory"
+    ],
+    "synonyms": [
+      "条件类别（示例：税收、运费、价格、成本）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件类别（示例：税收、运费、价格、成本）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionCategory"
+    ],
+    "synonyms": [
+      "条件类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件舍入差额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "CndnRoundingOffDiffAmount"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "PricingProcedureCounter"
+    ],
+    "synonyms": [
+      "计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件计数器 (抬头)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "PrcgProcedureCounterForHeader"
+    ],
+    "synonyms": [
+      "计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件记录编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionRecord"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件金额或百分比",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionRateValue"
+    ],
+    "synonyms": [
+      "金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "步骤编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "PricingProcedureStep"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "用于变式配置",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionIsForConfiguration"
+    ],
+    "synonyms": [
+      "用于变式配置的条件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "用于变式配置的条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionIsForConfiguration"
+    ],
+    "synonyms": [
+      "用于变式配置"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "TaxCode"
+    ],
+    "synonyms": [
+      "销售/购买税代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "等级基本值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionScaleBasisValue"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "等级基础",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "PricingScaleBasis"
+    ],
+    "synonyms": [
+      "等级基础标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "等级基础标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "PricingScaleBasis"
+    ],
+    "synonyms": [
+      "等级基础"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "等级类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "PricingScaleType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "等级计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionScaleBasisUnit"
+    ],
+    "synonyms": [
+      "条件等级计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "等级货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionScaleBasisCurrency"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "组条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "IsGroupCondition"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "结构条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "StructureCondition"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "统计",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionIsForStatistics"
+    ],
+    "synonyms": [
+      "条件用作统计"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "PricingProcedureCounter"
+    ],
+    "synonyms": [
+      "条件计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "PrcgProcedureCounterForHeader"
+    ],
+    "synonyms": [
+      "条件计数器 (抬头)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计算类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionCalculationType"
+    ],
+    "synonyms": [
+      "条件的计算类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionCurrency"
+    ],
+    "synonyms": [
+      "货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionCurrency"
+    ],
+    "synonyms": [
+      "货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "ConditionRateValue"
+    ],
+    "synonyms": [
+      "条件金额或百分比"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售/购买税代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "TaxCode"
+    ],
+    "synonyms": [
+      "税码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnPrcgElmnt",
+    "mapped_fields": [
+      "CustomerReturn"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Return Process Step",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnProcessStep",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Returns Order Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnProcessStep",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Returns Order Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnProcessStep",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "凭证类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnProcessStep",
+    "mapped_fields": [
+      "ReturnsDocumentType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnProcessStep",
+    "mapped_fields": [
+      "ReturnsReferenceDocumentType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnProcessStep",
+    "mapped_fields": [
+      "ReturnsDocument"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnProcessStep",
+    "mapped_fields": [
+      "ReturnsReferenceDocument"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnProcessStep",
+    "mapped_fields": [
+      "ReturnsDocumentItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnProcessStep",
+    "mapped_fields": [
+      "ReturnsReferenceDocumentItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证项目状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnProcessStep",
+    "mapped_fields": [
+      "ReturnsDocumentStatus"
+    ],
+    "synonyms": [
+      "项目状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "处理标识编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnProcessStep",
+    "mapped_fields": [
+      "RetsMgmtProcess"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "审批状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnProcessStep",
+    "mapped_fields": [
+      "ReturnsDocumentApprovalStatus"
+    ],
+    "synonyms": [
+      "退货处理的批准状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "执行步骤状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnProcessStep",
+    "mapped_fields": [
+      "RetsMgmtProcStepExecStatus"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "拆分标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnProcessStep",
+    "mapped_fields": [
+      "RetsMgmtProcItmQtySplit"
+    ],
+    "synonyms": [
+      "拆分标识编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "拆分标识编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnProcessStep",
+    "mapped_fields": [
+      "RetsMgmtProcItmQtySplit"
+    ],
+    "synonyms": [
+      "拆分标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "步骤标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnProcessStep",
+    "mapped_fields": [
+      "RetsMgmtProcessStep"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "退货处理的批准状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnProcessStep",
+    "mapped_fields": [
+      "ReturnsDocumentApprovalStatus"
+    ],
+    "synonyms": [
+      "审批状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnProcessStep",
+    "mapped_fields": [
+      "ReturnsDocumentStatus"
+    ],
+    "synonyms": [
+      "凭证项目状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnProcessStep",
+    "mapped_fields": [
+      "RetsMgmtProcessItem"
+    ],
+    "synonyms": [
+      "项目编号处理中"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目编号处理中",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnProcessStep",
+    "mapped_fields": [
+      "RetsMgmtProcessItem"
+    ],
+    "synonyms": [
+      "项目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Header Related Object",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnRelatedObject",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Returns Order Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnRelatedObject",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "SD 凭证的相关对象参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnRelatedObject",
+    "mapped_fields": [
+      "SDDocRelatedObjectReference1"
+    ],
+    "synonyms": [
+      "相关对象参考"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "SD 凭证的相关对象参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnRelatedObject",
+    "mapped_fields": [
+      "SDDocRelatedObjectReference2"
+    ],
+    "synonyms": [
+      "相关对象参考"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "SD 凭证的相关对象类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnRelatedObject",
+    "mapped_fields": [
+      "SDDocumentRelatedObjectType"
+    ],
+    "synonyms": [
+      "相关对象类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "SD 凭证的相关对象系统",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnRelatedObject",
+    "mapped_fields": [
+      "SDDocRelatedObjectSystem"
+    ],
+    "synonyms": [
+      "相关对象系统"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "SD 凭证相关对象的序号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnRelatedObject",
+    "mapped_fields": [
+      "SDDocRelatedObjectSequenceNmbr"
+    ],
+    "synonyms": [
+      "序号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "序号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnRelatedObject",
+    "mapped_fields": [
+      "SDDocRelatedObjectSequenceNmbr"
+    ],
+    "synonyms": [
+      "SD 凭证相关对象的序号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "相关对象参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnRelatedObject",
+    "mapped_fields": [
+      "SDDocRelatedObjectReference1"
+    ],
+    "synonyms": [
+      "SD 凭证的相关对象参考"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "相关对象参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnRelatedObject",
+    "mapped_fields": [
+      "SDDocRelatedObjectReference2"
+    ],
+    "synonyms": [
+      "SD 凭证的相关对象参考"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "相关对象类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnRelatedObject",
+    "mapped_fields": [
+      "SDDocumentRelatedObjectType"
+    ],
+    "synonyms": [
+      "SD 凭证的相关对象类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "相关对象系统",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnRelatedObject",
+    "mapped_fields": [
+      "SDDocRelatedObjectSystem"
+    ],
+    "synonyms": [
+      "SD 凭证的相关对象系统"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售订单",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnRelatedObject",
+    "mapped_fields": [
+      "CustomerReturn"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Returns Order Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnScheduleLine",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Returns Order Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnScheduleLine",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Schedule Line",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnScheduleLine",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "交货冻结",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnScheduleLine",
+    "mapped_fields": [
+      "DelivBlockReasonForSchedLine"
+    ],
+    "synonyms": [
+      "已针对交货冻结计划行"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已交货数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnScheduleLine",
+    "mapped_fields": [
+      "DeliveredQtyInOrderQtyUnit"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已针对交货冻结计划行",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnScheduleLine",
+    "mapped_fields": [
+      "DelivBlockReasonForSchedLine"
+    ],
+    "synonyms": [
+      "交货冻结"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "未清数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnScheduleLine",
+    "mapped_fields": [
+      "OpenConfdDelivQtyInOrdQtyUnit"
+    ],
+    "synonyms": [
+      "未清的已确认交货数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "未清的已确认交货数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnScheduleLine",
+    "mapped_fields": [
+      "OpenConfdDelivQtyInOrdQtyUnit"
+    ],
+    "synonyms": [
+      "未清数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "确认数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnScheduleLine",
+    "mapped_fields": [
+      "ConfdOrderQtyByMatlAvailCheck"
+    ],
+    "synonyms": [
+      "确认的数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "确认的数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnScheduleLine",
+    "mapped_fields": [
+      "ConfdOrderQtyByMatlAvailCheck"
+    ],
+    "synonyms": [
+      "确认数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划行号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnScheduleLine",
+    "mapped_fields": [
+      "ScheduleLine"
+    ],
+    "synonyms": [
+      "计划行编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划行编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnScheduleLine",
+    "mapped_fields": [
+      "ScheduleLine"
+    ],
+    "synonyms": [
+      "计划行号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnScheduleLine",
+    "mapped_fields": [
+      "CustomerReturn"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售凭证项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnScheduleLine",
+    "mapped_fields": [
+      "CustomerReturnItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnScheduleLine",
+    "mapped_fields": [
+      "OrderQuantityUnit"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Serial Number",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnSerialNumber",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "序列号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnSerialNumber",
+    "mapped_fields": [
+      "SerialNumber"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnSerialNumber",
+    "mapped_fields": [
+      "CustomerReturn"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售凭证项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnSerialNumber",
+    "mapped_fields": [
+      "CustomerReturnItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Header Text",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnText",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Returns Order Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnText",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "字符串",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnText",
+    "mapped_fields": [
+      "LongText"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户退货",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnText",
+    "mapped_fields": [
+      "CustomerReturn"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "文本标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnText",
+    "mapped_fields": [
+      "LongTextID"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "语言代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnText",
+    "mapped_fields": [
+      "Language"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Document Number of Reference Document",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnValAddedSrvc",
+    "mapped_fields": [
+      "CustomerReturn"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item Value Added Service",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnValAddedSrvc",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Item number of the reference item",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnValAddedSrvc",
+    "mapped_fields": [
+      "CustomerReturnItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Manual Entry Indicator",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnValAddedSrvc",
+    "mapped_fields": [
+      "ValAddedSrvcIsCreatedManually"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Procurement Relevant for VAS Material",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnValAddedSrvc",
+    "mapped_fields": [
+      "ValAddedSrvcIsRlvtForProcmt"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Requirement Relevancy Flag for VAS Material",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnValAddedSrvc",
+    "mapped_fields": [
+      "ValAddedSrvcHasToBeOrdered"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "VAS Charge Codes",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnValAddedSrvc",
+    "mapped_fields": [
+      "ValueAddedServiceChargeCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "VAS Field 1 for Free Use by Customer",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnValAddedSrvc",
+    "mapped_fields": [
+      "ValueAddedServiceText1"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "VAS Field 2 for Free Use by Customer",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnValAddedSrvc",
+    "mapped_fields": [
+      "ValueAddedServiceText2"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "VAS Field 3 for Free Use by Customer",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnValAddedSrvc",
+    "mapped_fields": [
+      "ValueAddedServiceText3"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "VAS Increment",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnValAddedSrvc",
+    "mapped_fields": [
+      "ValAddedSrvcIncrement"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "VAS Item Number in SD",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnValAddedSrvc",
+    "mapped_fields": [
+      "ValAddedSrvcItemNumberInSD"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "VAS Material Number",
+    "intent_type": "field_alias",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "A_CustomerReturnValAddedSrvc",
+    "mapped_fields": [
+      "ValueAddedServiceProduct"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Service Operations",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "rejectApprovalRequest",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Service Operations",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_CUSTOMER_RETURN_SRV",
+    "mapped_entity_set": "releaseApprovalRequest",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  }
+]

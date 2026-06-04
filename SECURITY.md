@@ -1,41 +1,41 @@
-﻿# Security Policy
+# 安全策略
 
-SAPClaw is intended for private SAP environments. Do not publish real SAP credentials, LLM API keys, raw SAP metadata, local API indexes, request histories, or generated test cases.
+SAPClaw 面向私有 SAP 环境。不要公开真实 SAP 凭据、LLM API key、原始 SAP metadata、本地 API 索引、请求历史或生成的测试用例。
 
-## Supported Versions
+## 支持版本
 
-Security updates currently target the `main` branch.
+当前安全更新以 `main` 分支为准。
 
-## Reporting A Vulnerability
+## 报告安全问题
 
-Do not open a public issue containing credentials, SAP hostnames, customer data, or raw SAP responses. Report privately to the repository owner or through the private channel used by your deployment team.
+不要在公开 issue 中包含凭据、SAP 主机名、客户数据或原始 SAP 响应。请通过仓库所有者或部署团队使用的私有渠道报告。
 
-Include:
+报告时请包含：
 
-- The affected version or commit.
-- The vulnerable endpoint or component.
-- Steps to reproduce using sanitized data.
-- The expected impact.
+- 受影响的版本或 commit。
+- 存在问题的 endpoint 或组件。
+- 使用脱敏数据复现问题的步骤。
+- 预期影响。
 
-## Secrets
+## 密钥与凭据
 
-Store credentials in `env/.env` or environment variables only. The repository ignores `.env`, `env/`, key files, certificates, generated indexes, raw metadata, and test case assets.
+凭据只能存放在 `env/.env` 或环境变量中。仓库会忽略 `.env`、`env/`、密钥文件、证书、生成的索引、原始 metadata 和测试用例资产。
 
-If a key is exposed:
+如果 key 已经暴露：
 
-1. Revoke or rotate it immediately in the provider system.
-2. Remove it from local files and logs.
-3. Check Git history before publishing.
+1. 立即在对应 provider 系统中吊销或轮换该 key。
+2. 从本地文件和日志中移除该 key。
+3. 在公开发布前检查 Git 历史。
 
-## External Deployment Policy
+## 外部部署策略
 
-Local development may run without `SAPCLAW_API_KEYS` on `127.0.0.1`.
+本地开发可以在未设置 `SAPCLAW_API_KEYS` 的情况下运行，但应仅绑定 `127.0.0.1`。
 
-Any external, shared, or reverse-proxy deployment must:
+任何外部、共享或反向代理部署都必须：
 
-- Set `SAPCLAW_API_KEYS` to high-entropy keys.
-- Require the `X-API-Key` header for public query calls.
-- Use HTTPS.
-- Restrict network access to trusted users and services.
-- Keep `env/`, `data/index/`, `data/metadata/`, `raw/`, and test case assets off public hosts.
-- Avoid exposing `/api/v1/agent/*` directly unless equivalent gateway authentication is enforced.
+- 设置 `SAPCLAW_API_KEYS`，并使用高强度 key。
+- 要求公开查询调用携带 `X-API-Key` 请求头。
+- 使用 HTTPS。
+- 将网络访问限制给可信用户和服务。
+- 不要在公开主机上放置 `env/`、`data/index/`、`data/metadata/`、`raw/` 或测试用例资产。
+- 除非已经强制执行等效的网关鉴权，否则不要直接暴露 `/api/v1/agent/*`。

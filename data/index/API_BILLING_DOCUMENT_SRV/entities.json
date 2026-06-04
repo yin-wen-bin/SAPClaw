@@ -1,0 +1,350 @@
+[
+  {
+    "service_name": "API_BILLING_DOCUMENT_SRV",
+    "entity_set": "A_BillingDocument",
+    "entity_type": "A_BillingDocumentType",
+    "key_fields": [
+      "BillingDocument"
+    ],
+    "default_select_fields": [
+      "BillingDocument",
+      "SDDocumentCategory",
+      "BillingDocumentCategory",
+      "BillingDocumentType",
+      "CreationDate",
+      "CreationTime",
+      "LastChangeDate",
+      "LastChangeDateTime",
+      "LogicalSystem",
+      "SalesOrganization"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Item",
+      "to_Partner",
+      "to_PricingElement",
+      "to_Text"
+    ],
+    "description": "Reads all billing document headers.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_BILLING_DOCUMENT_SRV",
+    "entity_set": "A_BillingDocumentItem",
+    "entity_type": "A_BillingDocumentItemType",
+    "key_fields": [
+      "BillingDocument",
+      "BillingDocumentItem"
+    ],
+    "default_select_fields": [
+      "BillingDocument",
+      "BillingDocumentItem",
+      "SalesDocumentItemCategory",
+      "SalesDocumentItemType",
+      "ReturnItemProcessingType",
+      "CreatedByUser",
+      "CreationDate",
+      "CreationTime",
+      "ReferenceLogicalSystem",
+      "OrganizationDivision"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_BillingDocument",
+      "to_ItemText",
+      "to_Partner",
+      "to_PricingElement"
+    ],
+    "description": "Reads all billing document Items.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_BILLING_DOCUMENT_SRV",
+    "entity_set": "A_BillingDocumentItemPartner",
+    "entity_type": "A_BillingDocumentItemPartnerType",
+    "key_fields": [
+      "BillingDocument",
+      "BillingDocumentItem",
+      "PartnerFunction"
+    ],
+    "default_select_fields": [
+      "BillingDocument",
+      "BillingDocumentItem",
+      "PartnerFunction",
+      "Customer",
+      "Supplier",
+      "Personnel",
+      "ContactPerson"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_BillingDocument",
+      "to_BillingDocumentItem"
+    ],
+    "description": "Reads item business partners for all billing documents.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_BILLING_DOCUMENT_SRV",
+    "entity_set": "A_BillingDocumentItemPrcgElmnt",
+    "entity_type": "A_BillingDocumentItemPrcgElmntType",
+    "key_fields": [
+      "BillingDocument",
+      "BillingDocumentItem",
+      "PricingProcedureCounter",
+      "PricingProcedureStep"
+    ],
+    "default_select_fields": [
+      "BillingDocument",
+      "BillingDocumentItem",
+      "PricingProcedureStep",
+      "PricingProcedureCounter",
+      "ConditionType",
+      "PricingDateTime",
+      "ConditionCalculationType",
+      "ConditionBaseValue",
+      "ConditionRateValue",
+      "ConditionCurrency"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_BillingDocument",
+      "to_BillingDocumentItem"
+    ],
+    "description": "Reads item pricing elements of all billing documents.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_BILLING_DOCUMENT_SRV",
+    "entity_set": "A_BillingDocumentItemText",
+    "entity_type": "A_BillingDocumentItemTextType",
+    "key_fields": [
+      "BillingDocument",
+      "BillingDocumentItem",
+      "Language",
+      "LongTextID"
+    ],
+    "default_select_fields": [
+      "BillingDocument",
+      "BillingDocumentItem",
+      "Language",
+      "LongTextID",
+      "LongText"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads item texts of all billing documents.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_BILLING_DOCUMENT_SRV",
+    "entity_set": "A_BillingDocumentPartner",
+    "entity_type": "A_BillingDocumentPartnerType",
+    "key_fields": [
+      "BillingDocument",
+      "PartnerFunction"
+    ],
+    "default_select_fields": [
+      "BillingDocument",
+      "PartnerFunction",
+      "Customer",
+      "Supplier",
+      "Personnel",
+      "ContactPerson"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_BillingDocument"
+    ],
+    "description": "Reads the header business partners of all billing documents.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_BILLING_DOCUMENT_SRV",
+    "entity_set": "A_BillingDocumentPrcgElmnt",
+    "entity_type": "A_BillingDocumentPrcgElmntType",
+    "key_fields": [
+      "BillingDocument",
+      "PricingProcedureCounter",
+      "PricingProcedureStep"
+    ],
+    "default_select_fields": [
+      "BillingDocument",
+      "PricingProcedureStep",
+      "PricingProcedureCounter",
+      "ConditionType",
+      "PricingDateTime",
+      "ConditionCalculationType",
+      "ConditionBaseValue",
+      "ConditionRateValue",
+      "ConditionCurrency",
+      "ConditionQuantity"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_BillingDocument"
+    ],
+    "description": "Reads header pricing elements of all billing documents.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_BILLING_DOCUMENT_SRV",
+    "entity_set": "A_BillingDocumentText",
+    "entity_type": "A_BillingDocumentTextType",
+    "key_fields": [
+      "BillingDocument",
+      "Language",
+      "LongTextID"
+    ],
+    "default_select_fields": [
+      "BillingDocument",
+      "Language",
+      "LongTextID",
+      "LongText"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads the header texts of all billing documents.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_BILLING_DOCUMENT_SRV",
+    "entity_set": "Cancel",
+    "entity_type": "CancelType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Cancels one specific billing document.",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_BILLING_DOCUMENT_SRV",
+    "entity_set": "CompleteProFormaInvoice",
+    "entity_type": "CompleteProFormaInvoiceType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Completes one specific pro forma invoice.",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_BILLING_DOCUMENT_SRV",
+    "entity_set": "GetPDF",
+    "entity_type": "GetPDFType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Retrieves a specific billing document in PDF format.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  }
+]

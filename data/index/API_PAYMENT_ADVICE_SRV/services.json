@@ -1,0 +1,24 @@
+[
+  {
+    "service_name": "API_PAYMENT_ADVICE_SRV",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_PAYMENT_ADVICE_SRV",
+    "description": "You can use this inbound synchronous service to create, read, update, and delete payment advices related to a customer or a supplier. It is based on the OData protocol and can be consumed in SAP Fiori apps and other user interfaces. The service can be used with payment advices of any supported type.",
+    "entity_sets": [
+      "A_PaymentAdvice",
+      "A_PaymentAdviceItem"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "https://sap.example.local/sap/opu/odata/sap/API_PAYMENT_ADVICE_SRV/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/f8/f29bb9d08a418d936ce5de8a78b33f/frameset.htm",
+    "openapi_version": "1.0.0"
+  }
+]

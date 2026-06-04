@@ -1,0 +1,817 @@
+[
+  {
+    "service_name": "API_PRODUCTION_ROUTING",
+    "entity_set": "OpDocumentPRTAssgmt",
+    "entity_type": "OpDocumentPRTAssgmtType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Get entities from OpDocumentPRTAssgmt",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCTION_ROUTING",
+    "entity_set": "OpEquipmentPRTAssgmt",
+    "entity_type": "OpEquipmentPRTAssgmtType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Get entities from OpEquipmentPRTAssgmt",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCTION_ROUTING",
+    "entity_set": "OpInspCharcsAssgmt",
+    "entity_type": "OpInspCharcsAssgmtType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Get entities from OpInspCharcsAssgmt",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCTION_ROUTING",
+    "entity_set": "OpMaterialPRTAssgmt",
+    "entity_type": "OpMaterialPRTAssgmtType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Get entities from OpMaterialPRTAssgmt",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCTION_ROUTING",
+    "entity_set": "OpMiscellaneousPRTAssgmt",
+    "entity_type": "OpMiscellaneousPRTAssgmtType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Get entities from OpMiscellaneousPRTAssgmt",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCTION_ROUTING",
+    "entity_set": "ProdnRtgInspCharcsAssgmt",
+    "entity_type": "ProdnRtgInspCharcsAssgmt_Type",
+    "key_fields": [
+      "BOOCharacteristic",
+      "BOOCharacteristicVersion",
+      "ProductionRouting",
+      "ProductionRoutingGroup",
+      "ProductionRoutingOpIntID",
+      "ProductionRoutingSequence"
+    ],
+    "default_select_fields": [
+      "ProductionRoutingGroup",
+      "ProductionRouting",
+      "ProductionRoutingSequence",
+      "ProductionRoutingOpIntID",
+      "BOOCharacteristic",
+      "BOOCharacteristicVersion",
+      "ValidityStartDate",
+      "ValidityEndDate",
+      "ChangeNumber",
+      "IsDeleted"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Header",
+      "to_ProdnRtgTP"
+    ],
+    "description": "ProdnRtgInspCharcsAssgmt_Type",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PRODUCTION_ROUTING",
+    "entity_set": "ProductionRouting",
+    "entity_type": "ProductionRouting_Type",
+    "key_fields": [
+      "ProductionRouting",
+      "ProductionRoutingGroup"
+    ],
+    "default_select_fields": [
+      "ProductionRoutingGroup",
+      "ProductionRouting",
+      "BillOfOperationsVersionType",
+      "BillOfOperationsSubtype",
+      "LastUsageDate",
+      "NumberOfUsages",
+      "HasChangeNumber",
+      "HasParameterEffectivity",
+      "LastChangeDate",
+      "LastChangeTime"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Header",
+      "to_MatlAssgmt"
+    ],
+    "description": "ProductionRouting_Type",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PRODUCTION_ROUTING",
+    "entity_set": "ProductionRoutingCompAlloc",
+    "entity_type": "ProductionRoutingCompAlloc_Type",
+    "key_fields": [
+      "ProdnRtgOpBOMItemIntVersion",
+      "ProdnRtgOpBOMItemInternalID",
+      "ProductionRouting",
+      "ProductionRoutingGroup",
+      "ProductionRoutingOpIntID",
+      "ProductionRoutingSequence"
+    ],
+    "default_select_fields": [
+      "ProductionRoutingGroup",
+      "ProductionRouting",
+      "ProductionRoutingSequence",
+      "ProductionRoutingOpIntID",
+      "ProdnRtgOpBOMItemInternalID",
+      "ProdnRtgOpBOMItemIntVersion",
+      "BillOfMaterialCategory",
+      "BillOfMaterial",
+      "BillOfMaterialComponent",
+      "BillOfMaterialVariant"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Header",
+      "to_ProdnRtgTP"
+    ],
+    "description": "ProductionRoutingCompAlloc_Type",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PRODUCTION_ROUTING",
+    "entity_set": "ProductionRoutingDocPRTAssgmt",
+    "entity_type": "ProductionRoutingDocPRTAssgmt_Type",
+    "key_fields": [
+      "BOOOperationPRTIntVersCounter",
+      "BOOOperationPRTInternalID",
+      "ProductionRouting",
+      "ProductionRoutingGroup",
+      "ProductionRoutingOpIntID",
+      "ProductionRoutingSequence"
+    ],
+    "default_select_fields": [
+      "ProductionRoutingGroup",
+      "ProductionRouting",
+      "ProductionRoutingSequence",
+      "ProductionRoutingOpIntID",
+      "BOOOperationPRTInternalID",
+      "BOOOperationPRTIntVersCounter",
+      "ProductionResourceType",
+      "ProductionResourceInternalID",
+      "DocumentType",
+      "DocumentInfoRecord"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Header",
+      "to_ProdnRtgTP"
+    ],
+    "description": "ProductionRoutingDocPRTAssgmt_Type",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PRODUCTION_ROUTING",
+    "entity_set": "ProductionRoutingHeader",
+    "entity_type": "ProductionRoutingHeader_Type",
+    "key_fields": [
+      "ProductionRouting",
+      "ProductionRoutingGroup",
+      "ProductionRoutingInternalVers"
+    ],
+    "default_select_fields": [
+      "ProductionRoutingGroup",
+      "ProductionRouting",
+      "ProductionRoutingInternalVers",
+      "IsMarkedForDeletion",
+      "BillOfOperationsDesc",
+      "Plant",
+      "BillOfOperationsUsage",
+      "BillOfOperationsStatus",
+      "ResponsiblePlannerGroup",
+      "MinimumLotSizeQuantity"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_MatlAssgmt",
+      "to_Sequence",
+      "to_ProdnRtgTP"
+    ],
+    "description": "Get entities from ProductionRoutingHeader",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCTION_ROUTING",
+    "entity_set": "ProductionRoutingMatlAssgmt",
+    "entity_type": "ProductionRoutingMatlAssgmt_Type",
+    "key_fields": [
+      "Plant",
+      "Product",
+      "ProductionRouting",
+      "ProductionRoutingGroup",
+      "ProductionRoutingMatlAssgmt",
+      "ProductionRtgMatlAssgmtIntVers"
+    ],
+    "default_select_fields": [
+      "Product",
+      "Plant",
+      "ProductionRoutingGroup",
+      "ProductionRouting",
+      "ProductionRoutingMatlAssgmt",
+      "ProductionRtgMatlAssgmtIntVers",
+      "CreationDate",
+      "CreatedByUser",
+      "LastChangeDate",
+      "LastChangedByUser"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Header",
+      "to_ProdnRtgTP"
+    ],
+    "description": "Get entities from ProductionRoutingMatlAssgmt",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCTION_ROUTING",
+    "entity_set": "ProductionRoutingMatlPRTAssgmt",
+    "entity_type": "ProductionRoutingMatlPRTAssgmt_Type",
+    "key_fields": [
+      "BOOOperationPRTIntVersCounter",
+      "BOOOperationPRTInternalID",
+      "ProductionRouting",
+      "ProductionRoutingGroup",
+      "ProductionRoutingOpIntID",
+      "ProductionRoutingSequence"
+    ],
+    "default_select_fields": [
+      "ProductionRoutingGroup",
+      "ProductionRouting",
+      "ProductionRoutingSequence",
+      "ProductionRoutingOpIntID",
+      "BOOOperationPRTInternalID",
+      "BOOOperationPRTIntVersCounter",
+      "ProductionResourceType",
+      "ProductionResourceInternalID",
+      "Material",
+      "Plant"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Header",
+      "to_ProdnRtgTP"
+    ],
+    "description": "ProductionRoutingMatlPRTAssgmt_Type",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PRODUCTION_ROUTING",
+    "entity_set": "ProductionRoutingMiscPRTAssgmt",
+    "entity_type": "ProductionRoutingMiscPRTAssgmt_Type",
+    "key_fields": [
+      "BOOOperationPRTIntVersCounter",
+      "BOOOperationPRTInternalID",
+      "ProductionRouting",
+      "ProductionRoutingGroup",
+      "ProductionRoutingOpIntID",
+      "ProductionRoutingSequence"
+    ],
+    "default_select_fields": [
+      "ProductionRoutingGroup",
+      "ProductionRouting",
+      "ProductionRoutingSequence",
+      "ProductionRoutingOpIntID",
+      "BOOOperationPRTInternalID",
+      "BOOOperationPRTIntVersCounter",
+      "ProductionResourceType",
+      "ProductionResourceInternalID",
+      "MiscProductionResourceTool",
+      "ProdnRsceToolItemNumber"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Header",
+      "to_ProdnRtgTP"
+    ],
+    "description": "ProductionRoutingMiscPRTAssgmt_Type",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PRODUCTION_ROUTING",
+    "entity_set": "ProductionRoutingOpCompAlloc",
+    "entity_type": "ProductionRoutingOpCompAllocType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Get entities from ProductionRoutingOpCompAlloc",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCTION_ROUTING",
+    "entity_set": "ProductionRoutingOpCtrlPrfl",
+    "entity_type": "ProductionRoutingOpCtrlPrfl_Type",
+    "key_fields": [
+      "OperationControlProfile"
+    ],
+    "default_select_fields": [
+      "OperationControlProfile",
+      "OperationControlProfileName"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Text"
+    ],
+    "description": "Get entities from ProductionRoutingOpCtrlPrfl",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCTION_ROUTING",
+    "entity_set": "ProductionRoutingOpCtrlPrflTxt",
+    "entity_type": "ProductionRoutingOpCtrlPrflTxt_Type",
+    "key_fields": [
+      "Language",
+      "OperationControlProfile"
+    ],
+    "default_select_fields": [
+      "OperationControlProfile",
+      "Language",
+      "OperationControlProfileName"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Get entities from ProductionRoutingOpCtrlPrflTxt",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCTION_ROUTING",
+    "entity_set": "ProductionRoutingOperation",
+    "entity_type": "ProductionRoutingOperation_Type",
+    "key_fields": [
+      "ProductionRouting",
+      "ProductionRoutingGroup",
+      "ProductionRoutingOpIntID",
+      "ProductionRoutingOpIntVersion",
+      "ProductionRoutingSequence"
+    ],
+    "default_select_fields": [
+      "ProductionRoutingGroup",
+      "ProductionRouting",
+      "ProductionRoutingSequence",
+      "ProductionRoutingOpIntID",
+      "ProductionRoutingOpIntVersion",
+      "Operation",
+      "CreationDate",
+      "CreatedByUser",
+      "LastChangeDate",
+      "LastChangedByUser"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Header",
+      "to_OpCompAlloc",
+      "to_OpDocPRTAssgmt",
+      "to_OpEquipPRTAssgmt",
+      "to_OpInspCharcsAssgmt",
+      "to_OpMatlPRTAssgmt",
+      "to_OpMiscPRTAssgmt",
+      "to_ProdnRtgTP",
+      "to_SubOp"
+    ],
+    "description": "Get entities from ProductionRoutingOperation",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCTION_ROUTING",
+    "entity_set": "ProductionRoutingSequence",
+    "entity_type": "ProductionRoutingSequence_Type",
+    "key_fields": [
+      "ProductionRouting",
+      "ProductionRoutingGroup",
+      "ProductionRoutingSequence",
+      "ProductionRoutingSqncIntVers"
+    ],
+    "default_select_fields": [
+      "ProductionRoutingGroup",
+      "ProductionRouting",
+      "ProductionRoutingSequence",
+      "ProductionRoutingSqncIntVers",
+      "IsDeleted",
+      "IsImplicitlyDeleted",
+      "ChangeNumber",
+      "ValidityStartDate",
+      "ValidityEndDate",
+      "SequenceCategory"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Header",
+      "to_Operation",
+      "to_ProdnRtgTP"
+    ],
+    "description": "Get entities from ProductionRoutingSequence",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCTION_ROUTING",
+    "entity_set": "ProductionRoutingStatus",
+    "entity_type": "ProductionRoutingStatus_Type",
+    "key_fields": [
+      "BillOfOperationsStatus"
+    ],
+    "default_select_fields": [
+      "BillOfOperationsStatus",
+      "BillOfOperationsStatusDesc"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Text"
+    ],
+    "description": "Get entities from ProductionRoutingStatus",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCTION_ROUTING",
+    "entity_set": "ProductionRoutingStatusText",
+    "entity_type": "ProductionRoutingStatusText_Type",
+    "key_fields": [
+      "BillOfOperationsStatus",
+      "Language"
+    ],
+    "default_select_fields": [
+      "BillOfOperationsStatus",
+      "Language",
+      "BillOfOperationsStatusDesc"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Get entities from ProductionRoutingStatusText",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCTION_ROUTING",
+    "entity_set": "ProductionRoutingSubOperation",
+    "entity_type": "ProductionRoutingSubOperationType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Get entities from ProductionRoutingSubOperation",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCTION_ROUTING",
+    "entity_set": "ProductionRoutingSubordOp",
+    "entity_type": "ProductionRoutingSubordOp_Type",
+    "key_fields": [
+      "ProdnRtgSubOpIntVersion",
+      "ProductionRouting",
+      "ProductionRoutingGroup",
+      "ProductionRoutingOpIntID",
+      "ProductionRoutingSequence"
+    ],
+    "default_select_fields": [
+      "ProductionRoutingGroup",
+      "ProductionRouting",
+      "ProductionRoutingSequence",
+      "ProductionRoutingOpIntID",
+      "ProdnRtgSubOpIntVersion",
+      "SuperiorOperationInternalID",
+      "Operation",
+      "OperationText",
+      "LongTextLanguageCode",
+      "WorkCenterTypeCode"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Header",
+      "to_Operation",
+      "to_ProdnRtgTP"
+    ],
+    "description": "ProductionRoutingSubordOp_Type",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PRODUCTION_ROUTING",
+    "entity_set": "ProductionRoutingUsage",
+    "entity_type": "ProductionRoutingUsage_Type",
+    "key_fields": [
+      "BillOfOperationsUsage"
+    ],
+    "default_select_fields": [
+      "BillOfOperationsUsage",
+      "BillOfOperationsUsageDesc"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Text"
+    ],
+    "description": "Get entities from ProductionRoutingUsage",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCTION_ROUTING",
+    "entity_set": "ProductionRoutingUsageText",
+    "entity_type": "ProductionRoutingUsageText_Type",
+    "key_fields": [
+      "BillOfOperationsUsage",
+      "Language"
+    ],
+    "default_select_fields": [
+      "BillOfOperationsUsage",
+      "Language",
+      "BillOfOperationsUsageDesc"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Get entities from ProductionRoutingUsageText",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCTION_ROUTING",
+    "entity_set": "ProductionRtgEquipPRTAssgmt",
+    "entity_type": "ProductionRtgEquipPRTAssgmt_Type",
+    "key_fields": [
+      "BOOOperationPRTIntVersCounter",
+      "BOOOperationPRTInternalID",
+      "ProductionRouting",
+      "ProductionRoutingGroup",
+      "ProductionRoutingOpIntID",
+      "ProductionRoutingSequence"
+    ],
+    "default_select_fields": [
+      "ProductionRoutingGroup",
+      "ProductionRouting",
+      "ProductionRoutingSequence",
+      "ProductionRoutingOpIntID",
+      "BOOOperationPRTInternalID",
+      "BOOOperationPRTIntVersCounter",
+      "ProductionResourceType",
+      "ProductionResourceInternalID",
+      "Equipment",
+      "ProdnRsceToolItemNumber"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Header",
+      "to_ProdnRtgTP"
+    ],
+    "description": "ProductionRtgEquipPRTAssgmt_Type",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  }
+]

@@ -1,0 +1,4166 @@
+[
+  {
+    "term": "Item Category",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV;v=0002",
+    "mapped_entity_set": "A_BOMItemCategory",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Item Category Description",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV;v=0002",
+    "mapped_entity_set": "A_BOMItemCategory",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "行项目类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "A_BOMItemCategory",
+    "mapped_fields": [
+      "BillOfMaterialItemCategory"
+    ],
+    "synonyms": [
+      "项目类别（物料清单）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "行项目类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "A_BOMItemCategory",
+    "mapped_fields": [
+      "FixedItemCategory"
+    ],
+    "synonyms": [
+      "项目类别（物料清单）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "A_BOMItemCategory",
+    "mapped_fields": [
+      "BillOfMaterialItemCategoryDesc"
+    ],
+    "synonyms": [
+      "项目类别描述"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目类别描述",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "A_BOMItemCategory",
+    "mapped_fields": [
+      "BillOfMaterialItemCategoryDesc"
+    ],
+    "synonyms": [
+      "项目类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目类别（物料清单）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "A_BOMItemCategory",
+    "mapped_fields": [
+      "BillOfMaterialItemCategory"
+    ],
+    "synonyms": [
+      "行项目类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目类别（物料清单）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "A_BOMItemCategory",
+    "mapped_fields": [
+      "FixedItemCategory"
+    ],
+    "synonyms": [
+      "行项目类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item Category Description",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV;v=0002",
+    "mapped_entity_set": "A_BOMItemCategoryText",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "行项目类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "A_BOMItemCategoryText",
+    "mapped_fields": [
+      "BillOfMaterialItemCategory"
+    ],
+    "synonyms": [
+      "项目类别（物料清单）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "语言代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "A_BOMItemCategoryText",
+    "mapped_fields": [
+      "Language"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "A_BOMItemCategoryText",
+    "mapped_fields": [
+      "BillOfMaterialItemCategoryDesc"
+    ],
+    "synonyms": [
+      "项目类别描述"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目类别描述",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "A_BOMItemCategoryText",
+    "mapped_fields": [
+      "BillOfMaterialItemCategoryDesc"
+    ],
+    "synonyms": [
+      "项目类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目类别（物料清单）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "A_BOMItemCategoryText",
+    "mapped_fields": [
+      "BillOfMaterialItemCategory"
+    ],
+    "synonyms": [
+      "行项目类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "BOM 使用文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "A_BillOfMaterialUsage",
+    "mapped_fields": [
+      "BillOfMaterialVariantUsageDesc"
+    ],
+    "synonyms": [
+      "使用文本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Usage",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV;v=0002",
+    "mapped_entity_set": "A_BillOfMaterialUsage",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Usage Description",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV;v=0002",
+    "mapped_entity_set": "A_BillOfMaterialUsage",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "使用文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "A_BillOfMaterialUsage",
+    "mapped_fields": [
+      "BillOfMaterialVariantUsageDesc"
+    ],
+    "synonyms": [
+      "BOM 使用文本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料清单用途",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "A_BillOfMaterialUsage",
+    "mapped_fields": [
+      "BillOfMaterialVariantUsage"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "BOM 使用文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "A_BillOfMaterialUsageText",
+    "mapped_fields": [
+      "BillOfMaterialVariantUsageDesc"
+    ],
+    "synonyms": [
+      "使用文本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Usage Description",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV;v=0002",
+    "mapped_entity_set": "A_BillOfMaterialUsageText",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "使用文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "A_BillOfMaterialUsageText",
+    "mapped_fields": [
+      "BillOfMaterialVariantUsageDesc"
+    ],
+    "synonyms": [
+      "BOM 使用文本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料清单用途",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "A_BillOfMaterialUsageText",
+    "mapped_fields": [
+      "BillOfMaterialVariantUsage"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "语言代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "A_BillOfMaterialUsageText",
+    "mapped_fields": [
+      "Language"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV;v=0002",
+    "mapped_entity_set": "ConvertItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Bill of Material",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV;v=0002",
+    "mapped_entity_set": "DeleteBOMHeaderWithECN",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV;v=0002",
+    "mapped_entity_set": "DeleteBOMItemWithECN",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Bill of Material",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV;v=0002",
+    "mapped_entity_set": "ExplodeBOM",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "BOM Item Object Dependency Assignment",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV;v=0002",
+    "mapped_entity_set": "MBOMItmObjDpnAssignment",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "BOM 项目节点号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MBOMItmObjDpnAssignment",
+    "mapped_fields": [
+      "BillOfMaterialItemNodeNumber"
+    ],
+    "synonyms": [
+      "项目节点"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Bill of Material",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV;v=0002",
+    "mapped_entity_set": "MBOMItmObjDpnAssignment",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Dyn. Method Control",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MBOMItmObjDpnAssignment",
+    "mapped_fields": [
+      "Delete_mc"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Dyn. Method Control",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MBOMItmObjDpnAssignment",
+    "mapped_fields": [
+      "Update_mc"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV;v=0002",
+    "mapped_entity_set": "MBOMItmObjDpnAssignment",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "变更编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MBOMItmObjDpnAssignment",
+    "mapped_fields": [
+      "HeaderChangeDocument"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "备选物料清单",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MBOMItmObjDpnAssignment",
+    "mapped_fields": [
+      "BillOfMaterialVariant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MBOMItmObjDpnAssignment",
+    "mapped_fields": [
+      "Plant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "排序计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MBOMItmObjDpnAssignment",
+    "mapped_fields": [
+      "ObjDpnProcessingSequenceValue"
+    ],
+    "synonyms": [
+      "用于对象分配排序的计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效截止日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MBOMItmObjDpnAssignment",
+    "mapped_fields": [
+      "ValidityEndDate"
+    ],
+    "synonyms": [
+      "有效期至"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效期自",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MBOMItmObjDpnAssignment",
+    "mapped_fields": [
+      "ValidityStartDate"
+    ],
+    "synonyms": [
+      "有效起始日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效期至",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MBOMItmObjDpnAssignment",
+    "mapped_fields": [
+      "ValidityEndDate"
+    ],
+    "synonyms": [
+      "有效截止日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效起始日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MBOMItmObjDpnAssignment",
+    "mapped_fields": [
+      "ValidityStartDate"
+    ],
+    "synonyms": [
+      "有效期自"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MBOMItmObjDpnAssignment",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料清单",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MBOMItmObjDpnAssignment",
+    "mapped_fields": [
+      "BillOfMaterial"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料清单版本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MBOMItmObjDpnAssignment",
+    "mapped_fields": [
+      "BillOfMaterialVersion"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料清单类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MBOMItmObjDpnAssignment",
+    "mapped_fields": [
+      "BillOfMaterialCategory"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MBOMItmObjDpnAssignment",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "用于对象分配排序的计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MBOMItmObjDpnAssignment",
+    "mapped_fields": [
+      "ObjDpnProcessingSequenceValue"
+    ],
+    "synonyms": [
+      "排序计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "相关性",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MBOMItmObjDpnAssignment",
+    "mapped_fields": [
+      "ObjectDependencyName"
+    ],
+    "synonyms": [
+      "相关性名称"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "相关性名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MBOMItmObjDpnAssignment",
+    "mapped_fields": [
+      "ObjectDependencyName"
+    ],
+    "synonyms": [
+      "相关性"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目节点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MBOMItmObjDpnAssignment",
+    "mapped_fields": [
+      "BillOfMaterialItemNodeNumber"
+    ],
+    "synonyms": [
+      "BOM 项目节点号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "ALE 标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "IsALE"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "BOM usage text",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "BillOfMaterialVariantUsageDesc"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "BOM 分组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "BOMGroup"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "BOM 爆炸期间处理删除标记",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "BOMIsToBeDeleted"
+    ],
+    "synonyms": [
+      "处理删除标记"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Bill of Material",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV;v=0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "CAD 标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "DocumentIsCreatedByCAD"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Deletion flag for BOMs",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "BOMIsArchivedForDeletion"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Dyn. Action Control",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "DeleteBOMHeaderWithECN_ac"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Dyn. Action Control",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "ReleaseVersionBOM_ac"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Dyn. Method Control",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "Delete_mc"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Dyn. Method Control",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "Update_mc"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Dynamic CbA-Control",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "to_BillOfMaterialItem_oc"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV;v=0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Usage",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV;v=0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "上次更改日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "LastChangeDate"
+    ],
+    "synonyms": [
+      "更改日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "产品描述",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "ProductDescription"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "从批量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "MatFromLotSizeQuantity"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "内部计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "BOMHeaderInternalChangeCount"
+    ],
+    "synonyms": [
+      "计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "RecordCreationDate"
+    ],
+    "synonyms": [
+      "日期记录创建于"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建者",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "CreatedByUser"
+    ],
+    "synonyms": [
+      "记录创建人"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "删除标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "IsMarkedForDeletion"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "到批量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "MaterialToLotSizeQuantity"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "变更编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "EngineeringChangeDocument"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "变更编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "EngineeringChangeDocForEdit"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "可选 BOM 文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "BOMAlternativeText"
+    ],
+    "synonyms": [
+      "可选文本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "可选文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "BOMAlternativeText"
+    ],
+    "synonyms": [
+      "可选 BOM 文本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "基本数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "BOMHeaderQuantityInBaseUnit"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "基本计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "BOMHeaderBaseUnit"
+    ],
+    "synonyms": [
+      "物料清单的基本计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "处理删除标记",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "BOMIsToBeDeleted"
+    ],
+    "synonyms": [
+      "BOM 爆炸期间处理删除标记"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "备选物料清单",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "BillOfMaterialVariant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "多重 BOM 可选确定",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "IsMultipleBOMAlt"
+    ],
+    "synonyms": [
+      "标志: 对多重 BOM 的可选确定"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "实验室/办公室",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "LaboratoryOrDesignOffice"
+    ],
+    "synonyms": [
+      "实验室/设计室"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "实验室/设计室",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "LaboratoryOrDesignOffice"
+    ],
+    "synonyms": [
+      "实验室/办公室"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "Plant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "PlantName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "技术类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "BOMTechnicalType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "指示符：可配置 BOM",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "IsConfiguredMaterial"
+    ],
+    "synonyms": [
+      "组合装配"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "日期记录创建于",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "RecordCreationDate"
+    ],
+    "synonyms": [
+      "创建日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "更改人",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "LastChangedByUser"
+    ],
+    "synonyms": [
+      "更改对象的人员姓名"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "更改号到",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "ChgToEngineeringChgDocument"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "更改对象的人员姓名",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "LastChangedByUser"
+    ],
+    "synonyms": [
+      "更改人"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "更改日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "LastChangeDate"
+    ],
+    "synonyms": [
+      "上次更改日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "最新发布版本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "IsLatestBOMVersion"
+    ],
+    "synonyms": [
+      "标识：最新发布物料清单版本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效截止日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "HeaderValidityEndDate"
+    ],
+    "synonyms": [
+      "有效期至"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效期自",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "HeaderValidityStartDate"
+    ],
+    "synonyms": [
+      "有效起始日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效期至",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "HeaderValidityEndDate"
+    ],
+    "synonyms": [
+      "有效截止日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效起始日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "HeaderValidityStartDate"
+    ],
+    "synonyms": [
+      "有效期自"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "权限组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "BillOfMaterialAuthsnGrp"
+    ],
+    "synonyms": [
+      "物料清单授权组"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标志: 对多重 BOM 的可选确定",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "IsMultipleBOMAlt"
+    ],
+    "synonyms": [
+      "多重 BOM 可选确定"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识抬头更改状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "BillOfMaterialHeaderUUID"
+    ],
+    "synonyms": [
+      "物料清单抬头更改状态的全局标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识：与版本化相关",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "IsVersionBillOfMaterial"
+    ],
+    "synonyms": [
+      "版本化相关"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识：最新发布物料清单版本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "IsLatestBOMVersion"
+    ],
+    "synonyms": [
+      "最新发布版本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "版本化相关",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "IsVersionBillOfMaterial"
+    ],
+    "synonyms": [
+      "标识：与版本化相关"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料清单",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "BillOfMaterial"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料清单抬头更改状态的全局标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "BillOfMaterialHeaderUUID"
+    ],
+    "synonyms": [
+      "标识抬头更改状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料清单授权组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "BillOfMaterialAuthsnGrp"
+    ],
+    "synonyms": [
+      "权限组"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料清单描述",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "BOMHeaderText"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料清单版本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "BillOfMaterialVersion"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料清单版本状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "BOMVersionStatus"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料清单状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "BillOfMaterialStatus"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料清单用途",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "BillOfMaterialVariantUsage"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料清单的基本计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "BOMHeaderBaseUnit"
+    ],
+    "synonyms": [
+      "基本计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料清单类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "BillOfMaterialCategory"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "组合装配",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "IsConfiguredMaterial"
+    ],
+    "synonyms": [
+      "指示符：可配置 BOM"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "BOMHeaderInternalChangeCount"
+    ],
+    "synonyms": [
+      "内部计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "记录创建人",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "CreatedByUser"
+    ],
+    "synonyms": [
+      "创建者"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "选择 ID 的 CIM 优先级",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "BOMUsagePriority"
+    ],
+    "synonyms": [
+      "选择优先级"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "选择优先级",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "BOMUsagePriority"
+    ],
+    "synonyms": [
+      "选择 ID 的 CIM 优先级"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOM",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "时戳"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "ALE 标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "IsALE"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "BOM Item Object Dependency Assignment",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV;v=0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "BOM 传输的参考点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "ReferencePoint"
+    ],
+    "synonyms": [
+      "参考点"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "BOM 组件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BillOfMaterialComponent"
+    ],
+    "synonyms": [
+      "组件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "BOM 项目文本（行1）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BOMItemDescription"
+    ],
+    "synonyms": [
+      "项目文本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "BOM 项目的继承节点号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "InheritedNodeNumberForBOMItem"
+    ],
+    "synonyms": [
+      "项目节点"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "BOM 项目节点号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BillOfMaterialItemNodeNumber"
+    ],
+    "synonyms": [
+      "项目节点"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Bill of Material",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV;v=0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Bill of Material Subitem",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV;v=0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "CAD 标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "DocumentIsCreatedByCAD"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Dyn. Action Control",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "ConvertItem_ac"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Dyn. Action Control",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "DeleteBOMItemWithECN_ac"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Dyn. Action Control",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "UpdateBOMItemWithECN_ac"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Dyn. Method Control",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "Delete_mc"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Dyn. Method Control",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "Update_mc"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Dynamic CbA-Control",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "to_BOMItmObjDependencyAssignment_oc"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Dynamic CbA-Control",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "to_BOMSubItems_oc"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV;v=0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Item Category",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV;v=0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "VSI 公式",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "FormulaKey"
+    ],
+    "synonyms": [
+      "可变尺寸项目的公式键值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "上次更改日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BOMItemLastChangeDate"
+    ],
+    "synonyms": [
+      "更改日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "与成本计算相关",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BOMItemIsCostingRelevant"
+    ],
+    "synonyms": [
+      "成本核算相关项的标识符"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "与销售相关",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BOMItemIsSalesRelevant"
+    ],
+    "synonyms": [
+      "标识：与销售相关的项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "中止组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "DiscontinuationGroup"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交货时间 (天)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "DeliveryDurationInDays"
+    ],
+    "synonyms": [
+      "以天计算的交货时间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "以天计的收货处理时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "GoodsReceiptDuration"
+    ],
+    "synonyms": [
+      "收货处理时间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "以天计算的交货时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "DeliveryDurationInDays"
+    ],
+    "synonyms": [
+      "交货时间 (天)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "以百分比表示的使用概率（备选项目）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "UsageProbabilityPercent"
+    ],
+    "synonyms": [
+      "使用概率"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "价格",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "MaterialComponentPrice"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "价格单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "MaterialPriceUnitQty"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "优先级",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "AlternativeItemPriority"
+    ],
+    "synonyms": [
+      "替代项目：评比定单"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "作为选择条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "IsClassificationRelevant"
+    ],
+    "synonyms": [
+      "指示符：分类作为选择条件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "使用概率",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "UsageProbabilityPercent"
+    ],
+    "synonyms": [
+      "以百分比表示的使用概率（备选项目）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "Creditor"
+    ],
+    "synonyms": [
+      "供应商科目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商科目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "Creditor"
+    ],
+    "synonyms": [
+      "供应商"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "允许的多重选择",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "MultipleSelectionAllowed"
+    ],
+    "synonyms": [
+      "多重选择"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "具有分配相关性的对象编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "DependencyObjectNumber"
+    ],
+    "synonyms": [
+      "分配号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "内部计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BOMItemInternalChangeCount"
+    ],
+    "synonyms": [
+      "计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "净废品标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "IsNetScrap"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "DocNumber"
+    ],
+    "synonyms": [
+      "凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "DocNumber"
+    ],
+    "synonyms": [
+      "凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分类",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "ClassNumber"
+    ],
+    "synonyms": [
+      "分类编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分类的类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "ClassType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分类编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "ClassNumber"
+    ],
+    "synonyms": [
+      "分类"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分配号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "DependencyObjectNumber"
+    ],
+    "synonyms": [
+      "具有分配相关性的对象编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分配键值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "DistrKeyCompConsumption"
+    ],
+    "synonyms": [
+      "组件消耗的分配键值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BOMItemRecordCreationDate"
+    ],
+    "synonyms": [
+      "日期记录创建于"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建者",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BOMItemCreatedByUser"
+    ],
+    "synonyms": [
+      "记录创建人"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "删除标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "IsDeleted"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "单字符标记",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "IsAssembly"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "ReferencePoint"
+    ],
+    "synonyms": [
+      "BOM 传输的参考点"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "变更编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "HeaderChangeDocument"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "变更编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "EngineeringChangeDocForEdit"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "变更编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "EngineeringChangeDocument"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "可变尺寸项目的公式键值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "FormulaKey"
+    ],
+    "synonyms": [
+      "VSI 公式"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "可配置 BOM 的选择标识符",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "IsConfigurableBOM"
+    ],
+    "synonyms": [
+      "选择标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "后继组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "FollowUpGroup"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "固定数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "FixedQuantity"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "固定数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BOMItemHasFixedQuantity"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "备件标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BOMItemIsSparePart"
+    ],
+    "synonyms": [
+      "标识：备件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "备选物料清单",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BillOfMaterialVariant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "多重选择",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "MultipleSelectionAllowed"
+    ],
+    "synonyms": [
+      "允许的多重选择"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "子项目标志",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "IsSubItem"
+    ],
+    "synonyms": [
+      "指示符 : 子项目存在"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "存储地点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "ProdOrderIssueLocation"
+    ],
+    "synonyms": [
+      "生产订单的发货地点"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "对象描述",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "ComponentDescription"
+    ],
+    "synonyms": [
+      "对象描述（项目）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "对象描述（项目）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "ComponentDescription"
+    ],
+    "synonyms": [
+      "对象描述"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "对象类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "ObjectType"
+    ],
+    "synonyms": [
+      "对象类型（BOM 项目）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "对象类型（BOM 项目）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "ObjectType"
+    ],
+    "synonyms": [
+      "对象类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "尺寸 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "Size1"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "尺寸 1 到 3 的计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "UnitOfMeasureForSize1To3"
+    ],
+    "synonyms": [
+      "尺寸的单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "尺寸 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "Size2"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "尺寸 3",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "Size3"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "尺寸的单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "UnitOfMeasureForSize1To3"
+    ],
+    "synonyms": [
+      "尺寸 1 到 3 的计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "展开类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "ExplosionType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "Plant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂维护",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BOMItemIsPlantMaintRelevant"
+    ],
+    "synonyms": [
+      "指示器：与工厂维护相关的项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工序报废",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "OperationScrapInPercent"
+    ],
+    "synonyms": [
+      "工序报废百分比"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工序报废百分比",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "OperationScrapInPercent"
+    ],
+    "synonyms": [
+      "工序报废"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工序提前期偏移量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "OpsLeadTimeOffsetUnit"
+    ],
+    "synonyms": [
+      "工序提前期偏移量的单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工序提前期偏移量的单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "OpsLeadTimeOffsetUnit"
+    ],
+    "synonyms": [
+      "工序提前期偏移量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工序提前期偏置",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "OperationLeadTimeOffset"
+    ],
+    "synonyms": [
+      "工序的提前期偏移量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工序的提前期偏移量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "OperationLeadTimeOffset"
+    ],
+    "synonyms": [
+      "工序提前期偏置"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工程/设计",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "IsEngineeringRelevant"
+    ],
+    "synonyms": [
+      "标识：与工程相关项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本核算相关项的标识符",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BOMItemIsCostingRelevant"
+    ],
+    "synonyms": [
+      "与成本计算相关"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本要素",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "CostElement"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "所需可变尺寸项目数",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "NumberOfVariableSizeItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "所需组件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "RequiredComponent"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "指示器：与工厂维护相关的项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BOMItemIsPlantMaintRelevant"
+    ],
+    "synonyms": [
+      "工厂维护"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "指示符 : 子项目存在",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "IsSubItem"
+    ],
+    "synonyms": [
+      "子项目标志"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "指示符：分类作为选择条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "IsClassificationRelevant"
+    ],
+    "synonyms": [
+      "作为选择条件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "指示符：散装物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "IsBulkMaterial"
+    ],
+    "synonyms": [
+      "散装物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "指示符：联合产品",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "MaterialIsCoProduct"
+    ],
+    "synonyms": [
+      "联产品"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "排序字符串",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BOMItemSorter"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "提前期偏置量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "LeadTimeOffset"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收货处理时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "GoodsReceiptDuration"
+    ],
+    "synonyms": [
+      "以天计的收货处理时间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "散装物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "IsBulkMaterial"
+    ],
+    "synonyms": [
+      "指示符：散装物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "文档版本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "DocumentVersion"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "文档类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "DocumentType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "文档部分",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "DocumentPart"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "日期记录创建于",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BOMItemRecordCreationDate"
+    ],
+    "synonyms": [
+      "创建日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "更改人",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BOMItemLastChangedByUser"
+    ],
+    "synonyms": [
+      "更改对象的人员姓名"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "更改号到",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "ChgToEngineeringChgDocument"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "更改对象的人员姓名",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BOMItemLastChangedByUser"
+    ],
+    "synonyms": [
+      "更改人"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "更改日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BOMItemLastChangeDate"
+    ],
+    "synonyms": [
+      "上次更改日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "替代项目组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "AlternativeItemGroup"
+    ],
+    "synonyms": [
+      "替代项目：组"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "替代项目：策略",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "AlternativeItemStrategy"
+    ],
+    "synonyms": [
+      "策略"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "替代项目：组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "AlternativeItemGroup"
+    ],
+    "synonyms": [
+      "替代项目组"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "替代项目：评比定单",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "AlternativeItemPriority"
+    ],
+    "synonyms": [
+      "优先级"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效截止日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "ValidityEndDate"
+    ],
+    "synonyms": [
+      "有效期至"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效期自",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "ValidityStartDate"
+    ],
+    "synonyms": [
+      "有效起始日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效期至",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "ValidityEndDate"
+    ],
+    "synonyms": [
+      "有效截止日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效起始日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "ValidityStartDate"
+    ],
+    "synonyms": [
+      "有效期自"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标志: BOM 是递归的",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BOMIsRecursive"
+    ],
+    "synonyms": [
+      "递归"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标志: 递归性允许",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "IsBOMRecursiveAllowed"
+    ],
+    "synonyms": [
+      "递归允许"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识抬头更改状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BillOfMaterialHeaderUUID"
+    ],
+    "synonyms": [
+      "物料清单抬头更改状态的全局标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识项目更改状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BillOfMaterialItemUUID"
+    ],
+    "synonyms": [
+      "项目更改状态全局标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识：与工程相关项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "IsEngineeringRelevant"
+    ],
+    "synonyms": [
+      "工程/设计"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识：与生产相关项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "IsProductionRelevant"
+    ],
+    "synonyms": [
+      "生产相关"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识：与销售相关的项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BOMItemIsSalesRelevant"
+    ],
+    "synonyms": [
+      "与销售相关"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识：备件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BOMItemIsSparePart"
+    ],
+    "synonyms": [
+      "备件标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "每件 (PC) 的可变尺寸项目数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "QuantityVariableSizeItem"
+    ],
+    "synonyms": [
+      "每件可变尺寸项目数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "每件可变尺寸项目数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "QuantityVariableSizeItem"
+    ],
+    "synonyms": [
+      "每件 (PC) 的可变尺寸项目数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料供应标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "IsMaterialProvision"
+    ],
+    "synonyms": [
+      "物料供应标识符"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料供应标识符",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "IsMaterialProvision"
+    ],
+    "synonyms": [
+      "物料供应标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料描述",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "PreliminaryComponent"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料清单",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BillOfMaterial"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料清单抬头更改状态的全局标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BillOfMaterialHeaderUUID"
+    ],
+    "synonyms": [
+      "标识抬头更改状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料清单版本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BillOfMaterialVersion"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料清单类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BillOfMaterialCategory"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料清单项目文本（行 2）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BOMItemText2"
+    ],
+    "synonyms": [
+      "项目文本 2"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料清单项目的特殊采购类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "SpecialProcurementType"
+    ],
+    "synonyms": [
+      "特殊采购"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料清单项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BillOfMaterialItemNumber"
+    ],
+    "synonyms": [
+      "项目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "MaterialGroup"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "特殊采购",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "SpecialProcurementType"
+    ],
+    "synonyms": [
+      "物料清单项目的特殊采购类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "生产供应区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "ProductionSupplyArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "生产相关",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "IsProductionRelevant"
+    ],
+    "synonyms": [
+      "标识：与生产相关项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "生产订单的发货地点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "ProdOrderIssueLocation"
+    ],
+    "synonyms": [
+      "存储地点"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "策略",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "AlternativeItemStrategy"
+    ],
+    "synonyms": [
+      "替代项目：策略"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "组件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BillOfMaterialComponent"
+    ],
+    "synonyms": [
+      "BOM 组件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "组件报废 (%)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "ComponentScrapInPercent"
+    ],
+    "synonyms": [
+      "组件报废百分比"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "组件报废百分比",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "ComponentScrapInPercent"
+    ],
+    "synonyms": [
+      "组件报废 (%)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "组件数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BillOfMaterialItemQuantity"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "组件消耗的分配键值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "DistrKeyCompConsumption"
+    ],
+    "synonyms": [
+      "分配键值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "组件计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BillOfMaterialItemUnit"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "结果项目类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "ResultingItemCategory"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "联产品",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "MaterialIsCoProduct"
+    ],
+    "synonyms": [
+      "指示符：联合产品"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "行项目类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BillOfMaterialItemCategory"
+    ],
+    "synonyms": [
+      "项目类别（物料清单）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BOMItemInternalChangeCount"
+    ],
+    "synonyms": [
+      "内部计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "记录创建人",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BOMItemCreatedByUser"
+    ],
+    "synonyms": [
+      "创建者"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "Currency"
+    ],
+    "synonyms": [
+      "货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "Currency"
+    ],
+    "synonyms": [
+      "货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "选择标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "IsConfigurableBOM"
+    ],
+    "synonyms": [
+      "可配置 BOM 的选择标识符"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "递归",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BOMIsRecursive"
+    ],
+    "synonyms": [
+      "标志: BOM 是递归的"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "递归允许",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "IsBOMRecursiveAllowed"
+    ],
+    "synonyms": [
+      "标志: 递归性允许"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "PurchasingGroup"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购组织",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "PurchasingOrganization"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "时戳"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目外部标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "IdentifierBOMItem"
+    ],
+    "synonyms": [
+      "项目识别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BOMItemDescription"
+    ],
+    "synonyms": [
+      "BOM 项目文本（行1）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目文本 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BOMItemText2"
+    ],
+    "synonyms": [
+      "物料清单项目文本（行 2）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目更改状态全局标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BillOfMaterialItemUUID"
+    ],
+    "synonyms": [
+      "标识项目更改状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目类别（物料清单）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BillOfMaterialItemCategory"
+    ],
+    "synonyms": [
+      "行项目类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BillOfMaterialItemNumber"
+    ],
+    "synonyms": [
+      "物料清单项目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目节点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "BillOfMaterialItemNodeNumber"
+    ],
+    "synonyms": [
+      "BOM 项目节点号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目节点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "InheritedNodeNumberForBOMItem"
+    ],
+    "synonyms": [
+      "BOM 项目的继承节点号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目识别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMItem",
+    "mapped_fields": [
+      "IdentifierBOMItem"
+    ],
+    "synonyms": [
+      "项目外部标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "BOM 子项目文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMSubItem",
+    "mapped_fields": [
+      "BillOfMaterialSubItemText"
+    ],
+    "synonyms": [
+      "子项目文本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "BOM 项目节点号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMSubItem",
+    "mapped_fields": [
+      "BillOfMaterialItemNodeNumber"
+    ],
+    "synonyms": [
+      "项目节点"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Bill of Material",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV;v=0002",
+    "mapped_entity_set": "MaterialBOMSubItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Bill of Material Subitem",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV;v=0002",
+    "mapped_entity_set": "MaterialBOMSubItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Dyn. Method Control",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMSubItem",
+    "mapped_fields": [
+      "Delete_mc"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Dyn. Method Control",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMSubItem",
+    "mapped_fields": [
+      "Update_mc"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV;v=0002",
+    "mapped_entity_set": "MaterialBOMSubItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "内部计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMSubItem",
+    "mapped_fields": [
+      "BOMItemInternalChangeCount"
+    ],
+    "synonyms": [
+      "计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "变更编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMSubItem",
+    "mapped_fields": [
+      "HeaderChangeDocument"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "备选物料清单",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMSubItem",
+    "mapped_fields": [
+      "BillOfMaterialVariant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "子项目安装地点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMSubItem",
+    "mapped_fields": [
+      "BOMSubItemInstallationPoint"
+    ],
+    "synonyms": [
+      "安装地点"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "子项目数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMSubItem",
+    "mapped_fields": [
+      "BillOfMaterialSubItemQuantity"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "子项目文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMSubItem",
+    "mapped_fields": [
+      "BillOfMaterialSubItemText"
+    ],
+    "synonyms": [
+      "BOM 子项目文本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "字符8",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMSubItem",
+    "mapped_fields": [
+      "BillOfMaterial"
+    ],
+    "synonyms": [
+      "字符字段，8 个字符长度"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "字符字段，8 个字符长度",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMSubItem",
+    "mapped_fields": [
+      "BillOfMaterial"
+    ],
+    "synonyms": [
+      "字符8"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "安装地点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMSubItem",
+    "mapped_fields": [
+      "BOMSubItemInstallationPoint"
+    ],
+    "synonyms": [
+      "子项目安装地点"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMSubItem",
+    "mapped_fields": [
+      "Plant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "未定义范围（可用于补丁级别）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMSubItem",
+    "mapped_fields": [
+      "BOMSubItemNumberValue"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMSubItem",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料清单版本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMSubItem",
+    "mapped_fields": [
+      "BillOfMaterialVersion"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料清单类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMSubItem",
+    "mapped_fields": [
+      "BillOfMaterialCategory"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMSubItem",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "组件计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMSubItem",
+    "mapped_fields": [
+      "BillOfMaterialItemUnit"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMSubItem",
+    "mapped_fields": [
+      "BOMItemInternalChangeCount"
+    ],
+    "synonyms": [
+      "内部计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目节点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV_0002",
+    "mapped_entity_set": "MaterialBOMSubItem",
+    "mapped_fields": [
+      "BillOfMaterialItemNodeNumber"
+    ],
+    "synonyms": [
+      "BOM 项目节点号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Bill of Material",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV;v=0002",
+    "mapped_entity_set": "ReleaseVersionBOM",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BILL_OF_MATERIAL_SRV;v=0002",
+    "mapped_entity_set": "UpdateBOMItemWithECN",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  }
+]

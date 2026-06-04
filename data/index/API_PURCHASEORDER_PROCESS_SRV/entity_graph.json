@@ -1,0 +1,90 @@
+[
+  {
+    "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+    "from_entity_set": "A_PurchaseOrder",
+    "to_entity_set": "ToRole_assoc_2466C19B748A2B2CBE2B1754B1434472",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_PurchaseOrderNote",
+    "description": "Navigation `to_PurchaseOrderNote` from `A_PurchaseOrder` to `ToRole_assoc_2466C19B748A2B2CBE2B1754B1434472`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+    "from_entity_set": "A_PurchaseOrder",
+    "to_entity_set": "ToRole_assoc_B82FE5DCCFCFC7E372EA017CC6733068",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_PurchaseOrderItem",
+    "description": "Navigation `to_PurchaseOrderItem` from `A_PurchaseOrder` to `ToRole_assoc_B82FE5DCCFCFC7E372EA017CC6733068`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+    "from_entity_set": "A_PurchaseOrderItem",
+    "to_entity_set": "FromRole_assoc_B82FE5DCCFCFC7E372EA017CC6733068",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_PurchaseOrder",
+    "description": "Navigation `to_PurchaseOrder` from `A_PurchaseOrderItem` to `FromRole_assoc_B82FE5DCCFCFC7E372EA017CC6733068`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+    "from_entity_set": "A_PurchaseOrderItem",
+    "to_entity_set": "ToRole_assoc_19BBE09FA429018258275EDA1C9534B1",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_AccountAssignment",
+    "description": "Navigation `to_AccountAssignment` from `A_PurchaseOrderItem` to `ToRole_assoc_19BBE09FA429018258275EDA1C9534B1`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+    "from_entity_set": "A_PurchaseOrderItem",
+    "to_entity_set": "ToRole_assoc_8A637AB8579B29B7A7F36730E8B65ACD",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_ScheduleLine",
+    "description": "Navigation `to_ScheduleLine` from `A_PurchaseOrderItem` to `ToRole_assoc_8A637AB8579B29B7A7F36730E8B65ACD`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+    "from_entity_set": "A_PurchaseOrderItem",
+    "to_entity_set": "ToRole_assoc_EFF2B310CC1279C17A53542CD0A7DF92",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_PurchaseOrderPricingElement",
+    "description": "Navigation `to_PurchaseOrderPricingElement` from `A_PurchaseOrderItem` to `ToRole_assoc_EFF2B310CC1279C17A53542CD0A7DF92`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+    "from_entity_set": "A_PurchaseOrderItem",
+    "to_entity_set": "ToRole_assoc_FC8A787F328FE0E8BF79CA62ADFB77F4",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_PurchaseOrderItemNote",
+    "description": "Navigation `to_PurchaseOrderItemNote` from `A_PurchaseOrderItem` to `ToRole_assoc_FC8A787F328FE0E8BF79CA62ADFB77F4`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+    "from_entity_set": "A_PurchaseOrderScheduleLine",
+    "to_entity_set": "ToRole_assoc_6E3D67F4936B508A3D2BD2F5F3688B55",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_SubcontractingComponent",
+    "description": "Navigation `to_SubcontractingComponent` from `A_PurchaseOrderScheduleLine` to `ToRole_assoc_6E3D67F4936B508A3D2BD2F5F3688B55`.",
+    "confidence": 0.8
+  }
+]

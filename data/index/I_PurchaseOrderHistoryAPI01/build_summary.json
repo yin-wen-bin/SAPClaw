@@ -1,0 +1,18 @@
+{
+  "service_name": "I_PurchaseOrderHistoryAPI01",
+  "service_kind": "CDS_VIEW_ONLY",
+  "fallback_index": true,
+  "fallback_reason": "HTTP Error 403: Forbidden",
+  "source_document": "cds_json",
+  "runtime_available": false,
+  "odata_runtime_available": false,
+  "runtime_notes": "CDS API view only. It is not an IWFND Gateway OData service and must not be compiled as /sap/opu/odata/sap/...",
+  "merged_entity_count": 1,
+  "merged_field_count": 56,
+  "relation_count": 0,
+  "entity_graph_edge_count": 0,
+  "lookup_path_count": 0,
+  "business_term_count": 57,
+  "vector_document_count": 57,
+  "doc_chunk_count": 57
+}

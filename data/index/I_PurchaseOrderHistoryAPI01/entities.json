@@ -1,0 +1,36 @@
+[
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "entity_type": "I_PurchaseOrderHistoryAPI01Type",
+    "key_fields": [],
+    "default_select_fields": [
+      "PurchaseOrder",
+      "PurchaseOrderItem",
+      "AccountAssignmentNumber",
+      "PurchasingHistoryDocumentType",
+      "PurchasingHistoryDocumentYear",
+      "PurchasingHistoryDocument",
+      "PurchasingHistoryDocumentItem",
+      "PurchasingHistoryCategory",
+      "GoodsMovementType",
+      "PostingDate"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Purchase Order History",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "runtime_kind": "CDS_VIEW_ONLY",
+    "odata_runtime_available": false,
+    "documentation_available": true,
+    "runtime_notes": "CDS API view only; do not execute as a SAP Gateway OData entity set."
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "service_name": "API_PROCESS_ORDER_2_SRV",
+  "sap_metadata_entity_count": 6,
+  "sap_metadata_field_count": 305,
+  "openapi_documented_entity_count": 17,
+  "openapi_documented_entity_type_count": 11,
+  "merged_entity_count": 17,
+  "merged_field_count": 339,
+  "relation_count": 5,
+  "entity_graph_edge_count": 5,
+  "lookup_path_count": 33,
+  "business_term_count": 494,
+  "vector_document_count": 372,
+  "doc_chunk_count": 557
+}

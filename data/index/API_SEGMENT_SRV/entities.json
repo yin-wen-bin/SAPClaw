@@ -1,0 +1,59 @@
+[
+  {
+    "service_name": "API_SEGMENT_SRV",
+    "entity_set": "A_Segment",
+    "entity_type": "A_SegmentType",
+    "key_fields": [
+      "Segment"
+    ],
+    "default_select_fields": [
+      "Segment"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Text"
+    ],
+    "description": "Reads the items of all segments.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SEGMENT_SRV",
+    "entity_set": "A_SegmentText",
+    "entity_type": "A_SegmentTextType",
+    "key_fields": [
+      "Language",
+      "Segment"
+    ],
+    "default_select_fields": [
+      "Language",
+      "Segment",
+      "SegmentName"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Segment"
+    ],
+    "description": "Reads the texts of all segments.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  }
+]

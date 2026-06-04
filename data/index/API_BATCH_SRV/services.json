@@ -1,0 +1,28 @@
+[
+  {
+    "service_name": "API_BATCH_SRV",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_BATCH_SRV",
+    "description": "This OData API enables you to create, change and read batches. Additionally, it is possible to retrieve and to edit the related classification data. The service is based on the OData protocol, and can be consumed by external systems and user interfaces.",
+    "entity_sets": [
+      "Batch",
+      "BatchCharc",
+      "BatchCharcValue",
+      "BatchClass",
+      "BatchPlant",
+      "BatchText"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "https://sap.example.local/sap/opu/odata/sap/API_BATCH_SRV/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/48/b3c2ac60154137bb1d6411c7047e16/frameset.htm",
+    "openapi_version": "1.1.1"
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "service_name": "API_BUSINESS_PARTNER",
+  "sap_metadata_entity_count": 56,
+  "sap_metadata_field_count": 1010,
+  "openapi_documented_entity_count": 62,
+  "openapi_documented_entity_type_count": 64,
+  "merged_entity_count": 62,
+  "merged_field_count": 1054,
+  "relation_count": 62,
+  "entity_graph_edge_count": 82,
+  "lookup_path_count": 43,
+  "business_term_count": 1206,
+  "vector_document_count": 1097,
+  "doc_chunk_count": 2230
+}

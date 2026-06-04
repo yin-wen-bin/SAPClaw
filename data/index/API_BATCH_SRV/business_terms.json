@@ -1,0 +1,1618 @@
+[
+  {
+    "term": "Batch Characteristics",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Batch Class Assignments",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Batch Texts",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Batches",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Plant-specific Batch Information",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "上次更改",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "上次更改时戳"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "上次更改时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "上次更改"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "Supplier"
+    ],
+    "synonyms": [
+      "供应商科目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商批次",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "BatchBySupplier"
+    ],
+    "synonyms": [
+      "供应商批次编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商批次编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "BatchBySupplier"
+    ],
+    "synonyms": [
+      "供应商批次"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商科目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "Supplier"
+    ],
+    "synonyms": [
+      "供应商"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "CreationDateTime"
+    ],
+    "synonyms": [
+      "创建日期时戳"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建日期时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "CreationDateTime"
+    ],
+    "synonyms": [
+      "创建日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "制造日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "ManufactureDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "原产国家/地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "CountryOfOrigin"
+    ],
+    "synonyms": [
+      "物料原产国家/地区（非优惠原产地）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "原产地",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "RegionOfOrigin"
+    ],
+    "synonyms": [
+      "物料原产地区（非优惠原产地）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "可用性日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "MatlBatchAvailabilityDate"
+    ],
+    "synonyms": [
+      "可用自"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "可用自",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "MatlBatchAvailabilityDate"
+    ],
+    "synonyms": [
+      "可用性日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "BatchIdentifyingPlant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批次",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "Batch"
+    ],
+    "synonyms": [
+      "批次编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批次中所有数据的删除标志",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "BatchIsMarkedForDeletion"
+    ],
+    "synonyms": [
+      "批次删除标志"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批次删除标志",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "BatchIsMarkedForDeletion"
+    ],
+    "synonyms": [
+      "批次中所有数据的删除标志"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批次标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "BatchExtWhseMgmtInternalId"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批次编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "Batch"
+    ],
+    "synonyms": [
+      "批次"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批次限制",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "MatlBatchIsInRstrcdUseStock"
+    ],
+    "synonyms": [
+      "限制使用库存中的批量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料原产国家/地区（非优惠原产地）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "CountryOfOrigin"
+    ],
+    "synonyms": [
+      "原产国家/地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料原产地区（非优惠原产地）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "RegionOfOrigin"
+    ],
+    "synonyms": [
+      "原产地"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "自由使用的日期 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "FreeDefinedDate1"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "自由使用的日期 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "FreeDefinedDate2"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "自由使用的日期 3",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "FreeDefinedDate3"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "自由使用的日期 4",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "FreeDefinedDate4"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "自由使用的日期 5",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "FreeDefinedDate5"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "自由使用的日期 6",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "FreeDefinedDate6"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货架到期日/最佳用时",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "ShelfLifeExpirationDate"
+    ],
+    "synonyms": [
+      "货架存放期过期日期或最佳使用日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货架存放期过期日期或最佳使用日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "ShelfLifeExpirationDate"
+    ],
+    "synonyms": [
+      "货架到期日/最佳用时"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "限制使用库存中的批量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "Batch",
+    "mapped_fields": [
+      "MatlBatchIsInRstrcdUseStock"
+    ],
+    "synonyms": [
+      "批次限制"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Batch Characteristics",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharc",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Batch Characteristics Valuation",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharc",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Batches",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharc",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "上次更改",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharc",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "上次更改时戳"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "上次更改时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharc",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "上次更改"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharc",
+    "mapped_fields": [
+      "BatchIdentifyingPlant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批次",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharc",
+    "mapped_fields": [
+      "Batch"
+    ],
+    "synonyms": [
+      "批次编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批次编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharc",
+    "mapped_fields": [
+      "Batch"
+    ],
+    "synonyms": [
+      "批次"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharc",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharc",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "特征内部标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharc",
+    "mapped_fields": [
+      "CharcInternalID"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Batch Characteristics",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Batch Characteristics Valuation",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "上次更改",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "上次更改时戳"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "上次更改时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "上次更改"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcValueDependency"
+    ],
+    "synonyms": [
+      "相关值代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "作者",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharacteristicAuthor"
+    ],
+    "synonyms": [
+      "分类: 作者"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "值从",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcFromNumericValue"
+    ],
+    "synonyms": [
+      "内部浮点自"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "值到",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcToNumericValue"
+    ],
+    "synonyms": [
+      "内部浮点值到"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "内部浮点值到",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcToNumericValue"
+    ],
+    "synonyms": [
+      "值到"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "内部浮点自",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcFromNumericValue"
+    ],
+    "synonyms": [
+      "值从"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "内部计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcFromNumericValueUnit"
+    ],
+    "synonyms": [
+      "度量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "内部计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcToNumericValueUnit"
+    ],
+    "synonyms": [
+      "度量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分类: 作者",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharacteristicAuthor"
+    ],
+    "synonyms": [
+      "作者"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "BatchIdentifyingPlant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "度量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcFromNumericValueUnit"
+    ],
+    "synonyms": [
+      "内部计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "度量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcToNumericValueUnit"
+    ],
+    "synonyms": [
+      "内部计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批次",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "Batch"
+    ],
+    "synonyms": [
+      "批次编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批次编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "Batch"
+    ],
+    "synonyms": [
+      "批次"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "数字上限",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcToDecimalValue"
+    ],
+    "synonyms": [
+      "数字字段的上限"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "数字下限",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcFromDecimalValue"
+    ],
+    "synonyms": [
+      "数字字段的下限"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "数字字段的上限",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcToDecimalValue"
+    ],
+    "synonyms": [
+      "数字上限"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "数字字段的下限",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcFromDecimalValue"
+    ],
+    "synonyms": [
+      "数字下限"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "日期上限",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcToDate"
+    ],
+    "synonyms": [
+      "日期间隔的上限"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "日期下限",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcFromDate"
+    ],
+    "synonyms": [
+      "日期间隔的下限"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "日期间隔的上限",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcToDate"
+    ],
+    "synonyms": [
+      "日期上限"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "日期间隔的下限",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcFromDate"
+    ],
+    "synonyms": [
+      "日期下限"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时间上限",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcToTime"
+    ],
+    "synonyms": [
+      "时间间隔的上限"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时间下限",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcFromTime"
+    ],
+    "synonyms": [
+      "时间间隔的下限"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时间间隔的上限",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcToTime"
+    ],
+    "synonyms": [
+      "时间上限"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时间间隔的下限",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcFromTime"
+    ],
+    "synonyms": [
+      "时间下限"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "特征内部标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcInternalID"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "特性值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcValue"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "特性值计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcValuePositionNumber"
+    ],
+    "synonyms": [
+      "计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "相关值代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcValueDependency"
+    ],
+    "synonyms": [
+      "代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcValuePositionNumber"
+    ],
+    "synonyms": [
+      "特性值计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "Currency"
+    ],
+    "synonyms": [
+      "货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币上限",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcToAmount"
+    ],
+    "synonyms": [
+      "货币字段的上限"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币下限",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcFromAmount"
+    ],
+    "synonyms": [
+      "货币字段的下限"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币字段的上限",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcToAmount"
+    ],
+    "synonyms": [
+      "货币上限"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币字段的下限",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "CharcFromAmount"
+    ],
+    "synonyms": [
+      "货币下限"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchCharcValue",
+    "mapped_fields": [
+      "Currency"
+    ],
+    "synonyms": [
+      "货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Batch Class Assignments",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchClass",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Batches",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchClass",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "上次更改",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchClass",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "上次更改时戳"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "上次更改时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchClass",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "上次更改"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "内部分类号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchClass",
+    "mapped_fields": [
+      "ClassInternalID"
+    ],
+    "synonyms": [
+      "内部类编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "内部类编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchClass",
+    "mapped_fields": [
+      "ClassInternalID"
+    ],
+    "synonyms": [
+      "内部分类号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchClass",
+    "mapped_fields": [
+      "BatchIdentifyingPlant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批次",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchClass",
+    "mapped_fields": [
+      "Batch"
+    ],
+    "synonyms": [
+      "批次编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批次编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchClass",
+    "mapped_fields": [
+      "Batch"
+    ],
+    "synonyms": [
+      "批次"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchClass",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchClass",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Batches",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchPlant",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Plant-specific Batch Information",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchPlant",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "上次更改",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchPlant",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "上次更改时戳"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "上次更改时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchPlant",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "上次更改"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchPlant",
+    "mapped_fields": [
+      "Plant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchPlant",
+    "mapped_fields": [
+      "BatchIdentifyingPlant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批次",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchPlant",
+    "mapped_fields": [
+      "Batch"
+    ],
+    "synonyms": [
+      "批次编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批次编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchPlant",
+    "mapped_fields": [
+      "Batch"
+    ],
+    "synonyms": [
+      "批次"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchPlant",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchPlant",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "评估类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchPlant",
+    "mapped_fields": [
+      "InventoryValuationType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Batch Texts",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchText",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Batches",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchText",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchText",
+    "mapped_fields": [
+      "BatchIdentifyingPlant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批次",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchText",
+    "mapped_fields": [
+      "Batch"
+    ],
+    "synonyms": [
+      "批次编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批次描述",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchText",
+    "mapped_fields": [
+      "BatchDescription"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批次编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchText",
+    "mapped_fields": [
+      "Batch"
+    ],
+    "synonyms": [
+      "批次"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchText",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchText",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "语言代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_BATCH_SRV",
+    "mapped_entity_set": "BatchText",
+    "mapped_fields": [
+      "Language"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  }
+]

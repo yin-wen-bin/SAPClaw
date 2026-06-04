@@ -1,0 +1,85 @@
+[
+  {
+    "service_name": "API_PAYMENT_ADVICE_SRV",
+    "entity_set": "A_PaymentAdvice",
+    "entity_type": "A_PaymentAdviceType",
+    "key_fields": [
+      "CompanyCode",
+      "PaymentAdvice",
+      "PaymentAdviceAccount",
+      "PaymentAdviceAccountType"
+    ],
+    "default_select_fields": [
+      "CompanyCode",
+      "PaymentAdviceAccountType",
+      "PaymentAdviceAccount",
+      "PaymentAdvice",
+      "PaymentDocument",
+      "AccountByShipper",
+      "PaymentCurrency",
+      "PaymentDate",
+      "PaidAmountInPaytCurrency",
+      "CashDiscountAmountInPaytCrcy"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_PaymentAdviceItem"
+    ],
+    "description": "Reads all available payment advices.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PAYMENT_ADVICE_SRV",
+    "entity_set": "A_PaymentAdviceItem",
+    "entity_type": "A_PaymentAdviceItemType",
+    "key_fields": [
+      "CompanyCode",
+      "PaymentAdvice",
+      "PaymentAdviceAccount",
+      "PaymentAdviceAccountType",
+      "PaymentAdviceItem"
+    ],
+    "default_select_fields": [
+      "CompanyCode",
+      "PaymentAdviceAccountType",
+      "PaymentAdviceAccount",
+      "PaymentAdvice",
+      "PaymentAdviceItem",
+      "PaymentAdviceAltvAccount",
+      "AlternativeCompanyCode",
+      "AccountingDocument",
+      "DocumentReferenceID",
+      "BillingDocument"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads all item fields for all payment advice headers.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  }
+]

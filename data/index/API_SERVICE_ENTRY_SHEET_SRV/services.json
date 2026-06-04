@@ -1,0 +1,25 @@
+[
+  {
+    "service_name": "API_SERVICE_ENTRY_SHEET_SRV",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_SERVICE_ENTRY_SHEET_SRV",
+    "description": "This service enables a remote system to read, create and update service entry sheets from or in the SAP S/4HANA system. It also provides service nodes to submit a service entry sheet for approval, withdraw a service entry sheet from approval or revoke approval of an already approved service entry sheet.",
+    "entity_sets": [
+      "A_ServiceEntrySheet",
+      "A_ServiceEntrySheetItem",
+      "A_SrvcEntrShtAcctAssignment"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "https://sap.example.local/sap/opu/odata/sap/API_SERVICE_ENTRY_SHEET_SRV/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/0f/17c815dc784fa39b4fc7c0fe9f72b5/frameset.htm",
+    "openapi_version": "1.2.1"
+  }
+]

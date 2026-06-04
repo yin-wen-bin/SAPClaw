@@ -1,0 +1,611 @@
+[
+  {
+    "term": "Production Version",
+    "intent_type": "service_title",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [],
+    "synonyms": [
+      "production version",
+      "????",
+      "manufacturing version",
+      "production alternative"
+    ],
+    "confidence": 0.65,
+    "source": "cds_json"
+  },
+  {
+    "term": "Material",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "Product",
+      "Finished Product",
+      "Material Number",
+      "??"
+    ],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Plant",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "Plant"
+    ],
+    "synonyms": [
+      "Production Plant",
+      "??",
+      "????"
+    ],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Production Version",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "ProductionVersion"
+    ],
+    "synonyms": [
+      "????"
+    ],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Production Version Text",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "ProductionVersionText"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Validity Start Date",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "ValidityStartDate"
+    ],
+    "synonyms": [
+      "Valid From",
+      "??????"
+    ],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Validity End Date",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "ValidityEndDate"
+    ],
+    "synonyms": [
+      "Valid To",
+      "??????"
+    ],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Minimum Lot Size",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "MaterialMinLotSizeQuantity"
+    ],
+    "synonyms": [
+      "????"
+    ],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Maximum Lot Size",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "MaterialMaxLotSizeQuantity"
+    ],
+    "synonyms": [
+      "????"
+    ],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Material Base Unit",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "MaterialBaseUnit"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Production Version Status",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "ProductionVersionStatus"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Production Version Is Locked",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "ProductionVersionIsLocked"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Allowed For Repetitive Manufacturing",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "ProdnVersIsAllowedForRptvMfg"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Rate-Based Planning Status",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "RateBasedPlanningStatus"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Preliminary Planning Status",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "PreliminaryPlanningStatus"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "BOM Check Status",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "BOMCheckStatus"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Last Check Date",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "ProductionVersionLastCheckDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Planning And Execution BOM Is Different",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "PlanningAndExecutionBOMIsDiff"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Has Version-Controlled BOM And Routing",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "HasVersionCtrldBOMAndRouting"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "BOM Usage",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "BillOfMaterialVariantUsage"
+    ],
+    "synonyms": [
+      "BOM??",
+      "??????"
+    ],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Alternative BOM",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "BillOfMaterialVariant"
+    ],
+    "synonyms": [
+      "BOM Alternative",
+      "??BOM"
+    ],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Execution BOM Usage",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "ExecBillOfMaterialVariantUsage"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Execution Alternative BOM",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "ExecBillOfMaterialVariant"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Bill Of Operations Type",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "BillOfOperationsType"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Bill Of Operations Group",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "BillOfOperationsGroup"
+    ],
+    "synonyms": [
+      "Routing Group",
+      "Task List Group",
+      "?????",
+      "????"
+    ],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Bill Of Operations Variant",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "BillOfOperationsVariant"
+    ],
+    "synonyms": [
+      "Routing Group Counter",
+      "Group Counter",
+      "???????"
+    ],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Execution Bill Of Operations Type",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "ExecBillOfOperationsType"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Execution Bill Of Operations Group",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "ExecBillOfOperationsGroup"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Execution Bill Of Operations Variant",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "ExecBillOfOperationsVariant"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Production Line",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "ProductionLine"
+    ],
+    "synonyms": [
+      "Line",
+      "???"
+    ],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Production Supply Area",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "ProductionSupplyArea"
+    ],
+    "synonyms": [
+      "PSA",
+      "?????"
+    ],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Issuing Storage Location",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "IssuingStorageLocation"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Receiving Storage Location",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "ReceivingStorageLocation"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Warehouse",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "Warehouse"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Destination Storage Bin",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "DestinationStorageBin"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Main Product",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "MainProduct"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Original Batch Reference Material",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "OriginalBatchReferenceMaterial"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Production Version Group",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "ProductionVersionGroup"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Distribution Key",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "DistributionKey"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Quantity Distribution Key",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "QuantityDistributionKey"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Cost Apportionment Structure",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "MaterialCostApportionmentStruc"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Change Number",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "ChangeNumber"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Change History Count",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "ChangeHistoryCount"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Creation Date",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "CreationDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Created By User",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "CreatedByUser"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Last Change Date",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "LastChangeDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  },
+  {
+    "term": "Last Changed By User",
+    "intent_type": "field_alias",
+    "mapped_service": "I_ProductionVersion",
+    "mapped_entity_set": "I_ProductionVersion",
+    "mapped_fields": [
+      "LastChangedByUser"
+    ],
+    "synonyms": [],
+    "confidence": 0.5,
+    "source": "cds_json"
+  }
+]

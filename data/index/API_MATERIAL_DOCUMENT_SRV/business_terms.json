@@ -1,0 +1,2210 @@
+[
+  {
+    "term": "Document Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentHeader",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Document Items",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentHeader",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "交易/事件类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentHeader",
+    "mapped_fields": [
+      "InventoryTransactionType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "会计凭证输入日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentHeader",
+    "mapped_fields": [
+      "CreationDate"
+    ],
+    "synonyms": [
+      "输入日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证中的凭证日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentHeader",
+    "mapped_fields": [
+      "DocumentDate"
+    ],
+    "synonyms": [
+      "凭证日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证中的过账日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentHeader",
+    "mapped_fields": [
+      "PostingDate"
+    ],
+    "synonyms": [
+      "过账日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证抬头文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentHeader",
+    "mapped_fields": [
+      "MaterialDocumentHeaderText"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentHeader",
+    "mapped_fields": [
+      "DocumentDate"
+    ],
+    "synonyms": [
+      "凭证中的凭证日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentHeader",
+    "mapped_fields": [
+      "ReferenceDocument"
+    ],
+    "synonyms": [
+      "参考凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentHeader",
+    "mapped_fields": [
+      "ReferenceDocument"
+    ],
+    "synonyms": [
+      "参考"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "外部 WMS 控制",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentHeader",
+    "mapped_fields": [
+      "CtrlPostgForExtWhseMgmtSyst"
+    ],
+    "synonyms": [
+      "控制外部 WMS 的过账"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "录入时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentHeader",
+    "mapped_fields": [
+      "CreationTime"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "打印激活",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentHeader",
+    "mapped_fields": [
+      "ManualPrintIsTriggered"
+    ],
+    "synonyms": [
+      "通过输出控制打印"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "打印的版本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentHeader",
+    "mapped_fields": [
+      "VersionForPrintingSlip"
+    ],
+    "synonyms": [
+      "收货/发货单打印版本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "控制外部 WMS 的过账",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentHeader",
+    "mapped_fields": [
+      "CtrlPostgForExtWhseMgmtSyst"
+    ],
+    "synonyms": [
+      "外部 WMS 控制"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收货/发货单打印版本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentHeader",
+    "mapped_fields": [
+      "VersionForPrintingSlip"
+    ],
+    "synonyms": [
+      "打印的版本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentHeader",
+    "mapped_fields": [
+      "MaterialDocument"
+    ],
+    "synonyms": [
+      "物料凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料凭证年度",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentHeader",
+    "mapped_fields": [
+      "MaterialDocumentYear"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentHeader",
+    "mapped_fields": [
+      "MaterialDocument"
+    ],
+    "synonyms": [
+      "物料凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "用户名",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentHeader",
+    "mapped_fields": [
+      "CreatedByUser"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货物移动代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentHeader",
+    "mapped_fields": [
+      "GoodsMovementCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "输入日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentHeader",
+    "mapped_fields": [
+      "CreationDate"
+    ],
+    "synonyms": [
+      "会计凭证输入日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "过账日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentHeader",
+    "mapped_fields": [
+      "PostingDate"
+    ],
+    "synonyms": [
+      "凭证中的过账日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "通过输出控制打印",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentHeader",
+    "mapped_fields": [
+      "ManualPrintIsTriggered"
+    ],
+    "synonyms": [
+      "打印激活"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Characteristic Value for Colors of Variants",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "ProductCharacteristic1"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Characteristic Value for Main Sizes of Variants",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "ProductCharacteristic2"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Characteristic Value for Second Size for Variants",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "ProductCharacteristic3"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Cross-Plant Configurable Material",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "CrossPlantConfigurableProduct"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Document Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Document Items",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "External Handling Unit Identification",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "HandlingUnitExternalID"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Fashion Collection",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "ProductCollection"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Fashion Theme",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "ProductTheme"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Serial Numbers",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Supplier Batch Number",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "BatchBySupplier"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "WBS 要素",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "WBSElement"
+    ],
+    "synonyms": [
+      "工作分解结构要素（WBS 要素）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "WBS 要素",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "SpecialStockIdfgWBSElement"
+    ],
+    "synonyms": [
+      "工作分解结构要素（WBS 要素）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "“交货已完成”标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "IsCompletelyDelivered"
+    ],
+    "synonyms": [
+      "交货已完成"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "上一行的识别码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "MaterialDocumentParentLine"
+    ],
+    "synonyms": [
+      "上级行 ID"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "上级行 ID",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "MaterialDocumentParentLine"
+    ],
+    "synonyms": [
+      "上一行的识别码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "主要资产编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "MasterFixedAsset"
+    ],
+    "synonyms": [
+      "资产"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交货",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "Delivery"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交货已完成",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "IsCompletelyDelivered"
+    ],
+    "synonyms": [
+      "“交货已完成”标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交货项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "DeliveryItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "仓位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "EWMStorageBin"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "仓库编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "EWMWarehouse"
+    ],
+    "synonyms": [
+      "仓库编号/综合仓库"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "仓库编号/综合仓库",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "EWMWarehouse"
+    ],
+    "synonyms": [
+      "仓库编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "以录入单位计的数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "QuantityInEntryUnit"
+    ],
+    "synonyms": [
+      "以条目单位计量的数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "以本币表示的外部金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "GdsMvtExtAmtInCoCodeCrcy"
+    ],
+    "synonyms": [
+      "外部输入的本币过账金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "以条目单位计量的数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "QuantityInEntryUnit"
+    ],
+    "synonyms": [
+      "以录入单位计的数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "会计年度",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "FiscalYear"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "会计年度变式",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "FiscalYearVariant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "会计年度（参考凭证）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "ReferenceDocumentFiscalYear"
+    ],
+    "synonyms": [
+      "参考凭证的会计年度"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "传输批次",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "IssgOrRcvgBatch"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "传输批次（评估类型）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "IssuingOrReceivingValType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "传输物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "IssgOrRcvgMaterial"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "Supplier"
+    ],
+    "synonyms": [
+      "供应商科目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商科目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "Supplier"
+    ],
+    "synonyms": [
+      "供应商"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "借方/贷方标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "DebitCreditCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "公司代码货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "CompanyCodeCurrency"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "冲销、退货交货或传输过账",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "MaterialDocumentPostingType"
+    ],
+    "synonyms": [
+      "过账类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证中行的层次级别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "HierarchyNodeLevel"
+    ],
+    "synonyms": [
+      "层次结构级别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证行的唯一标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "MaterialDocumentLine"
+    ],
+    "synonyms": [
+      "行标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "利润中心",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "ProfitCenter"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "制造日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "ManufactureDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "制造订单",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "ManufacturingOrder"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "制造订单项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "ManufacturingOrderItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "包括增值税的销售价值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "SlsPrcAmtInclVATInCoCodeCrcy"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "卸货点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "UnloadingPointName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "InvtryMgmtReferenceDocument"
+    ],
+    "synonyms": [
+      "参考凭证的凭证号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考凭证的会计年度",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "ReferenceDocumentFiscalYear"
+    ],
+    "synonyms": [
+      "会计年度（参考凭证）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考凭证的凭证号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "InvtryMgmtReferenceDocument"
+    ],
+    "synonyms": [
+      "参考凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考凭证的项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "InvtryMgmtRefDocumentItem"
+    ],
+    "synonyms": [
+      "参考凭证项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考凭证类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "GoodsMovementRefDocType"
+    ],
+    "synonyms": [
+      "货物移动参考凭证类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考凭证项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "InvtryMgmtRefDocumentItem"
+    ],
+    "synonyms": [
+      "参考凭证的项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "基本计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "MaterialBaseUnit"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "外部输入的本币过账金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "GdsMvtExtAmtInCoCodeCrcy"
+    ],
+    "synonyms": [
+      "以本币表示的外部金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "存储位置",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "IssuingOrReceivingStorageLoc"
+    ],
+    "synonyms": [
+      "收货/发货存储位置"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "存储地点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "StorageLocation"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "Customer"
+    ],
+    "synonyms": [
+      "客户账号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户账号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "Customer"
+    ],
+    "synonyms": [
+      "客户"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "层次结构级别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "HierarchyNodeLevel"
+    ],
+    "synonyms": [
+      "凭证中行的层次级别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工作分解结构要素（WBS 要素）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "WBSElement"
+    ],
+    "synonyms": [
+      "WBS 要素"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工作分解结构要素（WBS 要素）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "SpecialStockIdfgWBSElement"
+    ],
+    "synonyms": [
+      "WBS 要素"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "Plant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已冲销凭证年度",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "ReversedMaterialDocumentYear"
+    ],
+    "synonyms": [
+      "已冲销的物料凭证年度"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已冲销凭证项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "ReversedMaterialDocumentItem"
+    ],
+    "synonyms": [
+      "已冲销的物料凭证项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已冲销的物料凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "ReversedMaterialDocument"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已冲销的物料凭证年度",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "ReversedMaterialDocumentYear"
+    ],
+    "synonyms": [
+      "已冲销凭证年度"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已冲销的物料凭证项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "ReversedMaterialDocumentItem"
+    ],
+    "synonyms": [
+      "已冲销凭证项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已评估销售订单库存的销售订单编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "SpecialStockIdfgSalesOrder"
+    ],
+    "synonyms": [
+      "销售订单"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已评估销售订单库存的销售订单项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "SpecialStockIdfgSalesOrderItem"
+    ],
+    "synonyms": [
+      "销售订单项"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "库存类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "InventoryStockType"
+    ],
+    "synonyms": [
+      "货物移动的库存类型（库存标识符）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "库存细分",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "StockSegment"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总账科目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "GLAccount"
+    ],
+    "synonyms": [
+      "总账科目号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总账科目号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "GLAccount"
+    ],
+    "synonyms": [
+      "总账科目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本中心",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "CostCenter"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本对象",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "CostObject"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本控制范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "ControllingArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批次",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "Batch"
+    ],
+    "synonyms": [
+      "批次编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批次编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "Batch"
+    ],
+    "synonyms": [
+      "批次"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "接收/发送库存段",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "IssgOrRcvgStockSegment"
+    ],
+    "synonyms": [
+      "接收库存段"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "接收工厂/发货工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "IssuingOrReceivingPlant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "接收库存段",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "IssgOrRcvgStockSegment"
+    ],
+    "synonyms": [
+      "接收/发送库存段"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收货/发货存储位置",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "IssuingOrReceivingStorageLoc"
+    ],
+    "synonyms": [
+      "存储位置"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收货方",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "GoodsRecipientName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "QuantityInBaseUnit"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "MaterialDocumentItemText"
+    ],
+    "synonyms": [
+      "项目文本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "最终发货预留",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "ReservationIsFinallyIssued"
+    ],
+    "synonyms": [
+      "预留的最终发货"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "期间的年",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "FiscalYearPeriod"
+    ],
+    "synonyms": [
+      "自过账日期起的会计年度和期间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "MaterialDocument"
+    ],
+    "synonyms": [
+      "物料凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料凭证年度",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "MaterialDocumentYear"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "MaterialDocument"
+    ],
+    "synonyms": [
+      "物料凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料凭证项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "MaterialDocumentItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "特殊库存类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "InventorySpecialStockType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "科目分配类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "AccountAssignmentCategory"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "移动原因",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "GoodsMovementReasonCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "移动类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "GoodsMovementType"
+    ],
+    "synonyms": [
+      "移动类型(库存管理)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "移动类型(库存管理)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "GoodsMovementType"
+    ],
+    "synonyms": [
+      "移动类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "职能范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "FunctionalArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "自动创建",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "IsAutomaticallyCreated"
+    ],
+    "synonyms": [
+      "项目自动创建标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "自动创建序列号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "SerialNumbersAreCreatedAutomly"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "自过账日期起的会计年度和期间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "FiscalYearPeriod"
+    ],
+    "synonyms": [
+      "期间的年"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "获利能力细分",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "ProfitabilitySegment"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "行标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "MaterialDocumentLine"
+    ],
+    "synonyms": [
+      "凭证行的唯一标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "评估类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "InventoryValuationType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货架到期日/最佳用时",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "ShelfLifeExpirationDate"
+    ],
+    "synonyms": [
+      "货架存放期过期日期或最佳使用日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货架存放期过期日期或最佳使用日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "ShelfLifeExpirationDate"
+    ],
+    "synonyms": [
+      "货架到期日/最佳用时"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货物移动参考凭证类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "GoodsMovementRefDocType"
+    ],
+    "synonyms": [
+      "参考凭证类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货物移动的库存类型（库存标识符）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "InventoryStockType"
+    ],
+    "synonyms": [
+      "库存类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "资产",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "MasterFixedAsset"
+    ],
+    "synonyms": [
+      "主要资产编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "资产子编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "FixedAsset"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "转储库存类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "IssuingOrReceivingStockType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "转储特殊库存类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "IssgOrRcvgSpclStockInd"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "输入单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "EntryUnit"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "过账控制库存类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "InventoryUsabilityCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "过账类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "MaterialDocumentPostingType"
+    ],
+    "synonyms": [
+      "冲销、退货交货或传输过账"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证的项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "PurchaseOrderItem"
+    ],
+    "synonyms": [
+      "采购订单项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购订单",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "PurchaseOrder"
+    ],
+    "synonyms": [
+      "采购订单编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购订单编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "PurchaseOrder"
+    ],
+    "synonyms": [
+      "采购订单"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购订单项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "PurchaseOrderItem"
+    ],
+    "synonyms": [
+      "采购凭证的项目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售订单",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "SalesOrder"
+    ],
+    "synonyms": [
+      "销售订单数"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售订单",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "SpecialStockIdfgSalesOrder"
+    ],
+    "synonyms": [
+      "已评估销售订单库存的销售订单编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售订单数",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "SalesOrder"
+    ],
+    "synonyms": [
+      "销售订单"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售订单计划",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "SalesOrderScheduleLine"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售订单项",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "SalesOrderItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售订单项",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "SpecialStockIdfgSalesOrderItem"
+    ],
+    "synonyms": [
+      "已评估销售订单库存的销售订单项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目已取消",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "GoodsMovementIsCancelled"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "MaterialDocumentItemText"
+    ],
+    "synonyms": [
+      "文本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目自动创建标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "IsAutomaticallyCreated"
+    ],
+    "synonyms": [
+      "自动创建"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "预留",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "Reservation"
+    ],
+    "synonyms": [
+      "预留/相关需求数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "预留/相关需求数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "Reservation"
+    ],
+    "synonyms": [
+      "预留"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "预留/相关需求的项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "ReservationItem"
+    ],
+    "synonyms": [
+      "预留项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "预留的最终发货",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "ReservationIsFinallyIssued"
+    ],
+    "synonyms": [
+      "最终发货预留"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "预留记录类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "ReservationItemRecordType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "预留项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_MaterialDocumentItem",
+    "mapped_fields": [
+      "ReservationItem"
+    ],
+    "synonyms": [
+      "预留/相关需求的项目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Serial Numbers",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_SerialNumberMaterialDocument",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "制造商序列号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_SerialNumberMaterialDocument",
+    "mapped_fields": [
+      "ManufacturerSerialNumber"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "序列号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_SerialNumberMaterialDocument",
+    "mapped_fields": [
+      "SerialNumber"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_SerialNumberMaterialDocument",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_SerialNumberMaterialDocument",
+    "mapped_fields": [
+      "MaterialDocument"
+    ],
+    "synonyms": [
+      "物料凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料凭证年度",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_SerialNumberMaterialDocument",
+    "mapped_fields": [
+      "MaterialDocumentYear"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_SerialNumberMaterialDocument",
+    "mapped_fields": [
+      "MaterialDocument"
+    ],
+    "synonyms": [
+      "物料凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料凭证项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_SerialNumberMaterialDocument",
+    "mapped_fields": [
+      "MaterialDocumentItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "A_SerialNumberMaterialDocument",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Document Header",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "Cancel",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Document Items",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_MATERIAL_DOCUMENT_SRV",
+    "mapped_entity_set": "CancelItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  }
+]

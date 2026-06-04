@@ -1,0 +1,28 @@
+[
+  {
+    "service_name": "API_SLSPRICINGCONDITIONRECORD_SRV",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_SLSPRICINGCONDITIONRECORD_SRV",
+    "description": "Consumers of this inbound service can create, read, update, and delete condition records inside condition record, validity of condition record, pricing scale, and condition supplement.",
+    "entity_sets": [
+      "A_SlsPrcgCndnRecdSuplmnt",
+      "A_SlsPrcgCndnRecdValidity",
+      "A_SlsPrcgCndnRecordScale",
+      "A_SlsPrcgCndnSupplementText",
+      "A_SlsPrcgConditionRecord",
+      "A_SlsPrcgConditionRecordText"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "https://sap.example.local/sap/opu/odata/sap/API_SLSPRICINGCONDITIONRECORD_SRV/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD/2602.latest/EN/79/16962329ee49b293156fffddfb7dd8/frameset.htm",
+    "openapi_version": "1.2.0"
+  }
+]

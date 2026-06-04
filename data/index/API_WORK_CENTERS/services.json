@@ -1,0 +1,41 @@
+[
+  {
+    "service_name": "API_WORK_CENTERS",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_WORK_CENTERS",
+    "description": "This service is based on OData protocol and can be consumed in Fiori apps and on other user interfaces. It enables you to create, read and update work centers. The service contains work center header, work center description, cost center allocation, capacity assignment, capacity header, capacity intervals, capacity shifts, queuing operations, today’s operation, capacity per bucket and capacity order per bucket.",
+    "entity_sets": [
+      "A_WorkCenterAllCapacity",
+      "A_WorkCenterAllCapacity_2",
+      "A_WorkCenterCapDayOp",
+      "A_WorkCenterCapOrderPerBucket",
+      "A_WorkCenterCapOrderPerBucketSet",
+      "A_WorkCenterCapPerBucket",
+      "A_WorkCenterCapPerBucketSet",
+      "A_WorkCenterCapPplineOp",
+      "A_WorkCenterCapacity",
+      "A_WorkCenterCapacityInterval",
+      "A_WorkCenterCapacityInterval_2",
+      "A_WorkCenterCapacityShift",
+      "A_WorkCenterCapacityShift_2",
+      "A_WorkCenterCapacityText",
+      "A_WorkCenterCostCenter",
+      "A_WorkCenterDayOperation",
+      "A_WorkCenterDescription",
+      "A_WorkCenterPipeLineOperation",
+      "A_WorkCenters"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "https://sap.example.local/sap/opu/odata/sap/API_WORK_CENTERS/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/62/ec4758c3f90a02e10000000a44147b/frameset.htm",
+    "openapi_version": "1.0.0"
+  }
+]

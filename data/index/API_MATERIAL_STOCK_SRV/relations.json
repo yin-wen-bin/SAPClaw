@@ -1,0 +1,42 @@
+[
+  {
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "from_entity_set": "A_MaterialSerialNumber",
+    "navigation_name": "to_MatlStkInAcctMod",
+    "to_entity_set": "ToRole_assoc_404AF617C29D100FA9BB5432D761AE2E",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "from_entity_set": "A_MaterialStock",
+    "navigation_name": "to_MatlStkInAcctMod",
+    "to_entity_set": "ToRole_assoc_54E8EB962C48178E40453A31481776EE",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "from_entity_set": "A_MatlStkInAcctMod",
+    "navigation_name": "to_MaterialSerialNumber",
+    "to_entity_set": "ToRole_assoc_3947838928FB6A1D21D21ADDF1F67735",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "from_entity_set": "A_MatlStkInAcctMod",
+    "navigation_name": "to_MaterialStock",
+    "to_entity_set": "ToRole_assoc_F6B85CF893D9D7998DAB6F6B58E318D6",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  }
+]

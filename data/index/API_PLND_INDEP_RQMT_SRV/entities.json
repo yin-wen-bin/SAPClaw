@@ -1,0 +1,92 @@
+[
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmt",
+    "entity_type": "PlannedIndepRqmtType",
+    "key_fields": [
+      "MRPArea",
+      "Plant",
+      "PlndIndepRqmtType",
+      "PlndIndepRqmtVersion",
+      "Product",
+      "RequirementPlan",
+      "RequirementSegment"
+    ],
+    "default_select_fields": [
+      "Update_mc",
+      "to_PlndIndepRqmtItem_oc",
+      "Product",
+      "Plant",
+      "MRPArea",
+      "PlndIndepRqmtType",
+      "PlndIndepRqmtVersion",
+      "RequirementPlan",
+      "RequirementSegment",
+      "RequirementPlanIsExternal"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_PlndIndepRqmtItem"
+    ],
+    "description": "Reads Planned Independent Requirements.",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PLND_INDEP_RQMT_SRV",
+    "entity_set": "PlannedIndepRqmtItem",
+    "entity_type": "PlannedIndepRqmtItemType",
+    "key_fields": [
+      "MRPArea",
+      "PeriodType",
+      "Plant",
+      "PlndIndepRqmtPeriod",
+      "PlndIndepRqmtType",
+      "PlndIndepRqmtVersion",
+      "Product",
+      "RequirementPlan",
+      "RequirementSegment"
+    ],
+    "default_select_fields": [
+      "Update_mc",
+      "Product",
+      "Plant",
+      "MRPArea",
+      "PlndIndepRqmtType",
+      "PlndIndepRqmtVersion",
+      "RequirementPlan",
+      "RequirementSegment",
+      "PlndIndepRqmtPeriod",
+      "PeriodType"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_PlndIndepRqmt"
+    ],
+    "description": "Reads Planned Independent Requirement Items.",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  }
+]

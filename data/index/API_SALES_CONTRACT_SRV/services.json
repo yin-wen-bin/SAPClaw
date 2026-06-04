@@ -1,0 +1,30 @@
+[
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_SALES_CONTRACT_SRV",
+    "description": "The service contains header and item entities, as well as their sub-entities for partners and pricing elements. Once the sales contract has been created, the sales contract number is sent in the response with the data included in the sales contract. If there are any issues when creating, retrieving, updating, or deleting the sales contract, the system displays error messages in the response.\r\n\r\nNote: Certain elements and entities can only be used if you activate the business function ISR_RETAILSYSTEM. For more information, see Business Documentation.",
+    "entity_sets": [
+      "A_SalesContract",
+      "A_SalesContractItem",
+      "A_SalesContractItemPartner",
+      "A_SalesContractItemPrcgElmnt",
+      "A_SalesContractItemText",
+      "A_SalesContractPartner",
+      "A_SalesContractPrcgElmnt",
+      "A_SalesContractText"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "https://sap.example.local/sap/opu/odata/sap/API_SALES_CONTRACT_SRV/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/bc/2d6c95d98e4b96ae70e7db2de4cca1/frameset.htm",
+    "openapi_version": "1.0.0"
+  }
+]

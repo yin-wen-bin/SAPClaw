@@ -1,0 +1,122 @@
+[
+  {
+    "term": "Segment",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SEGMENT_SRV",
+    "mapped_entity_set": "A_Segment",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Segment Text",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SEGMENT_SRV",
+    "mapped_entity_set": "A_Segment",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "段",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SEGMENT_SRV",
+    "mapped_entity_set": "A_Segment",
+    "mapped_fields": [
+      "Segment"
+    ],
+    "synonyms": [
+      "细分报表的细分"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "细分报表的细分",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SEGMENT_SRV",
+    "mapped_entity_set": "A_Segment",
+    "mapped_fields": [
+      "Segment"
+    ],
+    "synonyms": [
+      "段"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Segment",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SEGMENT_SRV",
+    "mapped_entity_set": "A_SegmentText",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Segment Text",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SEGMENT_SRV",
+    "mapped_entity_set": "A_SegmentText",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "段",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SEGMENT_SRV",
+    "mapped_entity_set": "A_SegmentText",
+    "mapped_fields": [
+      "Segment"
+    ],
+    "synonyms": [
+      "细分报表的细分"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "细分名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SEGMENT_SRV",
+    "mapped_entity_set": "A_SegmentText",
+    "mapped_fields": [
+      "SegmentName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "细分报表的细分",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SEGMENT_SRV",
+    "mapped_entity_set": "A_SegmentText",
+    "mapped_fields": [
+      "Segment"
+    ],
+    "synonyms": [
+      "段"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "语言代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SEGMENT_SRV",
+    "mapped_entity_set": "A_SegmentText",
+    "mapped_fields": [
+      "Language"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  }
+]

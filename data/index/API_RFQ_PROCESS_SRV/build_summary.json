@@ -1,0 +1,15 @@
+{
+  "service_name": "API_RFQ_PROCESS_SRV",
+  "sap_metadata_entity_count": 3,
+  "sap_metadata_field_count": 63,
+  "openapi_documented_entity_count": 6,
+  "openapi_documented_entity_type_count": 6,
+  "merged_entity_count": 6,
+  "merged_field_count": 63,
+  "relation_count": 2,
+  "entity_graph_edge_count": 2,
+  "lookup_path_count": 4,
+  "business_term_count": 111,
+  "vector_document_count": 67,
+  "doc_chunk_count": 131
+}

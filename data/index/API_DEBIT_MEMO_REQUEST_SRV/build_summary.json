@@ -1,0 +1,15 @@
+{
+  "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+  "sap_metadata_entity_count": 10,
+  "sap_metadata_field_count": 246,
+  "openapi_documented_entity_count": 11,
+  "openapi_documented_entity_type_count": 13,
+  "merged_entity_count": 11,
+  "merged_field_count": 265,
+  "relation_count": 19,
+  "entity_graph_edge_count": 19,
+  "lookup_path_count": 26,
+  "business_term_count": 441,
+  "vector_document_count": 291,
+  "doc_chunk_count": 517
+}

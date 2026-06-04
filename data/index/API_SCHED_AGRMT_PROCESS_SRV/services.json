@@ -1,0 +1,31 @@
+[
+  {
+    "service_name": "API_SCHED_AGRMT_PROCESS_SRV",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_SCHED_AGRMT_PROCESS_SRV",
+    "description": "This service enables you to create, read, update and delete purchase scheduling agreements from any external system through an API call. Once the purchase scheduling agreement has been created or updated, the scheduling agreement number is sent in the response. If there are any issues while managing (create, read or update) purchase scheduling agreements, the system displays error messages in the response.",
+    "entity_sets": [
+      "A_SchAgrmtAcCnt",
+      "A_SchAgrmtHeader",
+      "A_SchAgrmtItem",
+      "A_SchAgrmtPartner",
+      "A_SchAgrmtSchLine",
+      "A_SchedgAgrmtDeliveryAddress",
+      "A_SchedgAgrmtHdrNotes",
+      "A_SchedgAgrmtItmNotes",
+      "A_SchedgAgrmtSubcontrgComp"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "https://sap.example.local/sap/opu/odata/sap/API_SCHED_AGRMT_PROCESS_SRV/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/c7/584658aac4a007e10000000a441470/frameset.htm",
+    "openapi_version": "1.0.0"
+  }
+]

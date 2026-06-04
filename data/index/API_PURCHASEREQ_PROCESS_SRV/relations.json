@@ -1,0 +1,52 @@
+[
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "from_entity_set": "A_PurchaseRequisitionHeader",
+    "navigation_name": "to_PurchaseReqnItem",
+    "to_entity_set": "ToRole_assoc_2E365BBA69BFF1FD6DED4A3FE5FC8879",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "from_entity_set": "A_PurchaseRequisitionItem",
+    "navigation_name": "to_PurchaseReqn",
+    "to_entity_set": "FromRole_assoc_2E365BBA69BFF1FD6DED4A3FE5FC8879",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "from_entity_set": "A_PurchaseRequisitionItem",
+    "navigation_name": "to_PurchaseReqnAcctAssgmt",
+    "to_entity_set": "ToRole_assoc_DD2D86FAE4190F25D1329F064E7E2F36",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "from_entity_set": "A_PurchaseRequisitionItem",
+    "navigation_name": "to_PurchaseReqnDeliveryAddress",
+    "to_entity_set": "ToRole_assoc_C6E59A9DD7FDCF62064475A8A581666E",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "from_entity_set": "A_PurchaseRequisitionItem",
+    "navigation_name": "to_PurchaseReqnItemText",
+    "to_entity_set": "ToRole_assoc_E1ADB329055391FB18FD52AE6C615C8C",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "service_name": "API_COMPANYCODE_SRV",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_COMPANYCODE_SRV",
+    "description": "The service enables you to retrieve company code master data. It contains a header and nodes with business information. You can read company codes and their properties like name, country and currency.",
+    "entity_sets": [
+      "A_CompanyCode"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "https://sap.example.local/sap/opu/odata/sap/API_COMPANYCODE_SRV/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/b5/2aac521dc0441aba00d65c859ad9c6/frameset.htm",
+    "openapi_version": "1.0.0"
+  }
+]

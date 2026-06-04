@@ -1,0 +1,112 @@
+[
+  {
+    "service_name": "API_BATCH_SRV",
+    "from_entity_set": "Batch",
+    "to_entity_set": "ToRole_assoc_50E0FB99EF508B61011201AAEB1E15C7",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_BatchPlant",
+    "description": "Navigation `to_BatchPlant` from `Batch` to `ToRole_assoc_50E0FB99EF508B61011201AAEB1E15C7`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_BATCH_SRV",
+    "from_entity_set": "Batch",
+    "to_entity_set": "ToRole_assoc_60ABC63B5847FBB947A5E66206309374",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_BatchCharc",
+    "description": "Navigation `to_BatchCharc` from `Batch` to `ToRole_assoc_60ABC63B5847FBB947A5E66206309374`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_BATCH_SRV",
+    "from_entity_set": "Batch",
+    "to_entity_set": "ToRole_assoc_D5D1AC2E805CD231C1F8D83DDD9907A2",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_BatchText",
+    "description": "Navigation `to_BatchText` from `Batch` to `ToRole_assoc_D5D1AC2E805CD231C1F8D83DDD9907A2`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_BATCH_SRV",
+    "from_entity_set": "Batch",
+    "to_entity_set": "ToRole_assoc_F157C1BF1BB8332EF3EDE600265FEEC4",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_BatchClass",
+    "description": "Navigation `to_BatchClass` from `Batch` to `ToRole_assoc_F157C1BF1BB8332EF3EDE600265FEEC4`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_BATCH_SRV",
+    "from_entity_set": "BatchCharc",
+    "to_entity_set": "FromRole_assoc_60ABC63B5847FBB947A5E66206309374",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_Batch",
+    "description": "Navigation `to_Batch` from `BatchCharc` to `FromRole_assoc_60ABC63B5847FBB947A5E66206309374`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_BATCH_SRV",
+    "from_entity_set": "BatchCharc",
+    "to_entity_set": "ToRole_assoc_4B366B354633A0A31385A5EB9C273E6F",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_BatchCharcValue",
+    "description": "Navigation `to_BatchCharcValue` from `BatchCharc` to `ToRole_assoc_4B366B354633A0A31385A5EB9C273E6F`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_BATCH_SRV",
+    "from_entity_set": "BatchCharcValue",
+    "to_entity_set": "FromRole_assoc_4B366B354633A0A31385A5EB9C273E6F",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_BatchCharc",
+    "description": "Navigation `to_BatchCharc` from `BatchCharcValue` to `FromRole_assoc_4B366B354633A0A31385A5EB9C273E6F`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_BATCH_SRV",
+    "from_entity_set": "BatchClass",
+    "to_entity_set": "FromRole_assoc_F157C1BF1BB8332EF3EDE600265FEEC4",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_Batch",
+    "description": "Navigation `to_Batch` from `BatchClass` to `FromRole_assoc_F157C1BF1BB8332EF3EDE600265FEEC4`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_BATCH_SRV",
+    "from_entity_set": "BatchPlant",
+    "to_entity_set": "FromRole_assoc_50E0FB99EF508B61011201AAEB1E15C7",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_Batch",
+    "description": "Navigation `to_Batch` from `BatchPlant` to `FromRole_assoc_50E0FB99EF508B61011201AAEB1E15C7`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_BATCH_SRV",
+    "from_entity_set": "BatchText",
+    "to_entity_set": "FromRole_assoc_D5D1AC2E805CD231C1F8D83DDD9907A2",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_Batch",
+    "description": "Navigation `to_Batch` from `BatchText` to `FromRole_assoc_D5D1AC2E805CD231C1F8D83DDD9907A2`.",
+    "confidence": 0.8
+  }
+]

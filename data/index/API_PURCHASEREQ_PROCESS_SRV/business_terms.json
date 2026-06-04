@@ -1,0 +1,5028 @@
+[
+  {
+    "term": "Delivery Address",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "不同的城市",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "HomeCityName"
+    ],
+    "synonyms": [
+      "城市（与邮政城市不同）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交付服务的类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "DeliveryServiceTypeCode"
+    ],
+    "synonyms": [
+      "交付服务类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交付服务的编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "DeliveryServiceNumber"
+    ],
+    "synonyms": [
+      "交付服务编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交付服务类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "DeliveryServiceTypeCode"
+    ],
+    "synonyms": [
+      "交付服务的类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交付服务编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "DeliveryServiceNumber"
+    ],
+    "synonyms": [
+      "交付服务的编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交货地址编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "ItemDeliveryAddressID"
+    ],
+    "synonyms": [
+      "地址"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "人员编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "Person"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "代收人",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "CareOfName"
+    ],
+    "synonyms": [
+      "代收人姓名"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "代收人姓名",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "CareOfName"
+    ],
+    "synonyms": [
+      "代收人"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "传真",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "FaxNumber"
+    ],
+    "synonyms": [
+      "第一个传真号: 区号 + 编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "全名",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "AddresseeFullName"
+    ],
+    "synonyms": [
+      "完整的人员名称"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "全称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "FullName"
+    ],
+    "synonyms": [
+      "相关方全称（业务伙伴、组织单位、凭证地址）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "公司的邮政编码（针对大客户）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "CompanyPostalCode"
+    ],
+    "synonyms": [
+      "公司邮政编码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "公司邮政编码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "CompanyPostalCode"
+    ],
+    "synonyms": [
+      "公司的邮政编码（针对大客户）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "前厅邮政信箱",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "POBoxLobbyName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "区域",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "District"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "县",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "County"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发送货物的目的地运输区域",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "TransportZone"
+    ],
+    "synonyms": [
+      "运输区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "BusinessPartnerName1"
+    ],
+    "synonyms": [
+      "名称 1"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "名称 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "BusinessPartnerName1"
+    ],
+    "synonyms": [
+      "名称"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "名称 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "BusinessPartnerName2"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "名称 3",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "BusinessPartnerName3"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "名称 4",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "BusinessPartnerName4"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国家/地区代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "Country"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际地址的版本标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "Nation"
+    ],
+    "synonyms": [
+      "地址版本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "Region"
+    ],
+    "synonyms": [
+      "地区（省/自治区/直辖市、市、县）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "地区（省/自治区/直辖市、市、县）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "Region"
+    ],
+    "synonyms": [
+      "地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "地址",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "AddressID"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "地址",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "ManualDeliveryAddressID"
+    ],
+    "synonyms": [
+      "采购凭证项目中的人工地址号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "地址",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "ItemDeliveryAddressID"
+    ],
+    "synonyms": [
+      "交货地址编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "地址时区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "AddressTimeZone"
+    ],
+    "synonyms": [
+      "时区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "地址版本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "Nation"
+    ],
+    "synonyms": [
+      "国际地址的版本标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "地址类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "AddressType"
+    ],
+    "synonyms": [
+      "采购申请地址类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "城市",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "CityName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "城市",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "CitySearch"
+    ],
+    "synonyms": [
+      "搜索帮助的大写城市名称"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "城市/街道文件的城市号码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "CityCode"
+    ],
+    "synonyms": [
+      "城市代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "城市代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "CityCode"
+    ],
+    "synonyms": [
+      "城市/街道文件的城市号码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "城市邮政编码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "PostalCode"
+    ],
+    "synonyms": [
+      "邮政编码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "城市（与邮政城市不同）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "HomeCityName"
+    ],
+    "synonyms": [
+      "不同的城市"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "完整的人员名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "AddresseeFullName"
+    ],
+    "synonyms": [
+      "全名"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "Plant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "建筑物代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "Building"
+    ],
+    "synonyms": [
+      "建筑物（编号或代码）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "建筑物的层",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "Floor"
+    ],
+    "synonyms": [
+      "楼层"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "建筑物（编号或代码）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "Building"
+    ],
+    "synonyms": [
+      "建筑物代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "开户号补充",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "HouseNumberSupplementText"
+    ],
+    "synonyms": [
+      "补充"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "房间号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "RoomNumber"
+    ],
+    "synonyms": [
+      "房间或公寓号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "房间或公寓号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "RoomNumber"
+    ],
+    "synonyms": [
+      "房间号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "搜索帮助的大写城市名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "CitySearch"
+    ],
+    "synonyms": [
+      "城市"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "搜索帮助的大写街道名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "StreetSearch"
+    ],
+    "synonyms": [
+      "街道"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "搜索词 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "SearchTerm1"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "AddressTimeZone"
+    ],
+    "synonyms": [
+      "地址时区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标志：没有编号的邮箱",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "POBoxIsWithoutNumber"
+    ],
+    "synonyms": [
+      "没有编号的邮箱"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "楼层",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "Floor"
+    ],
+    "synonyms": [
+      "建筑物的层"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "没有编号的邮箱",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "POBoxIsWithoutNumber"
+    ],
+    "synonyms": [
+      "标志：没有编号的邮箱"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "申请项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "PurchaseRequisitionItem"
+    ],
+    "synonyms": [
+      "采购申请的项目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "电话",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "PhoneNumber"
+    ],
+    "synonyms": [
+      "第一个电话号码：区号 + 号码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "相关方全称（业务伙伴、组织单位、凭证地址）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "FullName"
+    ],
+    "synonyms": [
+      "全称"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "称谓代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "FormOfAddress"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税务管辖权",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "TaxJurisdiction"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "第一个传真号: 区号 + 编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "FaxNumber"
+    ],
+    "synonyms": [
+      "传真"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "第一个电话号码：区号 + 号码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "PhoneNumber"
+    ],
+    "synonyms": [
+      "电话"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "街道",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "StreetName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "街道",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "StreetSearch"
+    ],
+    "synonyms": [
+      "搜索帮助的大写街道名称"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "街道 3",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "AdditionalStreetPrefixName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "街道 4",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "StreetSuffixName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "街道 5",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "AdditionalStreetSuffixName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "街道2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "StreetPrefixName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "补充",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "HouseNumberSupplementText"
+    ],
+    "synonyms": [
+      "开户号补充"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "语言代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "CorrespondenceLanguage"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "运输区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "TransportZone"
+    ],
+    "synonyms": [
+      "发送货物的目的地运输区域"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "通讯方法",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "PrfrdCommMediumType"
+    ],
+    "synonyms": [
+      "通讯方法 (关键字)(业务地址服务)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "通讯方法 (关键字)(业务地址服务)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "PrfrdCommMediumType"
+    ],
+    "synonyms": [
+      "通讯方法"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "邮政信箱",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "POBox"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "邮政信箱区域",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "POBoxDeviatingRegion"
+    ],
+    "synonyms": [
+      "邮政信箱所在地区（国家/地区、州、省...）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "邮政信箱城市",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "POBoxDeviatingCityName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "邮政信箱所在地区（国家/地区、州、省...）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "POBoxDeviatingRegion"
+    ],
+    "synonyms": [
+      "邮政信箱区域"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "邮政编码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "PostalCode"
+    ],
+    "synonyms": [
+      "城市邮政编码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "邮箱国家",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "POBoxDeviatingCountry"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "邮箱邮政编码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "POBoxPostalCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证项目中的人工地址号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "ManualDeliveryAddressID"
+    ],
+    "synonyms": [
+      "地址"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "PurchaseRequisition"
+    ],
+    "synonyms": [
+      "采购申请编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请地址类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "AddressType"
+    ],
+    "synonyms": [
+      "地址类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请的项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "PurchaseRequisitionItem"
+    ],
+    "synonyms": [
+      "申请项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "PurchaseRequisition"
+    ],
+    "synonyms": [
+      "采购申请"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "门牌号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqAddDelivery",
+    "mapped_fields": [
+      "HouseNumber"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Account Assignment",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Earmarked Funds: Document Item",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "EarmarkedFundsDocumentItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "WBS 要素",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "WBSElement"
+    ],
+    "synonyms": [
+      "工作分解结构要素（WBS 要素）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "专项资金",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "EarmarkedFundsDocument"
+    ],
+    "synonyms": [
+      "专项资金的凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "专项资金的凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "EarmarkedFundsDocument"
+    ],
+    "synonyms": [
+      "专项资金"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "业务处理",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "BusinessProcess"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "业务范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "BusinessArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "主要资产编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "MasterFixedAsset"
+    ],
+    "synonyms": [
+      "资产"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "内部计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "NetworkActivityInternalID"
+    ],
+    "synonyms": [
+      "计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "决算的参考日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "SettlementReferenceDate"
+    ],
+    "synonyms": [
+      "参考日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "PurchaseRequisitionType"
+    ],
+    "synonyms": [
+      "采购申请凭证类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分配(%)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "MultipleAcctAssgmtDistrPercent"
+    ],
+    "synonyms": [
+      "多帐目分配情况下的分配百分比"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "CreationDate"
+    ],
+    "synonyms": [
+      "记录创建日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "删除标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "IsDeleted"
+    ],
+    "synonyms": [
+      "采购凭证中的删除标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "利润中心",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "ProfitCenter"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "卸货点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "UnloadingPointName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "SettlementReferenceDate"
+    ],
+    "synonyms": [
+      "决算的参考日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "合伙人帐户编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "PartnerAccountNumber"
+    ],
+    "synonyms": [
+      "合作伙伴"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "合作伙伴",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "PartnerAccountNumber"
+    ],
+    "synonyms": [
+      "合伙人帐户编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "同意",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "GrantID"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "回收标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "JointVentureRecoveryCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "基金",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "Fund"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "基金中心",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "FundsCenter"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "多帐目分配情况下的分配百分比",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "MultipleAcctAssgmtDistrPercent"
+    ],
+    "synonyms": [
+      "分配(%)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "子编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "FixedAsset"
+    ],
+    "synonyms": [
+      "资产子编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工作分解结构要素（WBS 要素）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "WBSElement"
+    ],
+    "synonyms": [
+      "WBS 要素"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "Plant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工序/活动",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "NetworkActivity"
+    ],
+    "synonyms": [
+      "工序/活动编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工序/活动编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "NetworkActivity"
+    ],
+    "synonyms": [
+      "工序/活动"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工序的任务清单号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "ProjectNetworkInternalID"
+    ],
+    "synonyms": [
+      "订单中工序的工艺路线号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工序的任务清单号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "OrderInternalID"
+    ],
+    "synonyms": [
+      "订单中工序的工艺路线号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "序列号帐户分配",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "PurchaseReqnAcctAssgmtNumber"
+    ],
+    "synonyms": [
+      "采购申请帐户分配段的序列号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总账科目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "CostElement"
+    ],
+    "synonyms": [
+      "总账科目号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总账科目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "GLAccount"
+    ],
+    "synonyms": [
+      "总账科目号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总账科目号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "CostElement"
+    ],
+    "synonyms": [
+      "总账科目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总账科目号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "GLAccount"
+    ],
+    "synonyms": [
+      "总账科目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本中心",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "CostCenter"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本对象",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "CostObject"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本控制范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "ControllingArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "房地产代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "RealEstateObject"
+    ],
+    "synonyms": [
+      "房地产对象的内码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "房地产对象的内码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "RealEstateObject"
+    ],
+    "synonyms": [
+      "房地产代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "承诺项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "CommitmentItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收货方",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "GoodsRecipientName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "活动类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "CostCtrActivityType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "申请数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "Quantity"
+    ],
+    "synonyms": [
+      "采购申请数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "科目分配的网络号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "ProjectNetwork"
+    ],
+    "synonyms": [
+      "网络"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "科目表",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "ChartOfAccounts"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "网络",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "ProjectNetwork"
+    ],
+    "synonyms": [
+      "科目分配的网络号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "职能范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "FunctionalArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "获利能力段编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "ProfitabilitySegment"
+    ],
+    "synonyms": [
+      "获利能力段编号(CO-PA)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "获利能力段编号(CO-PA)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "ProfitabilitySegment"
+    ],
+    "synonyms": [
+      "获利能力段编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划行号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "ScheduleLine"
+    ],
+    "synonyms": [
+      "计划行编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划行号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "SalesOrderScheduleLine"
+    ],
+    "synonyms": [
+      "计划行编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划行编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "ScheduleLine"
+    ],
+    "synonyms": [
+      "计划行号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划行编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "SalesOrderScheduleLine"
+    ],
+    "synonyms": [
+      "计划行号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "NetworkActivityInternalID"
+    ],
+    "synonyms": [
+      "内部计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "OrderIntBillOfOperationsItem"
+    ],
+    "synonyms": [
+      "订单的通用计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "BaseUnit"
+    ],
+    "synonyms": [
+      "采购申请计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "ProcessOrder"
+    ],
+    "synonyms": [
+      "订单编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "OrderID"
+    ],
+    "synonyms": [
+      "订单编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单中工序的工艺路线号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "ProjectNetworkInternalID"
+    ],
+    "synonyms": [
+      "工序的任务清单号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单中工序的工艺路线号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "OrderInternalID"
+    ],
+    "synonyms": [
+      "工序的任务清单号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单净值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "PurReqnNetAmount"
+    ],
+    "synonyms": [
+      "采购订单货币的订单净值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单的通用计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "OrderIntBillOfOperationsItem"
+    ],
+    "synonyms": [
+      "计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "ProcessOrder"
+    ],
+    "synonyms": [
+      "订单"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "OrderID"
+    ],
+    "synonyms": [
+      "订单"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "记录创建日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "CreationDate"
+    ],
+    "synonyms": [
+      "创建日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "请求的项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "PurchaseRequisitionItem"
+    ],
+    "synonyms": [
+      "采购申请的项目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "PurReqnItemCurrency"
+    ],
+    "synonyms": [
+      "货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "PurReqnItemCurrency"
+    ],
+    "synonyms": [
+      "货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "资产",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "MasterFixedAsset"
+    ],
+    "synonyms": [
+      "主要资产编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "资产子编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "FixedAsset"
+    ],
+    "synonyms": [
+      "子编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证中的删除标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "IsDeleted"
+    ],
+    "synonyms": [
+      "删除标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "PurchaseRequisition"
+    ],
+    "synonyms": [
+      "采购申请编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请凭证类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "PurchaseRequisitionType"
+    ],
+    "synonyms": [
+      "凭证类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请帐户分配段的序列号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "PurchaseReqnAcctAssgmtNumber"
+    ],
+    "synonyms": [
+      "序列号帐户分配"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "Quantity"
+    ],
+    "synonyms": [
+      "申请数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请的项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "PurchaseRequisitionItem"
+    ],
+    "synonyms": [
+      "请求的项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "PurchaseRequisition"
+    ],
+    "synonyms": [
+      "采购申请"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "BaseUnit"
+    ],
+    "synonyms": [
+      "计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "PurchasingGroup"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购组织",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "PurchasingOrganization"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购订单货币的订单净值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "PurReqnNetAmount"
+    ],
+    "synonyms": [
+      "订单净值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售凭证项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "SalesDocumentItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售凭证项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "SalesOrderItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售和分销凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "SDDocument"
+    ],
+    "synonyms": [
+      "销售和分销凭证号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售和分销凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "SalesOrder"
+    ],
+    "synonyms": [
+      "销售和分销凭证号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售和分销凭证号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "SDDocument"
+    ],
+    "synonyms": [
+      "销售和分销凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售和分销凭证号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurReqnAcctAssgmt",
+    "mapped_fields": [
+      "SalesOrder"
+    ],
+    "synonyms": [
+      "销售和分销凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item Notes",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseReqnItemText",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseReqnItemText",
+    "mapped_fields": [
+      "ArchObjectNumber"
+    ],
+    "synonyms": [
+      "文本名"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "固定",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseReqnItemText",
+    "mapped_fields": [
+      "FixedIndicator"
+    ],
+    "synonyms": [
+      "文本的固定标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "文本: 应用程序对象",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseReqnItemText",
+    "mapped_fields": [
+      "TechnicalObjectType"
+    ],
+    "synonyms": [
+      "文本对象"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "文本名",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseReqnItemText",
+    "mapped_fields": [
+      "ArchObjectNumber"
+    ],
+    "synonyms": [
+      "名称"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "文本对象",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseReqnItemText",
+    "mapped_fields": [
+      "TechnicalObjectType"
+    ],
+    "synonyms": [
+      "文本: 应用程序对象"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "文本标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseReqnItemText",
+    "mapped_fields": [
+      "DocumentText"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "文本的固定标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseReqnItemText",
+    "mapped_fields": [
+      "FixedIndicator"
+    ],
+    "synonyms": [
+      "固定"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "语言代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseReqnItemText",
+    "mapped_fields": [
+      "Language"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "请求的项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseReqnItemText",
+    "mapped_fields": [
+      "PurchaseRequisitionItem"
+    ],
+    "synonyms": [
+      "采购申请的项目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseReqnItemText",
+    "mapped_fields": [
+      "PurchaseRequisition"
+    ],
+    "synonyms": [
+      "采购申请编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请的项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseReqnItemText",
+    "mapped_fields": [
+      "PurchaseRequisitionItem"
+    ],
+    "synonyms": [
+      "请求的项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseReqnItemText",
+    "mapped_fields": [
+      "PurchaseRequisition"
+    ],
+    "synonyms": [
+      "采购申请"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "长文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseReqnItemText",
+    "mapped_fields": [
+      "NoteDescription"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionHeader",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Purchase Requisition",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionHeader",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "凭证类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionHeader",
+    "mapped_fields": [
+      "PurchaseRequisitionType"
+    ],
+    "synonyms": [
+      "采购申请凭证类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "复选框",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionHeader",
+    "mapped_fields": [
+      "SourceDetermination"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "布尔变量（X = 真，- = 假，空格 = 未知）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionHeader",
+    "mapped_fields": [
+      "PurReqnDoOnlyValidation"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionHeader",
+    "mapped_fields": [
+      "PurchaseRequisition"
+    ],
+    "synonyms": [
+      "采购申请编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请凭证类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionHeader",
+    "mapped_fields": [
+      "PurchaseRequisitionType"
+    ],
+    "synonyms": [
+      "凭证类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请描述",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionHeader",
+    "mapped_fields": [
+      "PurReqnDescription"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionHeader",
+    "mapped_fields": [
+      "PurchaseRequisition"
+    ],
+    "synonyms": [
+      "采购申请"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "\"固定\"标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchaseRequisitionIsFixed"
+    ],
+    "synonyms": [
+      "采购申请是固定的"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Account Assignment",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Characteristic Value for Colors of Variants",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "ProductCharacteristic1"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Characteristic Value for Main Sizes of Variants",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "ProductCharacteristic2"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Characteristic Value for Second Size for Variants",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "ProductCharacteristic3"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Characteristic value description",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "ProductCharacteristic1Desc"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Characteristic value description",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "ProductCharacteristic2Desc"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Characteristic value description",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "ProductCharacteristic3Desc"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Delivery Address",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Fashion Collection",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "ProductCollection"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Fashion Theme",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "ProductTheme"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Item Notes",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "MRP 控制员",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "MRPController"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Purchase Requisition",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Web 服务标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurReqnSSPCatalog"
+    ],
+    "synonyms": [
+      "Web 服务的技术代码（例如 - 类别）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Web 服务的技术代码（例如 - 类别）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurReqnSSPCatalog"
+    ],
+    "synonyms": [
+      "Web 服务标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "为概要",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "IsOutline"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "主采购协议的项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchaseContractItem"
+    ],
+    "synonyms": [
+      "协议项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交货地址编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "ItemDeliveryAddressID"
+    ],
+    "synonyms": [
+      "地址"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交货日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "DeliveryDate"
+    ],
+    "synonyms": [
+      "项目交货日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交货日期种类",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "DelivDateCategory"
+    ],
+    "synonyms": [
+      "交货日的类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交货日的类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "DelivDateCategory"
+    ],
+    "synonyms": [
+      "交货日期种类"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "产品类型组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "ProductType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "以天计的收货处理时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "MaterialGoodsReceiptDuration"
+    ],
+    "synonyms": [
+      "收货处理时间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "价格单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurReqnPriceQuantity"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "作者",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurReqnSSPAuthor"
+    ],
+    "synonyms": [
+      "申请的作者"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "作者的业务伙伴标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "SSPAuthorExternalBPIdnNumber"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "使用采购订单中的申请价格",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchaseOrderPriceType"
+    ],
+    "synonyms": [
+      "采购订单价格"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商使用的物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "SupplierMaterialNumber"
+    ],
+    "synonyms": [
+      "供应商物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "SupplierMaterialNumber"
+    ],
+    "synonyms": [
+      "供应商使用的物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供货工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "SupplyingPlant"
+    ],
+    "synonyms": [
+      "转储单的供应(发出)工厂"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "修订级别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "MaterialRevisionLevel"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "公司代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "CompanyCode"
+    ],
+    "synonyms": [
+      "外部系统的公司代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "冻结标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "IsPurReqnBlocked"
+    ],
+    "synonyms": [
+      "已冻结采购申请"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchaseRequisitionType"
+    ],
+    "synonyms": [
+      "采购申请凭证类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分配标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "MultipleAcctAssgmtDistribution"
+    ],
+    "synonyms": [
+      "多重科目分配的分配指示器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建人",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "CreatedByUser"
+    ],
+    "synonyms": [
+      "负责创建对象的人员姓名"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "删除标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "IsDeleted"
+    ],
+    "synonyms": [
+      "采购凭证中的删除标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "协议项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchaseContractItem"
+    ],
+    "synonyms": [
+      "主采购协议的项目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发布状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchaseRequisitionStatus"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发票收据",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "InvoiceIsExpected"
+    ],
+    "synonyms": [
+      "发票收据标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发票收据标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "InvoiceIsExpected"
+    ],
+    "synonyms": [
+      "发票收据"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "固定供应商",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "FixedSupplier"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "地址",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "DeliveryAddressID"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "地址",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "ManualDeliveryAddressID"
+    ],
+    "synonyms": [
+      "采购凭证项目中的人工地址号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "地址",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "ItemDeliveryAddressID"
+    ],
+    "synonyms": [
+      "交货地址编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "地址",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "AddressID"
+    ],
+    "synonyms": [
+      "采购凭证项目中的人工地址号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "增强限制的采购合同",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurContractForOverallLimit"
+    ],
+    "synonyms": [
+      "限制合同"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "增强限制项目的采购合同参考项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurContractItemForOverallLimit"
+    ],
+    "synonyms": [
+      "限制的采购合同项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "处理状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurReqnReleaseStatus"
+    ],
+    "synonyms": [
+      "申请处理状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "处理状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "ProcessingStatus"
+    ],
+    "synonyms": [
+      "采购申请处理状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "处理状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurReqnProcessingType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "外部凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurReqnExternalReference"
+    ],
+    "synonyms": [
+      "外部凭证的凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "外部凭证的凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurReqnExternalReference"
+    ],
+    "synonyms": [
+      "外部凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "外部凭证的项目号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurReqnItemExternalReference"
+    ],
+    "synonyms": [
+      "外部项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "外部凭证类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurReqnTypeExternalReference"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "外部处理状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "ExternalApprovalStatus"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "外部排序编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurgExternalSortNumber"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "外部系统标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurReqnExternalSystemId"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "外部系统的公司代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "CompanyCode"
+    ],
+    "synonyms": [
+      "公司代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "外部系统类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurReqnExternalSystemType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "外部项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurReqnItemExternalReference"
+    ],
+    "synonyms": [
+      "外部凭证的项目号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "多重科目分配的分配指示器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "MultipleAcctAssgmtDistribution"
+    ],
+    "synonyms": [
+      "分配标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "存储地点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "StorageLocation"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "审批尚未完全生效",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "ReleaseIsNotCompleted"
+    ],
+    "synonyms": [
+      "需要审批"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "审批策略",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "ReleaseStrategy"
+    ],
+    "synonyms": [
+      "采购请求中的批准策略"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "对应于此采购申请的订货数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "OrderedQuantity"
+    ],
+    "synonyms": [
+      "订货数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "层次结构编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurgConfigurableItemNumber"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "Plant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已冻结采购申请",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "IsPurReqnBlocked"
+    ],
+    "synonyms": [
+      "冻结标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已分配",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "SourceOfSupplyIsAssigned"
+    ],
+    "synonyms": [
+      "已分配的货源"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已分配的货源",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "SourceOfSupplyIsAssigned"
+    ],
+    "synonyms": [
+      "已分配"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已结算",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "IsClosed"
+    ],
+    "synonyms": [
+      "已结算的采购申请"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已结算的采购申请",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "IsClosed"
+    ],
+    "synonyms": [
+      "已结算"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "库存细分",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "StockSegment"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "建立标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurReqnOrigin"
+    ],
+    "synonyms": [
+      "建立标识 (采购申请/计划行)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "建立标识 (采购申请/计划行)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurReqnOrigin"
+    ],
+    "synonyms": [
+      "建立标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "开始日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PerformancePeriodStartDate"
+    ],
+    "synonyms": [
+      "执行期间开始日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总体限制",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "OverallLimitAmount"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "所需供应商",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "Supplier"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "执行期间开始日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PerformancePeriodStartDate"
+    ],
+    "synonyms": [
+      "开始日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "执行期间结束日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PerformancePeriodEndDate"
+    ],
+    "synonyms": [
+      "结束日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批准日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchaseRequisitionReleaseDate"
+    ],
+    "synonyms": [
+      "采购申请批准日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批准标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "ReleaseCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批次",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "Batch"
+    ],
+    "synonyms": [
+      "批次编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批次编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "Batch"
+    ],
+    "synonyms": [
+      "批次"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "控制标识符",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchasingDocumentSubtype"
+    ],
+    "synonyms": [
+      "采购凭证类型的控制标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收货",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "GoodsReceiptIsExpected"
+    ],
+    "synonyms": [
+      "收货标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收货处理时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "MaterialGoodsReceiptDuration"
+    ],
+    "synonyms": [
+      "以天计的收货处理时间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收货未评估",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "GoodsReceiptIsNonValuated"
+    ],
+    "synonyms": [
+      "收货，未评估"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收货标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "GoodsReceiptIsExpected"
+    ],
+    "synonyms": [
+      "收货"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收货，未评估",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "GoodsReceiptIsNonValuated"
+    ],
+    "synonyms": [
+      "收货未评估"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时间戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurReqnProcessingDateTime"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "最小剩余货架寿命",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "MinRemainingShelfLife"
+    ],
+    "synonyms": [
+      "最短剩余货架寿命"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "最短剩余货架寿命",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "MinRemainingShelfLife"
+    ],
+    "synonyms": [
+      "最小剩余货架寿命"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "服务执行者",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "ServicePerformer"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "期望值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "ExpectedOverallLimitAmount"
+    ],
+    "synonyms": [
+      "期望值的总体限制"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "期望值的总体限制",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "ExpectedOverallLimitAmount"
+    ],
+    "synonyms": [
+      "期望值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "框架协议",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchaseContract"
+    ],
+    "synonyms": [
+      "重要的采购协议号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "消耗",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "ConsumptionPosting"
+    ],
+    "synonyms": [
+      "消耗记帐"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "消耗记帐",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "ConsumptionPosting"
+    ],
+    "synonyms": [
+      "消耗"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "父项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchasingParentItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "MaterialGroup"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "申请人",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "RequisitionerName"
+    ],
+    "synonyms": [
+      "申请人姓名"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "申请人姓名",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "RequisitionerName"
+    ],
+    "synonyms": [
+      "申请人"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "申请处理状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurReqnReleaseStatus"
+    ],
+    "synonyms": [
+      "处理状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "申请数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "RequestedQuantity"
+    ],
+    "synonyms": [
+      "采购申请数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "申请的作者",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurReqnSSPAuthor"
+    ],
+    "synonyms": [
+      "作者"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "申请项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchaseRequisitionItem"
+    ],
+    "synonyms": [
+      "采购申请的项目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "目录项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurReqnSSPCatalogItem"
+    ],
+    "synonyms": [
+      "目录项目标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "目录项目标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurReqnSSPCatalogItem"
+    ],
+    "synonyms": [
+      "目录项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "目录项目键值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurReqnSSPCrossCatalogItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "短文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchaseRequisitionItemText"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "科目分配类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "AccountAssignmentCategory"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "TaxCode"
+    ],
+    "synonyms": [
+      "销售/购买税代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "结束日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PerformancePeriodEndDate"
+    ],
+    "synonyms": [
+      "执行期间结束日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划交货时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "MaterialPlannedDeliveryDurn"
+    ],
+    "synonyms": [
+      "计划交货时间（天）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划交货时间（天）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "MaterialPlannedDeliveryDurn"
+    ],
+    "synonyms": [
+      "计划交货时间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "BaseUnit"
+    ],
+    "synonyms": [
+      "采购申请计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订货数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "OrderedQuantity"
+    ],
+    "synonyms": [
+      "对应于此采购申请的订货数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "评价价格",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchaseRequisitionPrice"
+    ],
+    "synonyms": [
+      "采购申请中的价格"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "语言代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "Language"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "请求日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "CreationDate"
+    ],
+    "synonyms": [
+      "需求 (请求) 日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "请求日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurReqCreationDate"
+    ],
+    "synonyms": [
+      "需求 (请求) 日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "请求者",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurReqnSSPRequestor"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "请求者用户标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "SSPReqrUserId"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "负责创建对象的人员姓名",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "CreatedByUser"
+    ],
+    "synonyms": [
+      "创建人"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurReqnItemCurrency"
+    ],
+    "synonyms": [
+      "货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurReqnItemCurrency"
+    ],
+    "synonyms": [
+      "货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "转储单的供应(发出)工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "SupplyingPlant"
+    ],
+    "synonyms": [
+      "供货工厂"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "连接的系统",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "ProcmtHubBackendBusSyst"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购信息记录",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchasingInfoRecord"
+    ],
+    "synonyms": [
+      "采购信息记录号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购信息记录号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchasingInfoRecord"
+    ],
+    "synonyms": [
+      "采购信息记录"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证中的删除标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "IsDeleted"
+    ],
+    "synonyms": [
+      "删除标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证中的项目类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchasingDocumentItemCategory"
+    ],
+    "synonyms": [
+      "项目类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchasingDocumentCategory"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurReqnSourceOfSupplyType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证类型的控制标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchasingDocumentSubtype"
+    ],
+    "synonyms": [
+      "控制标识符"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证项目中的人工地址号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "ManualDeliveryAddressID"
+    ],
+    "synonyms": [
+      "地址"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证项目中的人工地址号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "AddressID"
+    ],
+    "synonyms": [
+      "地址"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchaseRequisition"
+    ],
+    "synonyms": [
+      "采购申请编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请中的价格",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchaseRequisitionPrice"
+    ],
+    "synonyms": [
+      "评价价格"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请凭证类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchaseRequisitionType"
+    ],
+    "synonyms": [
+      "凭证类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请处理状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "ProcessingStatus"
+    ],
+    "synonyms": [
+      "处理状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请批准日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchaseRequisitionReleaseDate"
+    ],
+    "synonyms": [
+      "批准日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "RequestedQuantity"
+    ],
+    "synonyms": [
+      "申请数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请是固定的",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchaseRequisitionIsFixed"
+    ],
+    "synonyms": [
+      "\"固定\"标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请的项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchaseRequisitionItem"
+    ],
+    "synonyms": [
+      "申请项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchaseRequisition"
+    ],
+    "synonyms": [
+      "采购申请"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "BaseUnit"
+    ],
+    "synonyms": [
+      "计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchasingGroup"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购组织",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchasingOrganization"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购订单",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchasingDocument"
+    ],
+    "synonyms": [
+      "采购订单号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购订单价格",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchaseOrderPriceType"
+    ],
+    "synonyms": [
+      "使用采购订单中的申请价格"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购订单号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchasingDocument"
+    ],
+    "synonyms": [
+      "采购订单"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购订单项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchasingDocumentItem"
+    ],
+    "synonyms": [
+      "采购订单项目号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购订单项目号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchasingDocumentItem"
+    ],
+    "synonyms": [
+      "采购订单项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购请求中的批准策略",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "ReleaseStrategy"
+    ],
+    "synonyms": [
+      "审批策略"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "重要的采购协议号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchaseContract"
+    ],
+    "synonyms": [
+      "框架协议"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售/购买税代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "TaxCode"
+    ],
+    "synonyms": [
+      "税码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "时戳"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "限制合同",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurContractForOverallLimit"
+    ],
+    "synonyms": [
+      "增强限制的采购合同"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "限制的采购合同项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurContractItemForOverallLimit"
+    ],
+    "synonyms": [
+      "增强限制项目的采购合同参考项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "需求 (请求) 日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "CreationDate"
+    ],
+    "synonyms": [
+      "请求日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "需求 (请求) 日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurReqCreationDate"
+    ],
+    "synonyms": [
+      "请求日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "需求细分",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "RequirementSegment"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "需求跟踪编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "RequirementTracking"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "需要审批",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "ReleaseIsNotCompleted"
+    ],
+    "synonyms": [
+      "审批尚未完全生效"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目交货日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "DeliveryDate"
+    ],
+    "synonyms": [
+      "交货日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "PurchasingDocumentItemCategory"
+    ],
+    "synonyms": [
+      "采购凭证中的项目类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "预留",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "Reservation"
+    ],
+    "synonyms": [
+      "预留/相关需求的编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "预留/相关需求的编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "A_PurchaseRequisitionItem",
+    "mapped_fields": [
+      "Reservation"
+    ],
+    "synonyms": [
+      "预留"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Service Operations",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "DiscardFromPurchasing",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Service Operations",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "EnableForPurchasing",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Service Operations",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PURCHASEREQ_PROCESS_SRV",
+    "mapped_entity_set": "Validate",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  }
+]

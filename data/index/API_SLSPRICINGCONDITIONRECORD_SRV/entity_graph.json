@@ -1,0 +1,156 @@
+[
+  {
+    "service_name": "API_SLSPRICINGCONDITIONRECORD_SRV",
+    "from_entity_set": "A_SlsPrcgCndnRecdSuplmnt",
+    "to_entity_set": "ToRole_assoc_66BDC3B09DE48CB469A4D23A8CBBD859",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_SlsPrcgCndnRecdValidity",
+    "description": "Navigation `to_SlsPrcgCndnRecdValidity` from `A_SlsPrcgCndnRecdSuplmnt` to `ToRole_assoc_66BDC3B09DE48CB469A4D23A8CBBD859`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SLSPRICINGCONDITIONRECORD_SRV",
+    "from_entity_set": "A_SlsPrcgCndnRecdSuplmnt",
+    "to_entity_set": "ToRole_assoc_7A2D768E758D5C99F26B0CE1C6B396C8",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_SlsPrcgConditionRecord",
+    "description": "Navigation `to_SlsPrcgConditionRecord` from `A_SlsPrcgCndnRecdSuplmnt` to `ToRole_assoc_7A2D768E758D5C99F26B0CE1C6B396C8`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SLSPRICINGCONDITIONRECORD_SRV",
+    "from_entity_set": "A_SlsPrcgCndnRecdSuplmnt",
+    "to_entity_set": "ToRole_assoc_C722D36DC2514AFC46B126014FEAD5A4",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_SlsPrcgCndnSupplementText",
+    "description": "Navigation `to_SlsPrcgCndnSupplementText` from `A_SlsPrcgCndnRecdSuplmnt` to `ToRole_assoc_C722D36DC2514AFC46B126014FEAD5A4`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SLSPRICINGCONDITIONRECORD_SRV",
+    "from_entity_set": "A_SlsPrcgCndnRecdSuplmnt",
+    "to_entity_set": "ToRole_assoc_D07DD6E36895AFEB989C4F6388E6468D",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_SlsPrcgCndnRecordScale",
+    "description": "Navigation `to_SlsPrcgCndnRecordScale` from `A_SlsPrcgCndnRecdSuplmnt` to `ToRole_assoc_D07DD6E36895AFEB989C4F6388E6468D`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SLSPRICINGCONDITIONRECORD_SRV",
+    "from_entity_set": "A_SlsPrcgCndnRecdValidity",
+    "to_entity_set": "ToRole_assoc_5F47B9A276FCBC7051E5300BA9BCCCD7",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_SlsPrcgConditionRecord",
+    "description": "Navigation `to_SlsPrcgConditionRecord` from `A_SlsPrcgCndnRecdValidity` to `ToRole_assoc_5F47B9A276FCBC7051E5300BA9BCCCD7`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SLSPRICINGCONDITIONRECORD_SRV",
+    "from_entity_set": "A_SlsPrcgCndnRecdValidity",
+    "to_entity_set": "ToRole_assoc_C9E8E350233D126D1870D9591D1CA300",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_SlsPrcgCndnRecdSuplmnt",
+    "description": "Navigation `to_SlsPrcgCndnRecdSuplmnt` from `A_SlsPrcgCndnRecdValidity` to `ToRole_assoc_C9E8E350233D126D1870D9591D1CA300`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SLSPRICINGCONDITIONRECORD_SRV",
+    "from_entity_set": "A_SlsPrcgCndnRecordScale",
+    "to_entity_set": "ToRole_assoc_2A2E895BB4BD1650AF5FD8F07A8053C6",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_SlsPrcgCndnRecdSuplmnt",
+    "description": "Navigation `to_SlsPrcgCndnRecdSuplmnt` from `A_SlsPrcgCndnRecordScale` to `ToRole_assoc_2A2E895BB4BD1650AF5FD8F07A8053C6`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SLSPRICINGCONDITIONRECORD_SRV",
+    "from_entity_set": "A_SlsPrcgCndnRecordScale",
+    "to_entity_set": "ToRole_assoc_A8740D8F3567BFDDA7CB94F012A7DBB6",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_SlsPrcgConditionRecord",
+    "description": "Navigation `to_SlsPrcgConditionRecord` from `A_SlsPrcgCndnRecordScale` to `ToRole_assoc_A8740D8F3567BFDDA7CB94F012A7DBB6`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SLSPRICINGCONDITIONRECORD_SRV",
+    "from_entity_set": "A_SlsPrcgCndnSupplementText",
+    "to_entity_set": "ToRole_assoc_191E9FBCDD42F80A6AC85418B4390363",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_SlsPrcgCndnRecdSuplmnt",
+    "description": "Navigation `to_SlsPrcgCndnRecdSuplmnt` from `A_SlsPrcgCndnSupplementText` to `ToRole_assoc_191E9FBCDD42F80A6AC85418B4390363`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SLSPRICINGCONDITIONRECORD_SRV",
+    "from_entity_set": "A_SlsPrcgConditionRecord",
+    "to_entity_set": "ToRole_assoc_0000A70AEE0DDD66B5679A7E5F7AD149",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_SlsPrcgConditionRecordText",
+    "description": "Navigation `to_SlsPrcgConditionRecordText` from `A_SlsPrcgConditionRecord` to `ToRole_assoc_0000A70AEE0DDD66B5679A7E5F7AD149`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SLSPRICINGCONDITIONRECORD_SRV",
+    "from_entity_set": "A_SlsPrcgConditionRecord",
+    "to_entity_set": "ToRole_assoc_0B464C6B7360065BE8B8C6DF3BF967F2",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_SlsPrcgCndnRecdValidity",
+    "description": "Navigation `to_SlsPrcgCndnRecdValidity` from `A_SlsPrcgConditionRecord` to `ToRole_assoc_0B464C6B7360065BE8B8C6DF3BF967F2`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SLSPRICINGCONDITIONRECORD_SRV",
+    "from_entity_set": "A_SlsPrcgConditionRecord",
+    "to_entity_set": "ToRole_assoc_B431A6489012C00DAEA40C6C0011021C",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_SlsPrcgCndnRecdSuplmnt",
+    "description": "Navigation `to_SlsPrcgCndnRecdSuplmnt` from `A_SlsPrcgConditionRecord` to `ToRole_assoc_B431A6489012C00DAEA40C6C0011021C`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SLSPRICINGCONDITIONRECORD_SRV",
+    "from_entity_set": "A_SlsPrcgConditionRecord",
+    "to_entity_set": "ToRole_assoc_CBD47B59B403B8B34B4D2FAE42E54ABF",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_SlsPrcgCndnRecordScale",
+    "description": "Navigation `to_SlsPrcgCndnRecordScale` from `A_SlsPrcgConditionRecord` to `ToRole_assoc_CBD47B59B403B8B34B4D2FAE42E54ABF`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SLSPRICINGCONDITIONRECORD_SRV",
+    "from_entity_set": "A_SlsPrcgConditionRecordText",
+    "to_entity_set": "ToRole_assoc_860B9F5CE9DD76E8C0CC40B79CA92BA8",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_SlsPrcgConditionRecord",
+    "description": "Navigation `to_SlsPrcgConditionRecord` from `A_SlsPrcgConditionRecordText` to `ToRole_assoc_860B9F5CE9DD76E8C0CC40B79CA92BA8`.",
+    "confidence": 0.8
+  }
+]

@@ -1,0 +1,43 @@
+[
+  {
+    "service_name": "I_ProductionVersion",
+    "entity_set": "I_ProductionVersion",
+    "entity_type": "I_ProductionVersionType",
+    "key_fields": [
+      "Material",
+      "Plant",
+      "ProductionVersion"
+    ],
+    "default_select_fields": [
+      "Material",
+      "Plant",
+      "ProductionVersion",
+      "ProductionVersionText",
+      "ValidityStartDate",
+      "ValidityEndDate",
+      "MaterialMinLotSizeQuantity",
+      "MaterialMaxLotSizeQuantity",
+      "BillOfMaterialVariantUsage",
+      "BillOfMaterialVariant",
+      "BillOfOperationsType",
+      "BillOfOperationsGroup",
+      "BillOfOperationsVariant"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Production Version",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "runtime_kind": "CDS_VIEW_ONLY",
+    "odata_runtime_available": false,
+    "documentation_available": true,
+    "runtime_notes": "CDS API view only; do not execute as a SAP Gateway OData entity set."
+  }
+]

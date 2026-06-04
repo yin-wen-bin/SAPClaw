@@ -1,0 +1,409 @@
+[
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "entity_set": "A_DbtMemoReqItmSubsqntProcFlow",
+    "entity_type": "A_DbtMemoReqItmSubsqntProcFlowType",
+    "key_fields": [
+      "DebitMemoRequest",
+      "DebitMemoRequestItem",
+      "DocRelationshipUUID"
+    ],
+    "default_select_fields": [
+      "DebitMemoRequest",
+      "DebitMemoRequestItem",
+      "DocRelationshipUUID",
+      "SubsequentDocument",
+      "SubsequentDocumentItem",
+      "SubsequentDocumentCategory",
+      "ProcessFlowLevel",
+      "AccountingTransferStatus",
+      "SDProcessStatus",
+      "RelatedProcFlowDocStsFieldName"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_DebitMemoRequest",
+      "to_DebitMemoRequestItem"
+    ],
+    "description": "Reads the subsequent items of all debit memo requests items.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "entity_set": "A_DebitMemoReqItemPartner",
+    "entity_type": "A_DebitMemoReqItemPartnerType",
+    "key_fields": [
+      "DebitMemoRequest",
+      "DebitMemoRequestItem",
+      "PartnerFunction"
+    ],
+    "default_select_fields": [
+      "DebitMemoRequest",
+      "DebitMemoRequestItem",
+      "PartnerFunction",
+      "Customer",
+      "Supplier",
+      "Personnel",
+      "ContactPerson"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_DebitMemoRequest",
+      "to_DebitMemoRequestItem"
+    ],
+    "description": "Reads the item partners for all debit memo requests.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "entity_set": "A_DebitMemoReqItemPrcgElmnt",
+    "entity_type": "A_DebitMemoReqItemPrcgElmntType",
+    "key_fields": [
+      "DebitMemoRequest",
+      "DebitMemoRequestItem",
+      "PricingProcedureCounter",
+      "PricingProcedureStep"
+    ],
+    "default_select_fields": [
+      "DebitMemoRequest",
+      "DebitMemoRequestItem",
+      "PricingProcedureStep",
+      "PricingProcedureCounter",
+      "ConditionApplication",
+      "ConditionType",
+      "PricingDateTime",
+      "PriceConditionDeterminationDte",
+      "ConditionCalculationType",
+      "ConditionBaseValue"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_DebitMemoRequest",
+      "to_DebitMemoRequestItem"
+    ],
+    "description": "Reads the item pricing elements of all debit memo requests.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "entity_set": "A_DebitMemoReqItemText",
+    "entity_type": "A_DebitMemoReqItemTextType",
+    "key_fields": [
+      "DebitMemoRequest",
+      "DebitMemoRequestItem",
+      "Language",
+      "LongTextID"
+    ],
+    "default_select_fields": [
+      "DebitMemoRequest",
+      "DebitMemoRequestItem",
+      "Language",
+      "LongTextID",
+      "LongText"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads item texts of all debit memo requests.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "entity_set": "A_DebitMemoReqPartner",
+    "entity_type": "A_DebitMemoReqPartnerType",
+    "key_fields": [
+      "DebitMemoRequest",
+      "PartnerFunction"
+    ],
+    "default_select_fields": [
+      "DebitMemoRequest",
+      "PartnerFunction",
+      "Customer",
+      "Supplier",
+      "Personnel",
+      "ContactPerson"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_DebitMemoRequest"
+    ],
+    "description": "Reads the header partners of all debit memo requests.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "entity_set": "A_DebitMemoReqPrcgElmnt",
+    "entity_type": "A_DebitMemoReqPrcgElmntType",
+    "key_fields": [
+      "DebitMemoRequest",
+      "PricingProcedureCounter",
+      "PricingProcedureStep"
+    ],
+    "default_select_fields": [
+      "DebitMemoRequest",
+      "PricingProcedureStep",
+      "PricingProcedureCounter",
+      "ConditionApplication",
+      "ConditionType",
+      "PricingDateTime",
+      "PriceConditionDeterminationDte",
+      "ConditionCalculationType",
+      "ConditionBaseValue",
+      "ConditionRateValue"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_DebitMemoRequest"
+    ],
+    "description": "Reads the header pricing elements of all debit memo requests.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "entity_set": "A_DebitMemoReqSubsqntProcFlow",
+    "entity_type": "A_DebitMemoReqSubsqntProcFlowType",
+    "key_fields": [
+      "DebitMemoRequest",
+      "SubsequentDocument"
+    ],
+    "default_select_fields": [
+      "DebitMemoRequest",
+      "SubsequentDocument",
+      "SubsequentDocumentCategory",
+      "ProcessFlowLevel",
+      "OverallBillingStatus",
+      "OverallSDProcessStatus",
+      "RelatedProcFlowDocStsFieldName",
+      "CreationDate",
+      "CreationTime",
+      "LastChangeDate"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_DebitMemoRequest"
+    ],
+    "description": "Reads the subsequent documents of all debit memo requests.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "entity_set": "A_DebitMemoReqText",
+    "entity_type": "A_DebitMemoReqTextType",
+    "key_fields": [
+      "DebitMemoRequest",
+      "Language",
+      "LongTextID"
+    ],
+    "default_select_fields": [
+      "DebitMemoRequest",
+      "Language",
+      "LongTextID",
+      "LongText"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads the header texts of all debit memo requests.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "entity_set": "A_DebitMemoRequest",
+    "entity_type": "A_DebitMemoRequestType",
+    "key_fields": [
+      "DebitMemoRequest"
+    ],
+    "default_select_fields": [
+      "DebitMemoRequest",
+      "DebitMemoRequestType",
+      "SalesOrganization",
+      "DistributionChannel",
+      "OrganizationDivision",
+      "SalesGroup",
+      "SalesOffice",
+      "SalesDistrict",
+      "SoldToParty",
+      "CreationDate"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Item",
+      "to_Partner",
+      "to_PricingElement",
+      "to_SubsequentProcFlowDoc",
+      "to_Text"
+    ],
+    "description": "Reads all debit memo request headers.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "entity_set": "A_DebitMemoRequestItem",
+    "entity_type": "A_DebitMemoRequestItemType",
+    "key_fields": [
+      "DebitMemoRequest",
+      "DebitMemoRequestItem"
+    ],
+    "default_select_fields": [
+      "DebitMemoRequest",
+      "DebitMemoRequestItem",
+      "HigherLevelItem",
+      "DebitMemoRequestItemCategory",
+      "DebitMemoRequestItemText",
+      "PurchaseOrderByCustomer",
+      "Material",
+      "MaterialByCustomer",
+      "PricingDate",
+      "RequestedQuantity"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_DebitMemoRequest",
+      "to_ItemSubsqntProcFlow",
+      "to_Partner",
+      "to_PricingElement",
+      "to_Text"
+    ],
+    "description": "Reads all debit memo request items.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "entity_set": "A_DebitMemoValAddedSrvc",
+    "entity_type": "A_DebitMemoValAddedSrvcType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads the data of the value-added services of all debit memo request items",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  }
+]

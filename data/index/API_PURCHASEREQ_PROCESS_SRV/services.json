@@ -1,0 +1,27 @@
+[
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV",
+    "description": "This service helps you to create, read, update and delete purchase requisitions through an API call from a source system outside SAP S/4HANA. The service contains header, item, account assignment, delivery address, and item text nodes. The information is sent in the request as a payload. The information is used when creating, reading or updating a purchase requisition, with appropriate checks for restricted values and authorizations.\r\n\r\nNote: Certain elements can only be used if you activate the business function ISR_RETAILSYSTEM. For more information, see Business Documentation.",
+    "entity_sets": [
+      "A_PurReqAddDelivery",
+      "A_PurReqnAcctAssgmt",
+      "A_PurchaseReqnItemText",
+      "A_PurchaseRequisitionHeader",
+      "A_PurchaseRequisitionItem"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "https://sap.example.local/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/43/c43f584eff2160e10000000a44147b/frameset.htm",
+    "openapi_version": "1.0.1"
+  }
+]

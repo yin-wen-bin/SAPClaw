@@ -1,0 +1,82 @@
+[
+  {
+    "service_name": "API_MASTER_RECIPE",
+    "from_entity_set": "MasterRecipeHeader",
+    "navigation_name": "to_MatlAssgmt",
+    "to_entity_set": "ToRole_assoc_F33E803411BC498038EC5ACF21CFD823",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_MASTER_RECIPE",
+    "from_entity_set": "MasterRecipeHeader",
+    "navigation_name": "to_Operation",
+    "to_entity_set": "ToRole_assoc_60A234446D7D6E24C417BFEE1DBDCABC",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_MASTER_RECIPE",
+    "from_entity_set": "MasterRecipeOperation",
+    "navigation_name": "to_OpCompAlloc",
+    "to_entity_set": "ToRole_assoc_F5973E99E8DFCD4F4621A65BF4CEAA45",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_MASTER_RECIPE",
+    "from_entity_set": "MasterRecipeOperation",
+    "navigation_name": "to_OpSecdryRsce",
+    "to_entity_set": "ToRole_assoc_51A10976B13D8EF25C45AC6E72D84A3D",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_MASTER_RECIPE",
+    "from_entity_set": "MasterRecipeOperation",
+    "navigation_name": "to_Phase",
+    "to_entity_set": "ToRole_assoc_B5AB70430D3A1C91CCC6D2655CDC1C36",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_MASTER_RECIPE",
+    "from_entity_set": "MasterRecipePhase",
+    "navigation_name": "to_PhseCompAlloc",
+    "to_entity_set": "ToRole_assoc_20227DC74322B2B39E7C0C1F8BDDD7DB",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_MASTER_RECIPE",
+    "from_entity_set": "MasterRecipePhase",
+    "navigation_name": "to_PhseRelshp",
+    "to_entity_set": "ToRole_assoc_0597280FC79F5B354D67223CF061F770",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_MASTER_RECIPE",
+    "from_entity_set": "MasterRecipePhase",
+    "navigation_name": "to_PhseSecdryRsce",
+    "to_entity_set": "ToRole_assoc_7EBA8FCC22A815B99A23E90154FA571D",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  }
+]

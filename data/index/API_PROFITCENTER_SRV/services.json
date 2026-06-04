@@ -1,0 +1,25 @@
+[
+  {
+    "service_name": "API_PROFITCENTER_SRV",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_PROFITCENTER_SRV",
+    "description": "This service enables you to read profit center master data in an API call. It is based on the OData protocol and can be consumed in SAP Fiori apps and other user interfaces.",
+    "entity_sets": [
+      "A_PrftCtrCompanyCodeAssignment",
+      "A_ProfitCenter",
+      "A_ProfitCenterText"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "https://sap.example.local/sap/opu/odata/sap/API_PROFITCENTER_SRV/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/04/bb2efc2e9444cba9547a99d77ec61c/frameset.htm",
+    "openapi_version": "1.0.0"
+  }
+]

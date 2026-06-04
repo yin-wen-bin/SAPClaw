@@ -1,0 +1,1153 @@
+[
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_Product",
+    "entity_type": "A_ProductType",
+    "key_fields": [
+      "Product"
+    ],
+    "default_select_fields": [
+      "Product",
+      "ProductType",
+      "CrossPlantStatus",
+      "CrossPlantStatusValidityDate",
+      "CreationDate",
+      "CreatedByUser",
+      "LastChangeDate",
+      "LastChangedByUser",
+      "LastChangeDateTime",
+      "IsMarkedForDeletion"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Description",
+      "to_Plant",
+      "to_ProductBasicText",
+      "to_ProductInspectionText",
+      "to_ProductProcurement",
+      "to_ProductPurchaseText",
+      "to_ProductQualityMgmt",
+      "to_ProductSales",
+      "to_ProductSalesTax",
+      "to_ProductStorage",
+      "to_ProductUnitsOfMeasure",
+      "to_SalesDelivery",
+      "to_Valuation"
+    ],
+    "description": "Returns product master records",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductBasicText",
+    "entity_type": "A_ProductBasicTextType",
+    "key_fields": [
+      "Language",
+      "Product"
+    ],
+    "default_select_fields": [
+      "Product",
+      "Language",
+      "LongText"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Returns basic data text",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductDescription",
+    "entity_type": "A_ProductDescriptionType",
+    "key_fields": [
+      "Language",
+      "Product"
+    ],
+    "default_select_fields": [
+      "Product",
+      "Language",
+      "ProductDescription"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Returns description",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductInspectionText",
+    "entity_type": "A_ProductInspectionTextType",
+    "key_fields": [
+      "Language",
+      "Product"
+    ],
+    "default_select_fields": [
+      "Product",
+      "Language",
+      "LongText"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Returns inspection text",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductMLAccount",
+    "entity_type": "A_ProductMLAccountType",
+    "key_fields": [
+      "CurrencyRole",
+      "Product",
+      "ValuationArea",
+      "ValuationType"
+    ],
+    "default_select_fields": [
+      "Product",
+      "ValuationArea",
+      "ValuationType",
+      "CurrencyRole",
+      "Currency",
+      "ProductPriceControl",
+      "PriceUnitQty",
+      "MovingAveragePrice",
+      "StandardPrice"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Returns material ledger account data",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductMLPrices",
+    "entity_type": "A_ProductMLPricesType",
+    "key_fields": [
+      "CurrencyRole",
+      "Product",
+      "ValuationArea",
+      "ValuationType"
+    ],
+    "default_select_fields": [
+      "Product",
+      "ValuationArea",
+      "ValuationType",
+      "CurrencyRole",
+      "Currency",
+      "FuturePrice",
+      "FuturePriceValidityStartDate",
+      "PlannedPrice"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Returns material ledger price data",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductPlant",
+    "entity_type": "A_ProductPlantType",
+    "key_fields": [
+      "Plant",
+      "Product"
+    ],
+    "default_select_fields": [
+      "Product",
+      "Plant",
+      "PurchasingGroup",
+      "CountryOfOrigin",
+      "RegionOfOrigin",
+      "ProductionInvtryManagedLoc",
+      "ProfileCode",
+      "ProfileValidityStartDate",
+      "AvailabilityCheckType",
+      "FiscalYearVariant"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_PlantMRPArea",
+      "to_PlantQualityMgmt",
+      "to_PlantSales",
+      "to_PlantStorage",
+      "to_PlantText",
+      "to_ProdPlantInternationalTrade",
+      "to_ProductPlantCosting",
+      "to_ProductPlantForecast",
+      "to_ProductPlantProcurement",
+      "to_ProductSupplyPlanning",
+      "to_ProductWorkScheduling",
+      "to_StorageLocation"
+    ],
+    "description": "Returns plant data",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductPlantCosting",
+    "entity_type": "A_ProductPlantCostingType",
+    "key_fields": [
+      "Plant",
+      "Product"
+    ],
+    "default_select_fields": [
+      "Product",
+      "Plant",
+      "IsCoProduct",
+      "CostingLotSize",
+      "VarianceKey",
+      "BaseUnit",
+      "TaskListGroupCounter",
+      "TaskListGroup",
+      "TaskListType",
+      "CostingProductionVersion"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Returns costing data",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductPlantForecasting",
+    "entity_type": "A_ProductPlantForecastingType",
+    "key_fields": [
+      "Plant",
+      "Product"
+    ],
+    "default_select_fields": [
+      "Product",
+      "Plant",
+      "ConsumptionRefUsageEndDate",
+      "ConsumptionQtyMultiplier",
+      "ConsumptionReferenceProduct",
+      "ConsumptionReferencePlant"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Returns forecasting data",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductPlantIntlTrd",
+    "entity_type": "A_ProductPlantIntlTrdType",
+    "key_fields": [
+      "Plant",
+      "Product"
+    ],
+    "default_select_fields": [
+      "Product",
+      "Plant",
+      "CountryOfOrigin",
+      "RegionOfOrigin",
+      "ConsumptionTaxCtrlCode",
+      "ProductCASNumber",
+      "ProdIntlTradeClassification",
+      "ExportAndImportProductGroup"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Returns international trade data",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductPlantMRPArea",
+    "entity_type": "A_ProductPlantMRPAreaType",
+    "key_fields": [
+      "MRPArea",
+      "Plant",
+      "Product"
+    ],
+    "default_select_fields": [
+      "Product",
+      "Plant",
+      "MRPArea",
+      "MRPType",
+      "MRPResponsible",
+      "MRPGroup",
+      "ReorderThresholdQuantity",
+      "PlanningTimeFence",
+      "LotSizingProcedure",
+      "LotSizeRoundingQuantity"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Returns MRP area data",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductPlantProcurement",
+    "entity_type": "A_ProductPlantProcurementType",
+    "key_fields": [
+      "Plant",
+      "Product"
+    ],
+    "default_select_fields": [
+      "Product",
+      "Plant",
+      "IsAutoPurOrdCreationAllowed",
+      "IsSourceListRequired",
+      "SourceOfSupplyCategory",
+      "ItmIsRlvtToJITDelivSchedules"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Returns procurement data",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductPlantQualityMgmt",
+    "entity_type": "A_ProductPlantQualityMgmtType",
+    "key_fields": [
+      "Plant",
+      "Product"
+    ],
+    "default_select_fields": [
+      "Product",
+      "Plant",
+      "MaximumStoragePeriod",
+      "QualityMgmtCtrlKey",
+      "MatlQualityAuthorizationGroup",
+      "HasPostToInspectionStock",
+      "InspLotDocumentationIsRequired",
+      "SuplrQualityManagementSystem",
+      "RecrrgInspIntervalTimeInDays",
+      "ProductQualityCertificateType"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Returns quality management data",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductPlantSales",
+    "entity_type": "A_ProductPlantSalesType",
+    "key_fields": [
+      "Plant",
+      "Product"
+    ],
+    "default_select_fields": [
+      "Product",
+      "Plant",
+      "LoadingGroup",
+      "ReplacementPartType",
+      "CapPlanningQuantityInBaseUoM",
+      "ProductShippingProcessingTime",
+      "WrkCentersShipgSetupTimeInDays",
+      "AvailabilityCheckType",
+      "BaseUnit"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Returns sales data",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductPlantStorage",
+    "entity_type": "A_ProductPlantStorageType",
+    "key_fields": [
+      "Plant",
+      "Product"
+    ],
+    "default_select_fields": [
+      "Product",
+      "Plant",
+      "InventoryForCycleCountInd",
+      "ProvisioningServiceLevel",
+      "CycleCountingIndicatorIsFixed",
+      "ProdMaximumStoragePeriodUnit",
+      "WrhsMgmtPtwyAndStkRemovalStrgy"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Returns storage data",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductPlantText",
+    "entity_type": "A_ProductPlantTextType",
+    "key_fields": [
+      "Plant",
+      "Product"
+    ],
+    "default_select_fields": [
+      "Product",
+      "Plant",
+      "LongText"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Returns plant text",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductProcurement",
+    "entity_type": "A_ProductProcurementType",
+    "key_fields": [
+      "Product"
+    ],
+    "default_select_fields": [
+      "Product",
+      "PurchaseOrderQuantityUnit",
+      "VarblPurOrdUnitStatus",
+      "PurchasingAcknProfile"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Returns basic procurement data",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductPurchaseText",
+    "entity_type": "A_ProductPurchaseTextType",
+    "key_fields": [
+      "Language",
+      "Product"
+    ],
+    "default_select_fields": [
+      "Product",
+      "Language",
+      "LongText"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Returns purchase text",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductQualityMgmt",
+    "entity_type": "A_ProductQualityMgmtType",
+    "key_fields": [
+      "Product"
+    ],
+    "default_select_fields": [
+      "Product",
+      "QltyMgmtInProcmtIsActive"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Returns basic quality management data",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductSales",
+    "entity_type": "A_ProductSalesType",
+    "key_fields": [
+      "Product"
+    ],
+    "default_select_fields": [
+      "Product",
+      "SalesStatus",
+      "SalesStatusValidityDate",
+      "TaxClassification",
+      "TransportationGroup"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Returns basic sales data",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductSalesDelivery",
+    "entity_type": "A_ProductSalesDeliveryType",
+    "key_fields": [
+      "Product",
+      "ProductDistributionChnl",
+      "ProductSalesOrg"
+    ],
+    "default_select_fields": [
+      "Product",
+      "ProductSalesOrg",
+      "ProductDistributionChnl",
+      "MinimumOrderQuantity",
+      "SupplyingPlant",
+      "PriceSpecificationProductGroup",
+      "AccountDetnProductGroup",
+      "DeliveryNoteProcMinDelivQty",
+      "ItemCategoryGroup",
+      "DeliveryQuantityUnit"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SalesTax",
+      "to_SalesText"
+    ],
+    "description": "Returns sales organization data",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductSalesTax",
+    "entity_type": "A_ProductSalesTaxType",
+    "key_fields": [
+      "Country",
+      "Product",
+      "TaxCategory",
+      "TaxClassification"
+    ],
+    "default_select_fields": [
+      "Product",
+      "Country",
+      "TaxCategory",
+      "TaxClassification"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Returns sales tax data",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductSalesText",
+    "entity_type": "A_ProductSalesTextType",
+    "key_fields": [
+      "Language",
+      "Product",
+      "ProductDistributionChnl",
+      "ProductSalesOrg"
+    ],
+    "default_select_fields": [
+      "Product",
+      "ProductSalesOrg",
+      "ProductDistributionChnl",
+      "Language",
+      "LongText"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Returns sales text",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductStorage",
+    "entity_type": "A_ProductStorageType",
+    "key_fields": [
+      "Product"
+    ],
+    "default_select_fields": [
+      "Product",
+      "StorageConditions",
+      "TemperatureConditionInd",
+      "HazardousMaterialNumber",
+      "NmbrOfGROrGISlipsToPrintQty",
+      "LabelType",
+      "LabelForm",
+      "MinRemainingShelfLife",
+      "ExpirationDate",
+      "ShelfLifeExpirationDatePeriod"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Returns basic storage data",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductStorageLocation",
+    "entity_type": "A_ProductStorageLocationType",
+    "key_fields": [
+      "Plant",
+      "Product",
+      "StorageLocation"
+    ],
+    "default_select_fields": [
+      "Product",
+      "Plant",
+      "StorageLocation",
+      "WarehouseStorageBin",
+      "MaintenanceStatus",
+      "PhysicalInventoryBlockInd",
+      "CreationDate",
+      "IsMarkedForDeletion",
+      "DateOfLastPostedCntUnRstrcdStk",
+      "InventoryCorrectionFactor"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Returns storage location data",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductSupplyPlanning",
+    "entity_type": "A_ProductSupplyPlanningType",
+    "key_fields": [
+      "Plant",
+      "Product"
+    ],
+    "default_select_fields": [
+      "Product",
+      "Plant",
+      "FixedLotSizeQuantity",
+      "MaximumLotSizeQuantity",
+      "MinimumLotSizeQuantity",
+      "LotSizeRoundingQuantity",
+      "LotSizingProcedure",
+      "MRPType",
+      "MRPResponsible",
+      "SafetyStockQuantity"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Returns supply planning data",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductUnitsOfMeasure",
+    "entity_type": "A_ProductUnitsOfMeasureType",
+    "key_fields": [
+      "AlternativeUnit",
+      "Product"
+    ],
+    "default_select_fields": [
+      "Product",
+      "AlternativeUnit",
+      "QuantityNumerator",
+      "QuantityDenominator",
+      "MaterialVolume",
+      "VolumeUnit",
+      "GrossWeight",
+      "WeightUnit",
+      "GlobalTradeItemNumber",
+      "GlobalTradeItemNumberCategory"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_InternationalArticleNumber"
+    ],
+    "description": "Returns units of measure",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductUnitsOfMeasureEAN",
+    "entity_type": "A_ProductUnitsOfMeasureEANType",
+    "key_fields": [
+      "AlternativeUnit",
+      "ConsecutiveNumber",
+      "Product"
+    ],
+    "default_select_fields": [
+      "Product",
+      "AlternativeUnit",
+      "ConsecutiveNumber",
+      "ProductStandardID",
+      "InternationalArticleNumberCat",
+      "IsMainGlobalTradeItemNumber"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Returns GTIN data",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductValuation",
+    "entity_type": "A_ProductValuationType",
+    "key_fields": [
+      "Product",
+      "ValuationArea",
+      "ValuationType"
+    ],
+    "default_select_fields": [
+      "Product",
+      "ValuationArea",
+      "ValuationType",
+      "ValuationClass",
+      "PriceDeterminationControl",
+      "StandardPrice",
+      "PriceUnitQty",
+      "InventoryValuationProcedure",
+      "IsMarkedForDeletion",
+      "MovingAveragePrice"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_MLAccount",
+      "to_MLPrices",
+      "to_ValuationAccount",
+      "to_ValuationCosting"
+    ],
+    "description": "Returns valuation area data",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductValuationAccount",
+    "entity_type": "A_ProductValuationAccountType",
+    "key_fields": [
+      "Product",
+      "ValuationArea",
+      "ValuationType"
+    ],
+    "default_select_fields": [
+      "Product",
+      "ValuationArea",
+      "ValuationType",
+      "CommercialPrice1InCoCodeCrcy",
+      "CommercialPrice2InCoCodeCrcy",
+      "CommercialPrice3InCoCodeCrcy",
+      "DevaluationYearCount",
+      "FutureEvaluatedAmountValue",
+      "FuturePriceValidityStartDate",
+      "IsLIFOAndFIFORelevant"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Returns valuation account data",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductValuationCosting",
+    "entity_type": "A_ProductValuationCostingType",
+    "key_fields": [
+      "Product",
+      "ValuationArea",
+      "ValuationType"
+    ],
+    "default_select_fields": [
+      "Product",
+      "ValuationArea",
+      "ValuationType",
+      "IsMaterialCostedWithQtyStruc",
+      "IsMaterialRelatedOrigin",
+      "CostOriginGroup",
+      "CostingOverheadGroup"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Returns costing data",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "entity_set": "A_ProductWorkScheduling",
+    "entity_type": "A_ProductWorkSchedulingType",
+    "key_fields": [
+      "Plant",
+      "Product"
+    ],
+    "default_select_fields": [
+      "Product",
+      "Plant",
+      "MaterialBaseQuantity",
+      "UnlimitedOverDelivIsAllowed",
+      "OverDelivToleranceLimit",
+      "UnderDelivToleranceLimit",
+      "ProductionInvtryManagedLoc",
+      "BaseUnit",
+      "ProductProcessingTime",
+      "ProductionSupervisor"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Returns work scheduling data",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  }
+]

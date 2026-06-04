@@ -1,0 +1,491 @@
+[
+  {
+    "service_name": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "entity_set": "A_SuplrInvcHeaderWhldgTax",
+    "entity_type": "A_SuplrInvcHeaderWhldgTaxType",
+    "key_fields": [
+      "FiscalYear",
+      "SupplierInvoice",
+      "WithholdingTaxType"
+    ],
+    "default_select_fields": [
+      "SupplierInvoice",
+      "FiscalYear",
+      "WithholdingTaxType",
+      "DocumentCurrency",
+      "WithholdingTaxCode",
+      "WithholdingTaxBaseAmount",
+      "ManuallyEnteredWhldgTaxAmount",
+      "WhldgTaxIsEnteredManually",
+      "WhldgTaxBaseIsEnteredManually"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads withholding tax data of supplier invoice.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "entity_type": "A_SuplrInvcItemAcctAssgmtType",
+    "key_fields": [
+      "FiscalYear",
+      "OrdinalNumber",
+      "SupplierInvoice",
+      "SupplierInvoiceItem"
+    ],
+    "default_select_fields": [
+      "SupplierInvoice",
+      "FiscalYear",
+      "SupplierInvoiceItem",
+      "OrdinalNumber",
+      "CostCenter",
+      "ControllingArea",
+      "BusinessArea",
+      "ProfitCenter",
+      "FunctionalArea",
+      "GLAccount"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads account assignment data of supplier invoice item.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "entity_set": "A_SuplrInvcItemPurOrdRef",
+    "entity_type": "A_SuplrInvcItemPurOrdRefType",
+    "key_fields": [
+      "FiscalYear",
+      "SupplierInvoice",
+      "SupplierInvoiceItem"
+    ],
+    "default_select_fields": [
+      "SupplierInvoice",
+      "FiscalYear",
+      "SupplierInvoiceItem",
+      "PurchaseOrder",
+      "PurchaseOrderItem",
+      "Plant",
+      "ReferenceDocument",
+      "ReferenceDocumentFiscalYear",
+      "ReferenceDocumentItem",
+      "IsSubsequentDebitCredit"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SupplierInvoiceItmAcctAssgmt"
+    ],
+    "description": "Reads supplier invoice item data with purchase order reference.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "entity_set": "A_SuplrInvcSeldInbDeliveryNote",
+    "entity_type": "A_SuplrInvcSeldInbDeliveryNoteType",
+    "key_fields": [
+      "FiscalYear",
+      "InboundDeliveryNote",
+      "SupplierInvoice"
+    ],
+    "default_select_fields": [
+      "SupplierInvoice",
+      "FiscalYear",
+      "InboundDeliveryNote"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads entered delivery note data for supplier invoice.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "entity_set": "A_SuplrInvcSeldPurgDocument",
+    "entity_type": "A_SuplrInvcSeldPurgDocumentType",
+    "key_fields": [
+      "FiscalYear",
+      "PurchaseOrder",
+      "PurchaseOrderItem",
+      "SupplierInvoice"
+    ],
+    "default_select_fields": [
+      "SupplierInvoice",
+      "FiscalYear",
+      "PurchaseOrder",
+      "PurchaseOrderItem"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads entered purchasing document data for supplier invoice.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "entity_set": "A_SuplrInvcSeldSrvcEntrShtLean",
+    "entity_type": "A_SuplrInvcSeldSrvcEntrShtLeanType",
+    "key_fields": [
+      "FiscalYear",
+      "ServiceEntrySheet",
+      "ServiceEntrySheetItem",
+      "SupplierInvoice"
+    ],
+    "default_select_fields": [
+      "SupplierInvoice",
+      "FiscalYear",
+      "ServiceEntrySheet",
+      "ServiceEntrySheetItem"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads entered service entry sheet (Lean) data for supplier invoice.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "entity_set": "A_SuplrInvoiceAdditionalData",
+    "entity_type": "A_SuplrInvoiceAdditionalDataType",
+    "key_fields": [
+      "FiscalYear",
+      "SupplierInvoice"
+    ],
+    "default_select_fields": [
+      "SupplierInvoice",
+      "FiscalYear",
+      "InvoicingPartyName1",
+      "InvoicingPartyName2",
+      "InvoicingPartyName3",
+      "InvoicingPartyName4",
+      "PostalCode",
+      "CityName",
+      "Country",
+      "StreetAddressName"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads additional data for supplier invoice.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "entity_set": "A_SupplierInvoice",
+    "entity_type": "A_SupplierInvoiceType",
+    "key_fields": [
+      "FiscalYear",
+      "SupplierInvoice"
+    ],
+    "default_select_fields": [
+      "SupplierInvoice",
+      "FiscalYear",
+      "CompanyCode",
+      "DocumentDate",
+      "PostingDate",
+      "CreationDate",
+      "SupplierInvoiceIDByInvcgParty",
+      "InvoicingParty",
+      "DocumentCurrency",
+      "InvoiceGrossAmount"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_SelectedDeliveryNotes",
+      "to_SelectedPurchaseOrders",
+      "to_SelectedServiceEntrySheets",
+      "to_SuplrInvcItemAsset",
+      "to_SuplrInvcItemMaterial",
+      "to_SuplrInvcItemPurOrdRef",
+      "to_SuplrInvoiceAdditionalData",
+      "to_SupplierInvoiceItemGLAcct",
+      "to_SupplierInvoiceTax",
+      "to_SupplierInvoiceWhldgTax"
+    ],
+    "description": "Reads supplier invoice data.",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "entity_set": "A_SupplierInvoiceItemAsset",
+    "entity_type": "A_SupplierInvoiceItemAssetType",
+    "key_fields": [
+      "FiscalYear",
+      "SupplierInvoice",
+      "SupplierInvoiceItem"
+    ],
+    "default_select_fields": [
+      "SupplierInvoice",
+      "FiscalYear",
+      "SupplierInvoiceItem",
+      "CompanyCode",
+      "MasterFixedAsset",
+      "FixedAsset",
+      "ProfitCenter",
+      "GLAccount",
+      "DocumentCurrency",
+      "SupplierInvoiceItemAmount"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads supplier invoice item data for posting to asset.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "entity_set": "A_SupplierInvoiceItemGLAcct",
+    "entity_type": "A_SupplierInvoiceItemGLAcctType",
+    "key_fields": [
+      "FiscalYear",
+      "SupplierInvoice",
+      "SupplierInvoiceItem"
+    ],
+    "default_select_fields": [
+      "SupplierInvoice",
+      "FiscalYear",
+      "SupplierInvoiceItem",
+      "CompanyCode",
+      "CostCenter",
+      "ControllingArea",
+      "BusinessArea",
+      "ProfitCenter",
+      "FunctionalArea",
+      "GLAccount"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads supplier invoice item data for posting to G/L account.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "entity_set": "A_SupplierInvoiceItemMaterial",
+    "entity_type": "A_SupplierInvoiceItemMaterialType",
+    "key_fields": [
+      "FiscalYear",
+      "SupplierInvoice",
+      "SupplierInvoiceItem"
+    ],
+    "default_select_fields": [
+      "SupplierInvoice",
+      "FiscalYear",
+      "SupplierInvoiceItem",
+      "Material",
+      "ValuationArea",
+      "CompanyCode",
+      "Plant",
+      "InventoryValuationType",
+      "TaxCode",
+      "TaxJurisdiction"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads supplier invoice item data for posting to material.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "entity_set": "A_SupplierInvoiceTax",
+    "entity_type": "A_SupplierInvoiceTaxType",
+    "key_fields": [
+      "FiscalYear",
+      "SupplierInvoice",
+      "SupplierInvoiceTaxCounter",
+      "TaxCode"
+    ],
+    "default_select_fields": [
+      "SupplierInvoice",
+      "FiscalYear",
+      "TaxCode",
+      "SupplierInvoiceTaxCounter",
+      "DocumentCurrency",
+      "TaxAmount",
+      "TaxBaseAmountInTransCrcy",
+      "TaxJurisdiction",
+      "TaxCountry",
+      "TaxDeterminationDate"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads tax data for supplier invoice.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "entity_set": "Cancel",
+    "entity_type": "CancelType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reverses a supplier invoice and returns the reversal number.",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "entity_set": "Post",
+    "entity_type": "PostType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Invoke action Post",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "entity_set": "Release",
+    "entity_type": "ReleaseType",
+    "key_fields": [],
+    "default_select_fields": [],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Releases a supplier invoice.",
+    "supported_methods": [
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  }
+]

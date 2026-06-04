@@ -1,0 +1,8921 @@
+[
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "AccountingDocExternalReference",
+    "label": "参考",
+    "business_aliases": [
+      "参考",
+      "参考凭证号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "参考凭证号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "AssignmentReference",
+    "label": "分配",
+    "business_aliases": [
+      "分配",
+      "分配编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "分配编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "CreatedByUser",
+    "label": "创建人",
+    "business_aliases": [
+      "创建人",
+      "负责创建对象的人员姓名"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "负责创建对象的人员姓名",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "CreationDate",
+    "label": "创建日期",
+    "business_aliases": [
+      "创建日期",
+      "记录创建日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "记录创建日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "CustomerPaymentTerms",
+    "label": "付款条件",
+    "business_aliases": [
+      "付款条件",
+      "付款条件代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "付款条件代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "CustomerPurchaseOrderDate",
+    "label": "客户参考日期",
+    "business_aliases": [
+      "客户参考日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户参考日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "CustomerPurchaseOrderType",
+    "label": "采购订单类型",
+    "business_aliases": [
+      "采购订单类型",
+      "客户采购订单类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户采购订单类型",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "CustomerReturn",
+    "label": "客户退货",
+    "business_aliases": [
+      "客户退货"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户退货",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "CustomerReturnApprovalReason",
+    "label": "审批请求原因",
+    "business_aliases": [
+      "审批请求原因",
+      "审批请求原因标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "审批请求原因标识",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "CustomerReturnDate",
+    "label": "凭证日期",
+    "business_aliases": [
+      "凭证日期",
+      "凭证日期 (接收/发送日期)"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "凭证日期 (接收/发送日期)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "CustomerReturnType",
+    "label": "客户退货类型",
+    "business_aliases": [
+      "客户退货类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户退货类型",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "CustomerTaxClassification1",
+    "label": "备选税收分类",
+    "business_aliases": [
+      "备选税收分类"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "备选税收分类",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "CustomerTaxClassification2",
+    "label": "客户税收分类 2",
+    "business_aliases": [
+      "客户税收分类 2",
+      "客户的税收分类 2"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户的税收分类 2",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "CustomerTaxClassification3",
+    "label": "客户税分类 3",
+    "business_aliases": [
+      "客户税分类 3"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户税分类 3",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "CustomerTaxClassification4",
+    "label": "客户税收分类 4",
+    "business_aliases": [
+      "客户税收分类 4"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户税收分类 4",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "CustomerTaxClassification5",
+    "label": "客户税收分类 5",
+    "business_aliases": [
+      "客户税收分类 5",
+      "客户的税收分类 5"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户的税收分类 5",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "CustomerTaxClassification6",
+    "label": "客户税收分类 6",
+    "business_aliases": [
+      "客户税收分类 6",
+      "客户的税收分类 6"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户的税收分类 6",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "CustomerTaxClassification7",
+    "label": "客户税收分类 7",
+    "business_aliases": [
+      "客户税收分类 7",
+      "客户的税收分类 7"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户的税收分类 7",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "CustomerTaxClassification8",
+    "label": "客户税收分类 8",
+    "business_aliases": [
+      "客户税收分类 8",
+      "客户的税收分类 8"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户的税收分类 8",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "CustomerTaxClassification9",
+    "label": "客户税收分类 9",
+    "business_aliases": [
+      "客户税收分类 9",
+      "客户的税收分类 9"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户的税收分类 9",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "DeliveryBlockReason",
+    "label": "交货冻结",
+    "business_aliases": [
+      "交货冻结",
+      "交货冻结（凭证抬头）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "交货冻结（凭证抬头）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "DistributionChannel",
+    "label": "分销渠道",
+    "business_aliases": [
+      "分销渠道"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "分销渠道",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "HeaderBillingBlockReason",
+    "label": "开票冻结",
+    "business_aliases": [
+      "开票冻结",
+      "销售与分销凭证中的开票冻结"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售与分销凭证中的开票冻结",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "IncotermsClassification",
+    "label": "国际贸易条款",
+    "business_aliases": [
+      "国际贸易条款",
+      "国际贸易条款（第 1 部分）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "国际贸易条款（第 1 部分）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "IncotermsLocation1",
+    "label": "国际贸易条款位置 1",
+    "business_aliases": [
+      "国际贸易条款位置 1"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "国际贸易条款位置 1",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "IncotermsLocation2",
+    "label": "国际贸易条款位置 2",
+    "business_aliases": [
+      "国际贸易条款位置 2"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "国际贸易条款位置 2",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "IncotermsTransferLocation",
+    "label": "国际贸易条款(部分2)",
+    "business_aliases": [
+      "国际贸易条款(部分2)",
+      "国际贸易条款（第 2 部分）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "国际贸易条款（第 2 部分）",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "IncotermsVersion",
+    "label": "国际贸易条款版本",
+    "business_aliases": [
+      "国际贸易条款版本"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "国际贸易条款版本",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "LastChangeDate",
+    "label": "更改日期",
+    "business_aliases": [
+      "更改日期",
+      "上次更改日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "上次更改日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "LastChangeDateTime",
+    "label": "时戳",
+    "business_aliases": [
+      "时戳",
+      "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)"
+    ],
+    "data_type": "Edm.DateTimeOffset",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "OrganizationDivision",
+    "label": "产品组",
+    "business_aliases": [
+      "产品组"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "产品组",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "OverallSDDocumentRejectionSts",
+    "label": "拒绝状态",
+    "business_aliases": [
+      "拒绝状态",
+      "拒绝状态（所有项目）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "拒绝状态（所有项目）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "OverallSDProcessStatus",
+    "label": "总体状态",
+    "business_aliases": [
+      "总体状态",
+      "总体处理状态（抬头/所有项目）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "总体处理状态（抬头/所有项目）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "PaymentMethod",
+    "label": "付款方式",
+    "business_aliases": [
+      "付款方式"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "付款方式",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "PricingDate",
+    "label": "定价日期",
+    "business_aliases": [
+      "定价日期",
+      "定价和汇率的日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "定价和汇率的日期",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "PurchaseOrderByCustomer",
+    "label": "客户参考",
+    "business_aliases": [
+      "客户参考"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户参考",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "ReferenceSDDocument",
+    "label": "参考凭证",
+    "business_aliases": [
+      "参考凭证",
+      "参考凭证的凭证编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "参考凭证的凭证编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "ReferenceSDDocumentCategory",
+    "label": "先前凭证类别",
+    "business_aliases": [
+      "先前凭证类别",
+      "先前销售和分销凭证的凭证类别"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "先前销售和分销凭证的凭证类别",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "RequestedDeliveryDate",
+    "label": "要求的交货日期",
+    "business_aliases": [
+      "要求的交货日期"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "要求的交货日期",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "RetsMgmtCompnProcgStatus",
+    "label": "退款状态",
+    "business_aliases": [
+      "退款状态",
+      "退货退款确定的状态"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "退货退款确定的状态",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "RetsMgmtLogProcgStatus",
+    "label": "物流状态",
+    "business_aliases": [
+      "物流状态",
+      "退货的物流处理状态"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "退货的物流处理状态",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "RetsMgmtProcess",
+    "label": "处理标识编号",
+    "business_aliases": [
+      "处理标识编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "处理标识编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "RetsMgmtProcessingStatus",
+    "label": "处理状态",
+    "business_aliases": [
+      "处理状态"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "处理状态",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "SDDocumentReason",
+    "label": "订单原因",
+    "business_aliases": [
+      "订单原因",
+      "订单原因（业务交易原因）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "订单原因（业务交易原因）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "SalesDistrict",
+    "label": "销售地区",
+    "business_aliases": [
+      "销售地区"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售地区",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "SalesDocApprovalStatus",
+    "label": "审批状态",
+    "business_aliases": [
+      "审批状态",
+      "凭证审批状态"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "凭证审批状态",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "SalesGroup",
+    "label": "销售组",
+    "business_aliases": [
+      "销售组"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售组",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "SalesOffice",
+    "label": "销售办事处",
+    "business_aliases": [
+      "销售办事处"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售办事处",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "SalesOrganization",
+    "label": "销售组织",
+    "business_aliases": [
+      "销售组织"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售组织",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "SenderBusinessSystemName",
+    "label": "外部业务系统标识",
+    "business_aliases": [
+      "外部业务系统标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "外部业务系统标识",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "ShippingType",
+    "label": "装运类型",
+    "business_aliases": [
+      "装运类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "装运类型",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "SoldToParty",
+    "label": "售达方",
+    "business_aliases": [
+      "售达方"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "售达方",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "TotalCreditCheckStatus",
+    "label": "信用状态",
+    "business_aliases": [
+      "信用状态",
+      "信用检查的总体状态"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "信用检查的总体状态",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "TotalNetAmount",
+    "label": "净值",
+    "business_aliases": [
+      "净值",
+      "销售凭证的凭证货币净值"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售凭证的凭证货币净值",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturn",
+    "field_name": "TransactionCurrency",
+    "label": "凭证货币",
+    "business_aliases": [
+      "凭证货币",
+      "SD 凭证货币"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "SD 凭证货币",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "Batch",
+    "label": "批次",
+    "business_aliases": [
+      "批次",
+      "批次编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "批次编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "CRMLogicalSystem",
+    "label": "CRM 逻辑系统",
+    "business_aliases": [
+      "CRM 逻辑系统"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "CRM 逻辑系统",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "CRMObjectID",
+    "label": "CRM 对象标识",
+    "business_aliases": [
+      "CRM 对象标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "CRM 对象标识",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "CRMObjectType",
+    "label": "CRM 对象类型",
+    "business_aliases": [
+      "CRM 对象类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "CRM 对象类型",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "CRMObjectUUID",
+    "label": "CRM 对象 GUID",
+    "business_aliases": [
+      "CRM 对象 GUID"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "CRM 对象 GUID",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "CrossPlantConfigurableProduct",
+    "label": "",
+    "business_aliases": [
+      "Cross-Plant Configurable Material"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Cross-Plant Configurable Material",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "CustRetItmFollowUpActivity",
+    "label": "后续活动",
+    "business_aliases": [
+      "后续活动",
+      "后续活动代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "后续活动代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "CustRetMatlAuthzn",
+    "label": "客户 RMA 编号",
+    "business_aliases": [
+      "客户 RMA 编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户 RMA 编号",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "CustomerPaymentTerms",
+    "label": "付款条件",
+    "business_aliases": [
+      "付款条件",
+      "付款条件代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "付款条件代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "CustomerRetMatlInspResultCode",
+    "label": "客户检验代码",
+    "business_aliases": [
+      "客户检验代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户检验代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "CustomerReturn",
+    "label": "客户退货",
+    "business_aliases": [
+      "客户退货"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户退货",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "CustomerReturnItem",
+    "label": "客户退货项目",
+    "business_aliases": [
+      "客户退货项目"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户退货项目",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "CustomerReturnItemCategory",
+    "label": "项目类别",
+    "business_aliases": [
+      "项目类别",
+      "销售凭证项目类别"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售凭证项目类别",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "CustomerReturnItemText",
+    "label": "项目描述",
+    "business_aliases": [
+      "项目描述",
+      "销售订单项目短文本"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售订单项目短文本",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "DeliveryPriority",
+    "label": "交货优先级",
+    "business_aliases": [
+      "交货优先级"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "交货优先级",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "HigherLevelItem",
+    "label": "上级项目",
+    "business_aliases": [
+      "上级项目",
+      "物料清单结构中的上级项目"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料清单结构中的上级项目",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "IncotermsClassification",
+    "label": "国际贸易条款",
+    "business_aliases": [
+      "国际贸易条款",
+      "国际贸易条款（第 1 部分）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "国际贸易条款（第 1 部分）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "IncotermsLocation1",
+    "label": "国际贸易条款位置 1",
+    "business_aliases": [
+      "国际贸易条款位置 1"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "国际贸易条款位置 1",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "IncotermsLocation2",
+    "label": "国际贸易条款位置 2",
+    "business_aliases": [
+      "国际贸易条款位置 2"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "国际贸易条款位置 2",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "IncotermsTransferLocation",
+    "label": "国际贸易条款(部分2)",
+    "business_aliases": [
+      "国际贸易条款(部分2)",
+      "国际贸易条款（第 2 部分）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "国际贸易条款（第 2 部分）",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ItemBillingBlockReason",
+    "label": "开票冻结",
+    "business_aliases": [
+      "开票冻结",
+      "项目的出具发票冻结"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "项目的出具发票冻结",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ItemGrossWeight",
+    "label": "毛重",
+    "business_aliases": [
+      "毛重",
+      "项目的毛重"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "项目的毛重",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ItemNetWeight",
+    "label": "净重",
+    "business_aliases": [
+      "净重",
+      "项目净重"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "项目净重",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ItemVolume",
+    "label": "体积",
+    "business_aliases": [
+      "体积",
+      "项目体积"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "项目体积",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ItemVolumeUnit",
+    "label": "体积单位",
+    "business_aliases": [
+      "体积单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "体积单位",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ItemWeightUnit",
+    "label": "重量单位",
+    "business_aliases": [
+      "重量单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "重量单位",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "Material",
+    "label": "物料",
+    "business_aliases": [
+      "物料",
+      "物料编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "MaterialByCustomer",
+    "label": "客户物料",
+    "business_aliases": [
+      "客户物料",
+      "客户所用的物料编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户所用的物料编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "MaterialGroup",
+    "label": "物料组",
+    "business_aliases": [
+      "物料组"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料组",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "NetAmount",
+    "label": "净值",
+    "business_aliases": [
+      "净值",
+      "凭证项目的凭证货币净值"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "凭证项目的凭证货币净值",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "NextFllwUpActivityForMatlInsp",
+    "label": "下一个后续活动",
+    "business_aliases": [
+      "下一个后续活动",
+      "物料检验中下一个后续活动的缺省值"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料检验中下一个后续活动的缺省值",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "NextPlantForFollowUpActivity",
+    "label": "工厂",
+    "business_aliases": [
+      "工厂"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "工厂",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "PrelimRefundIsDetermined",
+    "label": "",
+    "business_aliases": [],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "PricingDate",
+    "label": "",
+    "business_aliases": [
+      "Date for Pricing and Exchange Rate"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Date for Pricing and Exchange Rate",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ProductCharacteristic1",
+    "label": "",
+    "business_aliases": [
+      "Characteristic Value 1"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Characteristic Value 1",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ProductCharacteristic2",
+    "label": "",
+    "business_aliases": [
+      "Characteristic Value 2"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Characteristic Value 2",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ProductCharacteristic3",
+    "label": "",
+    "business_aliases": [
+      "Characteristic Value 3"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Characteristic Value 3",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ProductCollection",
+    "label": "",
+    "business_aliases": [
+      "Fashion Collection"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Fashion Collection",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ProductIsInspectedAtCustSite",
+    "label": "",
+    "business_aliases": [],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ProductTaxClassification1",
+    "label": "物料的税分类",
+    "business_aliases": [
+      "物料的税分类"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料的税分类",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ProductTaxClassification2",
+    "label": "物料的税分类",
+    "business_aliases": [
+      "物料的税分类"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料的税分类",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ProductTaxClassification3",
+    "label": "物料的税分类",
+    "business_aliases": [
+      "物料的税分类"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料的税分类",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ProductTaxClassification4",
+    "label": "物料的税分类",
+    "business_aliases": [
+      "物料的税分类"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料的税分类",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ProductTaxClassification5",
+    "label": "物料的税分类",
+    "business_aliases": [
+      "物料的税分类"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料的税分类",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ProductTaxClassification6",
+    "label": "物料的税分类",
+    "business_aliases": [
+      "物料的税分类"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料的税分类",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ProductTaxClassification7",
+    "label": "物料的税分类",
+    "business_aliases": [
+      "物料的税分类"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料的税分类",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ProductTaxClassification8",
+    "label": "物料的税分类",
+    "business_aliases": [
+      "物料的税分类"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料的税分类",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ProductTaxClassification9",
+    "label": "物料的税分类",
+    "business_aliases": [
+      "物料的税分类"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料的税分类",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ProductTheme",
+    "label": "",
+    "business_aliases": [
+      "Fashion Theme"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Fashion Theme",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ProductionPlant",
+    "label": "工厂",
+    "business_aliases": [
+      "工厂",
+      "工厂(自有或外部)"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "工厂(自有或外部)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ProfitCenter",
+    "label": "利润中心",
+    "business_aliases": [
+      "利润中心"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "利润中心",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "PurchaseOrderByCustomer",
+    "label": "客户参考",
+    "business_aliases": [
+      "客户参考"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户参考",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ReferenceSDDocument",
+    "label": "参考凭证",
+    "business_aliases": [
+      "参考凭证",
+      "参考凭证的凭证编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "参考凭证的凭证编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ReferenceSDDocumentCategory",
+    "label": "参考凭证类别",
+    "business_aliases": [
+      "参考凭证类别"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "参考凭证类别",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ReferenceSDDocumentItem",
+    "label": "参考项目",
+    "business_aliases": [
+      "参考项目",
+      "参考项目的项目号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "参考项目的项目号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ReplacementMaterial",
+    "label": "置换物料",
+    "business_aliases": [
+      "置换物料"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "置换物料",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ReplacementMaterialIsRequested",
+    "label": "",
+    "business_aliases": [],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ReplacementMaterialQtyUnit",
+    "label": "替换计量单位",
+    "business_aliases": [
+      "替换计量单位",
+      "替换物料计量单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "替换物料计量单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ReplacementMaterialQuantity",
+    "label": "替换数量",
+    "business_aliases": [
+      "替换数量",
+      "替换物料数量"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "替换物料数量",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ReplacementMatlSupplyingPlant",
+    "label": "供货装置",
+    "business_aliases": [
+      "供货装置",
+      "替换物料的供货工厂"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "替换物料的供货工厂",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "RequestedQuantity",
+    "label": "已请求数量",
+    "business_aliases": [
+      "已请求数量"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "已请求数量",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "RequestedQuantityUnit",
+    "label": "已请求数量单位",
+    "business_aliases": [
+      "已请求数量单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "已请求数量单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "RequirementSegment",
+    "label": "需求细分",
+    "business_aliases": [
+      "需求细分"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "需求细分",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "RetMatlInspResultCode",
+    "label": "检验代码",
+    "business_aliases": [
+      "检验代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "检验代码",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "RetsMgmtItmCompnProcgStatus",
+    "label": "退款状态",
+    "business_aliases": [
+      "退款状态",
+      "退货退款确定的状态"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "退货退款确定的状态",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "RetsMgmtItmLogProcgStatus",
+    "label": "物流状态",
+    "business_aliases": [
+      "物流状态",
+      "退货的物流处理状态"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "退货的物流处理状态",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "RetsMgmtItmProcgStatus",
+    "label": "处理状态",
+    "business_aliases": [
+      "处理状态"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "处理状态",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "RetsMgmtProcess",
+    "label": "处理标识编号",
+    "business_aliases": [
+      "处理标识编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "处理标识编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "RetsMgmtProcessItem",
+    "label": "项目编号处理中",
+    "business_aliases": [
+      "项目编号处理中",
+      "项目编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "项目编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "RetsMgmtProcessingBlock",
+    "label": "审批",
+    "business_aliases": [
+      "审批",
+      "审批冻结"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "审批冻结",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "RetsProdValnIsSuspended",
+    "label": "",
+    "business_aliases": [],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ReturnReason",
+    "label": "退货原因",
+    "business_aliases": [
+      "退货原因"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "退货原因",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ReturnsDocumentApprovalStatus",
+    "label": "审批状态",
+    "business_aliases": [
+      "审批状态",
+      "退货处理的批准状态"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "退货处理的批准状态",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ReturnsDocumentStatus",
+    "label": "项目状态",
+    "business_aliases": [
+      "项目状态",
+      "凭证项目状态"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "凭证项目状态",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ReturnsMaterialHasBeenReceived",
+    "label": "",
+    "business_aliases": [],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ReturnsRefundExtent",
+    "label": "退款代码",
+    "business_aliases": [
+      "退款代码",
+      "退货退款代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "退货退款代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ReturnsRefundProcgMode",
+    "label": "退款处理",
+    "business_aliases": [
+      "退款处理",
+      "退货的退款处理模式"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "退货的退款处理模式",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ReturnsRefundRjcnReason",
+    "label": "CMR 拒绝原因",
+    "business_aliases": [
+      "CMR 拒绝原因",
+      "贷项凭单请求的拒绝原因"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "贷项凭单请求的拒绝原因",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ReturnsRefundType",
+    "label": "退款类型",
+    "business_aliases": [
+      "退款类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "退款类型",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ReturnsTransshipmentPlant",
+    "label": "转运工厂",
+    "business_aliases": [
+      "转运工厂"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "转运工厂",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "SDDocumentRejectionStatus",
+    "label": "拒绝状态",
+    "business_aliases": [
+      "拒绝状态",
+      "拒绝状态（项目）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "拒绝状态（项目）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "SDProcessStatus",
+    "label": "总体状态",
+    "business_aliases": [
+      "总体状态",
+      "总体处理状态（项目）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "总体处理状态（项目）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "SalesDocumentRjcnReason",
+    "label": "拒绝原因",
+    "business_aliases": [
+      "拒绝原因",
+      "销售凭证的拒绝原因"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售凭证的拒绝原因",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "SeasonCompletenessStatus",
+    "label": "",
+    "business_aliases": [
+      "Season Completeness Indicator"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Season Completeness Indicator",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ShippingPoint",
+    "label": "装运点",
+    "business_aliases": [
+      "装运点",
+      "装运点/收货点"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "装运点/收货点",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "ShippingType",
+    "label": "装运类型",
+    "business_aliases": [
+      "装运类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "装运类型",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "StorageLocation",
+    "label": "存储地点",
+    "business_aliases": [
+      "存储地点"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "存储地点",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "SuplrRetMatlAuthznIsRequired",
+    "label": "",
+    "business_aliases": [],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "Supplier",
+    "label": "供应商",
+    "business_aliases": [
+      "供应商",
+      "供应商科目编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "供应商科目编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "SupplierRetMatlAuthzn",
+    "label": "供应商 RMA 编号",
+    "business_aliases": [
+      "供应商 RMA 编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "供应商 RMA 编号",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItem",
+    "field_name": "TransactionCurrency",
+    "label": "凭证货币",
+    "business_aliases": [
+      "凭证货币",
+      "SD 凭证货币"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "SD 凭证货币",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPartner",
+    "field_name": "ContactPerson",
+    "label": "联系人",
+    "business_aliases": [
+      "联系人",
+      "联系人编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "联系人编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPartner",
+    "field_name": "Customer",
+    "label": "客户",
+    "business_aliases": [
+      "客户",
+      "客户编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPartner",
+    "field_name": "CustomerReturn",
+    "label": "销售和分销凭证",
+    "business_aliases": [
+      "销售和分销凭证",
+      "销售和分销凭证号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售和分销凭证号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPartner",
+    "field_name": "CustomerReturnItem",
+    "label": "项目(SD)",
+    "business_aliases": [
+      "项目(SD)",
+      "销售和分销凭证的项目号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售和分销凭证的项目号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPartner",
+    "field_name": "PartnerFunction",
+    "label": "合作伙伴职能",
+    "business_aliases": [
+      "合作伙伴职能"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "合作伙伴职能",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPartner",
+    "field_name": "Personnel",
+    "label": "员工号",
+    "business_aliases": [
+      "员工号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "员工号",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPartner",
+    "field_name": "Supplier",
+    "label": "供应商",
+    "business_aliases": [
+      "供应商",
+      "供应商科目编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "供应商科目编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "CndnIsRelevantForIntcoBilling",
+    "label": "公司间开票",
+    "business_aliases": [
+      "公司间开票",
+      "公司间开票的条件"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "公司间开票的条件",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "CndnIsRelevantForInvoiceList",
+    "label": "发票清单条件",
+    "business_aliases": [
+      "发票清单条件"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "发票清单条件",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "CndnRoundingOffDiffAmount",
+    "label": "条件舍入差额",
+    "business_aliases": [
+      "条件舍入差额"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件舍入差额",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "ConditionAmount",
+    "label": "条件值",
+    "business_aliases": [
+      "条件值"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件值",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "ConditionBaseValue",
+    "label": "条件基准",
+    "business_aliases": [
+      "条件基准"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件基准",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "ConditionCalculationType",
+    "label": "计算类型",
+    "business_aliases": [
+      "计算类型",
+      "条件的计算类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件的计算类型",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "ConditionCategory",
+    "label": "条件类别",
+    "business_aliases": [
+      "条件类别",
+      "条件类别（示例：税收、运费、价格、成本）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件类别（示例：税收、运费、价格、成本）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "ConditionClass",
+    "label": "条件类",
+    "business_aliases": [
+      "条件类"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件类",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "ConditionControl",
+    "label": "定价控制",
+    "business_aliases": [
+      "定价控制"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "定价控制",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "ConditionCurrency",
+    "label": "货币",
+    "business_aliases": [
+      "货币",
+      "货币码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "货币码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "ConditionInactiveReason",
+    "label": "未激活条件",
+    "business_aliases": [
+      "未激活条件",
+      "条件未激活"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件未激活",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "ConditionIsForConfiguration",
+    "label": "用于变式配置",
+    "business_aliases": [
+      "用于变式配置",
+      "用于变式配置的条件"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "用于变式配置的条件",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "ConditionIsForStatistics",
+    "label": "统计",
+    "business_aliases": [
+      "统计",
+      "条件用作统计"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件用作统计",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "ConditionIsManuallyChanged",
+    "label": "已手动更改",
+    "business_aliases": [
+      "已手动更改",
+      "已手动更改条件"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "已手动更改条件",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "ConditionOrigin",
+    "label": "条件来源",
+    "business_aliases": [
+      "条件来源"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件来源",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "ConditionQuantity",
+    "label": "定价单位",
+    "business_aliases": [
+      "定价单位",
+      "条件定价单位"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件定价单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "ConditionQuantityUnit",
+    "label": "条件单位",
+    "business_aliases": [
+      "条件单位",
+      "凭证中的条件单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "凭证中的条件单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "ConditionRateValue",
+    "label": "金额",
+    "business_aliases": [
+      "金额",
+      "条件金额或百分比"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件金额或百分比",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "ConditionRecord",
+    "label": "条件记录编号",
+    "business_aliases": [
+      "条件记录编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件记录编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "ConditionScaleBasisCurrency",
+    "label": "等级货币",
+    "business_aliases": [
+      "等级货币"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "等级货币",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "ConditionScaleBasisUnit",
+    "label": "等级计量单位",
+    "business_aliases": [
+      "等级计量单位",
+      "条件等级计量单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件等级计量单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "ConditionScaleBasisValue",
+    "label": "等级基本值",
+    "business_aliases": [
+      "等级基本值"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "等级基本值",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "ConditionSequentialNumber",
+    "label": "条件的序号",
+    "business_aliases": [
+      "条件的序号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件的序号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "ConditionType",
+    "label": "条件类型",
+    "business_aliases": [
+      "条件类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件类型",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "CustomerReturn",
+    "label": "销售凭证",
+    "business_aliases": [
+      "销售凭证"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售凭证",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "CustomerReturnItem",
+    "label": "项目",
+    "business_aliases": [
+      "项目",
+      "条件项目号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件项目号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "FactorForConditionBasisValue",
+    "label": "条件因子",
+    "business_aliases": [
+      "条件因子",
+      "条件基本值的因子"
+    ],
+    "data_type": "Edm.Double",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件基本值的因子",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "IsGroupCondition",
+    "label": "组条件",
+    "business_aliases": [
+      "组条件"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "组条件",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "IsRelevantForAccrual",
+    "label": "应计项",
+    "business_aliases": [
+      "应计项",
+      "定价与应计有关  (例如, 运费)"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "定价与应计有关  (例如, 运费)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "PeriodFactorForCndnBasisValue",
+    "label": "条件因子",
+    "business_aliases": [
+      "条件因子",
+      "条件基础因子（期间）"
+    ],
+    "data_type": "Edm.Double",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件基础因子（期间）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "PrcgProcedureCounterForHeader",
+    "label": "计数器",
+    "business_aliases": [
+      "计数器",
+      "条件计数器 (抬头)"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件计数器 (抬头)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "PricingDateTime",
+    "label": "有效期自",
+    "business_aliases": [
+      "有效期自",
+      "定价时戳"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "定价时戳",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "PricingProcedureCounter",
+    "label": "计数器",
+    "business_aliases": [
+      "计数器",
+      "条件计数器"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件计数器",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "PricingProcedureStep",
+    "label": "步骤编号",
+    "business_aliases": [
+      "步骤编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "步骤编号",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "PricingScaleBasis",
+    "label": "等级基础",
+    "business_aliases": [
+      "等级基础",
+      "等级基础标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "等级基础标识",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "PricingScaleType",
+    "label": "等级类型",
+    "business_aliases": [
+      "等级类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "等级类型",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "StructureCondition",
+    "label": "结构条件",
+    "business_aliases": [
+      "结构条件"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "结构条件",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "TaxCode",
+    "label": "税码",
+    "business_aliases": [
+      "税码",
+      "销售/购买税代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售/购买税代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "TransactionCurrency",
+    "label": "凭证货币",
+    "business_aliases": [
+      "凭证货币",
+      "SD 凭证货币"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "SD 凭证货币",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "VariantCondition",
+    "label": "变式键值",
+    "business_aliases": [
+      "变式键值",
+      "变式条件键值"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "变式条件键值",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemPrcgElmnt",
+    "field_name": "WithholdingTaxCode",
+    "label": "代扣税代码",
+    "business_aliases": [
+      "代扣税代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "代扣税代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemRelatedObj",
+    "field_name": "CustomerReturn",
+    "label": "销售订单",
+    "business_aliases": [
+      "销售订单"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售订单",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemRelatedObj",
+    "field_name": "CustomerReturnItem",
+    "label": "项目",
+    "business_aliases": [
+      "项目",
+      "销售订单项"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售订单项",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemRelatedObj",
+    "field_name": "SDDocRelatedObjectReference1",
+    "label": "相关对象参考",
+    "business_aliases": [
+      "相关对象参考",
+      "SD 凭证的相关对象参考"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "SD 凭证的相关对象参考",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemRelatedObj",
+    "field_name": "SDDocRelatedObjectReference2",
+    "label": "相关对象参考",
+    "business_aliases": [
+      "相关对象参考",
+      "SD 凭证的相关对象参考"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "SD 凭证的相关对象参考",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemRelatedObj",
+    "field_name": "SDDocRelatedObjectSequenceNmbr",
+    "label": "序号",
+    "business_aliases": [
+      "序号",
+      "SD 凭证相关对象的序号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "SD 凭证相关对象的序号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemRelatedObj",
+    "field_name": "SDDocRelatedObjectSystem",
+    "label": "相关对象系统",
+    "business_aliases": [
+      "相关对象系统",
+      "SD 凭证的相关对象系统"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "SD 凭证的相关对象系统",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemRelatedObj",
+    "field_name": "SDDocumentRelatedObjectType",
+    "label": "相关对象类型",
+    "business_aliases": [
+      "相关对象类型",
+      "SD 凭证的相关对象类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "SD 凭证的相关对象类型",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemText",
+    "field_name": "CustomerReturn",
+    "label": "客户退货",
+    "business_aliases": [
+      "客户退货"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户退货",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemText",
+    "field_name": "CustomerReturnItem",
+    "label": "客户退货项目",
+    "business_aliases": [
+      "客户退货项目"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户退货项目",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemText",
+    "field_name": "Language",
+    "label": "语言代码",
+    "business_aliases": [
+      "语言代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "语言代码",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemText",
+    "field_name": "LongText",
+    "label": "字符串",
+    "business_aliases": [
+      "字符串"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": false,
+    "sortable": false,
+    "allowed_operators": [],
+    "description": "字符串",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnItemText",
+    "field_name": "LongTextID",
+    "label": "文本标识",
+    "business_aliases": [
+      "文本标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "文本标识",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnOverviewStatus",
+    "field_name": "RetsMgmtCompnProcgStatus",
+    "label": "退款状态",
+    "business_aliases": [
+      "退款状态",
+      "退货退款确定的状态"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "退货退款确定的状态",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnOverviewStatus",
+    "field_name": "RetsMgmtLogProcgStatus",
+    "label": "物流状态",
+    "business_aliases": [
+      "物流状态",
+      "退货的物流处理状态"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "退货的物流处理状态",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnOverviewStatus",
+    "field_name": "RetsMgmtProcess",
+    "label": "处理标识编号",
+    "business_aliases": [
+      "处理标识编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "处理标识编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnOverviewStatus",
+    "field_name": "RetsMgmtProcessingStatus",
+    "label": "处理状态",
+    "business_aliases": [
+      "处理状态"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "处理状态",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnOverviewStatus",
+    "field_name": "ReturnsDocument",
+    "label": "凭证编号",
+    "business_aliases": [
+      "凭证编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "凭证编号",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPartner",
+    "field_name": "ContactPerson",
+    "label": "联系人",
+    "business_aliases": [
+      "联系人",
+      "联系人编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "联系人编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPartner",
+    "field_name": "Customer",
+    "label": "客户",
+    "business_aliases": [
+      "客户",
+      "客户编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPartner",
+    "field_name": "CustomerReturn",
+    "label": "销售和分销凭证",
+    "business_aliases": [
+      "销售和分销凭证",
+      "销售和分销凭证号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售和分销凭证号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPartner",
+    "field_name": "PartnerFunction",
+    "label": "合作伙伴职能",
+    "business_aliases": [
+      "合作伙伴职能"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "合作伙伴职能",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPartner",
+    "field_name": "Personnel",
+    "label": "员工号",
+    "business_aliases": [
+      "员工号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "员工号",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPartner",
+    "field_name": "Supplier",
+    "label": "供应商",
+    "business_aliases": [
+      "供应商",
+      "供应商科目编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "供应商科目编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "CndnIsRelevantForIntcoBilling",
+    "label": "公司间开票",
+    "business_aliases": [
+      "公司间开票",
+      "公司间开票的条件"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "公司间开票的条件",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "CndnRoundingOffDiffAmount",
+    "label": "条件舍入差额",
+    "business_aliases": [
+      "条件舍入差额"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件舍入差额",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "ConditionAmount",
+    "label": "条件值",
+    "business_aliases": [
+      "条件值"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件值",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "ConditionBaseValue",
+    "label": "条件基准",
+    "business_aliases": [
+      "条件基准"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件基准",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "ConditionCalculationType",
+    "label": "计算类型",
+    "business_aliases": [
+      "计算类型",
+      "条件的计算类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件的计算类型",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "ConditionCategory",
+    "label": "条件类别",
+    "business_aliases": [
+      "条件类别",
+      "条件类别（示例：税收、运费、价格、成本）"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件类别（示例：税收、运费、价格、成本）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "ConditionClass",
+    "label": "条件类",
+    "business_aliases": [
+      "条件类"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件类",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "ConditionControl",
+    "label": "定价控制",
+    "business_aliases": [
+      "定价控制"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "定价控制",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "ConditionCurrency",
+    "label": "货币",
+    "business_aliases": [
+      "货币",
+      "货币码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "货币码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "ConditionInactiveReason",
+    "label": "未激活条件",
+    "business_aliases": [
+      "未激活条件",
+      "条件未激活"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件未激活",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "ConditionIsForConfiguration",
+    "label": "用于变式配置",
+    "business_aliases": [
+      "用于变式配置",
+      "用于变式配置的条件"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "用于变式配置的条件",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "ConditionIsForStatistics",
+    "label": "统计",
+    "business_aliases": [
+      "统计",
+      "条件用作统计"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件用作统计",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "ConditionIsManuallyChanged",
+    "label": "已手动更改",
+    "business_aliases": [
+      "已手动更改",
+      "已手动更改条件"
+    ],
+    "data_type": "Edm.Boolean",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "已手动更改条件",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "ConditionOrigin",
+    "label": "条件来源",
+    "business_aliases": [
+      "条件来源"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件来源",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "ConditionQuantity",
+    "label": "定价单位",
+    "business_aliases": [
+      "定价单位",
+      "条件定价单位"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件定价单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "ConditionQuantityUnit",
+    "label": "条件单位",
+    "business_aliases": [
+      "条件单位",
+      "凭证中的条件单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "凭证中的条件单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "ConditionRateValue",
+    "label": "金额",
+    "business_aliases": [
+      "金额",
+      "条件金额或百分比"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件金额或百分比",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "ConditionRecord",
+    "label": "条件记录编号",
+    "business_aliases": [
+      "条件记录编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件记录编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "ConditionScaleBasisCurrency",
+    "label": "等级货币",
+    "business_aliases": [
+      "等级货币"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "等级货币",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "ConditionScaleBasisUnit",
+    "label": "等级计量单位",
+    "business_aliases": [
+      "等级计量单位",
+      "条件等级计量单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件等级计量单位",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "ConditionScaleBasisValue",
+    "label": "等级基本值",
+    "business_aliases": [
+      "等级基本值"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "等级基本值",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "ConditionSequentialNumber",
+    "label": "条件的序号",
+    "business_aliases": [
+      "条件的序号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件的序号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "ConditionType",
+    "label": "条件类型",
+    "business_aliases": [
+      "条件类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件类型",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "CustomerReturn",
+    "label": "销售凭证",
+    "business_aliases": [
+      "销售凭证"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售凭证",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "FactorForConditionBasisValue",
+    "label": "条件因子",
+    "business_aliases": [
+      "条件因子",
+      "条件基本值的因子"
+    ],
+    "data_type": "Edm.Double",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件基本值的因子",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "IsGroupCondition",
+    "label": "组条件",
+    "business_aliases": [
+      "组条件"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "组条件",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "PeriodFactorForCndnBasisValue",
+    "label": "条件因子",
+    "business_aliases": [
+      "条件因子",
+      "条件基础因子（期间）"
+    ],
+    "data_type": "Edm.Double",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件基础因子（期间）",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "PrcgProcedureCounterForHeader",
+    "label": "计数器",
+    "business_aliases": [
+      "计数器",
+      "条件计数器 (抬头)"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件计数器 (抬头)",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "PricingDateTime",
+    "label": "有效期自",
+    "business_aliases": [
+      "有效期自",
+      "定价时戳"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "定价时戳",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "PricingProcedureCounter",
+    "label": "计数器",
+    "business_aliases": [
+      "计数器",
+      "条件计数器"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "条件计数器",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "PricingProcedureStep",
+    "label": "步骤编号",
+    "business_aliases": [
+      "步骤编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "步骤编号",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "PricingScaleBasis",
+    "label": "等级基础",
+    "business_aliases": [
+      "等级基础",
+      "等级基础标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "等级基础标识",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "PricingScaleType",
+    "label": "等级类型",
+    "business_aliases": [
+      "等级类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "等级类型",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "StructureCondition",
+    "label": "结构条件",
+    "business_aliases": [
+      "结构条件"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "结构条件",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "TaxCode",
+    "label": "税码",
+    "business_aliases": [
+      "税码",
+      "销售/购买税代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售/购买税代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "TransactionCurrency",
+    "label": "凭证货币",
+    "business_aliases": [
+      "凭证货币",
+      "SD 凭证货币"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "SD 凭证货币",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "VariantCondition",
+    "label": "变式键值",
+    "business_aliases": [
+      "变式键值",
+      "变式条件键值"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "变式条件键值",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnPrcgElmnt",
+    "field_name": "WithholdingTaxCode",
+    "label": "代扣税代码",
+    "business_aliases": [
+      "代扣税代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "代扣税代码",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnProcessStep",
+    "field_name": "RetsMgmtProcItmQtySplit",
+    "label": "拆分标识",
+    "business_aliases": [
+      "拆分标识",
+      "拆分标识编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "拆分标识编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnProcessStep",
+    "field_name": "RetsMgmtProcStepExecStatus",
+    "label": "执行步骤状态",
+    "business_aliases": [
+      "执行步骤状态"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "执行步骤状态",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnProcessStep",
+    "field_name": "RetsMgmtProcess",
+    "label": "处理标识编号",
+    "business_aliases": [
+      "处理标识编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "处理标识编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnProcessStep",
+    "field_name": "RetsMgmtProcessItem",
+    "label": "项目编号处理中",
+    "business_aliases": [
+      "项目编号处理中",
+      "项目编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "项目编号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnProcessStep",
+    "field_name": "RetsMgmtProcessStep",
+    "label": "步骤标识",
+    "business_aliases": [
+      "步骤标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "步骤标识",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnProcessStep",
+    "field_name": "ReturnsDocument",
+    "label": "凭证编号",
+    "business_aliases": [
+      "凭证编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "凭证编号",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnProcessStep",
+    "field_name": "ReturnsDocumentApprovalStatus",
+    "label": "审批状态",
+    "business_aliases": [
+      "审批状态",
+      "退货处理的批准状态"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "退货处理的批准状态",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnProcessStep",
+    "field_name": "ReturnsDocumentItem",
+    "label": "凭证项目",
+    "business_aliases": [
+      "凭证项目"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "凭证项目",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnProcessStep",
+    "field_name": "ReturnsDocumentStatus",
+    "label": "项目状态",
+    "business_aliases": [
+      "项目状态",
+      "凭证项目状态"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "凭证项目状态",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnProcessStep",
+    "field_name": "ReturnsDocumentType",
+    "label": "凭证类型",
+    "business_aliases": [
+      "凭证类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "凭证类型",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnProcessStep",
+    "field_name": "ReturnsReferenceDocument",
+    "label": "凭证编号",
+    "business_aliases": [
+      "凭证编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "凭证编号",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnProcessStep",
+    "field_name": "ReturnsReferenceDocumentItem",
+    "label": "凭证项目",
+    "business_aliases": [
+      "凭证项目"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "凭证项目",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnProcessStep",
+    "field_name": "ReturnsReferenceDocumentType",
+    "label": "凭证类型",
+    "business_aliases": [
+      "凭证类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "凭证类型",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnRelatedObject",
+    "field_name": "CustomerReturn",
+    "label": "销售订单",
+    "business_aliases": [
+      "销售订单"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售订单",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnRelatedObject",
+    "field_name": "SDDocRelatedObjectReference1",
+    "label": "相关对象参考",
+    "business_aliases": [
+      "相关对象参考",
+      "SD 凭证的相关对象参考"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "SD 凭证的相关对象参考",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnRelatedObject",
+    "field_name": "SDDocRelatedObjectReference2",
+    "label": "相关对象参考",
+    "business_aliases": [
+      "相关对象参考",
+      "SD 凭证的相关对象参考"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "SD 凭证的相关对象参考",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnRelatedObject",
+    "field_name": "SDDocRelatedObjectSequenceNmbr",
+    "label": "序号",
+    "business_aliases": [
+      "序号",
+      "SD 凭证相关对象的序号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "SD 凭证相关对象的序号",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnRelatedObject",
+    "field_name": "SDDocRelatedObjectSystem",
+    "label": "相关对象系统",
+    "business_aliases": [
+      "相关对象系统",
+      "SD 凭证的相关对象系统"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "SD 凭证的相关对象系统",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnRelatedObject",
+    "field_name": "SDDocumentRelatedObjectType",
+    "label": "相关对象类型",
+    "business_aliases": [
+      "相关对象类型",
+      "SD 凭证的相关对象类型"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "SD 凭证的相关对象类型",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnScheduleLine",
+    "field_name": "ConfdOrderQtyByMatlAvailCheck",
+    "label": "确认数量",
+    "business_aliases": [
+      "确认数量",
+      "确认的数量"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "确认的数量",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnScheduleLine",
+    "field_name": "CustomerReturn",
+    "label": "销售凭证",
+    "business_aliases": [
+      "销售凭证"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售凭证",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnScheduleLine",
+    "field_name": "CustomerReturnItem",
+    "label": "销售凭证项目",
+    "business_aliases": [
+      "销售凭证项目"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售凭证项目",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnScheduleLine",
+    "field_name": "DelivBlockReasonForSchedLine",
+    "label": "交货冻结",
+    "business_aliases": [
+      "交货冻结",
+      "已针对交货冻结计划行"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "已针对交货冻结计划行",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnScheduleLine",
+    "field_name": "DeliveredQtyInOrderQtyUnit",
+    "label": "已交货数量",
+    "business_aliases": [
+      "已交货数量"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "已交货数量",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnScheduleLine",
+    "field_name": "OpenConfdDelivQtyInOrdQtyUnit",
+    "label": "未清数量",
+    "business_aliases": [
+      "未清数量",
+      "未清的已确认交货数量"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "未清的已确认交货数量",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnScheduleLine",
+    "field_name": "OrderQuantityUnit",
+    "label": "销售单位",
+    "business_aliases": [
+      "销售单位"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售单位",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnScheduleLine",
+    "field_name": "ScheduleLine",
+    "label": "计划行号",
+    "business_aliases": [
+      "计划行号",
+      "计划行编号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "计划行编号",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnSerialNumber",
+    "field_name": "CustomerReturn",
+    "label": "销售凭证",
+    "business_aliases": [
+      "销售凭证"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售凭证",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnSerialNumber",
+    "field_name": "CustomerReturnItem",
+    "label": "销售凭证项目",
+    "business_aliases": [
+      "销售凭证项目"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "销售凭证项目",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnSerialNumber",
+    "field_name": "SerialNumber",
+    "label": "序列号",
+    "business_aliases": [
+      "序列号"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "序列号",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnText",
+    "field_name": "CustomerReturn",
+    "label": "客户退货",
+    "business_aliases": [
+      "客户退货"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "客户退货",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnText",
+    "field_name": "Language",
+    "label": "语言代码",
+    "business_aliases": [
+      "语言代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "语言代码",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnText",
+    "field_name": "LongText",
+    "label": "字符串",
+    "business_aliases": [
+      "字符串"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": false,
+    "sortable": false,
+    "allowed_operators": [],
+    "description": "字符串",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnText",
+    "field_name": "LongTextID",
+    "label": "文本标识",
+    "business_aliases": [
+      "文本标识"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "文本标识",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnValAddedSrvc",
+    "field_name": "CustomerReturn",
+    "label": "",
+    "business_aliases": [
+      "Document Number of Reference Document"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Document Number of Reference Document",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnValAddedSrvc",
+    "field_name": "CustomerReturnItem",
+    "label": "",
+    "business_aliases": [
+      "Item number of the reference item"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Item number of the reference item",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnValAddedSrvc",
+    "field_name": "ValAddedSrvcHasToBeOrdered",
+    "label": "",
+    "business_aliases": [
+      "Requirement Relevancy Flag for VAS Material"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Requirement Relevancy Flag for VAS Material",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnValAddedSrvc",
+    "field_name": "ValAddedSrvcIncrement",
+    "label": "",
+    "business_aliases": [
+      "VAS Increment"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "VAS Increment",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnValAddedSrvc",
+    "field_name": "ValAddedSrvcIsCreatedManually",
+    "label": "",
+    "business_aliases": [
+      "Manual Entry Indicator"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Manual Entry Indicator",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnValAddedSrvc",
+    "field_name": "ValAddedSrvcIsRlvtForProcmt",
+    "label": "",
+    "business_aliases": [
+      "Procurement Relevant for VAS Material"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "Procurement Relevant for VAS Material",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnValAddedSrvc",
+    "field_name": "ValAddedSrvcItemNumberInSD",
+    "label": "",
+    "business_aliases": [
+      "VAS Item Number in SD"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "VAS Item Number in SD",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnValAddedSrvc",
+    "field_name": "ValueAddedServiceChargeCode",
+    "label": "",
+    "business_aliases": [
+      "VAS Charge Codes"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "VAS Charge Codes",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnValAddedSrvc",
+    "field_name": "ValueAddedServiceProduct",
+    "label": "",
+    "business_aliases": [
+      "VAS Material Number"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "VAS Material Number",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnValAddedSrvc",
+    "field_name": "ValueAddedServiceText1",
+    "label": "",
+    "business_aliases": [
+      "VAS Field 1 for Free Use by Customer"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "VAS Field 1 for Free Use by Customer",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnValAddedSrvc",
+    "field_name": "ValueAddedServiceText2",
+    "label": "",
+    "business_aliases": [
+      "VAS Field 2 for Free Use by Customer"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "VAS Field 2 for Free Use by Customer",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_CUSTOMER_RETURN_SRV",
+    "entity_set": "A_CustomerReturnValAddedSrvc",
+    "field_name": "ValueAddedServiceText3",
+    "label": "",
+    "business_aliases": [
+      "VAS Field 3 for Free Use by Customer"
+    ],
+    "data_type": "",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq"
+    ],
+    "description": "VAS Field 3 for Free Use by Customer",
+    "source_documents": [
+      "openapi_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  }
+]

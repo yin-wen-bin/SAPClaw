@@ -1,0 +1,23 @@
+[
+  {
+    "service_name": "API_OPLACCTGDOCITEMCUBE_SRV",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_OPLACCTGDOCITEMCUBE_SRV",
+    "description": "This service is based on the OData protocol and can be consumed in Fiori apps and on other user interfaces.\r\n\r\nThis service only extracts journal entries with an entry view and is not designed to extract large data volumes. It contains the operational accounting document header and item nodes.",
+    "entity_sets": [
+      "A_OperationalAcctgDocItemCube"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "https://sap.example.local/sap/opu/odata/sap/API_OPLACCTGDOCITEMCUBE_SRV/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/c0/24170fa7af40878975e218f3426387/frameset.htm",
+    "openapi_version": "1.0.0"
+  }
+]

@@ -1,0 +1,749 @@
+[
+  {
+    "service_name": "API_WORK_CENTERS",
+    "entity_set": "A_WorkCenterAllCapacity",
+    "entity_type": "A_WorkCenterAllCapacityType",
+    "key_fields": [
+      "CapacityCategoryAllocation",
+      "CapacityInternalID",
+      "WorkCenterInternalID",
+      "WorkCenterTypeCode"
+    ],
+    "default_select_fields": [
+      "WorkCenterInternalID",
+      "WorkCenterTypeCode",
+      "CapacityInternalID",
+      "CapacityCategoryAllocation",
+      "WorkCenter",
+      "WorkCenterDesc",
+      "Plant",
+      "WorkCenterCategoryCode",
+      "WorkCenterResponsible",
+      "SupplyArea"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_WorkCenterInterval",
+      "to_WorkCenterQueuingOp",
+      "to_WorkCenterTodayOp"
+    ],
+    "description": "Reads the capacity assignments of all work centers.",
+    "supported_methods": [
+      "GET",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "entity_set": "A_WorkCenterAllCapacity_2",
+    "entity_type": "A_WorkCenterAllCapacity_2Type",
+    "key_fields": [
+      "CapacityCategoryAllocation",
+      "WorkCenterInternalID",
+      "WorkCenterTypeCode"
+    ],
+    "default_select_fields": [
+      "WorkCenterInternalID",
+      "WorkCenterTypeCode",
+      "CapacityCategoryAllocation",
+      "Plant",
+      "WorkCenterCategoryCode",
+      "WorkCenter",
+      "CapacityInternalID",
+      "SetupCapRequirementFormula",
+      "ProcgCapRequirementFormula",
+      "TeardownCapRequirementFormula"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Capacity",
+      "to_WorkCenterQueuingOp",
+      "to_WorkCenterTodayOp"
+    ],
+    "description": "Reads the capacity assignments of all work centers.",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "entity_set": "A_WorkCenterCapDayOp",
+    "entity_type": "A_WorkCenterCapDayOpType",
+    "key_fields": [
+      "CapacityInternalID",
+      "CapacityRequirement",
+      "MRPController",
+      "Material",
+      "Operation",
+      "OrderID",
+      "Plant",
+      "WorkCenter"
+    ],
+    "default_select_fields": [
+      "Plant",
+      "MRPController",
+      "WorkCenter",
+      "CapacityInternalID",
+      "CapacityRequirement",
+      "Material",
+      "OrderID",
+      "Operation",
+      "WorkCenterDesc",
+      "WorkCenterResponsible"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads the current day's operations for a work center.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "entity_set": "A_WorkCenterCapOrderPerBucket",
+    "entity_type": "A_WorkCenterCapOrderPerBucketParameters",
+    "key_fields": [
+      "P_CapEvalBucketType",
+      "P_CapEvalEndDate",
+      "P_CapEvalStartDate"
+    ],
+    "default_select_fields": [
+      "P_CapEvalStartDate",
+      "P_CapEvalEndDate",
+      "P_CapEvalBucketType"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "Set"
+    ],
+    "description": "Reads the evaluation and load distribution of an order for a work center capacity.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "entity_set": "A_WorkCenterCapOrderPerBucketSet",
+    "entity_type": "A_WorkCenterCapOrderPerBucketType",
+    "key_fields": [
+      "CapacityCategoryAllocation",
+      "CapacityEvaluationTimePeriod",
+      "CapacityInternalID",
+      "MRPController",
+      "Material",
+      "Operation",
+      "OrderID",
+      "P_CapEvalBucketType",
+      "P_CapEvalEndDate",
+      "P_CapEvalStartDate",
+      "Plant",
+      "ShiftName",
+      "WorkCenter",
+      "WorkCenterTypeCode"
+    ],
+    "default_select_fields": [
+      "P_CapEvalStartDate",
+      "P_CapEvalEndDate",
+      "P_CapEvalBucketType",
+      "Plant",
+      "MRPController",
+      "WorkCenter",
+      "WorkCenterTypeCode",
+      "CapacityCategoryAllocation",
+      "CapacityInternalID",
+      "Material"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "Parameters"
+    ],
+    "description": "A_WorkCenterCapOrderPerBucketType",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "entity_set": "A_WorkCenterCapPerBucket",
+    "entity_type": "A_WorkCenterCapPerBucketParameters",
+    "key_fields": [
+      "P_CapEvalBucketType",
+      "P_CapEvalEndDate",
+      "P_CapEvalStartDate"
+    ],
+    "default_select_fields": [
+      "P_CapEvalStartDate",
+      "P_CapEvalEndDate",
+      "P_CapEvalBucketType"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "Set"
+    ],
+    "description": "Reads the evaluation and load distribution for a work center capacity.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "entity_set": "A_WorkCenterCapPerBucketSet",
+    "entity_type": "A_WorkCenterCapPerBucketType",
+    "key_fields": [
+      "CapEvalBucketType",
+      "CapacityEvaluationTimePeriod",
+      "CapacityInternalID",
+      "P_CapEvalBucketType",
+      "P_CapEvalEndDate",
+      "P_CapEvalStartDate",
+      "Plant",
+      "ShiftName",
+      "WorkCenter"
+    ],
+    "default_select_fields": [
+      "P_CapEvalStartDate",
+      "P_CapEvalEndDate",
+      "P_CapEvalBucketType",
+      "Plant",
+      "WorkCenter",
+      "CapacityInternalID",
+      "ShiftName",
+      "CapacityEvaluationTimePeriod",
+      "CapEvalBucketType",
+      "CapacityEvaluationTimePerdText"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "Parameters"
+    ],
+    "description": "A_WorkCenterCapPerBucketType",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "entity_set": "A_WorkCenterCapPplineOp",
+    "entity_type": "A_WorkCenterCapPplineOpType",
+    "key_fields": [
+      "CapacityInternalID",
+      "CapacityRequirement",
+      "MRPController",
+      "Material",
+      "Operation",
+      "OrderID",
+      "Plant",
+      "WorkCenter"
+    ],
+    "default_select_fields": [
+      "Plant",
+      "MRPController",
+      "WorkCenter",
+      "CapacityInternalID",
+      "CapacityRequirement",
+      "Material",
+      "OrderID",
+      "Operation",
+      "WorkCenterDesc",
+      "WorkCenterResponsible"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads work center operations.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "entity_set": "A_WorkCenterCapacity",
+    "entity_type": "A_WorkCenterCapacityType",
+    "key_fields": [
+      "CapacityInternalID"
+    ],
+    "default_select_fields": [
+      "CapacityInternalID",
+      "Capacity",
+      "CapacityCategoryCode",
+      "CapacityActiveVersion",
+      "CapacityIsFinite",
+      "CapacityIsPooled",
+      "CapacityHasIndivCapacities",
+      "CapacityIsExcldFrmLongTermPlng",
+      "CapacityNumberOfCapacities",
+      "CapacityResponsiblePlanner"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_CapacityInterval",
+      "to_CapacityText"
+    ],
+    "description": "Reads the capacity headers of all work center capacity assignments.",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "entity_set": "A_WorkCenterCapacityInterval",
+    "entity_type": "A_WorkCenterCapacityIntervalType",
+    "key_fields": [
+      "CapacityActiveVersion",
+      "CapacityCategoryAllocation",
+      "CapacityInternalID",
+      "IntervalEndDate",
+      "WorkCenterInternalID",
+      "WorkCenterTypeCode"
+    ],
+    "default_select_fields": [
+      "WorkCenterInternalID",
+      "WorkCenterTypeCode",
+      "CapacityCategoryAllocation",
+      "CapacityInternalID",
+      "CapacityActiveVersion",
+      "IntervalEndDate",
+      "IntervalStartDate",
+      "WorkCenter",
+      "Plant",
+      "WorkDayRule"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_WorkCenterShift"
+    ],
+    "description": "Reads all the capacity intervals of all workcenter capacities.",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "entity_set": "A_WorkCenterCapacityInterval_2",
+    "entity_type": "A_WorkCenterCapacityInterval_2Type",
+    "key_fields": [
+      "CapacityActiveVersion",
+      "CapacityInternalID",
+      "IntervalEndDate"
+    ],
+    "default_select_fields": [
+      "CapacityInternalID",
+      "CapacityActiveVersion",
+      "IntervalEndDate",
+      "IntervalStartDate",
+      "StdAvailableCapacityIsValid",
+      "AvailableCapacityIntervalDurn",
+      "ShiftSequence",
+      "WorkDayRule",
+      "CapacityNumberOfShifts",
+      "CapacityNumberOfCapacities"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_CapacityShift"
+    ],
+    "description": "Reads the capacity intervals of all capacities.",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "entity_set": "A_WorkCenterCapacityShift",
+    "entity_type": "A_WorkCenterCapacityShiftType",
+    "key_fields": [
+      "AvailableCapacityShift",
+      "CapacityActiveVersion",
+      "CapacityCategoryAllocation",
+      "CapacityInternalID",
+      "IntervalEndDate",
+      "WeekDay",
+      "WorkCenterInternalID",
+      "WorkCenterTypeCode"
+    ],
+    "default_select_fields": [
+      "WorkCenterInternalID",
+      "WorkCenterTypeCode",
+      "CapacityCategoryAllocation",
+      "CapacityInternalID",
+      "CapacityActiveVersion",
+      "IntervalEndDate",
+      "WeekDay",
+      "AvailableCapacityShift",
+      "WorkCenter",
+      "Plant"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads all the capacity shifts of all work center capacity intervals.",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "entity_set": "A_WorkCenterCapacityShift_2",
+    "entity_type": "A_WorkCenterCapacityShift_2Type",
+    "key_fields": [
+      "AvailableCapacityShift",
+      "CapacityActiveVersion",
+      "CapacityInternalID",
+      "IntervalEndDate",
+      "WeekDay"
+    ],
+    "default_select_fields": [
+      "CapacityInternalID",
+      "CapacityActiveVersion",
+      "IntervalEndDate",
+      "WeekDay",
+      "AvailableCapacityShift",
+      "IntervalStartDate",
+      "WorkDayRule",
+      "ShiftDefinition",
+      "ShiftStartTime",
+      "ShiftEndTime"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads the capacity shifts of all capacity intervals.",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "entity_set": "A_WorkCenterCapacityText",
+    "entity_type": "A_WorkCenterCapacityTextType",
+    "key_fields": [
+      "CapacityInternalID",
+      "Language"
+    ],
+    "default_select_fields": [
+      "CapacityInternalID",
+      "Language",
+      "CapacityText",
+      "CapacityLastChangeDateTime"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads the descriptions of all capacities.",
+    "supported_methods": [
+      "GET",
+      "PATCH"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "entity_set": "A_WorkCenterCostCenter",
+    "entity_type": "A_WorkCenterCostCenterType",
+    "key_fields": [
+      "CostCenterAllocation",
+      "ValidityEndDate",
+      "WorkCenterInternalID",
+      "WorkCenterTypeCode"
+    ],
+    "default_select_fields": [
+      "WorkCenterInternalID",
+      "WorkCenterTypeCode",
+      "CostCenterAllocation",
+      "ValidityEndDate",
+      "ValidityStartDate",
+      "WorkCenter",
+      "Plant",
+      "WorkCenterCategoryCode",
+      "ControllingArea",
+      "CostCenter"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads the cost center allocations of all work centers.",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "entity_set": "A_WorkCenterDayOperation",
+    "entity_type": "A_WorkCenterDayOperationType",
+    "key_fields": [
+      "ManufacturingOrder",
+      "ManufacturingOrderCategory",
+      "ManufacturingOrderOperation",
+      "WorkCenterInternalID"
+    ],
+    "default_select_fields": [
+      "WorkCenterInternalID",
+      "ManufacturingOrder",
+      "ManufacturingOrderOperation",
+      "ManufacturingOrderCategory",
+      "MfgOrderOperationText",
+      "Material",
+      "OperationIsReleased",
+      "OpErlstSchedldExecStrtDte",
+      "OpErlstSchedldExecStrtTme",
+      "OpErlstSchedldExecEndDte"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads the list of operations for current day of all work centers.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "entity_set": "A_WorkCenterDescription",
+    "entity_type": "A_WorkCenterDescriptionType",
+    "key_fields": [
+      "Language",
+      "WorkCenterInternalID",
+      "WorkCenterTypeCode"
+    ],
+    "default_select_fields": [
+      "WorkCenterInternalID",
+      "WorkCenterTypeCode",
+      "Language",
+      "WorkCenterDesc",
+      "WorkCenter",
+      "Plant",
+      "WorkCenterCategoryCode",
+      "WorkCenterLastChangeDateTime"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads the descriptions of all work centers.",
+    "supported_methods": [
+      "GET",
+      "PATCH"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "entity_set": "A_WorkCenterPipeLineOperation",
+    "entity_type": "A_WorkCenterPipeLineOperationType",
+    "key_fields": [
+      "ManufacturingOrder",
+      "ManufacturingOrderCategory",
+      "ManufacturingOrderOperation",
+      "WorkCenterInternalID"
+    ],
+    "default_select_fields": [
+      "WorkCenterInternalID",
+      "ManufacturingOrder",
+      "ManufacturingOrderOperation",
+      "ManufacturingOrderCategory",
+      "MfgOrderOperationText",
+      "Material",
+      "OperationIsReleased",
+      "OpErlstSchedldExecStrtDte",
+      "OpErlstSchedldExecStrtTme",
+      "OpErlstSchedldExecEndDte"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads the list of queued operations of all work centers.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "entity_set": "A_WorkCenters",
+    "entity_type": "A_WorkCentersType",
+    "key_fields": [
+      "WorkCenterInternalID",
+      "WorkCenterTypeCode"
+    ],
+    "default_select_fields": [
+      "WorkCenterInternalID",
+      "WorkCenterTypeCode",
+      "WorkCenter",
+      "WorkCenterDesc",
+      "Plant",
+      "WorkCenterCategoryCode",
+      "WorkCenterResponsible",
+      "WorkCenterResponsibleName",
+      "SupplyArea",
+      "WorkCenterUsage"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Capacity",
+      "to_WorkCenterAllCapacity",
+      "to_WorkCenterCapacity",
+      "to_WorkCenterCostCenter",
+      "to_WorkCenterDescription",
+      "to_WorkCenterQueuingOp",
+      "to_WorkCenterTodayOp"
+    ],
+    "description": "Reads all the headers of all work centers.",
+    "supported_methods": [
+      "GET",
+      "PATCH",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  }
+]

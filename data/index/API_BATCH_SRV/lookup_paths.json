@@ -1,0 +1,707 @@
+[
+  {
+    "path_id": "supplier_to_batch_batch",
+    "service_name": "API_BATCH_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "Batch",
+    "target_field": "Batch",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Batch"
+    ],
+    "description": "Resolve `Supplier` directly on `Batch` to answer `Batch`.",
+    "business_aliases": [
+      "批次",
+      "批次编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "Batch",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Batch"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_batchbysupplier_batch",
+    "service_name": "API_BATCH_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "Batch",
+    "target_field": "BatchBySupplier",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "BatchBySupplier"
+    ],
+    "description": "Resolve `Supplier` directly on `Batch` to answer `BatchBySupplier`.",
+    "business_aliases": [
+      "供应商批次",
+      "供应商批次编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "Batch",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "BatchBySupplier"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_batchextwhsemgmtinternalid_batch",
+    "service_name": "API_BATCH_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "Batch",
+    "target_field": "BatchExtWhseMgmtInternalId",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "BatchExtWhseMgmtInternalId"
+    ],
+    "description": "Resolve `Supplier` directly on `Batch` to answer `BatchExtWhseMgmtInternalId`.",
+    "business_aliases": [
+      "批次标识"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "Batch",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "BatchExtWhseMgmtInternalId"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_batchidentifyingplant_batch",
+    "service_name": "API_BATCH_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "Batch",
+    "target_field": "BatchIdentifyingPlant",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "BatchIdentifyingPlant"
+    ],
+    "description": "Resolve `Supplier` directly on `Batch` to answer `BatchIdentifyingPlant`.",
+    "business_aliases": [
+      "工厂"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "Batch",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "BatchIdentifyingPlant"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_batchismarkedfordeletion_batch",
+    "service_name": "API_BATCH_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "Batch",
+    "target_field": "BatchIsMarkedForDeletion",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "BatchIsMarkedForDeletion"
+    ],
+    "description": "Resolve `Supplier` directly on `Batch` to answer `BatchIsMarkedForDeletion`.",
+    "business_aliases": [
+      "批次删除标志",
+      "批次中所有数据的删除标志"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "Batch",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "BatchIsMarkedForDeletion"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_countryoforigin_batch",
+    "service_name": "API_BATCH_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "Batch",
+    "target_field": "CountryOfOrigin",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "CountryOfOrigin"
+    ],
+    "description": "Resolve `Supplier` directly on `Batch` to answer `CountryOfOrigin`.",
+    "business_aliases": [
+      "原产国家/地区",
+      "物料原产国家/地区（非优惠原产地）"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "Batch",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "CountryOfOrigin"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_creationdatetime_batch",
+    "service_name": "API_BATCH_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "Batch",
+    "target_field": "CreationDateTime",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "CreationDateTime"
+    ],
+    "description": "Resolve `Supplier` directly on `Batch` to answer `CreationDateTime`.",
+    "business_aliases": [
+      "创建日期",
+      "创建日期时戳"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "Batch",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "CreationDateTime"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_freedefineddate1_batch",
+    "service_name": "API_BATCH_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "Batch",
+    "target_field": "FreeDefinedDate1",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "FreeDefinedDate1"
+    ],
+    "description": "Resolve `Supplier` directly on `Batch` to answer `FreeDefinedDate1`.",
+    "business_aliases": [
+      "自由使用的日期 1"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "Batch",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "FreeDefinedDate1"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_freedefineddate2_batch",
+    "service_name": "API_BATCH_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "Batch",
+    "target_field": "FreeDefinedDate2",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "FreeDefinedDate2"
+    ],
+    "description": "Resolve `Supplier` directly on `Batch` to answer `FreeDefinedDate2`.",
+    "business_aliases": [
+      "自由使用的日期 2"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "Batch",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "FreeDefinedDate2"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_freedefineddate3_batch",
+    "service_name": "API_BATCH_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "Batch",
+    "target_field": "FreeDefinedDate3",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "FreeDefinedDate3"
+    ],
+    "description": "Resolve `Supplier` directly on `Batch` to answer `FreeDefinedDate3`.",
+    "business_aliases": [
+      "自由使用的日期 3"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "Batch",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "FreeDefinedDate3"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_freedefineddate4_batch",
+    "service_name": "API_BATCH_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "Batch",
+    "target_field": "FreeDefinedDate4",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "FreeDefinedDate4"
+    ],
+    "description": "Resolve `Supplier` directly on `Batch` to answer `FreeDefinedDate4`.",
+    "business_aliases": [
+      "自由使用的日期 4"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "Batch",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "FreeDefinedDate4"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_freedefineddate5_batch",
+    "service_name": "API_BATCH_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "Batch",
+    "target_field": "FreeDefinedDate5",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "FreeDefinedDate5"
+    ],
+    "description": "Resolve `Supplier` directly on `Batch` to answer `FreeDefinedDate5`.",
+    "business_aliases": [
+      "自由使用的日期 5"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "Batch",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "FreeDefinedDate5"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_freedefineddate6_batch",
+    "service_name": "API_BATCH_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "Batch",
+    "target_field": "FreeDefinedDate6",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "FreeDefinedDate6"
+    ],
+    "description": "Resolve `Supplier` directly on `Batch` to answer `FreeDefinedDate6`.",
+    "business_aliases": [
+      "自由使用的日期 6"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "Batch",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "FreeDefinedDate6"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_lastchangedatetime_batch",
+    "service_name": "API_BATCH_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "Batch",
+    "target_field": "LastChangeDateTime",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "LastChangeDateTime"
+    ],
+    "description": "Resolve `Supplier` directly on `Batch` to answer `LastChangeDateTime`.",
+    "business_aliases": [
+      "上次更改",
+      "上次更改时戳"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "Batch",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "LastChangeDateTime"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_manufacturedate_batch",
+    "service_name": "API_BATCH_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "Batch",
+    "target_field": "ManufactureDate",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ManufactureDate"
+    ],
+    "description": "Resolve `Supplier` directly on `Batch` to answer `ManufactureDate`.",
+    "business_aliases": [
+      "制造日期"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "Batch",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ManufactureDate"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_material_batch",
+    "service_name": "API_BATCH_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "Batch",
+    "target_field": "Material",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Material"
+    ],
+    "description": "Resolve `Supplier` directly on `Batch` to answer `Material`.",
+    "business_aliases": [
+      "物料",
+      "物料编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "Batch",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Material"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_matlbatchavailabilitydate_batch",
+    "service_name": "API_BATCH_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "Batch",
+    "target_field": "MatlBatchAvailabilityDate",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "MatlBatchAvailabilityDate"
+    ],
+    "description": "Resolve `Supplier` directly on `Batch` to answer `MatlBatchAvailabilityDate`.",
+    "business_aliases": [
+      "可用自",
+      "可用性日期"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "Batch",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "MatlBatchAvailabilityDate"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_matlbatchisinrstrcdusestock_batch",
+    "service_name": "API_BATCH_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "Batch",
+    "target_field": "MatlBatchIsInRstrcdUseStock",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "MatlBatchIsInRstrcdUseStock"
+    ],
+    "description": "Resolve `Supplier` directly on `Batch` to answer `MatlBatchIsInRstrcdUseStock`.",
+    "business_aliases": [
+      "批次限制",
+      "限制使用库存中的批量"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "Batch",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "MatlBatchIsInRstrcdUseStock"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_regionoforigin_batch",
+    "service_name": "API_BATCH_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "Batch",
+    "target_field": "RegionOfOrigin",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "RegionOfOrigin"
+    ],
+    "description": "Resolve `Supplier` directly on `Batch` to answer `RegionOfOrigin`.",
+    "business_aliases": [
+      "原产地",
+      "物料原产地区（非优惠原产地）"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "Batch",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "RegionOfOrigin"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_shelflifeexpirationdate_batch",
+    "service_name": "API_BATCH_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "Batch",
+    "target_field": "ShelfLifeExpirationDate",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ShelfLifeExpirationDate"
+    ],
+    "description": "Resolve `Supplier` directly on `Batch` to answer `ShelfLifeExpirationDate`.",
+    "business_aliases": [
+      "货架到期日/最佳用时",
+      "货架存放期过期日期或最佳使用日期"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "Batch",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ShelfLifeExpirationDate"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_supplier_batch",
+    "service_name": "API_BATCH_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "Batch",
+    "target_field": "Supplier",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Supplier"
+    ],
+    "description": "Resolve `Supplier` directly on `Batch` to answer `Supplier`.",
+    "business_aliases": [
+      "供应商",
+      "供应商科目编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "Batch",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Supplier"
+        ],
+        "top": 20
+      }
+    ],
+    "confidence": 0.72
+  }
+]

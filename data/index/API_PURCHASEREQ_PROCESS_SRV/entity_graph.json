@@ -1,0 +1,57 @@
+[
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "from_entity_set": "A_PurchaseRequisitionHeader",
+    "to_entity_set": "ToRole_assoc_2E365BBA69BFF1FD6DED4A3FE5FC8879",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_PurchaseReqnItem",
+    "description": "Navigation `to_PurchaseReqnItem` from `A_PurchaseRequisitionHeader` to `ToRole_assoc_2E365BBA69BFF1FD6DED4A3FE5FC8879`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "from_entity_set": "A_PurchaseRequisitionItem",
+    "to_entity_set": "FromRole_assoc_2E365BBA69BFF1FD6DED4A3FE5FC8879",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_PurchaseReqn",
+    "description": "Navigation `to_PurchaseReqn` from `A_PurchaseRequisitionItem` to `FromRole_assoc_2E365BBA69BFF1FD6DED4A3FE5FC8879`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "from_entity_set": "A_PurchaseRequisitionItem",
+    "to_entity_set": "ToRole_assoc_C6E59A9DD7FDCF62064475A8A581666E",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_PurchaseReqnDeliveryAddress",
+    "description": "Navigation `to_PurchaseReqnDeliveryAddress` from `A_PurchaseRequisitionItem` to `ToRole_assoc_C6E59A9DD7FDCF62064475A8A581666E`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "from_entity_set": "A_PurchaseRequisitionItem",
+    "to_entity_set": "ToRole_assoc_DD2D86FAE4190F25D1329F064E7E2F36",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_PurchaseReqnAcctAssgmt",
+    "description": "Navigation `to_PurchaseReqnAcctAssgmt` from `A_PurchaseRequisitionItem` to `ToRole_assoc_DD2D86FAE4190F25D1329F064E7E2F36`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "from_entity_set": "A_PurchaseRequisitionItem",
+    "to_entity_set": "ToRole_assoc_E1ADB329055391FB18FD52AE6C615C8C",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_PurchaseReqnItemText",
+    "description": "Navigation `to_PurchaseReqnItemText` from `A_PurchaseRequisitionItem` to `ToRole_assoc_E1ADB329055391FB18FD52AE6C615C8C`.",
+    "confidence": 0.8
+  }
+]

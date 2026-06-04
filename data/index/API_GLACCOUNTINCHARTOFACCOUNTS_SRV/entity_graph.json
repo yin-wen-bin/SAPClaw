@@ -1,0 +1,24 @@
+[
+  {
+    "service_name": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "from_entity_set": "A_GLAccountInChartOfAccounts",
+    "to_entity_set": "ToRole_assoc_77BB7447605C974ED4F1845D0830A8B0",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_Text",
+    "description": "Navigation `to_Text` from `A_GLAccountInChartOfAccounts` to `ToRole_assoc_77BB7447605C974ED4F1845D0830A8B0`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_GLACCOUNTINCHARTOFACCOUNTS_SRV",
+    "from_entity_set": "A_GLAccountText",
+    "to_entity_set": "ToRole_assoc_11337EC4DF89977A7ED94AD073EB06CE",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_GLAccountInChartOfAccounts",
+    "description": "Navigation `to_GLAccountInChartOfAccounts` from `A_GLAccountText` to `ToRole_assoc_11337EC4DF89977A7ED94AD073EB06CE`.",
+    "confidence": 0.8
+  }
+]

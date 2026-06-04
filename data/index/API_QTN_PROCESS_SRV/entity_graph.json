@@ -1,0 +1,24 @@
+[
+  {
+    "service_name": "API_QTN_PROCESS_SRV",
+    "from_entity_set": "A_SupplierQuotation",
+    "to_entity_set": "ToRole_assoc_3DCFFABB6B2865BDFC78A666134D3A75",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_SupplierQuotationItem",
+    "description": "Navigation `to_SupplierQuotationItem` from `A_SupplierQuotation` to `ToRole_assoc_3DCFFABB6B2865BDFC78A666134D3A75`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_QTN_PROCESS_SRV",
+    "from_entity_set": "A_SupplierQuotationItem",
+    "to_entity_set": "FromRole_assoc_3DCFFABB6B2865BDFC78A666134D3A75",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_SupplierQuotation",
+    "description": "Navigation `to_SupplierQuotation` from `A_SupplierQuotationItem` to `FromRole_assoc_3DCFFABB6B2865BDFC78A666134D3A75`.",
+    "confidence": 0.8
+  }
+]

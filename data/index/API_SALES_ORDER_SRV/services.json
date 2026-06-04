@@ -1,0 +1,44 @@
+[
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_SALES_ORDER_SRV",
+    "description": "In every API call, you can make use of the following operations:\r\n\r\nYou can read entire sales orders or only parts of the data, using the provided filters.\r\n\r\nYou can create sales orders. Note that you must use “deep insert” requests (a header plus the following entities: header partner, header pricing element, header text, payment details, item, item partner, item pricing element, and item text). You cannot create entities without including any related entities.\r\n\r\nFor existing sales orders, you can create new items. Note that you must use “deep insert” requests (with the following entities: item partner, item pricing element, and item text). You cannot create entities without including any related entities.\r\n\r\nFor existing sales orders, you can update the following entities (that is, you can change the content of their properties): header, header partner, header pricing element, header text, payment plan, item, item partner, item pricing element, and item text.\r\n\r\nFor existing sales orders, you can delete the header, header partner, header pricing element, header text, payment details, item, item partner, item pricing element, and item text.\r\n\r\nYou can accept or deny approval requests for sales orders that cannot be processed without the consent of an approver.\r\n\r\nNote: Certain elements and entities can only be used if you activate the business function ISR_RETAILSYSTEM. For more information, see Business Documentation.",
+    "entity_sets": [
+      "A_SalesOrder",
+      "A_SalesOrderBillingPlan",
+      "A_SalesOrderBillingPlanItem",
+      "A_SalesOrderHeaderPartner",
+      "A_SalesOrderHeaderPrElement",
+      "A_SalesOrderItem",
+      "A_SalesOrderItemBillingPlan",
+      "A_SalesOrderItemPartner",
+      "A_SalesOrderItemPartnerAddress",
+      "A_SalesOrderItemPrElement",
+      "A_SalesOrderItemRelatedObject",
+      "A_SalesOrderItemText",
+      "A_SalesOrderItmPrecdgProcFlow",
+      "A_SalesOrderItmSubsqntProcFlow",
+      "A_SalesOrderPartnerAddress",
+      "A_SalesOrderPrecdgProcFlow",
+      "A_SalesOrderRelatedObject",
+      "A_SalesOrderScheduleLine",
+      "A_SalesOrderSubsqntProcFlow",
+      "A_SalesOrderText",
+      "A_SlsOrdPaymentPlanItemDetails",
+      "A_SlsOrderItemBillingPlanItem"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "https://sap.example.local/sap/opu/odata/sap/API_SALES_ORDER_SRV/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/00/d244581efca007e10000000a441470/frameset.htm",
+    "openapi_version": "1.1.1"
+  }
+]

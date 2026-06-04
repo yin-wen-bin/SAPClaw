@@ -1,0 +1,23 @@
+[
+  {
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_CUSTOMER_MATERIAL_SRV",
+    "description": "The service contains one entity only for customer material. If there are any issues when the customer material is created, read, updated, or deleted, the system displays error messages in the response.",
+    "entity_sets": [
+      "A_CustomerMaterial"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "https://sap.example.local/sap/opu/odata/sap/API_CUSTOMER_MATERIAL_SRV/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/52/9318c3a0014f1bb1911541546569a2/frameset.htm",
+    "openapi_version": "1.0.0"
+  }
+]

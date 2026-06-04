@@ -1,0 +1,24 @@
+[
+  {
+    "service_name": "API_RESERVATION_DOCUMENT_SRV",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_RESERVATION_DOCUMENT_SRV",
+    "description": "For example, user might create a reservation for a material with some quantity and assign that reserved material to a cost center, a sales order or an asset. A reservation can also be created for a transfer posting from one plant to another. For an existing reservation, you can change the updatable fields of the items. The service also allows to delete existing reservation documents. It can be consumed by external systems and user interfaces.",
+    "entity_sets": [
+      "A_ReservationDocumentHeader",
+      "A_ReservationDocumentItem"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "https://sap.example.local/sap/opu/odata/sap/API_RESERVATION_DOCUMENT_SRV/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/51/86af9bebab426984f5c399a5b2664b/frameset.htm",
+    "openapi_version": "1.0.0"
+  }
+]

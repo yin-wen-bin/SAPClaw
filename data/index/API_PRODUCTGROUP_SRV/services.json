@@ -1,0 +1,24 @@
+[
+  {
+    "service_name": "API_PRODUCTGROUP_SRV",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_PRODUCTGROUP_SRV",
+    "description": "It contains product group and product group text nodes.\r\n\r\nThis service is based on the OData protocol and can be consumed in Fiori apps and on other user interfaces.",
+    "entity_sets": [
+      "A_ProductGroup",
+      "A_ProductGroupText"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "https://sap.example.local/sap/opu/odata/sap/API_PRODUCTGROUP_SRV/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/9e/784f0993264356b10ae4c6897204c0/frameset.htm",
+    "openapi_version": "1.0.0"
+  }
+]

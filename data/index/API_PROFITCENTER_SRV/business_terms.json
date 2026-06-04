@@ -1,0 +1,846 @@
+[
+  {
+    "term": "Company Code Assignment",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_PrftCtrCompanyCodeAssignment",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "利润中心",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_PrftCtrCompanyCodeAssignment",
+    "mapped_fields": [
+      "ProfitCenter"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本控制范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_PrftCtrCompanyCodeAssignment",
+    "mapped_fields": [
+      "ControllingArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Company Code Assignment",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Profit Center",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Profit Center Text",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "传真号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "FaxNumber"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "公司代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "CompanyCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "公式计划模板",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "FormulaPlanningTemplate"
+    ],
+    "synonyms": [
+      "利润中心中公式计划的模板"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建人",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "ProfitCenterCreatedByUser"
+    ],
+    "synonyms": [
+      "输入者"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "ProfitCenterCreationDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "利润中心",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "ProfitCenter"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "利润中心中公式计划的模板",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "FormulaPlanningTemplate"
+    ],
+    "synonyms": [
+      "公式计划模板"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "利润中心的打印机名",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "ProfitCenterPrinterName"
+    ],
+    "synonyms": [
+      "打印机名"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "利润中心组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "ProfitCenterStandardHierarchy"
+    ],
+    "synonyms": [
+      "层次结构范围"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "利润中心负责人",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "ProfitCtrResponsiblePersonName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "AddressName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "名称 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "AdditionalName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "名称 3",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "ProfitCenterAddrName3"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "名称 4",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "ProfitCenterAddrName4"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国家/地区代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "Country"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "District"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "Region"
+    ],
+    "synonyms": [
+      "地区（省/自治区/直辖市、市、县）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "地区（省/自治区/直辖市、市、县）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "Region"
+    ],
+    "synonyms": [
+      "地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "城市",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "CityName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "对利润中心负责的用户",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "ProfitCtrResponsibleUser"
+    ],
+    "synonyms": [
+      "负责用户"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "层次结构范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "ProfitCenterStandardHierarchy"
+    ],
+    "synonyms": [
+      "利润中心组"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "开始生效日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "ValidityStartDate"
+    ],
+    "synonyms": [
+      "有效期自"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本控制范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "ControllingArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "打印机名",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "ProfitCenterPrinterName"
+    ],
+    "synonyms": [
+      "利润中心的打印机名"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "数据线",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "DataCommunicationPhoneNumber"
+    ],
+    "synonyms": [
+      "数据通讯线路号码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "数据通讯线路号码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "DataCommunicationPhoneNumber"
+    ],
+    "synonyms": [
+      "数据线"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效期自",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "ValidityStartDate"
+    ],
+    "synonyms": [
+      "开始生效日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效期至",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "ValidityEndDate"
+    ],
+    "synonyms": [
+      "有效期至日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效期至日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "ValidityEndDate"
+    ],
+    "synonyms": [
+      "有效期至"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "段",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "Segment"
+    ],
+    "synonyms": [
+      "细分报表的细分"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "电传号码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "TelexNumber"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "电话 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "PhoneNumber2"
+    ],
+    "synonyms": [
+      "第二个电话号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "电话1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "PhoneNumber1"
+    ],
+    "synonyms": [
+      "第一个电话号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "称谓",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "FormOfAddress"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税务管辖权",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "TaxJurisdiction"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "第一个电话号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "PhoneNumber1"
+    ],
+    "synonyms": [
+      "电话1"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "第二个电话号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "PhoneNumber2"
+    ],
+    "synonyms": [
+      "电话 2"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "细分报表的细分",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "Segment"
+    ],
+    "synonyms": [
+      "段"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "街道",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "StreetAddressName"
+    ],
+    "synonyms": [
+      "街道和房屋号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "街道和房屋号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "StreetAddressName"
+    ],
+    "synonyms": [
+      "街道"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "语言代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "Language"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "语音信箱编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "TeleboxNumber"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "负责用户",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "ProfitCtrResponsibleUser"
+    ],
+    "synonyms": [
+      "对利润中心负责的用户"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "输入者",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "ProfitCenterCreatedByUser"
+    ],
+    "synonyms": [
+      "创建人"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "邮政信箱",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "POBox"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "邮政编码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "PostalCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "部门",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "Department"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "锁定标记",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenter",
+    "mapped_fields": [
+      "ProfitCenterIsBlocked"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Profit Center",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenterText",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Profit Center Text",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenterText",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "利润中心",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenterText",
+    "mapped_fields": [
+      "ProfitCenter"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "利润中心名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenterText",
+    "mapped_fields": [
+      "ProfitCenterName"
+    ],
+    "synonyms": [
+      "利润中心描述"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "利润中心描述",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenterText",
+    "mapped_fields": [
+      "ProfitCenterName"
+    ],
+    "synonyms": [
+      "利润中心名称"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "利润中心描述",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenterText",
+    "mapped_fields": [
+      "ProfitCenterLongName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "开始生效日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenterText",
+    "mapped_fields": [
+      "ValidityStartDate"
+    ],
+    "synonyms": [
+      "有效期自"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本控制范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenterText",
+    "mapped_fields": [
+      "ControllingArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效期自",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenterText",
+    "mapped_fields": [
+      "ValidityStartDate"
+    ],
+    "synonyms": [
+      "开始生效日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效期至",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenterText",
+    "mapped_fields": [
+      "ValidityEndDate"
+    ],
+    "synonyms": [
+      "有效期至日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效期至日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenterText",
+    "mapped_fields": [
+      "ValidityEndDate"
+    ],
+    "synonyms": [
+      "有效期至"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "语言代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PROFITCENTER_SRV",
+    "mapped_entity_set": "A_ProfitCenterText",
+    "mapped_fields": [
+      "Language"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  }
+]

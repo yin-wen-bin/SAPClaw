@@ -1,0 +1,76 @@
+[
+  {
+    "service_name": "API_RESERVATION_DOCUMENT_SRV",
+    "entity_set": "A_ReservationDocumentHeader",
+    "entity_type": "A_ReservationDocumentHeaderType",
+    "key_fields": [
+      "Reservation"
+    ],
+    "default_select_fields": [
+      "Reservation",
+      "OrderID",
+      "GoodsMovementType",
+      "CostCenter",
+      "GoodsRecipientName",
+      "ReservationDate",
+      "IsCheckedAgainstFactoryCal",
+      "Customer",
+      "WBSElement",
+      "ControllingArea"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_ReservationDocumentItem"
+    ],
+    "description": "Reads information on reservation document header level",
+    "supported_methods": [
+      "DELETE",
+      "GET",
+      "POST"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_RESERVATION_DOCUMENT_SRV",
+    "entity_set": "A_ReservationDocumentItem",
+    "entity_type": "A_ReservationDocumentItemType",
+    "key_fields": [
+      "RecordType",
+      "Reservation",
+      "ReservationItem"
+    ],
+    "default_select_fields": [
+      "Reservation",
+      "ReservationItem",
+      "RecordType",
+      "Product",
+      "RequirementType",
+      "MatlCompRequirementDate",
+      "Plant",
+      "ManufacturingOrderOperation",
+      "GoodsMovementIsAllowed",
+      "StorageLocation"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads information on reservation document items level",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  }
+]

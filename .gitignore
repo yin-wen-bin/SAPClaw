@@ -30,7 +30,8 @@ build/
 dist/
 *.egg-info/
 data/cases/*.jsonl
-data/index/
+data/index/raw/
+data/index/*/raw/*.json
 data/metadata/
 data/api_test_cases/
 data/cross_api_test_cases/
@@ -38,7 +39,7 @@ data/api_test_cases/*/baselines/
 data/api_test_runs/
 data/cross_api_test_cases/*/baselines/
 data/cross_api_test_runs/
-raw/
+/raw/
 frontend/node_modules/
 frontend/dist/
 frontend/.vite/

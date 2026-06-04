@@ -1,0 +1,3692 @@
+[
+  {
+    "path_id": "supplier_to_accountassignmentcategory_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "AccountAssignmentCategory",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "AccountAssignmentCategory"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `AccountAssignmentCategory`.",
+    "business_aliases": [
+      "科目分配类别"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "AccountAssignmentCategory"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_addressid_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "AddressID",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "AddressID"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `AddressID`.",
+    "business_aliases": [
+      "地址",
+      "采购凭证项目中的人工地址号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "AddressID"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_baseunit_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "BaseUnit",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "BaseUnit"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `BaseUnit`.",
+    "business_aliases": [
+      "计量单位",
+      "采购申请计量单位"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "BaseUnit"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_batch_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "Batch",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Batch"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `Batch`.",
+    "business_aliases": [
+      "批次",
+      "批次编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Batch"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_companycode_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "CompanyCode",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "CompanyCode"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `CompanyCode`.",
+    "business_aliases": [
+      "公司代码",
+      "外部系统的公司代码"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "CompanyCode"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_consumptionposting_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "ConsumptionPosting",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ConsumptionPosting"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `ConsumptionPosting`.",
+    "business_aliases": [
+      "消耗",
+      "消耗记帐"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ConsumptionPosting"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_createdbyuser_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "CreatedByUser",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "CreatedByUser"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `CreatedByUser`.",
+    "business_aliases": [
+      "创建人",
+      "负责创建对象的人员姓名"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "CreatedByUser"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_creationdate_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "CreationDate",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "CreationDate"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `CreationDate`.",
+    "business_aliases": [
+      "请求日期",
+      "需求 (请求) 日期"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "CreationDate"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_delivdatecategory_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "DelivDateCategory",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "DelivDateCategory"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `DelivDateCategory`.",
+    "business_aliases": [
+      "交货日期种类",
+      "交货日的类别"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "DelivDateCategory"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_deliveryaddressid_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "DeliveryAddressID",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "DeliveryAddressID"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `DeliveryAddressID`.",
+    "business_aliases": [
+      "地址"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "DeliveryAddressID"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_deliverydate_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "DeliveryDate",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "DeliveryDate"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `DeliveryDate`.",
+    "business_aliases": [
+      "交货日期",
+      "项目交货日期"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "DeliveryDate"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_expectedoveralllimitamount_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "ExpectedOverallLimitAmount",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ExpectedOverallLimitAmount"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `ExpectedOverallLimitAmount`.",
+    "business_aliases": [
+      "期望值",
+      "期望值的总体限制"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ExpectedOverallLimitAmount"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_externalapprovalstatus_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "ExternalApprovalStatus",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ExternalApprovalStatus"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `ExternalApprovalStatus`.",
+    "business_aliases": [
+      "外部处理状态"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ExternalApprovalStatus"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_fixedsupplier_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "FixedSupplier",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "FixedSupplier"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `FixedSupplier`.",
+    "business_aliases": [
+      "固定供应商"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "FixedSupplier"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_goodsreceiptisexpected_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "GoodsReceiptIsExpected",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "GoodsReceiptIsExpected"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `GoodsReceiptIsExpected`.",
+    "business_aliases": [
+      "收货",
+      "收货标识"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "GoodsReceiptIsExpected"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_goodsreceiptisnonvaluated_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "GoodsReceiptIsNonValuated",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "GoodsReceiptIsNonValuated"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `GoodsReceiptIsNonValuated`.",
+    "business_aliases": [
+      "收货未评估",
+      "收货，未评估"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "GoodsReceiptIsNonValuated"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_invoiceisexpected_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "InvoiceIsExpected",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "InvoiceIsExpected"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `InvoiceIsExpected`.",
+    "business_aliases": [
+      "发票收据",
+      "发票收据标识"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "InvoiceIsExpected"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_isclosed_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "IsClosed",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "IsClosed"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `IsClosed`.",
+    "business_aliases": [
+      "已结算",
+      "已结算的采购申请"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "IsClosed"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_isdeleted_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "IsDeleted",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "IsDeleted"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `IsDeleted`.",
+    "business_aliases": [
+      "删除标识",
+      "采购凭证中的删除标识"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "IsDeleted"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_isoutline_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "IsOutline",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "IsOutline"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `IsOutline`.",
+    "business_aliases": [
+      "为概要"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "IsOutline"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_ispurreqnblocked_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "IsPurReqnBlocked",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "IsPurReqnBlocked"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `IsPurReqnBlocked`.",
+    "business_aliases": [
+      "冻结标识",
+      "已冻结采购申请"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "IsPurReqnBlocked"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_itemdeliveryaddressid_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "ItemDeliveryAddressID",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ItemDeliveryAddressID"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `ItemDeliveryAddressID`.",
+    "business_aliases": [
+      "地址",
+      "交货地址编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ItemDeliveryAddressID"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_itemnetamount_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "ItemNetAmount",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ItemNetAmount"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `ItemNetAmount`.",
+    "business_aliases": [],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ItemNetAmount"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_language_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "Language",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Language"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `Language`.",
+    "business_aliases": [
+      "语言代码"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Language"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_lastchangedatetime_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "LastChangeDateTime",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "LastChangeDateTime"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `LastChangeDateTime`.",
+    "business_aliases": [
+      "时戳",
+      "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "LastChangeDateTime"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_manualdeliveryaddressid_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "ManualDeliveryAddressID",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ManualDeliveryAddressID"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `ManualDeliveryAddressID`.",
+    "business_aliases": [
+      "地址",
+      "采购凭证项目中的人工地址号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ManualDeliveryAddressID"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_material_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "Material",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Material"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `Material`.",
+    "business_aliases": [
+      "物料",
+      "物料编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Material"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_materialgoodsreceiptduration_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "MaterialGoodsReceiptDuration",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "MaterialGoodsReceiptDuration"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `MaterialGoodsReceiptDuration`.",
+    "business_aliases": [
+      "收货处理时间",
+      "以天计的收货处理时间"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "MaterialGoodsReceiptDuration"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_materialgroup_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "MaterialGroup",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "MaterialGroup"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `MaterialGroup`.",
+    "business_aliases": [
+      "物料组"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "MaterialGroup"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_materialplanneddeliverydurn_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "MaterialPlannedDeliveryDurn",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "MaterialPlannedDeliveryDurn"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `MaterialPlannedDeliveryDurn`.",
+    "business_aliases": [
+      "计划交货时间",
+      "计划交货时间（天）"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "MaterialPlannedDeliveryDurn"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_materialrevisionlevel_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "MaterialRevisionLevel",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "MaterialRevisionLevel"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `MaterialRevisionLevel`.",
+    "business_aliases": [
+      "修订级别"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "MaterialRevisionLevel"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_minremainingshelflife_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "MinRemainingShelfLife",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "MinRemainingShelfLife"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `MinRemainingShelfLife`.",
+    "business_aliases": [
+      "最小剩余货架寿命",
+      "最短剩余货架寿命"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "MinRemainingShelfLife"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_mrpcontroller_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "MRPController",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "MRPController"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `MRPController`.",
+    "business_aliases": [
+      "MRP 控制员"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "MRPController"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_multipleacctassgmtdistribution_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "MultipleAcctAssgmtDistribution",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "MultipleAcctAssgmtDistribution"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `MultipleAcctAssgmtDistribution`.",
+    "business_aliases": [
+      "分配标识",
+      "多重科目分配的分配指示器"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "MultipleAcctAssgmtDistribution"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_orderedquantity_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "OrderedQuantity",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "OrderedQuantity"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `OrderedQuantity`.",
+    "business_aliases": [
+      "订货数量",
+      "对应于此采购申请的订货数量"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "OrderedQuantity"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_overalllimitamount_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "OverallLimitAmount",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "OverallLimitAmount"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `OverallLimitAmount`.",
+    "business_aliases": [
+      "总体限制"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "OverallLimitAmount"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_performanceperiodenddate_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PerformancePeriodEndDate",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PerformancePeriodEndDate"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PerformancePeriodEndDate`.",
+    "business_aliases": [
+      "结束日期",
+      "执行期间结束日期"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PerformancePeriodEndDate"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_performanceperiodstartdate_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PerformancePeriodStartDate",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PerformancePeriodStartDate"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PerformancePeriodStartDate`.",
+    "business_aliases": [
+      "开始日期",
+      "执行期间开始日期"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PerformancePeriodStartDate"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_plant_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "Plant",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Plant"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `Plant`.",
+    "business_aliases": [
+      "工厂"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Plant"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_processingstatus_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "ProcessingStatus",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ProcessingStatus"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `ProcessingStatus`.",
+    "business_aliases": [
+      "处理状态",
+      "采购申请处理状态"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ProcessingStatus"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_procmthubbackendbussyst_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "ProcmtHubBackendBusSyst",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ProcmtHubBackendBusSyst"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `ProcmtHubBackendBusSyst`.",
+    "business_aliases": [
+      "连接的系统"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ProcmtHubBackendBusSyst"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_productcharacteristic1_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "ProductCharacteristic1",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ProductCharacteristic1"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `ProductCharacteristic1`.",
+    "business_aliases": [
+      "Characteristic Value for Colors of Variants"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ProductCharacteristic1"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_productcharacteristic1desc_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "ProductCharacteristic1Desc",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ProductCharacteristic1Desc"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `ProductCharacteristic1Desc`.",
+    "business_aliases": [
+      "Characteristic value description"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ProductCharacteristic1Desc"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_productcharacteristic2_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "ProductCharacteristic2",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ProductCharacteristic2"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `ProductCharacteristic2`.",
+    "business_aliases": [
+      "Characteristic Value for Main Sizes of Variants"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ProductCharacteristic2"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_productcharacteristic2desc_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "ProductCharacteristic2Desc",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ProductCharacteristic2Desc"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `ProductCharacteristic2Desc`.",
+    "business_aliases": [
+      "Characteristic value description"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ProductCharacteristic2Desc"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_productcharacteristic3_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "ProductCharacteristic3",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ProductCharacteristic3"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `ProductCharacteristic3`.",
+    "business_aliases": [
+      "Characteristic Value for Second Size for Variants"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ProductCharacteristic3"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_productcharacteristic3desc_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "ProductCharacteristic3Desc",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ProductCharacteristic3Desc"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `ProductCharacteristic3Desc`.",
+    "business_aliases": [
+      "Characteristic value description"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ProductCharacteristic3Desc"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_productcollection_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "ProductCollection",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ProductCollection"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `ProductCollection`.",
+    "business_aliases": [
+      "Fashion Collection"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ProductCollection"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_producttheme_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "ProductTheme",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ProductTheme"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `ProductTheme`.",
+    "business_aliases": [
+      "Fashion Theme"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ProductTheme"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_producttype_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "ProductType",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ProductType"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `ProductType`.",
+    "business_aliases": [
+      "产品类型组"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ProductType"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purchasecontract_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurchaseContract",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurchaseContract"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurchaseContract`.",
+    "business_aliases": [
+      "框架协议",
+      "重要的采购协议号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurchaseContract"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purchasecontractitem_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurchaseContractItem",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurchaseContractItem"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurchaseContractItem`.",
+    "business_aliases": [
+      "协议项目",
+      "主采购协议的项目编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurchaseContractItem"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purchaseorderpricetype_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurchaseOrderPriceType",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurchaseOrderPriceType"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurchaseOrderPriceType`.",
+    "business_aliases": [
+      "采购订单价格",
+      "使用采购订单中的申请价格"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurchaseOrderPriceType"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purchaserequisition_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurchaseRequisition",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurchaseRequisition"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurchaseRequisition`.",
+    "business_aliases": [
+      "采购申请",
+      "采购申请编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurchaseRequisition"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purchaserequisitionisfixed_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurchaseRequisitionIsFixed",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurchaseRequisitionIsFixed"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurchaseRequisitionIsFixed`.",
+    "business_aliases": [
+      "\"固定\"标识",
+      "采购申请是固定的"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurchaseRequisitionIsFixed"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purchaserequisitionitem_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurchaseRequisitionItem",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurchaseRequisitionItem"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurchaseRequisitionItem`.",
+    "business_aliases": [
+      "申请项目",
+      "采购申请的项目编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurchaseRequisitionItem"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purchaserequisitionitemtext_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurchaseRequisitionItemText",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurchaseRequisitionItemText"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurchaseRequisitionItemText`.",
+    "business_aliases": [
+      "短文本"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurchaseRequisitionItemText"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purchaserequisitionprice_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurchaseRequisitionPrice",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurchaseRequisitionPrice"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurchaseRequisitionPrice`.",
+    "business_aliases": [
+      "评价价格",
+      "采购申请中的价格"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurchaseRequisitionPrice"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purchaserequisitionreleasedate_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurchaseRequisitionReleaseDate",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurchaseRequisitionReleaseDate"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurchaseRequisitionReleaseDate`.",
+    "business_aliases": [
+      "批准日期",
+      "采购申请批准日期"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurchaseRequisitionReleaseDate"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purchaserequisitionstatus_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurchaseRequisitionStatus",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurchaseRequisitionStatus"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurchaseRequisitionStatus`.",
+    "business_aliases": [
+      "发布状态"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurchaseRequisitionStatus"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purchaserequisitiontype_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurchaseRequisitionType",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurchaseRequisitionType"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurchaseRequisitionType`.",
+    "business_aliases": [
+      "凭证类型",
+      "采购申请凭证类型"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurchaseRequisitionType"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purchasingdocument_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurchasingDocument",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurchasingDocument"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurchasingDocument`.",
+    "business_aliases": [
+      "采购订单",
+      "采购订单号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurchasingDocument"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purchasingdocumentcategory_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurchasingDocumentCategory",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurchasingDocumentCategory"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurchasingDocumentCategory`.",
+    "business_aliases": [
+      "采购凭证类别"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurchasingDocumentCategory"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purchasingdocumentitem_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurchasingDocumentItem",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurchasingDocumentItem"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurchasingDocumentItem`.",
+    "business_aliases": [
+      "采购订单项目",
+      "采购订单项目号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurchasingDocumentItem"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purchasingdocumentitemcategory_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurchasingDocumentItemCategory",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurchasingDocumentItemCategory"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurchasingDocumentItemCategory`.",
+    "business_aliases": [
+      "项目类别",
+      "采购凭证中的项目类别"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurchasingDocumentItemCategory"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purchasingdocumentsubtype_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurchasingDocumentSubtype",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurchasingDocumentSubtype"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurchasingDocumentSubtype`.",
+    "business_aliases": [
+      "控制标识符",
+      "采购凭证类型的控制标识"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurchasingDocumentSubtype"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purchasinggroup_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurchasingGroup",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurchasingGroup"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurchasingGroup`.",
+    "business_aliases": [
+      "采购组"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurchasingGroup"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purchasinginforecord_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurchasingInfoRecord",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurchasingInfoRecord"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurchasingInfoRecord`.",
+    "business_aliases": [
+      "采购信息记录",
+      "采购信息记录号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurchasingInfoRecord"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purchasingorganization_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurchasingOrganization",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurchasingOrganization"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurchasingOrganization`.",
+    "business_aliases": [
+      "采购组织"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurchasingOrganization"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purchasingparentitem_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurchasingParentItem",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurchasingParentItem"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurchasingParentItem`.",
+    "business_aliases": [
+      "父项目编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurchasingParentItem"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purcontractforoveralllimit_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurContractForOverallLimit",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurContractForOverallLimit"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurContractForOverallLimit`.",
+    "business_aliases": [
+      "限制合同",
+      "增强限制的采购合同"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurContractForOverallLimit"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purcontractitemforoveralllimit_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurContractItemForOverallLimit",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurContractItemForOverallLimit"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurContractItemForOverallLimit`.",
+    "business_aliases": [
+      "限制的采购合同项目",
+      "增强限制项目的采购合同参考项目"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurContractItemForOverallLimit"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purgconfigurableitemnumber_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurgConfigurableItemNumber",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurgConfigurableItemNumber"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurgConfigurableItemNumber`.",
+    "business_aliases": [
+      "层次结构编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurgConfigurableItemNumber"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purgexternalsortnumber_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurgExternalSortNumber",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurgExternalSortNumber"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurgExternalSortNumber`.",
+    "business_aliases": [
+      "外部排序编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurgExternalSortNumber"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purreqcreationdate_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurReqCreationDate",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurReqCreationDate"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurReqCreationDate`.",
+    "business_aliases": [
+      "请求日期",
+      "需求 (请求) 日期"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurReqCreationDate"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purreqnexternalreference_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurReqnExternalReference",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurReqnExternalReference"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurReqnExternalReference`.",
+    "business_aliases": [
+      "外部凭证",
+      "外部凭证的凭证编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurReqnExternalReference"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purreqnexternalsystemid_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurReqnExternalSystemId",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurReqnExternalSystemId"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurReqnExternalSystemId`.",
+    "business_aliases": [
+      "外部系统标识"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurReqnExternalSystemId"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purreqnexternalsystemtype_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurReqnExternalSystemType",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurReqnExternalSystemType"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurReqnExternalSystemType`.",
+    "business_aliases": [
+      "外部系统类型"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurReqnExternalSystemType"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purreqnitemcurrency_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurReqnItemCurrency",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurReqnItemCurrency"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurReqnItemCurrency`.",
+    "business_aliases": [
+      "货币",
+      "货币码"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurReqnItemCurrency"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purreqnitemexternalreference_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurReqnItemExternalReference",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurReqnItemExternalReference"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurReqnItemExternalReference`.",
+    "business_aliases": [
+      "外部项目",
+      "外部凭证的项目号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurReqnItemExternalReference"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purreqnorigin_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurReqnOrigin",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurReqnOrigin"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurReqnOrigin`.",
+    "business_aliases": [
+      "建立标识",
+      "建立标识 (采购申请/计划行)"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurReqnOrigin"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purreqnpricequantity_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurReqnPriceQuantity",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurReqnPriceQuantity"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurReqnPriceQuantity`.",
+    "business_aliases": [
+      "价格单位"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurReqnPriceQuantity"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purreqnprocessingdatetime_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurReqnProcessingDateTime",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurReqnProcessingDateTime"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurReqnProcessingDateTime`.",
+    "business_aliases": [
+      "时间戳"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurReqnProcessingDateTime"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purreqnprocessingtype_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurReqnProcessingType",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurReqnProcessingType"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurReqnProcessingType`.",
+    "business_aliases": [
+      "处理状态"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurReqnProcessingType"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purreqnreleasestatus_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurReqnReleaseStatus",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurReqnReleaseStatus"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurReqnReleaseStatus`.",
+    "business_aliases": [
+      "处理状态",
+      "申请处理状态"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurReqnReleaseStatus"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purreqnsourceofsupplytype_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurReqnSourceOfSupplyType",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurReqnSourceOfSupplyType"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurReqnSourceOfSupplyType`.",
+    "business_aliases": [
+      "采购凭证类别"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurReqnSourceOfSupplyType"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purreqnsspauthor_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurReqnSSPAuthor",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurReqnSSPAuthor"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurReqnSSPAuthor`.",
+    "business_aliases": [
+      "作者",
+      "申请的作者"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurReqnSSPAuthor"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purreqnsspcatalog_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurReqnSSPCatalog",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurReqnSSPCatalog"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurReqnSSPCatalog`.",
+    "business_aliases": [
+      "Web 服务标识",
+      "Web 服务的技术代码（例如 - 类别）"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurReqnSSPCatalog"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purreqnsspcatalogitem_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurReqnSSPCatalogItem",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurReqnSSPCatalogItem"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurReqnSSPCatalogItem`.",
+    "business_aliases": [
+      "目录项目",
+      "目录项目标识"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurReqnSSPCatalogItem"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purreqnsspcrosscatalogitem_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurReqnSSPCrossCatalogItem",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurReqnSSPCrossCatalogItem"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurReqnSSPCrossCatalogItem`.",
+    "business_aliases": [
+      "目录项目键值"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurReqnSSPCrossCatalogItem"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purreqnssprequestor_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurReqnSSPRequestor",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurReqnSSPRequestor"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurReqnSSPRequestor`.",
+    "business_aliases": [
+      "请求者"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurReqnSSPRequestor"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purreqntypeexternalreference_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "PurReqnTypeExternalReference",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurReqnTypeExternalReference"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `PurReqnTypeExternalReference`.",
+    "business_aliases": [
+      "外部凭证类型"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurReqnTypeExternalReference"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_releasecode_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "ReleaseCode",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ReleaseCode"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `ReleaseCode`.",
+    "business_aliases": [
+      "批准标识"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ReleaseCode"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_releaseisnotcompleted_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "ReleaseIsNotCompleted",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ReleaseIsNotCompleted"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `ReleaseIsNotCompleted`.",
+    "business_aliases": [
+      "需要审批",
+      "审批尚未完全生效"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ReleaseIsNotCompleted"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_releasestrategy_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "ReleaseStrategy",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ReleaseStrategy"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `ReleaseStrategy`.",
+    "business_aliases": [
+      "审批策略",
+      "采购请求中的批准策略"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ReleaseStrategy"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_requestedquantity_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "RequestedQuantity",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "RequestedQuantity"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `RequestedQuantity`.",
+    "business_aliases": [
+      "申请数量",
+      "采购申请数量"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "RequestedQuantity"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_requirementsegment_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "RequirementSegment",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "RequirementSegment"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `RequirementSegment`.",
+    "business_aliases": [
+      "需求细分"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "RequirementSegment"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_requirementtracking_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "RequirementTracking",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "RequirementTracking"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `RequirementTracking`.",
+    "business_aliases": [
+      "需求跟踪编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "RequirementTracking"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_requisitionername_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "RequisitionerName",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "RequisitionerName"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `RequisitionerName`.",
+    "business_aliases": [
+      "申请人",
+      "申请人姓名"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "RequisitionerName"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_reservation_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "Reservation",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Reservation"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `Reservation`.",
+    "business_aliases": [
+      "预留",
+      "预留/相关需求的编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Reservation"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_serviceperformer_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "ServicePerformer",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ServicePerformer"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `ServicePerformer`.",
+    "business_aliases": [
+      "服务执行者"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ServicePerformer"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_sourceofsupplyisassigned_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "SourceOfSupplyIsAssigned",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "SourceOfSupplyIsAssigned"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `SourceOfSupplyIsAssigned`.",
+    "business_aliases": [
+      "已分配",
+      "已分配的货源"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "SourceOfSupplyIsAssigned"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_sspauthorexternalbpidnnumber_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "SSPAuthorExternalBPIdnNumber",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "SSPAuthorExternalBPIdnNumber"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `SSPAuthorExternalBPIdnNumber`.",
+    "business_aliases": [
+      "作者的业务伙伴标识"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "SSPAuthorExternalBPIdnNumber"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_sspreqruserid_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "SSPReqrUserId",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "SSPReqrUserId"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `SSPReqrUserId`.",
+    "business_aliases": [
+      "请求者用户标识"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "SSPReqrUserId"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_stocksegment_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "StockSegment",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "StockSegment"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `StockSegment`.",
+    "business_aliases": [
+      "库存细分"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "StockSegment"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_storagelocation_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "StorageLocation",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "StorageLocation"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `StorageLocation`.",
+    "business_aliases": [
+      "存储地点"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "StorageLocation"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_supplier_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "Supplier",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Supplier"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `Supplier`.",
+    "business_aliases": [
+      "所需供应商"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Supplier"
+        ],
+        "top": 20
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_suppliermaterialnumber_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "SupplierMaterialNumber",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "SupplierMaterialNumber"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `SupplierMaterialNumber`.",
+    "business_aliases": [
+      "供应商物料编号",
+      "供应商使用的物料编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "SupplierMaterialNumber"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_supplyingplant_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "SupplyingPlant",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "SupplyingPlant"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `SupplyingPlant`.",
+    "business_aliases": [
+      "供货工厂",
+      "转储单的供应(发出)工厂"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "SupplyingPlant"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_taxcode_a_purchaserequisitionitem",
+    "service_name": "API_PURCHASEREQ_PROCESS_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurchaseRequisitionItem",
+    "target_field": "TaxCode",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "TaxCode"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurchaseRequisitionItem` to answer `TaxCode`.",
+    "business_aliases": [
+      "税码",
+      "销售/购买税代码"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurchaseRequisitionItem",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "TaxCode"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  }
+]

@@ -1,0 +1,212 @@
+[
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenterAllCapacity",
+    "navigation_name": "to_WorkCenterInterval",
+    "to_entity_set": "ToRole_assoc_9B53956F7B29082A7C9D51E0DF3ABDB2",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenterAllCapacity",
+    "navigation_name": "to_WorkCenterQueuingOp",
+    "to_entity_set": "ToRole_assoc_15184A32172C9C411E5886317BB0C15B",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenterAllCapacity",
+    "navigation_name": "to_WorkCenterTodayOp",
+    "to_entity_set": "ToRole_assoc_36D188603BC25EFF729496A9753B5AB0",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenterAllCapacity_2",
+    "navigation_name": "to_Capacity",
+    "to_entity_set": "ToRole_assoc_622A261507162EFACD569F55E10A8C2D",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenterAllCapacity_2",
+    "navigation_name": "to_WorkCenterQueuingOp",
+    "to_entity_set": "ToRole_assoc_C2588583F0431F5935EACF0F64511F6B",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenterAllCapacity_2",
+    "navigation_name": "to_WorkCenterTodayOp",
+    "to_entity_set": "ToRole_assoc_FABE12D6A56D900E35AF32743DE2D61E",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenterCapOrderPerBucket",
+    "navigation_name": "Set",
+    "to_entity_set": "ToRole_assoc_E4D4495AC751441F8212AF42495D35A7",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenterCapOrderPerBucketSet",
+    "navigation_name": "Parameters",
+    "to_entity_set": "FromRole_assoc_E4D4495AC751441F8212AF42495D35A7",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenterCapPerBucket",
+    "navigation_name": "Set",
+    "to_entity_set": "ToRole_assoc_037DA702719DCE66CB64BAD22626D84C",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenterCapPerBucketSet",
+    "navigation_name": "Parameters",
+    "to_entity_set": "FromRole_assoc_037DA702719DCE66CB64BAD22626D84C",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenterCapacity",
+    "navigation_name": "to_CapacityInterval",
+    "to_entity_set": "ToRole_assoc_B89F2A532DE7A556D5500361ED8D6B13",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenterCapacity",
+    "navigation_name": "to_CapacityText",
+    "to_entity_set": "ToRole_assoc_A6F6A5F01FB09EC02FA2ED9666E2324A",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenterCapacityInterval",
+    "navigation_name": "to_WorkCenterShift",
+    "to_entity_set": "ToRole_assoc_00E9622BB359B012AC3A0B6EF98A79B4",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenterCapacityInterval_2",
+    "navigation_name": "to_CapacityShift",
+    "to_entity_set": "ToRole_assoc_BC7D5DBBDB9BEBF16C25FCC953FA9032",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenters",
+    "navigation_name": "to_Capacity",
+    "to_entity_set": "ToRole_assoc_F65DE234BB0FFA554DB48EE0CEA90DE3",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenters",
+    "navigation_name": "to_WorkCenterAllCapacity",
+    "to_entity_set": "ToRole_assoc_CFAF371FFE0BB0F11C2FE9536F9FD1CC",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenters",
+    "navigation_name": "to_WorkCenterCapacity",
+    "to_entity_set": "ToRole_assoc_341AEBC458BC8F46D736FE0875B647E2",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenters",
+    "navigation_name": "to_WorkCenterCostCenter",
+    "to_entity_set": "ToRole_assoc_CC626E4678AFE7FFF01435CC0D142089",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenters",
+    "navigation_name": "to_WorkCenterDescription",
+    "to_entity_set": "ToRole_assoc_CAE175172F178DDEA25DBDF194F0A4BF",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenters",
+    "navigation_name": "to_WorkCenterQueuingOp",
+    "to_entity_set": "ToRole_assoc_7C5F115EC007E342BA08466EC587AE6E",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_WORK_CENTERS",
+    "from_entity_set": "A_WorkCenters",
+    "navigation_name": "to_WorkCenterTodayOp",
+    "to_entity_set": "ToRole_assoc_C3A7EF83AA2CDB52F204220FC5380E92",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  }
+]

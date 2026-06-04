@@ -1,0 +1,15 @@
+{
+  "service_name": "API_CUSTOMER_RETURN_SRV",
+  "sap_metadata_entity_count": 14,
+  "sap_metadata_field_count": 281,
+  "openapi_documented_entity_count": 17,
+  "openapi_documented_entity_type_count": 18,
+  "merged_entity_count": 17,
+  "merged_field_count": 301,
+  "relation_count": 30,
+  "entity_graph_edge_count": 30,
+  "lookup_path_count": 117,
+  "business_term_count": 486,
+  "vector_document_count": 418,
+  "doc_chunk_count": 580
+}

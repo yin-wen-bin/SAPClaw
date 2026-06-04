@@ -1,0 +1,24 @@
+[
+  {
+    "service_name": "API_LEDGER_SRV",
+    "from_entity_set": "A_Ledger",
+    "to_entity_set": "ToRole_assoc_E55305CA35F548F289838026D76F9A8B",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_Text",
+    "description": "Navigation `to_Text` from `A_Ledger` to `ToRole_assoc_E55305CA35F548F289838026D76F9A8B`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_LEDGER_SRV",
+    "from_entity_set": "A_LedgerText",
+    "to_entity_set": "ToRole_assoc_63ACA85E4BBD5A03E390414486012963",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_Ledger",
+    "description": "Navigation `to_Ledger` from `A_LedgerText` to `ToRole_assoc_63ACA85E4BBD5A03E390414486012963`.",
+    "confidence": 0.8
+  }
+]

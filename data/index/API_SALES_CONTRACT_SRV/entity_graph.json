@@ -1,0 +1,189 @@
+[
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "from_entity_set": "A_SalesContract",
+    "to_entity_set": "ToRole_assoc_166710B494E28D183E54DF569E31D6A8",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_PricingElement",
+    "description": "Navigation `to_PricingElement` from `A_SalesContract` to `ToRole_assoc_166710B494E28D183E54DF569E31D6A8`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "from_entity_set": "A_SalesContract",
+    "to_entity_set": "ToRole_assoc_3B383425DBD1B2C300BE260D45651CE4",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_Text",
+    "description": "Navigation `to_Text` from `A_SalesContract` to `ToRole_assoc_3B383425DBD1B2C300BE260D45651CE4`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "from_entity_set": "A_SalesContract",
+    "to_entity_set": "ToRole_assoc_486B3B777EEB41E54CA1A019CFF35D3C",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_Item",
+    "description": "Navigation `to_Item` from `A_SalesContract` to `ToRole_assoc_486B3B777EEB41E54CA1A019CFF35D3C`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "from_entity_set": "A_SalesContract",
+    "to_entity_set": "ToRole_assoc_F7E2B6E189FE18642F3F53B5FCF940C4",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_Partner",
+    "description": "Navigation `to_Partner` from `A_SalesContract` to `ToRole_assoc_F7E2B6E189FE18642F3F53B5FCF940C4`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "from_entity_set": "A_SalesContractItem",
+    "to_entity_set": "ToRole_assoc_6813D03AD1FCDC0FB826FBB5C31D3BAC",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_SalesContract",
+    "description": "Navigation `to_SalesContract` from `A_SalesContractItem` to `ToRole_assoc_6813D03AD1FCDC0FB826FBB5C31D3BAC`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "from_entity_set": "A_SalesContractItem",
+    "to_entity_set": "ToRole_assoc_C21331C7B497AA457B52EFA8EF268AF7",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_Text",
+    "description": "Navigation `to_Text` from `A_SalesContractItem` to `ToRole_assoc_C21331C7B497AA457B52EFA8EF268AF7`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "from_entity_set": "A_SalesContractItem",
+    "to_entity_set": "ToRole_assoc_CBD6E44D3CB028CA9CFD9823722374DA",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_PricingElement",
+    "description": "Navigation `to_PricingElement` from `A_SalesContractItem` to `ToRole_assoc_CBD6E44D3CB028CA9CFD9823722374DA`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "from_entity_set": "A_SalesContractItem",
+    "to_entity_set": "ToRole_assoc_E571E5704D923290ADC6C32A44040BCF",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_Partner",
+    "description": "Navigation `to_Partner` from `A_SalesContractItem` to `ToRole_assoc_E571E5704D923290ADC6C32A44040BCF`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "from_entity_set": "A_SalesContractItemPartner",
+    "to_entity_set": "ToRole_assoc_11642AA6D6D7501A52752578E30AAD78",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_SalesContract",
+    "description": "Navigation `to_SalesContract` from `A_SalesContractItemPartner` to `ToRole_assoc_11642AA6D6D7501A52752578E30AAD78`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "from_entity_set": "A_SalesContractItemPartner",
+    "to_entity_set": "ToRole_assoc_9068E649080C278421527A7F3297DF7C",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_SalesContractItem",
+    "description": "Navigation `to_SalesContractItem` from `A_SalesContractItemPartner` to `ToRole_assoc_9068E649080C278421527A7F3297DF7C`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "from_entity_set": "A_SalesContractItemPrcgElmnt",
+    "to_entity_set": "ToRole_assoc_8ADD1326A9EC56924820B5F2A30C58BB",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_SalesContract",
+    "description": "Navigation `to_SalesContract` from `A_SalesContractItemPrcgElmnt` to `ToRole_assoc_8ADD1326A9EC56924820B5F2A30C58BB`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "from_entity_set": "A_SalesContractItemPrcgElmnt",
+    "to_entity_set": "ToRole_assoc_EFC09496D891F55422F534C6BEBF42A8",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_SalesContractItem",
+    "description": "Navigation `to_SalesContractItem` from `A_SalesContractItemPrcgElmnt` to `ToRole_assoc_EFC09496D891F55422F534C6BEBF42A8`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "from_entity_set": "A_SalesContractItemText",
+    "to_entity_set": "ToRole_assoc_3EF1642C24A9E59865879648172B6286",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_SalesContract",
+    "description": "Navigation `to_SalesContract` from `A_SalesContractItemText` to `ToRole_assoc_3EF1642C24A9E59865879648172B6286`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "from_entity_set": "A_SalesContractItemText",
+    "to_entity_set": "ToRole_assoc_75DA1375C5C159652E44C309D2641042",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_SalesContractItem",
+    "description": "Navigation `to_SalesContractItem` from `A_SalesContractItemText` to `ToRole_assoc_75DA1375C5C159652E44C309D2641042`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "from_entity_set": "A_SalesContractPartner",
+    "to_entity_set": "ToRole_assoc_C05926A8B1CF11C57783DA64800F0711",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_SalesContract",
+    "description": "Navigation `to_SalesContract` from `A_SalesContractPartner` to `ToRole_assoc_C05926A8B1CF11C57783DA64800F0711`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "from_entity_set": "A_SalesContractPrcgElmnt",
+    "to_entity_set": "ToRole_assoc_8842853ACA1DBD5768A33574839E1157",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_SalesContract",
+    "description": "Navigation `to_SalesContract` from `A_SalesContractPrcgElmnt` to `ToRole_assoc_8842853ACA1DBD5768A33574839E1157`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "from_entity_set": "A_SalesContractText",
+    "to_entity_set": "ToRole_assoc_FD2642466EC4C141BFE125CE1AA055B5",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_SalesContract",
+    "description": "Navigation `to_SalesContract` from `A_SalesContractText` to `ToRole_assoc_FD2642466EC4C141BFE125CE1AA055B5`.",
+    "confidence": 0.8
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "service_name": "API_MASTER_RECIPE",
+  "sap_metadata_entity_count": 9,
+  "sap_metadata_field_count": 340,
+  "openapi_documented_entity_count": 10,
+  "openapi_documented_entity_type_count": 12,
+  "merged_entity_count": 10,
+  "merged_field_count": 444,
+  "relation_count": 8,
+  "entity_graph_edge_count": 8,
+  "lookup_path_count": 207,
+  "business_term_count": 610,
+  "vector_document_count": 651,
+  "doc_chunk_count": 672
+}

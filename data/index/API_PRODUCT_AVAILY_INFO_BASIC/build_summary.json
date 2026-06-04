@@ -1,0 +1,15 @@
+{
+  "service_name": "API_PRODUCT_AVAILY_INFO_BASIC",
+  "sap_metadata_entity_count": 0,
+  "sap_metadata_field_count": 0,
+  "openapi_documented_entity_count": 3,
+  "openapi_documented_entity_type_count": 3,
+  "merged_entity_count": 3,
+  "merged_field_count": 0,
+  "relation_count": 0,
+  "entity_graph_edge_count": 0,
+  "lookup_path_count": 0,
+  "business_term_count": 3,
+  "vector_document_count": 0,
+  "doc_chunk_count": 3
+}

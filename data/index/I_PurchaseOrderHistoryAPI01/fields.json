@@ -1,0 +1,1626 @@
+[
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "PurchaseOrder",
+    "label": "Purchasing Document Number",
+    "business_aliases": [
+      "Purchasing Document Number"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Purchasing Document Number",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "PurchaseOrderItem",
+    "label": "Item Number of Purchasing Document",
+    "business_aliases": [
+      "Item Number of Purchasing Document"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Item Number of Purchasing Document",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "AccountAssignmentNumber",
+    "label": "Sequential Number of Account Assignment",
+    "business_aliases": [
+      "Sequential Number of Account Assignment"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Sequential Number of Account Assignment",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "PurchasingHistoryDocumentType",
+    "label": "Transaction/event type, purchase order history",
+    "business_aliases": [
+      "Transaction/event type, purchase order history"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Transaction/event type, purchase order history",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "PurchasingHistoryDocumentYear",
+    "label": "Material Document Year",
+    "business_aliases": [
+      "Material Document Year"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Material Document Year",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "PurchasingHistoryDocument",
+    "label": "Number of Material Document",
+    "business_aliases": [
+      "Number of Material Document"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Number of Material Document",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "PurchasingHistoryDocumentItem",
+    "label": "Item in Material Document",
+    "business_aliases": [
+      "Item in Material Document"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Item in Material Document",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "PurchasingHistoryCategory",
+    "label": "Purchase Order History Category",
+    "business_aliases": [
+      "Purchase Order History Category"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Purchase Order History Category",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "GoodsMovementType",
+    "label": "Movement Type (Inventory Management)",
+    "business_aliases": [
+      "Movement Type (Inventory Management)"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Movement Type (Inventory Management)",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "PostingDate",
+    "label": "Posting Date in the Document",
+    "business_aliases": [
+      "Posting Date in the Document"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Posting Date in the Document",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "Currency",
+    "label": "Currency Key",
+    "business_aliases": [
+      "Currency Key"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Currency Key",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "DebitCreditCode",
+    "label": "Debit/Credit Indicator",
+    "business_aliases": [
+      "Debit/Credit Indicator"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Debit/Credit Indicator",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "IsCompletelyDelivered",
+    "label": "\"Delivery Completed\" Indicator",
+    "business_aliases": [
+      "\"Delivery Completed\" Indicator"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "\"Delivery Completed\" Indicator",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "ReferenceDocumentFiscalYear",
+    "label": "Fiscal Year of a Reference Document",
+    "business_aliases": [
+      "Fiscal Year of a Reference Document"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Fiscal Year of a Reference Document",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "ReferenceDocument",
+    "label": "Document No. of a Reference Document",
+    "business_aliases": [
+      "Document No. of a Reference Document"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Document No. of a Reference Document",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "ReferenceDocumentItem",
+    "label": "Item of a Reference Document",
+    "business_aliases": [
+      "Item of a Reference Document"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Item of a Reference Document",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "Material",
+    "label": "Material Number",
+    "business_aliases": [
+      "Material Number"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Material Number",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "Plant",
+    "label": "Plant",
+    "business_aliases": [
+      "Plant"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Plant",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "RvslOfGoodsReceiptIsAllowed",
+    "label": "Reversal of GR allowed for GR-based IV despite invoice",
+    "business_aliases": [
+      "Reversal of GR allowed for GR-based IV despite invoice"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Reversal of GR allowed for GR-based IV despite invoice",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "PricingDocument",
+    "label": "Number of the Document Condition",
+    "business_aliases": [
+      "Number of the Document Condition"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Number of the Document Condition",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "TaxCode",
+    "label": "Tax on Sales/Purchases Code",
+    "business_aliases": [
+      "Tax on Sales/Purchases Code"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Tax on Sales/Purchases Code",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "DocumentDate",
+    "label": "Document Date in Document",
+    "business_aliases": [
+      "Document Date in Document"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Document Date in Document",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "InventoryValuationType",
+    "label": "Valuation Type",
+    "business_aliases": [
+      "Valuation Type"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Valuation Type",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "DocumentReferenceID",
+    "label": "Reference Document Number",
+    "business_aliases": [
+      "Reference Document Number"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Reference Document Number",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "DeliveryQuantityUnit",
+    "label": "Unit of Measure From Delivery Note",
+    "business_aliases": [
+      "Unit of Measure From Delivery Note"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Unit of Measure From Delivery Note",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "ManufacturerMaterial",
+    "label": "Material number",
+    "business_aliases": [
+      "Material number"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Material number",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "AccountingDocumentCreationDate",
+    "label": "Day On Which Accounting Document Was Entered",
+    "business_aliases": [
+      "Day On Which Accounting Document Was Entered"
+    ],
+    "data_type": "Edm.DateTime",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Day On Which Accounting Document Was Entered",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "PurgHistDocumentCreationTime",
+    "label": "Time of Entry",
+    "business_aliases": [
+      "Time of Entry"
+    ],
+    "data_type": "Edm.Time",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Time of Entry",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "Quantity",
+    "label": "Quantity",
+    "business_aliases": [
+      "Quantity"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Quantity",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "PurOrdAmountInCompanyCodeCrcy",
+    "label": "Amount in Local Currency",
+    "business_aliases": [
+      "Amount in Local Currency"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Amount in Local Currency",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "PurchaseOrderAmount",
+    "label": "Amount in Document Currency",
+    "business_aliases": [
+      "Amount in Document Currency"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Amount in Document Currency",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "QtyInPurchaseOrderPriceUnit",
+    "label": "Quantity in purchase order price unit",
+    "business_aliases": [
+      "Quantity in purchase order price unit"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Quantity in purchase order price unit",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "GRIRAcctClrgAmtInCoCodeCrcy",
+    "label": "GR/IR account clearing value in local currency",
+    "business_aliases": [
+      "GR/IR account clearing value in local currency"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "GR/IR account clearing value in local currency",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "GdsRcptBlkdStkQtyInOrdQtyUnit",
+    "label": "Goods Receipt Blocked Stock in Order Unit",
+    "business_aliases": [
+      "Goods Receipt Blocked Stock in Order Unit"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Goods Receipt Blocked Stock in Order Unit",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "GdsRcptBlkdStkQtyInOrdPrcUnit",
+    "label": "Quantity in GR blocked stock in order price unit",
+    "business_aliases": [
+      "Quantity in GR blocked stock in order price unit"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Quantity in GR blocked stock in order price unit",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "InvoiceAmtInCoCodeCrcy",
+    "label": "Invoice Value Entered (in Local Currency)",
+    "business_aliases": [
+      "Invoice Value Entered (in Local Currency)"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Invoice Value Entered (in Local Currency)",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "ShipgInstrnSupplierCompliance",
+    "label": "Compliance with Shipping Instructions",
+    "business_aliases": [
+      "Compliance with Shipping Instructions"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Compliance with Shipping Instructions",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "InvoiceAmountInFrgnCurrency",
+    "label": "Invoice Value in Foreign Currency",
+    "business_aliases": [
+      "Invoice Value in Foreign Currency"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Invoice Value in Foreign Currency",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "QuantityInDeliveryQtyUnit",
+    "label": "Quantity in Unit of Measure from Delivery Note",
+    "business_aliases": [
+      "Quantity in Unit of Measure from Delivery Note"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Quantity in Unit of Measure from Delivery Note",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "GRIRAcctClrgAmtInTransacCrcy",
+    "label": "Clearing value on GR/IR clearing account (transac. currency)",
+    "business_aliases": [
+      "Clearing value on GR/IR clearing account (transac. currency)"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Clearing value on GR/IR clearing account (transac. currency)",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "QuantityInBaseUnit",
+    "label": "Quantity",
+    "business_aliases": [
+      "Quantity"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Quantity",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "Batch",
+    "label": "Batch Number",
+    "business_aliases": [
+      "Batch Number"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Batch Number",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "GRIRAcctClrgAmtInOrdTrnsacCrcy",
+    "label": "Clearing Value on GR/IR Account in PO Currency",
+    "business_aliases": [
+      "Clearing Value on GR/IR Account in PO Currency"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Clearing Value on GR/IR Account in PO Currency",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "InvoiceAmtInPurOrdTransacCrcy",
+    "label": "Invoice Amount in PO Currency",
+    "business_aliases": [
+      "Invoice Amount in PO Currency"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Invoice Amount in PO Currency",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "VltdGdsRcptBlkdStkQtyInOrdUnit",
+    "label": "Valuated Goods Receipt Blocked Stock in Order Unit",
+    "business_aliases": [
+      "Valuated Goods Receipt Blocked Stock in Order Unit"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Valuated Goods Receipt Blocked Stock in Order Unit",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "VltdGdsRcptBlkdQtyInOrdPrcUnit",
+    "label": "Quantity in Valuated GR Blocked Stock in Order Price Unit",
+    "business_aliases": [
+      "Quantity in Valuated GR Blocked Stock in Order Price Unit"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Quantity in Valuated GR Blocked Stock in Order Price Unit",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "IsToBeAcceptedAtOrigin",
+    "label": "Acceptance At Origin",
+    "business_aliases": [
+      "Acceptance At Origin"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Acceptance At Origin",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "ExchangeRateDifferenceAmount",
+    "label": "Exchange Rate Difference Amount",
+    "business_aliases": [
+      "Exchange Rate Difference Amount"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Exchange Rate Difference Amount",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "ExchangeRate",
+    "label": "Exchange Rate",
+    "business_aliases": [
+      "Exchange Rate"
+    ],
+    "data_type": "Edm.Decimal",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Exchange Rate",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "DeliveryDocument",
+    "label": "Delivery",
+    "business_aliases": [
+      "Delivery"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Delivery",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "DeliveryDocumentItem",
+    "label": "Delivery Item",
+    "business_aliases": [
+      "Delivery Item"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Delivery Item",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "OrderPriceUnit",
+    "label": "Order Price Unit (Purchasing)",
+    "business_aliases": [
+      "Order Price Unit (Purchasing)"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Order Price Unit (Purchasing)",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "PurchaseOrderQuantityUnit",
+    "label": "Purchase Order Unit of Measure",
+    "business_aliases": [
+      "Purchase Order Unit of Measure"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Purchase Order Unit of Measure",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "BaseUnit",
+    "label": "Base Unit of Measure",
+    "business_aliases": [
+      "Base Unit of Measure"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Base Unit of Measure",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "DocumentCurrency",
+    "label": "Currency Key",
+    "business_aliases": [
+      "Currency Key"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Currency Key",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  },
+  {
+    "service_name": "I_PurchaseOrderHistoryAPI01",
+    "entity_set": "I_PurchaseOrderHistoryAPI01",
+    "field_name": "CompanyCodeCurrency",
+    "label": "Currency Key",
+    "business_aliases": [
+      "Currency Key"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "Currency Key",
+    "source_documents": [
+      "cds_json"
+    ],
+    "runtime_available": false,
+    "documentation_available": true
+  }
+]

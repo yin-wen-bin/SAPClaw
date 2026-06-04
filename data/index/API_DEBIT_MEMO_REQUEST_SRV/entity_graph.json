@@ -1,0 +1,211 @@
+[
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_DbtMemoReqItmSubsqntProcFlow",
+    "to_entity_set": "ToRole_assoc_03A714ADF9D876B3FF10A71210C2ECDF",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_DebitMemoRequest",
+    "description": "Navigation `to_DebitMemoRequest` from `A_DbtMemoReqItmSubsqntProcFlow` to `ToRole_assoc_03A714ADF9D876B3FF10A71210C2ECDF`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_DbtMemoReqItmSubsqntProcFlow",
+    "to_entity_set": "ToRole_assoc_B8FEA871E9FFD887D8C002C65802CB21",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_DebitMemoRequestItem",
+    "description": "Navigation `to_DebitMemoRequestItem` from `A_DbtMemoReqItmSubsqntProcFlow` to `ToRole_assoc_B8FEA871E9FFD887D8C002C65802CB21`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_DebitMemoReqItemPartner",
+    "to_entity_set": "ToRole_assoc_D1275BF7CBB46A6988547A2193D760D3",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_DebitMemoRequestItem",
+    "description": "Navigation `to_DebitMemoRequestItem` from `A_DebitMemoReqItemPartner` to `ToRole_assoc_D1275BF7CBB46A6988547A2193D760D3`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_DebitMemoReqItemPartner",
+    "to_entity_set": "ToRole_assoc_EEB2388B189AD9AF5ECA12BB74D64981",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_DebitMemoRequest",
+    "description": "Navigation `to_DebitMemoRequest` from `A_DebitMemoReqItemPartner` to `ToRole_assoc_EEB2388B189AD9AF5ECA12BB74D64981`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_DebitMemoReqItemPrcgElmnt",
+    "to_entity_set": "ToRole_assoc_0A8A00B58028CA4104ED4A4F4FDDB72F",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_DebitMemoRequestItem",
+    "description": "Navigation `to_DebitMemoRequestItem` from `A_DebitMemoReqItemPrcgElmnt` to `ToRole_assoc_0A8A00B58028CA4104ED4A4F4FDDB72F`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_DebitMemoReqItemPrcgElmnt",
+    "to_entity_set": "ToRole_assoc_7A6D40B5A6C8D1B025D7146F4ECB3E04",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_DebitMemoRequest",
+    "description": "Navigation `to_DebitMemoRequest` from `A_DebitMemoReqItemPrcgElmnt` to `ToRole_assoc_7A6D40B5A6C8D1B025D7146F4ECB3E04`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_DebitMemoReqPartner",
+    "to_entity_set": "ToRole_assoc_104E0BA29CA5EC15A710980543BDE0E7",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_DebitMemoRequest",
+    "description": "Navigation `to_DebitMemoRequest` from `A_DebitMemoReqPartner` to `ToRole_assoc_104E0BA29CA5EC15A710980543BDE0E7`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_DebitMemoReqPrcgElmnt",
+    "to_entity_set": "ToRole_assoc_E1966F4A32986A1836C825E0948855E6",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_DebitMemoRequest",
+    "description": "Navigation `to_DebitMemoRequest` from `A_DebitMemoReqPrcgElmnt` to `ToRole_assoc_E1966F4A32986A1836C825E0948855E6`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_DebitMemoReqSubsqntProcFlow",
+    "to_entity_set": "ToRole_assoc_D36F04B6478CFD5090849EE5FEFDF8C8",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_DebitMemoRequest",
+    "description": "Navigation `to_DebitMemoRequest` from `A_DebitMemoReqSubsqntProcFlow` to `ToRole_assoc_D36F04B6478CFD5090849EE5FEFDF8C8`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_DebitMemoRequest",
+    "to_entity_set": "ToRole_assoc_47ECA13F5EDEF1EBE652F3A8374065C3",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_Item",
+    "description": "Navigation `to_Item` from `A_DebitMemoRequest` to `ToRole_assoc_47ECA13F5EDEF1EBE652F3A8374065C3`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_DebitMemoRequest",
+    "to_entity_set": "ToRole_assoc_A84E814B017048DF18556D3C22F83C14",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_Text",
+    "description": "Navigation `to_Text` from `A_DebitMemoRequest` to `ToRole_assoc_A84E814B017048DF18556D3C22F83C14`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_DebitMemoRequest",
+    "to_entity_set": "ToRole_assoc_D054DBB019D7C9A5B4ED1FBCA4A5691A",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_Partner",
+    "description": "Navigation `to_Partner` from `A_DebitMemoRequest` to `ToRole_assoc_D054DBB019D7C9A5B4ED1FBCA4A5691A`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_DebitMemoRequest",
+    "to_entity_set": "ToRole_assoc_DD893A05B9B7C392521BD3394A685773",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_PricingElement",
+    "description": "Navigation `to_PricingElement` from `A_DebitMemoRequest` to `ToRole_assoc_DD893A05B9B7C392521BD3394A685773`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_DebitMemoRequest",
+    "to_entity_set": "ToRole_assoc_F12672EF90E312A4C4C7AC1F121458AD",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_SubsequentProcFlowDoc",
+    "description": "Navigation `to_SubsequentProcFlowDoc` from `A_DebitMemoRequest` to `ToRole_assoc_F12672EF90E312A4C4C7AC1F121458AD`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_DebitMemoRequestItem",
+    "to_entity_set": "ToRole_assoc_180C3295F72C8893A5EF62538DAE9AA4",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_ItemSubsqntProcFlow",
+    "description": "Navigation `to_ItemSubsqntProcFlow` from `A_DebitMemoRequestItem` to `ToRole_assoc_180C3295F72C8893A5EF62538DAE9AA4`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_DebitMemoRequestItem",
+    "to_entity_set": "ToRole_assoc_2D898A32C33BD5FAE85F1521E9CC0133",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_DebitMemoRequest",
+    "description": "Navigation `to_DebitMemoRequest` from `A_DebitMemoRequestItem` to `ToRole_assoc_2D898A32C33BD5FAE85F1521E9CC0133`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_DebitMemoRequestItem",
+    "to_entity_set": "ToRole_assoc_A3BB3C3E630A6B248ED8ABFCF73CA4A3",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_PricingElement",
+    "description": "Navigation `to_PricingElement` from `A_DebitMemoRequestItem` to `ToRole_assoc_A3BB3C3E630A6B248ED8ABFCF73CA4A3`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_DebitMemoRequestItem",
+    "to_entity_set": "ToRole_assoc_AFEE3F021C393EFF012F3DB514F83371",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_Text",
+    "description": "Navigation `to_Text` from `A_DebitMemoRequestItem` to `ToRole_assoc_AFEE3F021C393EFF012F3DB514F83371`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_DEBIT_MEMO_REQUEST_SRV",
+    "from_entity_set": "A_DebitMemoRequestItem",
+    "to_entity_set": "ToRole_assoc_DFB44389518CDA520FD711B8EC5A8A77",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_Partner",
+    "description": "Navigation `to_Partner` from `A_DebitMemoRequestItem` to `ToRole_assoc_DFB44389518CDA520FD711B8EC5A8A77`.",
+    "confidence": 0.8
+  }
+]

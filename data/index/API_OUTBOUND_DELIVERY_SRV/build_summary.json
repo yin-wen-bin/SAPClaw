@@ -1,0 +1,15 @@
+{
+  "service_name": "API_OUTBOUND_DELIVERY_SRV",
+  "sap_metadata_entity_count": 12,
+  "sap_metadata_field_count": 449,
+  "openapi_documented_entity_count": 26,
+  "openapi_documented_entity_type_count": 19,
+  "merged_entity_count": 28,
+  "merged_field_count": 449,
+  "relation_count": 12,
+  "entity_graph_edge_count": 12,
+  "lookup_path_count": 128,
+  "business_term_count": 484,
+  "vector_document_count": 577,
+  "doc_chunk_count": 512
+}

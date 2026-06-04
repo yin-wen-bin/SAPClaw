@@ -1,0 +1,54 @@
+[
+  {
+    "service_name": "API_PRODUCT_SRV",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_PRODUCT_SRV",
+    "description": "You can perform the CRUD operations on product master data records at the entity level. This service supports the operations – GET, POST, PUT, PATCH, DELETE.",
+    "entity_sets": [
+      "A_Product",
+      "A_ProductBasicText",
+      "A_ProductDescription",
+      "A_ProductInspectionText",
+      "A_ProductMLAccount",
+      "A_ProductMLPrices",
+      "A_ProductPlant",
+      "A_ProductPlantCosting",
+      "A_ProductPlantForecasting",
+      "A_ProductPlantIntlTrd",
+      "A_ProductPlantMRPArea",
+      "A_ProductPlantProcurement",
+      "A_ProductPlantQualityMgmt",
+      "A_ProductPlantSales",
+      "A_ProductPlantStorage",
+      "A_ProductPlantText",
+      "A_ProductProcurement",
+      "A_ProductPurchaseText",
+      "A_ProductQualityMgmt",
+      "A_ProductSales",
+      "A_ProductSalesDelivery",
+      "A_ProductSalesTax",
+      "A_ProductSalesText",
+      "A_ProductStorage",
+      "A_ProductStorageLocation",
+      "A_ProductSupplyPlanning",
+      "A_ProductUnitsOfMeasure",
+      "A_ProductUnitsOfMeasureEAN",
+      "A_ProductValuation",
+      "A_ProductValuationAccount",
+      "A_ProductValuationCosting",
+      "A_ProductWorkScheduling"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "https://sap.example.local/sap/opu/odata/sap/API_PRODUCT_SRV/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/74/aa2b58a333a107e10000000a441470/frameset.htm",
+    "openapi_version": "1.2.0"
+  }
+]

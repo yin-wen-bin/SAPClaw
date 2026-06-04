@@ -1,0 +1,1768 @@
+[
+  {
+    "term": "Payment Advice",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Payment Advice Line Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "上次更改日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "LastChangeDate"
+    ],
+    "synonyms": [
+      "更改日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "业务交易代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "PaymentTransaction"
+    ],
+    "synonyms": [
+      "业务往来代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "业务伙伴",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "BusinessPartnerName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "业务往来代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "PaymentTransaction"
+    ],
+    "synonyms": [
+      "业务交易代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "PaymentDocument"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "PaymentDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "PaymentCurrency"
+    ],
+    "synonyms": [
+      "付款货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "PaymentCurrency"
+    ],
+    "synonyms": [
+      "付款货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款通知抬头文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "PaymentAdviceHeaderText"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款通知状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "PaymentAdviceStatus"
+    ],
+    "synonyms": [
+      "收付通知状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款通知的选择规则",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "PaymentAdviceSelectionRule"
+    ],
+    "synonyms": [
+      "选择规则"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款通知科目类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "PaymentAdviceAccountType"
+    ],
+    "synonyms": [
+      "科目类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款通知类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "PaymentAdviceType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款通知编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "PaymentAdvice"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "伙伴银行的国家/地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "PartnerBankCountry"
+    ],
+    "synonyms": [
+      "合作伙伴银行的国家/地区代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "会计汇率",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "ExchangeRate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "公司代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "CompanyCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建人",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "CreatedByUser"
+    ],
+    "synonyms": [
+      "负责创建对象的人员姓名"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "CreationDate"
+    ],
+    "synonyms": [
+      "记录创建日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "原因代码转换",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "PaytAdvcDiffDeterminationRule"
+    ],
+    "synonyms": [
+      "原因代码转换版本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "原因代码转换版本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "PaytAdvcDiffDeterminationRule"
+    ],
+    "synonyms": [
+      "原因代码转换"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考过程",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "ReferenceDocumentType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考键值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "OriginalReferenceDocument"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "合作伙伴 SWIFT 代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "PartnerBankSWIFTCode"
+    ],
+    "synonyms": [
+      "合作伙伴银行的 SWIFT 代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "合作伙伴银行的 SWIFT 代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "PartnerBankSWIFTCode"
+    ],
+    "synonyms": [
+      "合作伙伴 SWIFT 代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "合作伙伴银行的国家/地区代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "PartnerBankCountry"
+    ],
+    "synonyms": [
+      "伙伴银行的国家/地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "在帐户上的资金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "FeeAmountInTransactionCrcy"
+    ],
+    "synonyms": [
+      "科目货币费用"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "在日本的失败汇票日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "BillOfExchangeFailureDate"
+    ],
+    "synonyms": [
+      "在日本的日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "在日本的日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "BillOfExchangeFailureDate"
+    ],
+    "synonyms": [
+      "在日本的失败汇票日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "录入时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "CreationTime"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "支付金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "PaidAmountInPaytCurrency"
+    ],
+    "synonyms": [
+      "来自收付通知抬头的付款金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收付通知状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "PaymentAdviceStatus"
+    ],
+    "synonyms": [
+      "付款通知状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收款人账户（客户）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "AccountByShipper"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "更改人",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "LastChangedByUser"
+    ],
+    "synonyms": [
+      "更改对象的人员姓名"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "更改对象的人员姓名",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "LastChangedByUser"
+    ],
+    "synonyms": [
+      "更改人"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "更改日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "LastChangeDate"
+    ],
+    "synonyms": [
+      "上次更改日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "来自收付通知抬头的付款金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "PaidAmountInPaytCurrency"
+    ],
+    "synonyms": [
+      "支付金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "现金折扣金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "CashDiscountAmountInPaytCrcy"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "科目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "PaymentAdviceAccount"
+    ],
+    "synonyms": [
+      "科目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "科目类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "PaymentAdviceAccountType"
+    ],
+    "synonyms": [
+      "付款通知科目类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "科目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "PaymentAdviceAccount"
+    ],
+    "synonyms": [
+      "科目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "科目货币费用",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "FeeAmountInTransactionCrcy"
+    ],
+    "synonyms": [
+      "在帐户上的资金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "记录创建日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "CreationDate"
+    ],
+    "synonyms": [
+      "创建日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "负责创建对象的人员姓名",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "CreatedByUser"
+    ],
+    "synonyms": [
+      "创建人"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "选择规则",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "PaymentAdviceSelectionRule"
+    ],
+    "synonyms": [
+      "付款通知的选择规则"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "银行参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "BankReference"
+    ],
+    "synonyms": [
+      "银行参考号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "银行参考号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdvice",
+    "mapped_fields": [
+      "BankReference"
+    ],
+    "synonyms": [
+      "银行参考"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Payment Advice Line Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "业务伙伴参考代码 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "Reference1IDByBusinessPartner"
+    ],
+    "synonyms": [
+      "参考代码 1"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "业务伙伴参考代码 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "Reference2IDByBusinessPartner"
+    ],
+    "synonyms": [
+      "参考代码 2"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "业务范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "BusinessArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交货",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "DeliveryDocument"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款原因代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "PaymentDifferenceReason"
+    ],
+    "synonyms": [
+      "原因代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "PaymentReference"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款通知状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "PaymentAdviceStatus"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款通知科目类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "PaymentAdviceAccountType"
+    ],
+    "synonyms": [
+      "科目类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款通知编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "PaymentAdvice"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款通知项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "PaymentAdviceItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "以本币计的税额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "TaxAmountInCoCodeCrcy"
+    ],
+    "synonyms": [
+      "税额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "以第三本币计的差额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "DiffAmtInAdditionalCurrency2"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "以第二本币计的差额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "DiffAmtInAdditionalCurrency1"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "会计凭证录入日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "AccountingDocumentCreationDate"
+    ],
+    "synonyms": [
+      "录入日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "会计凭证的凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "AccountingDocument"
+    ],
+    "synonyms": [
+      "凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "会计年度",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "FiscalYear"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "PaymentAdviceSelectionValue"
+    ],
+    "synonyms": [
+      "选择值 (收付通知管理)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "公司代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "CompanyCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "InvoiceDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "AccountingDocument"
+    ],
+    "synonyms": [
+      "会计凭证的凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分公司科目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "BranchAccount"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分配",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "AssignmentReference"
+    ],
+    "synonyms": [
+      "分配编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分配编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "AssignmentReference"
+    ],
+    "synonyms": [
+      "分配"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "原因代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "PaymentDifferenceReason"
+    ],
+    "synonyms": [
+      "付款原因代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "DocumentReferenceID"
+    ],
+    "synonyms": [
+      "参考凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考代码 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "Reference1IDByBusinessPartner"
+    ],
+    "synonyms": [
+      "业务伙伴参考代码 1"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考代码 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "Reference2IDByBusinessPartner"
+    ],
+    "synonyms": [
+      "业务伙伴参考代码 2"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "DocumentReferenceID"
+    ],
+    "synonyms": [
+      "参考"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "含 +/- 符号的现金折扣金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "CashDiscountAmountInPaytCrcy"
+    ],
+    "synonyms": [
+      "现金折扣"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "备选公司代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "AlternativeCompanyCode"
+    ],
+    "synonyms": [
+      "备选公司代码（付款通知管理）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "备选公司代码（付款通知管理）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "AlternativeCompanyCode"
+    ],
+    "synonyms": [
+      "备选公司代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "备选帐户",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "PaymentAdviceAltvAccount"
+    ],
+    "synonyms": [
+      "备选帐户 (收付通知管理)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "备选帐户 (收付通知管理)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "PaymentAdviceAltvAccount"
+    ],
+    "synonyms": [
+      "备选帐户"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "备选科目类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "PaymentAdviceAltvAccountType"
+    ],
+    "synonyms": [
+      "科目类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "外币差额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "DifferenceAmount"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "外部原因代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "PaytDifferenceReasonExtCode"
+    ],
+    "synonyms": [
+      "收付差额的外部原因代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "外部选择",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "PaytAdvcExternalSelectionField"
+    ],
+    "synonyms": [
+      "指定外部选择字段名称"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "PurchasingDocReferenceByCust"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "对帐户",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "IsPostedOnAccount"
+    ],
+    "synonyms": [
+      "标识：账面过账"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "带有 +/- 符号的净收付金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "NetPaymentAmountInPaytCurrency"
+    ],
+    "synonyms": [
+      "支付金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "开票凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "BillingDocument"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "录入日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "AccountingDocumentCreationDate"
+    ],
+    "synonyms": [
+      "会计凭证录入日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "GrossAmountInPaymentCurrency"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "所选现金折扣天数",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "CashDiscountDays"
+    ],
+    "synonyms": [
+      "现金折扣天数"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "所选的现金折扣百分比率",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "CashDiscountPercent"
+    ],
+    "synonyms": [
+      "现金折扣百分比率"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "扣减金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "DeductionAmountInPaytCurrency"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "指定外部选择字段名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "PaytAdvcExternalSelectionField"
+    ],
+    "synonyms": [
+      "外部选择"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "支付金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "NetPaymentAmountInPaytCurrency"
+    ],
+    "synonyms": [
+      "带有 +/- 符号的净收付金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收付差额的外部原因代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "PaytDifferenceReasonExtCode"
+    ],
+    "synonyms": [
+      "外部原因代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "本币差额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "DifferenceAmountInCoCodeCrcy"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识：结转付款差异的剩余余额？",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "PaytDiffRsdlBalIsCarriedFwd"
+    ],
+    "synonyms": [
+      "结转付款差异"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识：账面过账",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "IsPostedOnAccount"
+    ],
+    "synonyms": [
+      "对帐户"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识：部分付款",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "IsPartialPayment"
+    ],
+    "synonyms": [
+      "部分付款"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识：项目是否已激活？",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "ItemIsActivated"
+    ],
+    "synonyms": [
+      "项目已激活"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "此标志指示现金折扣是否已激活",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "CashDiscountIsActivated"
+    ],
+    "synonyms": [
+      "现金折扣已激活"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "现金折扣",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "CashDiscountAmountInPaytCrcy"
+    ],
+    "synonyms": [
+      "含 +/- 符号的现金折扣金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "现金折扣天数",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "CashDiscountDays"
+    ],
+    "synonyms": [
+      "所选现金折扣天数"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "现金折扣已激活",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "CashDiscountIsActivated"
+    ],
+    "synonyms": [
+      "此标志指示现金折扣是否已激活"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "现金折扣百分比率",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "CashDiscountPercent"
+    ],
+    "synonyms": [
+      "所选的现金折扣百分比率"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "科目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "PaymentAdviceAccount"
+    ],
+    "synonyms": [
+      "科目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "科目类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "PaymentAdviceAccountType"
+    ],
+    "synonyms": [
+      "付款通知科目类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "科目类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "PaymentAdviceAltvAccountType"
+    ],
+    "synonyms": [
+      "备选科目类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "科目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "PaymentAdviceAccount"
+    ],
+    "synonyms": [
+      "科目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "程序（定价，输出控制，科目确定，成本核算...）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "TaxCalculationProcedure"
+    ],
+    "synonyms": [
+      "税收程序"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税收程序",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "TaxCalculationProcedure"
+    ],
+    "synonyms": [
+      "程序（定价，输出控制，科目确定，成本核算...）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "TaxCode"
+    ],
+    "synonyms": [
+      "销售/购买税代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "TaxAmountInCoCodeCrcy"
+    ],
+    "synonyms": [
+      "以本币计的税额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "结转付款差异",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "PaytDiffRsdlBalIsCarriedFwd"
+    ],
+    "synonyms": [
+      "标识：结转付款差异的剩余余额？"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "Currency"
+    ],
+    "synonyms": [
+      "货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "CompanyCodeCurrency"
+    ],
+    "synonyms": [
+      "货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "Currency"
+    ],
+    "synonyms": [
+      "货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "CompanyCodeCurrency"
+    ],
+    "synonyms": [
+      "货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "过账视图项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "AccountingDocumentItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "选定字段的名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "PaymentAdviceSelectionField"
+    ],
+    "synonyms": [
+      "选择字段"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "选择值 (收付通知管理)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "PaymentAdviceSelectionValue"
+    ],
+    "synonyms": [
+      "值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "选择字段",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "PaymentAdviceSelectionField"
+    ],
+    "synonyms": [
+      "选定字段的名称"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "部分付款",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "IsPartialPayment"
+    ],
+    "synonyms": [
+      "标识：部分付款"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售/购买税代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "TaxCode"
+    ],
+    "synonyms": [
+      "税码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "附加货币 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "AdditionalCurrency1"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "附加货币 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "AdditionalCurrency2"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目已激活",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "ItemIsActivated"
+    ],
+    "synonyms": [
+      "标识：项目是否已激活？"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_PAYMENT_ADVICE_SRV",
+    "mapped_entity_set": "A_PaymentAdviceItem",
+    "mapped_fields": [
+      "DocumentItemText"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  }
+]

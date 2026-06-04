@@ -1,0 +1,872 @@
+[
+  {
+    "path_id": "customer_to_contactperson_a_salescontractitempartner",
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_SalesContractItemPartner",
+    "target_field": "ContactPerson",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "ContactPerson"
+    ],
+    "description": "Resolve `Customer` directly on `A_SalesContractItemPartner` to answer `ContactPerson`.",
+    "business_aliases": [
+      "联系人",
+      "联系人编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SalesContractItemPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "ContactPerson"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_contactperson_a_salescontractpartner",
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_SalesContractPartner",
+    "target_field": "ContactPerson",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "ContactPerson"
+    ],
+    "description": "Resolve `Customer` directly on `A_SalesContractPartner` to answer `ContactPerson`.",
+    "business_aliases": [
+      "联系人",
+      "联系人编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SalesContractPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "ContactPerson"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_customer_a_salescontractitempartner",
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_SalesContractItemPartner",
+    "target_field": "Customer",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Customer"
+    ],
+    "description": "Resolve `Customer` directly on `A_SalesContractItemPartner` to answer `Customer`.",
+    "business_aliases": [
+      "客户",
+      "客户编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SalesContractItemPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Customer"
+        ],
+        "top": 20
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_customer_a_salescontractpartner",
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_SalesContractPartner",
+    "target_field": "Customer",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Customer"
+    ],
+    "description": "Resolve `Customer` directly on `A_SalesContractPartner` to answer `Customer`.",
+    "business_aliases": [
+      "客户",
+      "客户编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SalesContractPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Customer"
+        ],
+        "top": 20
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_partnerfunction_a_salescontractitempartner",
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_SalesContractItemPartner",
+    "target_field": "PartnerFunction",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "PartnerFunction"
+    ],
+    "description": "Resolve `Customer` directly on `A_SalesContractItemPartner` to answer `PartnerFunction`.",
+    "business_aliases": [
+      "合作伙伴职能"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SalesContractItemPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "PartnerFunction"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_partnerfunction_a_salescontractpartner",
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_SalesContractPartner",
+    "target_field": "PartnerFunction",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "PartnerFunction"
+    ],
+    "description": "Resolve `Customer` directly on `A_SalesContractPartner` to answer `PartnerFunction`.",
+    "business_aliases": [
+      "合作伙伴职能"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SalesContractPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "PartnerFunction"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_personnel_a_salescontractitempartner",
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_SalesContractItemPartner",
+    "target_field": "Personnel",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Personnel"
+    ],
+    "description": "Resolve `Customer` directly on `A_SalesContractItemPartner` to answer `Personnel`.",
+    "business_aliases": [
+      "员工号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SalesContractItemPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Personnel"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_personnel_a_salescontractpartner",
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_SalesContractPartner",
+    "target_field": "Personnel",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Personnel"
+    ],
+    "description": "Resolve `Customer` directly on `A_SalesContractPartner` to answer `Personnel`.",
+    "business_aliases": [
+      "员工号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SalesContractPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Personnel"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_salescontract_a_salescontractitempartner",
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_SalesContractItemPartner",
+    "target_field": "SalesContract",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "SalesContract"
+    ],
+    "description": "Resolve `Customer` directly on `A_SalesContractItemPartner` to answer `SalesContract`.",
+    "business_aliases": [
+      "销售合同"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SalesContractItemPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "SalesContract"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_salescontract_a_salescontractpartner",
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_SalesContractPartner",
+    "target_field": "SalesContract",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "SalesContract"
+    ],
+    "description": "Resolve `Customer` directly on `A_SalesContractPartner` to answer `SalesContract`.",
+    "business_aliases": [
+      "销售合同"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SalesContractPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "SalesContract"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_salescontractitem_a_salescontractitempartner",
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_SalesContractItemPartner",
+    "target_field": "SalesContractItem",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "SalesContractItem"
+    ],
+    "description": "Resolve `Customer` directly on `A_SalesContractItemPartner` to answer `SalesContractItem`.",
+    "business_aliases": [
+      "销售合同项目"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SalesContractItemPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "SalesContractItem"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_supplier_a_salescontractitempartner",
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_SalesContractItemPartner",
+    "target_field": "Supplier",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Supplier"
+    ],
+    "description": "Resolve `Customer` directly on `A_SalesContractItemPartner` to answer `Supplier`.",
+    "business_aliases": [
+      "供应商",
+      "供应商科目编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SalesContractItemPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Supplier"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_supplier_a_salescontractpartner",
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_SalesContractPartner",
+    "target_field": "Supplier",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Supplier"
+    ],
+    "description": "Resolve `Customer` directly on `A_SalesContractPartner` to answer `Supplier`.",
+    "business_aliases": [
+      "供应商",
+      "供应商科目编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SalesContractPartner",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Supplier"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_contactperson_a_salescontractitempartner",
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_SalesContractItemPartner",
+    "target_field": "ContactPerson",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ContactPerson"
+    ],
+    "description": "Resolve `Supplier` directly on `A_SalesContractItemPartner` to answer `ContactPerson`.",
+    "business_aliases": [
+      "联系人",
+      "联系人编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SalesContractItemPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ContactPerson"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_contactperson_a_salescontractpartner",
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_SalesContractPartner",
+    "target_field": "ContactPerson",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ContactPerson"
+    ],
+    "description": "Resolve `Supplier` directly on `A_SalesContractPartner` to answer `ContactPerson`.",
+    "business_aliases": [
+      "联系人",
+      "联系人编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SalesContractPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ContactPerson"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_customer_a_salescontractitempartner",
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_SalesContractItemPartner",
+    "target_field": "Customer",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Customer"
+    ],
+    "description": "Resolve `Supplier` directly on `A_SalesContractItemPartner` to answer `Customer`.",
+    "business_aliases": [
+      "客户",
+      "客户编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SalesContractItemPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Customer"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_customer_a_salescontractpartner",
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_SalesContractPartner",
+    "target_field": "Customer",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Customer"
+    ],
+    "description": "Resolve `Supplier` directly on `A_SalesContractPartner` to answer `Customer`.",
+    "business_aliases": [
+      "客户",
+      "客户编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SalesContractPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Customer"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_partnerfunction_a_salescontractitempartner",
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_SalesContractItemPartner",
+    "target_field": "PartnerFunction",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PartnerFunction"
+    ],
+    "description": "Resolve `Supplier` directly on `A_SalesContractItemPartner` to answer `PartnerFunction`.",
+    "business_aliases": [
+      "合作伙伴职能"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SalesContractItemPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PartnerFunction"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_partnerfunction_a_salescontractpartner",
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_SalesContractPartner",
+    "target_field": "PartnerFunction",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PartnerFunction"
+    ],
+    "description": "Resolve `Supplier` directly on `A_SalesContractPartner` to answer `PartnerFunction`.",
+    "business_aliases": [
+      "合作伙伴职能"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SalesContractPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PartnerFunction"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_personnel_a_salescontractitempartner",
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_SalesContractItemPartner",
+    "target_field": "Personnel",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Personnel"
+    ],
+    "description": "Resolve `Supplier` directly on `A_SalesContractItemPartner` to answer `Personnel`.",
+    "business_aliases": [
+      "员工号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SalesContractItemPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Personnel"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_personnel_a_salescontractpartner",
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_SalesContractPartner",
+    "target_field": "Personnel",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Personnel"
+    ],
+    "description": "Resolve `Supplier` directly on `A_SalesContractPartner` to answer `Personnel`.",
+    "business_aliases": [
+      "员工号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SalesContractPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Personnel"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_salescontract_a_salescontractitempartner",
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_SalesContractItemPartner",
+    "target_field": "SalesContract",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "SalesContract"
+    ],
+    "description": "Resolve `Supplier` directly on `A_SalesContractItemPartner` to answer `SalesContract`.",
+    "business_aliases": [
+      "销售合同"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SalesContractItemPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "SalesContract"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_salescontract_a_salescontractpartner",
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_SalesContractPartner",
+    "target_field": "SalesContract",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "SalesContract"
+    ],
+    "description": "Resolve `Supplier` directly on `A_SalesContractPartner` to answer `SalesContract`.",
+    "business_aliases": [
+      "销售合同"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SalesContractPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "SalesContract"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_salescontractitem_a_salescontractitempartner",
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_SalesContractItemPartner",
+    "target_field": "SalesContractItem",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "SalesContractItem"
+    ],
+    "description": "Resolve `Supplier` directly on `A_SalesContractItemPartner` to answer `SalesContractItem`.",
+    "business_aliases": [
+      "销售合同项目"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SalesContractItemPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "SalesContractItem"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_supplier_a_salescontractitempartner",
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_SalesContractItemPartner",
+    "target_field": "Supplier",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Supplier"
+    ],
+    "description": "Resolve `Supplier` directly on `A_SalesContractItemPartner` to answer `Supplier`.",
+    "business_aliases": [
+      "供应商",
+      "供应商科目编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SalesContractItemPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Supplier"
+        ],
+        "top": 20
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_supplier_a_salescontractpartner",
+    "service_name": "API_SALES_CONTRACT_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_SalesContractPartner",
+    "target_field": "Supplier",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Supplier"
+    ],
+    "description": "Resolve `Supplier` directly on `A_SalesContractPartner` to answer `Supplier`.",
+    "business_aliases": [
+      "供应商",
+      "供应商科目编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_SalesContractPartner",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Supplier"
+        ],
+        "top": 20
+      }
+    ],
+    "confidence": 0.72
+  }
+]

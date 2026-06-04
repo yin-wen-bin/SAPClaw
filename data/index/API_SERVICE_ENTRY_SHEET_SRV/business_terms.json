@@ -1,0 +1,2506 @@
+[
+  {
+    "term": "Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Key",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "ServiceEntrySheetUUID"
+    ],
+    "synonyms": [
+      "UUID serving as key (parent key, root key)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Service Entry Sheet",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "UUID serving as key (parent key, root key)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "ServiceEntrySheetUUID"
+    ],
+    "synonyms": [
+      "Key"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "业务目的已完成",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "IsEndOfPurposeBlocked"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "Supplier"
+    ],
+    "synonyms": [
+      "供应商科目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商科目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "Supplier"
+    ],
+    "synonyms": [
+      "供应商"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "ApprovalStatus"
+    ],
+    "synonyms": [
+      "服务条目表的凭证状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "删除标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "IsDeleted"
+    ],
+    "synonyms": [
+      "采购凭证中的删除标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考采购订单",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "PurchaseOrder"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "员工号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "ResponsiblePerson"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "外部修订",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "ExternalRevisionDateTime"
+    ],
+    "synonyms": [
+      "外部调用修订时戳"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "外部参考标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "PurgDocExternalReference"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "外部参考系统",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "PurgDocExternalSystem"
+    ],
+    "synonyms": [
+      "外部参考系统标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "外部参考系统标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "PurgDocExternalSystem"
+    ],
+    "synonyms": [
+      "外部参考系统"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "外部调用修订时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "ExternalRevisionDateTime"
+    ],
+    "synonyms": [
+      "外部修订"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "审批日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "ApprovalDateTime"
+    ],
+    "synonyms": [
+      "服务条目表审批的日期和时间 (UTC)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "审批状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "SESWorkflowStatus"
+    ],
+    "synonyms": [
+      "服务条目表的审批状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收货过账日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "PostingDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "CreationDateTime"
+    ],
+    "synonyms": [
+      "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "服务条目表",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "ServiceEntrySheet"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "服务条目表名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "ServiceEntrySheetName"
+    ],
+    "synonyms": [
+      "服务条目表的名称"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "服务条目表审批的日期和时间 (UTC)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "ApprovalDateTime"
+    ],
+    "synonyms": [
+      "审批日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "服务条目表的凭证状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "ApprovalStatus"
+    ],
+    "synonyms": [
+      "凭证状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "服务条目表的名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "ServiceEntrySheetName"
+    ],
+    "synonyms": [
+      "服务条目表名称"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "服务条目表的审批状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "SESWorkflowStatus"
+    ],
+    "synonyms": [
+      "审批状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "服务条目表的源",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "OriginObjectType"
+    ],
+    "synonyms": [
+      "来源"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "来源",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "OriginObjectType"
+    ],
+    "synonyms": [
+      "服务条目表的源"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "MaterialDocument"
+    ],
+    "synonyms": [
+      "物料凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料凭证的年份",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "MaterialDocumentYear"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "MaterialDocument"
+    ],
+    "synonyms": [
+      "物料凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "用户名",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "CreatedByUser"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "用户名",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "LastChangedByUser"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "Currency"
+    ],
+    "synonyms": [
+      "货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "Currency"
+    ],
+    "synonyms": [
+      "货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证中的删除标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "IsDeleted"
+    ],
+    "synonyms": [
+      "删除标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "PurchasingGroup"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购组织",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "PurchasingOrganization"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "CreationDateTime"
+    ],
+    "synonyms": [
+      "时戳"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheet",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "时戳"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Account Assignment",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Key",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "ServiceEntrySheetItemUUID"
+    ],
+    "synonyms": [
+      "UUID serving as key (parent key, root key)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Key",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "ServiceEntrySheetUUID"
+    ],
+    "synonyms": [
+      "UUID serving as key (parent key, root key)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "UUID serving as key (parent key, root key)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "ServiceEntrySheetItemUUID"
+    ],
+    "synonyms": [
+      "Key"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "UUID serving as key (parent key, root key)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "ServiceEntrySheetUUID"
+    ],
+    "synonyms": [
+      "Key"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "上次更改人（用户）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "LastChangedByUser"
+    ],
+    "synonyms": [
+      "服务条目表的上次更改人（用户名）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "产品",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "Service"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "产品组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "MaterialGroup"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "代码是否为初始值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "SESItmTaxJurisdictionIsInitial"
+    ],
+    "synonyms": [
+      "税收管辖权代码是否为初始值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分配标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "MultipleAcctAssgmtDistribution"
+    ],
+    "synonyms": [
+      "多重科目分配的分配指示器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建人（用户）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "CreatedByUser"
+    ],
+    "synonyms": [
+      "服务条目表的创建人（用户名）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "删除标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "IsDeleted"
+    ],
+    "synonyms": [
+      "采购凭证中的删除标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "OriginObject"
+    ],
+    "synonyms": [
+      "外部参考凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考采购订单",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "PurchaseOrder"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考采购订单项",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "PurchaseOrderItem"
+    ],
+    "synonyms": [
+      "参考采购订单项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考采购订单项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "PurchaseOrderItem"
+    ],
+    "synonyms": [
+      "参考采购订单项"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "增强限制的采购合同",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "PurchaseContract"
+    ],
+    "synonyms": [
+      "限制合同"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "声明数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "ConfirmedQuantity"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "声明金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "NetAmount"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "外部参考凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "OriginObject"
+    ],
+    "synonyms": [
+      "参考凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "外部参考标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "PurgDocItemExternalReference"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "多重科目分配的分配指示器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "MultipleAcctAssgmtDistribution"
+    ],
+    "synonyms": [
+      "分配标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工作项目标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "WorkItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "Plant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "执行日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "ServicePerformanceDate"
+    ],
+    "synonyms": [
+      "服务执行日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "执行期间结束日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "ServicePerformanceEndDate"
+    ],
+    "synonyms": [
+      "绩效结束日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "报税国家/地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "TaxCountry"
+    ],
+    "synonyms": [
+      "税收国家/地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "CreationDateTime"
+    ],
+    "synonyms": [
+      "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "是物料组初始值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "SESItemMaterialGroupIsInitial"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "最后输入",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "SESItemIsFinalEntry"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "服务执行日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "ServicePerformanceDate"
+    ],
+    "synonyms": [
+      "执行日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "服务执行者",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "ServicePerformer"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "服务条目报表的计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "QuantityUnit"
+    ],
+    "synonyms": [
+      "计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "服务条目表",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "ServiceEntrySheet"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "服务条目表的上次更改人（用户名）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "LastChangedByUser"
+    ],
+    "synonyms": [
+      "上次更改人（用户）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "服务条目表的创建人（用户名）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "CreatedByUser"
+    ],
+    "synonyms": [
+      "创建人（用户）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "服务条目表的项目描述",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "ServiceEntrySheetItemDesc"
+    ],
+    "synonyms": [
+      "项目描述"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "服务条目表的项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "ServiceEntrySheetItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "服务条目表项目的单价",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "NetPriceAmount"
+    ],
+    "synonyms": [
+      "每单位的价格"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "每单位的价格",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "NetPriceAmount"
+    ],
+    "synonyms": [
+      "服务条目表项目的单价"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "科目分配类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "AccountAssignmentCategory"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税务管辖权",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "TaxJurisdiction"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税收代码是否为初始值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "SESItemTaxCodeIsInitial"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税收代码是否为初始值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "SESItemTaxCountryCodeIsInitial"
+    ],
+    "synonyms": [
+      "税收国家/地区代码是否为初始值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税收国家/地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "TaxCountry"
+    ],
+    "synonyms": [
+      "报税国家/地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税收国家/地区代码是否为初始值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "SESItemTaxCountryCodeIsInitial"
+    ],
+    "synonyms": [
+      "税收代码是否为初始值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税收管辖权代码是否为初始值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "SESItmTaxJurisdictionIsInitial"
+    ],
+    "synonyms": [
+      "代码是否为初始值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "TaxCode"
+    ],
+    "synonyms": [
+      "销售/购买税代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "绩效结束日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "ServicePerformanceEndDate"
+    ],
+    "synonyms": [
+      "执行期间结束日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "QuantityUnit"
+    ],
+    "synonyms": [
+      "服务条目报表的计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "Currency"
+    ],
+    "synonyms": [
+      "货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "Currency"
+    ],
+    "synonyms": [
+      "货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证中的删除标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "IsDeleted"
+    ],
+    "synonyms": [
+      "删除标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购合同项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "PurchaseContractItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "PurchasingGroup"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购组织",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "PurchasingOrganization"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售/购买税代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "TaxCode"
+    ],
+    "synonyms": [
+      "税码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "CreationDateTime"
+    ],
+    "synonyms": [
+      "时戳"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "时戳"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "限制合同",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "PurchaseContract"
+    ],
+    "synonyms": [
+      "增强限制的采购合同"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目描述",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_ServiceEntrySheetItem",
+    "mapped_fields": [
+      "ServiceEntrySheetItemDesc"
+    ],
+    "synonyms": [
+      "服务条目表的项目描述"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Account Assignment",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Key",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "AccountAssignmentUUID"
+    ],
+    "synonyms": [
+      "UUID serving as key (parent key, root key)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Key",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "ServiceEntrySheetItemUUID"
+    ],
+    "synonyms": [
+      "UUID serving as key (parent key, root key)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Key",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "ServiceEntrySheetUUID"
+    ],
+    "synonyms": [
+      "UUID serving as key (parent key, root key)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "SD 凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "SalesOrder"
+    ],
+    "synonyms": [
+      "销售和分销凭证号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "UUID serving as key (parent key, root key)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "AccountAssignmentUUID"
+    ],
+    "synonyms": [
+      "Key"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "UUID serving as key (parent key, root key)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "ServiceEntrySheetItemUUID"
+    ],
+    "synonyms": [
+      "Key"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "UUID serving as key (parent key, root key)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "ServiceEntrySheetUUID"
+    ],
+    "synonyms": [
+      "Key"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "WBS 内部标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "WBSElementInternalID"
+    ],
+    "synonyms": [
+      "WBS 要素"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "WBS 要素",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "WBSElementInternalID"
+    ],
+    "synonyms": [
+      "WBS 内部标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "WBS 要素",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "WBSElement"
+    ],
+    "synonyms": [
+      "工作分解结构要素（WBS 要素）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "专项资金",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "EarmarkedFundsDocument"
+    ],
+    "synonyms": [
+      "专项资金的凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "专项资金的凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "EarmarkedFundsDocument"
+    ],
+    "synonyms": [
+      "专项资金"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "业务范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "BusinessArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "主要资产编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "MasterFixedAsset"
+    ],
+    "synonyms": [
+      "资产"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "以交易货币计的净额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "NetAmount"
+    ],
+    "synonyms": [
+      "净额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "内部计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "NetworkActivityInternalID"
+    ],
+    "synonyms": [
+      "计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "净额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "NetAmount"
+    ],
+    "synonyms": [
+      "以交易货币计的净额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分配(%)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "MultipleAcctAssgmtDistrPercent"
+    ],
+    "synonyms": [
+      "多帐目分配情况下的分配百分比"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "删除标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "IsDeleted"
+    ],
+    "synonyms": [
+      "删除标识：采购凭证帐户分配"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "删除标识：采购凭证帐户分配",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "IsDeleted"
+    ],
+    "synonyms": [
+      "删除标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "利润中心",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "ProfitCenter"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考采购订单项目的科目分配编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "RefDocAccountAssignment"
+    ],
+    "synonyms": [
+      "采购订单项目科目分配"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "合伙人帐户编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "PartnerAccountNumber"
+    ],
+    "synonyms": [
+      "合作伙伴"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "合作伙伴",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "PartnerAccountNumber"
+    ],
+    "synonyms": [
+      "合伙人帐户编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "基金",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "Fund"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "基金中心",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "FundsCenter"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "多帐目分配情况下的分配百分比",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "MultipleAcctAssgmtDistrPercent"
+    ],
+    "synonyms": [
+      "分配(%)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "子编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "FixedAsset"
+    ],
+    "synonyms": [
+      "资产子编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工作分解结构要素（WBS 要素）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "WBSElement"
+    ],
+    "synonyms": [
+      "WBS 要素"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "Plant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工序/活动",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "NetworkActivity"
+    ],
+    "synonyms": [
+      "工序/活动编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工序/活动编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "NetworkActivity"
+    ],
+    "synonyms": [
+      "工序/活动"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工序的任务清单号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "ProjectNetworkInternalID"
+    ],
+    "synonyms": [
+      "订单中工序的工艺路线号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总账科目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "GLAccount"
+    ],
+    "synonyms": [
+      "总账科目号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总账科目号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "GLAccount"
+    ],
+    "synonyms": [
+      "总账科目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本中心",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "CostCenter"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本对象",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "CostObject"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本控制范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "ControllingArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "房地产代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "RealEstateObject"
+    ],
+    "synonyms": [
+      "房地产对象的内码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "房地产对象的内码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "RealEstateObject"
+    ],
+    "synonyms": [
+      "房地产代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "承诺项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "CommitmentItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "Quantity"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "CreationDateTime"
+    ],
+    "synonyms": [
+      "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时戳",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "服务凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "ServiceDocument"
+    ],
+    "synonyms": [
+      "服务凭证标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "服务凭证标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "ServiceDocument"
+    ],
+    "synonyms": [
+      "服务凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "服务凭证类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "ServiceDocumentType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "服务凭证项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "ServiceDocumentItem"
+    ],
+    "synonyms": [
+      "服务凭证项目标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "服务凭证项目标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "ServiceDocumentItem"
+    ],
+    "synonyms": [
+      "服务凭证项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "服务条目报表的计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "QuantityUnit"
+    ],
+    "synonyms": [
+      "计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "服务条目表",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "ServiceEntrySheet"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "服务条目表的项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "ServiceEntrySheetItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "用户名",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "CreatedByUser"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "用户名",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "LastChangedByUser"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "科目分配的序号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "AccountAssignment"
+    ],
+    "synonyms": [
+      "科目分配编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "科目分配的网络号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "ProjectNetwork"
+    ],
+    "synonyms": [
+      "网络"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "科目分配编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "AccountAssignment"
+    ],
+    "synonyms": [
+      "科目分配的序号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "网络",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "ProjectNetwork"
+    ],
+    "synonyms": [
+      "科目分配的网络号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "职能范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "FunctionalArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "获利能力段编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "ProfitabilitySegment"
+    ],
+    "synonyms": [
+      "获利能力段编号(CO-PA)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "获利能力段编号(CO-PA)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "ProfitabilitySegment"
+    ],
+    "synonyms": [
+      "获利能力段编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划行号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "SalesOrderScheduleLine"
+    ],
+    "synonyms": [
+      "计划行编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划行编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "SalesOrderScheduleLine"
+    ],
+    "synonyms": [
+      "计划行号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "NetworkActivityInternalID"
+    ],
+    "synonyms": [
+      "内部计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "QuantityUnit"
+    ],
+    "synonyms": [
+      "服务条目报表的计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "OrderID"
+    ],
+    "synonyms": [
+      "订单编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单中工序的工艺路线号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "ProjectNetworkInternalID"
+    ],
+    "synonyms": [
+      "工序的任务清单号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "OrderID"
+    ],
+    "synonyms": [
+      "订单"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "Currency"
+    ],
+    "synonyms": [
+      "货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "Currency"
+    ],
+    "synonyms": [
+      "货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "资产",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "MasterFixedAsset"
+    ],
+    "synonyms": [
+      "主要资产编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "资产子编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "FixedAsset"
+    ],
+    "synonyms": [
+      "子编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "PurchasingGroup"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购组织",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "PurchasingOrganization"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购订单项目科目分配",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "RefDocAccountAssignment"
+    ],
+    "synonyms": [
+      "参考采购订单项目的科目分配编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售单据项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "SalesOrderItem"
+    ],
+    "synonyms": [
+      "项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售和分销凭证号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "SalesOrder"
+    ],
+    "synonyms": [
+      "SD 凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "CreationDateTime"
+    ],
+    "synonyms": [
+      "时戳"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "长格式的 UTC 时戳 (YYYYMMDDhhmmssmmmuuun)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "LastChangeDateTime"
+    ],
+    "synonyms": [
+      "时戳"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "A_SrvcEntrShtAcctAssignment",
+    "mapped_fields": [
+      "SalesOrderItem"
+    ],
+    "synonyms": [
+      "销售单据项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Service Operations",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "RevokeApproval",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Service Operations",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "SubmitForApproval",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Service Operations",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SERVICE_ENTRY_SHEET_SRV",
+    "mapped_entity_set": "WithdrawFromApproval",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  }
+]

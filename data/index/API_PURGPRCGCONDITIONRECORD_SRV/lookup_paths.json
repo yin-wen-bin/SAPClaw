@@ -1,0 +1,1510 @@
+[
+  {
+    "path_id": "supplier_to_accounttaxtype_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "AccountTaxType",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "AccountTaxType"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `AccountTaxType`.",
+    "business_aliases": [
+      "税类型"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "AccountTaxType"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_acctassgmttaxclassification_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "AcctAssgmtTaxClassification",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "AcctAssgmtTaxClassification"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `AcctAssgmtTaxClassification`.",
+    "business_aliases": [
+      "税收标识帐户分配",
+      "税收标识：帐户分配（采购）"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "AcctAssgmtTaxClassification"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_activesuppliersubrange_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "ActiveSupplierSubrange",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ActiveSupplierSubrange"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `ActiveSupplierSubrange`.",
+    "business_aliases": [
+      "供应商子范围"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ActiveSupplierSubrange"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_billtoparty_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "BillToParty",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "BillToParty"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `BillToParty`.",
+    "business_aliases": [
+      "收取发票方"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "BillToParty"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_bpforbilltoparty_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "BPForBillToParty",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "BPForBillToParty"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `BPForBillToParty`.",
+    "business_aliases": [
+      "业务伙伴",
+      "业务伙伴编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "BPForBillToParty"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_bpforinvoicingparty_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "BPForInvoicingParty",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "BPForInvoicingParty"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `BPForInvoicingParty`.",
+    "business_aliases": [
+      "业务伙伴",
+      "业务伙伴编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "BPForInvoicingParty"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_bpforsupplier_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "BPForSupplier",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "BPForSupplier"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `BPForSupplier`.",
+    "business_aliases": [
+      "业务伙伴",
+      "业务伙伴编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "BPForSupplier"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_companycode_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "CompanyCode",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "CompanyCode"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `CompanyCode`.",
+    "business_aliases": [
+      "公司代码"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "CompanyCode"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_conditionapplication_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "ConditionApplication",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ConditionApplication"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `ConditionApplication`.",
+    "business_aliases": [
+      "应用程序"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ConditionApplication"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_conditioncontract_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "ConditionContract",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ConditionContract"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `ConditionContract`.",
+    "business_aliases": [
+      "条件合同"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ConditionContract"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_conditionrecord_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "ConditionRecord",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ConditionRecord"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `ConditionRecord`.",
+    "business_aliases": [
+      "条件记录编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ConditionRecord"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_conditionreleasestatus_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "ConditionReleaseStatus",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ConditionReleaseStatus"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `ConditionReleaseStatus`.",
+    "business_aliases": [
+      "批准状态"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ConditionReleaseStatus"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_conditiontype_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "ConditionType",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ConditionType"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `ConditionType`.",
+    "business_aliases": [
+      "条件类型"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ConditionType"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_conditionvalidityenddate_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "ConditionValidityEndDate",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ConditionValidityEndDate"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `ConditionValidityEndDate`.",
+    "business_aliases": [
+      "有效期至",
+      "条件记录有效截止日期"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ConditionValidityEndDate"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_conditionvaliditystartdate_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "ConditionValidityStartDate",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ConditionValidityStartDate"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `ConditionValidityStartDate`.",
+    "business_aliases": [
+      "有效期自",
+      "条件记录有效起始日"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ConditionValidityStartDate"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_country_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "Country",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Country"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `Country`.",
+    "business_aliases": [
+      "国家/地区代码"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Country"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_destinationcountry_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "DestinationCountry",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "DestinationCountry"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `DestinationCountry`.",
+    "business_aliases": [
+      "目的地国家/地区"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "DestinationCountry"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_etag_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "ETag",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ETag"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `ETag`.",
+    "business_aliases": [],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ETag"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_importtaxclassification_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "ImportTaxClassification",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ImportTaxClassification"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `ImportTaxClassification`.",
+    "business_aliases": [
+      "进口",
+      "税收标识：进口"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ImportTaxClassification"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_in_gstsupplierclassification_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "IN_GSTSupplierClassification",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "IN_GSTSupplierClassification"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `IN_GSTSupplierClassification`.",
+    "business_aliases": [
+      "GST 供应商分类",
+      "商品与服务税的供应商分类"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "IN_GSTSupplierClassification"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_incotermsclassification_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "IncotermsClassification",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "IncotermsClassification"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `IncotermsClassification`.",
+    "business_aliases": [
+      "国际贸易条款",
+      "国际贸易条款（第 1 部分）"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "IncotermsClassification"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_invoicingparty_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "InvoicingParty",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "InvoicingParty"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `InvoicingParty`.",
+    "business_aliases": [
+      "开发票方",
+      "不同开发票方"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "InvoicingParty"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_material_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "Material",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Material"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `Material`.",
+    "business_aliases": [
+      "物料",
+      "物料编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Material"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_materialconditiongroup_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "MaterialConditionGroup",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "MaterialConditionGroup"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `MaterialConditionGroup`.",
+    "business_aliases": [
+      "条件组",
+      "供应商的条件组"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "MaterialConditionGroup"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_materialgroup_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "MaterialGroup",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "MaterialGroup"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `MaterialGroup`.",
+    "business_aliases": [
+      "物料组"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "MaterialGroup"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_materialtype_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "MaterialType",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "MaterialType"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `MaterialType`.",
+    "business_aliases": [
+      "物料类型"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "MaterialType"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_plant_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "Plant",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Plant"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `Plant`.",
+    "business_aliases": [
+      "工厂"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Plant"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_plantregion_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "PlantRegion",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PlantRegion"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `PlantRegion`.",
+    "business_aliases": [
+      "交货工厂所在地区",
+      "工厂所在地区"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PlantRegion"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_planttaxclassification_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "PlantTaxClassification",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PlantTaxClassification"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `PlantTaxClassification`.",
+    "business_aliases": [
+      "税收标识：工厂",
+      "税收标识：工厂（采购）"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PlantTaxClassification"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purchasingdocument_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "PurchasingDocument",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurchasingDocument"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `PurchasingDocument`.",
+    "business_aliases": [
+      "采购凭证",
+      "采购凭证编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurchasingDocument"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purchasingdocumentitem_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "PurchasingDocumentItem",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurchasingDocumentItem"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `PurchasingDocumentItem`.",
+    "business_aliases": [
+      "项目",
+      "采购凭证的项目编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurchasingDocumentItem"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purchasinginforecord_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "PurchasingInfoRecord",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurchasingInfoRecord"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `PurchasingInfoRecord`.",
+    "business_aliases": [
+      "采购信息记录",
+      "采购信息记录号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurchasingInfoRecord"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purchasinginforecordcategory_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "PurchasingInfoRecordCategory",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurchasingInfoRecordCategory"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `PurchasingInfoRecordCategory`.",
+    "business_aliases": [
+      "信息记录类别",
+      "采购信息记录分类"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurchasingInfoRecordCategory"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purchasingorganization_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "PurchasingOrganization",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurchasingOrganization"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `PurchasingOrganization`.",
+    "business_aliases": [
+      "采购组织"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurchasingOrganization"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_purgdocorderquantityunit_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "PurgDocOrderQuantityUnit",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "PurgDocOrderQuantityUnit"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `PurgDocOrderQuantityUnit`.",
+    "business_aliases": [
+      "订单单位",
+      "采购订单计量单位"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "PurgDocOrderQuantityUnit"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_region_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "Region",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Region"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `Region`.",
+    "business_aliases": [
+      "地区",
+      "地区（省/自治区/直辖市、市、县）"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Region"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_regiontaxclassification_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "RegionTaxClassification",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "RegionTaxClassification"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `RegionTaxClassification`.",
+    "business_aliases": [
+      "税收标识范围",
+      "税收标识：范围（欧贸体）"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "RegionTaxClassification"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_stocksegment_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "StockSegment",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "StockSegment"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `StockSegment`.",
+    "business_aliases": [
+      "库存细分"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "StockSegment"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_supplier_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "Supplier",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Supplier"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `Supplier`.",
+    "business_aliases": [
+      "供应商",
+      "供应商科目编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Supplier"
+        ],
+        "top": 20
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_taxcode_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "TaxCode",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "TaxCode"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `TaxCode`.",
+    "business_aliases": [
+      "税码",
+      "销售/购买税代码"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "TaxCode"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_taxindicator_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "TaxIndicator",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "TaxIndicator"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `TaxIndicator`.",
+    "business_aliases": [
+      "用于物料的税收标识",
+      "用于物料的税收标识（采购）"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "TaxIndicator"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_taxjurisdiction_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "TaxJurisdiction",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "TaxJurisdiction"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `TaxJurisdiction`.",
+    "business_aliases": [
+      "税务管辖权"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "TaxJurisdiction"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_tradingcontract_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "TradingContract",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "TradingContract"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `TradingContract`.",
+    "business_aliases": [
+      "交易合同"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "TradingContract"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_valueaddedservicechargecode_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "ValueAddedServiceChargeCode",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "ValueAddedServiceChargeCode"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `ValueAddedServiceChargeCode`.",
+    "business_aliases": [
+      "增值服务收费代码"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "ValueAddedServiceChargeCode"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_variantcondition_a_purgprcgcndnrecdvalidity",
+    "service_name": "API_PURGPRCGCONDITIONRECORD_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_PurgPrcgCndnRecdValidity",
+    "target_field": "VariantCondition",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "VariantCondition"
+    ],
+    "description": "Resolve `Supplier` directly on `A_PurgPrcgCndnRecdValidity` to answer `VariantCondition`.",
+    "business_aliases": [
+      "变式键值",
+      "变式条件键值"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_PurgPrcgCndnRecdValidity",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "VariantCondition"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  }
+]

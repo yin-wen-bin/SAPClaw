@@ -1,0 +1,46 @@
+[
+  {
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "from_entity_set": "A_MaterialSerialNumber",
+    "to_entity_set": "ToRole_assoc_404AF617C29D100FA9BB5432D761AE2E",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_MatlStkInAcctMod",
+    "description": "Navigation `to_MatlStkInAcctMod` from `A_MaterialSerialNumber` to `ToRole_assoc_404AF617C29D100FA9BB5432D761AE2E`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "from_entity_set": "A_MaterialStock",
+    "to_entity_set": "ToRole_assoc_54E8EB962C48178E40453A31481776EE",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_MatlStkInAcctMod",
+    "description": "Navigation `to_MatlStkInAcctMod` from `A_MaterialStock` to `ToRole_assoc_54E8EB962C48178E40453A31481776EE`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "from_entity_set": "A_MatlStkInAcctMod",
+    "to_entity_set": "ToRole_assoc_3947838928FB6A1D21D21ADDF1F67735",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_MaterialSerialNumber",
+    "description": "Navigation `to_MaterialSerialNumber` from `A_MatlStkInAcctMod` to `ToRole_assoc_3947838928FB6A1D21D21ADDF1F67735`.",
+    "confidence": 0.8
+  },
+  {
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "from_entity_set": "A_MatlStkInAcctMod",
+    "to_entity_set": "ToRole_assoc_F6B85CF893D9D7998DAB6F6B58E318D6",
+    "edge_type": "navigation",
+    "from_field": "",
+    "to_field": "",
+    "via_path_id": "to_MaterialStock",
+    "description": "Navigation `to_MaterialStock` from `A_MatlStkInAcctMod` to `ToRole_assoc_F6B85CF893D9D7998DAB6F6B58E318D6`.",
+    "confidence": 0.8
+  }
+]

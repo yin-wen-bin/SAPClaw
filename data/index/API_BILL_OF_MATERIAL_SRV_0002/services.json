@@ -1,0 +1,30 @@
+[
+  {
+    "service_name": "API_BILL_OF_MATERIAL_SRV_0002",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_BILL_OF_MATERIAL_SRV_0002",
+    "description": "This service enables you to read, create, and update bills of material with and without version. The service contains either no header, one header, or multiple headers for the specified material and none or more items for each header.\r\n\r\nThe service is based on the OData protocol and can be consumed in SAP Fiori apps and on other user interfaces.",
+    "entity_sets": [
+      "A_BOMItemCategory",
+      "A_BOMItemCategoryText",
+      "A_BillOfMaterialUsage",
+      "A_BillOfMaterialUsageText",
+      "MBOMItmObjDpnAssignment",
+      "MaterialBOM",
+      "MaterialBOMItem",
+      "MaterialBOMSubItem"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "https://sap.example.local/sap/opu/odata/sap/API_BILL_OF_MATERIAL_SRV;v=0002/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/8a/8b08aab6cd47f4a3e35e8bd8d86ca2/frameset.htm",
+    "openapi_version": "2.1.0"
+  }
+]

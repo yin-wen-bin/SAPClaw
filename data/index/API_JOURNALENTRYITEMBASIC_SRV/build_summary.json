@@ -1,0 +1,15 @@
+{
+  "service_name": "API_JOURNALENTRYITEMBASIC_SRV",
+  "sap_metadata_entity_count": 5,
+  "sap_metadata_field_count": 263,
+  "openapi_documented_entity_count": 5,
+  "openapi_documented_entity_type_count": 7,
+  "merged_entity_count": 5,
+  "merged_field_count": 263,
+  "relation_count": 4,
+  "entity_graph_edge_count": 4,
+  "lookup_path_count": 157,
+  "business_term_count": 348,
+  "vector_document_count": 420,
+  "doc_chunk_count": 368
+}

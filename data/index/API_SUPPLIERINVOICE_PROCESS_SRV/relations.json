@@ -1,0 +1,112 @@
+[
+  {
+    "service_name": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "from_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "navigation_name": "to_SupplierInvoiceItmAcctAssgmt",
+    "to_entity_set": "ToRole_assoc_7EC8C986065F1890A807A790C8F2710B",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "from_entity_set": "A_SupplierInvoice",
+    "navigation_name": "to_SelectedDeliveryNotes",
+    "to_entity_set": "ToRole_assoc_86FC7D5A328D41B09C4E06732CB0BE66",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "from_entity_set": "A_SupplierInvoice",
+    "navigation_name": "to_SelectedPurchaseOrders",
+    "to_entity_set": "ToRole_assoc_77E36664D9165BCB74B0A1381CDAFF5F",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "from_entity_set": "A_SupplierInvoice",
+    "navigation_name": "to_SelectedServiceEntrySheets",
+    "to_entity_set": "ToRole_assoc_DABF7B3FED9B4405BBD40ABEF6607658",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "from_entity_set": "A_SupplierInvoice",
+    "navigation_name": "to_SuplrInvcItemAsset",
+    "to_entity_set": "ToRole_assoc_77064ABFF70606F7007BEE88891E8D2A",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "from_entity_set": "A_SupplierInvoice",
+    "navigation_name": "to_SuplrInvcItemMaterial",
+    "to_entity_set": "ToRole_assoc_CFEABE91BA1BF40ED3DF63EBF1D0F2BE",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "from_entity_set": "A_SupplierInvoice",
+    "navigation_name": "to_SuplrInvcItemPurOrdRef",
+    "to_entity_set": "ToRole_assoc_147B92B28C877B13E53F5C9C7D21C757",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "from_entity_set": "A_SupplierInvoice",
+    "navigation_name": "to_SuplrInvoiceAdditionalData",
+    "to_entity_set": "ToRole_assoc_C130E045D0542C2534BBCB499B2989A3",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "from_entity_set": "A_SupplierInvoice",
+    "navigation_name": "to_SupplierInvoiceItemGLAcct",
+    "to_entity_set": "ToRole_assoc_85DE35CFFFED29C8B07C8189049CAB62",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "from_entity_set": "A_SupplierInvoice",
+    "navigation_name": "to_SupplierInvoiceTax",
+    "to_entity_set": "ToRole_assoc_F3355BD7F1C92761A4E010B3FDD6D314",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  },
+  {
+    "service_name": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "from_entity_set": "A_SupplierInvoice",
+    "navigation_name": "to_SupplierInvoiceWhldgTax",
+    "to_entity_set": "ToRole_assoc_11F34456F0B5036EFFE1EC09FDD2BCA4",
+    "cardinality": "association",
+    "source_documents": [
+      "sap_metadata"
+    ]
+  }
+]

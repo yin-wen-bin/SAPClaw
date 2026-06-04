@@ -1,0 +1,1884 @@
+[
+  {
+    "path_id": "customer_to_batch_a_materialserialnumber",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_MaterialSerialNumber",
+    "target_field": "Batch",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Batch"
+    ],
+    "description": "Resolve `Customer` directly on `A_MaterialSerialNumber` to answer `Batch`.",
+    "business_aliases": [
+      "库存批次",
+      "批次编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MaterialSerialNumber",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Batch"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_batch_a_matlstkinacctmod",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_MatlStkInAcctMod",
+    "target_field": "Batch",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Batch"
+    ],
+    "description": "Resolve `Customer` directly on `A_MatlStkInAcctMod` to answer `Batch`.",
+    "business_aliases": [
+      "批次库存标识符",
+      "批次编号（库存标识符）"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MatlStkInAcctMod",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Batch"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_customer_a_materialserialnumber",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_MaterialSerialNumber",
+    "target_field": "Customer",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Customer"
+    ],
+    "description": "Resolve `Customer` directly on `A_MaterialSerialNumber` to answer `Customer`.",
+    "business_aliases": [
+      "特殊库存客户",
+      "特殊库存客户科目号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MaterialSerialNumber",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Customer"
+        ],
+        "top": 20
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_customer_a_matlstkinacctmod",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_MatlStkInAcctMod",
+    "target_field": "Customer",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Customer"
+    ],
+    "description": "Resolve `Customer` directly on `A_MatlStkInAcctMod` to answer `Customer`.",
+    "business_aliases": [
+      "客户库存标识符",
+      "特殊库存的客户"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MatlStkInAcctMod",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Customer"
+        ],
+        "top": 20
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_equipment_a_materialserialnumber",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_MaterialSerialNumber",
+    "target_field": "Equipment",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Equipment"
+    ],
+    "description": "Resolve `Customer` directly on `A_MaterialSerialNumber` to answer `Equipment`.",
+    "business_aliases": [
+      "设备",
+      "设备号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MaterialSerialNumber",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Equipment"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_inventoryspecialstocktype_a_materialserialnumber",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_MaterialSerialNumber",
+    "target_field": "InventorySpecialStockType",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "InventorySpecialStockType"
+    ],
+    "description": "Resolve `Customer` directly on `A_MaterialSerialNumber` to answer `InventorySpecialStockType`.",
+    "business_aliases": [
+      "特殊库存",
+      "特殊库存标识"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MaterialSerialNumber",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "InventorySpecialStockType"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_inventoryspecialstocktype_a_matlstkinacctmod",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_MatlStkInAcctMod",
+    "target_field": "InventorySpecialStockType",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "InventorySpecialStockType"
+    ],
+    "description": "Resolve `Customer` directly on `A_MatlStkInAcctMod` to answer `InventorySpecialStockType`.",
+    "business_aliases": [
+      "特殊库存类型"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MatlStkInAcctMod",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "InventorySpecialStockType"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_inventorystocktype_a_materialserialnumber",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_MaterialSerialNumber",
+    "target_field": "InventoryStockType",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "InventoryStockType"
+    ],
+    "description": "Resolve `Customer` directly on `A_MaterialSerialNumber` to answer `InventoryStockType`.",
+    "business_aliases": [
+      "库存类型",
+      "货物移动的库存类型"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MaterialSerialNumber",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "InventoryStockType"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_inventorystocktype_a_matlstkinacctmod",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_MatlStkInAcctMod",
+    "target_field": "InventoryStockType",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "InventoryStockType"
+    ],
+    "description": "Resolve `Customer` directly on `A_MatlStkInAcctMod` to answer `InventoryStockType`.",
+    "business_aliases": [
+      "库存类型",
+      "货物移动的库存类型（库存标识符）"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MatlStkInAcctMod",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "InventoryStockType"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_material_a_materialserialnumber",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_MaterialSerialNumber",
+    "target_field": "Material",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Material"
+    ],
+    "description": "Resolve `Customer` directly on `A_MaterialSerialNumber` to answer `Material`.",
+    "business_aliases": [
+      "物料",
+      "物料编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MaterialSerialNumber",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Material"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_material_a_matlstkinacctmod",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_MatlStkInAcctMod",
+    "target_field": "Material",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Material"
+    ],
+    "description": "Resolve `Customer` directly on `A_MatlStkInAcctMod` to answer `Material`.",
+    "business_aliases": [
+      "库存管理的物料"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MatlStkInAcctMod",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Material"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_materialbaseunit_a_matlstkinacctmod",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_MatlStkInAcctMod",
+    "target_field": "MaterialBaseUnit",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "MaterialBaseUnit"
+    ],
+    "description": "Resolve `Customer` directly on `A_MatlStkInAcctMod` to answer `MaterialBaseUnit`.",
+    "business_aliases": [
+      "基本计量单位"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MatlStkInAcctMod",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "MaterialBaseUnit"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_matlwrhsstkqtyinmatlbaseunit_a_matlstkinacctmod",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_MatlStkInAcctMod",
+    "target_field": "MatlWrhsStkQtyInMatlBaseUnit",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "MatlWrhsStkQtyInMatlBaseUnit"
+    ],
+    "description": "Resolve `Customer` directly on `A_MatlStkInAcctMod` to answer `MatlWrhsStkQtyInMatlBaseUnit`.",
+    "business_aliases": [],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MatlStkInAcctMod",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "MatlWrhsStkQtyInMatlBaseUnit"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_plant_a_materialserialnumber",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_MaterialSerialNumber",
+    "target_field": "Plant",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Plant"
+    ],
+    "description": "Resolve `Customer` directly on `A_MaterialSerialNumber` to answer `Plant`.",
+    "business_aliases": [
+      "工厂"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MaterialSerialNumber",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Plant"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_plant_a_matlstkinacctmod",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_MatlStkInAcctMod",
+    "target_field": "Plant",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Plant"
+    ],
+    "description": "Resolve `Customer` directly on `A_MatlStkInAcctMod` to answer `Plant`.",
+    "business_aliases": [
+      "工厂"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MatlStkInAcctMod",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Plant"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_sddocument_a_materialserialnumber",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_MaterialSerialNumber",
+    "target_field": "SDDocument",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "SDDocument"
+    ],
+    "description": "Resolve `Customer` directly on `A_MaterialSerialNumber` to answer `SDDocument`.",
+    "business_aliases": [
+      "销售订单",
+      "销售订单数"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MaterialSerialNumber",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "SDDocument"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_sddocument_a_matlstkinacctmod",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_MatlStkInAcctMod",
+    "target_field": "SDDocument",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "SDDocument"
+    ],
+    "description": "Resolve `Customer` directly on `A_MatlStkInAcctMod` to answer `SDDocument`.",
+    "business_aliases": [
+      "销售订单",
+      "已评估销售订单库存的销售订单编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MatlStkInAcctMod",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "SDDocument"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_sddocumentitem_a_materialserialnumber",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_MaterialSerialNumber",
+    "target_field": "SDDocumentItem",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "SDDocumentItem"
+    ],
+    "description": "Resolve `Customer` directly on `A_MaterialSerialNumber` to answer `SDDocumentItem`.",
+    "business_aliases": [
+      "销售订单项目",
+      "销售订单中的项目编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MaterialSerialNumber",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "SDDocumentItem"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_sddocumentitem_a_matlstkinacctmod",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_MatlStkInAcctMod",
+    "target_field": "SDDocumentItem",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "SDDocumentItem"
+    ],
+    "description": "Resolve `Customer` directly on `A_MatlStkInAcctMod` to answer `SDDocumentItem`.",
+    "business_aliases": [
+      "销售订单项",
+      "已评估销售订单库存的销售订单项目"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MatlStkInAcctMod",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "SDDocumentItem"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_serialnumber_a_materialserialnumber",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_MaterialSerialNumber",
+    "target_field": "SerialNumber",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "SerialNumber"
+    ],
+    "description": "Resolve `Customer` directly on `A_MaterialSerialNumber` to answer `SerialNumber`.",
+    "business_aliases": [
+      "序列号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MaterialSerialNumber",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "SerialNumber"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_storagelocation_a_materialserialnumber",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_MaterialSerialNumber",
+    "target_field": "StorageLocation",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "StorageLocation"
+    ],
+    "description": "Resolve `Customer` directly on `A_MaterialSerialNumber` to answer `StorageLocation`.",
+    "business_aliases": [
+      "存储地点"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MaterialSerialNumber",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "StorageLocation"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_storagelocation_a_matlstkinacctmod",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_MatlStkInAcctMod",
+    "target_field": "StorageLocation",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "StorageLocation"
+    ],
+    "description": "Resolve `Customer` directly on `A_MatlStkInAcctMod` to answer `StorageLocation`.",
+    "business_aliases": [
+      "存储地点"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MatlStkInAcctMod",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "StorageLocation"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_supplier_a_materialserialnumber",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_MaterialSerialNumber",
+    "target_field": "Supplier",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Supplier"
+    ],
+    "description": "Resolve `Customer` directly on `A_MaterialSerialNumber` to answer `Supplier`.",
+    "business_aliases": [
+      "特殊库存供应商",
+      "供应商账号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MaterialSerialNumber",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Supplier"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_supplier_a_matlstkinacctmod",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_MatlStkInAcctMod",
+    "target_field": "Supplier",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "Supplier"
+    ],
+    "description": "Resolve `Customer` directly on `A_MatlStkInAcctMod` to answer `Supplier`.",
+    "business_aliases": [
+      "供应商库存 ID",
+      "特殊库存的供应商"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MatlStkInAcctMod",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "Supplier"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_wbselementexternalid_a_materialserialnumber",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_MaterialSerialNumber",
+    "target_field": "WBSElementExternalID",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "WBSElementExternalID"
+    ],
+    "description": "Resolve `Customer` directly on `A_MaterialSerialNumber` to answer `WBSElementExternalID`.",
+    "business_aliases": [
+      "WBS 要素",
+      "已编辑工作分解结构要素（WBS 要素）"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MaterialSerialNumber",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "WBSElementExternalID"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_wbselementexternalid_a_matlstkinacctmod",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_MatlStkInAcctMod",
+    "target_field": "WBSElementExternalID",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "WBSElementExternalID"
+    ],
+    "description": "Resolve `Customer` directly on `A_MatlStkInAcctMod` to answer `WBSElementExternalID`.",
+    "business_aliases": [
+      "WBS 要素",
+      "已编辑工作分解结构要素（WBS 要素）"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MatlStkInAcctMod",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "WBSElementExternalID"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_wbselementinternalid_a_materialserialnumber",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_MaterialSerialNumber",
+    "target_field": "WBSElementInternalID",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "WBSElementInternalID"
+    ],
+    "description": "Resolve `Customer` directly on `A_MaterialSerialNumber` to answer `WBSElementInternalID`.",
+    "business_aliases": [
+      "WBS 内部标识",
+      "WBS 要素"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MaterialSerialNumber",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "WBSElementInternalID"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "customer_to_wbselementinternalid_a_matlstkinacctmod",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Customer",
+    "target_entity_set": "A_MatlStkInAcctMod",
+    "target_field": "WBSElementInternalID",
+    "path_kind": "direct_lookup",
+    "return_object": "Customer",
+    "filter_fields": [
+      "Customer"
+    ],
+    "result_fields": [
+      "Customer",
+      "WBSElementInternalID"
+    ],
+    "description": "Resolve `Customer` directly on `A_MatlStkInAcctMod` to answer `WBSElementInternalID`.",
+    "business_aliases": [
+      "WBS 内部标识",
+      "WBS 要素"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MatlStkInAcctMod",
+        "filter_field": "Customer",
+        "select_fields": [
+          "Customer",
+          "WBSElementInternalID"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_batch_a_materialserialnumber",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_MaterialSerialNumber",
+    "target_field": "Batch",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Batch"
+    ],
+    "description": "Resolve `Supplier` directly on `A_MaterialSerialNumber` to answer `Batch`.",
+    "business_aliases": [
+      "库存批次",
+      "批次编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MaterialSerialNumber",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Batch"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_batch_a_matlstkinacctmod",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_MatlStkInAcctMod",
+    "target_field": "Batch",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Batch"
+    ],
+    "description": "Resolve `Supplier` directly on `A_MatlStkInAcctMod` to answer `Batch`.",
+    "business_aliases": [
+      "批次库存标识符",
+      "批次编号（库存标识符）"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MatlStkInAcctMod",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Batch"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_customer_a_materialserialnumber",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_MaterialSerialNumber",
+    "target_field": "Customer",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Customer"
+    ],
+    "description": "Resolve `Supplier` directly on `A_MaterialSerialNumber` to answer `Customer`.",
+    "business_aliases": [
+      "特殊库存客户",
+      "特殊库存客户科目号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MaterialSerialNumber",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Customer"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_customer_a_matlstkinacctmod",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_MatlStkInAcctMod",
+    "target_field": "Customer",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Customer"
+    ],
+    "description": "Resolve `Supplier` directly on `A_MatlStkInAcctMod` to answer `Customer`.",
+    "business_aliases": [
+      "客户库存标识符",
+      "特殊库存的客户"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MatlStkInAcctMod",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Customer"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_equipment_a_materialserialnumber",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_MaterialSerialNumber",
+    "target_field": "Equipment",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Equipment"
+    ],
+    "description": "Resolve `Supplier` directly on `A_MaterialSerialNumber` to answer `Equipment`.",
+    "business_aliases": [
+      "设备",
+      "设备号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MaterialSerialNumber",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Equipment"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_inventoryspecialstocktype_a_materialserialnumber",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_MaterialSerialNumber",
+    "target_field": "InventorySpecialStockType",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "InventorySpecialStockType"
+    ],
+    "description": "Resolve `Supplier` directly on `A_MaterialSerialNumber` to answer `InventorySpecialStockType`.",
+    "business_aliases": [
+      "特殊库存",
+      "特殊库存标识"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MaterialSerialNumber",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "InventorySpecialStockType"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_inventoryspecialstocktype_a_matlstkinacctmod",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_MatlStkInAcctMod",
+    "target_field": "InventorySpecialStockType",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "InventorySpecialStockType"
+    ],
+    "description": "Resolve `Supplier` directly on `A_MatlStkInAcctMod` to answer `InventorySpecialStockType`.",
+    "business_aliases": [
+      "特殊库存类型"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MatlStkInAcctMod",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "InventorySpecialStockType"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_inventorystocktype_a_materialserialnumber",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_MaterialSerialNumber",
+    "target_field": "InventoryStockType",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "InventoryStockType"
+    ],
+    "description": "Resolve `Supplier` directly on `A_MaterialSerialNumber` to answer `InventoryStockType`.",
+    "business_aliases": [
+      "库存类型",
+      "货物移动的库存类型"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MaterialSerialNumber",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "InventoryStockType"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_inventorystocktype_a_matlstkinacctmod",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_MatlStkInAcctMod",
+    "target_field": "InventoryStockType",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "InventoryStockType"
+    ],
+    "description": "Resolve `Supplier` directly on `A_MatlStkInAcctMod` to answer `InventoryStockType`.",
+    "business_aliases": [
+      "库存类型",
+      "货物移动的库存类型（库存标识符）"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MatlStkInAcctMod",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "InventoryStockType"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_material_a_materialserialnumber",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_MaterialSerialNumber",
+    "target_field": "Material",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Material"
+    ],
+    "description": "Resolve `Supplier` directly on `A_MaterialSerialNumber` to answer `Material`.",
+    "business_aliases": [
+      "物料",
+      "物料编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MaterialSerialNumber",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Material"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_material_a_matlstkinacctmod",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_MatlStkInAcctMod",
+    "target_field": "Material",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Material"
+    ],
+    "description": "Resolve `Supplier` directly on `A_MatlStkInAcctMod` to answer `Material`.",
+    "business_aliases": [
+      "库存管理的物料"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MatlStkInAcctMod",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Material"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_materialbaseunit_a_matlstkinacctmod",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_MatlStkInAcctMod",
+    "target_field": "MaterialBaseUnit",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "MaterialBaseUnit"
+    ],
+    "description": "Resolve `Supplier` directly on `A_MatlStkInAcctMod` to answer `MaterialBaseUnit`.",
+    "business_aliases": [
+      "基本计量单位"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MatlStkInAcctMod",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "MaterialBaseUnit"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_matlwrhsstkqtyinmatlbaseunit_a_matlstkinacctmod",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_MatlStkInAcctMod",
+    "target_field": "MatlWrhsStkQtyInMatlBaseUnit",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "MatlWrhsStkQtyInMatlBaseUnit"
+    ],
+    "description": "Resolve `Supplier` directly on `A_MatlStkInAcctMod` to answer `MatlWrhsStkQtyInMatlBaseUnit`.",
+    "business_aliases": [],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MatlStkInAcctMod",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "MatlWrhsStkQtyInMatlBaseUnit"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_plant_a_materialserialnumber",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_MaterialSerialNumber",
+    "target_field": "Plant",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Plant"
+    ],
+    "description": "Resolve `Supplier` directly on `A_MaterialSerialNumber` to answer `Plant`.",
+    "business_aliases": [
+      "工厂"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MaterialSerialNumber",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Plant"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_plant_a_matlstkinacctmod",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_MatlStkInAcctMod",
+    "target_field": "Plant",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Plant"
+    ],
+    "description": "Resolve `Supplier` directly on `A_MatlStkInAcctMod` to answer `Plant`.",
+    "business_aliases": [
+      "工厂"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MatlStkInAcctMod",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Plant"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_sddocument_a_materialserialnumber",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_MaterialSerialNumber",
+    "target_field": "SDDocument",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "SDDocument"
+    ],
+    "description": "Resolve `Supplier` directly on `A_MaterialSerialNumber` to answer `SDDocument`.",
+    "business_aliases": [
+      "销售订单",
+      "销售订单数"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MaterialSerialNumber",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "SDDocument"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_sddocument_a_matlstkinacctmod",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_MatlStkInAcctMod",
+    "target_field": "SDDocument",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "SDDocument"
+    ],
+    "description": "Resolve `Supplier` directly on `A_MatlStkInAcctMod` to answer `SDDocument`.",
+    "business_aliases": [
+      "销售订单",
+      "已评估销售订单库存的销售订单编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MatlStkInAcctMod",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "SDDocument"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_sddocumentitem_a_materialserialnumber",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_MaterialSerialNumber",
+    "target_field": "SDDocumentItem",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "SDDocumentItem"
+    ],
+    "description": "Resolve `Supplier` directly on `A_MaterialSerialNumber` to answer `SDDocumentItem`.",
+    "business_aliases": [
+      "销售订单项目",
+      "销售订单中的项目编号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MaterialSerialNumber",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "SDDocumentItem"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_sddocumentitem_a_matlstkinacctmod",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_MatlStkInAcctMod",
+    "target_field": "SDDocumentItem",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "SDDocumentItem"
+    ],
+    "description": "Resolve `Supplier` directly on `A_MatlStkInAcctMod` to answer `SDDocumentItem`.",
+    "business_aliases": [
+      "销售订单项",
+      "已评估销售订单库存的销售订单项目"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MatlStkInAcctMod",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "SDDocumentItem"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_serialnumber_a_materialserialnumber",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_MaterialSerialNumber",
+    "target_field": "SerialNumber",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "SerialNumber"
+    ],
+    "description": "Resolve `Supplier` directly on `A_MaterialSerialNumber` to answer `SerialNumber`.",
+    "business_aliases": [
+      "序列号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MaterialSerialNumber",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "SerialNumber"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_storagelocation_a_materialserialnumber",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_MaterialSerialNumber",
+    "target_field": "StorageLocation",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "StorageLocation"
+    ],
+    "description": "Resolve `Supplier` directly on `A_MaterialSerialNumber` to answer `StorageLocation`.",
+    "business_aliases": [
+      "存储地点"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MaterialSerialNumber",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "StorageLocation"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_storagelocation_a_matlstkinacctmod",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_MatlStkInAcctMod",
+    "target_field": "StorageLocation",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "StorageLocation"
+    ],
+    "description": "Resolve `Supplier` directly on `A_MatlStkInAcctMod` to answer `StorageLocation`.",
+    "business_aliases": [
+      "存储地点"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MatlStkInAcctMod",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "StorageLocation"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_supplier_a_materialserialnumber",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_MaterialSerialNumber",
+    "target_field": "Supplier",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Supplier"
+    ],
+    "description": "Resolve `Supplier` directly on `A_MaterialSerialNumber` to answer `Supplier`.",
+    "business_aliases": [
+      "特殊库存供应商",
+      "供应商账号"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MaterialSerialNumber",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Supplier"
+        ],
+        "top": 20
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_supplier_a_matlstkinacctmod",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_MatlStkInAcctMod",
+    "target_field": "Supplier",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "Supplier"
+    ],
+    "description": "Resolve `Supplier` directly on `A_MatlStkInAcctMod` to answer `Supplier`.",
+    "business_aliases": [
+      "供应商库存 ID",
+      "特殊库存的供应商"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MatlStkInAcctMod",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "Supplier"
+        ],
+        "top": 20
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_wbselementexternalid_a_materialserialnumber",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_MaterialSerialNumber",
+    "target_field": "WBSElementExternalID",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "WBSElementExternalID"
+    ],
+    "description": "Resolve `Supplier` directly on `A_MaterialSerialNumber` to answer `WBSElementExternalID`.",
+    "business_aliases": [
+      "WBS 要素",
+      "已编辑工作分解结构要素（WBS 要素）"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MaterialSerialNumber",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "WBSElementExternalID"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_wbselementexternalid_a_matlstkinacctmod",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_MatlStkInAcctMod",
+    "target_field": "WBSElementExternalID",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "WBSElementExternalID"
+    ],
+    "description": "Resolve `Supplier` directly on `A_MatlStkInAcctMod` to answer `WBSElementExternalID`.",
+    "business_aliases": [
+      "WBS 要素",
+      "已编辑工作分解结构要素（WBS 要素）"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MatlStkInAcctMod",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "WBSElementExternalID"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_wbselementinternalid_a_materialserialnumber",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_MaterialSerialNumber",
+    "target_field": "WBSElementInternalID",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "WBSElementInternalID"
+    ],
+    "description": "Resolve `Supplier` directly on `A_MaterialSerialNumber` to answer `WBSElementInternalID`.",
+    "business_aliases": [
+      "WBS 内部标识",
+      "WBS 要素"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MaterialSerialNumber",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "WBSElementInternalID"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  },
+  {
+    "path_id": "supplier_to_wbselementinternalid_a_matlstkinacctmod",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "anchor_object": "Supplier",
+    "target_entity_set": "A_MatlStkInAcctMod",
+    "target_field": "WBSElementInternalID",
+    "path_kind": "direct_lookup",
+    "return_object": "Supplier",
+    "filter_fields": [
+      "Supplier"
+    ],
+    "result_fields": [
+      "Supplier",
+      "WBSElementInternalID"
+    ],
+    "description": "Resolve `Supplier` directly on `A_MatlStkInAcctMod` to answer `WBSElementInternalID`.",
+    "business_aliases": [
+      "WBS 内部标识",
+      "WBS 要素"
+    ],
+    "steps": [
+      {
+        "step_id": "fetch_target",
+        "entity_set": "A_MatlStkInAcctMod",
+        "filter_field": "Supplier",
+        "select_fields": [
+          "Supplier",
+          "WBSElementInternalID"
+        ],
+        "top": 5
+      }
+    ],
+    "confidence": 0.72
+  }
+]

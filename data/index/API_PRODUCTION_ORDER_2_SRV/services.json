@@ -1,0 +1,31 @@
+[
+  {
+    "service_name": "API_PRODUCTION_ORDER_2_SRV",
+    "service_version": "0001",
+    "base_path": "/sap/opu/odata/sap/API_PRODUCTION_ORDER_2_SRV",
+    "description": "Besides updating header data of the order including the scheduling type, you can also update and delete order components. You can update some properties of the order operations. This service enables you to convert planned orders to production orders, schedule production order operations, and set further statuses for the order such as technically completed, closed, discarded by MES, or released by MES. In addition, you can set the deletion flag, deletion indicator, and delivery completed indicator.",
+    "entity_sets": [
+      "A_ProdnOrderItemSerialNumber",
+      "A_ProductionOrderComponent_2",
+      "A_ProductionOrderComponent_3",
+      "A_ProductionOrderComponent_4",
+      "A_ProductionOrderItem_2",
+      "A_ProductionOrderOperation_2",
+      "A_ProductionOrderStatus_2",
+      "A_ProductionOrder_2",
+      "A_ProductionRsceTools_2"
+    ],
+    "allowed_methods": [
+      "GET"
+    ],
+    "source": "https://sap.example.local/sap/opu/odata/sap/API_PRODUCTION_ORDER_2_SRV/$metadata?sap-client=100",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true,
+    "documentation_url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_CLOUD_PE/2025.001/EN/0a/4262096d2e43258df27c594bdd1468/frameset.htm",
+    "openapi_version": "1.5.0"
+  }
+]

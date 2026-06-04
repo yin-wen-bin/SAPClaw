@@ -1,0 +1,29 @@
+[
+  {
+    "service_name": "API_PARTNERCOMPANY_SRV",
+    "entity_set": "A_PartnerCompany",
+    "entity_type": "A_PartnerCompanyType",
+    "key_fields": [
+      "PartnerCompany"
+    ],
+    "default_select_fields": [
+      "PartnerCompany",
+      "CompanyName",
+      "Language"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [],
+    "description": "Reads the items of all trading partners.",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  }
+]

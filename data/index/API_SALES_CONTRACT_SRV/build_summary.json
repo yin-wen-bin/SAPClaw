@@ -1,0 +1,15 @@
+{
+  "service_name": "API_SALES_CONTRACT_SRV",
+  "sap_metadata_entity_count": 8,
+  "sap_metadata_field_count": 203,
+  "openapi_documented_entity_count": 11,
+  "openapi_documented_entity_type_count": 12,
+  "merged_entity_count": 11,
+  "merged_field_count": 222,
+  "relation_count": 17,
+  "entity_graph_edge_count": 17,
+  "lookup_path_count": 26,
+  "business_term_count": 367,
+  "vector_document_count": 248,
+  "doc_chunk_count": 426
+}

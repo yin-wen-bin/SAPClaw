@@ -1,0 +1,7398 @@
+[
+  {
+    "term": "Withholding Tax Data",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcHeaderWhldgTax",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "代扣税代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcHeaderWhldgTax",
+    "mapped_fields": [
+      "WithholdingTaxCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "以凭证货币计的代扣税基金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcHeaderWhldgTax",
+    "mapped_fields": [
+      "WithholdingTaxBaseAmount"
+    ],
+    "synonyms": [
+      "预扣税基数 FC"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "会计年度",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcHeaderWhldgTax",
+    "mapped_fields": [
+      "FiscalYear"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证货币手动代扣税",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcHeaderWhldgTax",
+    "mapped_fields": [
+      "ManuallyEnteredWhldgTaxAmount"
+    ],
+    "synonyms": [
+      "手动输入以凭证货币计的代扣税金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发票凭证的凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcHeaderWhldgTax",
+    "mapped_fields": [
+      "SupplierInvoice"
+    ],
+    "synonyms": [
+      "发票凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发票凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcHeaderWhldgTax",
+    "mapped_fields": [
+      "SupplierInvoice"
+    ],
+    "synonyms": [
+      "发票凭证的凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已手工输入预扣税款",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcHeaderWhldgTax",
+    "mapped_fields": [
+      "WhldgTaxIsEnteredManually"
+    ],
+    "synonyms": [
+      "指示器：已手工输入预扣税款"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "手动输入以凭证货币计的代扣税金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcHeaderWhldgTax",
+    "mapped_fields": [
+      "ManuallyEnteredWhldgTaxAmount"
+    ],
+    "synonyms": [
+      "凭证货币手动代扣税"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "指示器：已手工输入预扣税款",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcHeaderWhldgTax",
+    "mapped_fields": [
+      "WhldgTaxIsEnteredManually"
+    ],
+    "synonyms": [
+      "已手工输入预扣税款"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "指示器：预扣税基数已手工输入",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcHeaderWhldgTax",
+    "mapped_fields": [
+      "WhldgTaxBaseIsEnteredManually"
+    ],
+    "synonyms": [
+      "预扣税基数手工"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcHeaderWhldgTax",
+    "mapped_fields": [
+      "DocumentCurrency"
+    ],
+    "synonyms": [
+      "货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcHeaderWhldgTax",
+    "mapped_fields": [
+      "DocumentCurrency"
+    ],
+    "synonyms": [
+      "货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "预扣税基数 FC",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcHeaderWhldgTax",
+    "mapped_fields": [
+      "WithholdingTaxBaseAmount"
+    ],
+    "synonyms": [
+      "以凭证货币计的代扣税基金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "预扣税基数手工",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcHeaderWhldgTax",
+    "mapped_fields": [
+      "WhldgTaxBaseIsEnteredManually"
+    ],
+    "synonyms": [
+      "指示器：预扣税基数已手工输入"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "预扣税类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcHeaderWhldgTax",
+    "mapped_fields": [
+      "WithholdingTaxType"
+    ],
+    "synonyms": [
+      "预扣税类型的标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "预扣税类型的标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcHeaderWhldgTax",
+    "mapped_fields": [
+      "WithholdingTaxType"
+    ],
+    "synonyms": [
+      "预扣税类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Account Assignment Data",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "ISO 代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "PurchaseOrderQtyUnitISOCode"
+    ],
+    "synonyms": [
+      "计量单位的 ISO 代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "ISO 代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "PurchaseOrderPriceUnitISOCode"
+    ],
+    "synonyms": [
+      "计量单位的 ISO 代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "OPUn 中的数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "QuantityInPurchaseOrderUnit"
+    ],
+    "synonyms": [
+      "采购订单价格单位的数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "WBS 元素",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "WBSElement"
+    ],
+    "synonyms": [
+      "工作分解结构要素（WBS 要素）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "业务处理",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "BusinessProcess"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "业务范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "BusinessArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "主要资产编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "MasterFixedAsset"
+    ],
+    "synonyms": [
+      "资产"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "以凭证货币计的金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "SuplrInvcAcctAssignmentAmount"
+    ],
+    "synonyms": [
+      "金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "会计凭证的凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "SupplierInvoice"
+    ],
+    "synonyms": [
+      "凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "会计年度",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "FiscalYear"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "借/贷标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "DebitCreditCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "公司代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "CompanyCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "SupplierInvoice"
+    ],
+    "synonyms": [
+      "会计凭证的凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "利润中心",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "ProfitCenter"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发票凭证中的凭证项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "SupplierInvoiceItem"
+    ],
+    "synonyms": [
+      "发票项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发票确认中未计划的科目分配",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "AccountAssignmentIsUnplanned"
+    ],
+    "synonyms": [
+      "未计划科目指派"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发票项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "SupplierInvoiceItem"
+    ],
+    "synonyms": [
+      "发票凭证中的凭证项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "同意",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "GrantID"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "员工号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "PersonnelNumber"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "基金",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "Fund"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "基金中心",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "FundsCenter"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "子编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "FixedAsset"
+    ],
+    "synonyms": [
+      "资产子编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工作分解结构要素（WBS 要素）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "WBSElement"
+    ],
+    "synonyms": [
+      "WBS 元素"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工作项目标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "WorkItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工序的任务清单号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "ProjectNetworkInternalID"
+    ],
+    "synonyms": [
+      "订单中工序的工艺路线号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工序的任务清单号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "NetworkActivityInternalID"
+    ],
+    "synonyms": [
+      "订单中工序的工艺路线号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "序列号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "OrdinalNumber"
+    ],
+    "synonyms": [
+      "用于代码块的四字符序列号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总账科目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "GLAccount"
+    ],
+    "synonyms": [
+      "总账科目号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总账科目号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "GLAccount"
+    ],
+    "synonyms": [
+      "总账科目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本中心",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "CostCenter"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本对象",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "CostObject"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本控制范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "ControllingArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "承诺项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "CommitmentItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "报税国家/地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "TaxCountry"
+    ],
+    "synonyms": [
+      "税收国家/地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "Quantity"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "SuplrInvcAccountAssignmentText"
+    ],
+    "synonyms": [
+      "项目文本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "未计划科目指派",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "AccountAssignmentIsUnplanned"
+    ],
+    "synonyms": [
+      "发票确认中未计划的科目分配"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "活动",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "NetworkActivity"
+    ],
+    "synonyms": [
+      "活动编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "活动类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "CostCtrActivityType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "活动编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "NetworkActivity"
+    ],
+    "synonyms": [
+      "活动"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "用于代码块的四字符序列号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "OrdinalNumber"
+    ],
+    "synonyms": [
+      "序列号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "确定税率的日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "TaxDeterminationDate"
+    ],
+    "synonyms": [
+      "税收日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "科目分配的序号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "AccountAssignmentNumber"
+    ],
+    "synonyms": [
+      "科目分配编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "科目分配的网络号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "ProjectNetwork"
+    ],
+    "synonyms": [
+      "网络"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "科目分配编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "AccountAssignmentNumber"
+    ],
+    "synonyms": [
+      "科目分配的序号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税务管辖权",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "TaxJurisdiction"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税收国家/地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "TaxCountry"
+    ],
+    "synonyms": [
+      "报税国家/地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税收日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "TaxDeterminationDate"
+    ],
+    "synonyms": [
+      "确定税率的日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "TaxCode"
+    ],
+    "synonyms": [
+      "销售/购买税代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "网络",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "ProjectNetwork"
+    ],
+    "synonyms": [
+      "科目分配的网络号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "职能范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "FunctionalArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "获利能力段编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "ProfitabilitySegment"
+    ],
+    "synonyms": [
+      "获利能力段编号(CO-PA)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "获利能力段编号(CO-PA)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "ProfitabilitySegment"
+    ],
+    "synonyms": [
+      "获利能力段编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计量单位的 ISO 代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "PurchaseOrderQtyUnitISOCode"
+    ],
+    "synonyms": [
+      "ISO 代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计量单位的 ISO 代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "PurchaseOrderPriceUnitISOCode"
+    ],
+    "synonyms": [
+      "ISO 代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "InternalOrder"
+    ],
+    "synonyms": [
+      "订单编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单中工序的工艺路线号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "ProjectNetworkInternalID"
+    ],
+    "synonyms": [
+      "工序的任务清单号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单中工序的工艺路线号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "NetworkActivityInternalID"
+    ],
+    "synonyms": [
+      "工序的任务清单号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单价格单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "PurchaseOrderPriceUnit"
+    ],
+    "synonyms": [
+      "订单价格单位（采购）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单价格单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "PurchaseOrderPriceUnitSAPCode"
+    ],
+    "synonyms": [
+      "订单价格单位（采购）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单价格单位（采购）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "PurchaseOrderPriceUnit"
+    ],
+    "synonyms": [
+      "订单价格单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单价格单位（采购）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "PurchaseOrderPriceUnitSAPCode"
+    ],
+    "synonyms": [
+      "订单价格单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "PurchaseOrderQuantityUnit"
+    ],
+    "synonyms": [
+      "采购订单计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "PurchaseOrderQtyUnitSAPCode"
+    ],
+    "synonyms": [
+      "采购订单计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "InternalOrder"
+    ],
+    "synonyms": [
+      "订单"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "DocumentCurrency"
+    ],
+    "synonyms": [
+      "货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "DocumentCurrency"
+    ],
+    "synonyms": [
+      "货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "贸易伙伴的业务范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "PartnerBusinessArea"
+    ],
+    "synonyms": [
+      "贸易合作伙伴 BA"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "贸易合作伙伴 BA",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "PartnerBusinessArea"
+    ],
+    "synonyms": [
+      "贸易伙伴的业务范围"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "资产",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "MasterFixedAsset"
+    ],
+    "synonyms": [
+      "主要资产编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "资产子编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "FixedAsset"
+    ],
+    "synonyms": [
+      "子编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购订单价格单位的数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "QuantityInPurchaseOrderUnit"
+    ],
+    "synonyms": [
+      "OPUn 中的数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购订单计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "PurchaseOrderQuantityUnit"
+    ],
+    "synonyms": [
+      "订单单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购订单计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "PurchaseOrderQtyUnitSAPCode"
+    ],
+    "synonyms": [
+      "订单单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "SuplrInvcAcctAssignmentAmount"
+    ],
+    "synonyms": [
+      "以凭证货币计的金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售/购买税代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "TaxCode"
+    ],
+    "synonyms": [
+      "税码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售凭证项",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "SalesOrderItem"
+    ],
+    "synonyms": [
+      "销售凭证项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售凭证项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "SalesOrderItem"
+    ],
+    "synonyms": [
+      "销售凭证项"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售和分销凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "SalesOrder"
+    ],
+    "synonyms": [
+      "销售和分销凭证号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售和分销凭证号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "SalesOrder"
+    ],
+    "synonyms": [
+      "销售和分销凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "SuplrInvcAccountAssignmentText"
+    ],
+    "synonyms": [
+      "文本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "预算期间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemAcctAssgmt",
+    "mapped_fields": [
+      "BudgetPeriod"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Account Assignment Data",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Assessable Value",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "IN_CustomDutyAssessableValue"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Chain Liability description of construction site",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "NL_ChainLbltyCnstrctnSiteDesc"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Chain Liability work description",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "NL_ChainLiabilityDescription"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "End date of WKA working period",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "NL_ChainLiabilityEndDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "HSN or SAC Code",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "IN_HSNOrSACCode"
+    ],
+    "synonyms": [
+      "HSN/SAC Code"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "HSN/SAC Code",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "IN_HSNOrSACCode"
+    ],
+    "synonyms": [
+      "HSN or SAC Code"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "ISO 代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "PurchaseOrderQtyUnitISOCode"
+    ],
+    "synonyms": [
+      "计量单位的 ISO 代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "ISO 代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "PurchaseOrderPriceUnitISOCode"
+    ],
+    "synonyms": [
+      "计量单位的 ISO 代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item with Purchase Order Reference",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "OPUn 中的数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "QtyInPurchaseOrderPriceUnit"
+    ],
+    "synonyms": [
+      "采购订单价格单位的数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Start date of WKA working period",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "NL_ChainLiabilityStartDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "WKA: Percentage of wages",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "NL_ChainLiabilityPercent"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Working time in hours",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "NL_ChainLiabilityDuration"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "与保留无关的项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "SuplrInvcItmIsNotRlvtForRtntn"
+    ],
+    "synonyms": [
+      "无保留"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "产品类型组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "ProductType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "以凭证货币计的保留",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "RetentionAmountInDocCurrency"
+    ],
+    "synonyms": [
+      "以凭证货币计的保留金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "以凭证货币计的保留金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "RetentionAmountInDocCurrency"
+    ],
+    "synonyms": [
+      "以凭证货币计的保留"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "以凭证货币计的金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "SupplierInvoiceItemAmount"
+    ],
+    "synonyms": [
+      "金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "以百分比计的保留",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "RetentionPercentage"
+    ],
+    "synonyms": [
+      "保留 %"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "会计凭证的凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "SupplierInvoice"
+    ],
+    "synonyms": [
+      "凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "会计年度",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "FiscalYear"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "FreightSupplier"
+    ],
+    "synonyms": [
+      "供应商科目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商科目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "FreightSupplier"
+    ],
+    "synonyms": [
+      "供应商"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "保留 %",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "RetentionPercentage"
+    ],
+    "synonyms": [
+      "以百分比计的保留"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "保留到期日",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "RetentionDueDate"
+    ],
+    "synonyms": [
+      "到期日"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "SupplierInvoice"
+    ],
+    "synonyms": [
+      "会计凭证的凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "到期日",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "RetentionDueDate"
+    ],
+    "synonyms": [
+      "保留到期日"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "ReferenceDocument"
+    ],
+    "synonyms": [
+      "参考凭证的凭证号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考凭证的凭证号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "ReferenceDocument"
+    ],
+    "synonyms": [
+      "参考凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考凭证项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "ReferenceDocumentItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发票凭证中的凭证项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "SupplierInvoiceItem"
+    ],
+    "synonyms": [
+      "发票项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发票项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "SupplierInvoiceItem"
+    ],
+    "synonyms": [
+      "发票凭证中的凭证项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "后续借/贷",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "IsSubsequentDebitCredit"
+    ],
+    "synonyms": [
+      "标识：后续借/贷"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "Plant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "年当前期间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "ReferenceDocumentFiscalYear"
+    ],
+    "synonyms": [
+      "当前期间的会计年度"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "当前期间的会计年度",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "ReferenceDocumentFiscalYear"
+    ],
+    "synonyms": [
+      "年当前期间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "报税国家/地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "TaxCountry"
+    ],
+    "synonyms": [
+      "税收国家/地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "QuantityInPurchaseOrderUnit"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "SupplierInvoiceItemText"
+    ],
+    "synonyms": [
+      "项目文本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "无保留",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "SuplrInvcItmIsNotRlvtForRtntn"
+    ],
+    "synonyms": [
+      "与保留无关的项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "无现金折扣",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "IsNotCashDiscountLiable"
+    ],
+    "synonyms": [
+      "标识：行项目与现金折扣无关 ?"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "最后发票",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "IsFinallyInvoiced"
+    ],
+    "synonyms": [
+      "最终发票标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "最终发票标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "IsFinallyInvoiced"
+    ],
+    "synonyms": [
+      "最后发票"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "SuplrInvcDeliveryCostCndnType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条件计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "SuplrInvcDeliveryCostCndnCount"
+    ],
+    "synonyms": [
+      "计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条目表",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "ServiceEntrySheet"
+    ],
+    "synonyms": [
+      "条目表编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "条目表编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "ServiceEntrySheet"
+    ],
+    "synonyms": [
+      "条目表"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识：后续借/贷",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "IsSubsequentDebitCredit"
+    ],
+    "synonyms": [
+      "后续借/贷"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识：行项目与现金折扣无关 ?",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "IsNotCashDiscountLiable"
+    ],
+    "synonyms": [
+      "无现金折扣"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "步骤编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "SuplrInvcDeliveryCostCndnStep"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "确定税率的日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "TaxDeterminationDate"
+    ],
+    "synonyms": [
+      "税收日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税务管辖权",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "TaxJurisdiction"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税收国家/地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "TaxCountry"
+    ],
+    "synonyms": [
+      "报税国家/地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税收日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "TaxDeterminationDate"
+    ],
+    "synonyms": [
+      "确定税率的日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "TaxCode"
+    ],
+    "synonyms": [
+      "销售/购买税代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "行号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "ServiceEntrySheetItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "SuplrInvcDeliveryCostCndnCount"
+    ],
+    "synonyms": [
+      "条件计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计量单位的 ISO 代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "PurchaseOrderQtyUnitISOCode"
+    ],
+    "synonyms": [
+      "ISO 代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计量单位的 ISO 代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "PurchaseOrderPriceUnitISOCode"
+    ],
+    "synonyms": [
+      "ISO 代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单价格单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "PurchaseOrderPriceUnit"
+    ],
+    "synonyms": [
+      "订单价格单位（采购）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单价格单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "PurchaseOrderPriceUnitSAPCode"
+    ],
+    "synonyms": [
+      "订单价格单位（采购）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单价格单位（采购）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "PurchaseOrderPriceUnit"
+    ],
+    "synonyms": [
+      "订单价格单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单价格单位（采购）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "PurchaseOrderPriceUnitSAPCode"
+    ],
+    "synonyms": [
+      "订单价格单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "PurchaseOrderQuantityUnit"
+    ],
+    "synonyms": [
+      "采购订单计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "PurchaseOrderQtyUnitSAPCode"
+    ],
+    "synonyms": [
+      "采购订单计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "DocumentCurrency"
+    ],
+    "synonyms": [
+      "货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "DocumentCurrency"
+    ],
+    "synonyms": [
+      "货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "PurchaseOrder"
+    ],
+    "synonyms": [
+      "采购凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证中的项目类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "PurchasingDocumentItemCategory"
+    ],
+    "synonyms": [
+      "项目类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证的项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "PurchaseOrderItem"
+    ],
+    "synonyms": [
+      "项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "PurchaseOrder"
+    ],
+    "synonyms": [
+      "采购凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购订单价格单位的数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "QtyInPurchaseOrderPriceUnit"
+    ],
+    "synonyms": [
+      "OPUn 中的数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购订单计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "PurchaseOrderQuantityUnit"
+    ],
+    "synonyms": [
+      "订单单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购订单计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "PurchaseOrderQtyUnitSAPCode"
+    ],
+    "synonyms": [
+      "订单单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "SupplierInvoiceItemAmount"
+    ],
+    "synonyms": [
+      "以凭证货币计的金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售/购买税代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "TaxCode"
+    ],
+    "synonyms": [
+      "税码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "PurchaseOrderItem"
+    ],
+    "synonyms": [
+      "采购凭证的项目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "SupplierInvoiceItemText"
+    ],
+    "synonyms": [
+      "文本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcItemPurOrdRef",
+    "mapped_fields": [
+      "PurchasingDocumentItemCategory"
+    ],
+    "synonyms": [
+      "采购凭证中的项目类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "SI Entered Delivery Notes",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcSeldInbDeliveryNote",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "交货单",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcSeldInbDeliveryNote",
+    "mapped_fields": [
+      "InboundDeliveryNote"
+    ],
+    "synonyms": [
+      "外部交货单编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "会计凭证的凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcSeldInbDeliveryNote",
+    "mapped_fields": [
+      "SupplierInvoice"
+    ],
+    "synonyms": [
+      "凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "会计年度",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcSeldInbDeliveryNote",
+    "mapped_fields": [
+      "FiscalYear"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcSeldInbDeliveryNote",
+    "mapped_fields": [
+      "SupplierInvoice"
+    ],
+    "synonyms": [
+      "会计凭证的凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "外部交货单编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcSeldInbDeliveryNote",
+    "mapped_fields": [
+      "InboundDeliveryNote"
+    ],
+    "synonyms": [
+      "交货单"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "SI Entered Purchasing Documents",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcSeldPurgDocument",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "会计凭证的凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcSeldPurgDocument",
+    "mapped_fields": [
+      "SupplierInvoice"
+    ],
+    "synonyms": [
+      "凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "会计年度",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcSeldPurgDocument",
+    "mapped_fields": [
+      "FiscalYear"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcSeldPurgDocument",
+    "mapped_fields": [
+      "SupplierInvoice"
+    ],
+    "synonyms": [
+      "会计凭证的凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcSeldPurgDocument",
+    "mapped_fields": [
+      "PurchaseOrder"
+    ],
+    "synonyms": [
+      "采购凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证的项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcSeldPurgDocument",
+    "mapped_fields": [
+      "PurchaseOrderItem"
+    ],
+    "synonyms": [
+      "项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcSeldPurgDocument",
+    "mapped_fields": [
+      "PurchaseOrder"
+    ],
+    "synonyms": [
+      "采购凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcSeldPurgDocument",
+    "mapped_fields": [
+      "PurchaseOrderItem"
+    ],
+    "synonyms": [
+      "采购凭证的项目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "SI Entered Service Entry Sheets (Lean)",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcSeldSrvcEntrShtLean",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "会计凭证的凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcSeldSrvcEntrShtLean",
+    "mapped_fields": [
+      "SupplierInvoice"
+    ],
+    "synonyms": [
+      "凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "会计年度",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcSeldSrvcEntrShtLean",
+    "mapped_fields": [
+      "FiscalYear"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcSeldSrvcEntrShtLean",
+    "mapped_fields": [
+      "SupplierInvoice"
+    ],
+    "synonyms": [
+      "会计凭证的凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "服务条目表",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcSeldSrvcEntrShtLean",
+    "mapped_fields": [
+      "ServiceEntrySheet"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "服务条目表的项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvcSeldSrvcEntrShtLean",
+    "mapped_fields": [
+      "ServiceEntrySheetItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Additional Data",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "DME 收件人代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "DataMediumExchangeIndicator"
+    ],
+    "synonyms": [
+      "数据媒体交换的收件人代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "IBAN",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "IBAN"
+    ],
+    "synonyms": [
+      "IBAN（国际银行账号）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "IBAN（国际银行账号）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "IBAN"
+    ],
+    "synonyms": [
+      "IBAN"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "SWIFT/BIC",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "SWIFTCode"
+    ],
+    "synonyms": [
+      "国际付款的 SWIFT/BIC"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "一次性科目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "IsOneTimeAccount"
+    ],
+    "synonyms": [
+      "指示符:科目是一次性科目吗?"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "一次性科目数据中的国家/地区特定参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "OneTimeAcctCntrySpecificRef1"
+    ],
+    "synonyms": [
+      "国家/地区特定参考 1"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "业务类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "BusinessType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交易伙伴公司员工的互联网地址",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "OneTimeBusinessPartnerEmail"
+    ],
+    "synonyms": [
+      "员工的互联网地址"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款领受者",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "PaymentRecipient"
+    ],
+    "synonyms": [
+      "收款方代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "代表名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "RepresentativeName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "会计年度",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "FiscalYear"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考细节",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "BankDetailReference"
+    ],
+    "synonyms": [
+      "银行细目的参考明细"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发票凭证的凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "SupplierInvoice"
+    ],
+    "synonyms": [
+      "发票凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发票凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "SupplierInvoice"
+    ],
+    "synonyms": [
+      "发票凭证的凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "InvoicingPartyName1"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "名称 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "InvoicingPartyName2"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "名称 3",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "InvoicingPartyName3"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "名称 4",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "InvoicingPartyName4"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "员工的互联网地址",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "OneTimeBusinessPartnerEmail"
+    ],
+    "synonyms": [
+      "交易伙伴公司员工的互联网地址"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国家/地区代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "Country"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国家/地区特定参考 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "OneTimeAcctCntrySpecificRef1"
+    ],
+    "synonyms": [
+      "一次性科目数据中的国家/地区特定参考"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际付款的 SWIFT/BIC",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "SWIFTCode"
+    ],
+    "synonyms": [
+      "SWIFT/BIC"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "Region"
+    ],
+    "synonyms": [
+      "地区（省/自治区/直辖市、市、县）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "地区（省/自治区/直辖市、市、县）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "Region"
+    ],
+    "synonyms": [
+      "地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "城市",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "CityName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "增值税义务",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "OneTmeAccountIsVATLiable"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "增值税注册号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "VATRegistration"
+    ],
+    "synonyms": [
+      "增值税登记号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "增值税登记号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "VATRegistration"
+    ],
+    "synonyms": [
+      "增值税注册号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "复选框",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "OneTmeAcctIsEqualizationTxSubj"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "复选框",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "IsNaturalPerson"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工业类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "IndustryType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "往来账户或参考编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "PostOfficeBankAccount"
+    ],
+    "synonyms": [
+      "邮政银行往来账号或住房互助会参考编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "指令码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "DataExchangeInstructionKey"
+    ],
+    "synonyms": [
+      "数据媒介交换指令码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "指示符:科目是一次性科目吗?",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "IsOneTimeAccount"
+    ],
+    "synonyms": [
+      "一次性科目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收款方代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "PaymentRecipient"
+    ],
+    "synonyms": [
+      "付款领受者"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "数据媒介交换指令码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "DataExchangeInstructionKey"
+    ],
+    "synonyms": [
+      "指令码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "数据媒体交换的收件人代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "DataMediumExchangeIndicator"
+    ],
+    "synonyms": [
+      "DME 收件人代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "称谓",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "FormOfAddressName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税号 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "TaxID1"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税号 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "TaxID2"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税号 5",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "TaxID5"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税号3",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "TaxID3"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税号4",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "TaxID4"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税号类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "TaxNumberType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "AccountTaxType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "街道",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "StreetAddressName"
+    ],
+    "synonyms": [
+      "街道和房屋号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "街道和房屋号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "StreetAddressName"
+    ],
+    "synonyms": [
+      "街道"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "语言代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "LanguageCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "邮政信箱",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "POBox"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "邮政编码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "PostalCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "邮政银行往来账号或住房互助会参考编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "PostOfficeBankAccount"
+    ],
+    "synonyms": [
+      "往来账户或参考编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "邮箱邮政编码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "POBoxPostalCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "银行帐户号码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "BankAccount"
+    ],
+    "synonyms": [
+      "银行账户"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "银行所在国家/地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "BankCountry"
+    ],
+    "synonyms": [
+      "银行所属国家/地区代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "银行所属国家/地区代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "BankCountry"
+    ],
+    "synonyms": [
+      "银行所在国家/地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "银行控制代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "BankControlKey"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "银行细目的参考明细",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "BankDetailReference"
+    ],
+    "synonyms": [
+      "参考细节"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "银行编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "Bank"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "银行账户",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SuplrInvoiceAdditionalData",
+    "mapped_fields": [
+      "BankAccount"
+    ],
+    "synonyms": [
+      "银行帐户号码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Additional Data",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "GST Partner",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "IN_GSTPartner"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Header Data",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "ISR 订户编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "PaytSlipWthRefSubscriber"
+    ],
+    "synonyms": [
+      "PBC/ISR 编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "ISR/QR 参考编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "PaytSlipWthRefReference"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "IV 类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "SupplierInvoiceOrigin"
+    ],
+    "synonyms": [
+      "一个后勤发票检验凭证的出处"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Invoice Ref. Number",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "IN_InvoiceReferenceNumber"
+    ],
+    "synonyms": [
+      "Invoice Reference Number"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Invoice Reference Number",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "IN_InvoiceReferenceNumber"
+    ],
+    "synonyms": [
+      "Invoice Ref. Number"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item for Asset Posting",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Item for G/L Account Posting",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Item for Material Posting",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Item with Purchase Order Reference",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "PBC/ISR 编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "PaytSlipWthRefSubscriber"
+    ],
+    "synonyms": [
+      "ISR 订户编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "POR 检查数字",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "PaytSlipWthRefCheckDigit"
+    ],
+    "synonyms": [
+      "校验位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Place of Supply",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "IN_GSTPlaceOfSupply"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "SI Entered Delivery Notes",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "SI Entered Purchasing Documents",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "SI Entered Service Entry Sheets (Lean)",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Tax Data",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Withholding Tax Data",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "一个后勤发票检验凭证的出处",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "SupplierInvoiceOrigin"
+    ],
+    "synonyms": [
+      "IV 类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "不同开发票方",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "InvoicingParty"
+    ],
+    "synonyms": [
+      "开发票方"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "业务地点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "BusinessPlace"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "业务范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "BusinessArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交货(Inv/Cr)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "SuplrInvcDebitCrdtCodeDelivery"
+    ],
+    "synonyms": [
+      "交货项目的过帐逻辑(发票/贷项清单)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交货项目的过帐逻辑(发票/贷项清单)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "SuplrInvcDebitCrdtCodeDelivery"
+    ],
+    "synonyms": [
+      "交货(Inv/Cr)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款原因",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "PaymentReason"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "PaymentReference"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款方式",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "PaymentMethod"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款方式补充",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "PaymentMethodSupplement"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "PaymentTerms"
+    ],
+    "synonyms": [
+      "付款条件代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款条件代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "PaymentTerms"
+    ],
+    "synonyms": [
+      "付款条件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "以凭证货币计的总发票金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "InvoiceGrossAmount"
+    ],
+    "synonyms": [
+      "总发票金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "以凭证货币计的现金折扣金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "ManualCashDiscount"
+    ],
+    "synonyms": [
+      "现金折扣金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "会计凭证输入日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "CreationDate"
+    ],
+    "synonyms": [
+      "输入日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "会计年度",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "FiscalYear"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "会计年度",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "InvoiceReferenceFiscalYear"
+    ],
+    "synonyms": [
+      "相关发票的会计年度（贷项凭证）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应国家/地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "SupplyingCountry"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "保留到期日（缺省）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "RetentionDueDate"
+    ],
+    "synonyms": [
+      "到期日（缺省）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "全额付款天数",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "NetPaymentDays"
+    ],
+    "synonyms": [
+      "全额付款条件期间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "全额付款条件期间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "NetPaymentDays"
+    ],
+    "synonyms": [
+      "全额付款天数"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "公司代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "CompanyCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "冲销",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "IsReversal"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "冲销凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "ReverseDocument"
+    ],
+    "synonyms": [
+      "冲销者"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "冲销者",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "ReverseDocument"
+    ],
+    "synonyms": [
+      "冲销凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "冻结付款",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "PaymentBlockingReason"
+    ],
+    "synonyms": [
+      "收付冻结码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证中的发票日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "DocumentDate"
+    ],
+    "synonyms": [
+      "发票日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证中的国家/地区特定业务伙伴 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "JrnlEntryCntrySpecificBP1"
+    ],
+    "synonyms": [
+      "国家/地区特定业务伙伴 1"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证中的国家/地区特定业务伙伴 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "JrnlEntryCntrySpecificBP2"
+    ],
+    "synonyms": [
+      "国家/地区特定业务伙伴 2"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证中的国家/地区特定参考 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "JrnlEntryCntrySpecificRef1"
+    ],
+    "synonyms": [
+      "国家/地区特定参考 1"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证中的国家/地区特定参考 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "JrnlEntryCntrySpecificRef2"
+    ],
+    "synonyms": [
+      "国家/地区特定参考 2"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证中的国家/地区特定参考 3",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "JrnlEntryCntrySpecificRef3"
+    ],
+    "synonyms": [
+      "国家/地区特定参考 3"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证中的国家/地区特定参考 4",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "JrnlEntryCntrySpecificRef4"
+    ],
+    "synonyms": [
+      "国家/地区特定参考 4"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证中的国家/地区特定参考 5",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "JrnlEntryCntrySpecificRef5"
+    ],
+    "synonyms": [
+      "国家/地区特定参考 5"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证中的国家/地区特定日期 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "JrnlEntryCntrySpecificDate1"
+    ],
+    "synonyms": [
+      "国家/地区特定日期 1"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证中的国家/地区特定日期 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "JrnlEntryCntrySpecificDate2"
+    ],
+    "synonyms": [
+      "国家/地区特定日期 2"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证中的国家/地区特定日期 3",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "JrnlEntryCntrySpecificDate3"
+    ],
+    "synonyms": [
+      "国家/地区特定日期 3"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证中的国家/地区特定日期 4",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "JrnlEntryCntrySpecificDate4"
+    ],
+    "synonyms": [
+      "国家/地区特定日期 4"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证中的国家/地区特定日期 5",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "JrnlEntryCntrySpecificDate5"
+    ],
+    "synonyms": [
+      "国家/地区特定日期 5"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证中的过账日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "PostingDate"
+    ],
+    "synonyms": [
+      "过账日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证抬头文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "DocumentHeaderText"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "AccountingDocumentType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分配",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "AssignmentReference"
+    ],
+    "synonyms": [
+      "分配编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分配编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "AssignmentReference"
+    ],
+    "synonyms": [
+      "分配"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "到期日（缺省）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "RetentionDueDate"
+    ],
+    "synonyms": [
+      "保留到期日（缺省）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "单字符标记",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "SupplierInvoiceIsCreditMemo"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "SupplierInvoiceIDByInvcgParty"
+    ],
+    "synonyms": [
+      "参考凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "SupplierInvoiceIDByInvcgParty"
+    ],
+    "synonyms": [
+      "参考"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发票凭证状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "SupplierInvoiceStatus"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发票凭证的凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "SupplierInvoice"
+    ],
+    "synonyms": [
+      "发票凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发票凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "SupplierInvoice"
+    ],
+    "synonyms": [
+      "发票凭证的凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发票参考号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "InvoiceReference"
+    ],
+    "synonyms": [
+      "发票参考：发票参考的凭证号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发票参考：发票参考的凭证号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "InvoiceReference"
+    ],
+    "synonyms": [
+      "发票参考号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发票接收日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "InvoiceReceiptDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发票日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "DocumentDate"
+    ],
+    "synonyms": [
+      "凭证中的发票日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "可逆凭证的会计年度",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "ReverseDocumentFiscalYear"
+    ],
+    "synonyms": [
+      "年"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "固定",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "FixedCashDiscount"
+    ],
+    "synonyms": [
+      "固定付款条件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "固定付款条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "FixedCashDiscount"
+    ],
+    "synonyms": [
+      "固定"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国家/地区特定业务伙伴 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "JrnlEntryCntrySpecificBP1"
+    ],
+    "synonyms": [
+      "凭证中的国家/地区特定业务伙伴 1"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国家/地区特定业务伙伴 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "JrnlEntryCntrySpecificBP2"
+    ],
+    "synonyms": [
+      "凭证中的国家/地区特定业务伙伴 2"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国家/地区特定参考 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "JrnlEntryCntrySpecificRef1"
+    ],
+    "synonyms": [
+      "凭证中的国家/地区特定参考 1"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国家/地区特定参考 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "JrnlEntryCntrySpecificRef2"
+    ],
+    "synonyms": [
+      "凭证中的国家/地区特定参考 2"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国家/地区特定参考 3",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "JrnlEntryCntrySpecificRef3"
+    ],
+    "synonyms": [
+      "凭证中的国家/地区特定参考 3"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国家/地区特定参考 4",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "JrnlEntryCntrySpecificRef4"
+    ],
+    "synonyms": [
+      "凭证中的国家/地区特定参考 4"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国家/地区特定参考 5",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "JrnlEntryCntrySpecificRef5"
+    ],
+    "synonyms": [
+      "凭证中的国家/地区特定参考 5"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国家/地区特定日期 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "JrnlEntryCntrySpecificDate1"
+    ],
+    "synonyms": [
+      "凭证中的国家/地区特定日期 1"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国家/地区特定日期 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "JrnlEntryCntrySpecificDate2"
+    ],
+    "synonyms": [
+      "凭证中的国家/地区特定日期 2"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国家/地区特定日期 3",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "JrnlEntryCntrySpecificDate3"
+    ],
+    "synonyms": [
+      "凭证中的国家/地区特定日期 3"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国家/地区特定日期 4",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "JrnlEntryCntrySpecificDate4"
+    ],
+    "synonyms": [
+      "凭证中的国家/地区特定日期 4"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国家/地区特定日期 5",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "JrnlEntryCntrySpecificDate5"
+    ],
+    "synonyms": [
+      "凭证中的国家/地区特定日期 5"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国家中央银行指示器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "StateCentralBankPaymentReason"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "增值税注册号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "SupplierVATRegistration"
+    ],
+    "synonyms": [
+      "增值税登记号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "增值税登记号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "SupplierVATRegistration"
+    ],
+    "synonyms": [
+      "增值税注册号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "天数 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "CashDiscount1Days"
+    ],
+    "synonyms": [
+      "现金折扣天数 1"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "天数 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "CashDiscount2Days"
+    ],
+    "synonyms": [
+      "现金折扣天数 2"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "完税日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "TaxFulfillmentDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "对方开户行类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "BPBankAccountInternalID"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已冲销",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "IsReversed"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "年",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "ReverseDocumentFiscalYear"
+    ],
+    "synonyms": [
+      "可逆凭证的会计年度"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "开发票方",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "InvoicingParty"
+    ],
+    "synonyms": [
+      "不同开发票方"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "开户行",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "HouseBank"
+    ],
+    "synonyms": [
+      "开户行简短代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "开户行简短代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "HouseBank"
+    ],
+    "synonyms": [
+      "开户行"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总发票金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "InvoiceGrossAmount"
+    ],
+    "synonyms": [
+      "以凭证货币计的总发票金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "投资标记",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "SuplrInvcIsCapitalGoodsRelated"
+    ],
+    "synonyms": [
+      "标识: 资产货物影响?"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "报税国家/地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "UnplndDeliveryCostTaxCountry"
+    ],
+    "synonyms": [
+      "税收国家/地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "报税日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "TaxReportingDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "报表国家/地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "DeliveryOfGoodsReportingCntry"
+    ],
+    "synonyms": [
+      "欧盟内交货的报表国家/地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收付冻结码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "PaymentBlockingReason"
+    ],
+    "synonyms": [
+      "冻结付款"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识: 资产货物影响?",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "SuplrInvcIsCapitalGoodsRelated"
+    ],
+    "synonyms": [
+      "投资标记"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识：欧盟内三方交易",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "IsEUTriangularDeal"
+    ],
+    "synonyms": [
+      "欧盟三方交易"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "校验位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "PaytSlipWthRefCheckDigit"
+    ],
+    "synonyms": [
+      "POR 检查数字"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "欧盟三方交易",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "IsEUTriangularDeal"
+    ],
+    "synonyms": [
+      "标识：欧盟内三方交易"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "欧盟内交货的报表国家/地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "DeliveryOfGoodsReportingCntry"
+    ],
+    "synonyms": [
+      "报表国家/地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "现金折扣天数 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "CashDiscount1Days"
+    ],
+    "synonyms": [
+      "天数 1"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "现金折扣天数 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "CashDiscount2Days"
+    ],
+    "synonyms": [
+      "天数 2"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "现金折扣百分比 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "CashDiscount1Percent"
+    ],
+    "synonyms": [
+      "现金折扣百分率1"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "现金折扣百分比 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "CashDiscount2Percent"
+    ],
+    "synonyms": [
+      "现金折扣百分比2"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "现金折扣百分比2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "CashDiscount2Percent"
+    ],
+    "synonyms": [
+      "现金折扣百分比 2"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "现金折扣百分率1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "CashDiscount1Percent"
+    ],
+    "synonyms": [
+      "现金折扣百分比 1"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "现金折扣金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "ManualCashDiscount"
+    ],
+    "synonyms": [
+      "以凭证货币计的现金折扣金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "用于计算到期日期的起算日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "DueCalculationBaseDate"
+    ],
+    "synonyms": [
+      "起算日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "直接报价的汇率",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "DirectQuotedExchangeRate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "相关发票的会计年度（贷项凭证）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "InvoiceReferenceFiscalYear"
+    ],
+    "synonyms": [
+      "会计年度"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "确定税率的日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "TaxDeterminationDate"
+    ],
+    "synonyms": [
+      "税收日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "科目详细信息标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "HouseBankAccount"
+    ],
+    "synonyms": [
+      "账户标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税务管辖权",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "UnplndDelivCostTaxJurisdiction"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税收国家/地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "UnplndDeliveryCostTaxCountry"
+    ],
+    "synonyms": [
+      "报税国家/地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税收日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "TaxDeterminationDate"
+    ],
+    "synonyms": [
+      "确定税率的日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "UnplannedDeliveryCostTaxCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "自动计算税金",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "TaxIsCalculatedAutomatically"
+    ],
+    "synonyms": [
+      "计算税额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划外交货成本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "UnplannedDeliveryCost"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计算税额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "TaxIsCalculatedAutomatically"
+    ],
+    "synonyms": [
+      "自动计算税金"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "账户标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "HouseBankAccount"
+    ],
+    "synonyms": [
+      "科目详细信息标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "DocumentCurrency"
+    ],
+    "synonyms": [
+      "货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "DocumentCurrency"
+    ],
+    "synonyms": [
+      "货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "起算日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "DueCalculationBaseDate"
+    ],
+    "synonyms": [
+      "用于计算到期日期的起算日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "输入日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "CreationDate"
+    ],
+    "synonyms": [
+      "会计凭证输入日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "过账日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "PostingDate"
+    ],
+    "synonyms": [
+      "凭证中的过账日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "退货(Inv/Cr)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "SuplrInvcDebitCrdtCodeReturns"
+    ],
+    "synonyms": [
+      "退货项目的过帐逻辑(发票/贷项清单)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "退货项目的过帐逻辑(发票/贷项清单)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "SuplrInvcDebitCrdtCodeReturns"
+    ],
+    "synonyms": [
+      "退货(Inv/Cr)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "部分代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "BusinessSectionCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "间接引用的汇率",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "IndirectQuotedExchangeRate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoice",
+    "mapped_fields": [
+      "SupplierPostingLineItemText"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item for Asset Posting",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "主要资产编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "MasterFixedAsset"
+    ],
+    "synonyms": [
+      "资产"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "以凭证货币计的金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "SupplierInvoiceItemAmount"
+    ],
+    "synonyms": [
+      "金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "会计凭证的凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "SupplierInvoice"
+    ],
+    "synonyms": [
+      "凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "会计年度",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "FiscalYear"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "借/贷标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "DebitCreditCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "公司代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "CompanyCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "SupplierInvoice"
+    ],
+    "synonyms": [
+      "会计凭证的凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分配",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "AssignmentReference"
+    ],
+    "synonyms": [
+      "分配编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分配编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "AssignmentReference"
+    ],
+    "synonyms": [
+      "分配"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "利润中心",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "ProfitCenter"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "子编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "FixedAsset"
+    ],
+    "synonyms": [
+      "资产子编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "序列号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "SupplierInvoiceItem"
+    ],
+    "synonyms": [
+      "用于代码块的四字符序列号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总账科目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "GLAccount"
+    ],
+    "synonyms": [
+      "总账科目号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总账科目号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "GLAccount"
+    ],
+    "synonyms": [
+      "总账科目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "报税国家/地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "TaxCountry"
+    ],
+    "synonyms": [
+      "税收国家/地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "SupplierInvoiceItemText"
+    ],
+    "synonyms": [
+      "项目文本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "无现金折扣",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "IsNotCashDiscountLiable"
+    ],
+    "synonyms": [
+      "标识：行项目与现金折扣无关 ?"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识：行项目与现金折扣无关 ?",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "IsNotCashDiscountLiable"
+    ],
+    "synonyms": [
+      "无现金折扣"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "用于代码块的四字符序列号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "SupplierInvoiceItem"
+    ],
+    "synonyms": [
+      "序列号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "确定税率的日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "TaxDeterminationDate"
+    ],
+    "synonyms": [
+      "税收日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税务管辖权",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "TaxJurisdiction"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税收国家/地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "TaxCountry"
+    ],
+    "synonyms": [
+      "报税国家/地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税收日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "TaxDeterminationDate"
+    ],
+    "synonyms": [
+      "确定税率的日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "TaxCode"
+    ],
+    "synonyms": [
+      "销售/购买税代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "DocumentCurrency"
+    ],
+    "synonyms": [
+      "货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "DocumentCurrency"
+    ],
+    "synonyms": [
+      "货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "资产",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "MasterFixedAsset"
+    ],
+    "synonyms": [
+      "主要资产编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "资产子编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "FixedAsset"
+    ],
+    "synonyms": [
+      "子编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "资产起息日",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "AssetValueDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "SupplierInvoiceItemAmount"
+    ],
+    "synonyms": [
+      "以凭证货币计的金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售/购买税代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "TaxCode"
+    ],
+    "synonyms": [
+      "税码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemAsset",
+    "mapped_fields": [
+      "SupplierInvoiceItemText"
+    ],
+    "synonyms": [
+      "文本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "ISO 代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "SuplrInvcItmQtyUnitISOCode"
+    ],
+    "synonyms": [
+      "计量单位的 ISO 代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item for G/L Account Posting",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "WBS 元素",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "WBSElement"
+    ],
+    "synonyms": [
+      "工作分解结构要素（WBS 要素）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "专项资金",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "EarmarkedFundsDocument"
+    ],
+    "synonyms": [
+      "专项资金的凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "专项资金的凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "EarmarkedFundsDocument"
+    ],
+    "synonyms": [
+      "专项资金"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "业务处理",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "BusinessProcess"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "业务范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "BusinessArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "事务类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "FinancialTransactionType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "以凭证货币计的计税基数",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "TaxBaseAmountInTransCrcy"
+    ],
+    "synonyms": [
+      "计税基数"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "以凭证货币计的金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "SupplierInvoiceItemAmount"
+    ],
+    "synonyms": [
+      "金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "会计凭证的凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "SupplierInvoice"
+    ],
+    "synonyms": [
+      "凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "会计年度",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "FiscalYear"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "借/贷标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "DebitCreditCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "公司代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "CompanyCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "SupplierInvoice"
+    ],
+    "synonyms": [
+      "会计凭证的凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "EarmarkedFundsDocumentItem"
+    ],
+    "synonyms": [
+      "资金储备：凭证项"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分配",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "AssignmentReference"
+    ],
+    "synonyms": [
+      "分配编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分配编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "AssignmentReference"
+    ],
+    "synonyms": [
+      "分配"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "利润中心",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "ProfitCenter"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "同意",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "GrantID"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "员工号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "PersonnelNumber"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "基本计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "QuantityUnit"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "基本计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "SuplrInvcItmQtyUnitSAPCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "基金",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "Fund"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "基金中心",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "FundsCenter"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工作分解结构要素（WBS 要素）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "WBSElement"
+    ],
+    "synonyms": [
+      "WBS 元素"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工作项目标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "WorkItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "序列号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "SupplierInvoiceItem"
+    ],
+    "synonyms": [
+      "用于代码块的四字符序列号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总账科目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "GLAccount"
+    ],
+    "synonyms": [
+      "总账科目号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总账科目号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "GLAccount"
+    ],
+    "synonyms": [
+      "总账科目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本中心",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "CostCenter"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本对象",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "CostObject"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本控制范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "ControllingArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "承诺项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "CommitmentItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "报税国家/地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "TaxCountry"
+    ],
+    "synonyms": [
+      "税收国家/地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "Quantity"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "SupplierInvoiceItemText"
+    ],
+    "synonyms": [
+      "项目文本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "无现金折扣",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "IsNotCashDiscountLiable"
+    ],
+    "synonyms": [
+      "标识：行项目与现金折扣无关 ?"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识：行项目与现金折扣无关 ?",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "IsNotCashDiscountLiable"
+    ],
+    "synonyms": [
+      "无现金折扣"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "活动",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "NetworkActivity"
+    ],
+    "synonyms": [
+      "活动编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "活动类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "CostCtrActivityType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "活动编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "NetworkActivity"
+    ],
+    "synonyms": [
+      "活动"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "用于代码块的四字符序列号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "SupplierInvoiceItem"
+    ],
+    "synonyms": [
+      "序列号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "科目分配的网络号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "ProjectNetwork"
+    ],
+    "synonyms": [
+      "网络"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税务管辖权",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "TaxJurisdiction"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税收国家/地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "TaxCountry"
+    ],
+    "synonyms": [
+      "报税国家/地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "TaxCode"
+    ],
+    "synonyms": [
+      "销售/购买税代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "网络",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "ProjectNetwork"
+    ],
+    "synonyms": [
+      "科目分配的网络号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "职能范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "FunctionalArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计税基数",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "TaxBaseAmountInTransCrcy"
+    ],
+    "synonyms": [
+      "以凭证货币计的计税基数"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计量单位的 ISO 代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "SuplrInvcItmQtyUnitISOCode"
+    ],
+    "synonyms": [
+      "ISO 代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "InternalOrder"
+    ],
+    "synonyms": [
+      "订单编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "InternalOrder"
+    ],
+    "synonyms": [
+      "订单"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "DocumentCurrency"
+    ],
+    "synonyms": [
+      "货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "DocumentCurrency"
+    ],
+    "synonyms": [
+      "货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "贸易伙伴的业务范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "PartnerBusinessArea"
+    ],
+    "synonyms": [
+      "贸易合作伙伴 BA"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "贸易合作伙伴 BA",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "PartnerBusinessArea"
+    ],
+    "synonyms": [
+      "贸易伙伴的业务范围"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "资金储备：凭证项",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "EarmarkedFundsDocumentItem"
+    ],
+    "synonyms": [
+      "凭证项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "SupplierInvoiceItemAmount"
+    ],
+    "synonyms": [
+      "以凭证货币计的金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售/购买税代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "TaxCode"
+    ],
+    "synonyms": [
+      "税码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售凭证项",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "SalesOrderItem"
+    ],
+    "synonyms": [
+      "销售凭证项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售凭证项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "SalesOrderItem"
+    ],
+    "synonyms": [
+      "销售凭证项"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售和分销凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "SalesOrder"
+    ],
+    "synonyms": [
+      "销售和分销凭证号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售和分销凭证号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "SalesOrder"
+    ],
+    "synonyms": [
+      "销售和分销凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "SupplierInvoiceItemText"
+    ],
+    "synonyms": [
+      "文本"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "预算期间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemGLAcct",
+    "mapped_fields": [
+      "BudgetPeriod"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "ISO 代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "SuplrInvcItmQtyUnitISOCode"
+    ],
+    "synonyms": [
+      "计量单位的 ISO 代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item for Material Posting",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "以凭证货币计的金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "SupplierInvoiceItemAmount"
+    ],
+    "synonyms": [
+      "金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "会计凭证的凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "SupplierInvoice"
+    ],
+    "synonyms": [
+      "凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "会计年度",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "FiscalYear"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "借/贷标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "DebitCreditCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "公司代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "CompanyCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "SupplierInvoice"
+    ],
+    "synonyms": [
+      "会计凭证的凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发票凭证中的凭证项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "SupplierInvoiceItem"
+    ],
+    "synonyms": [
+      "发票项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发票项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "SupplierInvoiceItem"
+    ],
+    "synonyms": [
+      "发票凭证中的凭证项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "基本计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "QuantityUnit"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "基本计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "SuplrInvcItmQtyUnitSAPCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "Plant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "报税国家/地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "TaxCountry"
+    ],
+    "synonyms": [
+      "税收国家/地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "Quantity"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "无现金折扣",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "IsNotCashDiscountLiable"
+    ],
+    "synonyms": [
+      "标识：行项目与现金折扣无关 ?"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识：行项目与现金折扣无关 ?",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "IsNotCashDiscountLiable"
+    ],
+    "synonyms": [
+      "无现金折扣"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "确定税率的日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "TaxDeterminationDate"
+    ],
+    "synonyms": [
+      "税收日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税务管辖权",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "TaxJurisdiction"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税收国家/地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "TaxCountry"
+    ],
+    "synonyms": [
+      "报税国家/地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税收日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "TaxDeterminationDate"
+    ],
+    "synonyms": [
+      "确定税率的日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "TaxCode"
+    ],
+    "synonyms": [
+      "销售/购买税代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计量单位的 ISO 代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "SuplrInvcItmQtyUnitISOCode"
+    ],
+    "synonyms": [
+      "ISO 代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "评估类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "InventoryValuationType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "评估范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "ValuationArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "DocumentCurrency"
+    ],
+    "synonyms": [
+      "货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "DocumentCurrency"
+    ],
+    "synonyms": [
+      "货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "SupplierInvoiceItemAmount"
+    ],
+    "synonyms": [
+      "以凭证货币计的金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售/购买税代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceItemMaterial",
+    "mapped_fields": [
+      "TaxCode"
+    ],
+    "synonyms": [
+      "税码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Tax Data",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceTax",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "以凭证货币计的税收金额 (+/-)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceTax",
+    "mapped_fields": [
+      "TaxAmount"
+    ],
+    "synonyms": [
+      "增值税金额"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "以凭证货币计的计税基数",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceTax",
+    "mapped_fields": [
+      "TaxBaseAmountInTransCrcy"
+    ],
+    "synonyms": [
+      "计税基数"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "会计年度",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceTax",
+    "mapped_fields": [
+      "FiscalYear"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发票凭证中的凭证项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceTax",
+    "mapped_fields": [
+      "SupplierInvoiceTaxCounter"
+    ],
+    "synonyms": [
+      "发票项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发票凭证的凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceTax",
+    "mapped_fields": [
+      "SupplierInvoice"
+    ],
+    "synonyms": [
+      "发票凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发票凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceTax",
+    "mapped_fields": [
+      "SupplierInvoice"
+    ],
+    "synonyms": [
+      "发票凭证的凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发票项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceTax",
+    "mapped_fields": [
+      "SupplierInvoiceTaxCounter"
+    ],
+    "synonyms": [
+      "发票凭证中的凭证项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "增值税金额",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceTax",
+    "mapped_fields": [
+      "TaxAmount"
+    ],
+    "synonyms": [
+      "以凭证货币计的税收金额 (+/-)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "报税国家/地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceTax",
+    "mapped_fields": [
+      "TaxCountry"
+    ],
+    "synonyms": [
+      "税收国家/地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "确定税率的日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceTax",
+    "mapped_fields": [
+      "TaxDeterminationDate"
+    ],
+    "synonyms": [
+      "税收日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税务代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceTax",
+    "mapped_fields": [
+      "TaxCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税务管辖权",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceTax",
+    "mapped_fields": [
+      "TaxJurisdiction"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税收国家/地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceTax",
+    "mapped_fields": [
+      "TaxCountry"
+    ],
+    "synonyms": [
+      "报税国家/地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税收日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceTax",
+    "mapped_fields": [
+      "TaxDeterminationDate"
+    ],
+    "synonyms": [
+      "确定税率的日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税率有效期起始日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceTax",
+    "mapped_fields": [
+      "TaxRateValidityStartDate"
+    ],
+    "synonyms": [
+      "税率的有效期起始日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税率的有效期起始日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceTax",
+    "mapped_fields": [
+      "TaxRateValidityStartDate"
+    ],
+    "synonyms": [
+      "税率有效期起始日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计税基数",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceTax",
+    "mapped_fields": [
+      "TaxBaseAmountInTransCrcy"
+    ],
+    "synonyms": [
+      "以凭证货币计的计税基数"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceTax",
+    "mapped_fields": [
+      "DocumentCurrency"
+    ],
+    "synonyms": [
+      "货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "A_SupplierInvoiceTax",
+    "mapped_fields": [
+      "DocumentCurrency"
+    ],
+    "synonyms": [
+      "货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Service Operations",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "Cancel",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Service Operations",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "Post",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Service Operations",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SUPPLIERINVOICE_PROCESS_SRV",
+    "mapped_entity_set": "Release",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  }
+]

@@ -1,0 +1,5614 @@
+[
+  {
+    "term": "Account Assignment",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "SD 凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "SalesOrder"
+    ],
+    "synonyms": [
+      "销售和分销凭证号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "WBS 要素",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "WBSElement"
+    ],
+    "synonyms": [
+      "工作分解结构要素（WBS 要素）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "专项资金",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "EarmarkedFundsDocument"
+    ],
+    "synonyms": [
+      "专项资金的凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "专项资金的凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "EarmarkedFundsDocument"
+    ],
+    "synonyms": [
+      "专项资金"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "业务处理",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "BusinessProcess"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "业务范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "BusinessArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "主要资产编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "MasterFixedAsset"
+    ],
+    "synonyms": [
+      "资产"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "内部计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "NetworkActivityInternalID"
+    ],
+    "synonyms": [
+      "计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "决算的参考日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "SettlementReferenceDate"
+    ],
+    "synonyms": [
+      "参考日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "分配(%)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "MultipleAcctAssgmtDistrPercent"
+    ],
+    "synonyms": [
+      "多帐目分配情况下的分配百分比"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "删除标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "IsDeleted"
+    ],
+    "synonyms": [
+      "删除标识：采购凭证帐户分配"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "删除标识：采购凭证帐户分配",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "IsDeleted"
+    ],
+    "synonyms": [
+      "删除标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "利润中心",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "ProfitCenter"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "卸货点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "UnloadingPointName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "参考日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "SettlementReferenceDate"
+    ],
+    "synonyms": [
+      "决算的参考日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "合伙人帐户编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "PartnerAccountNumber"
+    ],
+    "synonyms": [
+      "合作伙伴"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "合作伙伴",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "PartnerAccountNumber"
+    ],
+    "synonyms": [
+      "合伙人帐户编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "同意",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "GrantID"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "回收标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "JointVentureRecoveryCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "基金中心",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "FundsCenter"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "多帐目分配情况下的分配百分比",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "MultipleAcctAssgmtDistrPercent"
+    ],
+    "synonyms": [
+      "分配(%)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "子编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "FixedAsset"
+    ],
+    "synonyms": [
+      "资产子编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工作分解结构要素（WBS 要素）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "WBSElement"
+    ],
+    "synonyms": [
+      "WBS 要素"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工序的任务清单号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "ProjectNetworkInternalID"
+    ],
+    "synonyms": [
+      "订单中工序的工艺路线号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工序的任务清单号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "OrderInternalID"
+    ],
+    "synonyms": [
+      "订单中工序的工艺路线号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总账科目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "GLAccount"
+    ],
+    "synonyms": [
+      "总账科目号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "总账科目号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "GLAccount"
+    ],
+    "synonyms": [
+      "总账科目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本中心",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "CostCenter"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本对象",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "CostObject"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "成本控制范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "ControllingArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "房地产代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "RealEstateObject"
+    ],
+    "synonyms": [
+      "房地产对象的内码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "房地产对象的内码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "RealEstateObject"
+    ],
+    "synonyms": [
+      "房地产代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "承诺项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "CommitmentItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收货方",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "GoodsRecipientName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "Quantity"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "最后发票",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "IsFinallyInvoiced"
+    ],
+    "synonyms": [
+      "最终发票标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "最终发票标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "IsFinallyInvoiced"
+    ],
+    "synonyms": [
+      "最后发票"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "活动类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "CostCtrActivityType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "科目分配的序号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "AccountAssignmentNumber"
+    ],
+    "synonyms": [
+      "科目分配编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "科目分配的网络号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "ProjectNetwork"
+    ],
+    "synonyms": [
+      "网络"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "科目分配编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "AccountAssignmentNumber"
+    ],
+    "synonyms": [
+      "科目分配的序号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税务管辖权",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "TaxJurisdiction"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "TaxCode"
+    ],
+    "synonyms": [
+      "销售/购买税代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "网络",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "ProjectNetwork"
+    ],
+    "synonyms": [
+      "科目分配的网络号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "职能范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "FunctionalArea"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "获利能力细分",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "ProfitabilitySegment"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划行号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "SalesOrderScheduleLine"
+    ],
+    "synonyms": [
+      "计划行编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划行编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "SalesOrderScheduleLine"
+    ],
+    "synonyms": [
+      "计划行号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "NetworkActivityInternalID"
+    ],
+    "synonyms": [
+      "内部计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "OrderID"
+    ],
+    "synonyms": [
+      "订单编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单中工序的工艺路线号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "ProjectNetworkInternalID"
+    ],
+    "synonyms": [
+      "工序的任务清单号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单中工序的工艺路线号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "OrderInternalID"
+    ],
+    "synonyms": [
+      "工序的任务清单号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单净值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "PurgDocNetAmount"
+    ],
+    "synonyms": [
+      "采购订单货币的订单净值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "OrderQuantityUnit"
+    ],
+    "synonyms": [
+      "采购订单计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "OrderID"
+    ],
+    "synonyms": [
+      "订单"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "DocumentCurrency"
+    ],
+    "synonyms": [
+      "货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "DocumentCurrency"
+    ],
+    "synonyms": [
+      "货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "资产",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "MasterFixedAsset"
+    ],
+    "synonyms": [
+      "主要资产编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "资产子编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "FixedAsset"
+    ],
+    "synonyms": [
+      "子编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "SchedulingAgreement"
+    ],
+    "synonyms": [
+      "采购凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证的项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "SchedulingAgreementItem"
+    ],
+    "synonyms": [
+      "项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "SchedulingAgreement"
+    ],
+    "synonyms": [
+      "采购凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购订单计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "OrderQuantityUnit"
+    ],
+    "synonyms": [
+      "订单单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购订单货币的订单净值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "PurgDocNetAmount"
+    ],
+    "synonyms": [
+      "订单净值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售/购买税代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "TaxCode"
+    ],
+    "synonyms": [
+      "税码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售单据项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "SalesOrderItem"
+    ],
+    "synonyms": [
+      "项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售和分销凭证号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "SalesOrder"
+    ],
+    "synonyms": [
+      "SD 凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "SchedulingAgreementItem"
+    ],
+    "synonyms": [
+      "采购凭证的项目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "SalesOrderItem"
+    ],
+    "synonyms": [
+      "销售单据项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "预算期间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtAcCnt",
+    "mapped_fields": [
+      "BudgetPeriod"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Header Notes",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Partner",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Purchase Scheduling Agreement",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "不同开发票方",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "InvoicingParty"
+    ],
+    "synonyms": [
+      "开发票方"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "产品合规性供应商检查状态（所有项目）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "PurgAggrgdProdCmplncSuplrSts"
+    ],
+    "synonyms": [
+      "供应商检查状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款条件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "PaymentTerms"
+    ],
+    "synonyms": [
+      "付款条件代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "付款条件代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "PaymentTerms"
+    ],
+    "synonyms": [
+      "付款条件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "Supplier"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商办公室的负责销售人员",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "SupplierRespSalesPersonName"
+    ],
+    "synonyms": [
+      "销售人员"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商检查状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "PurgAggrgdProdCmplncSuplrSts"
+    ],
+    "synonyms": [
+      "产品合规性供应商检查状态（所有项目）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商电话",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "SupplierPhoneNumber"
+    ],
+    "synonyms": [
+      "供应商电话号码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商电话号码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "SupplierPhoneNumber"
+    ],
+    "synonyms": [
+      "供应商电话"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供货商",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "SupplyingSupplier"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "偏离目的地",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "IncotermsSupChnDvtgLocAddlUUID"
+    ],
+    "synonyms": [
+      "国际贸易条款 - 偏离目的地"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "全额付款天数",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "NetPaymentDays"
+    ],
+    "synonyms": [
+      "全额付款条件期间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "全额付款条件期间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "NetPaymentDays"
+    ],
+    "synonyms": [
+      "全额付款天数"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "公司代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "CompanyCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "凭证日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "PurchasingDocumentOrderDate"
+    ],
+    "synonyms": [
+      "采购凭证日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "CreationDate"
+    ],
+    "synonyms": [
+      "采购凭证的创建日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建者",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "CreatedByUser"
+    ],
+    "synonyms": [
+      "创建采购凭证的人员的用户"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建采购凭证的人员的用户",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "CreatedByUser"
+    ],
+    "synonyms": [
+      "创建者"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "删除标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "PurchasingDocumentDeletionCode"
+    ],
+    "synonyms": [
+      "采购凭证中的删除标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "固定汇率",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "ExchangeRateIsFixed"
+    ],
+    "synonyms": [
+      "固定汇率标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "固定汇率标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "ExchangeRateIsFixed"
+    ],
+    "synonyms": [
+      "固定汇率"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国贸条款位置 1 标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "IncotermsLocation1Identifier"
+    ],
+    "synonyms": [
+      "国际贸易条款位置 1 的标识符"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国贸条款位置 2 标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "IncotermsLocation2Identifier"
+    ],
+    "synonyms": [
+      "国际贸易条款位置 2 的标识符"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "IncotermsClassification"
+    ],
+    "synonyms": [
+      "国际贸易条款（第 1 部分）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款 - 偏离目的地",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "IncotermsSupChnDvtgLocAddlUUID"
+    ],
+    "synonyms": [
+      "偏离目的地"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款(部分2)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "IncotermsTransferLocation"
+    ],
+    "synonyms": [
+      "国际贸易条款（第 2 部分）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款位置 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "IncotermsLocation1"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款位置 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "IncotermsSupChnLoc1AddlUUID"
+    ],
+    "synonyms": [
+      "国际贸易条款位置 1 - 目的地"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款位置 1 - 目的地",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "IncotermsSupChnLoc1AddlUUID"
+    ],
+    "synonyms": [
+      "国际贸易条款位置 1"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款位置 1 的标识符",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "IncotermsLocation1Identifier"
+    ],
+    "synonyms": [
+      "国贸条款位置 1 标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款位置 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "IncotermsLocation2"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款位置 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "IncotermsSupChnLoc2AddlUUID"
+    ],
+    "synonyms": [
+      "国际贸易条款位置 2 - 交货地"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款位置 2 - 交货地",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "IncotermsSupChnLoc2AddlUUID"
+    ],
+    "synonyms": [
+      "国际贸易条款位置 2"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款位置 2 的标识符",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "IncotermsLocation2Identifier"
+    ],
+    "synonyms": [
+      "国贸条款位置 2 标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款版本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "IncotermsVersion"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款（第 1 部分）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "IncotermsClassification"
+    ],
+    "synonyms": [
+      "国际贸易条款"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款（第 2 部分）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "IncotermsTransferLocation"
+    ],
+    "synonyms": [
+      "国际贸易条款(部分2)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "地址编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "SupplierAddressID"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "增值税注册号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "CompanyVATRegistration"
+    ],
+    "synonyms": [
+      "增值税登记号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "增值税登记号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "CompanyVATRegistration"
+    ],
+    "synonyms": [
+      "增值税注册号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "天数 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "CashDiscount1Days"
+    ],
+    "synonyms": [
+      "现金折扣天数 1"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "天数 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "CashDiscount2Days"
+    ],
+    "synonyms": [
+      "现金折扣天数 2"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "审批文档",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "ScheduleAgreementHasReleaseDoc"
+    ],
+    "synonyms": [
+      "计划协议批准凭证标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "开发票方",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "InvoicingParty"
+    ],
+    "synonyms": [
+      "不同开发票方"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "报价",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "SupplierQuotationExternalID"
+    ],
+    "synonyms": [
+      "报价单编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "报价单编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "SupplierQuotationExternalID"
+    ],
+    "synonyms": [
+      "报价"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "报价提交日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "QuotationSubmissionDate"
+    ],
+    "synonyms": [
+      "报价日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "报价日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "QuotationSubmissionDate"
+    ],
+    "synonyms": [
+      "报价提交日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "按分配的标题范围的目标值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "TargetAmount"
+    ],
+    "synonyms": [
+      "目标价值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效截止日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "ValidityEndDate"
+    ],
+    "synonyms": [
+      "有效截至日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效截至日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "ValidityEndDate"
+    ],
+    "synonyms": [
+      "有效截止日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效期开始日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "ValidityStartDate"
+    ],
+    "synonyms": [
+      "有效起始日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "有效起始日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "ValidityStartDate"
+    ],
+    "synonyms": [
+      "有效期开始日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "PurchasingDocumentOrigin"
+    ],
+    "synonyms": [
+      "采购凭证的状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "现金折扣天数 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "CashDiscount1Days"
+    ],
+    "synonyms": [
+      "天数 1"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "现金折扣天数 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "CashDiscount2Days"
+    ],
+    "synonyms": [
+      "天数 2"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "现金折扣百分比 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "CashDiscount1Percent"
+    ],
+    "synonyms": [
+      "现金折扣百分率1"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "现金折扣百分比 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "CashDiscount2Percent"
+    ],
+    "synonyms": [
+      "现金折扣百分比2"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "现金折扣百分比2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "CashDiscount2Percent"
+    ],
+    "synonyms": [
+      "现金折扣百分比 2"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "现金折扣百分率1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "CashDiscount1Percent"
+    ],
+    "synonyms": [
+      "现金折扣百分比 1"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "目标价值",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "TargetAmount"
+    ],
+    "synonyms": [
+      "按分配的标题范围的目标值"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划协议批准凭证标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "ScheduleAgreementHasReleaseDoc"
+    ],
+    "synonyms": [
+      "审批文档"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "语言代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "Language"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "DocumentCurrency"
+    ],
+    "synonyms": [
+      "货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "DocumentCurrency"
+    ],
+    "synonyms": [
+      "货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "SchedulingAgreement"
+    ],
+    "synonyms": [
+      "采购凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证中的删除标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "PurchasingDocumentDeletionCode"
+    ],
+    "synonyms": [
+      "删除标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "PurchasingDocumentOrderDate"
+    ],
+    "synonyms": [
+      "凭证日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证的创建日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "CreationDate"
+    ],
+    "synonyms": [
+      "创建日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证的状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "PurchasingDocumentOrigin"
+    ],
+    "synonyms": [
+      "状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "PurchasingDocumentCategory"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "PurchasingDocumentType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "SchedulingAgreement"
+    ],
+    "synonyms": [
+      "采购凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "PurchasingGroup"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购组织",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "PurchasingOrganization"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售人员",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "SupplierRespSalesPersonName"
+    ],
+    "synonyms": [
+      "供应商办公室的负责销售人员"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售税号国家/地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "VATRegistrationCountry"
+    ],
+    "synonyms": [
+      "销售税标识号的国家/地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售税标识号的国家/地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtHeader",
+    "mapped_fields": [
+      "VATRegistrationCountry"
+    ],
+    "synonyms": [
+      "销售税号国家/地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Account Assignment",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "CQ 控制类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "SchedAgrmtCumulativeQtyControl"
+    ],
+    "synonyms": [
+      "控制类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Delivery Address",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Item",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Item Notes",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "JIT 交货",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "IsRelevantForJITDelivSchedule"
+    ],
+    "synonyms": [
+      "JIT 交货计划"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "JIT 交货计划",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "IsRelevantForJITDelivSchedule"
+    ],
+    "synonyms": [
+      "JIT 交货"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "QM 控制码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "QualityMgmtCtrlKey"
+    ],
+    "synonyms": [
+      "采购中质量管理的控制码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Schedule Line",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "上一次传输",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "ItemLastTransmissionDate"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "下一个 FRC 计划",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "NextFcstDelivSchedSendingDate"
+    ],
+    "synonyms": [
+      "下一个预测交货计划传输"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "下一个 JIT 交货计划传输",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "NextJITDelivSchedSendingDate"
+    ],
+    "synonyms": [
+      "下一个 JIT 计划"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "下一个 JIT 计划",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "NextJITDelivSchedSendingDate"
+    ],
+    "synonyms": [
+      "下一个 JIT 交货计划传输"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "下一个预测交货计划传输",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "NextFcstDelivSchedSendingDate"
+    ],
+    "synonyms": [
+      "下一个 FRC 计划"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交货不足容差",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "UnderdelivTolrtdLmtRatioInPct"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交货地址编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "ReferenceDeliveryAddressID"
+    ],
+    "synonyms": [
+      "地址"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "产品合规性供应商检查状态（项目）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "PurgProdCmplncSupplierStatus"
+    ],
+    "synonyms": [
+      "供应商检查状态"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "产品类型组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "ProductType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "价格单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "NetPriceQuantity"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "价格打印输出",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "PriceIsToBePrinted"
+    ],
+    "synonyms": [
+      "打印价格"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "估算价格",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "PurgDocEstimatedPrice"
+    ],
+    "synonyms": [
+      "标识：估算价格"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商使用的物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "SupplierMaterialNumber"
+    ],
+    "synonyms": [
+      "供应商物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商检查状态",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "PurgProdCmplncSupplierStatus"
+    ],
+    "synonyms": [
+      "产品合规性供应商检查状态（项目）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "SupplierMaterialNumber"
+    ],
+    "synonyms": [
+      "供应商使用的物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商需要确认订单",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "IsOrderAcknRqd"
+    ],
+    "synonyms": [
+      "需要确认"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "信息记录更新",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "IsInfoRecordUpdated"
+    ],
+    "synonyms": [
+      "标识: 更新信息记录"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "偏离目的地",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "IncotermsSupChnDvtgLocAddlUUID"
+    ],
+    "synonyms": [
+      "国际贸易条款 - 偏离目的地"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "允许的未限制的过量交货",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "UnlimitedOverdeliveryIsAllowed"
+    ],
+    "synonyms": [
+      "无限制过量交货"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "允许的累计数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "SchedAgrmtAgreedCumQty"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "公司代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "CompanyCode"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "关于物料计划的固定/平衡区域的绑定",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "FirmTradeOffZoneBindMRP"
+    ],
+    "synonyms": [
+      "捆绑在MRP"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "创建参数文件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "SchedgAgrmtRelCreationProfile"
+    ],
+    "synonyms": [
+      "批准创建参数文件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "删除标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "PurchasingDocumentDeletionCode"
+    ],
+    "synonyms": [
+      "采购凭证中的删除标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "原产地验收",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "IsToBeAcceptedAtOrigin"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发票收据",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "InvoiceIsExpected"
+    ],
+    "synonyms": [
+      "发票收据标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "发票收据标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "InvoiceIsExpected"
+    ],
+    "synonyms": [
+      "发票收据"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "同意累积数量的统驭日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "SchedAgrmtCumQtyReconcileDate"
+    ],
+    "synonyms": [
+      "统驭日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国贸条款位置 1 标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "IncotermsLocation1Identifier"
+    ],
+    "synonyms": [
+      "国际贸易条款位置 1 的标识符"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国贸条款位置 2 标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "IncotermsLocation2Identifier"
+    ],
+    "synonyms": [
+      "国际贸易条款位置 2 的标识符"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "IncotermsClassification"
+    ],
+    "synonyms": [
+      "国际贸易条款（第 1 部分）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款 - 偏离目的地",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "IncotermsSupChnDvtgLocAddlUUID"
+    ],
+    "synonyms": [
+      "偏离目的地"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款(部分2)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "IncotermsTransferLocation"
+    ],
+    "synonyms": [
+      "国际贸易条款（第 2 部分）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款位置 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "IncotermsLocation1"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款位置 1",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "IncotermsSupChnLoc1AddlUUID"
+    ],
+    "synonyms": [
+      "国际贸易条款位置 1 - 目的地"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款位置 1 - 目的地",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "IncotermsSupChnLoc1AddlUUID"
+    ],
+    "synonyms": [
+      "国际贸易条款位置 1"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款位置 1 的标识符",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "IncotermsLocation1Identifier"
+    ],
+    "synonyms": [
+      "国贸条款位置 1 标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款位置 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "IncotermsLocation2"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款位置 2",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "IncotermsSupChnLoc2AddlUUID"
+    ],
+    "synonyms": [
+      "国际贸易条款位置 2 - 交货地"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款位置 2 - 交货地",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "IncotermsSupChnLoc2AddlUUID"
+    ],
+    "synonyms": [
+      "国际贸易条款位置 2"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款位置 2 的标识符",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "IncotermsLocation2Identifier"
+    ],
+    "synonyms": [
+      "国贸条款位置 2 标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款（第 1 部分）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "IncotermsClassification"
+    ],
+    "synonyms": [
+      "国际贸易条款"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国际贸易条款（第 2 部分）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "IncotermsTransferLocation"
+    ],
+    "synonyms": [
+      "国际贸易条款(部分2)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "在 SA 释放中无累积量的传输",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "CumulativeQuantityIsNotSent"
+    ],
+    "synonyms": [
+      "无 CQ 传输"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "地址",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "ReferenceDeliveryAddressID"
+    ],
+    "synonyms": [
+      "交货地址编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "基于收货的发票验证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "InvoiceIsGoodsReceiptBased"
+    ],
+    "synonyms": [
+      "标识：基于收货的发票验证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "存储地点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "StorageLocation"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "客户",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "Customer"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "Plant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "平衡区域",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "SchedLineSemiFirmOrderInDays"
+    ],
+    "synonyms": [
+      "平衡区域 (向前为物料采购)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "平衡区域 (向前为物料采购)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "SchedLineSemiFirmOrderInDays"
+    ],
+    "synonyms": [
+      "平衡区域"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "库存类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "StockType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "打印价格",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "PriceIsToBePrinted"
+    ],
+    "synonyms": [
+      "价格打印输出"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "批准创建参数文件",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "SchedgAgrmtRelCreationProfile"
+    ],
+    "synonyms": [
+      "创建参数文件"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "报税国家/地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "TaxCountry"
+    ],
+    "synonyms": [
+      "税收国家/地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "捆绑在MRP",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "FirmTradeOffZoneBindMRP"
+    ],
+    "synonyms": [
+      "关于物料计划的固定/平衡区域的绑定"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "控制类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "SchedAgrmtCumulativeQtyControl"
+    ],
+    "synonyms": [
+      "CQ 控制类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收货",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "GoodsReceiptIsExpected"
+    ],
+    "synonyms": [
+      "收货标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收货未评估",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "GoodsReceiptIsNonValuated"
+    ],
+    "synonyms": [
+      "收货，未评估"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收货标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "GoodsReceiptIsExpected"
+    ],
+    "synonyms": [
+      "收货"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收货，未评估",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "GoodsReceiptIsNonValuated"
+    ],
+    "synonyms": [
+      "收货未评估"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "数量转换",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "OrdPriceUnitToOrderUnitDnmntr"
+    ],
+    "synonyms": [
+      "订单价格单位转换为订单单位的分母"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "数量转换",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "OrderPriceUnitToOrderUnitNmrtr"
+    ],
+    "synonyms": [
+      "订单价格单位转换为订单单位的分子"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "无 CQ 传输",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "CumulativeQuantityIsNotSent"
+    ],
+    "synonyms": [
+      "在 SA 释放中无累积量的传输"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "无限制过量交货",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "UnlimitedOverdeliveryIsAllowed"
+    ],
+    "synonyms": [
+      "允许的未限制的过量交货"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "最小剩余货架寿命",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "MinRemainingShelfLife"
+    ],
+    "synonyms": [
+      "最短剩余货架寿命"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "最短剩余货架寿命",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "MinRemainingShelfLife"
+    ],
+    "synonyms": [
+      "最小剩余货架寿命"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识: 更新信息记录",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "IsInfoRecordUpdated"
+    ],
+    "synonyms": [
+      "信息记录更新"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识: 注册操作",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "IsInfoAtRegistration"
+    ],
+    "synonyms": [
+      "注册信息"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识：估算价格",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "PurgDocEstimatedPrice"
+    ],
+    "synonyms": [
+      "估算价格"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "标识：基于收货的发票验证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "InvoiceIsGoodsReceiptBased"
+    ],
+    "synonyms": [
+      "基于收货的发票验证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "注册信息",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "IsInfoAtRegistration"
+    ],
+    "synonyms": [
+      "标识: 注册操作"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "ManufacturerMaterial"
+    ],
+    "synonyms": [
+      "物料号码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料号码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "ManufacturerMaterial"
+    ],
+    "synonyms": [
+      "物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "MaterialType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料组",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "MaterialGroup"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "目标数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "TargetQuantity"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "短文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "PurchasingDocumentItemText"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "确定的域",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "ScheduleLineFirmOrderInDays"
+    ],
+    "synonyms": [
+      "确定的域(生产前)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "确定的域(生产前)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "ScheduleLineFirmOrderInDays"
+    ],
+    "synonyms": [
+      "确定的域"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "确定税率的日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "TaxDeterminationDate"
+    ],
+    "synonyms": [
+      "税收日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "科目分配类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "AccountAssignmentCategory"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税收国家/地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "TaxCountry"
+    ],
+    "synonyms": [
+      "报税国家/地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税收日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "TaxDeterminationDate"
+    ],
+    "synonyms": [
+      "确定税率的日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "税码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "TaxCode"
+    ],
+    "synonyms": [
+      "销售/购买税代码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "第一次提醒/催询",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "NoDaysReminder1"
+    ],
+    "synonyms": [
+      "第一次提醒/催询的天数"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "第一次提醒/催询的天数",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "NoDaysReminder1"
+    ],
+    "synonyms": [
+      "第一次提醒/催询"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "第三次提醒/催询",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "NoDaysReminder3"
+    ],
+    "synonyms": [
+      "第三次提醒/催询的天数"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "第三次提醒/催询的天数",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "NoDaysReminder3"
+    ],
+    "synonyms": [
+      "第三次提醒/催询"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "第二次提醒/催询",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "NoDaysReminder2"
+    ],
+    "synonyms": [
+      "第二次提醒/催询的天数"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "第二次提醒/催询的天数",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "NoDaysReminder2"
+    ],
+    "synonyms": [
+      "第二次提醒/催询"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "统驭日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "SchedAgrmtCumQtyReconcileDate"
+    ],
+    "synonyms": [
+      "同意累积数量的统驭日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "装货/卸货点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "LoadingPointForDelivery"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "装运指令",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "ShippingInstruction"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单价格单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "OrderPriceUnit"
+    ],
+    "synonyms": [
+      "订单价格单位(采购)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单价格单位(采购)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "OrderPriceUnit"
+    ],
+    "synonyms": [
+      "订单价格单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单价格单位转换为订单单位的分子",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "OrderPriceUnitToOrderUnitNmrtr"
+    ],
+    "synonyms": [
+      "数量转换"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单价格单位转换为订单单位的分母",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "OrdPriceUnitToOrderUnitDnmntr"
+    ],
+    "synonyms": [
+      "数量转换"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单净价",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "NetPriceAmount"
+    ],
+    "synonyms": [
+      "采购凭证中的净价（以凭证货币计）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "OrderQuantityUnit"
+    ],
+    "synonyms": [
+      "采购订单计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单回执",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "PurgDocOrderAcknNumber"
+    ],
+    "synonyms": [
+      "订单回执编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单回执编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "PurgDocOrderAcknNumber"
+    ],
+    "synonyms": [
+      "订单回执"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "证明类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "QualityCertificateType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "评估收货结算",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "EvaldRcptSettlmtIsAllowed"
+    ],
+    "synonyms": [
+      "评估收货结算 (ERS)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "评估收货结算 (ERS)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "EvaldRcptSettlmtIsAllowed"
+    ],
+    "synonyms": [
+      "评估收货结算"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "请求的项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "PurchaseRequisitionItem"
+    ],
+    "synonyms": [
+      "采购申请的项目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "DocumentCurrency"
+    ],
+    "synonyms": [
+      "货币码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "货币码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "DocumentCurrency"
+    ],
+    "synonyms": [
+      "货币"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "过量交货容差",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "OverdelivTolrtdLmtRatioInPct"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购中质量管理的控制码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "QualityMgmtCtrlKey"
+    ],
+    "synonyms": [
+      "QM 控制码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购信息记录",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "PurchasingInfoRecord"
+    ],
+    "synonyms": [
+      "采购信息记录号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购信息记录号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "PurchasingInfoRecord"
+    ],
+    "synonyms": [
+      "采购信息记录"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "SchedulingAgreement"
+    ],
+    "synonyms": [
+      "采购凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证中的净价（以凭证货币计）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "NetPriceAmount"
+    ],
+    "synonyms": [
+      "订单净价"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证中的删除标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "PurchasingDocumentDeletionCode"
+    ],
+    "synonyms": [
+      "删除标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证中的项目类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "PurchasingDocumentItemCategory"
+    ],
+    "synonyms": [
+      "项目类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证的项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "SchedulingAgreementItem"
+    ],
+    "synonyms": [
+      "项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "PurchasingDocumentCategory"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "SchedulingAgreement"
+    ],
+    "synonyms": [
+      "采购凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "PurchaseRequisition"
+    ],
+    "synonyms": [
+      "采购申请编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请的项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "PurchaseRequisitionItem"
+    ],
+    "synonyms": [
+      "请求的项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "PurchaseRequisition"
+    ],
+    "synonyms": [
+      "采购申请"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购订单计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "OrderQuantityUnit"
+    ],
+    "synonyms": [
+      "订单单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "销售/购买税代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "TaxCode"
+    ],
+    "synonyms": [
+      "税码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "需求跟踪编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "RequirementTracking"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "需要确认",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "IsOrderAcknRqd"
+    ],
+    "synonyms": [
+      "供应商需要确认订单"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "SchedulingAgreementItem"
+    ],
+    "synonyms": [
+      "采购凭证的项目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtItem",
+    "mapped_fields": [
+      "PurchasingDocumentItemCategory"
+    ],
+    "synonyms": [
+      "采购凭证中的项目类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Partner",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtPartner",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "供应商",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtPartner",
+    "mapped_fields": [
+      "Supplier"
+    ],
+    "synonyms": [
+      "供应商科目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商子范围",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtPartner",
+    "mapped_fields": [
+      "SupplierSubrange"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "供应商科目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtPartner",
+    "mapped_fields": [
+      "Supplier"
+    ],
+    "synonyms": [
+      "供应商"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "合作伙伴职能",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtPartner",
+    "mapped_fields": [
+      "PartnerFunction"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "合作伙伴计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtPartner",
+    "mapped_fields": [
+      "PartnerCounter"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtPartner",
+    "mapped_fields": [
+      "Plant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "缺省合作伙伴",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtPartner",
+    "mapped_fields": [
+      "DefaultPartner"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtPartner",
+    "mapped_fields": [
+      "SchedulingAgreement"
+    ],
+    "synonyms": [
+      "采购凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证的项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtPartner",
+    "mapped_fields": [
+      "SchedulingAgreementItem"
+    ],
+    "synonyms": [
+      "项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtPartner",
+    "mapped_fields": [
+      "SchedulingAgreement"
+    ],
+    "synonyms": [
+      "采购凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购组织",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtPartner",
+    "mapped_fields": [
+      "PurchasingOrganization"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtPartner",
+    "mapped_fields": [
+      "SchedulingAgreementItem"
+    ],
+    "synonyms": [
+      "采购凭证的项目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Schedule Line",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Subcontracting Components",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "上期数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "PrevDelivQtyOfScheduleLine"
+    ],
+    "synonyms": [
+      "上期数量（交货计划行）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "上期数量（交货计划行）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "PrevDelivQtyOfScheduleLine"
+    ],
+    "synonyms": [
+      "上期数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交货日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "ScheduleLineDeliveryDate"
+    ],
+    "synonyms": [
+      "项目交货日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交货日期时间点",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "ScheduleLineDeliveryTime"
+    ],
+    "synonyms": [
+      "时间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交货日期的相关统计",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "SchedLineStscDeliveryDate"
+    ],
+    "synonyms": [
+      "相关交货日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交货日期种类",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "DelivDateCategory"
+    ],
+    "synonyms": [
+      "交货日的类别"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交货日的类别",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "DelivDateCategory"
+    ],
+    "synonyms": [
+      "交货日期种类"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "交货计划行计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "ScheduleLine"
+    ],
+    "synonyms": [
+      "计划行"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "催询单数",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "NoOfRemindersOfScheduleLine"
+    ],
+    "synonyms": [
+      "计划行的催询单数"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "固定标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "ScheduleLineIsFixed"
+    ],
+    "synonyms": [
+      "计划行是“固定的”"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "已交货数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "RoughGoodsReceiptQty"
+    ],
+    "synonyms": [
+      "收货数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "建立标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "SourceOfCreation"
+    ],
+    "synonyms": [
+      "建立标识 (采购申请/计划行)"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "建立标识 (采购申请/计划行)",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "SourceOfCreation"
+    ],
+    "synonyms": [
+      "建立标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "收货数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "RoughGoodsReceiptQty"
+    ],
+    "synonyms": [
+      "已交货数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "ScheduleLineDeliveryTime"
+    ],
+    "synonyms": [
+      "交货日期时间点"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "相关交货日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "SchedLineStscDeliveryDate"
+    ],
+    "synonyms": [
+      "交货日期的相关统计"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "ScheduleLineOrderQuantity"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划行",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "ScheduleLine"
+    ],
+    "synonyms": [
+      "交货计划行计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划行是“固定的”",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "ScheduleLineIsFixed"
+    ],
+    "synonyms": [
+      "固定标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划行的催询单数",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "NoOfRemindersOfScheduleLine"
+    ],
+    "synonyms": [
+      "催询单数"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "订单单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "OrderQuantityUnit"
+    ],
+    "synonyms": [
+      "采购订单计量单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "请求的项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "PurchaseRequisitionItem"
+    ],
+    "synonyms": [
+      "采购申请的项目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "SchedulingAgreement"
+    ],
+    "synonyms": [
+      "采购凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证的项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "SchedulingAgreementItem"
+    ],
+    "synonyms": [
+      "项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "SchedulingAgreement"
+    ],
+    "synonyms": [
+      "采购凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "PurchaseRequisition"
+    ],
+    "synonyms": [
+      "采购申请编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请的项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "PurchaseRequisitionItem"
+    ],
+    "synonyms": [
+      "请求的项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "PurchaseRequisition"
+    ],
+    "synonyms": [
+      "采购申请"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购订单计量单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "OrderQuantityUnit"
+    ],
+    "synonyms": [
+      "订单单位"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "SchedulingAgreementItem"
+    ],
+    "synonyms": [
+      "采购凭证的项目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目交货日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchAgrmtSchLine",
+    "mapped_fields": [
+      "ScheduleLineDeliveryDate"
+    ],
+    "synonyms": [
+      "交货日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Delivery Address",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "交货地址类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "PurchasingDeliveryAddressType"
+    ],
+    "synonyms": [
+      "采购交货地址类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "传真",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "FaxNumber"
+    ],
+    "synonyms": [
+      "传真号：区号和号码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "传真",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "AddressFaxNumber"
+    ],
+    "synonyms": [
+      "传真号：区号和号码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "传真号：区号和号码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "FaxNumber"
+    ],
+    "synonyms": [
+      "传真"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "传真号：区号和号码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "AddressFaxNumber"
+    ],
+    "synonyms": [
+      "传真"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "全名",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "FullName"
+    ],
+    "synonyms": [
+      "完整的人员名称"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "国家/地区代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "Country"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "地区",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "Region"
+    ],
+    "synonyms": [
+      "地区（省/自治区/直辖市、市、县）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "地区（省/自治区/直辖市、市、县）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "Region"
+    ],
+    "synonyms": [
+      "地区"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "地址",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "DeliveryAddressID"
+    ],
+    "synonyms": [
+      "采购凭证项目中的人工地址号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "地址类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "AddressType"
+    ],
+    "synonyms": [
+      "采购申请地址类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "城市",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "CityName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "城市邮政编码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "PostalCode"
+    ],
+    "synonyms": [
+      "邮政编码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "完整的人员名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "FullName"
+    ],
+    "synonyms": [
+      "全名"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "Plant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "电子邮件地址",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "EmailAddress"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "电话",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "MobileNumber"
+    ],
+    "synonyms": [
+      "电话号码：区号和号码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "电话",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "PhoneNumber"
+    ],
+    "synonyms": [
+      "电话号码：区号和号码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "电话号码：区号和号码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "MobileNumber"
+    ],
+    "synonyms": [
+      "电话"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "电话号码：区号和号码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "PhoneNumber"
+    ],
+    "synonyms": [
+      "电话"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "街道",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "StreetName"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "语言代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "CorrespondenceLanguage"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "邮政编码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "PostalCode"
+    ],
+    "synonyms": [
+      "城市邮政编码"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购交货地址类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "PurchasingDeliveryAddressType"
+    ],
+    "synonyms": [
+      "交货地址类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "SchedulingAgreement"
+    ],
+    "synonyms": [
+      "采购凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证的项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "SchedulingAgreementItem"
+    ],
+    "synonyms": [
+      "项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "SchedulingAgreement"
+    ],
+    "synonyms": [
+      "采购凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证项目中的人工地址号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "DeliveryAddressID"
+    ],
+    "synonyms": [
+      "地址"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购申请地址类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "AddressType"
+    ],
+    "synonyms": [
+      "地址类型"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "门牌号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "HouseNumber"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtDeliveryAddress",
+    "mapped_fields": [
+      "SchedulingAgreementItem"
+    ],
+    "synonyms": [
+      "采购凭证的项目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Header Notes",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtHdrNotes",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtHdrNotes",
+    "mapped_fields": [
+      "ArchObjectNumber"
+    ],
+    "synonyms": [
+      "文本名"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "固定",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtHdrNotes",
+    "mapped_fields": [
+      "FixedIndicator"
+    ],
+    "synonyms": [
+      "文本的固定标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "文本: 应用程序对象",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtHdrNotes",
+    "mapped_fields": [
+      "TechnicalObjectType"
+    ],
+    "synonyms": [
+      "文本对象"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "文本名",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtHdrNotes",
+    "mapped_fields": [
+      "ArchObjectNumber"
+    ],
+    "synonyms": [
+      "名称"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "文本对象",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtHdrNotes",
+    "mapped_fields": [
+      "TechnicalObjectType"
+    ],
+    "synonyms": [
+      "文本: 应用程序对象"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "文本标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtHdrNotes",
+    "mapped_fields": [
+      "DocumentText"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "文本的固定标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtHdrNotes",
+    "mapped_fields": [
+      "FixedIndicator"
+    ],
+    "synonyms": [
+      "固定"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "语言代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtHdrNotes",
+    "mapped_fields": [
+      "Language"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtHdrNotes",
+    "mapped_fields": [
+      "SchedulingAgreement"
+    ],
+    "synonyms": [
+      "采购凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtHdrNotes",
+    "mapped_fields": [
+      "SchedulingAgreement"
+    ],
+    "synonyms": [
+      "采购凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "长文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtHdrNotes",
+    "mapped_fields": [
+      "NoteDescription"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Item Notes",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtItmNotes",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "名称",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtItmNotes",
+    "mapped_fields": [
+      "ArchObjectNumber"
+    ],
+    "synonyms": [
+      "文本名"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "固定",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtItmNotes",
+    "mapped_fields": [
+      "FixedIndicator"
+    ],
+    "synonyms": [
+      "文本的固定标识"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "文本: 应用程序对象",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtItmNotes",
+    "mapped_fields": [
+      "TechnicalObjectType"
+    ],
+    "synonyms": [
+      "文本对象"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "文本名",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtItmNotes",
+    "mapped_fields": [
+      "ArchObjectNumber"
+    ],
+    "synonyms": [
+      "名称"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "文本对象",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtItmNotes",
+    "mapped_fields": [
+      "TechnicalObjectType"
+    ],
+    "synonyms": [
+      "文本: 应用程序对象"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "文本标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtItmNotes",
+    "mapped_fields": [
+      "DocumentText"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "文本的固定标识",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtItmNotes",
+    "mapped_fields": [
+      "FixedIndicator"
+    ],
+    "synonyms": [
+      "固定"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "语言代码",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtItmNotes",
+    "mapped_fields": [
+      "Language"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtItmNotes",
+    "mapped_fields": [
+      "SchedulingAgreement"
+    ],
+    "synonyms": [
+      "采购凭证编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证的项目编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtItmNotes",
+    "mapped_fields": [
+      "SchedulingAgreementItem"
+    ],
+    "synonyms": [
+      "项目"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtItmNotes",
+    "mapped_fields": [
+      "SchedulingAgreement"
+    ],
+    "synonyms": [
+      "采购凭证"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "长文本",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtItmNotes",
+    "mapped_fields": [
+      "NoteDescription"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtItmNotes",
+    "mapped_fields": [
+      "SchedulingAgreementItem"
+    ],
+    "synonyms": [
+      "采购凭证的项目编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Subcontracting Components",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtSubcontrgComp",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "交货计划行计数器",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtSubcontrgComp",
+    "mapped_fields": [
+      "ScheduleLine"
+    ],
+    "synonyms": [
+      "计划行"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "工厂",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtSubcontrgComp",
+    "mapped_fields": [
+      "Plant"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "录入单位",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtSubcontrgComp",
+    "mapped_fields": [
+      "EntryUnit"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "数量",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtSubcontrgComp",
+    "mapped_fields": [
+      "QuantityInEntryUnit"
+    ],
+    "synonyms": [
+      "数量（录入单位）"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "数量（录入单位）",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtSubcontrgComp",
+    "mapped_fields": [
+      "QuantityInEntryUnit"
+    ],
+    "synonyms": [
+      "数量"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtSubcontrgComp",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料组件需求日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtSubcontrgComp",
+    "mapped_fields": [
+      "RequirementDate"
+    ],
+    "synonyms": [
+      "需求日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料组件需求时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtSubcontrgComp",
+    "mapped_fields": [
+      "RequirementTime"
+    ],
+    "synonyms": [
+      "需求时间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "物料编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtSubcontrgComp",
+    "mapped_fields": [
+      "Material"
+    ],
+    "synonyms": [
+      "物料"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "计划行",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtSubcontrgComp",
+    "mapped_fields": [
+      "ScheduleLine"
+    ],
+    "synonyms": [
+      "交货计划行计数器"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtSubcontrgComp",
+    "mapped_fields": [
+      "SchedulingAgreement"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "采购凭证项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtSubcontrgComp",
+    "mapped_fields": [
+      "SchedulingAgreementItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "需求日期",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtSubcontrgComp",
+    "mapped_fields": [
+      "RequirementDate"
+    ],
+    "synonyms": [
+      "物料组件需求日期"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "需求时间",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtSubcontrgComp",
+    "mapped_fields": [
+      "RequirementTime"
+    ],
+    "synonyms": [
+      "物料组件需求时间"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "预留",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtSubcontrgComp",
+    "mapped_fields": [
+      "Reservation"
+    ],
+    "synonyms": [
+      "预留/相关需求的编号"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "预留/相关需求的编号",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtSubcontrgComp",
+    "mapped_fields": [
+      "Reservation"
+    ],
+    "synonyms": [
+      "预留"
+    ],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "预留记录类型",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtSubcontrgComp",
+    "mapped_fields": [
+      "RecordType"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "预留项目",
+    "intent_type": "field_alias",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "A_SchedgAgrmtSubcontrgComp",
+    "mapped_fields": [
+      "ReservationItem"
+    ],
+    "synonyms": [],
+    "confidence": 0.8,
+    "source": "metadata_field_alias"
+  },
+  {
+    "term": "Service Operations",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "HeaderRelease",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Service Operations",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "ItemRelease",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  },
+  {
+    "term": "Service Operations",
+    "intent_type": "documentation_tag",
+    "mapped_service": "API_SCHED_AGRMT_PROCESS_SRV",
+    "mapped_entity_set": "WithdrawFromApproval",
+    "mapped_fields": [],
+    "synonyms": [],
+    "confidence": 0.4,
+    "source": "openapi_json"
+  }
+]

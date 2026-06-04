@@ -1,0 +1,61 @@
+[
+  {
+    "service_name": "API_PRODUCTGROUP_SRV",
+    "entity_set": "A_ProductGroup",
+    "entity_type": "A_ProductGroupType",
+    "key_fields": [
+      "MaterialGroup"
+    ],
+    "default_select_fields": [
+      "MaterialGroup",
+      "AuthorizationGroup"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_Text"
+    ],
+    "description": "Get entities from A_ProductGroup",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCTGROUP_SRV",
+    "entity_set": "A_ProductGroupText",
+    "entity_type": "A_ProductGroupTextType",
+    "key_fields": [
+      "Language",
+      "MaterialGroup"
+    ],
+    "default_select_fields": [
+      "MaterialGroup",
+      "Language",
+      "MaterialGroupName",
+      "MaterialGroupText"
+    ],
+    "supports_filter": true,
+    "supports_orderby": true,
+    "supports_top": true,
+    "navigations": [
+      "to_MaterialGroup"
+    ],
+    "description": "Get entities from A_ProductGroupText",
+    "supported_methods": [
+      "GET"
+    ],
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  }
+]

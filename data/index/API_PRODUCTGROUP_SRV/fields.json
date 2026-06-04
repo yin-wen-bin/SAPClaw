@@ -1,0 +1,179 @@
+[
+  {
+    "service_name": "API_PRODUCTGROUP_SRV",
+    "entity_set": "A_ProductGroup",
+    "field_name": "AuthorizationGroup",
+    "label": "权限组",
+    "business_aliases": [
+      "权限组"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "权限组",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PRODUCTGROUP_SRV",
+    "entity_set": "A_ProductGroup",
+    "field_name": "MaterialGroup",
+    "label": "产品组",
+    "business_aliases": [
+      "产品组"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "产品组",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PRODUCTGROUP_SRV",
+    "entity_set": "A_ProductGroupText",
+    "field_name": "Language",
+    "label": "语言代码",
+    "business_aliases": [
+      "语言代码"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "语言代码",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PRODUCTGROUP_SRV",
+    "entity_set": "A_ProductGroupText",
+    "field_name": "MaterialGroup",
+    "label": "产品组",
+    "business_aliases": [
+      "产品组"
+    ],
+    "data_type": "Edm.String",
+    "nullable": false,
+    "is_key": true,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "产品组",
+    "source_documents": [
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": false
+  },
+  {
+    "service_name": "API_PRODUCTGROUP_SRV",
+    "entity_set": "A_ProductGroupText",
+    "field_name": "MaterialGroupName",
+    "label": "产品组描述",
+    "business_aliases": [
+      "产品组描述"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "产品组描述",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  },
+  {
+    "service_name": "API_PRODUCTGROUP_SRV",
+    "entity_set": "A_ProductGroupText",
+    "field_name": "MaterialGroupText",
+    "label": "物料组描述 2",
+    "business_aliases": [
+      "物料组描述 2",
+      "物料组描述"
+    ],
+    "data_type": "Edm.String",
+    "nullable": true,
+    "is_key": false,
+    "selectable": true,
+    "filterable": true,
+    "sortable": true,
+    "allowed_operators": [
+      "eq",
+      "ne",
+      "ge",
+      "gt",
+      "le",
+      "lt"
+    ],
+    "description": "物料组描述",
+    "source_documents": [
+      "openapi_json",
+      "sap_metadata"
+    ],
+    "runtime_available": true,
+    "documentation_available": true
+  }
+]
