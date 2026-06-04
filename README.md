@@ -1,6 +1,6 @@
 # SAPClaw
 
-SAPClaw 是一个本地优先的 SAP OData 自然语言查询 Agent。它使用 LLM 将用户的业务问题路由到合适的 SAP API，生成可执行的 OData 查询计划，用本地索引的 SAP metadata 做 schema 校验，执行只读 SAP 请求，并以更贴近业务语义的形式展示结果。
+SAPClaw 是一个通过SAP OData用自然语言操作SAP的Agent（目标是在SAP中进行增删改查，第一版只实现“查”）。它使用 LLM 将用户的业务问题路由到合适的 SAP API，生成可执行的 OData 查询计划，用本地索引的 SAP metadata 做 schema 校验，执行只读 SAP 请求，并以更贴近业务语义的形式展示结果。
 
 ## 架构
 
