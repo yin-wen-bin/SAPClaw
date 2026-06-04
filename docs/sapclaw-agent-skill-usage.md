@@ -93,7 +93,8 @@ If your agent supports workspace skills, point it to the workspace `skills/` dir
 ## Security Rules
 
 - Do not read or expose `env/.env`.
-- Do not copy `data/index/`, raw SAP metadata, or test case assets into prompts.
+- Do not copy `env/.env`, raw OpenAPI JSON, raw SAP metadata, or test case assets into prompts.
+- The committed `data/index/` files are runtime grounding assets; external agents should receive compact catalog/schema context through SAPClaw, not raw index dumps.
 - Do not expose raw SAP OData URLs to end users unless they ask for debugging detail.
 - Keep SAPClaw on `127.0.0.1` for local development.
 - For any shared deployment, require `SAPCLAW_API_KEYS` and place SAPClaw behind HTTPS plus gateway authentication.

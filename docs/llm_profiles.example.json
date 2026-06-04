@@ -35,8 +35,8 @@
       "id": "kimi-default",
       "label": "KIMI",
       "provider": "kimi",
-      "model_env": "KIMI_MODEL",
-      "base_url_env": "KIMI_BASE_URL",
+      "model": "kimi-for-coding",
+      "base_url": "https://api.kimi.com/coding/v1",
       "api_key_env": "KIMI_API_KEY",
       "protocol": "openai_chat",
       "api_path": "/chat/completions"

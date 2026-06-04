@@ -15,9 +15,19 @@ SAPClaw 是一个本地优先的 SAP OData 自然语言查询 Agent。它使用 
 - `src/`：后端应用和 Agent 工具。
 - `frontend/`：前端源代码。
 - `data/api_skills/`：API 专属规划指导。
-- `docs/`：可公开的运行文档。
+- `docs/`：项目说明文档。
 - `skills/`：可选的 SAPClaw Agent skill 集成。
 - `tests/`：不包含 SAP 凭据的单元测试和集成测试。
+
+## 本地环境最低要求
+
+使用当前项目的标准本地运行方式前，本机必须已经安装：
+
+- Python `>= 3.11`，并且 `python`、`pip` 可以在命令行中直接调用。
+- Node.js 和 npm。前端使用 Vite，建议使用 Node.js `18`、`20` 或 `22+`。
+- 可访问本地地址 `http://127.0.0.1:8000` 的浏览器。
+
+`start_agent_ui.bat` 会调用 Python、Node 和 npm，但不会安装这些软件。
 
 ## 安装
 
@@ -70,7 +80,25 @@ python -m sap_odata_agent.tools.build_dual_source_index `
 - 该工具当前按单个 API 执行，不会自动扫描所有 `data/index/*/raw/*.json` 批量重建。
 - 该工具不是纯离线构建器；它需要能够访问 SAP 系统以获取 `$metadata`。
 
-## 启动后端
+## 启动本地 UI
+
+推荐在 Windows 本地开发时使用仓库根目录下的一键启动脚本：
+
+```powershell
+.\start_agent_ui.bat
+```
+
+该脚本会执行以下步骤：
+
+- 如果 `frontend/node_modules/` 不存在，自动运行 `npm install --prefix frontend`。
+- 运行 `npm run build --prefix frontend` 构建前端。
+- 设置本次进程的 `PYTHONPATH` 为 `<SAPClaw>\src`。
+- 启动 FastAPI 后端：`http://127.0.0.1:8000`。
+- 自动打开浏览器访问本地 UI。
+
+脚本运行期间不要关闭该命令行窗口；关闭窗口会停止本地服务。
+
+## 手动启动后端
 
 ```powershell
 python -m uvicorn sap_odata_agent.api.app:create_app --factory --host 127.0.0.1 --port 8000
@@ -82,7 +110,7 @@ python -m uvicorn sap_odata_agent.api.app:create_app --factory --host 127.0.0.1 
 Invoke-RestMethod http://127.0.0.1:8000/health
 ```
 
-## 启动前端
+## 手动启动前端
 
 ```powershell
 npm install --prefix frontend

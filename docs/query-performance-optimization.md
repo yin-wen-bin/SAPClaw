@@ -54,7 +54,14 @@
 
 ### 3. 缓存
 
-对可复用结果做缓存，避免相同或相似查询重复调用 LLM：
+当前已经加入基础缓存，避免每次查询重复读取相同的本地资产：
+
+- `ApiCatalogProvider` 会按索引文件签名缓存 compact API catalog。
+- `ApiSkillProvider` 会按 `skill.md` 文件签名缓存 API skill。
+- `LocalIndexLoader` 使用 LRU 缓存加载后的本地索引快照。
+- `FileCaseRepository` 会缓存历史记录、反馈记忆和反馈事件，并在文件签名变化后失效。
+
+后续可继续对 LLM 级别的可复用结果做缓存，减少相同或相似查询重复调用 LLM：
 
 - 语义解析缓存：`normalized_query + service + index_version`。
 - Schema rerank 缓存：`normalized_query + metadata_version + candidate_hash`。

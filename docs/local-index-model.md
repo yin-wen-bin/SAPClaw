@@ -11,24 +11,33 @@
    - 给语义检索使用
    - 解决“业务说法”和“SAP 技术字段”之间的语义映射问题
 
-## 2. 推荐目录结构
+## 2. 当前目录结构
 
 ```text
 data/
-  metadata/
-    services.json
-    entities.json
-    fields.json
-    relations.json
-  aliases/
-    business_terms.json
-  examples/
-    success_cases.jsonl
-    failure_cases.jsonl
-  search/
-    doc_chunks.jsonl
-    chunk_embeddings.jsonl
+  index/
+    <service_name>/
+      raw/
+        <service_name>.metadata.xml
+        <openapi-json-file-name>.json
+      services.json
+      entities.json
+      fields.json
+      relations.json
+      business_terms.json
+      doc_chunks.jsonl
+      vector_documents.jsonl
+      build_summary.json
+  api_skills/
+    <service_name>/
+      skill.md
+  cases/
+    cases.jsonl
+    feedback_memory.jsonl
+    feedback_events.jsonl
 ```
+
+当前仓库会提交 `data/index/<service_name>/` 下的运行时索引文件，但不提交 `data/index/*/raw/*.json` 原始 OpenAPI specification。
 
 ## 3. 结构化索引
 
@@ -186,13 +195,13 @@ data/
 - `section`
 - `keywords`
 
-### 5.2 `chunk_embeddings.jsonl`
+### 5.2 `vector_documents.jsonl`
 
-后续如果上向量检索，可以把每个 chunk 的 embedding 独立保存，不和业务结构混在一起。
+当前实现使用 `vector_documents.jsonl` 保存可供检索和 rerank 的文档化字段、实体和服务内容。
 
 ## 6. 案例索引
 
-### 6.1 `success_cases.jsonl`
+### 6.1 `cases.jsonl`
 
 记录成功案例。
 
@@ -214,9 +223,9 @@ data/
 }
 ```
 
-### 6.2 `failure_cases.jsonl`
+### 6.2 `feedback_memory.jsonl` 和 `feedback_events.jsonl`
 
-失败案例也要存，因为它们对后续修复策略和模型训练很有价值。
+反馈记忆和反馈事件用于沉淀用户确认、失败原因、可复用业务提示和后续修复策略。
 
 建议额外保存：
 
@@ -247,29 +256,42 @@ data/
 
 拆开后更容易增量更新，也更容易做版本管理。
 
-## 9. MVP 最小可实现版本
+## 9. 已落地的最小版本
 
-如果先求快落地，建议最少先做这 4 份：
+当前运行时已经落地这些核心资产：
 
 1. `services.json`
 2. `entities.json`
 3. `fields.json`
-4. `success_cases.jsonl`
+4. `relations.json`
+5. `business_terms.json`
+6. `doc_chunks.jsonl`
+7. `vector_documents.jsonl`
+8. `data/api_skills/<service_name>/skill.md`
+9. `data/cases/*.jsonl`
 
-只靠这四层，就已经足够支撑：
+这些资产共同支撑：
 
 - service 选择
 - entity 选择
 - 字段合法性校验
 - 历史案例增强
+- API 专属业务语义增强
+- result transform、status mapping 等 API 级规划提示
 
 ## 10. 和当前代码的对应关系
 
 - 检索入口：
   [local_doc_retriever.py](../src/sap_odata_agent/infrastructure/retrieval/local_doc_retriever.py)
+- 索引加载：
+  [index_loader.py](../src/sap_odata_agent/infrastructure/indexing/index_loader.py)
+- Catalog 构建：
+  [api_catalog_provider.py](../src/sap_odata_agent/infrastructure/indexing/api_catalog_provider.py)
+- API skill 加载：
+  [api_skill_provider.py](../src/sap_odata_agent/infrastructure/indexing/api_skill_provider.py)
+- 双源索引构建：
+  [dual_source_index_builder.py](../src/sap_odata_agent/infrastructure/indexing/dual_source_index_builder.py)
 - 核心计划对象：
   [models.py](../src/sap_odata_agent/domain/models.py)
 - 编排入口：
   [orchestrator.py](../src/sap_odata_agent/application/orchestrator.py)
-
-下一步实现时，建议新增一个 metadata loader，把 SAP 的 `$metadata` 解析成 `services / entities / fields` 三份结构化索引。
