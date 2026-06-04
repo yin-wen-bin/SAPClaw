@@ -95,6 +95,15 @@ npm run dev --prefix frontend
 npm run build --prefix frontend
 ```
 
+## 安装完成后测试前后端是否能正常工作
+
+```powershell
+python -m pytest -q
+npm run build --prefix frontend
+```
+
+部分测试会检查本地 API 索引行为，需要开发环境中存在 `data/index/`。
+
 ## 外部访问与鉴权
 
 本地开发时，SAPClaw 应绑定在 `127.0.0.1`。
@@ -122,12 +131,3 @@ SAPClaw 是一个用于探索 SAP OData API 自然语言访问能力的个人测
 不要提交或公开真实凭据、API key、SAP 连接信息、客户数据、供应商数据、财务数据或其他机密业务信息。
 
 SAP、SAP S/4HANA 及相关产品名称是 SAP SE 或其关联公司的商标或注册商标。
-
-## 安装完成后测试前后端是否能正常工作
-
-```powershell
-python -m pytest -q
-npm run build --prefix frontend
-```
-
-部分测试会检查本地 API 索引行为，需要开发环境中存在 `data/index/`。
