@@ -52,6 +52,7 @@ Keep `data/index/API_PURCHASEREQ_PROCESS_SRV` as the schema ground truth. This s
 
 - Query `A_PurReqnAcctAssgmt` for account assignment details.
 - Query `A_PurReqAddDelivery` for delivery address details.
+- For wording such as `查询所有采购申请的交货地址`, `采购申请交货地址`, `purchase requisition delivery address`, or `delivery address for purchase requisitions`, query `A_PurReqAddDelivery` directly and select only `A_PurReqAddDelivery.PurchaseRequisition`, `A_PurReqAddDelivery.PurchaseRequisitionItem`, `A_PurReqAddDelivery.AddressID`, `A_PurReqAddDelivery.Plant`, and `A_PurReqAddDelivery.CityName`. Do not ask a clarification for a broad delivery-address list.
 
 ### Requisition Text
 

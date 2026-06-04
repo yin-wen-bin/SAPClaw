@@ -10,6 +10,7 @@ from sap_odata_agent.domain.models import (
     QueryConstraints,
     QueryPlan,
     QueryShape,
+    ResultTransform,
     StepBinding,
 )
 from sap_odata_agent.infrastructure.llm.planner import IndexAwareRepairEngine
@@ -87,6 +88,56 @@ def _write_index(root: Path) -> None:
                     "field_name": "RelationshipNumber",
                     "filterable": True,
                     "label": "关系编号",
+                },
+            ]
+        ),
+        encoding="utf-8",
+    )
+    for name in ("relations.json", "entity_graph.json", "lookup_paths.json", "business_terms.json"):
+        (service_dir / name).write_text("[]", encoding="utf-8")
+    (service_dir / "vector_documents.jsonl").write_text("", encoding="utf-8")
+    (service_dir / "doc_chunks.jsonl").write_text("", encoding="utf-8")
+
+
+def _write_temporal_index(root: Path) -> None:
+    service_dir = root / "API_TEST"
+    service_dir.mkdir(parents=True)
+    (service_dir / "services.json").write_text(
+        json.dumps([{"service_name": "API_TEST", "entity_sets": ["A_Test"]}]),
+        encoding="utf-8",
+    )
+    (service_dir / "entities.json").write_text(
+        json.dumps(
+            [
+                {
+                    "service_name": "API_TEST",
+                    "entity_set": "A_Test",
+                    "key_fields": ["Document"],
+                    "default_select_fields": ["Document", "PostingDate"],
+                    "supported_methods": ["GET"],
+                }
+            ]
+        ),
+        encoding="utf-8",
+    )
+    (service_dir / "fields.json").write_text(
+        json.dumps(
+            [
+                {
+                    "service_name": "API_TEST",
+                    "entity_set": "A_Test",
+                    "field_name": "Document",
+                    "data_type": "Edm.String",
+                    "filterable": True,
+                    "selectable": True,
+                },
+                {
+                    "service_name": "API_TEST",
+                    "entity_set": "A_Test",
+                    "field_name": "PostingDate",
+                    "data_type": "Edm.DateTime",
+                    "filterable": True,
+                    "selectable": True,
                 },
             ]
         ),
@@ -383,6 +434,83 @@ def test_schema_feasibility_accepts_direct_entity_covering_answer_and_filter(tmp
     assert result.passed is True
     assert result.coverage["answer_fields"] == ["BusinessPartner"]
     assert result.coverage["filter_fields"] == ["Customer"]
+
+
+def test_schema_feasibility_treats_none_result_transform_as_noop(tmp_path: Path) -> None:
+    _write_index(tmp_path)
+    validator = SchemaFeasibilityValidator(index_root=tmp_path, service_name="API_TEST")
+    plan = QueryPlan(
+        service_name="API_TEST",
+        entity_set="A_BusinessPartner",
+        select_fields=["BusinessPartner", "Customer"],
+        filters=[FilterCondition(field="Customer", operator="eq", value="300001")],
+        result_transform=ResultTransform(type="none"),
+    )
+
+    result = validator.validate(_request(), plan)
+
+    assert result.passed is True
+
+
+def test_schema_feasibility_rejects_temporal_request_without_temporal_filter(tmp_path: Path) -> None:
+    _write_temporal_index(tmp_path)
+    validator = SchemaFeasibilityValidator(index_root=tmp_path, service_name="API_TEST")
+
+    plan = QueryPlan(
+        service_name="API_TEST",
+        entity_set="A_Test",
+        select_fields=["Document"],
+        filters=[],
+    )
+    request = AgentRequest(
+        user_input="查询上周到货的采购订单",
+        detected_time_expressions=[
+            {
+                "text": "上周",
+                "normalized_type": "calendar_week",
+                "range_start": "2026-05-25T00:00:00",
+                "range_end": "2026-05-31T23:59:59",
+                "granularity": "week",
+            }
+        ],
+    )
+
+    result = validator.validate(request, plan)
+
+    assert not result.passed
+    assert [violation.code for violation in result.violations] == ["required_temporal_filter_missing"]
+
+
+def test_schema_feasibility_accepts_temporal_request_with_temporal_filter(tmp_path: Path) -> None:
+    _write_temporal_index(tmp_path)
+    validator = SchemaFeasibilityValidator(index_root=tmp_path, service_name="API_TEST")
+
+    plan = QueryPlan(
+        service_name="API_TEST",
+        entity_set="A_Test",
+        select_fields=["Document", "PostingDate"],
+        filters=[
+            FilterCondition("PostingDate", "ge", "2026-05-25T00:00:00", "datetime"),
+            FilterCondition("PostingDate", "le", "2026-05-31T23:59:59", "datetime"),
+        ],
+    )
+    request = AgentRequest(
+        user_input="查询上周到货的采购订单",
+        detected_time_expressions=[
+            {
+                "text": "上周",
+                "normalized_type": "calendar_week",
+                "range_start": "2026-05-25T00:00:00",
+                "range_end": "2026-05-31T23:59:59",
+                "granularity": "week",
+            }
+        ],
+    )
+
+    result = validator.validate(request, plan)
+
+    assert result.passed
+    assert "temporal_constraints_preserved" in result.evidence
 
 
 def test_schema_feasibility_validates_function_import_parameters(tmp_path: Path) -> None:

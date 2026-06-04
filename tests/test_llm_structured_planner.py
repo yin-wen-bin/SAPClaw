@@ -206,6 +206,47 @@ def test_llm_planner_preserves_schema_filter_value_type(tmp_path: Path) -> None:
     assert plan.filters[0].value_type == "Edm.Boolean"
 
 
+def test_llm_planner_honors_explicit_empty_filter_list(tmp_path: Path) -> None:
+    _write_fixture(tmp_path)
+    planner = LlmStructuredIntentPlanner(
+        index_root=tmp_path,
+        service_name="API_TEST",
+        llm_client=StubClient(
+            json.dumps(
+                {
+                    "entity_set": "A_SupplierCompany",
+                    "http_method": "GET",
+                    "select_fields": ["Supplier", "CompanyCode", "PaymentTerms"],
+                    "response_summary_fields": ["Supplier", "CompanyCode", "PaymentTerms"],
+                    "filters": [],
+                    "requires_confirmation": False,
+                    "needs_clarification": False,
+                    "clarification_question": "",
+                    "clarification_options": [],
+                    "response_directive": "List supplier company records.",
+                    "rationale": "The user asked for a general list, not a restricted lookup.",
+                }
+            )
+        ),
+    )
+    context = RetrievedContext(
+        documents=[
+            RetrievedDocument(
+                source="entity-hint",
+                title="A_SupplierCompany",
+                content="Supplier company",
+                score=10.0,
+                metadata={"entity_set": "A_SupplierCompany"},
+            ),
+        ]
+    )
+
+    plan = planner.plan(AgentRequest(user_input="show supplier company records for supplier 17300003"), context)
+
+    assert plan.entity_set == "A_SupplierCompany"
+    assert plan.filters == []
+
+
 def test_llm_planner_falls_back_when_json_is_invalid(tmp_path: Path) -> None:
     _write_fixture(tmp_path)
     planner = LlmStructuredIntentPlanner(

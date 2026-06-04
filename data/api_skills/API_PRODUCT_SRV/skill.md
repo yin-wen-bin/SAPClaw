@@ -14,6 +14,7 @@ Keep `data/index/API_PRODUCT_SRV` as the schema ground truth. This skill provide
 ## When Not To Use
 
 - Do not use this API for current stock quantities, stock availability, material movement history, purchase orders, purchase requisitions, supplier invoices, or goods receipt history.
+- Do not use this API for stock-context base-unit wording such as `库存基本单位`, `stock base unit`, or `inventory base unit`; route those requests to `API_MATERIAL_STOCK_SRV`, which exposes `MaterialBaseUnit` in stock context.
 - Do not use product descriptions as evidence that a product has stock or purchase orders.
 
 ## Key Entities
@@ -46,7 +47,9 @@ Keep `data/index/API_PRODUCT_SRV` as the schema ground truth. This skill provide
 ### Product Basic Data
 
 - Query `A_Product` for product-level master data.
+- For stock-context base-unit wording such as `蠎灘ｭ伜渕譛ｬ蜊穂ｽ港, `stock base unit`, or `inventory base unit`, do not use `API_PRODUCT_SRV`; route those requests to `API_MATERIAL_STOCK_SRV`, which exposes `MaterialBaseUnit` in stock context.
 - For product master data, material master data, "产品主数据", "物料主数据", or basic product details by material/product ID, select only `A_Product.Product`, `A_Product.ProductType`, `A_Product.ProductGroup`, and `A_Product.BaseUnit` when available.
+- For wording such as `查询物料...的base unit和物料组`, `查询物料...的基本单位和物料组`, or `material base unit and material group`, use `API_PRODUCT_SRV` and `A_Product`; do not route these master-attribute questions to stock, purchase order, info record, or material document APIs.
 
 ### Product Description
 
@@ -56,6 +59,7 @@ Keep `data/index/API_PRODUCT_SRV` as the schema ground truth. This skill provide
 ### Plant-Specific Product Data
 
 - Query `A_ProductPlant` or a plant-specific sub-entity when the user asks for plant-level attributes.
+- For wording such as `产品主数据中的工厂视图数据`, `产品工厂视图`, `物料工厂视图`, `plant view data`, or `plant-specific product data`, select only `A_ProductPlant.Product`, `A_ProductPlant.Plant`, `A_ProductPlant.PurchasingGroup`, and `A_ProductPlant.CountryOfOrigin`.
 
 ### Product Sales Tax Classification
 

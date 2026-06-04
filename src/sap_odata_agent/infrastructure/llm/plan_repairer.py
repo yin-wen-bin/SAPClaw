@@ -150,6 +150,7 @@ class LlmPlanRepairer(LlmApiSpecificPlanner):
             "original_user_input": request.user_input,
             "resolved_user_input": route_decision.resolved_user_input or request.resolved_user_input or request.user_input,
             "current_date": date.today().isoformat(),
+            "detected_time_expressions": request.detected_time_expressions,
             "selected_service": schema_context.get("service_name", previous_plan.service_name),
             "previous_plan": LlmStructuredIntentPlanner._plan_to_dict(previous_plan),
             "failure_context": failure_context,
@@ -171,17 +172,17 @@ class LlmPlanRepairer(LlmApiSpecificPlanner):
             "9. If failure_context.semantic_repair_required is present, treat its blocking_findings and repair_hints as mandatory repair requirements.\n"
             "10. Do not repeat a plan rejected by result_verification; choose fields, filters, or steps that prove the verifier's business condition.\n"
             "11. For unreceived, undelivered, pending receipt, open goods receipt, or not fully received questions, prefer actual completion/status or received/open quantity fields over expected/required/configuration flags.\n"
-            "12. For API_PURCHASEORDER_PROCESS_SRV, if A_PurchaseOrderItem.IsCompletelyDelivered is available, prefer IsCompletelyDelivered eq false over GoodsReceiptIsExpected eq true for not-complete delivery/receipt semantics.\n"
-            "13. If failure_context reports step_binding_target_not_in_entity, do not reuse that invalid target field. Insert an intermediate bridge entity that contains both the previous join field and the final target key, then bind from that bridge to the final entity.\n"
-            "14. For example, do not bind a previous BusinessPartner value directly onto an entity that only has Supplier or Customer; first read the entity that exposes BusinessPartner plus the final role key, then bind the role key to the final entity.\n\n"
-            "15. If SAP rejected a function import because system query options such as $top, $filter, $select, or $inlinecount were used, repair it as plan_kind=function_import with function_parameters from schema_context.function_imports.\n"
-            "16. Do not represent function import parameters as filters; use exact parameter names and value_type from schema_context.function_imports.\n"
-            "17. If repair_hints include preferred_entity_set, preferred_select_fields, preferred_filters, preferred_result_transform, or presentation_kind, use them when they are present in schema_context. This is mandatory for wrong_business_level verifier findings.\n"
-            "18. If the previous plan answered a document history request with pricing, notes, account assignments, or other detail child entities, do not repeat that plan. Return no_feasible_plan or reroute_required unless schema_context exposes true history, movement, receipt, invoice, or change-history data.\n\n"
-            "19. If schema_context.api_skill or schema_context.api_skills contains a Common Planning Pattern that matches the user's wording, treat that pattern as schema-verified business guidance and use its entity, select fields, and filters when those fields exist in schema_context.\n\n"
-            "20. Do not add filters only because a user wrote bare \"with/include/show/display\" field names or status indicators. Preserve those as select fields unless the user supplied an explicit restriction, comparison, literal value, true/false requirement, nonzero/open/closed condition, schema-verified business condition, or a matching api_skill Common Planning Pattern.\n\n"
-            "21. If schema_context.service_names contains multiple services, every multi_step step must include service_name. Keep each step's entity set and fields within that service and use cross-service join_hints or shared key fields to bridge services.\n\n"
-            "22. If the verifier or api_skill requests summarized output, set result_transform.type=aggregate with schema-valid group_by and sum_fields. The program will execute the aggregation; do not calculate totals in text.\n\n"
+            "12. If failure_context reports step_binding_target_not_in_entity, do not reuse that invalid target field. Insert an intermediate bridge entity that contains both the previous join field and the final target key, then bind from that bridge to the final entity.\n"
+            "13. For example, do not bind a previous BusinessPartner value directly onto an entity that only has Supplier or Customer; first read the entity that exposes BusinessPartner plus the final role key, then bind the role key to the final entity.\n\n"
+            "14. If SAP rejected a function import because system query options such as $top, $filter, $select, or $inlinecount were used, repair it as plan_kind=function_import with function_parameters from schema_context.function_imports.\n"
+            "15. Do not represent function import parameters as filters; use exact parameter names and value_type from schema_context.function_imports.\n"
+            "16. If repair_hints include preferred_entity_set, preferred_select_fields, preferred_filters, preferred_result_transform, or presentation_kind, use them when they are present in schema_context. This is mandatory for wrong_business_level verifier findings.\n"
+            "17. If the previous plan answered a document history request with pricing, notes, account assignments, or other detail child entities, do not repeat that plan. Return no_feasible_plan or reroute_required unless schema_context exposes true history, movement, receipt, invoice, or change-history data.\n\n"
+            "18. If schema_context.api_skill or schema_context.api_skills contains a Common Planning Pattern that matches the user's wording, treat that pattern as schema-verified business guidance and use its entity, select fields, and filters when those fields exist in schema_context.\n\n"
+            "19. Do not add filters only because a user wrote bare \"with/include/show/display\" field names or status indicators. Preserve those as select fields unless the user supplied an explicit restriction, comparison, literal value, true/false requirement, nonzero/open/closed condition, schema-verified business condition, or a matching api_skill Common Planning Pattern.\n\n"
+            "20. If schema_context.service_names contains multiple services, every multi_step step must include service_name. Keep each step's entity set and fields within that service and use cross-service join_hints or shared key fields to bridge services.\n\n"
+            "21. If the verifier or api_skill requests summarized output, set result_transform.type=aggregate with schema-valid group_by and sum_fields. The program will execute the aggregation; do not calculate totals in text.\n\n"
+            "22. If detected_time_expressions is non-empty, the repaired executable plan must preserve that time constraint. Use range_start/range_end values and choose the schema-valid SAP date/period field whose business meaning matches the user wording. Do not return a plan with no temporal filter for a temporal request.\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )

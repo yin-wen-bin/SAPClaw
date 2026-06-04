@@ -214,6 +214,7 @@ class AgentRequest:
     cardinality_policy: CardinalityPolicy = CardinalityPolicy.UNKNOWN
     constraints: QueryConstraints | None = None
     context_carry_decision: ContextCarryDecision | None = None
+    detected_time_expressions: list[dict[str, Any]] = field(default_factory=list)
 
 
 @dataclass(slots=True)

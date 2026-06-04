@@ -341,9 +341,15 @@ const progressStatusLabels = {
   completed: "已结束",
 };
 
+const hiddenProgressKeys = new Set(["frontend.started", "progress.connected", "query.received"]);
+
+function isDisplayableProgressEvent(event) {
+  return Boolean(event) && !hiddenProgressKeys.has(event.key);
+}
+
 function formatProgressStatus(event) {
   if (!event) {
-    return "正在建立进度连接";
+    return "等待查询步骤返回";
   }
   const status = progressStatusLabels[event.status] || event.status || "处理中";
   const duration =
@@ -426,8 +432,11 @@ function getProgressDisplayRows(progressEvents, currentEvent) {
 }
 
 function QueryLoadingPanel({ progressEvent, progressEvents = [], conversationId = "", userInput = "" }) {
-  const currentEvent = progressEvent || progressEvents[progressEvents.length - 1] || null;
-  const terminalRows = getProgressDisplayRows(progressEvents, currentEvent);
+  const visibleProgressEvents = progressEvents.filter(isDisplayableProgressEvent);
+  const currentEvent = isDisplayableProgressEvent(progressEvent)
+    ? progressEvent
+    : visibleProgressEvents[visibleProgressEvents.length - 1] || null;
+  const terminalRows = getProgressDisplayRows(visibleProgressEvents, currentEvent);
   return (
     <div className="query-terminal-backdrop" role="presentation">
       <section
@@ -463,7 +472,7 @@ function QueryLoadingPanel({ progressEvent, progressEvents = [], conversationId 
 
           <div className="terminal-current" id="query-terminal-current">
             <span>current</span>
-            <strong>{currentEvent?.label || "等待后端开始处理"}</strong>
+            <strong>{currentEvent?.label || "正在连接后端"}</strong>
             <em>{formatProgressStatus(currentEvent)}</em>
           </div>
 
@@ -1264,8 +1273,10 @@ export default function App() {
     source.addEventListener("progress", (message) => {
       try {
         const event = JSON.parse(message.data);
-        setCurrentProgressEvent(event);
-        setProgressEvents((current) => mergeProgressEvent(current, event));
+        if (isDisplayableProgressEvent(event)) {
+          setCurrentProgressEvent(event);
+          setProgressEvents((current) => mergeProgressEvent(current, event));
+        }
         if (event.terminal) {
           closeProgressStream(source);
         }

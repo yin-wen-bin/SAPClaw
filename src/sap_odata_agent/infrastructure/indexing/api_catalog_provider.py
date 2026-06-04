@@ -496,6 +496,11 @@ class ApiCatalogProvider:
             ]
         if service_name == "API_MATERIAL_DOCUMENT_SRV":
             return [
+                "A_MaterialDocumentHeader.MaterialDocument",
+                "A_MaterialDocumentHeader.MaterialDocumentYear",
+                "A_MaterialDocumentHeader.PostingDate",
+                "A_MaterialDocumentHeader.DocumentDate",
+                "A_MaterialDocumentHeader.InventoryTransactionType",
                 "A_MaterialDocumentItem.ManufacturingOrder",
                 "A_MaterialDocumentItem.MaterialDocument",
                 "A_MaterialDocumentItem.MaterialDocumentYear",
@@ -593,6 +598,9 @@ class ApiCatalogProvider:
                 "A_SalesOrder.PurchaseOrderByCustomer",
                 "A_SalesOrder.SoldToParty",
                 "A_SalesOrder.OverallDeliveryStatus",
+                "A_SalesOrderBillingPlanItem.SalesOrder",
+                "A_SalesOrderBillingPlanItem.BillingPlan",
+                "A_SalesOrderBillingPlanItem.BillingPlanItem",
             ]
         if service_name == "API_OUTBOUND_DELIVERY_SRV":
             return [
@@ -745,6 +753,21 @@ class ApiCatalogProvider:
                 "A_SupplierInvoiceTax.TaxBaseAmountInTransCrcy",
                 "A_SupplierInvoiceTax.DocumentCurrency",
             ]
+        if service_name == "API_INFORECORD_PROCESS_SRV":
+            return [
+                "A_PurchasingInfoRecord.PurchasingInfoRecord",
+                "A_PurchasingInfoRecord.Supplier",
+                "A_PurchasingInfoRecord.Material",
+                "A_PurchasingInfoRecord.MaterialGroup",
+                "A_PurgInfoRecdOrgPlantData.PurchasingInfoRecord",
+                "A_PurgInfoRecdOrgPlantData.PurchasingOrganization",
+                "A_PurgInfoRecdOrgPlantData.Plant",
+                "A_PurgInfoRecdOrgPlantData.Currency",
+                "A_PurInfoRecdPrcgCndn.ConditionRecord",
+                "A_PurInfoRecdPrcgCndn.ConditionType",
+                "A_PurInfoRecdPrcgCndn.ConditionRateAmount",
+                "A_PurInfoRecdPrcgCndn.ConditionCurrency",
+            ]
         if service_name == "C_TRIALBALANCE_CDS":
             return [
                 "C_TRIALBALANCEResults.Ledger",
@@ -775,6 +798,11 @@ class ApiCatalogProvider:
                 "A_SalesOrder.SoldToParty",
                 "A_SalesOrder.OverallDeliveryStatus",
                 "A_SalesOrder.OverallTotalDeliveryStatus",
+                "A_SalesOrderBillingPlanItem.BillingPlan",
+                "A_SalesOrderBillingPlanItem.BillingPlanItem",
+                "A_SalesOrderBillingPlanItem.SalesOrder",
+                "A_SalesOrderBillingPlanItem.BillingPlanBillingDate",
+                "A_SalesOrderBillingPlanItem.BillingPlanAmount",
             ]
         if service_name == "API_OUTBOUND_DELIVERY_SRV":
             return [
@@ -799,6 +827,11 @@ class ApiCatalogProvider:
             ]
         if service_name == "API_MATERIAL_DOCUMENT_SRV":
             return [
+                "A_MaterialDocumentHeader.MaterialDocument",
+                "A_MaterialDocumentHeader.MaterialDocumentYear",
+                "A_MaterialDocumentHeader.PostingDate",
+                "A_MaterialDocumentHeader.DocumentDate",
+                "A_MaterialDocumentHeader.InventoryTransactionType",
                 "A_MaterialDocumentItem.MaterialDocument",
                 "A_MaterialDocumentItem.MaterialDocumentYear",
                 "A_MaterialDocumentItem.MaterialDocumentItem",
@@ -847,6 +880,7 @@ class ApiCatalogProvider:
             return {
                 "A_SalesOrder": 140.0,
                 "A_SalesOrderItem": 110.0,
+                "A_SalesOrderBillingPlanItem": 90.0,
                 "A_SalesOrderItmSubsqntProcFlow": 70.0,
                 "A_SalesOrderSubsqntProcFlow": 70.0,
             }

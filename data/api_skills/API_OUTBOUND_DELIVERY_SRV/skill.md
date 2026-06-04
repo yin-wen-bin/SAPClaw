@@ -50,6 +50,13 @@ Keep `data/index/API_OUTBOUND_DELIVERY_SRV` as the schema ground truth. This ski
 - Apply user-provided identifiers, dates, statuses, organizational units, material/product IDs, customer/supplier IDs, and document numbers as filters when corresponding filterable fields exist.
 - Keep `$select` focused on key fields plus fields needed to answer the question.
 
+### Outbound Delivery Header Lists
+
+- When the user asks for outbound delivery headers, header details, header records, document summaries, main identifying details, or a plain list of outbound deliveries, use `A_OutbDeliveryHeader`.
+- For header/detail lists, select header fields such as `DeliveryDocument`, `DeliveryDocumentType`, `CreationDate`, `CreatedByUser`, `DeliveryDate`, `ActualGoodsMovementDate`, `ShipToParty`, `SoldToParty`, `ShippingPoint`, `ActualDeliveryRoute`, `BillingDocumentDate`, and `BillOfLading` when available and relevant.
+- For wording such as `outb delivery header records`, `outbound delivery header details`, `outbound delivery headers`, or `main identifying details` on outbound deliveries, select only `A_OutbDeliveryHeader.DeliveryDocument`, `A_OutbDeliveryHeader.ActualDeliveryRoute`, `A_OutbDeliveryHeader.Shippinglocationtimezone`, `A_OutbDeliveryHeader.ActualGoodsMovementDate`, `A_OutbDeliveryHeader.Receivinglocationtimezone`, `A_OutbDeliveryHeader.ActualGoodsMovementTime`, `A_OutbDeliveryHeader.BillingDocumentDate`, and `A_OutbDeliveryHeader.BillOfLading`.
+- Do not use `A_OutbDeliveryItem` for header wording merely because item entities also contain `DeliveryDocument`. Use `A_OutbDeliveryItem` only when the user asks for delivery items, products/materials in deliveries, item quantities, item plants/storage locations, batches, or sales-order reference item details.
+
 ### Actual Shipping Date For Delivery Documents
 
 - For Chinese wording such as `发货日期`, `实际发货日期`, `出货日期`, or English wording such as `goods issue date`, `actual goods movement date`, and shipped-after/shipped-before delivery lists, use `A_OutbDeliveryHeader.ActualGoodsMovementDate`.

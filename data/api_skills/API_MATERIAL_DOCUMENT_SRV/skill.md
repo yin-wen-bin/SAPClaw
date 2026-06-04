@@ -31,6 +31,7 @@ Keep `data/index/API_MATERIAL_DOCUMENT_SRV` as the schema ground truth. This ski
 - Goods receipt and goods issue questions about actual posted movement history usually belong here.
 - Current stock or available quantity questions belong to stock or availability APIs, not material documents.
 - Preserve material document numbers, fiscal years, material IDs, movement types, plants, storage locations, and dates exactly.
+- A bare material document list or a material document query filtered only by header dates is a header-level request. Use `A_MaterialDocumentHeader` unless the user explicitly asks for material, plant, storage location, batch, movement type, purchase order reference, serial number, or other item-level movement details.
 
 ## Common Planning Patterns
 
@@ -57,10 +58,14 @@ Keep `data/index/API_MATERIAL_DOCUMENT_SRV` as the schema ground truth. This ski
 
 - Query `A_MaterialDocumentHeader` when the requested filter is header-level date or header text.
 - If item details are required, use a multi-step plan from header to `A_MaterialDocumentItem`.
+- For wording such as "查询物料凭证列表", "material document list", or "list material documents", select only `A_MaterialDocumentHeader.MaterialDocumentYear`, `A_MaterialDocumentHeader.MaterialDocument`, `A_MaterialDocumentHeader.DocumentDate`, `A_MaterialDocumentHeader.PostingDate`, and `A_MaterialDocumentHeader.InventoryTransactionType`.
+- For wording such as "过账日期大于...的物料凭证", "material documents after posting date", or "material documents by posting date", select only `A_MaterialDocumentHeader.MaterialDocumentYear`, `A_MaterialDocumentHeader.MaterialDocument`, `A_MaterialDocumentHeader.PostingDate`, and `A_MaterialDocumentHeader.DocumentDate`; filter `A_MaterialDocumentHeader.PostingDate gt <user_date>`.
 
 ### Serial Number Movement
 
 - Query `A_SerialNumberMaterialDocument` when the user asks for serial numbers in material documents.
+- For a bare serial-number material document list, do not add `MaterialDocumentYear` or date filters unless the user explicitly provides a year, fiscal year, posting date, document date, or another time constraint.
+- Select `A_SerialNumberMaterialDocument.Material`, `A_SerialNumberMaterialDocument.SerialNumber`, `A_SerialNumberMaterialDocument.MaterialDocument`, `A_SerialNumberMaterialDocument.MaterialDocumentItem`, and `A_SerialNumberMaterialDocument.MaterialDocumentYear`.
 
 ## Pitfalls
 

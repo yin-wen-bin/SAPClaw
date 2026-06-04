@@ -62,6 +62,7 @@ Keep `data/index/API_CREDIT_MEMO_REQUEST_SRV` as the schema ground truth. This s
 - Select the entity whose description most directly matches the requested business object.
 - Apply user-provided identifiers, dates, statuses, organizational units, material/product IDs, customer/supplier IDs, and document numbers as filters when corresponding filterable fields exist.
 - Keep `$select` focused on key fields plus fields needed to answer the question.
+- For credit memo request header partner wording such as `credit memo request header partners`, `credit memo request partners`, or `with customer and supplier details`, use `A_CreditMemoReqPartner` directly. Select `CreditMemoRequest`, `PartnerFunction`, `Customer`, `Supplier`, `Personnel`, and `ContactPerson`. Do not end the plan on value-help entities such as `I_Customer_VH`; those may enrich names only after the partner rows are returned and must not replace the partner result set.
 
 ### Detail Query
 

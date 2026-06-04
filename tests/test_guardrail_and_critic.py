@@ -1,4 +1,5 @@
 from sap_odata_agent.application.orchestrator import AgentOrchestrator
+from sap_odata_agent.application.llm_plan_critic import LlmPlanCritic
 from sap_odata_agent.application.plan_critic import PlanCritic
 from sap_odata_agent.application.planner_guardrail import PlannerGuardrail
 from sap_odata_agent.application.presentation_verifier import PresentationVerifier
@@ -11,6 +12,16 @@ from sap_odata_agent.domain.models import (
     QueryShape,
     ResultPresentation,
 )
+
+
+class JsonClient:
+    def __init__(self, payload):
+        self.payload = payload
+
+    def complete_json(self, system_prompt: str, user_prompt: str, max_tokens: int = 900) -> str:
+        import json
+
+        return json.dumps(self.payload)
 
 
 def test_guardrail_rejects_missing_required_target_field() -> None:
@@ -183,6 +194,32 @@ def test_field_list_detection_keeps_explicit_identifier_filters() -> None:
     assert PlanCritic._looks_like_field_list_without_filter_intent(request) is False
 
 
+def test_field_list_detection_does_not_treat_records_as_identifier() -> None:
+    request = AgentRequest(
+        user_input="Show sales order records with their main identifying details",
+        constraints=QueryConstraints(query_shape=QueryShape.LIST_QUERY, target_object="sales_order"),
+    )
+
+    assert PlanCritic._looks_like_field_list_without_filter_intent(request) is True
+
+
+def test_orchestrator_removes_placeholder_identifier_filter_for_field_list_request() -> None:
+    request = AgentRequest(
+        user_input="Show sales order records with their main identifying details",
+        constraints=QueryConstraints(query_shape=QueryShape.LIST_QUERY, target_object="sales_order"),
+    )
+    plan = QueryPlan(
+        service_name="API_SALES_ORDER_SRV",
+        entity_set="A_SalesOrder",
+        select_fields=["SalesOrder", "SalesOrderType"],
+        filters=[FilterCondition(field="SalesOrder", operator="eq", value="<sales order>")],
+    )
+
+    repaired = AgentOrchestrator._remove_output_field_filters_without_filter_intent(request, plan)
+
+    assert repaired.filters == []
+
+
 def test_orchestrator_keeps_filters_when_values_are_explicitly_mentioned() -> None:
     request = AgentRequest(
         user_input="Show trial balance material balances for company code 1710 and ledger 0L",
@@ -211,6 +248,40 @@ def test_field_list_detection_uses_original_user_input_over_resolved_filter_rewr
     )
 
     assert PlanCritic._looks_like_field_list_without_filter_intent(request) is True
+
+
+def test_llm_plan_critic_ignores_schema_research_only_required_fields() -> None:
+    request = AgentRequest(
+        user_input="List account assignments for service entry sheets",
+        constraints=QueryConstraints(query_shape=QueryShape.LIST_QUERY, target_object="service_entry_sheet"),
+    )
+    plan = QueryPlan(
+        service_name="API_SERVICE_ENTRY_SHEET_SRV",
+        entity_set="A_SrvcEntrShtAcctAssignment",
+        select_fields=["AccountAssignment", "ServiceEntrySheet", "ServiceEntrySheetItem"],
+    )
+    critic = LlmPlanCritic(
+        llm_client=JsonClient(
+            {
+                "findings": [
+                    {
+                        "code": "missing_intent_fields",
+                        "message": (
+                            "The intent summary states the user wants fields such as OrderID, "
+                            "SalesOrder, SalesOrderItem, SalesOrderScheduleLine, and GLAccount."
+                        ),
+                        "severity": "error",
+                        "blocking": True,
+                    }
+                ]
+            }
+        ),
+        enabled=True,
+    )
+
+    findings = critic.review(request, None, plan)
+
+    assert findings == []
 
 
 def test_presentation_verifier_repairs_table_count_text() -> None:

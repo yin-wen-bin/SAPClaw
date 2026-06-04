@@ -154,26 +154,64 @@ class PlanCritic:
     def _has_explicit_identifier_filter_phrase(text: str) -> bool:
         normalized = re.sub(r"\s+", " ", text.lower())
         english_patterns = (
-            r"\bcompany\s+code\s+[a-z0-9][a-z0-9._-]*\b",
-            r"\bledger\s+[a-z0-9][a-z0-9._-]*\b",
-            r"\bsupplier\s+[a-z0-9][a-z0-9._-]*\b",
-            r"\bvendor\s+[a-z0-9][a-z0-9._-]*\b",
-            r"\bcustomer\s+[a-z0-9][a-z0-9._-]*\b",
-            r"\bmaterial\s+[a-z0-9][a-z0-9._-]*\b",
-            r"\bproduct\s+[a-z0-9][a-z0-9._-]*\b",
-            r"\bplant\s+[a-z0-9][a-z0-9._-]*\b",
-            r"\bpurchase\s+order\s+[a-z0-9][a-z0-9._-]*\b",
-            r"\bsales\s+order\s+[a-z0-9][a-z0-9._-]*\b",
-            r"\bg/?l\s+account\s+[a-z0-9][a-z0-9._-]*\b",
-            r"\bcost\s+center\s+[a-z0-9][a-z0-9._-]*\b",
-            r"\bprofit\s+center\s+[a-z0-9][a-z0-9._-]*\b",
+            r"\bcompany\s+code\s+(?P<value>[a-z0-9][a-z0-9._-]*)\b",
+            r"\bledger\s+(?P<value>[a-z0-9][a-z0-9._-]*)\b",
+            r"\bsupplier\s+(?P<value>[a-z0-9][a-z0-9._-]*)\b",
+            r"\bvendor\s+(?P<value>[a-z0-9][a-z0-9._-]*)\b",
+            r"\bcustomer\s+(?P<value>[a-z0-9][a-z0-9._-]*)\b",
+            r"\bmaterial\s+(?P<value>[a-z0-9][a-z0-9._-]*)\b",
+            r"\bproduct\s+(?P<value>[a-z0-9][a-z0-9._-]*)\b",
+            r"\bplant\s+(?P<value>[a-z0-9][a-z0-9._-]*)\b",
+            r"\bpurchase\s+order\s+(?P<value>[a-z0-9][a-z0-9._-]*)\b",
+            r"\bsales\s+order\s+(?P<value>[a-z0-9][a-z0-9._-]*)\b",
+            r"\bg/?l\s+account\s+(?P<value>[a-z0-9][a-z0-9._-]*)\b",
+            r"\bcost\s+center\s+(?P<value>[a-z0-9][a-z0-9._-]*)\b",
+            r"\bprofit\s+center\s+(?P<value>[a-z0-9][a-z0-9._-]*)\b",
         )
-        if any(re.search(pattern, normalized) for pattern in english_patterns):
+        if any(
+            PlanCritic._looks_like_identifier_token(match.group("value"))
+            for pattern in english_patterns
+            for match in re.finditer(pattern, normalized)
+        ):
             return True
         chinese_patterns = (
             r"(?:公司代码|分类账|供应商|客户|物料|产品|工厂|采购订单|销售订单|总账科目|成本中心|利润中心)\s*[a-z0-9][a-z0-9._-]*",
         )
         return any(re.search(pattern, normalized) for pattern in chinese_patterns)
+
+    @staticmethod
+    def _looks_like_identifier_token(value: str) -> bool:
+        token = str(value or "").strip().lower()
+        if not token:
+            return False
+        generic_object_words = {
+            "record",
+            "records",
+            "list",
+            "lists",
+            "item",
+            "items",
+            "header",
+            "headers",
+            "detail",
+            "details",
+            "data",
+            "master",
+            "main",
+            "basic",
+            "summary",
+            "summaries",
+            "all",
+            "open",
+            "closed",
+            "with",
+            "for",
+            "by",
+            "of",
+        }
+        if token in generic_object_words:
+            return False
+        return bool(re.search(r"\d|[._/-]", token))
 
     @staticmethod
     def _filter_value_is_mentioned(request: AgentRequest, value: object) -> bool:

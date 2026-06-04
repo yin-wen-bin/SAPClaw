@@ -44,6 +44,7 @@ Keep `data/index/API_PURCHASEORDER_PROCESS_SRV` as the schema ground truth. This
 
 ### Supplier Purchase Orders
 
+- For wording such as `查询供应商...的采购订单`, `供应商...采购订单`, or `purchase orders for supplier/vendor`, use `API_PURCHASEORDER_PROCESS_SRV`. This is an actual purchase order transaction query, not a purchasing info record or supplier master-data query.
 - Header-level answer: query `A_PurchaseOrder` with `Supplier eq <supplier>`.
 - Item-level answer: first query `A_PurchaseOrder` by supplier and select `PurchaseOrder`, then query `A_PurchaseOrderItem` bound by `PurchaseOrder`.
 

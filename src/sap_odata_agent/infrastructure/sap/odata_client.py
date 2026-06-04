@@ -156,7 +156,7 @@ class BasicODataCompiler:
             select_fields = self._select_fields_with_entity_keys(
                 plan.service_name,
                 plan.entity_set,
-                plan.select_fields,
+                [*plan.select_fields, *plan.order_by],
             )
             query_parts.append("$select=" + ",".join(select_fields))
 
@@ -192,11 +192,12 @@ class BasicODataCompiler:
         select_fields: list[str],
     ) -> list[str]:
         excluded_key_fields = self._auto_key_select_exclusions(service_name, entity_set)
-        fields = [
-            str(field)
-            for field in select_fields
-            if str(field).strip() and str(field) not in excluded_key_fields
-        ]
+        fields: list[str] = []
+        for field in select_fields:
+            value = str(field)
+            if not value.strip() or value in excluded_key_fields or value in fields:
+                continue
+            fields.append(value)
         existing = set(fields)
         for key_field in self._entity_key_fields(service_name, entity_set):
             if key_field in excluded_key_fields:

@@ -41,6 +41,8 @@ Keep `data/index/API_COSTCENTER_SRV` as the schema ground truth. This skill prov
 - Select the entity whose description most directly matches the requested business object.
 - Apply user-provided identifiers, dates, statuses, organizational units, material/product IDs, customer/supplier IDs, and document numbers as filters when corresponding filterable fields exist.
 - Keep `$select` focused on key fields plus fields needed to answer the question.
+- For generic cost center master list wording such as `Show cost center records with their main identifying details`, use `A_CostCenter` directly. Select `ControllingArea`, `CostCenter`, `ValidityEndDate`, `ValidityStartDate`, `CompanyCode`, and useful master attributes. Do not query `A_CostCenterText` unless the user explicitly asks for name, text, description, or language-specific labels.
+- If a plan uses `A_CostCenterText` after `A_CostCenter`, the source step must select every binding key needed by the text step, especially `ControllingArea`, `CostCenter`, and `ValidityEndDate` when that field is part of the target key or binding.
 
 ### Cost Center Indicators
 
@@ -56,6 +58,8 @@ Keep `data/index/API_COSTCENTER_SRV` as the schema ground truth. This skill prov
 - Do not answer cost center currency from `API_COMPANYCODE_SRV.A_CompanyCode.Currency`; company-code currency is not the same as the currency maintained on each cost center.
 
 ### Cost Center Master Attributes
+
+- For wording such as `Show cost center records with city name and responsible person name`, query `A_CostCenter` directly and select `ControllingArea`, `CostCenter`, `ValidityEndDate`, `CityName`, `CostCtrResponsiblePersonName`, `ValidityStartDate`, and `CompanyCode`. Do not replace `CityName` or `CostCtrResponsiblePersonName` with currency or company-code-only fields.
 
 - For wording such as "公司1710成本中心的标准层级区域", query `A_CostCenter` by `A_CostCenter.CompanyCode` and select only `A_CostCenter.ControllingArea`, `A_CostCenter.CostCenter`, `A_CostCenter.CompanyCode`, and `A_CostCenter.CostCenterStandardHierArea`.
 - For wording such as "公司1710成本中心类别", query `A_CostCenter` by `A_CostCenter.CompanyCode` and select only `A_CostCenter.ControllingArea`, `A_CostCenter.CostCenter`, `A_CostCenter.CompanyCode`, and `A_CostCenter.CostCenterCategory`.

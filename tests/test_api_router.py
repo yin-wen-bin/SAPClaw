@@ -34,6 +34,12 @@ def _catalog() -> list[dict]:
             "top_entities": ["A_PurchaseOrder", "A_PurchaseOrderItem"],
             "top_filter_fields": ["A_PurchaseOrderItem.IsFinallyInvoiced"],
             "top_answer_fields": ["A_PurchaseOrder.PurchaseOrder"],
+            "api_skill_summary": (
+                "Use this API for purchase order transaction questions. "
+                "The user asks for 采购订单 by 供应商, 物料, 工厂, 公司代码, 交货日期, 未收货, or 未清发票. "
+                "The user asks for purchase orders by supplier, material, plant, company code, "
+                "creation date, delivery date, item status, invoice status, or goods receipt status."
+            ),
         }
     ]
 
@@ -47,46 +53,216 @@ def _product_catalog() -> list[dict]:
             "top_entities": ["A_Product", "A_ProductDescription"],
             "top_filter_fields": ["A_Product.Product"],
             "top_answer_fields": ["A_Product.Product", "A_Product.BaseUnit", "A_Product.ProductGroup"],
+            "api_skill_summary": (
+                "Use this API for product or material master data. "
+                "For product master data by material/product ID, select Product, ProductType, "
+                "ProductGroup, BaseUnit, 物料组, and 基本单位 when available.\n"
+                "Do not use this API for purchase orders."
+            ),
         }
     ]
 
 
-def test_api_router_shortcuts_product_master_attribute_query_without_llm() -> None:
-    client = SequencedClient([RuntimeError("LLM should not be called")])
-    router = LlmApiRouter(llm_client=client, enabled=True, allow_default_fallback=False)
+def _ap_catalog() -> list[dict]:
+    return [
+        {
+            "service_name": "API_GLACCOUNTLINEITEM",
+            "short_description": "G/L Account Line Items - Read (A2X).",
+            "primary_business_objects": ["G/L Account Line Item", "Supplier AP Open Item"],
+            "top_entities": ["GLAccountLineItem"],
+            "top_filter_fields": ["GLAccountLineItem.Supplier", "GLAccountLineItem.ClearingDate"],
+            "top_answer_fields": [
+                "GLAccountLineItem.AccountingDocument",
+                "GLAccountLineItem.Supplier",
+                "GLAccountLineItem.AmountInCompanyCodeCurrency",
+            ],
+            "api_skill_summary": (
+                "For supplier open payable wording such as 供应商...是否有未清的应付款, "
+                "供应商未清应付款, or 供应商未付款, use GLAccountLineItem directly. "
+                "For supplier open payable wording, use GLAccountLineItem directly. "
+                "Filter Supplier when provided and ClearingDate eq null for open items."
+            ),
+        },
+        {
+            "service_name": "API_OPLACCTGDOCITEMCUBE_SRV",
+            "short_description": "Operational accounting document item cube.",
+            "primary_business_objects": ["Operational Accounting Item"],
+            "top_entities": ["A_OperationalAcctgDocItemCube"],
+            "top_filter_fields": ["A_OperationalAcctgDocItemCube.Supplier", "A_OperationalAcctgDocItemCube.ClearingDate"],
+            "top_answer_fields": ["A_OperationalAcctgDocItemCube.AccountingDocument"],
+        },
+    ]
+
+
+def test_api_router_skill_fallback_product_master_attribute_query_without_llm() -> None:
+    router = LlmApiRouter(llm_client=None, enabled=False, allow_default_fallback=False)
 
     decision = router.route("查询物料TG0011的base unit和物料组", _product_catalog())
 
-    assert client.calls == []
     assert decision.selected_apis[0].service_name == "API_PRODUCT_SRV"
-    assert decision.raw_response["router_shortcut"] == "product_master_attribute"
+    assert decision.raw_response["router_fallback"] == "skill_catalog_similarity"
     assert decision.needs_clarification is False
 
 
-def test_api_router_product_master_attribute_shortcut_excludes_transactional_queries() -> None:
-    assert LlmApiRouter._looks_like_product_master_attribute_request("查询物料TG0011的base unit和物料组")
-    assert not LlmApiRouter._looks_like_product_master_attribute_request("查询物料TG0011的采购订单")
-    assert not LlmApiRouter._looks_like_product_master_attribute_request("查询物料TG0011在工厂1710是否有货")
+def test_api_router_skill_fallback_prefers_purchase_order_over_product_for_transaction_query() -> None:
+    router = LlmApiRouter(llm_client=None, enabled=False, allow_default_fallback=False)
+
+    decision = router.route("查询物料TG0011的采购订单", [*_product_catalog(), *_catalog()])
+
+    assert decision.selected_apis[0].service_name == "API_PURCHASEORDER_PROCESS_SRV"
+    assert decision.raw_response["router_fallback"] == "skill_catalog_similarity"
 
 
-def test_api_router_shortcuts_supplier_purchase_order_query_without_llm() -> None:
-    client = SequencedClient([RuntimeError("LLM should not be called")])
-    router = LlmApiRouter(llm_client=client, enabled=True, allow_default_fallback=False)
+def test_api_router_skill_fallback_supplier_purchase_order_query_without_llm() -> None:
+    router = LlmApiRouter(llm_client=None, enabled=False, allow_default_fallback=False)
 
     decision = router.route("查询供应商1730003的采购订单", _catalog())
 
-    assert client.calls == []
     assert decision.selected_apis[0].service_name == "API_PURCHASEORDER_PROCESS_SRV"
-    assert decision.raw_response["router_shortcut"] == "purchase_order_filter"
+    assert decision.raw_response["router_fallback"] == "skill_catalog_similarity"
     assert decision.needs_clarification is False
 
 
-def test_api_router_purchase_order_filter_shortcut_requires_scope() -> None:
-    assert LlmApiRouter._looks_like_purchase_order_filter_request("查询供应商1730003的采购订单")
-    assert LlmApiRouter._looks_like_purchase_order_filter_request("查询物料TG0011的采购订单")
-    assert LlmApiRouter._looks_like_purchase_order_filter_request("查询工厂1710的未收货采购订单")
-    assert not LlmApiRouter._looks_like_purchase_order_filter_request("query purchase orders")
-    assert not LlmApiRouter._looks_like_purchase_order_filter_request("查询工厂1710明天到货的采购订单的供应商联系人信息")
+def test_api_router_excludes_cds_view_only_api_from_prompt_and_selection() -> None:
+    client = SequencedClient(
+        [
+            json.dumps(
+                {
+                    "resolved_user_input": "show purchase orders arriving last week",
+                    "should_carry_context": False,
+                    "selected_apis": [
+                        {
+                            "service_name": "I_PurchaseOrderHistoryAPI01",
+                            "confidence": 0.9,
+                            "reason": "Purchase order history has goods receipt fields.",
+                        }
+                    ],
+                    "requires_multi_api": False,
+                    "intent_summary": "Purchase orders arriving last week.",
+                    "business_domain": "Procurement",
+                    "business_object": "Purchase Order",
+                    "needs_clarification": False,
+                    "clarification_question": "",
+                    "clarification_options": [],
+                }
+            )
+        ]
+    )
+    router = LlmApiRouter(llm_client=client, enabled=True, allow_default_fallback=False)
+    catalog = [
+        {
+            "service_name": "I_PurchaseOrderHistoryAPI01",
+            "service_kind": "CDS_VIEW_ONLY",
+            "runtime_available": False,
+            "odata_runtime_available": False,
+            "short_description": "Purchase Order History with goods receipt and delivery document fields.",
+            "primary_business_objects": ["Purchase Order History"],
+            "top_entities": ["I_PurchaseOrderHistoryAPI01"],
+            "top_filter_fields": ["I_PurchaseOrderHistoryAPI01.PostingDate"],
+            "top_answer_fields": ["I_PurchaseOrderHistoryAPI01.PurchaseOrder"],
+        },
+        {
+            "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+            "service_kind": "ODATA",
+            "runtime_available": True,
+            "odata_runtime_available": True,
+            "short_description": "Purchase order processing API.",
+            "primary_business_objects": ["Purchase Order", "Purchase Order Schedule Line"],
+            "top_entities": ["A_PurchaseOrder", "A_PurchaseOrderScheduleLine"],
+            "top_filter_fields": ["A_PurchaseOrderScheduleLine.ScheduleLineDeliveryDate"],
+            "top_answer_fields": ["A_PurchaseOrderScheduleLine.PurchaseOrder"],
+            "api_skill_summary": (
+                "Use this API for purchase order transaction questions by delivery date, arriving date, "
+                "or schedule-line delivery date. Use A_PurchaseOrderScheduleLine.ScheduleLineDeliveryDate."
+            ),
+        },
+    ]
+
+    decision = router.route("show purchase orders arriving last week", catalog)
+
+    assert "I_PurchaseOrderHistoryAPI01" not in client.calls[0]["user_prompt"]
+    assert decision.selected_apis[0].service_name == "API_PURCHASEORDER_PROCESS_SRV"
+    assert decision.raw_response["router_fallback"] == "skill_catalog_similarity"
+
+    fallback_router = LlmApiRouter(llm_client=None, enabled=False, allow_default_fallback=False)
+    fallback_decision = fallback_router.route("查询上周到货的采购订单", catalog)
+
+    assert fallback_decision.selected_apis[0].service_name == "API_PURCHASEORDER_PROCESS_SRV"
+    assert fallback_decision.raw_response["router_fallback"] == "skill_catalog_similarity"
+
+
+def test_api_router_skill_fallback_supplier_open_payables_query_without_llm() -> None:
+    router = LlmApiRouter(llm_client=None, enabled=False, allow_default_fallback=False)
+
+    decision = router.route("供应商USSU-VSF08是否有未清的应付款？", _ap_catalog())
+
+    assert decision.selected_apis[0].service_name == "API_GLACCOUNTLINEITEM"
+    assert decision.raw_response["router_fallback"] == "skill_catalog_similarity"
+    assert decision.needs_clarification is False
+
+
+def test_router_catalog_compaction_keeps_specific_matching_entities() -> None:
+    entry = {
+        "service_name": "API_SALES_ORDER_SRV",
+        "short_description": "Sales order API.",
+        "primary_business_objects": [
+            "Sales Order",
+            "Sales Order Item",
+            "Sales Order Itm Subsqnt Proc Flow",
+            "Sales Order Subsqnt Proc Flow",
+            "Sales Order Header Pr Element",
+            "Sales Order Item Pr Element",
+            "Sales Order Header Partner",
+            "Sales Order Partner Address",
+            "Sales Order Related Object",
+            "Sales Order Billing Plan Item",
+        ],
+        "top_entities": [
+            "A_SalesOrder",
+            "A_SalesOrderItem",
+            "A_SalesOrderItmSubsqntProcFlow",
+            "A_SalesOrderSubsqntProcFlow",
+            "A_SalesOrderHeaderPrElement",
+            "A_SalesOrderItemPrElement",
+            "A_SalesOrderHeaderPartner",
+            "A_SalesOrderPartnerAddress",
+            "A_SalesOrderRelatedObject",
+            "A_SalesOrderBillingPlanItem",
+        ],
+        "top_filter_fields": [
+            "A_SalesOrder.SalesOrder",
+            "A_SalesOrderItem.Material",
+            "A_SalesOrderItem.DeliveryStatus",
+            "A_SalesOrder.OverallTotalDeliveryStatus",
+            "A_SalesOrderBillingPlanItem.SalesOrder",
+        ],
+        "top_answer_fields": [
+            "A_SalesOrder.SalesOrder",
+            "A_SalesOrderItem.SalesOrder",
+            "A_SalesOrderItem.SalesOrderItem",
+            "A_SalesOrderBillingPlanItem.BillingPlan",
+            "A_SalesOrderBillingPlanItem.BillingPlanItem",
+        ],
+    }
+
+    compact = LlmApiRouter._compact_catalog_for_prompt([entry], "List billing plan items for sales orders")[0]
+
+    assert "Sales Order Billing Plan Item" in compact["primary_business_objects"]
+    assert "A_SalesOrderBillingPlanItem" in compact["top_entities"]
+    assert "A_SalesOrderBillingPlanItem.SalesOrder" in compact["top_filter_fields"]
+    assert "A_SalesOrderBillingPlanItem.BillingPlan" in compact["top_answer_fields"]
+
+
+def test_api_router_skill_fallback_after_router_timeout() -> None:
+    client = SequencedClient([TimeoutError("timed out"), TimeoutError("timed out"), TimeoutError("timed out")])
+    router = LlmApiRouter(llm_client=client, enabled=True, allow_default_fallback=False)
+
+    decision = router.route("供应商USSU-VSF08是否有未清的应付款？", _ap_catalog())
+
+    assert len(client.calls) == 3
+    assert decision.selected_apis[0].service_name == "API_GLACCOUNTLINEITEM"
+    assert decision.raw_response["router_fallback"] == "skill_catalog_similarity"
+    assert decision.raw_response["fallback_reason"] == "api_router_failed:timed out"
 
 
 def test_api_router_repairs_malformed_json_without_business_fallback() -> None:
@@ -367,6 +543,28 @@ def test_api_router_keeps_user_relevant_skill_guidance_after_compaction() -> Non
     prompt = client.calls[0]["user_prompt"]
     assert "Relevant skill guidance" in prompt
     assert "A_CompanyCode.ChartOfAccounts directly" in prompt
+
+
+def test_api_router_prioritizes_exact_skill_guidance_over_generic_line_item_matches() -> None:
+    skill_summary = (
+        "For balance drilldown wording, use companion API C_TRIALBALANCE_CDS with API_GLACCOUNTLINEITEM "
+        "for underlying accounting document line items.\n"
+        "Keep `$select` focused on key fields plus fields needed to answer the question.\n"
+        "Do not use this API when the user asks for journal entry item master-data names such as "
+        "company code name, cost center name, or profit center name on journal entry items.\n"
+        "For wording such as \"company code and company code name for journal entry line items\", "
+        "select only `A_JournalEntryItemBasic.ID`, `A_JournalEntryItemBasic.CompanyCode`, and "
+        "`A_JournalEntryItemBasic.CompanyCodeName`."
+    )
+
+    relevant = LlmApiRouter._relevant_skill_lines_for_prompt(
+        skill_summary,
+        user_input="Show company code and company code name for journal entry line items",
+        max_lines=2,
+    )
+
+    assert "company code and company code name for journal entry line items" in relevant[0]
+    assert all("balance drilldown" not in line for line in relevant)
 
 
 def test_api_router_keeps_sales_order_delivery_skill_guidance_after_compaction() -> None:
@@ -760,6 +958,110 @@ def test_api_router_scans_beyond_first_relevant_skill_lines_for_companion_api() 
         "API_PRODUCTION_ORDER_2_SRV",
     ]
     assert decision.requires_multi_api is True
+
+
+def test_api_router_replaces_wrong_api_when_skill_declares_route_target() -> None:
+    response = {
+        "resolved_user_input": "Show company code and company code name for journal entry line items",
+        "should_carry_context": False,
+        "selected_apis": [
+            {
+                "service_name": "API_GLACCOUNTLINEITEM",
+                "confidence": 0.86,
+                "reason": "LLM confused G/L line items with journal entry item basic records.",
+            }
+        ],
+        "requires_multi_api": False,
+        "intent_summary": "Journal entry item master-data names.",
+        "business_domain": "Finance",
+        "business_object": "Journal Entry Item",
+        "needs_clarification": False,
+        "clarification_question": "",
+        "clarification_options": [],
+    }
+    catalog = [
+        {
+            "service_name": "API_GLACCOUNTLINEITEM",
+            "short_description": "G/L account line item API.",
+            "primary_business_objects": ["GLAccount Line Item"],
+            "top_entities": ["GLAccountLineItem"],
+            "top_filter_fields": ["GLAccountLineItem.CompanyCode"],
+            "top_answer_fields": ["GLAccountLineItem.CompanyCode"],
+            "api_skill_summary": (
+                "- Do not use this API when the user asks for journal entry item master-data names "
+                "such as company code name, cost center name, or profit center name on journal entry "
+                "items; route those requests to `API_JOURNALENTRYITEMBASIC_SRV`, which exposes "
+                "`CompanyCodeName`, `CostCenterName`, and `ProfitCenterName`."
+            ),
+        },
+        {
+            "service_name": "API_JOURNALENTRYITEMBASIC_SRV",
+            "short_description": "Journal entry item basic API.",
+            "primary_business_objects": ["Journal Entry Item Basic"],
+            "top_entities": ["A_JournalEntryItemBasic"],
+            "top_filter_fields": ["A_JournalEntryItemBasic.CompanyCode"],
+            "top_answer_fields": [
+                "A_JournalEntryItemBasic.CompanyCodeName",
+                "A_JournalEntryItemBasic.CostCenterName",
+            ],
+        },
+    ]
+    client = SequencedClient([json.dumps(response)])
+    router = LlmApiRouter(llm_client=client, enabled=True, allow_default_fallback=False)
+
+    decision = router.route("Show company code and company code name for journal entry line items", catalog)
+
+    assert [item.service_name for item in decision.selected_apis] == ["API_JOURNALENTRYITEMBASIC_SRV"]
+    assert decision.requires_multi_api is False
+
+
+def test_api_router_ignores_negative_route_when_without_clause_excludes_request() -> None:
+    response = {
+        "resolved_user_input": "Show cost center names used by journal entry items",
+        "should_carry_context": False,
+        "selected_apis": [
+            {
+                "service_name": "API_JOURNALENTRYITEMBASIC_SRV",
+                "confidence": 0.86,
+                "reason": "Journal entry item API selected.",
+            }
+        ],
+        "requires_multi_api": False,
+        "intent_summary": "Journal entry cost center names.",
+        "business_domain": "Finance",
+        "business_object": "Journal Entry Item",
+        "needs_clarification": False,
+        "clarification_question": "",
+        "clarification_options": [],
+    }
+    catalog = [
+        {
+            "service_name": "API_JOURNALENTRYITEMBASIC_SRV",
+            "short_description": "Journal entry item basic API.",
+            "primary_business_objects": ["Journal Entry Item Basic"],
+            "top_entities": ["A_JournalEntryItemBasic"],
+            "top_filter_fields": ["A_JournalEntryItemBasic.CostCenter"],
+            "top_answer_fields": ["A_JournalEntryItemBasic.CostCenterName"],
+            "api_skill_summary": (
+                "- For broad general ledger line item lists without master-data name requests, "
+                "do not use `API_JOURNALENTRYITEMBASIC_SRV`; use `API_GLACCOUNTLINEITEM`."
+            ),
+        },
+        {
+            "service_name": "API_GLACCOUNTLINEITEM",
+            "short_description": "G/L line item API.",
+            "primary_business_objects": ["GLAccount Line Item"],
+            "top_entities": ["GLAccountLineItem"],
+            "top_filter_fields": ["GLAccountLineItem.CostCenter"],
+            "top_answer_fields": ["GLAccountLineItem.CostCenter"],
+        },
+    ]
+    client = SequencedClient([json.dumps(response)])
+    router = LlmApiRouter(llm_client=client, enabled=True, allow_default_fallback=False)
+
+    decision = router.route("Show cost center names used by journal entry items", catalog)
+
+    assert [item.service_name for item in decision.selected_apis] == ["API_JOURNALENTRYITEMBASIC_SRV"]
 
 
 def test_api_router_adds_routing_work_center_companion_api_from_skill() -> None:

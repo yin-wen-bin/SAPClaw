@@ -360,8 +360,14 @@ def test_material_document_catalog_pins_manufacturing_order_fields() -> None:
     catalog = ApiCatalogProvider(index_root="data/index").load()
     material_doc = next(item for item in catalog if item["service_name"] == "API_MATERIAL_DOCUMENT_SRV")
 
-    assert "A_MaterialDocumentItem.ManufacturingOrder" in material_doc["top_filter_fields"][:4]
-    assert "A_MaterialDocumentItem.ManufacturingOrder" in material_doc["top_answer_fields"][:5]
+    assert material_doc["top_filter_fields"][:4] == [
+        "A_MaterialDocumentHeader.MaterialDocument",
+        "A_MaterialDocumentHeader.MaterialDocumentYear",
+        "A_MaterialDocumentHeader.PostingDate",
+        "A_MaterialDocumentHeader.DocumentDate",
+    ]
+    assert "A_MaterialDocumentItem.ManufacturingOrder" in material_doc["top_filter_fields"][:10]
+    assert "A_MaterialDocumentItem.ManufacturingOrder" in material_doc["top_answer_fields"][:10]
 
 
 def test_production_order_skill_documents_common_pp_patterns() -> None:

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 from typing import Any
 
 from sap_odata_agent.application.plan_critic import PlanCritic
@@ -59,6 +60,8 @@ class LlmPlanCritic:
             if not code or not message:
                 continue
             if self._is_spurious_field_list_missing_filter(request, plan, code, message):
+                continue
+            if self._is_spurious_schema_research_intent_override(request, code, message):
                 continue
             if self._is_spurious_unrequested_field_requirement(request, code, message):
                 continue
@@ -173,13 +176,14 @@ class LlmPlanCritic:
             "Critique rules:\n"
             "- Do not block if the selected fields can plausibly answer the request.\n"
             "- Treat constraints.target_field_concepts as the authoritative required answer fields; do not add extra required fields only because similarly named candidates have high scores.\n"
+            "- Treat user_input, resolved_user_input, and constraints as authoritative for requested output fields. schema_research.business_intent is advisory and may contain candidate-field guesses; never use it to invent extra required fields that the user did not ask for.\n"
             "- Treat bare field-list wording such as \"with/include/show/display field A and field B\" as requested answer fields, not missing filters.\n"
             "- Report missing_filters only when the user supplied an explicit filter concept plus a value, comparison, only/where phrase, true/false requirement, nonzero condition, or open/closed business condition.\n"
             "- Do not block a plan that selects the mentioned fields solely because those fields could also be filterable status indicators.\n"
             "- Block if a stronger metadata candidate clearly maps to the requested concept and the plan selected a different concept.\n"
             "- Block if an identifier field is used as the answer when the user asked for another attribute.\n"
             "- Block if the plan cannot apply the user's requested filter.\n"
-            "- When schema_research is available, use it as the primary semantic evidence for field suitability and risks.\n"
+            "- When schema_research is available, use it as semantic evidence for field suitability and risks, but not as a replacement for the user's actual requested fields.\n"
             "- Return finding.message in the same natural language as user_input/resolved_user_input. Keep SAP technical field names unchanged.\n"
             "- Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
@@ -210,6 +214,27 @@ class LlmPlanCritic:
         for step in plan.steps or []:
             selected_fields.update(step.select_fields or [])
         return bool(selected_fields)
+
+    @staticmethod
+    def _is_spurious_schema_research_intent_override(
+        request: AgentRequest,
+        code: str,
+        message: str,
+    ) -> bool:
+        normalized = f"{code} {message}".lower()
+        if "missing_intent_fields" not in normalized and "intent summary" not in normalized:
+            return False
+        constraints = request.constraints
+        if constraints and constraints.target_field_concepts:
+            return False
+        user_text = f"{request.resolved_user_input or ''} {request.user_input or ''}".lower()
+        mentioned_fields = re.findall(r"\b[A-Z][A-Za-z0-9]*(?:[A-Z][A-Za-z0-9]*)+\b", message)
+        for field in mentioned_fields:
+            tokens = [token.lower() for token in re.findall(r"[A-Z]?[a-z]+|[A-Z]+(?=[A-Z]|$)|\d+", field)]
+            informative = [token for token in tokens if len(token) >= 4 or token in {"gl", "id", "wbs"}]
+            if informative and all(token in user_text for token in informative):
+                return False
+        return True
 
     @staticmethod
     def _is_spurious_unrequested_field_requirement(

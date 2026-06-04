@@ -44,7 +44,9 @@ Keep `data/index/API_MATERIAL_STOCK_SRV` as the schema ground truth. This skill 
 
 ### Stock By Material
 
-- Query `A_MaterialStock` for material base unit or material stock master records.
+- Query `A_MaterialStock` for stock master records only when the user asks for stock, inventory, or quantity context.
+- Do not use `API_MATERIAL_STOCK_SRV` for product/material master attributes such as `base unit`, `basic unit`, `物料组`, `material group`, or product type unless the user also asks for stock or inventory quantity. Route those master-attribute questions to `API_PRODUCT_SRV`.
+- For stock-context base-unit wording such as `库存基本单位`, `stock base unit`, or `inventory base unit`, use `API_MATERIAL_STOCK_SRV.A_MaterialStock` and select `A_MaterialStock.Material` plus `A_MaterialStock.MaterialBaseUnit`; this is not the same as a standalone product master `BaseUnit` request.
 - Query `A_MatlStkInAcctMod` when the user asks for stock quantity.
 - Filter `A_MaterialStock.Material` or `A_MatlStkInAcctMod.Material` when the user provides a material.
 - Select `A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit` when the user asks for stock quantity.
@@ -60,6 +62,7 @@ Keep `data/index/API_MATERIAL_STOCK_SRV` as the schema ground truth. This skill 
 ### Stock By Location
 
 - Use `A_MatlStkInAcctMod.Plant`, `A_MatlStkInAcctMod.StorageLocation`, and `A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit` for plant/storage-location stock breakdowns.
+- For plant/storage-location breakdown wording such as `按工厂和库存地点区分的库存`, `stock by plant and storage location`, or `plant storage-location stock breakdown`, use result_transform aggregate: group_by: `A_MatlStkInAcctMod.Plant`, `A_MatlStkInAcctMod.StorageLocation`; sum_fields: `A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit`, unless the user explicitly asks for material-level rows.
 - Include `A_MatlStkInAcctMod.Batch` only when the user asks for batch-level stock.
 - Include `A_MatlStkInAcctMod.InventoryStockType` only when the user asks for stock-type breakdown.
 

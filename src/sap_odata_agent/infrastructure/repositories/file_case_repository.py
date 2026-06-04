@@ -11,6 +11,8 @@ from sap_odata_agent.domain.models import CaseRecord
 
 
 class JsonlCaseRepository:
+    _MAX_ENTRY_CACHE_BYTES = 50 * 1024 * 1024
+
     GENERIC_FEEDBACK_TERMS = {
         "all",
         "bp",
@@ -67,19 +69,22 @@ class JsonlCaseRepository:
                 self._entries_signature = None
 
     def list_recent(self, limit: int = 20, conversation_id: str | None = None) -> list[dict[str, Any]]:
-        entries = self._entries_with_feedback()
-        if conversation_id:
-            entries = [
-                entry
-                for entry in entries
-                if ((entry.get("request") or {}).get("conversation_id") or "") == conversation_id
-            ]
+        feedback_by_case_id = self._feedback_by_case_id()
+        max_items = max(1, limit)
+        entries: list[dict[str, Any]] = []
+        for entry in self._iter_entries():
+            if conversation_id and ((entry.get("request") or {}).get("conversation_id") or "") != conversation_id:
+                continue
+            entries.append(self._entry_with_feedback(entry, feedback_by_case_id))
+            if len(entries) > max_items * 4:
+                entries.sort(key=self._entry_sort_key, reverse=True)
+                del entries[max_items:]
         entries.sort(key=self._entry_sort_key, reverse=True)
-        return entries[: max(1, limit)]
+        return entries[:max_items]
 
     def get_by_case_id(self, case_id: str) -> dict[str, Any] | None:
         feedback_by_case_id = self._feedback_by_case_id()
-        for entry in self._load_entries():
+        for entry in self._iter_entries():
             if entry.get("case_id") == case_id:
                 return self._entry_with_feedback(entry, feedback_by_case_id)
         return None
@@ -108,7 +113,7 @@ class JsonlCaseRepository:
                 if entry is None:
                     return None
             elif status != "correct":
-                entry = next((item for item in self._load_entries() if item.get("case_id") == case_id), None)
+                entry = next((item for item in self._iter_entries() if item.get("case_id") == case_id), None)
                 if entry is None:
                     return None
 
@@ -181,7 +186,9 @@ class JsonlCaseRepository:
         if not query_terms:
             return []
         candidates: list[tuple[float, dict[str, Any]]] = []
-        for entry in self._entries_with_feedback():
+        feedback_by_case_id = self._feedback_by_case_id()
+        for raw_entry in self._iter_entries():
+            entry = self._entry_with_feedback(raw_entry, feedback_by_case_id)
             feedback = entry.get("feedback") or {}
             if feedback.get("status") != "incorrect":
                 continue
@@ -221,20 +228,22 @@ class JsonlCaseRepository:
                 self._entries_cache = []
                 self._entries_signature = signature
                 return self._entries_cache
-            entries: list[dict[str, Any]] = []
-            for raw_line in self.file_path.read_text(encoding="utf-8", errors="ignore").splitlines():
-                line = raw_line.strip()
-                if not line:
-                    continue
-                try:
-                    parsed = json.loads(line)
-                except json.JSONDecodeError:
-                    continue
-                if isinstance(parsed, dict):
-                    entries.append(parsed)
-            self._entries_cache = entries
-            self._entries_signature = signature
-            return self._entries_cache
+            entries = list(self._iter_jsonl_file(self.file_path))
+            if signature[1] <= self._MAX_ENTRY_CACHE_BYTES:
+                self._entries_cache = entries
+                self._entries_signature = signature
+                return self._entries_cache
+            self._entries_cache = None
+            self._entries_signature = None
+            return entries
+
+    def _iter_entries(self):
+        with self._cache_lock:
+            signature = self._file_signature(self.file_path)
+            if self._entries_cache is not None and self._entries_signature == signature:
+                yield from self._entries_cache
+                return
+        yield from self._iter_jsonl_file(self.file_path)
 
     def _entries_with_feedback(self) -> list[dict[str, Any]]:
         feedback_by_case_id = self._feedback_by_case_id()
@@ -310,17 +319,7 @@ class JsonlCaseRepository:
                 self._memory_cache = []
                 self._memory_signature = signature
                 return self._memory_cache
-            entries: list[dict[str, Any]] = []
-            for raw_line in self.memory_path.read_text(encoding="utf-8", errors="ignore").splitlines():
-                line = raw_line.strip()
-                if not line:
-                    continue
-                try:
-                    parsed = json.loads(line)
-                except json.JSONDecodeError:
-                    continue
-                if isinstance(parsed, dict):
-                    entries.append(parsed)
+            entries = list(self._iter_jsonl_file(self.memory_path))
             self._memory_cache = entries
             self._memory_signature = signature
             return self._memory_cache
@@ -334,8 +333,19 @@ class JsonlCaseRepository:
                 self._feedback_cache = []
                 self._feedback_signature = signature
                 return self._feedback_cache
-            entries: list[dict[str, Any]] = []
-            for raw_line in self.feedback_path.read_text(encoding="utf-8", errors="ignore").splitlines():
+            entries = list(self._iter_jsonl_file(self.feedback_path))
+            self._feedback_cache = entries
+            self._feedback_signature = signature
+            return self._feedback_cache
+
+    @staticmethod
+    def _iter_jsonl_file(path: Path):
+        try:
+            handle = path.open("r", encoding="utf-8", errors="ignore")
+        except FileNotFoundError:
+            return
+        with handle:
+            for raw_line in handle:
                 line = raw_line.strip()
                 if not line:
                     continue
@@ -344,10 +354,7 @@ class JsonlCaseRepository:
                 except json.JSONDecodeError:
                     continue
                 if isinstance(parsed, dict):
-                    entries.append(parsed)
-            self._feedback_cache = entries
-            self._feedback_signature = signature
-            return self._feedback_cache
+                    yield parsed
 
     @staticmethod
     def _file_signature(path: Path) -> tuple[int, int]:

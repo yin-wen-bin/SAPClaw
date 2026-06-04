@@ -82,6 +82,7 @@ Keep `data/index/API_BUSINESS_PARTNER` as the schema ground truth. This skill pr
 ### Customer Master Data
 
 - Query `A_Customer` for customer master data.
+- For customer master list wording such as `查询客户主数据列表`, `客户主数据列表`, `customer master list`, or `list customer master records`, use `A_Customer` directly. Select `A_Customer.Customer` plus stable customer name/account fields. Do not route this list request to address, email, phone, fax, or contact entities unless the user explicitly asks for communication details.
 - For a customer basic information/profile request, select `A_Customer.Customer`, `A_Customer.CustomerName`, `A_Customer.CustomerFullName`, and `A_Customer.BPCustomerFullName` first. Do not make `A_Customer.CustomerAccountGroup`, `A_Customer.BillingIsBlockedForCustomer`, `A_Customer.AuthorizationGroup`, `A_Customer.CreationDate`, or `A_Customer.CreatedByUser` the main output fields unless the user asks for account group, block status, authorization, or creation/audit information.
 - Use `A_CustomerCompany` for company-code data and `A_CustomerSalesArea` for sales-area data.
 

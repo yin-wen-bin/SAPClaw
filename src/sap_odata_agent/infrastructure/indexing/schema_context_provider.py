@@ -845,12 +845,18 @@ class SchemaContextProvider:
         by_qualified: dict[tuple[str, str], dict[str, Any]] = {}
         field_ref_pattern = re.compile(r"\b([A-Za-z][A-Za-z0-9_]*)\.([A-Za-z][A-Za-z0-9_]*)\b")
         for line_number, line in enumerate(content.splitlines(), start=1):
+            lowered_line = line.lower()
+            score = 55.0
+            if any(marker in lowered_line for marker in (" bind", "binding", " join", "together with", "cross-entity")):
+                score += 20.0
+            if re.match(r"\s*[-*]?\s*step\s+\d+\s*:", line, flags=re.IGNORECASE):
+                score += 10.0
             for entity_set, field_name in field_ref_pattern.findall(line):
                 key = (entity_set, field_name)
                 if key not in available:
                     continue
                 existing = by_qualified.get(key)
-                if existing is not None:
+                if existing is not None and float(existing.get("score") or 0.0) >= score:
                     continue
                 by_qualified[key] = {
                     "matched_field": f"{entity_set}.{field_name}",
@@ -858,7 +864,7 @@ class SchemaContextProvider:
                     "field_name": field_name,
                     "line_number": line_number,
                     "reason": "field referenced by API skill matched current API schema",
-                    "score": 55.0,
+                    "score": score,
                 }
 
         return sorted(

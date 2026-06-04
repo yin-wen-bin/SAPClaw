@@ -38,6 +38,7 @@ Keep `data/index/API_INFORECORD_PROCESS_SRV` as the schema ground truth. This sk
 - "供应商的采购信息记录" should filter `A_PurchasingInfoRecord.Supplier`.
 - "物料的采购信息记录" should filter `A_PurchasingInfoRecord.Material`.
 - If the user only asks for "采购信息记录" without saying price, condition, validity, scale, or text, stop at `A_PurchasingInfoRecord`. Do not enrich to pricing condition entities by default.
+- For wording such as "供应商的采购信息记录", "采购信息记录列表", "purchasing info records for supplier", or "list purchasing info records", query `A_PurchasingInfoRecord` and select only `A_PurchasingInfoRecord.PurchasingInfoRecord`, `A_PurchasingInfoRecord.Supplier`, `A_PurchasingInfoRecord.Material`, and `A_PurchasingInfoRecord.MaterialGroup`. Filter `A_PurchasingInfoRecord.Supplier` or `A_PurchasingInfoRecord.Material` only when the user provides those values.
 - "价格条件" should use `A_PurInfoRecdPrcgCndn` and should return actual pricing values, not only condition metadata.
 - For price condition results, include value and unit fields such as `A_PurInfoRecdPrcgCndn.ConditionRateAmount`, `A_PurInfoRecdPrcgCndn.ConditionCurrency`, `A_PurInfoRecdPrcgCndn.ConditionRateValue`, `A_PurInfoRecdPrcgCndn.ConditionRateValueUnit`, `A_PurInfoRecdPrcgCndn.ConditionQuantity`, and `A_PurInfoRecdPrcgCndn.ConditionQuantityUnit` when available.
 - "价格条件有效期" should use `A_PurInfoRecdPrcgCndnValidity`.
@@ -79,6 +80,7 @@ Keep `data/index/API_INFORECORD_PROCESS_SRV` as the schema ground truth. This sk
 - Do not treat info record prices as the final price of an already-created purchase order.
 - Do not use info records to answer receipt, invoice, or current stock status.
 - If the user asks for "purchase orders for material X", route to the purchase order API, not this API.
+- If the user asks for `供应商...的采购订单`, `purchase orders for supplier/vendor`, or actual ordered documents by supplier, route to `API_PURCHASEORDER_PROCESS_SRV`, not this API.
 
 ## Needs Verification
 

@@ -112,6 +112,7 @@ class LlmSchemaResearchAgent:
         }
         payload = {
             "user_input": request.resolved_user_input or request.user_input,
+            "detected_time_expressions": request.detected_time_expressions,
             "route_decision": {
                 "selected_apis": [
                     {"service_name": item.service_name, "confidence": item.confidence, "reason": item.reason}
@@ -140,8 +141,8 @@ class LlmSchemaResearchAgent:
             "only/where phrase, true/false requirement, nonzero/open/closed condition, or schema-verified business condition.\n\n"
             "9. For unreceived, undelivered, pending receipt, open goods receipt, or not fully received questions, "
             "prefer actual completion/status or received/open quantity fields over expected/required/configuration flags.\n"
-            "10. If both GoodsReceiptIsExpected and IsCompletelyDelivered are available, treat GoodsReceiptIsExpected "
-            "as a configuration/expectation flag and prefer IsCompletelyDelivered eq false for not-complete delivery/receipt semantics.\n\n"
+            "10. If detected_time_expressions is non-empty, recommend the schema-valid date or period field that should carry that normalized time range. Do not recalculate the date range.\n"
+            "\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )

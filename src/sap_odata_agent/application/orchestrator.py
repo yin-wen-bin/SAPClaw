@@ -16,6 +16,7 @@ from sap_odata_agent.application.context_gate import ContextCarryGate
 from sap_odata_agent.application.progress import publish_progress_event
 from sap_odata_agent.application.result_transformer import ResultTransformer
 from sap_odata_agent.application.schema_feasibility_validator import SchemaFeasibilityValidator
+from sap_odata_agent.application.temporal_normalizer import TemporalNormalizer
 from sap_odata_agent.domain.models import (
     AgentRequest,
     AgentResponse,
@@ -128,6 +129,7 @@ class AgentOrchestrator:
         self.failure_attributor = FailureAttributor()
         self.presentation_verifier = PresentationVerifier()
         self.result_transformer = ResultTransformer()
+        self.temporal_normalizer = TemporalNormalizer()
 
     def run(self, request: AgentRequest) -> AgentResponse:
         if self.use_llm_first_pipeline:
@@ -516,6 +518,9 @@ class AgentOrchestrator:
             route_decision,
             clarification_case,
         )
+        detected_time_expressions = self.temporal_normalizer.detect(
+            resolved_user_input or request.resolved_user_input or request.user_input
+        )
         effective_request = replace(
             request,
             resolved_user_input=resolved_user_input,
@@ -525,8 +530,10 @@ class AgentOrchestrator:
                 "intent_summary": route_decision.intent_summary,
                 "business_domain": route_decision.business_domain,
                 "business_object": route_decision.business_object,
+                "detected_time_expressions": detected_time_expressions,
             },
             constraints=None,
+            detected_time_expressions=detected_time_expressions,
         )
         context = RetrievedContext(documents=[], examples=[])
         placeholder_plan = QueryPlan(
@@ -648,6 +655,7 @@ class AgentOrchestrator:
                 "api_skill": api_skill,
             }
         schema_context = self._attach_multi_api_skills(schema_context, timings)
+        schema_context = self._attach_temporal_context(schema_context, effective_request)
         pre_schema_context_summary = self.schema_context_provider.summarize(schema_context)
         if self._primary_service_is_cds_view_only(schema_context):
             final_message = self._cds_view_only_final_message(selected_service, schema_context)
@@ -1447,6 +1455,16 @@ class AgentOrchestrator:
         }
 
     @staticmethod
+    def _attach_temporal_context(schema_context: dict, request: AgentRequest) -> dict:
+        expressions = list(getattr(request, "detected_time_expressions", []) or [])
+        if not expressions:
+            return schema_context
+        return {
+            **schema_context,
+            "detected_time_expressions": expressions,
+        }
+
+    @staticmethod
     def _primary_service_payload(schema_context: dict) -> dict:
         service = schema_context.get("service")
         if isinstance(service, dict):
@@ -1541,6 +1559,7 @@ class AgentOrchestrator:
                 "api_skill": api_skill,
             }
         schema_context = self._attach_multi_api_skills(schema_context, timings)
+        schema_context = self._attach_temporal_context(schema_context, effective_request)
         if self._route_uses_shortcut(route_decision):
             schema_research = self._shortcut_schema_research(route_decision)
         else:
@@ -1939,6 +1958,8 @@ class AgentOrchestrator:
             limit=5,
         )
 
+        detected_time_expressions = self.temporal_normalizer.detect(request.resolved_user_input or request.user_input)
+
         semantic_frame = {}
         if self.semantic_parser is not None:
             constraints, semantic_frame = self._timed_call(
@@ -2000,20 +2021,30 @@ class AgentOrchestrator:
                     constraints=constraints,
                     feedback_hints=feedback_hints,
                     feedback_memories=feedback_memories,
-                    semantic_frame=semantic_frame,
+                    semantic_frame={
+                        **(semantic_frame or {}),
+                        "detected_time_expressions": detected_time_expressions,
+                    },
                     schema_rerank=schema_rerank,
                     context_carry_decision=carry_decision,
+                    detected_time_expressions=detected_time_expressions,
                 ),
                 seed_context,
             )
 
+        final_detected_time_expressions = self.temporal_normalizer.detect(
+            resolved_user_input or request.resolved_user_input or request.user_input
+        )
         return (
             replace(
                 request,
                 resolved_user_input=resolved_user_input,
                 feedback_hints=feedback_hints,
                 feedback_memories=feedback_memories,
-                semantic_frame=semantic_frame,
+                semantic_frame={
+                    **(semantic_frame or {}),
+                    "detected_time_expressions": final_detected_time_expressions,
+                },
                 schema_rerank=schema_rerank,
                 query_shape=query_shape,
                 cardinality_policy=cardinality_policy,
@@ -2022,6 +2053,7 @@ class AgentOrchestrator:
                     carry_decision,
                     reason=f"{carry_decision.reason}; classifier={','.join(classifier_diagnostics.get('matched_terms', []))}; recent_cases={len(recent_cases)}",
                 ),
+                detected_time_expressions=final_detected_time_expressions,
             ),
             seed_context,
         )

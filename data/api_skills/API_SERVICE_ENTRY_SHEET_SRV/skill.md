@@ -44,6 +44,7 @@ Keep `data/index/API_SERVICE_ENTRY_SHEET_SRV` as the schema ground truth. This s
 - Keep `$select` focused on key fields plus fields needed to answer the question.
 - For service entry sheet header approval status, select `A_ServiceEntrySheet.ApprovalStatus`.
 - Select `A_ServiceEntrySheet.SESWorkflowStatus` only when the user asks for workflow status, workflow approval state, or when both approval status and workflow status are requested.
+- For wording such as `account assignments for service entry sheets`, `service entry sheet account assignments`, or `service entry sheet account assignment records`, select only `A_SrvcEntrShtAcctAssignment.AccountAssignment`, `A_SrvcEntrShtAcctAssignment.ServiceEntrySheet`, `A_SrvcEntrShtAcctAssignment.ServiceEntrySheetItem`, `A_SrvcEntrShtAcctAssignment.AccountAssignmentUUID`, `A_SrvcEntrShtAcctAssignment.PurchasingOrganization`, `A_SrvcEntrShtAcctAssignment.PurchasingGroup`, `A_SrvcEntrShtAcctAssignment.Plant`, and `A_SrvcEntrShtAcctAssignment.BusinessArea`.
 
 ### Detail Query
 

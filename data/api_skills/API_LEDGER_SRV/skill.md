@@ -42,6 +42,7 @@ Keep `data/index/API_LEDGER_SRV` as the schema ground truth. This skill provides
 - Select the entity whose description most directly matches the requested business object.
 - Apply user-provided identifiers, dates, statuses, organizational units, material/product IDs, customer/supplier IDs, and document numbers as filters when corresponding filterable fields exist.
 - Keep `$select` focused on key fields plus fields needed to answer the question.
+- For wording such as "general ledger line items", "G/L account line items", or "journal entry line items", do not use `API_LEDGER_SRV`; use `API_GLACCOUNTLINEITEM` for broad line-item detail unless the user asks for ledger master records, ledger names, leading ledger flags, ledger application, or ledger text.
 - For broad "ledger records with main identifying details" requests, prefer `A_LedgerText` and select `A_LedgerText.Language`, `A_LedgerText.Ledger`, and `A_LedgerText.LedgerName`, because the human-readable ledger name is part of the identifying details. If the user asks in English and gives no language, use `A_LedgerText.Language eq 'EN'` to avoid returning duplicate ledger names across all maintained languages.
 - Use `A_Ledger` when the user specifically asks for leading-ledger flags, ledger application, or ledger sub-application attributes.
 

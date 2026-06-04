@@ -774,6 +774,203 @@ def test_api_specific_planner_applies_matching_skill_boolean_filter(tmp_path: Pa
     assert plan.planner_diagnostics["api_skill_applied_filters"][0]["source"] == "api_skill_filter"
 
 
+def test_api_specific_planner_does_not_apply_example_filter_without_trigger_phrase(tmp_path: Path) -> None:
+    _write_index(tmp_path)
+    client = CapturingClient(
+        {
+            "plan_kind": "direct",
+            "service_name": "API_TEST",
+            "entity_set": "A_Test",
+            "http_method": "GET",
+            "select_fields": ["Document"],
+            "filters": [],
+            "presentation": {"kind": "table", "reason": "list result"},
+            "rationale": "The user asks for a general list.",
+        }
+    )
+    planner = LlmApiSpecificPlanner(index_root=tmp_path, llm_client=client)
+    schema_context = {
+        "service_name": "API_TEST",
+        "entities": [
+            {
+                "entity_set": "A_Test",
+                "fields": [
+                    {"field_name": "Document", "filterable": True},
+                    {"field_name": "IsClosed", "filterable": True},
+                ],
+            }
+        ],
+        "api_skill": {
+            "service_name": "API_TEST",
+            "summary": (
+                "For wording such as \"closed documents\", query `A_Test`, "
+                "filter `A_Test.IsClosed eq true`, and select only `A_Test.Document`."
+            ),
+            "content": "",
+        },
+    }
+
+    plan = planner.plan_for_api(
+        AgentRequest(user_input="show document records with their main identifying details"),
+        ApiRouteDecision(selected_apis=[SelectedApi(service_name="API_TEST", confidence=1.0, reason="test")]),
+        schema_context,
+    )
+
+    assert plan.filters == []
+    assert "api_skill_applied_filters" not in plan.planner_diagnostics
+
+
+def test_api_specific_planner_does_not_apply_when_user_asks_for_filter_without_trigger_phrase(
+    tmp_path: Path,
+) -> None:
+    _write_index(tmp_path)
+    client = CapturingClient(
+        {
+            "plan_kind": "direct",
+            "service_name": "API_TEST",
+            "entity_set": "A_Test",
+            "http_method": "GET",
+            "select_fields": ["Document", "ClearingDate"],
+            "filters": [],
+            "presentation": {"kind": "table", "reason": "list result"},
+            "rationale": "The user asks to display clearing date.",
+        }
+    )
+    planner = LlmApiSpecificPlanner(index_root=tmp_path, llm_client=client)
+    schema_context = {
+        "service_name": "API_TEST",
+        "entities": [
+            {
+                "entity_set": "A_Test",
+                "fields": [
+                    {"field_name": "Document", "filterable": True},
+                    {"field_name": "ClearingDate", "filterable": True},
+                ],
+            }
+        ],
+        "api_skill": {
+            "service_name": "API_TEST",
+            "summary": (
+                "Use this API when the user asks for `open items`, `not cleared`, or `cleared items`. "
+                "Filter open items with `A_Test.ClearingDate eq null`."
+            ),
+            "content": "",
+        },
+    }
+
+    plan = planner.plan_for_api(
+        AgentRequest(user_input="show records with clearing date"),
+        ApiRouteDecision(selected_apis=[SelectedApi(service_name="API_TEST", confidence=1.0, reason="test")]),
+        schema_context,
+    )
+
+    assert plan.filters == []
+    assert "api_skill_applied_filters" not in plan.planner_diagnostics
+
+
+def test_api_specific_planner_does_not_apply_example_select_only_without_trigger_phrase(tmp_path: Path) -> None:
+    _write_index(tmp_path)
+    client = CapturingClient(
+        {
+            "plan_kind": "direct",
+            "service_name": "API_TEST",
+            "entity_set": "A_Test",
+            "http_method": "GET",
+            "select_fields": ["Document", "FunctionalArea"],
+            "filters": [],
+            "presentation": {"kind": "table", "reason": "list result"},
+            "rationale": "The user asks for a general list with functional area.",
+        }
+    )
+    planner = LlmApiSpecificPlanner(index_root=tmp_path, llm_client=client)
+    schema_context = {
+        "service_name": "API_TEST",
+        "entities": [
+            {
+                "entity_set": "A_Test",
+                "fields": [
+                    {"field_name": "Document", "filterable": True},
+                    {"field_name": "FunctionalArea", "filterable": True},
+                    {"field_name": "CompanyCodeCurrency", "filterable": True},
+                ],
+            }
+        ],
+        "api_skill": {
+            "service_name": "API_TEST",
+            "summary": (
+                "For wording such as \"company code currency\", query `A_Test` "
+                "and select only `A_Test.Document` and `A_Test.CompanyCodeCurrency`."
+            ),
+            "content": "",
+        },
+    }
+
+    plan = planner.plan_for_api(
+        AgentRequest(user_input="show document records with functional area"),
+        ApiRouteDecision(selected_apis=[SelectedApi(service_name="API_TEST", confidence=1.0, reason="test")]),
+        schema_context,
+    )
+
+    assert plan.select_fields == ["Document", "FunctionalArea"]
+    assert "api_skill_applied_select_only" not in plan.planner_diagnostics
+
+
+def test_api_specific_planner_can_switch_direct_plan_to_skill_select_only_entity(tmp_path: Path) -> None:
+    _write_index(tmp_path)
+    client = CapturingClient(
+        {
+            "plan_kind": "direct",
+            "service_name": "API_TEST",
+            "entity_set": "A_Extra",
+            "http_method": "GET",
+            "select_fields": ["Document", "Name"],
+            "filters": [],
+            "presentation": {"kind": "table", "reason": "list result"},
+            "rationale": "The LLM picked a related detail entity.",
+        }
+    )
+    planner = LlmApiSpecificPlanner(index_root=tmp_path, llm_client=client)
+    schema_context = {
+        "service_name": "API_TEST",
+        "entities": [
+            {
+                "service_name": "API_TEST",
+                "entity_set": "A_Test",
+                "fields": [
+                    {"field_name": "Document", "filterable": True},
+                    {"field_name": "Amount", "filterable": True},
+                ],
+            },
+            {
+                "service_name": "API_TEST",
+                "entity_set": "A_Extra",
+                "fields": [
+                    {"field_name": "Document", "filterable": True},
+                    {"field_name": "Name", "filterable": True},
+                ],
+            },
+        ],
+        "api_skill": {
+            "service_name": "API_TEST",
+            "summary": (
+                "For wording such as \"main document list\", query `A_Test` and select only "
+                "`A_Test.Document` and `A_Test.Amount`."
+            ),
+            "content": "",
+        },
+    }
+
+    plan = planner.plan_for_api(
+        AgentRequest(user_input="show main document list"),
+        ApiRouteDecision(selected_apis=[SelectedApi(service_name="API_TEST", confidence=1.0, reason="test")]),
+        schema_context,
+    )
+
+    assert plan.entity_set == "A_Test"
+    assert plan.select_fields == ["Document", "Amount"]
+    assert plan.planner_diagnostics["api_skill_applied_select_only"][0]["entity_switched_from"] == "A_Extra"
+
+
 def test_api_specific_planner_applies_matching_skill_null_filter(tmp_path: Path) -> None:
     _write_index(tmp_path)
     client = CapturingClient(
@@ -1356,6 +1553,49 @@ def test_api_specific_planner_applies_matching_skill_order_by(tmp_path: Path) ->
     assert plan.planner_diagnostics["api_skill_applied_order_by"][0]["fields"] == ["Document"]
 
 
+def test_api_specific_planner_does_not_apply_unmatched_skill_order_by(tmp_path: Path) -> None:
+    _write_index(tmp_path)
+    client = CapturingClient(
+        {
+            "plan_kind": "direct",
+            "service_name": "API_TEST",
+            "entity_set": "A_Test",
+            "http_method": "GET",
+            "select_fields": ["Document"],
+            "filters": [],
+            "presentation": {"kind": "table", "reason": "list result"},
+            "rationale": "The user asks for a general document list.",
+        }
+    )
+    planner = LlmApiSpecificPlanner(index_root=tmp_path, llm_client=client)
+    schema_context = {
+        "service_name": "API_TEST",
+        "entities": [
+            {
+                "entity_set": "A_Test",
+                "fields": [
+                    {"field_name": "Document", "filterable": True},
+                    {"field_name": "PostingDate", "filterable": True},
+                ],
+            }
+        ],
+        "api_skill": {
+            "service_name": "API_TEST",
+            "summary": "For open documents, add filter `A_Test.IsClosed eq false`; order_by: `A_Test.Document`, `A_Test.PostingDate`.",
+            "content": "",
+        },
+    }
+
+    plan = planner.plan_for_api(
+        AgentRequest(user_input="show document records"),
+        ApiRouteDecision(selected_apis=[SelectedApi(service_name="API_TEST", confidence=1.0, reason="test")]),
+        schema_context,
+    )
+
+    assert plan.order_by == []
+    assert "api_skill_applied_order_by" not in plan.planner_diagnostics
+
+
 def test_api_specific_planner_applies_matching_skill_string_status_filter(tmp_path: Path) -> None:
     _write_index(tmp_path)
     client = CapturingClient(
@@ -1493,6 +1733,50 @@ def test_api_specific_planner_applies_matching_skill_select_only_without_filter(
     assert plan.select_fields == ["Document", "IsClosed"]
     assert plan.response_summary_fields == ["Document", "IsClosed"]
     assert plan.planner_diagnostics["api_skill_applied_select_only"][0]["source"] == "api_skill_select_only"
+
+
+def test_api_specific_planner_does_not_apply_unmatched_for_prefix_select_only(tmp_path: Path) -> None:
+    _write_index(tmp_path)
+    client = CapturingClient(
+        {
+            "plan_kind": "direct",
+            "service_name": "API_TEST",
+            "entity_set": "A_Test",
+            "http_method": "GET",
+            "select_fields": ["Document", "PostingDate"],
+            "filters": [],
+            "presentation": {"kind": "table", "reason": "list result"},
+            "rationale": "The user asks for a general document list.",
+        }
+    )
+    planner = LlmApiSpecificPlanner(index_root=tmp_path, llm_client=client)
+    schema_context = {
+        "service_name": "API_TEST",
+        "entities": [
+            {
+                "entity_set": "A_Test",
+                "fields": [
+                    {"field_name": "Document", "filterable": True},
+                    {"field_name": "PostingDate", "filterable": True},
+                    {"field_name": "DueDate", "filterable": True},
+                ],
+            }
+        ],
+        "api_skill": {
+            "service_name": "API_TEST",
+            "summary": "For supplier payable due-date list outputs, select only `A_Test.Document` and `A_Test.DueDate`.",
+            "content": "",
+        },
+    }
+
+    plan = planner.plan_for_api(
+        AgentRequest(user_input="show document list with posting date"),
+        ApiRouteDecision(selected_apis=[SelectedApi(service_name="API_TEST", confidence=1.0, reason="test")]),
+        schema_context,
+    )
+
+    assert plan.select_fields == ["Document", "PostingDate"]
+    assert "api_skill_applied_select_only" not in plan.planner_diagnostics
 
 
 def test_api_specific_planner_removes_skill_discouraged_output_fields(tmp_path: Path) -> None:
@@ -1811,6 +2095,93 @@ def test_api_specific_planner_recognizes_common_week_temporal_phrases() -> None:
 
     for phrase in phrases:
         assert LlmApiSpecificPlanner._has_temporal_intent(phrase), phrase
+
+
+def test_api_specific_planner_recognizes_real_chinese_temporal_phrases() -> None:
+    phrases = [
+        "查询本周到货的采购订单",
+        "查询上周到货的采购订单",
+        "查询下周到货的采购订单",
+        "查询下月到货的采购订单",
+        "查询明天到货的采购订单",
+    ]
+
+    for phrase in phrases:
+        assert LlmApiSpecificPlanner._has_temporal_intent(phrase), phrase
+
+
+def test_api_specific_planner_preserves_detected_temporal_filters(tmp_path: Path) -> None:
+    _write_index(tmp_path)
+    client = CapturingClient(
+        {
+            "plan_kind": "multi_step",
+            "service_name": "API_TEST",
+            "entity_set": "A_Test",
+            "steps": [
+                {
+                    "step_id": "step_1",
+                    "service_name": "API_TEST",
+                    "entity_set": "A_Test",
+                    "select_fields": ["Document", "PostingDate"],
+                    "filters": [
+                        {
+                            "field": "PostingDate",
+                            "operator": "ge",
+                            "value": "2026-05-25T00:00:00",
+                            "value_type": "datetime",
+                        },
+                        {
+                            "field": "PostingDate",
+                            "operator": "le",
+                            "value": "2026-05-31T23:59:59",
+                            "value_type": "datetime",
+                        },
+                    ],
+                    "filter_from_previous": [],
+                    "top": 50,
+                }
+            ],
+            "target_entity_set": "A_Test",
+            "presentation": {"kind": "table", "reason": "list result"},
+        }
+    )
+    planner = LlmApiSpecificPlanner(index_root=tmp_path, llm_client=client)
+    schema_context = {
+        "service_name": "API_TEST",
+        "entities": [
+            {
+                "entity_set": "A_Test",
+                "fields": [{"field_name": "Document"}, {"field_name": "PostingDate"}],
+            }
+        ],
+        "candidate_fields": [
+            {"entity_set": "A_Test", "field_name": "Document"},
+            {"entity_set": "A_Test", "field_name": "PostingDate", "filterable": True},
+        ],
+    }
+
+    plan = planner.plan_for_api(
+        AgentRequest(
+            user_input="查询上周到货的采购订单",
+            detected_time_expressions=[
+                {
+                    "text": "上周",
+                    "normalized_type": "calendar_week",
+                    "range_start": "2026-05-25T00:00:00",
+                    "range_end": "2026-05-31T23:59:59",
+                    "granularity": "week",
+                }
+            ],
+        ),
+        ApiRouteDecision(selected_apis=[SelectedApi(service_name="API_TEST")]),
+        schema_context,
+    )
+
+    assert [(condition.field, condition.operator) for condition in plan.steps[0].filters] == [
+        ("PostingDate", "ge"),
+        ("PostingDate", "le"),
+    ]
+    assert "removed_unrequested_temporal_filters" not in plan.planner_diagnostics
 
 
 def test_api_specific_planner_skill_pattern_can_clear_clarification(tmp_path: Path) -> None:

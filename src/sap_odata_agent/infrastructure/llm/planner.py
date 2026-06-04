@@ -2095,8 +2095,10 @@ class LlmStructuredIntentPlanner(RetrievalAwareIntentPlanner):
             for field_name in parsed.get("select_fields", [])
             if isinstance(field_name, str) and field_name in field_map
         ]
+        filters_provided = isinstance(parsed.get("filters"), list)
+        parsed_filters = parsed.get("filters", []) if filters_provided else []
         filters = []
-        for item in parsed.get("filters", []):
+        for item in parsed_filters:
             if not isinstance(item, dict):
                 continue
             field_name = item.get("field")
@@ -2110,7 +2112,7 @@ class LlmStructuredIntentPlanner(RetrievalAwareIntentPlanner):
                         value_type=self._filter_value_type(item, field_map[field_name]),
                     )
                 )
-        if not filters:
+        if not filters and not filters_provided:
             filter_field = self._choose_constraint_filter_field(fields, request.constraints or self._constraints_from_intent(intent))
             if filter_field is None:
                 filter_field = self._choose_filter_field(entity, fields, intent)
@@ -2698,8 +2700,10 @@ class LlmRepairEngine(IndexAwareRepairEngine):
             for field in parsed.get("select_fields", [])
             if str(field).strip() in field_map
         ]
+        filters_provided = isinstance(parsed.get("filters"), list)
+        parsed_filters = parsed.get("filters", []) if filters_provided else []
         filters: list[FilterCondition] = []
-        for item in parsed.get("filters", []):
+        for item in parsed_filters:
             if not isinstance(item, dict):
                 continue
             field_name = str(item.get("field", "") or "")
@@ -2727,7 +2731,7 @@ class LlmRepairEngine(IndexAwareRepairEngine):
             http_method=str(parsed.get("http_method", fallback_plan.http_method) or fallback_plan.http_method).upper(),
             select_fields=select_fields[:8],
             response_summary_fields=response_summary_fields[:6],
-            filters=filters or fallback_plan.filters,
+            filters=filters if filters_provided else fallback_plan.filters,
             top=int(parsed.get("top", fallback_plan.top or 20) or 20),
             requires_confirmation=bool(parsed.get("requires_confirmation", False)),
             response_directive=fallback_plan.response_directive,

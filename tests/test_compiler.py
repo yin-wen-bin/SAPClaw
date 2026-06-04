@@ -270,6 +270,22 @@ def test_compiler_removes_gl_line_item_technical_id_from_select(tmp_path) -> Non
     assert "ID" not in selected
 
 
+def test_compiler_includes_order_by_fields_in_select() -> None:
+    plan = QueryPlan(
+        service_name="API_GLACCOUNTLINEITEM",
+        entity_set="GLAccountLineItem",
+        select_fields=["CompanyCode", "AccountingDocument"],
+        order_by=["CompanyCode", "PostingDate"],
+        top=50,
+    )
+
+    compiled = BasicODataCompiler(base_url="https://sap.example.com").compile(plan)
+
+    selected = urllib.parse.parse_qs(urllib.parse.urlsplit(compiled.url).query)["$select"][0].split(",")
+    assert selected == ["CompanyCode", "AccountingDocument", "PostingDate"]
+    assert "$orderby=CompanyCode,PostingDate" in compiled.url
+
+
 def test_compiler_preserves_parameterized_trial_balance_results_path(tmp_path) -> None:
     service_dir = tmp_path / "data" / "index" / "C_TRIALBALANCE_CDS"
     service_dir.mkdir(parents=True)

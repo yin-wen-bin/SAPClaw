@@ -256,6 +256,28 @@ def test_case_repository_reuses_cache_and_detects_external_history_changes(tmp_p
     assert {"case-1", "case-2", "case-3"} <= case_ids
 
 
+def test_case_repository_list_recent_streams_large_uncached_history(tmp_path: Path) -> None:
+    path = tmp_path / "cases.jsonl"
+    repository = JsonlCaseRepository(str(path))
+    repository._MAX_ENTRY_CACHE_BYTES = 1
+    for index in range(5):
+        repository.save(
+            _make_case(
+                case_id=f"case-{index}",
+                user_input=f"query {index}",
+                conversation_id="conv-stream",
+                final_status="success",
+            )
+        )
+
+    repository._entries_cache = None
+    repository._entries_signature = None
+    recent = repository.list_recent(limit=2, conversation_id="conv-stream")
+
+    assert [entry["case_id"] for entry in recent] == ["case-4", "case-3"]
+    assert repository._entries_cache is None
+
+
 def test_case_repository_reuses_cache_and_detects_external_feedback_memory_changes(tmp_path: Path) -> None:
     memory_path = tmp_path / "feedback_memory.jsonl"
     repository = JsonlCaseRepository(str(tmp_path / "cases.jsonl"), memory_path=str(memory_path))

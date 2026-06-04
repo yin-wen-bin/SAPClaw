@@ -43,6 +43,7 @@ Keep `data/index/API_PHYSICAL_INVENTORY_DOC_SRV` as the schema ground truth. Thi
 - Select the entity whose description most directly matches the requested business object.
 - Apply user-provided identifiers, dates, statuses, organizational units, material/product IDs, customer/supplier IDs, and document numbers as filters when corresponding filterable fields exist.
 - Keep `$select` focused on key fields plus fields needed to answer the question.
+- For wording such as `phys inventory doc item records`, `physical inventory document item records`, or `main identifying details` on physical inventory document items, select only `A_PhysInventoryDocItem.FiscalYear`, `A_PhysInventoryDocItem.PhysicalInventoryDocument`, `A_PhysInventoryDocItem.PhysicalInventoryDocumentItem`, `A_PhysInventoryDocItem.Plant`, `A_PhysInventoryDocItem.StorageLocation`, `A_PhysInventoryDocItem.Material`, `A_PhysInventoryDocItem.Batch`, and `A_PhysInventoryDocItem.InventorySpecialStockType`.
 - For wording such as "with is handled in alternative unit of measure", "with is value only material", or "with physical inventory difference is posted", treat `A_PhysInventoryDocItem.IsHandledInAltvUnitOfMsr`, `A_PhysInventoryDocItem.IsValueOnlyMaterial`, and `A_PhysInventoryDocItem.PhysInvtryDifferenceIsPosted` as output fields unless the user explicitly asks for only records where the indicator is true or false. Do not add boolean filters just because the user asks to display those fields.
 
 ### Detail Query

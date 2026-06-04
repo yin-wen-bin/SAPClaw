@@ -31,20 +31,18 @@ class LlmApiRouter:
         latest_clarification_case: dict[str, Any] | None = None,
         feedback_memories: list[dict[str, Any]] | None = None,
     ) -> ApiRouteDecision:
-        shortcut = self._product_master_attribute_route_decision(user_input, api_catalog)
-        if shortcut is not None:
-            return shortcut
-        shortcut = self._purchase_order_supplier_contact_route_decision(user_input, api_catalog)
-        if shortcut is not None:
-            return shortcut
-        shortcut = self._purchase_order_filter_route_decision(user_input, api_catalog)
-        if shortcut is not None:
-            return shortcut
+        routable_catalog = self._routable_api_catalog(api_catalog)
         if not self.enabled or self.llm_client is None:
-            return self._unavailable_route(api_catalog)
+            fallback = self._skill_catalog_fallback_route(
+                user_input,
+                routable_catalog,
+                reason="api_router_unavailable",
+                feedback_memories=feedback_memories or [],
+            )
+            return fallback if fallback.selected_apis else self._unavailable_route(routable_catalog or api_catalog)
         payload = {
             "user_input": user_input,
-            "api_catalog": self._compact_catalog_for_prompt(api_catalog, user_input=user_input),
+            "api_catalog": self._compact_catalog_for_prompt(routable_catalog, user_input=user_input),
             "recent_cases": self._compact_recent_cases_for_prompt(recent_cases or []),
             "latest_clarification_case": self._compact_case_for_prompt(latest_clarification_case or {}),
             "feedback_memories": self._compact_feedback_memories_for_prompt(feedback_memories or []),
@@ -54,7 +52,7 @@ class LlmApiRouter:
             "should_carry_context": False,
             "selected_apis": [
                 {
-                    "service_name": api_catalog[0]["service_name"] if api_catalog else self.default_service_name,
+                    "service_name": routable_catalog[0]["service_name"] if routable_catalog else self.default_service_name,
                     "confidence": 0.0,
                     "reason": "Matched the user's business object to the API catalog.",
                 }
@@ -76,174 +74,50 @@ class LlmApiRouter:
             raw = self._complete_nonempty_json_text(self._system_prompt(), user_prompt, max_tokens=1600)
             parsed = self._parse_route_json_with_repair(raw, user_prompt, example)
         except Exception as exc:
-            fallback = self._unavailable_route(api_catalog)
+            fallback = self._skill_catalog_fallback_route(
+                user_input,
+                routable_catalog,
+                reason=f"api_router_failed:{exc}",
+                feedback_memories=feedback_memories or [],
+            )
+            if fallback.selected_apis:
+                return fallback
+            fallback = self._unavailable_route(routable_catalog or api_catalog)
             fallback.raw_response = {"accepted": False, "reason": f"api_router_failed:{exc}"}
             return fallback
-        return self._materialize(parsed, api_catalog, user_input)
+        decision = self._materialize(parsed, routable_catalog, user_input)
+        if not decision.selected_apis and not decision.needs_clarification:
+            fallback = self._skill_catalog_fallback_route(
+                user_input,
+                routable_catalog,
+                reason="api_router_empty_selection",
+                feedback_memories=feedback_memories or [],
+            )
+            if fallback.selected_apis:
+                return fallback
+        return decision
 
     @staticmethod
     def _system_prompt() -> str:
         return f"{GLOBAL_SAP_ODATA_PROMPT}\n\n{API_ROUTER_TASK_PROMPT}"
 
     @staticmethod
-    def _product_master_attribute_route_decision(
-        user_input: str,
-        api_catalog: list[dict[str, Any]],
-    ) -> ApiRouteDecision | None:
-        if not LlmApiRouter._looks_like_product_master_attribute_request(user_input):
-            return None
-        valid_services = {str(item.get("service_name") or "") for item in api_catalog}
-        service_name = "API_PRODUCT_SRV"
-        if service_name not in valid_services:
-            return None
-        selected = [
-            SelectedApi(
-                service_name=service_name,
-                confidence=0.96,
-                reason=(
-                    "High-confidence product/material master-data attribute request. "
-                    "Use API_PRODUCT_SRV for product-level attributes such as BaseUnit, ProductGroup, and ProductType."
-                ),
-            )
-        ]
-        raw_response = {
-            "resolved_user_input": user_input,
-            "should_carry_context": False,
-            "selected_apis": [
-                {"service_name": item.service_name, "confidence": item.confidence, "reason": item.reason}
-                for item in selected
-            ],
-            "requires_multi_api": False,
-            "intent_summary": "Retrieve product/material master-data attributes.",
-            "business_domain": "Product Master Data",
-            "business_object": "Product/Material",
-            "needs_clarification": False,
-            "clarification_question": "",
-            "clarification_options": [],
-            "router_shortcut": "product_master_attribute",
-        }
-        return ApiRouteDecision(
-            resolved_user_input=user_input,
-            should_carry_context=False,
-            selected_apis=selected,
-            requires_multi_api=False,
-            intent_summary=str(raw_response["intent_summary"]),
-            business_domain=str(raw_response["business_domain"]),
-            business_object=str(raw_response["business_object"]),
-            needs_clarification=False,
-            clarification_question=None,
-            clarification_options=[],
-            raw_response=raw_response,
-        )
+    def _routable_api_catalog(api_catalog: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        return [entry for entry in api_catalog if LlmApiRouter._is_odata_routable_catalog_entry(entry)]
 
     @staticmethod
-    def _purchase_order_filter_route_decision(
-        user_input: str,
-        api_catalog: list[dict[str, Any]],
-    ) -> ApiRouteDecision | None:
-        if not LlmApiRouter._looks_like_purchase_order_filter_request(user_input):
-            return None
-        valid_services = {str(item.get("service_name") or "") for item in api_catalog}
-        service_name = "API_PURCHASEORDER_PROCESS_SRV"
-        if service_name not in valid_services:
-            return None
-        selected = [
-            SelectedApi(
-                service_name=service_name,
-                confidence=0.96,
-                reason=(
-                    "High-confidence purchase order transaction request. "
-                    "Use API_PURCHASEORDER_PROCESS_SRV for supplier, material, plant, company code, date, "
-                    "receipt, invoice, and status scoped purchase order queries."
-                ),
-            )
-        ]
-        raw_response = {
-            "resolved_user_input": user_input,
-            "should_carry_context": False,
-            "selected_apis": [
-                {"service_name": item.service_name, "confidence": item.confidence, "reason": item.reason}
-                for item in selected
-            ],
-            "requires_multi_api": False,
-            "intent_summary": "Retrieve purchase orders using user-provided business filters.",
-            "business_domain": "Purchasing",
-            "business_object": "Purchase Order",
-            "needs_clarification": False,
-            "clarification_question": "",
-            "clarification_options": [],
-            "router_shortcut": "purchase_order_filter",
-        }
-        return ApiRouteDecision(
-            resolved_user_input=user_input,
-            should_carry_context=False,
-            selected_apis=selected,
-            requires_multi_api=False,
-            intent_summary=str(raw_response["intent_summary"]),
-            business_domain=str(raw_response["business_domain"]),
-            business_object=str(raw_response["business_object"]),
-            needs_clarification=False,
-            clarification_question=None,
-            clarification_options=[],
-            raw_response=raw_response,
-        )
-
-    @staticmethod
-    def _purchase_order_supplier_contact_route_decision(
-        user_input: str,
-        api_catalog: list[dict[str, Any]],
-    ) -> ApiRouteDecision | None:
-        if not LlmApiRouter._looks_like_purchase_order_supplier_contact_request(user_input):
-            return None
-        valid_services = {str(item.get("service_name") or "") for item in api_catalog}
-        po_service = "API_PURCHASEORDER_PROCESS_SRV"
-        bp_service = "API_BUSINESS_PARTNER"
-        if po_service not in valid_services or bp_service not in valid_services:
-            return None
-        selected = [
-            SelectedApi(
-                service_name=po_service,
-                confidence=0.9,
-                reason="High-confidence purchase-order delivery-date and plant scope.",
-            ),
-            SelectedApi(
-                service_name=bp_service,
-                confidence=0.85,
-                reason="Supplier contact information is business partner master data.",
-            ),
-        ]
-        raw_response = {
-            "resolved_user_input": user_input,
-            "should_carry_context": False,
-            "selected_apis": [
-                {"service_name": item.service_name, "confidence": item.confidence, "reason": item.reason}
-                for item in selected
-            ],
-            "requires_multi_api": True,
-            "intent_summary": (
-                "Find purchase orders by plant and schedule-line delivery date, then enrich matching suppliers "
-                "with business partner contact/address information."
-            ),
-            "business_domain": "Purchasing / Supplier Master Data",
-            "business_object": "Purchase Order Supplier Contact",
-            "needs_clarification": False,
-            "clarification_question": "",
-            "clarification_options": [],
-            "router_shortcut": "purchase_order_supplier_contact",
-        }
-        return ApiRouteDecision(
-            resolved_user_input=user_input,
-            should_carry_context=False,
-            selected_apis=selected,
-            requires_multi_api=True,
-            intent_summary=str(raw_response["intent_summary"]),
-            business_domain=str(raw_response["business_domain"]),
-            business_object=str(raw_response["business_object"]),
-            needs_clarification=False,
-            clarification_question=None,
-            clarification_options=[],
-            raw_response=raw_response,
-        )
+    def _is_odata_routable_catalog_entry(entry: dict[str, Any]) -> bool:
+        service_name = str(entry.get("service_name") or "").strip()
+        if not service_name:
+            return False
+        service_kind = str(entry.get("service_kind") or "ODATA").strip().upper()
+        if service_kind == "CDS_VIEW_ONLY":
+            return False
+        if entry.get("odata_runtime_available") is False:
+            return False
+        if entry.get("runtime_available") is False:
+            return False
+        return True
 
     @staticmethod
     def _json_repair_system_prompt() -> str:
@@ -344,6 +218,350 @@ class LlmApiRouter:
             raise last_error
         raise ValueError(f"LLM returned empty content after {max(1, attempts)} attempts: {last_response!r}")
 
+    def _skill_catalog_fallback_route(
+        self,
+        user_input: str,
+        api_catalog: list[dict[str, Any]],
+        *,
+        reason: str,
+        feedback_memories: list[dict[str, Any]],
+    ) -> ApiRouteDecision:
+        parsed = self._skill_catalog_fallback_parsed(
+            user_input,
+            api_catalog,
+            reason=reason,
+            feedback_memories=feedback_memories,
+        )
+        if parsed is None:
+            return ApiRouteDecision(
+                selected_apis=[],
+                raw_response={
+                    "accepted": False,
+                    "reason": reason,
+                    "router_fallback": "skill_catalog_no_match",
+                },
+            )
+        return self._materialize(parsed, api_catalog, user_input)
+
+    @staticmethod
+    def _skill_catalog_fallback_parsed(
+        user_input: str,
+        api_catalog: list[dict[str, Any]],
+        *,
+        reason: str,
+        feedback_memories: list[dict[str, Any]],
+    ) -> dict[str, Any] | None:
+        ranked: list[tuple[float, dict[str, Any], list[str]]] = []
+        for entry in api_catalog:
+            service_name = str(entry.get("service_name") or "")
+            if not service_name:
+                continue
+            score, evidence = LlmApiRouter._score_catalog_entry_for_fallback(
+                entry,
+                user_input,
+                feedback_memories=feedback_memories,
+            )
+            if score > 0:
+                ranked.append((score, entry, evidence))
+        if not ranked:
+            return None
+        ranked.sort(key=lambda item: item[0], reverse=True)
+        top_score, top_entry, top_evidence = ranked[0]
+        second_score = ranked[1][0] if len(ranked) > 1 else 0.0
+        margin = max(4.0, top_score * 0.18)
+        if top_score < 12.0 or top_score < second_score + margin:
+            return None
+        service_name = str(top_entry.get("service_name") or "")
+        confidence = min(0.88, max(0.55, top_score / (top_score + second_score + 8.0)))
+        business_objects = [str(item) for item in top_entry.get("primary_business_objects") or [] if str(item).strip()]
+        selected = [
+            {
+                "service_name": service_name,
+                "confidence": round(confidence, 3),
+                "reason": (
+                    "Skill/catalog fallback selected the strongest API match after Router LLM was unavailable "
+                    "or returned no executable selection."
+                ),
+            }
+        ]
+        return {
+            "resolved_user_input": user_input,
+            "should_carry_context": False,
+            "selected_apis": selected,
+            "requires_multi_api": False,
+            "intent_summary": "Route inferred from API skill/catalog similarity.",
+            "business_domain": "",
+            "business_object": business_objects[0] if business_objects else "",
+            "needs_clarification": False,
+            "clarification_question": "",
+            "clarification_options": [],
+            "accepted": True,
+            "router_fallback": "skill_catalog_similarity",
+            "fallback_reason": reason,
+            "match_score": round(top_score, 3),
+            "second_match_score": round(second_score, 3),
+            "matched_evidence": top_evidence[:6],
+        }
+
+    @staticmethod
+    def _score_catalog_entry_for_fallback(
+        entry: dict[str, Any],
+        user_input: str,
+        *,
+        feedback_memories: list[dict[str, Any]],
+    ) -> tuple[float, list[str]]:
+        score = 0.0
+        evidence: list[str] = []
+
+        weighted_texts = (
+            ("short_description", str(entry.get("short_description") or ""), 1.2),
+            ("primary_business_objects", " ".join(str(item) for item in entry.get("primary_business_objects") or []), 1.8),
+            ("top_entities", " ".join(str(item) for item in entry.get("top_entities") or []), 0.7),
+            ("top_filter_fields", " ".join(str(item) for item in entry.get("top_filter_fields") or []), 0.45),
+            ("top_answer_fields", " ".join(str(item) for item in entry.get("top_answer_fields") or []), 0.4),
+        )
+        for label, text, weight in weighted_texts:
+            match_score = LlmApiRouter._semantic_match_score(user_input, text)
+            if match_score <= 0:
+                continue
+            score += match_score * weight
+            evidence.append(f"{label}:{LlmApiRouter._truncate(text, 140)}")
+
+        skill_summary = str(entry.get("api_skill_summary") or "")
+        for raw_line in skill_summary.splitlines():
+            line = raw_line.strip()
+            if not line or line.startswith("#"):
+                continue
+            match_score = LlmApiRouter._semantic_match_score(user_input, line)
+            if match_score <= 0:
+                continue
+            if LlmApiRouter._is_negative_skill_line(line):
+                score -= match_score * 6.0
+                continue
+            score += match_score * 2.8
+            evidence.append(f"api_skill:{LlmApiRouter._truncate(line, 180)}")
+
+        memory_score = LlmApiRouter._feedback_memory_match_score(entry, user_input, feedback_memories)
+        if memory_score > 0:
+            score += memory_score
+            evidence.append("feedback_memory:matched preferred service/entity/field hints")
+
+        synonym_score = LlmApiRouter._catalog_business_synonym_match_score(entry, user_input)
+        if synonym_score > 0:
+            score += synonym_score
+            evidence.append("business_synonyms:matched user wording to catalog business terms")
+
+        return score, evidence
+
+    @staticmethod
+    def _catalog_business_synonym_match_score(entry: dict[str, Any], user_input: str) -> float:
+        catalog_text = LlmApiRouter._normalize_match_text(
+            json.dumps(
+                {
+                    "service_name": entry.get("service_name") or "",
+                    "short_description": entry.get("short_description") or "",
+                    "primary_business_objects": entry.get("primary_business_objects") or [],
+                    "top_entities": entry.get("top_entities") or [],
+                    "top_filter_fields": entry.get("top_filter_fields") or [],
+                    "top_answer_fields": entry.get("top_answer_fields") or [],
+                    "api_skill_summary": entry.get("api_skill_summary") or "",
+                },
+                ensure_ascii=False,
+            )
+        )
+        core_catalog_text = LlmApiRouter._normalize_match_text(
+            json.dumps(
+                {
+                    "service_name": entry.get("service_name") or "",
+                    "short_description": entry.get("short_description") or "",
+                    "primary_business_objects": entry.get("primary_business_objects") or [],
+                    "top_entities": entry.get("top_entities") or [],
+                    "api_skill_summary": entry.get("api_skill_summary") or "",
+                },
+                ensure_ascii=False,
+            )
+        )
+        if not catalog_text:
+            return 0.0
+        query_raw = str(user_input or "").lower()
+        query_norm = LlmApiRouter._normalize_match_text(user_input)
+        groups = (
+            ("purchaseorder", "purchase order", "采购订单", "采购单"),
+            ("schedulelinedeliverydate", "deliverydate", "delivery date", "arriving", "arrival", "到货", "交货日期", "交货"),
+            ("supplier", "vendor", "供应商"),
+            ("material", "product", "物料", "产品"),
+            ("plant", "工厂"),
+            ("salesorder", "sales order", "销售订单"),
+            ("deliverydocument", "outbounddelivery", "outbound delivery", "交货单", "发货单"),
+            ("invoice", "billing", "发票", "开票"),
+            ("stock", "inventory", "库存"),
+        )
+        score = 0.0
+        for group in groups:
+            query_matches = [
+                term
+                for term in group
+                if LlmApiRouter._contains_synonym_term(query_raw, query_norm, term)
+            ]
+            if not query_matches:
+                continue
+            candidate_text = core_catalog_text if group[0] == "purchaseorder" else catalog_text
+            candidate_matches = [
+                term
+                for term in group
+                if LlmApiRouter._normalize_match_text(term) in candidate_text
+            ]
+            if not candidate_matches:
+                continue
+            score += 6.0 + min(4.0, 1.5 * len(query_matches))
+        return score
+
+    @staticmethod
+    def _contains_synonym_term(raw_text: str, normalized_text: str, term: str) -> bool:
+        term_raw = str(term or "").lower()
+        if not term_raw:
+            return False
+        if any("\u4e00" <= ch <= "\u9fff" for ch in term_raw):
+            return term_raw in raw_text
+        term_norm = LlmApiRouter._normalize_match_text(term_raw)
+        return bool(term_norm and term_norm in normalized_text)
+
+    @staticmethod
+    def _feedback_memory_match_score(
+        entry: dict[str, Any],
+        user_input: str,
+        feedback_memories: list[dict[str, Any]],
+    ) -> float:
+        if not feedback_memories:
+            return 0.0
+        service_name = LlmApiRouter._normalize_match_text(str(entry.get("service_name") or ""))
+        catalog_text = LlmApiRouter._normalize_match_text(
+            json.dumps(
+                {
+                    "service_name": entry.get("service_name") or "",
+                    "top_entities": entry.get("top_entities") or [],
+                    "top_filter_fields": entry.get("top_filter_fields") or [],
+                    "top_answer_fields": entry.get("top_answer_fields") or [],
+                    "primary_business_objects": entry.get("primary_business_objects") or [],
+                },
+                ensure_ascii=False,
+            )
+        )
+        score = 0.0
+        for memory in feedback_memories[:5]:
+            if not isinstance(memory, dict):
+                continue
+            phrase_text = " ".join(str(item) for item in memory.get("user_phrases") or [])
+            lesson = str(memory.get("lesson") or "")
+            if LlmApiRouter._semantic_match_score(user_input, f"{phrase_text} {lesson}") < 3.0:
+                continue
+            preferred = " ".join(
+                str(item)
+                for item in [
+                    *(memory.get("preferred_entities") or []),
+                    *(memory.get("preferred_fields") or []),
+                ]
+            )
+            preferred_norm = LlmApiRouter._normalize_match_text(preferred)
+            if service_name and service_name in preferred_norm:
+                score += 10.0
+            if preferred_norm and any(term in catalog_text for term in LlmApiRouter._match_tokens(preferred)):
+                score += 4.0
+        return score
+
+    @staticmethod
+    def _semantic_match_score(query: str, candidate: str) -> float:
+        query_text = str(query or "")
+        candidate_text = str(candidate or "")
+        if not query_text.strip() or not candidate_text.strip():
+            return 0.0
+        score = 0.0
+        query_norm = LlmApiRouter._normalize_match_text(query_text)
+        candidate_norm = LlmApiRouter._normalize_match_text(candidate_text)
+        if len(query_norm) >= 6 and query_norm in candidate_norm:
+            score += 8.0
+        elif len(candidate_norm) >= 6 and candidate_norm in query_norm:
+            score += 5.0
+
+        query_tokens = {
+            token
+            for token in LlmApiRouter._match_tokens(query_text)
+            if LlmApiRouter._is_signal_token(token)
+        }
+        candidate_tokens = {
+            token
+            for token in LlmApiRouter._match_tokens(candidate_text)
+            if LlmApiRouter._is_signal_token(token)
+        }
+        score += 2.0 * len(query_tokens & candidate_tokens)
+
+        query_terms = LlmApiRouter._cjk_terms(query_text)
+        candidate_terms = LlmApiRouter._cjk_terms(candidate_text)
+        for term in query_terms & candidate_terms:
+            score += 1.0 + min(2.0, len(term) * 0.25)
+        return score
+
+    @staticmethod
+    def _is_signal_token(token: str) -> bool:
+        cleaned = str(token or "").lower()
+        if len(cleaned) < 3:
+            return False
+        if any(ch.isdigit() for ch in cleaned):
+            return False
+        return cleaned not in {
+            "query",
+            "show",
+            "list",
+            "get",
+            "what",
+            "which",
+            "with",
+            "for",
+            "and",
+            "the",
+            "all",
+            "api",
+            "srv",
+        }
+
+    @staticmethod
+    def _cjk_terms(value: str) -> set[str]:
+        terms: set[str] = set()
+        for chunk in re.findall(r"[\u4e00-\u9fff]+", str(value or "")):
+            if len(chunk) <= 1:
+                continue
+            if len(chunk) <= 6:
+                terms.add(chunk)
+            for size in (2, 3, 4, 5):
+                if len(chunk) < size:
+                    continue
+                for index in range(0, len(chunk) - size + 1):
+                    term = chunk[index : index + size]
+                    if term in {"查询", "是否", "哪个", "什么", "所有", "这个", "一个"}:
+                        continue
+                    terms.add(term)
+        return terms
+
+    @staticmethod
+    def _is_negative_skill_line(line: str) -> bool:
+        lower = str(line or "").lower()
+        return any(
+            marker in lower
+            for marker in (
+                "do not use",
+                "don't use",
+                "not use this api",
+                "does not contain",
+                "do not answer",
+                "not sufficient",
+                "不要",
+                "不使用",
+                "不能",
+                "不应",
+                "不包含",
+            )
+        )
+
     @staticmethod
     def _compact_catalog_for_prompt(
         api_catalog: list[dict[str, Any]],
@@ -406,23 +624,84 @@ class LlmApiRouter:
         for value in cleaned[:base_limit]:
             if value not in selected:
                 selected.append(value)
-        for value in cleaned[base_limit:]:
+
+        matched: list[tuple[tuple[int, int, int], str]] = []
+        for index, value in enumerate(cleaned[base_limit:], start=base_limit):
+            if value in selected:
+                continue
+            score = LlmApiRouter._catalog_value_match_score(value, user_input)
+            if score <= 0:
+                continue
+            matched.append(((-score, index, len(value)), value))
+        for _, value in sorted(matched):
             if len(selected) >= max_limit:
                 break
-            if value not in selected and LlmApiRouter._value_matches_user_input(value, user_input):
-                selected.append(value)
+            selected.append(value)
         return selected
 
     @staticmethod
     def _value_matches_user_input(value: str, user_input: str) -> bool:
+        return LlmApiRouter._catalog_value_match_score(value, user_input) > 0
+
+    @staticmethod
+    def _catalog_value_match_score(value: str, user_input: str) -> int:
         query = LlmApiRouter._normalize_match_text(user_input)
         candidate = LlmApiRouter._normalize_match_text(value)
         if not query or not candidate:
-            return False
-        return candidate in query or query in candidate or any(
-            len(token) >= 4 and token in candidate
+            return 0
+        if candidate in query:
+            return 1000 + len(candidate)
+        if query in candidate:
+            return 900 + len(query)
+
+        stop_tokens = {
+            "api",
+            "srv",
+            "service",
+            "query",
+            "show",
+            "list",
+            "lists",
+            "record",
+            "records",
+            "all",
+            "for",
+            "with",
+            "from",
+            "the",
+            "and",
+            "items",
+            "item",
+            "data",
+            "main",
+            "basic",
+            "details",
+            "detail",
+            "sales",
+            "order",
+            "orders",
+            "purchase",
+            "material",
+            "product",
+            "supplier",
+            "customer",
+        }
+        query_tokens = [
+            token
             for token in LlmApiRouter._match_tokens(user_input)
-        )
+            if len(token) >= 4 and token not in stop_tokens
+        ]
+        if not query_tokens:
+            query_tokens = [
+                token
+                for token in LlmApiRouter._match_tokens(user_input)
+                if len(token) >= 4 and token not in {"query", "show", "list", "records", "items", "details"}
+            ]
+        score = 0
+        for token in query_tokens:
+            if token in candidate:
+                score += len(token) * 10
+        return score
 
     @staticmethod
     def _normalize_match_text(value: str) -> str:
@@ -517,19 +796,73 @@ class LlmApiRouter:
         user_input: str,
         max_lines: int = 4,
     ) -> list[str]:
-        relevant_lines: list[str] = []
+        ranked_lines: list[tuple[int, int, str]] = []
         text = str(skill_summary or "")
-        for raw_line in text.splitlines():
+        for index, raw_line in enumerate(text.splitlines()):
             line = raw_line.strip()
             if not line or line.startswith("#"):
                 continue
             if LlmApiRouter._skill_line_matches_user_input(line, user_input):
                 cleaned = re.sub(r"^\s*[-*]\s*", "", line)
-                if cleaned not in relevant_lines:
-                    relevant_lines.append(cleaned)
+                if cleaned:
+                    score = LlmApiRouter._skill_prompt_line_score(cleaned, user_input)
+                    ranked_lines.append((score, index, cleaned))
+        relevant_lines: list[str] = []
+        for _, _, cleaned in sorted(ranked_lines, key=lambda item: (-item[0], item[1])):
+            if cleaned not in relevant_lines:
+                relevant_lines.append(cleaned)
             if len(relevant_lines) >= max_lines:
                 break
-        return relevant_lines[:max_lines]
+        return relevant_lines
+
+    @staticmethod
+    def _skill_prompt_line_score(line: str, user_input: str) -> int:
+        query = LlmApiRouter._normalize_match_text(user_input)
+        candidate = LlmApiRouter._normalize_match_text(line)
+        if not query or not candidate:
+            return 0
+        score = 0
+        if query in candidate:
+            score += 2000 + len(query)
+        if candidate in query:
+            score += 1500 + len(candidate)
+        weak_tokens = {
+            "query",
+            "show",
+            "list",
+            "with",
+            "from",
+            "record",
+            "records",
+            "item",
+            "items",
+            "line",
+            "lines",
+            "data",
+            "field",
+            "fields",
+            "name",
+            "names",
+        }
+        query_tokens = {
+            token
+            for token in LlmApiRouter._match_tokens(user_input)
+            if len(token) >= 4 and token not in weak_tokens
+        }
+        line_tokens = {
+            token
+            for token in LlmApiRouter._match_tokens(line)
+            if len(token) >= 4 and token not in weak_tokens
+        }
+        score += 20 * len(query_tokens.intersection(line_tokens))
+        for phrase in re.findall(r'"([^"]+)"|`([^`]+)`|\'([^\']+)\'', line):
+            snippet = next((part for part in phrase if part), "")
+            normalized_snippet = LlmApiRouter._normalize_match_text(snippet)
+            if normalized_snippet and normalized_snippet in query:
+                score += 1000 + len(normalized_snippet)
+        if LlmApiRouter._is_negative_skill_line(line):
+            score += 250
+        return score
 
     @staticmethod
     def _skill_line_matches_user_input(line: str, user_input: str) -> bool:
@@ -602,137 +935,6 @@ class LlmApiRouter:
             if normalized_marker and normalized_marker in normalized:
                 return True
         return False
-
-    @staticmethod
-    def _looks_like_product_master_attribute_request(user_input: str) -> bool:
-        raw = str(user_input or "").lower()
-        normalized = LlmApiRouter._normalize_match_text(user_input)
-        object_markers = (
-            "物料",
-            "产品",
-            "material",
-            "product",
-        )
-        attribute_markers = (
-            "base unit",
-            "baseunit",
-            "base uom",
-            "baseuom",
-            "basic unit",
-            "基本单位",
-            "基础单位",
-            "基本计量单位",
-            "基础计量单位",
-            "计量单位",
-            "物料组",
-            "产品组",
-            "material group",
-            "materialgroup",
-            "product group",
-            "productgroup",
-            "物料类型",
-            "产品类型",
-            "product type",
-            "producttype",
-            "主数据",
-            "master data",
-            "basic data",
-            "base data",
-        )
-        transactional_markers = (
-            "采购订单",
-            "销售订单",
-            "生产订单",
-            "计划订单",
-            "交货单",
-            "开票",
-            "库存",
-            "有货",
-            "可用",
-            "物料凭证",
-            "bom",
-            "routing",
-            "purchase order",
-            "sales order",
-            "production order",
-            "planned order",
-            "delivery",
-            "billing",
-            "stock",
-            "inventory",
-            "available",
-            "availability",
-            "material document",
-        )
-        return (
-            LlmApiRouter._contains_any_marker(raw, object_markers)
-            and LlmApiRouter._contains_any_marker(raw, attribute_markers)
-            and not LlmApiRouter._contains_any_marker(raw, transactional_markers)
-            and bool(normalized)
-        )
-
-    @staticmethod
-    def _looks_like_purchase_order_filter_request(user_input: str) -> bool:
-        raw = str(user_input or "").lower()
-        normalized = LlmApiRouter._normalize_match_text(user_input)
-        if not normalized:
-            return False
-        purchase_order_markers = (
-            "采购订单",
-            "purchase order",
-            "purchaseorder",
-        )
-        filter_markers = (
-            "供应商",
-            "供货商",
-            "vendor",
-            "supplier",
-            "物料",
-            "material",
-            "产品",
-            "product",
-            "工厂",
-            "plant",
-            "公司代码",
-            "公司",
-            "company code",
-            "company",
-            "交货日期",
-            "到货",
-            "delivery date",
-            "creation date",
-            "创建日期",
-            "未收货",
-            "未完全收货",
-            "未完全交货",
-            "未清发票",
-            "未开票",
-            "收货",
-            "发票",
-            "状态",
-            "status",
-            "open invoice",
-            "unreceived",
-            "undelivered",
-        )
-        excluded_markers = (
-            "联系人",
-            "联系方式",
-            "联系电话",
-            "contact",
-            "phone",
-            "email",
-            "address",
-        )
-        has_purchase_order = LlmApiRouter._contains_any_marker(raw, purchase_order_markers)
-        has_filter = LlmApiRouter._contains_any_marker(raw, filter_markers)
-        has_identifier = bool(re.search(r"(?<![A-Za-z0-9_])[A-Za-z]*\d[A-Za-z0-9_-]{2,}", raw))
-        return (
-            has_purchase_order
-            and has_filter
-            and has_identifier
-            and not LlmApiRouter._contains_any_marker(raw, excluded_markers)
-        )
 
     def _materialize(
         self,
@@ -939,6 +1141,35 @@ class LlmApiRouter:
             for line in relevant_lines:
                 normalized_line = line.lower()
                 if "do not use" in normalized_line or "don't use" in normalized_line:
+                    if LlmApiRouter._negative_route_condition_excludes_request(line, user_input):
+                        continue
+                    replacement = LlmApiRouter._skill_declared_replacement_apis(
+                        line,
+                        selected_item.service_name,
+                        valid_services,
+                    )
+                    if replacement and LlmApiRouter._companion_line_is_specific_enough(line, user_input):
+                        preserved = [
+                            item
+                            for item in repaired
+                            if item.service_name != selected_item.service_name
+                        ]
+                        selected_names.discard(selected_item.service_name)
+                        for service_name in replacement:
+                            if service_name in selected_names:
+                                continue
+                            preserved.append(
+                                SelectedApi(
+                                    service_name=service_name,
+                                    confidence=0.62,
+                                    reason=(
+                                        "Selected API skill guidance explicitly routes this "
+                                        "matched request to another API."
+                                    ),
+                                )
+                            )
+                            selected_names.add(service_name)
+                        repaired = preserved
                     continue
                 if not LlmApiRouter._companion_line_is_specific_enough(line, user_input):
                     continue
@@ -961,6 +1192,46 @@ class LlmApiRouter:
         return repaired
 
     @staticmethod
+    def _skill_declared_replacement_apis(
+        line: str,
+        selected_service_name: str,
+        valid_services: set[str],
+    ) -> list[str]:
+        lowered = str(line or "").lower()
+        if "route" not in lowered and "use `" not in lowered and "use " not in lowered:
+            return []
+        services: list[str] = []
+        for service_name in sorted(valid_services):
+            if service_name == selected_service_name:
+                continue
+            if service_name not in line:
+                continue
+            route_index = lowered.find("route")
+            service_index = line.find(service_name)
+            if route_index >= 0 and service_index > route_index:
+                services.append(service_name)
+                continue
+            if "use" in lowered[:service_index]:
+                services.append(service_name)
+        return services
+
+    @staticmethod
+    def _negative_route_condition_excludes_request(line: str, user_input: str) -> bool:
+        lowered_line = str(line or "").lower()
+        lowered_user = str(user_input or "").lower()
+        exclusion_markers = ("without", "do not ask for", "does not ask for", "not ask for")
+        for marker in exclusion_markers:
+            index = lowered_line.find(marker)
+            if index < 0:
+                continue
+            clause = lowered_line[index:]
+            if "name" in clause and re.search(r"\bname\b|\bnames\b", lowered_user):
+                return True
+            if "master-data" in clause and "name" in lowered_user:
+                return True
+        return False
+
+    @staticmethod
     def _companion_line_is_specific_enough(line: str, user_input: str) -> bool:
         query = LlmApiRouter._normalize_match_text(user_input)
         candidate = LlmApiRouter._normalize_match_text(line)
@@ -968,6 +1239,10 @@ class LlmApiRouter:
             return True
 
         synonym_groups = (
+            ("company", "companycode", "company code"),
+            ("journalentry", "journal entry", "line item", "line items"),
+            ("costcenter", "cost center"),
+            ("profitcenter", "profit center"),
             ("glaccount", "g/l account", "general ledger account", "总账科目", "会计科目", "科目"),
             ("balance", "trial balance", "account balance", "余额", "试算", "科目余额"),
             ("drilldown", "drill down", "line item", "line items", "下钻", "凭证明细", "行项目"),

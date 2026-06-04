@@ -16,6 +16,7 @@ from sap_odata_agent.domain.models import (
     ResultTransform,
     StepBinding,
 )
+from sap_odata_agent.application.temporal_normalizer import TemporalNormalizer
 from sap_odata_agent.infrastructure.indexing.index_loader import LocalIndexSnapshot
 from sap_odata_agent.infrastructure.llm.dynamic_path_planner import LlmDynamicPathPlanner
 from sap_odata_agent.infrastructure.llm.planner import AnthropicCompatibleMessagesClient, LlmStructuredIntentPlanner
@@ -175,6 +176,7 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             "original_user_input": request.user_input,
             "resolved_user_input": route_decision.resolved_user_input or request.resolved_user_input or request.user_input,
             "current_date": date.today().isoformat(),
+            "detected_time_expressions": request.detected_time_expressions,
             "route_decision": {
                 "selected_apis": [
                     {"service_name": item.service_name, "confidence": item.confidence, "reason": item.reason}
@@ -210,6 +212,7 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             "17. If the user provides a company code and asks for G/L account records in a chart-of-accounts-scoped API, first query API_COMPANYCODE_SRV.A_CompanyCode.ChartOfAccounts and bind that value to the G/L account step. Do not use the company code literal as A_GLAccountInChartOfAccounts.ChartOfAccounts.\n\n"
             "18. If the user asks for an output level such as material level, plant level, storage-location level, batch level, or another summarized level, choose fields for the raw SAP query and set result_transform.type=aggregate with schema-valid group_by and sum_fields. The program will execute the aggregation; do not calculate totals in text.\n\n"
             "19. For master-data basic information/profile/detail/overview requests, actively choose the most business-relevant select_fields and response_summary_fields from schema_context instead of copying default_select_fields. Prefer object ID plus name/full-name/description, address, country/region/city/street/postal-code, and contact fields when schema-valid. Avoid returning mainly block flags, authorization group, creation fields, or account group unless the user asks for status/control/audit/accounting setup.\n\n"
+            "20. If detected_time_expressions is non-empty, preserve that time constraint in the executable plan. Use the normalized range_start/range_end values, choose the SAP date/period field whose business meaning matches the user's wording, and put the filters on the owning entity or function parameters. Do not drop the date range during multi-step planning.\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )
@@ -285,6 +288,7 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             "feedback_field_matches": schema_context.get("feedback_field_matches", []),
             "skill_field_matches": schema_context.get("skill_field_matches", []),
             "schema_research": schema_context.get("schema_research", {}),
+            "detected_time_expressions": schema_context.get("detected_time_expressions", request.detected_time_expressions),
         }
         api_skill = schema_context.get("api_skill") or {}
         api_skills = [
@@ -657,9 +661,16 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
         else:
             plan_select_fields = list(plan.select_fields or [])
             plan_summary_fields = list(plan.response_summary_fields or [])
+            switch_requirement: dict[str, Any] | None = None
             for requirement in requirements:
                 entity_set = requirement.get("entity_set") or ""
                 if entity_set and plan.entity_set != entity_set:
+                    if switch_requirement is None and LlmApiSpecificPlanner._schema_context_has_entity(
+                        schema_context,
+                        plan.service_name,
+                        entity_set,
+                    ):
+                        switch_requirement = requirement
                     continue
                 selected = valid_fields(plan.entity_set, requirement["fields"])
                 if not selected:
@@ -678,6 +689,35 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
                         "api_skill_applied_select_only": applied,
                     },
                 )
+            if switch_requirement is not None:
+                entity_set = str(switch_requirement.get("entity_set") or "")
+                selected = valid_fields(entity_set, switch_requirement["fields"])
+                if selected:
+                    preserved_filters = [
+                        condition
+                        for condition in list(plan.filters or [])
+                        if LlmApiSpecificPlanner._schema_entity_has_filterable_field(
+                            schema_context,
+                            entity_set,
+                            condition.field,
+                        )
+                    ]
+                    applied_entry = {
+                        **switch_requirement,
+                        "entity_set": entity_set,
+                        "entity_switched_from": plan.entity_set,
+                    }
+                    return replace(
+                        plan,
+                        entity_set=entity_set,
+                        filters=preserved_filters,
+                        select_fields=selected,
+                        response_summary_fields=selected,
+                        planner_diagnostics={
+                            **(plan.planner_diagnostics or {}),
+                            "api_skill_applied_select_only": [applied_entry],
+                        },
+                    )
 
         if not applied:
             return plan
@@ -1282,6 +1322,8 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
     @staticmethod
     def _remove_unrequested_temporal_filters(plan: QueryPlan, request: AgentRequest) -> QueryPlan:
         request_text = f"{request.resolved_user_input or ''} {request.user_input or ''}".strip()
+        if getattr(request, "detected_time_expressions", None):
+            return plan
         if LlmApiSpecificPlanner._has_temporal_intent(request_text):
             return plan
 
@@ -1334,6 +1376,8 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
     @staticmethod
     def _has_temporal_intent(request_text: str) -> bool:
         text = str(request_text or "").lower()
+        if TemporalNormalizer().detect(text):
+            return True
         if re.search(r"\d{4}\s*年\s*\d{1,2}\s*月\s*\d{1,2}\s*(?:日|号)?", text):
             return True
         if re.search(r"\d{4}[.\-/]\d{1,2}[.\-/]\d{1,2}", text):
@@ -1616,6 +1660,8 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
                 continue
             match_score = LlmApiSpecificPlanner._skill_line_match_score(line, request_text)
             if match_score <= 0:
+                continue
+            if not LlmApiSpecificPlanner._skill_order_by_trigger_matches_request(line, request_text):
                 continue
             for match in re.finditer(
                 r"`?(?:(?P<entity>[A-Za-z_][A-Za-z0-9_]*)\.)?(?P<field>[A-Za-z_][A-Za-z0-9_]*)\s+"
@@ -1903,6 +1949,8 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             score = LlmApiSpecificPlanner._skill_line_match_score(line, request_text)
             if score <= 0:
                 continue
+            if not LlmApiSpecificPlanner._skill_order_by_trigger_matches_request(line, request_text):
+                continue
             fields_by_entity: dict[str, list[str]] = {}
             for match in re.finditer(
                 r"`(?:(?P<entity>[A-Za-z_][A-Za-z0-9_]*)\.)?(?P<field>[A-Za-z_][A-Za-z0-9_]*)",
@@ -2045,6 +2093,8 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
                 continue
             score = LlmApiSpecificPlanner._skill_line_match_score(line, request_text)
             if score <= 0:
+                continue
+            if not LlmApiSpecificPlanner._skill_order_by_trigger_matches_request(line, request_text):
                 continue
             refs = LlmApiSpecificPlanner._extract_skill_field_refs_after_marker(line, "order_by")
             if not refs:
@@ -2224,6 +2274,174 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
     @staticmethod
     def _skill_line_matches_request(line: str, request_text: str) -> bool:
         return LlmApiSpecificPlanner._skill_line_match_score(line, request_text) > 0
+
+    @staticmethod
+    def _skill_filter_trigger_matches_request(line: str, request_text: str) -> bool:
+        lowered = line.lower()
+        if (
+            "wording such as" not in lowered
+            and "such as" not in lowered
+            and "when the user asks for" not in lowered
+        ):
+            return True
+
+        cutoff = len(line)
+        for marker in (", query", " query ", ", use", " use ", ", filter", " filter ", "select only", "only select"):
+            index = lowered.find(marker)
+            if index >= 0:
+                cutoff = min(cutoff, index)
+        prefix = line[:cutoff]
+        trigger_phrases: list[str] = []
+        for pattern in (r"`([^`]+)`", r'"([^"]+)"', r"'([^']+)'"):
+            for match in re.finditer(pattern, prefix):
+                phrase = match.group(1).strip()
+                if not phrase:
+                    continue
+                if re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)?", phrase):
+                    continue
+                if not re.search(r"\b(eq|ne|gt|ge|lt|le)\b", phrase, flags=re.IGNORECASE):
+                    trigger_phrases.append(phrase)
+        if not trigger_phrases:
+            return True
+
+        normalized_request = LlmApiSpecificPlanner._normalize_match_text(request_text)
+        request_tokens = {
+            token
+            for token in re.findall(r"[A-Za-z0-9]{4,}", request_text.lower())
+            if not token.isdigit()
+        }
+        weak_tokens = {
+            "query",
+            "show",
+            "list",
+            "with",
+            "records",
+            "record",
+            "items",
+            "item",
+            "documents",
+            "document",
+            "main",
+            "details",
+            "identifying",
+        }
+        request_tokens -= weak_tokens
+        for phrase in trigger_phrases:
+            normalized_phrase = LlmApiSpecificPlanner._normalize_match_text(phrase)
+            if normalized_phrase and normalized_phrase in normalized_request:
+                return True
+            for cjk_phrase in re.findall(r"[\u4e00-\u9fff]{2,}", phrase):
+                if cjk_phrase in request_text:
+                    return True
+            phrase_tokens = {
+                token
+                for token in re.findall(r"[A-Za-z0-9]{4,}", phrase.lower())
+                if not token.isdigit()
+            } - weak_tokens
+            if phrase_tokens and phrase_tokens.issubset(request_tokens):
+                return True
+        return False
+
+    @staticmethod
+    def _skill_order_by_trigger_matches_request(line: str, request_text: str) -> bool:
+        if not LlmApiSpecificPlanner._skill_filter_trigger_matches_request(line, request_text):
+            return False
+        trigger_line = re.sub(r"^\s*[-*]\s*", "", line)
+        lowered = trigger_line.lower().lstrip()
+        if not lowered.startswith("for "):
+            return True
+
+        cutoff = len(trigger_line)
+        lowered_full = trigger_line.lower()
+        for marker in (
+            ", add ",
+            ", apply ",
+            ", answer ",
+            ", use ",
+            ", query ",
+            ", filter ",
+            ", select ",
+            ". add ",
+            ". apply ",
+            ". answer ",
+            ". use ",
+            ". query ",
+            ". filter ",
+            ". select ",
+            " select only",
+            " only select",
+            "; order_by",
+            ", order_by",
+            "; order by",
+            ", order by",
+        ):
+            index = lowered_full.find(marker)
+            if index >= 0:
+                cutoff = min(cutoff, index)
+        prefix = trigger_line[:cutoff].strip()
+        if not prefix.lower().startswith("for "):
+            return True
+        trigger_text = prefix[4:].strip(" .,:;-")
+        if not trigger_text:
+            return True
+        return LlmApiSpecificPlanner._skill_trigger_text_matches_request(trigger_text, request_text)
+
+    @staticmethod
+    def _skill_trigger_text_matches_request(trigger_text: str, request_text: str) -> bool:
+        normalized_trigger = LlmApiSpecificPlanner._normalize_match_text(trigger_text)
+        normalized_request = LlmApiSpecificPlanner._normalize_match_text(request_text)
+        if normalized_trigger and normalized_trigger in normalized_request:
+            return True
+        cjk_phrases = re.findall(r"[\u4e00-\u9fff]{2,}", trigger_text)
+        if any(phrase in request_text for phrase in cjk_phrases):
+            return True
+        weak_tokens = {
+            "query",
+            "show",
+            "list",
+            "with",
+            "records",
+            "record",
+            "items",
+            "item",
+            "documents",
+            "document",
+            "main",
+            "details",
+            "detail",
+            "identifying",
+            "field",
+            "fields",
+            "request",
+            "requests",
+            "output",
+            "outputs",
+            "wording",
+            "such",
+            "when",
+            "user",
+            "asks",
+            "asked",
+            "ask",
+            "like",
+            "example",
+            "examples",
+            "answer",
+            "answers",
+        }
+        trigger_tokens = {
+            token
+            for token in re.findall(r"[A-Za-z0-9]{4,}", trigger_text.lower())
+            if not token.isdigit()
+        } - weak_tokens
+        if not trigger_tokens and not cjk_phrases:
+            return True
+        request_tokens = {
+            token
+            for token in re.findall(r"[A-Za-z0-9]{4,}", request_text.lower())
+            if not token.isdigit()
+        } - weak_tokens
+        return bool(trigger_tokens and trigger_tokens.issubset(request_tokens))
 
     @staticmethod
     def _skill_line_match_score(line: str, request_text: str) -> int:

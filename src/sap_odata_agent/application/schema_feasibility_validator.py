@@ -12,6 +12,7 @@ from sap_odata_agent.domain.models import (
     FeasibilityViolation,
     QueryPlan,
 )
+from sap_odata_agent.application.temporal_normalizer import TemporalNormalizer
 from sap_odata_agent.infrastructure.indexing.function_imports import function_imports_from_snapshot
 from sap_odata_agent.infrastructure.indexing.index_loader import LocalIndexLoader
 
@@ -152,6 +153,18 @@ class SchemaFeasibilityValidator:
                     entity_set=plan.entity_set,
                 )
             )
+
+        detected_time_expressions = self._detected_time_expressions(request)
+        if detected_time_expressions and not self._plan_has_temporal_constraint(plan, detected_time_expressions):
+            violations.append(
+                FeasibilityViolation(
+                    code="required_temporal_filter_missing",
+                    message=self._required_temporal_filter_missing_message(request),
+                    entity_set=plan.entity_set,
+                )
+            )
+        elif detected_time_expressions:
+            evidence.append("temporal_constraints_preserved")
 
         if covered_answer_fields:
             evidence.append("answer_fields_covered:" + ",".join(covered_answer_fields))
@@ -369,6 +382,8 @@ class SchemaFeasibilityValidator:
     ) -> None:
         transform = plan.result_transform
         if transform is None:
+            return
+        if str(transform.type or "").lower() == "none":
             return
         if transform.type != "aggregate":
             violations.append(
@@ -653,6 +668,91 @@ class SchemaFeasibilityValidator:
             fields.update(step.select_fields or [])
             fields.update(step.response_summary_fields or [])
         return fields
+
+    @staticmethod
+    def _detected_time_expressions(request: AgentRequest) -> list[dict[str, Any]]:
+        detected = list(getattr(request, "detected_time_expressions", []) or [])
+        if detected:
+            return detected
+        text = f"{request.resolved_user_input or ''} {request.user_input or ''}".strip()
+        return TemporalNormalizer().detect(text)
+
+    @classmethod
+    def _plan_has_temporal_constraint(cls, plan: QueryPlan, expressions: list[dict[str, Any]]) -> bool:
+        temporal_tokens = cls._temporal_tokens(expressions)
+        plan_text_fragments = [plan.entity_set or ""]
+
+        for parameter in plan.function_parameters or []:
+            if cls._is_temporal_field_name(parameter.name) or cls._value_has_temporal_token(parameter.value, temporal_tokens):
+                return True
+            plan_text_fragments.append(str(parameter.value or ""))
+
+        for condition in plan.filters or []:
+            if cls._condition_is_temporal(condition.field, condition.value, temporal_tokens):
+                return True
+
+        for step in plan.steps or []:
+            plan_text_fragments.append(step.entity_set or "")
+            for condition in step.filters or []:
+                if cls._condition_is_temporal(condition.field, condition.value, temporal_tokens):
+                    return True
+
+        return cls._value_has_temporal_token(" ".join(plan_text_fragments), temporal_tokens)
+
+    @classmethod
+    def _condition_is_temporal(cls, field_name: str, value: Any, temporal_tokens: set[str]) -> bool:
+        if cls._is_temporal_field_name(field_name):
+            return True
+        return cls._value_has_temporal_token(value, temporal_tokens)
+
+    @staticmethod
+    def _is_temporal_field_name(field_name: str) -> bool:
+        field = str(field_name or "")
+        exact = {
+            "FiscalYear",
+            "FiscalYearPeriod",
+            "LedgerFiscalYear",
+            "FiscalPeriod",
+            "PostingDate",
+            "DocumentDate",
+            "CreationDate",
+            "CreatedOn",
+            "LastChangeDate",
+        }
+        if field in exact:
+            return True
+        lowered = field.lower()
+        return lowered.endswith("date") or lowered.endswith("datetime") or lowered.endswith("datetimeoffset")
+
+    @staticmethod
+    def _temporal_tokens(expressions: list[dict[str, Any]]) -> set[str]:
+        tokens: set[str] = set()
+        for expression in expressions:
+            if not isinstance(expression, dict):
+                continue
+            for key in ("range_start", "range_end"):
+                value = str(expression.get(key) or "")
+                if not value:
+                    continue
+                tokens.add(value)
+                tokens.add(value[:10])
+                tokens.add(value[:7])
+                tokens.add(value[:4])
+        return {token for token in tokens if token}
+
+    @staticmethod
+    def _value_has_temporal_token(value: Any, temporal_tokens: set[str]) -> bool:
+        if not temporal_tokens:
+            return False
+        text = str(value or "")
+        return any(token and token in text for token in temporal_tokens)
+
+    @staticmethod
+    def _required_temporal_filter_missing_message(request: AgentRequest) -> str:
+        user_text = f"{request.resolved_user_input or ''} {request.user_input or ''}"
+        if any("\u4e00" <= char <= "\u9fff" for char in user_text):
+            return "用户问题包含明确时间范围，但最终可执行 plan 没有保留任何日期或期间过滤条件。"
+        return "The user request contains an explicit time range, but the executable plan did not preserve any date or period filter."
 
     @staticmethod
     def _step_filter_fields(steps: list[ExecutionStep]) -> set[str]:
