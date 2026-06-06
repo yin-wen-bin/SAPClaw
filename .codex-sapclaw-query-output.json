@@ -1,0 +1,1773 @@
+{
+  "meta": null,
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"case_id\": \"e17af129-b3e6-42c3-8130-86bcbed28660\",\n  \"llm_profile_id\": \"minimax-default\",\n  \"llm_profile\": {\n    \"id\": \"minimax-default\",\n    \"label\": \"MiniMax\",\n    \"provider\": \"minimax\",\n    \"model\": \"MiniMax-M2.7\",\n    \"protocol\": \"anthropic_messages\",\n    \"enabled\": true\n  },\n  \"success\": true,\n  \"needs_clarification\": false,\n  \"clarification_question\": null,\n  \"clarification_options\": [],\n  \"final_message\": \"Query executed successfully.\",\n  \"plan\": {\n    \"service_name\": \"API_BUSINESS_PARTNER\",\n    \"entity_set\": \"A_AddressEmailAddress\",\n    \"http_method\": \"GET\",\n    \"select_fields\": [\n      \"AddressID\",\n      \"EmailAddress\",\n      \"IsDefaultEmailAddress\",\n      \"Person\"\n    ],\n    \"response_summary_fields\": [\n      \"AddressID\",\n      \"EmailAddress\",\n      \"IsDefaultEmailAddress\",\n      \"Person\"\n    ],\n    \"filters\": [],\n    \"order_by\": [],\n    \"top\": 10,\n    \"payload\": null,\n    \"requires_confirmation\": false,\n    \"needs_clarification\": false,\n    \"clarification_question\": null,\n    \"clarification_options\": [],\n    \"response_directive\": \"Presentation kind selected by LLM: table. Presentation reason: 用户要求查询采购订单明细列表，包含多个字段（订单号、行号、物料、数量、交货日期）以及供应商邮箱，适合以表格形式呈现。.\",\n    \"rationale\": \"The SAP OData API rejected the datetime filter syntax for ScheduleLineDeliveryDate. According to the API_PURCHASEORDER_PROCESS_SRV skill, Edm.DateTime fields must use datetime literal syntax (datetime'2018-11-23T00:00:00'), not datetimeoffset. The previous plan used datetimeoffset'2026-07-01T00:00:00Z' which caused 'Invalid parametertype used at function eq' error.\",\n    \"planner_diagnostics\": {\n      \"planner_winner\": \"llm\",\n      \"llm_dynamic_path_planner\": {\n        \"accepted\": true,\n        \"raw\": {\n          \"plan_kind\": \"multi_step\",\n          \"repair_reason\": \"The SAP OData API rejected the datetime filter syntax for ScheduleLineDeliveryDate. According to the API_PURCHASEORDER_PROCESS_SRV skill, Edm.DateTime fields must use datetime literal syntax (datetime'2018-11-23T00:00:00'), not datetimeoffset. The previous plan used datetimeoffset'2026-07-01T00:00:00Z' which caused 'Invalid parametertype used at function eq' error.\",\n          \"changed_from_previous\": [\n            \"Fixed ScheduleLineDeliveryDate filter value_type from datetimeoffset to datetime\",\n            \"Changed filter value from '2026-07-01T00:00:00' (datetimeoffset format) to '2026-07-01' (datetime format compatible with SAP OData V2)\"\n          ],\n          \"service_name\": \"API_PURCHASEORDER_PROCESS_SRV\",\n          \"entity_set\": \"A_PurchaseOrderScheduleLine\",\n          \"http_method\": \"GET\",\n          \"select_fields\": [\n            \"PurchasingDocument\",\n            \"PurchasingDocumentItem\",\n            \"ScheduleLine\",\n            \"ScheduleLineDeliveryDate\",\n            \"ScheduleLineOrderQuantity\",\n            \"PurchaseOrderQuantityUnit\"\n          ],\n          \"filters\": [\n            {\n              \"field\": \"ScheduleLineDeliveryDate\",\n              \"operator\": \"eq\",\n              \"value\": \"2026-07-01\",\n              \"value_type\": \"datetime\"\n            }\n          ],\n          \"function_parameters\": [],\n          \"steps\": [\n            {\n              \"step_id\": \"step_1\",\n              \"service_name\": \"API_PURCHASEORDER_PROCESS_SRV\",\n              \"entity_set\": \"A_PurchaseOrderScheduleLine\",\n              \"select_fields\": [\n                \"PurchasingDocument\",\n                \"PurchasingDocumentItem\",\n                \"ScheduleLine\",\n                \"ScheduleLineDeliveryDate\",\n                \"ScheduleLineOrderQuantity\",\n                \"PurchaseOrderQuantityUnit\"\n              ],\n              \"filters\": [\n                {\n                  \"field\": \"ScheduleLineDeliveryDate\",\n                  \"operator\": \"eq\",\n                  \"value\": \"2026-07-01\",\n                  \"value_type\": \"datetime\"\n                }\n              ],\n              \"filter_from_previous\": [],\n              \"top\": 200\n            },\n            {\n              \"step_id\": \"step_2\",\n              \"service_name\": \"API_PURCHASEORDER_PROCESS_SRV\",\n              \"entity_set\": \"A_PurchaseOrderItem\",\n              \"select_fields\": [\n                \"PurchaseOrder\",\n                \"PurchaseOrderItem\",\n                \"Material\",\n                \"Plant\",\n                \"OrderQuantity\"\n              ],\n              \"filters\": [],\n              \"filter_from_previous\": [\n                {\n                  \"field\": \"PurchaseOrder\",\n                  \"source_step_id\": \"step_1\",\n                  \"source_field\": \"PurchasingDocument\"\n                },\n                {\n                  \"field\": \"PurchaseOrderItem\",\n                  \"source_step_id\": \"step_1\",\n                  \"source_field\": \"PurchasingDocumentItem\"\n                }\n              ],\n              \"top\": 200\n            },\n            {\n              \"step_id\": \"step_3\",\n              \"service_name\": \"API_PURCHASEORDER_PROCESS_SRV\",\n              \"entity_set\": \"A_PurchaseOrder\",\n              \"select_fields\": [\n                \"PurchaseOrder\",\n                \"Supplier\"\n              ],\n              \"filters\": [],\n              \"filter_from_previous\": [\n                {\n                  \"field\": \"PurchaseOrder\",\n                  \"source_step_id\": \"step_2\",\n                  \"source_field\": \"PurchaseOrder\"\n                }\n              ],\n              \"top\": 200\n            },\n            {\n              \"step_id\": \"step_4\",\n              \"service_name\": \"API_BUSINESS_PARTNER\",\n              \"entity_set\": \"A_BusinessPartnerAddress\",\n              \"select_fields\": [\n                \"BusinessPartner\",\n                \"AddressID\"\n              ],\n              \"filters\": [],\n              \"filter_from_previous\": [\n                {\n                  \"field\": \"BusinessPartner\",\n                  \"source_step_id\": \"step_3\",\n                  \"source_field\": \"Supplier\"\n                }\n              ],\n              \"top\": 200\n            },\n            {\n              \"step_id\": \"step_5\",\n              \"service_name\": \"API_BUSINESS_PARTNER\",\n              \"entity_set\": \"A_AddressEmailAddress\",\n              \"select_fields\": [\n                \"AddressID\",\n                \"EmailAddress\",\n                \"IsDefaultEmailAddress\",\n                \"Person\"\n              ],\n              \"filters\": [],\n              \"filter_from_previous\": [\n                {\n                  \"field\": \"AddressID\",\n                  \"source_step_id\": \"step_4\",\n                  \"source_field\": \"AddressID\"\n                }\n              ],\n              \"top\": 10\n            }\n          ],\n          \"target_entity_set\": \"A_AddressEmailAddress\",\n          \"target_fields\": [\n            \"PurchaseOrder\",\n            \"PurchaseOrderItem\",\n            \"Material\",\n            \"ScheduleLineOrderQuantity\",\n            \"ScheduleLineDeliveryDate\",\n            \"EmailAddress\"\n          ],\n          \"presentation\": {\n            \"kind\": \"table\",\n            \"reason\": \"用户要求查询采购订单明细列表，包含多个字段（订单号、行号、物料、数量、交货日期）以及供应商邮箱，适合以表格形式呈现。\"\n          },\n          \"result_transform\": {\n            \"type\": \"none\",\n            \"group_by\": [],\n            \"sum_fields\": []\n          },\n          \"rationale\": \"本查询需要跨两个API服务：API_PURCHASEORDER_PROCESS_SRV获取采购订单计划行和行项目信息，API_BUSINESS_PARTNER获取供应商邮箱。修复了ScheduleLineDeliveryDate的日期过滤语法问题（使用datetime而非datetimeoffset）。计划行A_PurchaseOrderScheduleLine包含交货日期（ScheduleLineDeliveryDate）和数量（ScheduleLineOrderQuantity），通过PurchasingDocument关联到A_PurchaseOrderItem获取物料号，再通过A_PurchaseOrder获取供应商编号。供应商编号作为BusinessPartner键，关联到A_BusinessPartnerAddress获取AddressID，最终通过A_AddressEmailAddress获取邮箱地址。按照API_PURCHASEORDER_PROCESS_SRV技能中的'Delivery Date Purchase Orders'和'Plant Delivery Date Purchase Orders With Supplier Contact'模式设计多步骤查询。\"\n        },\n        \"schema_context\": {\n          \"service_names\": [\n            \"API_PURCHASEORDER_PROCESS_SRV\",\n            \"API_BUSINESS_PARTNER\"\n          ],\n          \"entity_count\": 43,\n          \"candidate_field_count\": 62,\n          \"join_hint_count\": 96,\n          \"top_entities\": [\n            \"A_BusinessPartnerAddress\",\n            \"A_Supplier\",\n            \"A_AddressEmailAddress\",\n            \"A_AddressPhoneNumber\",\n            \"A_Customer\",\n            \"A_SupplierCompany\",\n            \"A_BusinessPartner\",\n            \"A_CustSalesPartnerFunc\"\n          ],\n          \"top_fields\": [\n            \"API_BUSINESS_PARTNER.A_BusinessPartnerAddress.BusinessPartner\",\n            \"API_BUSINESS_PARTNER.A_Supplier.Supplier\",\n            \"API_BUSINESS_PARTNER.A_BusinessPartnerAddress.AddressID\",\n            \"API_BUSINESS_PARTNER.A_BusinessPartnerAddress.CityName\",\n            \"API_BUSINESS_PARTNER.A_BusinessPartnerAddress.Country\",\n            \"API_BUSINESS_PARTNER.A_BusinessPartnerAddress.FullName\",\n            \"API_BUSINESS_PARTNER.A_BusinessPartnerAddress.Person\",\n            \"API_BUSINESS_PARTNER.A_BusinessPartnerAddress.PostalCode\",\n            \"API_BUSINESS_PARTNER.A_BusinessPartnerAddress.StreetName\",\n            \"API_BUSINESS_PARTNER.A_Supplier.SupplierFullName\",\n            \"API_BUSINESS_PARTNER.A_Supplier.SupplierName\",\n            \"API_BUSINESS_PARTNER.A_AddressEmailAddress.AddressID\",\n            \"API_BUSINESS_PARTNER.A_AddressEmailAddress.EmailAddress\",\n            \"API_BUSINESS_PARTNER.A_AddressEmailAddress.Person\",\n            \"API_BUSINESS_PARTNER.A_AddressPhoneNumber.AddressID\",\n            \"API_BUSINESS_PARTNER.A_AddressPhoneNumber.InternationalPhoneNumber\"\n          ],\n          \"function_imports\": [\n            {\n              \"name\": \"GetOutputBinaryData\",\n              \"parameters\": [\n                {\n                  \"name\": \"PurchaseOrder\",\n                  \"data_type\": \"Edm.String\",\n                  \"value_type\": \"string\",\n                  \"required\": true,\n                  \"mode\": \"In\",\n                  \"label\": \"采购订单\",\n                  \"max_length\": 10,\n                  \"precision\": null,\n                  \"scale\": null\n                }\n              ],\n              \"return_type\": \"API_PURCHASEORDER_PROCESS_SRV.GetPDFResult\",\n              \"return_fields\": [\n                {\n                  \"field_name\": \"PurchaseOrderBinary\",\n                  \"data_type\": \"Edm.String\",\n                  \"value_type\": \"string\",\n                  \"label\": \"\"\n                }\n              ]\n            },\n            {\n              \"name\": \"GetPDF\",\n              \"parameters\": [\n                {\n                  \"name\": \"PurchaseOrder\",\n                  \"data_type\": \"Edm.String\",\n                  \"value_type\": \"string\",\n                  \"required\": true,\n                  \"mode\": \"In\",\n                  \"label\": \"\",\n                  \"max_length\": 11000,\n                  \"precision\": null,\n                  \"scale\": null\n                }\n              ],\n              \"return_type\": \"API_PURCHASEORDER_PROCESS_SRV.GetPDFResult\",\n              \"return_fields\": [\n                {\n                  \"field_name\": \"PurchaseOrderBinary\",\n                  \"data_type\": \"Edm.String\",\n                  \"value_type\": \"string\",\n                  \"label\": \"\"\n                }\n              ]\n            }\n          ],\n          \"schema_research\": {\n            \"available\": false,\n            \"business_intent\": \"查询交货日期为2026.07.01的采购订单明细（订单号、行号、物料、数量、交货日期），并关联查询对应供应商的邮箱地址。需要先通过采购订单API获取满足条件的订单及其供应商编号，再通过供应商主数据API查询邮箱。\",\n            \"field_reviews\": [],\n            \"recommended_filters\": [],\n            \"recommended_steps\": [],\n            \"semantic_risks\": [],\n            \"planner_instructions\": \"\",\n            \"source\": \"schema_research_unavailable\",\n            \"error\": \"schema_research_failed:The read operation timed out\"\n          }\n        }\n      },\n      \"planner_type\": \"llm_plan_repairer\",\n      \"repair_attempt\": 2,\n      \"repair_reason\": \"The SAP OData API rejected the datetime filter syntax for ScheduleLineDeliveryDate. According to the API_PURCHASEORDER_PROCESS_SRV skill, Edm.DateTime fields must use datetime literal syntax (datetime'2018-11-23T00:00:00'), not datetimeoffset. The previous plan used datetimeoffset'2026-07-01T00:00:00Z' which caused 'Invalid parametertype used at function eq' error.\",\n      \"changed_from_previous\": [\n        \"Fixed ScheduleLineDeliveryDate filter value_type from datetimeoffset to datetime\",\n        \"Changed filter value from '2026-07-01T00:00:00' (datetimeoffset format) to '2026-07-01' (datetime format compatible with SAP OData V2)\"\n      ],\n      \"previous_plan_snapshot\": {\n        \"service_name\": \"API_BUSINESS_PARTNER\",\n        \"entity_set\": \"A_AddressEmailAddress\",\n        \"http_method\": \"GET\",\n        \"select_fields\": [\n          \"AddressID\",\n          \"EmailAddress\",\n          \"IsDefaultEmailAddress\",\n          \"Person\"\n        ],\n        \"response_summary_fields\": [\n          \"AddressID\",\n          \"EmailAddress\",\n          \"IsDefaultEmailAddress\",\n          \"Person\"\n        ],\n        \"filters\": [],\n        \"function_parameters\": [],\n        \"result_transform\": null,\n        \"top\": 10,\n        \"requires_confirmation\": false,\n        \"needs_clarification\": false,\n        \"clarification_question\": null,\n        \"clarification_options\": [],\n        \"response_directive\": \"返回采购订单明细与供应商邮箱的关联列表，按交货日期和订单号排序。 Presentation kind selected by LLM: table. Presentation reason: 用户要求查询采购订单明细列表，包含多个字段（订单号、行号、物料、数量、交货日期）以及供应商邮箱，适合以表格形式呈现。.\",\n        \"rationale\": \"本查询需要跨两个API服务：API_PURCHASEORDER_PROCESS_SRV获取采购订单计划行和行项目信息，API_BUSINESS_PARTNER获取供应商邮箱。计划行A_PurchaseOrderScheduleLine包含交货日期（ScheduleLineDeliveryDate）和数量（ScheduleLineOrderQuantity），通过PurchasingDocument关联到A_PurchaseOrderItem获取物料号，再通过A_PurchaseOrder获取供应商编号。供应商编号作为BusinessPartner键，关联到A_BusinessPartnerAddress获取AddressID，最终通过A_AddressEmailAddress获取邮箱地址。按照API_PURCHASEORDER_PROCESS_SRV技能中的'Plant Delivery Date Purchase Orders With Supplier Contact'模式设计多步骤查询。\",\n        \"plan_kind\": \"multi_step\",\n        \"path_id\": \"llm_dynamic_path\",\n        \"target_entity_set\": \"A_AddressEmailAddress\",\n        \"target_field\": null,\n        \"steps\": [\n          {\n            \"step_id\": \"step_1\",\n            \"service_name\": \"API_PURCHASEORDER_PROCESS_SRV\",\n            \"entity_set\": \"A_PurchaseOrderScheduleLine\",\n            \"select_fields\": [\n              \"PurchasingDocument\",\n              \"PurchasingDocumentItem\",\n              \"ScheduleLine\",\n              \"ScheduleLineDeliveryDate\",\n              \"ScheduleLineOrderQuantity\",\n              \"PurchaseOrderQuantityUnit\"\n            ],\n            \"filters\": [\n              {\n                \"field\": \"ScheduleLineDeliveryDate\",\n                \"operator\": \"eq\",\n                \"value\": \"2026-07-01T00:00:00\",\n                \"value_type\": \"datetimeoffset\"\n              }\n            ],\n            \"filter_from_previous\": [],\n            \"top\": 200\n          },\n          {\n            \"step_id\": \"step_2\",\n            \"service_name\": \"API_PURCHASEORDER_PROCESS_SRV\",\n            \"entity_set\": \"A_PurchaseOrderItem\",\n            \"select_fields\": [\n              \"PurchaseOrder\",\n              \"PurchaseOrderItem\",\n              \"Material\",\n              \"Plant\",\n              \"OrderQuantity\"\n            ],\n            \"filters\": [],\n            \"filter_from_previous\": [\n              {\n                \"field\": \"PurchaseOrder\",\n                \"source_step_id\": \"step_1\",\n                \"source_field\": \"PurchasingDocument\"\n              },\n              {\n                \"field\": \"PurchaseOrderItem\",\n                \"source_step_id\": \"step_1\",\n                \"source_field\": \"PurchasingDocumentItem\"\n              }\n            ],\n            \"top\": 200\n          },\n          {\n            \"step_id\": \"step_3\",\n            \"service_name\": \"API_PURCHASEORDER_PROCESS_SRV\",\n            \"entity_set\": \"A_PurchaseOrder\",\n            \"select_fields\": [\n              \"PurchaseOrder\",\n              \"Supplier\"\n            ],\n            \"filters\": [],\n            \"filter_from_previous\": [\n              {\n                \"field\": \"PurchaseOrder\",\n                \"source_step_id\": \"step_2\",\n                \"source_field\": \"PurchaseOrder\"\n              }\n            ],\n            \"top\": 200\n          },\n          {\n            \"step_id\": \"step_4\",\n            \"service_name\": \"API_BUSINESS_PARTNER\",\n            \"entity_set\": \"A_BusinessPartnerAddress\",\n            \"select_fields\": [\n              \"BusinessPartner\",\n              \"AddressID\"\n            ],\n            \"filters\": [],\n            \"filter_from_previous\": [\n              {\n                \"field\": \"BusinessPartner\",\n                \"source_step_id\": \"step_3\",\n                \"source_field\": \"Supplier\"\n              }\n            ],\n            \"top\": 200\n          },\n          {\n            \"step_id\": \"step_5\",\n            \"service_name\": \"API_BUSINESS_PARTNER\",\n            \"entity_set\": \"A_AddressEmailAddress\",\n            \"select_fields\": [\n              \"AddressID\",\n              \"EmailAddress\",\n              \"IsDefaultEmailAddress\",\n              \"Person\"\n            ],\n            \"filters\": [],\n            \"filter_from_previous\": [\n              {\n                \"field\": \"AddressID\",\n                \"source_step_id\": \"step_4\",\n                \"source_field\": \"AddressID\"\n              }\n            ],\n            \"top\": 10\n          }\n        ]\n      },\n      \"schema_feasibility\": {\n        \"passed\": true,\n        \"violations\": [],\n        \"coverage\": {\n          \"answer_fields\": [],\n          \"filter_fields\": []\n        },\n        \"evidence\": [\n          \"steps_validated:5\"\n        ]\n      },\n      \"schema_research\": {\n        \"available\": false,\n        \"business_intent\": \"查询交货日期为2026.07.01的采购订单明细（订单号、行号、物料、数量、交货日期），并关联查询对应供应商的邮箱地址。需要先通过采购订单API获取满足条件的订单及其供应商编号，再通过供应商主数据API查询邮箱。\",\n        \"recommended_filters\": [],\n        \"semantic_risks\": []\n      },\n      \"result_verification\": {\n        \"passed\": true,\n        \"issues\": [],\n        \"repair_hints\": {\n          \"reason\": \"计划验证通过。查询成功返回了2026-07-01到货的采购订单明细信息（采购订单号4500001548，行项目5，物料MZ-RM-C950-05，数量71件，交货日期2026-07-01）及对应供应商USSU-VSF08的邮箱地址info@ussu.com。\",\n          \"preferred_filters\": []\n        },\n        \"source\": \"llm_result_verifier_agent\"\n      }\n    },\n    \"plan_kind\": \"multi_step\",\n    \"anchor_object\": null,\n    \"anchor_value\": null,\n    \"target_field\": null,\n    \"target_entity_set\": \"A_AddressEmailAddress\",\n    \"path_id\": \"llm_dynamic_path\",\n    \"steps\": [\n      {\n        \"step_id\": \"step_1\",\n        \"entity_set\": \"A_PurchaseOrderScheduleLine\",\n        \"service_name\": \"API_PURCHASEORDER_PROCESS_SRV\",\n        \"http_method\": \"GET\",\n        \"select_fields\": [\n          \"PurchasingDocument\",\n          \"PurchasingDocumentItem\",\n          \"ScheduleLine\",\n          \"ScheduleLineDeliveryDate\",\n          \"ScheduleLineOrderQuantity\",\n          \"PurchaseOrderQuantityUnit\"\n        ],\n        \"response_summary_fields\": [\n          \"PurchasingDocument\",\n          \"PurchasingDocumentItem\",\n          \"ScheduleLine\",\n          \"ScheduleLineDeliveryDate\",\n          \"ScheduleLineOrderQuantity\",\n          \"PurchaseOrderQuantityUnit\"\n        ],\n        \"filters\": [\n          {\n            \"field\": \"ScheduleLineDeliveryDate\",\n            \"operator\": \"eq\",\n            \"value\": \"2026-07-01\",\n            \"value_type\": \"datetime\"\n          }\n        ],\n        \"filter_from_previous\": [],\n        \"order_by\": [],\n        \"top\": 200,\n        \"rationale\": \"\"\n      },\n      {\n        \"step_id\": \"step_2\",\n        \"entity_set\": \"A_PurchaseOrderItem\",\n        \"service_name\": \"API_PURCHASEORDER_PROCESS_SRV\",\n        \"http_method\": \"GET\",\n        \"select_fields\": [\n          \"PurchaseOrder\",\n          \"PurchaseOrderItem\",\n          \"Material\",\n          \"Plant\",\n          \"OrderQuantity\"\n        ],\n        \"response_summary_fields\": [\n          \"PurchaseOrder\",\n          \"PurchaseOrderItem\",\n          \"Material\",\n          \"Plant\",\n          \"OrderQuantity\"\n        ],\n        \"filters\": [],\n        \"filter_from_previous\": [\n          {\n            \"field\": \"PurchaseOrder\",\n            \"source_step_id\": \"step_1\",\n            \"source_field\": \"PurchasingDocument\",\n            \"fanout\": false\n          },\n          {\n            \"field\": \"PurchaseOrderItem\",\n            \"source_step_id\": \"step_1\",\n            \"source_field\": \"PurchasingDocumentItem\",\n            \"fanout\": false\n          }\n        ],\n        \"order_by\": [],\n        \"top\": 200,\n        \"rationale\": \"\"\n      },\n      {\n        \"step_id\": \"step_3\",\n        \"entity_set\": \"A_PurchaseOrder\",\n        \"service_name\": \"API_PURCHASEORDER_PROCESS_SRV\",\n        \"http_method\": \"GET\",\n        \"select_fields\": [\n          \"PurchaseOrder\",\n          \"Supplier\"\n        ],\n        \"response_summary_fields\": [\n          \"PurchaseOrder\",\n          \"Supplier\"\n        ],\n        \"filters\": [],\n        \"filter_from_previous\": [\n          {\n            \"field\": \"PurchaseOrder\",\n            \"source_step_id\": \"step_2\",\n            \"source_field\": \"PurchaseOrder\",\n            \"fanout\": false\n          }\n        ],\n        \"order_by\": [],\n        \"top\": 200,\n        \"rationale\": \"\"\n      },\n      {\n        \"step_id\": \"step_4\",\n        \"entity_set\": \"A_BusinessPartnerAddress\",\n        \"service_name\": \"API_BUSINESS_PARTNER\",\n        \"http_method\": \"GET\",\n        \"select_fields\": [\n          \"BusinessPartner\",\n          \"AddressID\"\n        ],\n        \"response_summary_fields\": [\n          \"BusinessPartner\",\n          \"AddressID\"\n        ],\n        \"filters\": [],\n        \"filter_from_previous\": [\n          {\n            \"field\": \"BusinessPartner\",\n            \"source_step_id\": \"step_3\",\n            \"source_field\": \"Supplier\",\n            \"fanout\": false\n          }\n        ],\n        \"order_by\": [],\n        \"top\": 200,\n        \"rationale\": \"\"\n      },\n      {\n        \"step_id\": \"step_5\",\n        \"entity_set\": \"A_AddressEmailAddress\",\n        \"service_name\": \"API_BUSINESS_PARTNER\",\n        \"http_method\": \"GET\",\n        \"select_fields\": [\n          \"AddressID\",\n          \"EmailAddress\",\n          \"IsDefaultEmailAddress\",\n          \"Person\"\n        ],\n        \"response_summary_fields\": [\n          \"AddressID\",\n          \"EmailAddress\",\n          \"IsDefaultEmailAddress\",\n          \"Person\"\n        ],\n        \"filters\": [],\n        \"filter_from_previous\": [\n          {\n            \"field\": \"AddressID\",\n            \"source_step_id\": \"step_4\",\n            \"source_field\": \"AddressID\",\n            \"fanout\": false\n          }\n        ],\n        \"order_by\": [],\n        \"top\": 10,\n        \"rationale\": \"\"\n      }\n    ],\n    \"function_parameters\": [],\n    \"result_transform\": null\n  },\n  \"validation_issues\": [],\n  \"attempts\": [\n    {\n      \"attempt_number\": 1,\n      \"request\": {\n        \"method\": \"GET\",\n        \"url\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine?$select=PurchasingDocument,PurchasingDocumentItem,ScheduleLine,ScheduleLineDeliveryDate,ScheduleLineOrderQuantity,PurchaseOrderQuantityUnit&$filter=ScheduleLineDeliveryDate+eq+datetimeoffset'2026-07-01T00:00:00Z'&$top=200&sap-client=100&$format=json&$inlinecount=allpages\",\n        \"payload\": null\n      },\n      \"success\": false,\n      \"step_id\": \"step_1\",\n      \"status_code\": 400,\n      \"response_preview\": null,\n      \"extracted_values\": {},\n      \"error_message\": \"Invalid parametertype used at function 'eq' (Position: 26)\"\n    },\n    {\n      \"attempt_number\": 2,\n      \"request\": {\n        \"method\": \"GET\",\n        \"url\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine?$select=PurchasingDocument,PurchasingDocumentItem,ScheduleLine,ScheduleLineDeliveryDate,ScheduleLineOrderQuantity,PurchaseOrderQuantityUnit&$filter=ScheduleLineDeliveryDate+eq+datetime'2026-07-01T00:00:00'&$top=200&sap-client=100&$format=json&$inlinecount=allpages\",\n        \"payload\": null\n      },\n      \"success\": true,\n      \"step_id\": \"step_1\",\n      \"status_code\": 200,\n      \"response_preview\": {\n        \"result_count\": 1,\n        \"returned_count\": 1,\n        \"displayed_count\": 1,\n        \"results\": [\n          {\n            \"__metadata\": {\n              \"id\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine(PurchasingDocument='4500001548',PurchasingDocumentItem='5',ScheduleLine='1')\",\n              \"uri\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine(PurchasingDocument='4500001548',PurchasingDocumentItem='5',ScheduleLine='1')\",\n              \"type\": \"API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderScheduleLineType\"\n            },\n            \"PurchasingDocument\": \"4500001548\",\n            \"PurchasingDocumentItem\": \"5\",\n            \"ScheduleLine\": \"1\",\n            \"ScheduleLineDeliveryDate\": \"/Date(1782864000000)/\",\n            \"PurchaseOrderQuantityUnit\": \"PC\",\n            \"ScheduleLineOrderQuantity\": \"71\"\n          }\n        ],\n        \"_all_results\": [\n          {\n            \"__metadata\": {\n              \"id\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine(PurchasingDocument='4500001548',PurchasingDocumentItem='5',ScheduleLine='1')\",\n              \"uri\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine(PurchasingDocument='4500001548',PurchasingDocumentItem='5',ScheduleLine='1')\",\n              \"type\": \"API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderScheduleLineType\"\n            },\n            \"PurchasingDocument\": \"4500001548\",\n            \"PurchasingDocumentItem\": \"5\",\n            \"ScheduleLine\": \"1\",\n            \"ScheduleLineDeliveryDate\": \"/Date(1782864000000)/\",\n            \"PurchaseOrderQuantityUnit\": \"PC\",\n            \"ScheduleLineOrderQuantity\": \"71\"\n          }\n        ],\n        \"_result_window_start\": 0,\n        \"pagination\": {\n          \"page_size\": 200,\n          \"display_limit\": 50,\n          \"skip\": 0,\n          \"page_number\": 1,\n          \"has_next\": false,\n          \"next_skip\": null\n        }\n      },\n      \"extracted_values\": {},\n      \"error_message\": null\n    },\n    {\n      \"attempt_number\": 3,\n      \"request\": {\n        \"method\": \"GET\",\n        \"url\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem?$select=PurchaseOrder,PurchaseOrderItem,Material,Plant,OrderQuantity&$filter=PurchaseOrder+eq+'4500001548'+and+PurchaseOrderItem+eq+'5'&$top=200&sap-client=100&$format=json&$inlinecount=allpages\",\n        \"payload\": null\n      },\n      \"success\": true,\n      \"step_id\": \"step_2\",\n      \"status_code\": 200,\n      \"response_preview\": {\n        \"result_count\": 1,\n        \"returned_count\": 1,\n        \"displayed_count\": 1,\n        \"results\": [\n          {\n            \"__metadata\": {\n              \"id\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem(PurchaseOrder='4500001548',PurchaseOrderItem='5')\",\n              \"uri\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem(PurchaseOrder='4500001548',PurchaseOrderItem='5')\",\n              \"type\": \"API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderItemType\"\n            },\n            \"PurchaseOrder\": \"4500001548\",\n            \"PurchaseOrderItem\": \"5\",\n            \"Plant\": \"1710\",\n            \"OrderQuantity\": \"71\",\n            \"Material\": \"MZ-RM-C950-05\"\n          }\n        ],\n        \"_all_results\": [\n          {\n            \"__metadata\": {\n              \"id\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem(PurchaseOrder='4500001548',PurchaseOrderItem='5')\",\n              \"uri\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem(PurchaseOrder='4500001548',PurchaseOrderItem='5')\",\n              \"type\": \"API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderItemType\"\n            },\n            \"PurchaseOrder\": \"4500001548\",\n            \"PurchaseOrderItem\": \"5\",\n            \"Plant\": \"1710\",\n            \"OrderQuantity\": \"71\",\n            \"Material\": \"MZ-RM-C950-05\"\n          }\n        ],\n        \"_result_window_start\": 0,\n        \"pagination\": {\n          \"page_size\": 200,\n          \"display_limit\": 50,\n          \"skip\": 0,\n          \"page_number\": 1,\n          \"has_next\": false,\n          \"next_skip\": null\n        }\n      },\n      \"extracted_values\": {\n        \"PurchaseOrder\": \"4500001548\",\n        \"PurchaseOrderItem\": \"5\"\n      },\n      \"error_message\": null\n    },\n    {\n      \"attempt_number\": 4,\n      \"request\": {\n        \"method\": \"GET\",\n        \"url\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder?$select=PurchaseOrder,Supplier&$filter=PurchaseOrder+eq+'4500001548'&$top=200&sap-client=100&$format=json&$inlinecount=allpages\",\n        \"payload\": null\n      },\n      \"success\": true,\n      \"step_id\": \"step_3\",\n      \"status_code\": 200,\n      \"response_preview\": {\n        \"result_count\": 1,\n        \"returned_count\": 1,\n        \"displayed_count\": 1,\n        \"results\": [\n          {\n            \"__metadata\": {\n              \"id\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder('4500001548')\",\n              \"uri\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder('4500001548')\",\n              \"type\": \"API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderType\"\n            },\n            \"PurchaseOrder\": \"4500001548\",\n            \"Supplier\": \"USSU-VSF08\"\n          }\n        ],\n        \"_all_results\": [\n          {\n            \"__metadata\": {\n              \"id\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder('4500001548')\",\n              \"uri\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder('4500001548')\",\n              \"type\": \"API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderType\"\n            },\n            \"PurchaseOrder\": \"4500001548\",\n            \"Supplier\": \"USSU-VSF08\"\n          }\n        ],\n        \"_result_window_start\": 0,\n        \"pagination\": {\n          \"page_size\": 200,\n          \"display_limit\": 50,\n          \"skip\": 0,\n          \"page_number\": 1,\n          \"has_next\": false,\n          \"next_skip\": null\n        }\n      },\n      \"extracted_values\": {\n        \"PurchaseOrder\": \"4500001548\"\n      },\n      \"error_message\": null\n    },\n    {\n      \"attempt_number\": 5,\n      \"request\": {\n        \"method\": \"GET\",\n        \"url\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartnerAddress?$select=BusinessPartner,AddressID&$filter=BusinessPartner+eq+'USSU-VSF08'&$top=200&sap-client=100&$format=json&$inlinecount=allpages\",\n        \"payload\": null\n      },\n      \"success\": true,\n      \"step_id\": \"step_4\",\n      \"status_code\": 200,\n      \"response_preview\": {\n        \"result_count\": 1,\n        \"returned_count\": 1,\n        \"displayed_count\": 1,\n        \"results\": [\n          {\n            \"__metadata\": {\n              \"id\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartnerAddress(BusinessPartner='USSU-VSF08',AddressID='23580')\",\n              \"uri\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartnerAddress(BusinessPartner='USSU-VSF08',AddressID='23580')\",\n              \"type\": \"API_BUSINESS_PARTNER.A_BusinessPartnerAddressType\"\n            },\n            \"BusinessPartner\": \"USSU-VSF08\",\n            \"AddressID\": \"23580\"\n          }\n        ],\n        \"_all_results\": [\n          {\n            \"__metadata\": {\n              \"id\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartnerAddress(BusinessPartner='USSU-VSF08',AddressID='23580')\",\n              \"uri\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartnerAddress(BusinessPartner='USSU-VSF08',AddressID='23580')\",\n              \"type\": \"API_BUSINESS_PARTNER.A_BusinessPartnerAddressType\"\n            },\n            \"BusinessPartner\": \"USSU-VSF08\",\n            \"AddressID\": \"23580\"\n          }\n        ],\n        \"_result_window_start\": 0,\n        \"pagination\": {\n          \"page_size\": 200,\n          \"display_limit\": 50,\n          \"skip\": 0,\n          \"page_number\": 1,\n          \"has_next\": false,\n          \"next_skip\": null\n        }\n      },\n      \"extracted_values\": {\n        \"BusinessPartner\": \"USSU-VSF08\"\n      },\n      \"error_message\": null\n    },\n    {\n      \"attempt_number\": 6,\n      \"request\": {\n        \"method\": \"GET\",\n        \"url\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress?$select=AddressID,EmailAddress,IsDefaultEmailAddress,Person,OrdinalNumber&$filter=AddressID+eq+'23580'&$top=10&sap-client=100&$format=json&$inlinecount=allpages\",\n        \"payload\": null\n      },\n      \"success\": true,\n      \"step_id\": \"step_5\",\n      \"status_code\": 200,\n      \"response_preview\": {\n        \"result_count\": 1,\n        \"returned_count\": 1,\n        \"displayed_count\": 1,\n        \"results\": [\n          {\n            \"__metadata\": {\n              \"id\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')\",\n              \"uri\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')\",\n              \"type\": \"API_BUSINESS_PARTNER.A_AddressEmailAddressType\"\n            },\n            \"AddressID\": \"23580\",\n            \"Person\": \"\",\n            \"OrdinalNumber\": \"1\",\n            \"IsDefaultEmailAddress\": true,\n            \"EmailAddress\": \"info@ussu.com\"\n          }\n        ],\n        \"_all_results\": [\n          {\n            \"__metadata\": {\n              \"id\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')\",\n              \"uri\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')\",\n              \"type\": \"API_BUSINESS_PARTNER.A_AddressEmailAddressType\"\n            },\n            \"AddressID\": \"23580\",\n            \"Person\": \"\",\n            \"OrdinalNumber\": \"1\",\n            \"IsDefaultEmailAddress\": true,\n            \"EmailAddress\": \"info@ussu.com\"\n          }\n        ],\n        \"_result_window_start\": 0,\n        \"pagination\": {\n          \"page_size\": 10,\n          \"display_limit\": 10,\n          \"skip\": 0,\n          \"page_number\": 1,\n          \"has_next\": false,\n          \"next_skip\": null\n        }\n      },\n      \"extracted_values\": {\n        \"AddressID\": \"23580\"\n      },\n      \"error_message\": null\n    }\n  ],\n  \"data\": {\n    \"result_count\": 1,\n    \"returned_count\": 1,\n    \"displayed_count\": 1,\n    \"results\": [\n      {\n        \"__metadata\": {\n          \"id\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')\",\n          \"uri\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')\",\n          \"type\": \"API_BUSINESS_PARTNER.A_AddressEmailAddressType\"\n        },\n        \"AddressID\": \"23580\",\n        \"Person\": \"\",\n        \"OrdinalNumber\": \"1\",\n        \"IsDefaultEmailAddress\": true,\n        \"EmailAddress\": \"info@ussu.com\"\n      }\n    ],\n    \"_all_results\": [\n      {\n        \"__metadata\": {\n          \"id\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')\",\n          \"uri\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')\",\n          \"type\": \"API_BUSINESS_PARTNER.A_AddressEmailAddressType\"\n        },\n        \"AddressID\": \"23580\",\n        \"Person\": \"\",\n        \"OrdinalNumber\": \"1\",\n        \"IsDefaultEmailAddress\": true,\n        \"EmailAddress\": \"info@ussu.com\"\n      }\n    ],\n    \"_result_window_start\": 0,\n    \"pagination\": {\n      \"page_size\": 10,\n      \"display_limit\": 10,\n      \"skip\": 0,\n      \"page_number\": 1,\n      \"has_next\": false,\n      \"next_skip\": null\n    },\n    \"primary_step_id\": \"step_5\",\n    \"primary_entity_set\": \"A_AddressEmailAddress\",\n    \"primary_results\": [\n      {\n        \"__metadata\": {\n          \"id\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')\",\n          \"uri\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')\",\n          \"type\": \"API_BUSINESS_PARTNER.A_AddressEmailAddressType\"\n        },\n        \"AddressID\": \"23580\",\n        \"Person\": \"\",\n        \"OrdinalNumber\": \"1\",\n        \"IsDefaultEmailAddress\": true,\n        \"EmailAddress\": \"info@ussu.com\"\n      }\n    ],\n    \"final_step_id\": \"step_5\",\n    \"final_step_entity_set\": \"A_AddressEmailAddress\",\n    \"step_results\": {\n      \"step_1\": {\n        \"step_id\": \"step_1\",\n        \"service_name\": \"API_PURCHASEORDER_PROCESS_SRV\",\n        \"entity_set\": \"A_PurchaseOrderScheduleLine\",\n        \"select_fields\": [\n          \"PurchasingDocument\",\n          \"PurchasingDocumentItem\",\n          \"ScheduleLine\",\n          \"ScheduleLineDeliveryDate\",\n          \"ScheduleLineOrderQuantity\",\n          \"PurchaseOrderQuantityUnit\"\n        ],\n        \"result_count\": 1,\n        \"returned_count\": 1,\n        \"displayed_count\": 1,\n        \"results\": [\n          {\n            \"__metadata\": {\n              \"id\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine(PurchasingDocument='4500001548',PurchasingDocumentItem='5',ScheduleLine='1')\",\n              \"uri\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine(PurchasingDocument='4500001548',PurchasingDocumentItem='5',ScheduleLine='1')\",\n              \"type\": \"API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderScheduleLineType\"\n            },\n            \"PurchasingDocument\": \"4500001548\",\n            \"PurchasingDocumentItem\": \"5\",\n            \"ScheduleLine\": \"1\",\n            \"ScheduleLineDeliveryDate\": \"/Date(1782864000000)/\",\n            \"PurchaseOrderQuantityUnit\": \"PC\",\n            \"ScheduleLineOrderQuantity\": \"71\"\n          }\n        ],\n        \"pagination\": {\n          \"page_size\": 200,\n          \"display_limit\": 50,\n          \"skip\": 0,\n          \"page_number\": 1,\n          \"has_next\": false,\n          \"next_skip\": null\n        },\n        \"data\": {\n          \"result_count\": 1,\n          \"returned_count\": 1,\n          \"displayed_count\": 1,\n          \"results\": [\n            {\n              \"__metadata\": {\n                \"id\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine(PurchasingDocument='4500001548',PurchasingDocumentItem='5',ScheduleLine='1')\",\n                \"uri\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine(PurchasingDocument='4500001548',PurchasingDocumentItem='5',ScheduleLine='1')\",\n                \"type\": \"API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderScheduleLineType\"\n              },\n              \"PurchasingDocument\": \"4500001548\",\n              \"PurchasingDocumentItem\": \"5\",\n              \"ScheduleLine\": \"1\",\n              \"ScheduleLineDeliveryDate\": \"/Date(1782864000000)/\",\n              \"PurchaseOrderQuantityUnit\": \"PC\",\n              \"ScheduleLineOrderQuantity\": \"71\"\n            }\n          ],\n          \"_all_results\": [\n            {\n              \"__metadata\": {\n                \"id\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine(PurchasingDocument='4500001548',PurchasingDocumentItem='5',ScheduleLine='1')\",\n                \"uri\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine(PurchasingDocument='4500001548',PurchasingDocumentItem='5',ScheduleLine='1')\",\n                \"type\": \"API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderScheduleLineType\"\n              },\n              \"PurchasingDocument\": \"4500001548\",\n              \"PurchasingDocumentItem\": \"5\",\n              \"ScheduleLine\": \"1\",\n              \"ScheduleLineDeliveryDate\": \"/Date(1782864000000)/\",\n              \"PurchaseOrderQuantityUnit\": \"PC\",\n              \"ScheduleLineOrderQuantity\": \"71\"\n            }\n          ],\n          \"_result_window_start\": 0,\n          \"pagination\": {\n            \"page_size\": 200,\n            \"display_limit\": 50,\n            \"skip\": 0,\n            \"page_number\": 1,\n            \"has_next\": false,\n            \"next_skip\": null\n          }\n        }\n      },\n      \"step_2\": {\n        \"step_id\": \"step_2\",\n        \"service_name\": \"API_PURCHASEORDER_PROCESS_SRV\",\n        \"entity_set\": \"A_PurchaseOrderItem\",\n        \"select_fields\": [\n          \"PurchaseOrder\",\n          \"PurchaseOrderItem\",\n          \"Material\",\n          \"Plant\",\n          \"OrderQuantity\"\n        ],\n        \"result_count\": 1,\n        \"returned_count\": 1,\n        \"displayed_count\": 1,\n        \"results\": [\n          {\n            \"__metadata\": {\n              \"id\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem(PurchaseOrder='4500001548',PurchaseOrderItem='5')\",\n              \"uri\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem(PurchaseOrder='4500001548',PurchaseOrderItem='5')\",\n              \"type\": \"API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderItemType\"\n            },\n            \"PurchaseOrder\": \"4500001548\",\n            \"PurchaseOrderItem\": \"5\",\n            \"Plant\": \"1710\",\n            \"OrderQuantity\": \"71\",\n            \"Material\": \"MZ-RM-C950-05\"\n          }\n        ],\n        \"pagination\": {\n          \"page_size\": 200,\n          \"display_limit\": 50,\n          \"skip\": 0,\n          \"page_number\": 1,\n          \"has_next\": false,\n          \"next_skip\": null\n        },\n        \"data\": {\n          \"result_count\": 1,\n          \"returned_count\": 1,\n          \"displayed_count\": 1,\n          \"results\": [\n            {\n              \"__metadata\": {\n                \"id\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem(PurchaseOrder='4500001548',PurchaseOrderItem='5')\",\n                \"uri\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem(PurchaseOrder='4500001548',PurchaseOrderItem='5')\",\n                \"type\": \"API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderItemType\"\n              },\n              \"PurchaseOrder\": \"4500001548\",\n              \"PurchaseOrderItem\": \"5\",\n              \"Plant\": \"1710\",\n              \"OrderQuantity\": \"71\",\n              \"Material\": \"MZ-RM-C950-05\"\n            }\n          ],\n          \"_all_results\": [\n            {\n              \"__metadata\": {\n                \"id\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem(PurchaseOrder='4500001548',PurchaseOrderItem='5')\",\n                \"uri\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem(PurchaseOrder='4500001548',PurchaseOrderItem='5')\",\n                \"type\": \"API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderItemType\"\n              },\n              \"PurchaseOrder\": \"4500001548\",\n              \"PurchaseOrderItem\": \"5\",\n              \"Plant\": \"1710\",\n              \"OrderQuantity\": \"71\",\n              \"Material\": \"MZ-RM-C950-05\"\n            }\n          ],\n          \"_result_window_start\": 0,\n          \"pagination\": {\n            \"page_size\": 200,\n            \"display_limit\": 50,\n            \"skip\": 0,\n            \"page_number\": 1,\n            \"has_next\": false,\n            \"next_skip\": null\n          }\n        }\n      },\n      \"step_3\": {\n        \"step_id\": \"step_3\",\n        \"service_name\": \"API_PURCHASEORDER_PROCESS_SRV\",\n        \"entity_set\": \"A_PurchaseOrder\",\n        \"select_fields\": [\n          \"PurchaseOrder\",\n          \"Supplier\"\n        ],\n        \"result_count\": 1,\n        \"returned_count\": 1,\n        \"displayed_count\": 1,\n        \"results\": [\n          {\n            \"__metadata\": {\n              \"id\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder('4500001548')\",\n              \"uri\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder('4500001548')\",\n              \"type\": \"API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderType\"\n            },\n            \"PurchaseOrder\": \"4500001548\",\n            \"Supplier\": \"USSU-VSF08\"\n          }\n        ],\n        \"pagination\": {\n          \"page_size\": 200,\n          \"display_limit\": 50,\n          \"skip\": 0,\n          \"page_number\": 1,\n          \"has_next\": false,\n          \"next_skip\": null\n        },\n        \"data\": {\n          \"result_count\": 1,\n          \"returned_count\": 1,\n          \"displayed_count\": 1,\n          \"results\": [\n            {\n              \"__metadata\": {\n                \"id\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder('4500001548')\",\n                \"uri\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder('4500001548')\",\n                \"type\": \"API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderType\"\n              },\n              \"PurchaseOrder\": \"4500001548\",\n              \"Supplier\": \"USSU-VSF08\"\n            }\n          ],\n          \"_all_results\": [\n            {\n              \"__metadata\": {\n                \"id\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder('4500001548')\",\n                \"uri\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder('4500001548')\",\n                \"type\": \"API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderType\"\n              },\n              \"PurchaseOrder\": \"4500001548\",\n              \"Supplier\": \"USSU-VSF08\"\n            }\n          ],\n          \"_result_window_start\": 0,\n          \"pagination\": {\n            \"page_size\": 200,\n            \"display_limit\": 50,\n            \"skip\": 0,\n            \"page_number\": 1,\n            \"has_next\": false,\n            \"next_skip\": null\n          }\n        }\n      },\n      \"step_4\": {\n        \"step_id\": \"step_4\",\n        \"service_name\": \"API_BUSINESS_PARTNER\",\n        \"entity_set\": \"A_BusinessPartnerAddress\",\n        \"select_fields\": [\n          \"BusinessPartner\",\n          \"AddressID\"\n        ],\n        \"result_count\": 1,\n        \"returned_count\": 1,\n        \"displayed_count\": 1,\n        \"results\": [\n          {\n            \"__metadata\": {\n              \"id\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartnerAddress(BusinessPartner='USSU-VSF08',AddressID='23580')\",\n              \"uri\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartnerAddress(BusinessPartner='USSU-VSF08',AddressID='23580')\",\n              \"type\": \"API_BUSINESS_PARTNER.A_BusinessPartnerAddressType\"\n            },\n            \"BusinessPartner\": \"USSU-VSF08\",\n            \"AddressID\": \"23580\"\n          }\n        ],\n        \"pagination\": {\n          \"page_size\": 200,\n          \"display_limit\": 50,\n          \"skip\": 0,\n          \"page_number\": 1,\n          \"has_next\": false,\n          \"next_skip\": null\n        },\n        \"data\": {\n          \"result_count\": 1,\n          \"returned_count\": 1,\n          \"displayed_count\": 1,\n          \"results\": [\n            {\n              \"__metadata\": {\n                \"id\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartnerAddress(BusinessPartner='USSU-VSF08',AddressID='23580')\",\n                \"uri\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartnerAddress(BusinessPartner='USSU-VSF08',AddressID='23580')\",\n                \"type\": \"API_BUSINESS_PARTNER.A_BusinessPartnerAddressType\"\n              },\n              \"BusinessPartner\": \"USSU-VSF08\",\n              \"AddressID\": \"23580\"\n            }\n          ],\n          \"_all_results\": [\n            {\n              \"__metadata\": {\n                \"id\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartnerAddress(BusinessPartner='USSU-VSF08',AddressID='23580')\",\n                \"uri\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartnerAddress(BusinessPartner='USSU-VSF08',AddressID='23580')\",\n                \"type\": \"API_BUSINESS_PARTNER.A_BusinessPartnerAddressType\"\n              },\n              \"BusinessPartner\": \"USSU-VSF08\",\n              \"AddressID\": \"23580\"\n            }\n          ],\n          \"_result_window_start\": 0,\n          \"pagination\": {\n            \"page_size\": 200,\n            \"display_limit\": 50,\n            \"skip\": 0,\n            \"page_number\": 1,\n            \"has_next\": false,\n            \"next_skip\": null\n          }\n        }\n      },\n      \"step_5\": {\n        \"step_id\": \"step_5\",\n        \"service_name\": \"API_BUSINESS_PARTNER\",\n        \"entity_set\": \"A_AddressEmailAddress\",\n        \"select_fields\": [\n          \"AddressID\",\n          \"EmailAddress\",\n          \"IsDefaultEmailAddress\",\n          \"Person\"\n        ],\n        \"result_count\": 1,\n        \"returned_count\": 1,\n        \"displayed_count\": 1,\n        \"results\": [\n          {\n            \"__metadata\": {\n              \"id\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')\",\n              \"uri\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')\",\n              \"type\": \"API_BUSINESS_PARTNER.A_AddressEmailAddressType\"\n            },\n            \"AddressID\": \"23580\",\n            \"Person\": \"\",\n            \"OrdinalNumber\": \"1\",\n            \"IsDefaultEmailAddress\": true,\n            \"EmailAddress\": \"info@ussu.com\"\n          }\n        ],\n        \"pagination\": {\n          \"page_size\": 10,\n          \"display_limit\": 10,\n          \"skip\": 0,\n          \"page_number\": 1,\n          \"has_next\": false,\n          \"next_skip\": null\n        },\n        \"data\": {\n          \"result_count\": 1,\n          \"returned_count\": 1,\n          \"displayed_count\": 1,\n          \"results\": [\n            {\n              \"__metadata\": {\n                \"id\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')\",\n                \"uri\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')\",\n                \"type\": \"API_BUSINESS_PARTNER.A_AddressEmailAddressType\"\n              },\n              \"AddressID\": \"23580\",\n              \"Person\": \"\",\n              \"OrdinalNumber\": \"1\",\n              \"IsDefaultEmailAddress\": true,\n              \"EmailAddress\": \"info@ussu.com\"\n            }\n          ],\n          \"_all_results\": [\n            {\n              \"__metadata\": {\n                \"id\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')\",\n                \"uri\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')\",\n                \"type\": \"API_BUSINESS_PARTNER.A_AddressEmailAddressType\"\n              },\n              \"AddressID\": \"23580\",\n              \"Person\": \"\",\n              \"OrdinalNumber\": \"1\",\n              \"IsDefaultEmailAddress\": true,\n              \"EmailAddress\": \"info@ussu.com\"\n            }\n          ],\n          \"_result_window_start\": 0,\n          \"pagination\": {\n            \"page_size\": 10,\n            \"display_limit\": 10,\n            \"skip\": 0,\n            \"page_number\": 1,\n            \"has_next\": false,\n            \"next_skip\": null\n          }\n        }\n      }\n    },\n    \"result_count_by_step\": {\n      \"step_1\": 1,\n      \"step_2\": 1,\n      \"step_3\": 1,\n      \"step_4\": 1,\n      \"step_5\": 1\n    },\n    \"execution_trace\": [\n      {\n        \"step_id\": \"step_1\",\n        \"service_name\": \"API_PURCHASEORDER_PROCESS_SRV\",\n        \"entity_set\": \"A_PurchaseOrderScheduleLine\",\n        \"request_url\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine?$select=PurchasingDocument,PurchasingDocumentItem,ScheduleLine,ScheduleLineDeliveryDate,ScheduleLineOrderQuantity,PurchaseOrderQuantityUnit&$filter=ScheduleLineDeliveryDate+eq+datetime'2026-07-01T00:00:00'&$top=200&sap-client=100&$format=json&$inlinecount=allpages\",\n        \"status_code\": 200,\n        \"success\": true,\n        \"extracted_values\": {}\n      },\n      {\n        \"step_id\": \"step_2\",\n        \"service_name\": \"API_PURCHASEORDER_PROCESS_SRV\",\n        \"entity_set\": \"A_PurchaseOrderItem\",\n        \"request_url\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem?$select=PurchaseOrder,PurchaseOrderItem,Material,Plant,OrderQuantity&$filter=PurchaseOrder+eq+'4500001548'+and+PurchaseOrderItem+eq+'5'&$top=200&sap-client=100&$format=json&$inlinecount=allpages\",\n        \"status_code\": 200,\n        \"success\": true,\n        \"extracted_values\": {\n          \"PurchaseOrder\": \"4500001548\",\n          \"PurchaseOrderItem\": \"5\"\n        }\n      },\n      {\n        \"step_id\": \"step_3\",\n        \"service_name\": \"API_PURCHASEORDER_PROCESS_SRV\",\n        \"entity_set\": \"A_PurchaseOrder\",\n        \"request_url\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder?$select=PurchaseOrder,Supplier&$filter=PurchaseOrder+eq+'4500001548'&$top=200&sap-client=100&$format=json&$inlinecount=allpages\",\n        \"status_code\": 200,\n        \"success\": true,\n        \"extracted_values\": {\n          \"PurchaseOrder\": \"4500001548\"\n        }\n      },\n      {\n        \"step_id\": \"step_4\",\n        \"service_name\": \"API_BUSINESS_PARTNER\",\n        \"entity_set\": \"A_BusinessPartnerAddress\",\n        \"request_url\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartnerAddress?$select=BusinessPartner,AddressID&$filter=BusinessPartner+eq+'USSU-VSF08'&$top=200&sap-client=100&$format=json&$inlinecount=allpages\",\n        \"status_code\": 200,\n        \"success\": true,\n        \"extracted_values\": {\n          \"BusinessPartner\": \"USSU-VSF08\"\n        }\n      },\n      {\n        \"step_id\": \"step_5\",\n        \"service_name\": \"API_BUSINESS_PARTNER\",\n        \"entity_set\": \"A_AddressEmailAddress\",\n        \"request_url\": \"http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress?$select=AddressID,EmailAddress,IsDefaultEmailAddress,Person,OrdinalNumber&$filter=AddressID+eq+'23580'&$top=10&sap-client=100&$format=json&$inlinecount=allpages\",\n        \"status_code\": 200,\n        \"success\": true,\n        \"extracted_values\": {\n          \"AddressID\": \"23580\"\n        }\n      }\n    ],\n    \"source_step_summaries\": [\n      {\n        \"step_id\": \"step_1\",\n        \"service_name\": \"API_PURCHASEORDER_PROCESS_SRV\",\n        \"entity_set\": \"A_PurchaseOrderScheduleLine\",\n        \"select_fields\": [\n          \"PurchasingDocument\",\n          \"PurchasingDocumentItem\",\n          \"ScheduleLine\",\n          \"ScheduleLineDeliveryDate\",\n          \"ScheduleLineOrderQuantity\",\n          \"PurchaseOrderQuantityUnit\"\n        ],\n        \"filters\": [\n          {\n            \"field\": \"ScheduleLineDeliveryDate\",\n            \"operator\": \"eq\",\n            \"value\": \"2026-07-01\",\n            \"value_type\": \"datetime\"\n          }\n        ],\n        \"result_count\": 1,\n        \"returned_count\": 1,\n        \"displayed_count\": 1\n      },\n      {\n        \"step_id\": \"step_2\",\n        \"service_name\": \"API_PURCHASEORDER_PROCESS_SRV\",\n        \"entity_set\": \"A_PurchaseOrderItem\",\n        \"select_fields\": [\n          \"PurchaseOrder\",\n          \"PurchaseOrderItem\",\n          \"Material\",\n          \"Plant\",\n          \"OrderQuantity\"\n        ],\n        \"filters\": [],\n        \"result_count\": 1,\n        \"returned_count\": 1,\n        \"displayed_count\": 1\n      },\n      {\n        \"step_id\": \"step_3\",\n        \"service_name\": \"API_PURCHASEORDER_PROCESS_SRV\",\n        \"entity_set\": \"A_PurchaseOrder\",\n        \"select_fields\": [\n          \"PurchaseOrder\",\n          \"Supplier\"\n        ],\n        \"filters\": [],\n        \"result_count\": 1,\n        \"returned_count\": 1,\n        \"displayed_count\": 1\n      },\n      {\n        \"step_id\": \"step_4\",\n        \"service_name\": \"API_BUSINESS_PARTNER\",\n        \"entity_set\": \"A_BusinessPartnerAddress\",\n        \"select_fields\": [\n          \"BusinessPartner\",\n          \"AddressID\"\n        ],\n        \"filters\": [],\n        \"result_count\": 1,\n        \"returned_count\": 1,\n        \"displayed_count\": 1\n      },\n      {\n        \"step_id\": \"step_5\",\n        \"service_name\": \"API_BUSINESS_PARTNER\",\n        \"entity_set\": \"A_AddressEmailAddress\",\n        \"select_fields\": [\n          \"AddressID\",\n          \"EmailAddress\",\n          \"IsDefaultEmailAddress\",\n          \"Person\"\n        ],\n        \"filters\": [],\n        \"result_count\": 1,\n        \"returned_count\": 1,\n        \"displayed_count\": 1\n      }\n    ],\n    \"lookup_context\": {\n      \"path_id\": \"llm_dynamic_path\",\n      \"anchor_object\": null,\n      \"anchor_value\": null,\n      \"target_field\": null,\n      \"target_entity_set\": \"A_AddressEmailAddress\",\n      \"primary_step_id\": \"step_5\",\n      \"primary_entity_set\": \"A_AddressEmailAddress\",\n      \"final_step_id\": \"step_5\",\n      \"final_step_entity_set\": \"A_AddressEmailAddress\"\n    }\n  },\n  \"presentation\": {\n    \"kind\": \"table\",\n    \"title\": \"2026年7月1日到货的采购订单明细及供应商邮箱\",\n    \"text\": \"针对“2026.07.01到货的采购订单明细信息（包括：采购订单号，明细行号，物料号，数量，到货日期），以及该订单的供应商的邮箱”，当前查询结果显示：AddressID为23580，EmailAddress为info@ussu.com，IsDefaultEmailAddress为True，Person为。\",\n    \"columns\": [\n      \"采购订单号\",\n      \"明细行号\",\n      \"物料号\",\n      \"数量\",\n      \"单位\",\n      \"到货日期\",\n      \"供应商邮箱\"\n    ],\n    \"rows\": [\n      {\n        \"采购订单号\": \"4500001548\",\n        \"明细行号\": \"5\",\n        \"物料号\": \"MZ-RM-C950-05\",\n        \"数量\": \"71\",\n        \"单位\": \"PC\",\n        \"到货日期\": \"2026.07.01\",\n        \"供应商邮箱\": \"info@ussu.com\"\n      }\n    ]\n  },\n  \"guardrail_decision\": {\n    \"accepted\": true,\n    \"winner\": \"llm\",\n    \"reasons\": [\n      \"plan_respects_current_guardrails\"\n    ],\n    \"severity\": \"info\"\n  },\n  \"critic_findings\": [],\n  \"failure_attribution\": null,\n  \"presentation_verification\": {\n    \"passed\": true,\n    \"issues\": []\n  },\n  \"timings\": [\n    {\n      \"key\": \"history.list_recent\",\n      \"label\": \"读取最近查询\",\n      \"duration_ms\": 28.37,\n      \"success\": true\n    },\n    {\n      \"key\": \"history.search_feedback_memory\",\n      \"label\": \"检索反馈记忆\",\n      \"duration_ms\": 0.31,\n      \"success\": true\n    },\n    {\n      \"key\": \"api_catalog.load\",\n      \"label\": \"加载 API Catalog\",\n      \"duration_ms\": 23.65,\n      \"success\": true\n    },\n    {\n      \"key\": \"api_skills.enrich_catalog\",\n      \"label\": \"加载 API Skills\",\n      \"duration_ms\": 2.88,\n      \"success\": true\n    },\n    {\n      \"key\": \"llm.api_route\",\n      \"label\": \"LLM API 路由\",\n      \"duration_ms\": 6094.25,\n      \"success\": true\n    },\n    {\n      \"key\": \"schema_context.build\",\n      \"label\": \"构建 Schema Context\",\n      \"duration_ms\": 2753.89,\n      \"success\": true\n    },\n    {\n      \"key\": \"api_skills.load\",\n      \"label\": \"加载 API Skill\",\n      \"duration_ms\": 0.16,\n      \"success\": true\n    },\n    {\n      \"key\": \"schema_context.enrich_with_api_skill\",\n      \"label\": \"使用 API Skill 增强 Schema Context\",\n      \"duration_ms\": 7.29,\n      \"success\": true\n    },\n    {\n      \"key\": \"api_skills.load\",\n      \"label\": \"加载 API Skill\",\n      \"duration_ms\": 0.1,\n      \"success\": true\n    },\n    {\n      \"key\": \"api_skills.load\",\n      \"label\": \"加载 API Skill\",\n      \"duration_ms\": 0.07,\n      \"success\": true\n    },\n    {\n      \"key\": \"schema_context.enrich_with_api_skill\",\n      \"label\": \"菴ｿ逕ｨ API Skill 蠅槫ｼｺ Schema Context\",\n      \"duration_ms\": 11.4,\n      \"success\": true\n    },\n    {\n      \"key\": \"llm.schema_research\",\n      \"label\": \"LLM Schema Research\",\n      \"duration_ms\": 46042.95,\n      \"success\": true\n    },\n    {\n      \"key\": \"llm.api_specific_plan\",\n      \"label\": \"LLM API 内查询规划\",\n      \"duration_ms\": 36661.57,\n      \"success\": true\n    },\n    {\n      \"key\": \"guardrail.evaluate\",\n      \"label\": \"Guardrail 检查\",\n      \"duration_ms\": 0.01,\n      \"success\": true\n    },\n    {\n      \"key\": \"critic.rule_review\",\n      \"label\": \"规则 Critic 检查\",\n      \"duration_ms\": 0.01,\n      \"success\": true\n    },\n    {\n      \"key\": \"schema_feasibility.validate\",\n      \"label\": \"Schema 可行性校验\",\n      \"duration_ms\": 3.19,\n      \"success\": true\n    },\n    {\n      \"key\": \"llm.plan_critic\",\n      \"label\": \"LLM Plan Critic\",\n      \"duration_ms\": 41598.57,\n      \"success\": true\n    },\n    {\n      \"key\": \"validator.basic_validate\",\n      \"label\": \"基础计划校验\",\n      \"duration_ms\": 0.01,\n      \"success\": true\n    },\n    {\n      \"key\": \"sap.multi_step_execute\",\n      \"label\": \"多步 SAP OData 执行\",\n      \"duration_ms\": 5049.22,\n      \"success\": true\n    },\n    {\n      \"key\": \"llm.plan_repair\",\n      \"label\": \"LLM 查询修复\",\n      \"duration_ms\": 42200.2,\n      \"success\": true\n    },\n    {\n      \"key\": \"guardrail.evaluate\",\n      \"label\": \"Guardrail 检查\",\n      \"duration_ms\": 0.01,\n      \"success\": true\n    },\n    {\n      \"key\": \"critic.rule_review\",\n      \"label\": \"规则 Critic 检查\",\n      \"duration_ms\": 0.01,\n      \"success\": true\n    },\n    {\n      \"key\": \"schema_feasibility.validate\",\n      \"label\": \"Schema 可行性校验\",\n      \"duration_ms\": 1.87,\n      \"success\": true\n    },\n    {\n      \"key\": \"llm.plan_critic\",\n      \"label\": \"LLM Plan Critic\",\n      \"duration_ms\": 4909.03,\n      \"success\": true\n    },\n    {\n      \"key\": \"validator.basic_validate\",\n      \"label\": \"基础计划校验\",\n      \"duration_ms\": 0.01,\n      \"success\": true\n    },\n    {\n      \"key\": \"sap.multi_step_execute\",\n      \"label\": \"多步 SAP OData 执行\",\n      \"duration_ms\": 15597.39,\n      \"success\": true\n    },\n    {\n      \"key\": \"llm.result_verify\",\n      \"label\": \"LLM Result Verifier\",\n      \"duration_ms\": 6935.44,\n      \"success\": true\n    },\n    {\n      \"key\": \"llm.result_present\",\n      \"label\": \"结果呈现生成\",\n      \"duration_ms\": 4596.83,\n      \"success\": true\n    },\n    {\n      \"key\": \"presentation.verify\",\n      \"label\": \"结果呈现校验\",\n      \"duration_ms\": 0.03,\n      \"success\": true\n    }\n  ],\n  \"timing_summary\": {\n    \"history.list_recent\": 28.37,\n    \"history.search_feedback_memory\": 0.31,\n    \"api_catalog.load\": 23.65,\n    \"api_skills.enrich_catalog\": 2.88,\n    \"llm.api_route\": 6094.25,\n    \"schema_context.build\": 2753.89,\n    \"api_skills.load\": 0.33,\n    \"schema_context.enrich_with_api_skill\": 18.69,\n    \"llm.schema_research\": 46042.95,\n    \"llm.api_specific_plan\": 36661.57,\n    \"guardrail.evaluate\": 0.02,\n    \"critic.rule_review\": 0.02,\n    \"schema_feasibility.validate\": 5.06,\n    \"llm.plan_critic\": 46507.6,\n    \"validator.basic_validate\": 0.02,\n    \"sap.multi_step_execute\": 20646.61,\n    \"llm.plan_repair\": 42200.2,\n    \"llm.result_verify\": 6935.44,\n    \"llm.result_present\": 4596.83,\n    \"presentation.verify\": 0.03\n  },\n  \"total_duration_ms\": 212521.2\n}",
+      "annotations": null,
+      "meta": null
+    }
+  ],
+  "structuredContent": {
+    "case_id": "e17af129-b3e6-42c3-8130-86bcbed28660",
+    "llm_profile_id": "minimax-default",
+    "llm_profile": {
+      "id": "minimax-default",
+      "label": "MiniMax",
+      "provider": "minimax",
+      "model": "MiniMax-M2.7",
+      "protocol": "anthropic_messages",
+      "enabled": true
+    },
+    "success": true,
+    "needs_clarification": false,
+    "clarification_question": null,
+    "clarification_options": [],
+    "final_message": "Query executed successfully.",
+    "plan": {
+      "service_name": "API_BUSINESS_PARTNER",
+      "entity_set": "A_AddressEmailAddress",
+      "http_method": "GET",
+      "select_fields": [
+        "AddressID",
+        "EmailAddress",
+        "IsDefaultEmailAddress",
+        "Person"
+      ],
+      "response_summary_fields": [
+        "AddressID",
+        "EmailAddress",
+        "IsDefaultEmailAddress",
+        "Person"
+      ],
+      "filters": [],
+      "order_by": [],
+      "top": 10,
+      "payload": null,
+      "requires_confirmation": false,
+      "needs_clarification": false,
+      "clarification_question": null,
+      "clarification_options": [],
+      "response_directive": "Presentation kind selected by LLM: table. Presentation reason: 用户要求查询采购订单明细列表，包含多个字段（订单号、行号、物料、数量、交货日期）以及供应商邮箱，适合以表格形式呈现。.",
+      "rationale": "The SAP OData API rejected the datetime filter syntax for ScheduleLineDeliveryDate. According to the API_PURCHASEORDER_PROCESS_SRV skill, Edm.DateTime fields must use datetime literal syntax (datetime'2018-11-23T00:00:00'), not datetimeoffset. The previous plan used datetimeoffset'2026-07-01T00:00:00Z' which caused 'Invalid parametertype used at function eq' error.",
+      "planner_diagnostics": {
+        "planner_winner": "llm",
+        "llm_dynamic_path_planner": {
+          "accepted": true,
+          "raw": {
+            "plan_kind": "multi_step",
+            "repair_reason": "The SAP OData API rejected the datetime filter syntax for ScheduleLineDeliveryDate. According to the API_PURCHASEORDER_PROCESS_SRV skill, Edm.DateTime fields must use datetime literal syntax (datetime'2018-11-23T00:00:00'), not datetimeoffset. The previous plan used datetimeoffset'2026-07-01T00:00:00Z' which caused 'Invalid parametertype used at function eq' error.",
+            "changed_from_previous": [
+              "Fixed ScheduleLineDeliveryDate filter value_type from datetimeoffset to datetime",
+              "Changed filter value from '2026-07-01T00:00:00' (datetimeoffset format) to '2026-07-01' (datetime format compatible with SAP OData V2)"
+            ],
+            "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+            "entity_set": "A_PurchaseOrderScheduleLine",
+            "http_method": "GET",
+            "select_fields": [
+              "PurchasingDocument",
+              "PurchasingDocumentItem",
+              "ScheduleLine",
+              "ScheduleLineDeliveryDate",
+              "ScheduleLineOrderQuantity",
+              "PurchaseOrderQuantityUnit"
+            ],
+            "filters": [
+              {
+                "field": "ScheduleLineDeliveryDate",
+                "operator": "eq",
+                "value": "2026-07-01",
+                "value_type": "datetime"
+              }
+            ],
+            "function_parameters": [],
+            "steps": [
+              {
+                "step_id": "step_1",
+                "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+                "entity_set": "A_PurchaseOrderScheduleLine",
+                "select_fields": [
+                  "PurchasingDocument",
+                  "PurchasingDocumentItem",
+                  "ScheduleLine",
+                  "ScheduleLineDeliveryDate",
+                  "ScheduleLineOrderQuantity",
+                  "PurchaseOrderQuantityUnit"
+                ],
+                "filters": [
+                  {
+                    "field": "ScheduleLineDeliveryDate",
+                    "operator": "eq",
+                    "value": "2026-07-01",
+                    "value_type": "datetime"
+                  }
+                ],
+                "filter_from_previous": [],
+                "top": 200
+              },
+              {
+                "step_id": "step_2",
+                "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+                "entity_set": "A_PurchaseOrderItem",
+                "select_fields": [
+                  "PurchaseOrder",
+                  "PurchaseOrderItem",
+                  "Material",
+                  "Plant",
+                  "OrderQuantity"
+                ],
+                "filters": [],
+                "filter_from_previous": [
+                  {
+                    "field": "PurchaseOrder",
+                    "source_step_id": "step_1",
+                    "source_field": "PurchasingDocument"
+                  },
+                  {
+                    "field": "PurchaseOrderItem",
+                    "source_step_id": "step_1",
+                    "source_field": "PurchasingDocumentItem"
+                  }
+                ],
+                "top": 200
+              },
+              {
+                "step_id": "step_3",
+                "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+                "entity_set": "A_PurchaseOrder",
+                "select_fields": [
+                  "PurchaseOrder",
+                  "Supplier"
+                ],
+                "filters": [],
+                "filter_from_previous": [
+                  {
+                    "field": "PurchaseOrder",
+                    "source_step_id": "step_2",
+                    "source_field": "PurchaseOrder"
+                  }
+                ],
+                "top": 200
+              },
+              {
+                "step_id": "step_4",
+                "service_name": "API_BUSINESS_PARTNER",
+                "entity_set": "A_BusinessPartnerAddress",
+                "select_fields": [
+                  "BusinessPartner",
+                  "AddressID"
+                ],
+                "filters": [],
+                "filter_from_previous": [
+                  {
+                    "field": "BusinessPartner",
+                    "source_step_id": "step_3",
+                    "source_field": "Supplier"
+                  }
+                ],
+                "top": 200
+              },
+              {
+                "step_id": "step_5",
+                "service_name": "API_BUSINESS_PARTNER",
+                "entity_set": "A_AddressEmailAddress",
+                "select_fields": [
+                  "AddressID",
+                  "EmailAddress",
+                  "IsDefaultEmailAddress",
+                  "Person"
+                ],
+                "filters": [],
+                "filter_from_previous": [
+                  {
+                    "field": "AddressID",
+                    "source_step_id": "step_4",
+                    "source_field": "AddressID"
+                  }
+                ],
+                "top": 10
+              }
+            ],
+            "target_entity_set": "A_AddressEmailAddress",
+            "target_fields": [
+              "PurchaseOrder",
+              "PurchaseOrderItem",
+              "Material",
+              "ScheduleLineOrderQuantity",
+              "ScheduleLineDeliveryDate",
+              "EmailAddress"
+            ],
+            "presentation": {
+              "kind": "table",
+              "reason": "用户要求查询采购订单明细列表，包含多个字段（订单号、行号、物料、数量、交货日期）以及供应商邮箱，适合以表格形式呈现。"
+            },
+            "result_transform": {
+              "type": "none",
+              "group_by": [],
+              "sum_fields": []
+            },
+            "rationale": "本查询需要跨两个API服务：API_PURCHASEORDER_PROCESS_SRV获取采购订单计划行和行项目信息，API_BUSINESS_PARTNER获取供应商邮箱。修复了ScheduleLineDeliveryDate的日期过滤语法问题（使用datetime而非datetimeoffset）。计划行A_PurchaseOrderScheduleLine包含交货日期（ScheduleLineDeliveryDate）和数量（ScheduleLineOrderQuantity），通过PurchasingDocument关联到A_PurchaseOrderItem获取物料号，再通过A_PurchaseOrder获取供应商编号。供应商编号作为BusinessPartner键，关联到A_BusinessPartnerAddress获取AddressID，最终通过A_AddressEmailAddress获取邮箱地址。按照API_PURCHASEORDER_PROCESS_SRV技能中的'Delivery Date Purchase Orders'和'Plant Delivery Date Purchase Orders With Supplier Contact'模式设计多步骤查询。"
+          },
+          "schema_context": {
+            "service_names": [
+              "API_PURCHASEORDER_PROCESS_SRV",
+              "API_BUSINESS_PARTNER"
+            ],
+            "entity_count": 43,
+            "candidate_field_count": 62,
+            "join_hint_count": 96,
+            "top_entities": [
+              "A_BusinessPartnerAddress",
+              "A_Supplier",
+              "A_AddressEmailAddress",
+              "A_AddressPhoneNumber",
+              "A_Customer",
+              "A_SupplierCompany",
+              "A_BusinessPartner",
+              "A_CustSalesPartnerFunc"
+            ],
+            "top_fields": [
+              "API_BUSINESS_PARTNER.A_BusinessPartnerAddress.BusinessPartner",
+              "API_BUSINESS_PARTNER.A_Supplier.Supplier",
+              "API_BUSINESS_PARTNER.A_BusinessPartnerAddress.AddressID",
+              "API_BUSINESS_PARTNER.A_BusinessPartnerAddress.CityName",
+              "API_BUSINESS_PARTNER.A_BusinessPartnerAddress.Country",
+              "API_BUSINESS_PARTNER.A_BusinessPartnerAddress.FullName",
+              "API_BUSINESS_PARTNER.A_BusinessPartnerAddress.Person",
+              "API_BUSINESS_PARTNER.A_BusinessPartnerAddress.PostalCode",
+              "API_BUSINESS_PARTNER.A_BusinessPartnerAddress.StreetName",
+              "API_BUSINESS_PARTNER.A_Supplier.SupplierFullName",
+              "API_BUSINESS_PARTNER.A_Supplier.SupplierName",
+              "API_BUSINESS_PARTNER.A_AddressEmailAddress.AddressID",
+              "API_BUSINESS_PARTNER.A_AddressEmailAddress.EmailAddress",
+              "API_BUSINESS_PARTNER.A_AddressEmailAddress.Person",
+              "API_BUSINESS_PARTNER.A_AddressPhoneNumber.AddressID",
+              "API_BUSINESS_PARTNER.A_AddressPhoneNumber.InternationalPhoneNumber"
+            ],
+            "function_imports": [
+              {
+                "name": "GetOutputBinaryData",
+                "parameters": [
+                  {
+                    "name": "PurchaseOrder",
+                    "data_type": "Edm.String",
+                    "value_type": "string",
+                    "required": true,
+                    "mode": "In",
+                    "label": "采购订单",
+                    "max_length": 10,
+                    "precision": null,
+                    "scale": null
+                  }
+                ],
+                "return_type": "API_PURCHASEORDER_PROCESS_SRV.GetPDFResult",
+                "return_fields": [
+                  {
+                    "field_name": "PurchaseOrderBinary",
+                    "data_type": "Edm.String",
+                    "value_type": "string",
+                    "label": ""
+                  }
+                ]
+              },
+              {
+                "name": "GetPDF",
+                "parameters": [
+                  {
+                    "name": "PurchaseOrder",
+                    "data_type": "Edm.String",
+                    "value_type": "string",
+                    "required": true,
+                    "mode": "In",
+                    "label": "",
+                    "max_length": 11000,
+                    "precision": null,
+                    "scale": null
+                  }
+                ],
+                "return_type": "API_PURCHASEORDER_PROCESS_SRV.GetPDFResult",
+                "return_fields": [
+                  {
+                    "field_name": "PurchaseOrderBinary",
+                    "data_type": "Edm.String",
+                    "value_type": "string",
+                    "label": ""
+                  }
+                ]
+              }
+            ],
+            "schema_research": {
+              "available": false,
+              "business_intent": "查询交货日期为2026.07.01的采购订单明细（订单号、行号、物料、数量、交货日期），并关联查询对应供应商的邮箱地址。需要先通过采购订单API获取满足条件的订单及其供应商编号，再通过供应商主数据API查询邮箱。",
+              "field_reviews": [],
+              "recommended_filters": [],
+              "recommended_steps": [],
+              "semantic_risks": [],
+              "planner_instructions": "",
+              "source": "schema_research_unavailable",
+              "error": "schema_research_failed:The read operation timed out"
+            }
+          }
+        },
+        "planner_type": "llm_plan_repairer",
+        "repair_attempt": 2,
+        "repair_reason": "The SAP OData API rejected the datetime filter syntax for ScheduleLineDeliveryDate. According to the API_PURCHASEORDER_PROCESS_SRV skill, Edm.DateTime fields must use datetime literal syntax (datetime'2018-11-23T00:00:00'), not datetimeoffset. The previous plan used datetimeoffset'2026-07-01T00:00:00Z' which caused 'Invalid parametertype used at function eq' error.",
+        "changed_from_previous": [
+          "Fixed ScheduleLineDeliveryDate filter value_type from datetimeoffset to datetime",
+          "Changed filter value from '2026-07-01T00:00:00' (datetimeoffset format) to '2026-07-01' (datetime format compatible with SAP OData V2)"
+        ],
+        "previous_plan_snapshot": {
+          "service_name": "API_BUSINESS_PARTNER",
+          "entity_set": "A_AddressEmailAddress",
+          "http_method": "GET",
+          "select_fields": [
+            "AddressID",
+            "EmailAddress",
+            "IsDefaultEmailAddress",
+            "Person"
+          ],
+          "response_summary_fields": [
+            "AddressID",
+            "EmailAddress",
+            "IsDefaultEmailAddress",
+            "Person"
+          ],
+          "filters": [],
+          "function_parameters": [],
+          "result_transform": null,
+          "top": 10,
+          "requires_confirmation": false,
+          "needs_clarification": false,
+          "clarification_question": null,
+          "clarification_options": [],
+          "response_directive": "返回采购订单明细与供应商邮箱的关联列表，按交货日期和订单号排序。 Presentation kind selected by LLM: table. Presentation reason: 用户要求查询采购订单明细列表，包含多个字段（订单号、行号、物料、数量、交货日期）以及供应商邮箱，适合以表格形式呈现。.",
+          "rationale": "本查询需要跨两个API服务：API_PURCHASEORDER_PROCESS_SRV获取采购订单计划行和行项目信息，API_BUSINESS_PARTNER获取供应商邮箱。计划行A_PurchaseOrderScheduleLine包含交货日期（ScheduleLineDeliveryDate）和数量（ScheduleLineOrderQuantity），通过PurchasingDocument关联到A_PurchaseOrderItem获取物料号，再通过A_PurchaseOrder获取供应商编号。供应商编号作为BusinessPartner键，关联到A_BusinessPartnerAddress获取AddressID，最终通过A_AddressEmailAddress获取邮箱地址。按照API_PURCHASEORDER_PROCESS_SRV技能中的'Plant Delivery Date Purchase Orders With Supplier Contact'模式设计多步骤查询。",
+          "plan_kind": "multi_step",
+          "path_id": "llm_dynamic_path",
+          "target_entity_set": "A_AddressEmailAddress",
+          "target_field": null,
+          "steps": [
+            {
+              "step_id": "step_1",
+              "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+              "entity_set": "A_PurchaseOrderScheduleLine",
+              "select_fields": [
+                "PurchasingDocument",
+                "PurchasingDocumentItem",
+                "ScheduleLine",
+                "ScheduleLineDeliveryDate",
+                "ScheduleLineOrderQuantity",
+                "PurchaseOrderQuantityUnit"
+              ],
+              "filters": [
+                {
+                  "field": "ScheduleLineDeliveryDate",
+                  "operator": "eq",
+                  "value": "2026-07-01T00:00:00",
+                  "value_type": "datetimeoffset"
+                }
+              ],
+              "filter_from_previous": [],
+              "top": 200
+            },
+            {
+              "step_id": "step_2",
+              "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+              "entity_set": "A_PurchaseOrderItem",
+              "select_fields": [
+                "PurchaseOrder",
+                "PurchaseOrderItem",
+                "Material",
+                "Plant",
+                "OrderQuantity"
+              ],
+              "filters": [],
+              "filter_from_previous": [
+                {
+                  "field": "PurchaseOrder",
+                  "source_step_id": "step_1",
+                  "source_field": "PurchasingDocument"
+                },
+                {
+                  "field": "PurchaseOrderItem",
+                  "source_step_id": "step_1",
+                  "source_field": "PurchasingDocumentItem"
+                }
+              ],
+              "top": 200
+            },
+            {
+              "step_id": "step_3",
+              "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+              "entity_set": "A_PurchaseOrder",
+              "select_fields": [
+                "PurchaseOrder",
+                "Supplier"
+              ],
+              "filters": [],
+              "filter_from_previous": [
+                {
+                  "field": "PurchaseOrder",
+                  "source_step_id": "step_2",
+                  "source_field": "PurchaseOrder"
+                }
+              ],
+              "top": 200
+            },
+            {
+              "step_id": "step_4",
+              "service_name": "API_BUSINESS_PARTNER",
+              "entity_set": "A_BusinessPartnerAddress",
+              "select_fields": [
+                "BusinessPartner",
+                "AddressID"
+              ],
+              "filters": [],
+              "filter_from_previous": [
+                {
+                  "field": "BusinessPartner",
+                  "source_step_id": "step_3",
+                  "source_field": "Supplier"
+                }
+              ],
+              "top": 200
+            },
+            {
+              "step_id": "step_5",
+              "service_name": "API_BUSINESS_PARTNER",
+              "entity_set": "A_AddressEmailAddress",
+              "select_fields": [
+                "AddressID",
+                "EmailAddress",
+                "IsDefaultEmailAddress",
+                "Person"
+              ],
+              "filters": [],
+              "filter_from_previous": [
+                {
+                  "field": "AddressID",
+                  "source_step_id": "step_4",
+                  "source_field": "AddressID"
+                }
+              ],
+              "top": 10
+            }
+          ]
+        },
+        "schema_feasibility": {
+          "passed": true,
+          "violations": [],
+          "coverage": {
+            "answer_fields": [],
+            "filter_fields": []
+          },
+          "evidence": [
+            "steps_validated:5"
+          ]
+        },
+        "schema_research": {
+          "available": false,
+          "business_intent": "查询交货日期为2026.07.01的采购订单明细（订单号、行号、物料、数量、交货日期），并关联查询对应供应商的邮箱地址。需要先通过采购订单API获取满足条件的订单及其供应商编号，再通过供应商主数据API查询邮箱。",
+          "recommended_filters": [],
+          "semantic_risks": []
+        },
+        "result_verification": {
+          "passed": true,
+          "issues": [],
+          "repair_hints": {
+            "reason": "计划验证通过。查询成功返回了2026-07-01到货的采购订单明细信息（采购订单号4500001548，行项目5，物料MZ-RM-C950-05，数量71件，交货日期2026-07-01）及对应供应商USSU-VSF08的邮箱地址info@ussu.com。",
+            "preferred_filters": []
+          },
+          "source": "llm_result_verifier_agent"
+        }
+      },
+      "plan_kind": "multi_step",
+      "anchor_object": null,
+      "anchor_value": null,
+      "target_field": null,
+      "target_entity_set": "A_AddressEmailAddress",
+      "path_id": "llm_dynamic_path",
+      "steps": [
+        {
+          "step_id": "step_1",
+          "entity_set": "A_PurchaseOrderScheduleLine",
+          "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+          "http_method": "GET",
+          "select_fields": [
+            "PurchasingDocument",
+            "PurchasingDocumentItem",
+            "ScheduleLine",
+            "ScheduleLineDeliveryDate",
+            "ScheduleLineOrderQuantity",
+            "PurchaseOrderQuantityUnit"
+          ],
+          "response_summary_fields": [
+            "PurchasingDocument",
+            "PurchasingDocumentItem",
+            "ScheduleLine",
+            "ScheduleLineDeliveryDate",
+            "ScheduleLineOrderQuantity",
+            "PurchaseOrderQuantityUnit"
+          ],
+          "filters": [
+            {
+              "field": "ScheduleLineDeliveryDate",
+              "operator": "eq",
+              "value": "2026-07-01",
+              "value_type": "datetime"
+            }
+          ],
+          "filter_from_previous": [],
+          "order_by": [],
+          "top": 200,
+          "rationale": ""
+        },
+        {
+          "step_id": "step_2",
+          "entity_set": "A_PurchaseOrderItem",
+          "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+          "http_method": "GET",
+          "select_fields": [
+            "PurchaseOrder",
+            "PurchaseOrderItem",
+            "Material",
+            "Plant",
+            "OrderQuantity"
+          ],
+          "response_summary_fields": [
+            "PurchaseOrder",
+            "PurchaseOrderItem",
+            "Material",
+            "Plant",
+            "OrderQuantity"
+          ],
+          "filters": [],
+          "filter_from_previous": [
+            {
+              "field": "PurchaseOrder",
+              "source_step_id": "step_1",
+              "source_field": "PurchasingDocument",
+              "fanout": false
+            },
+            {
+              "field": "PurchaseOrderItem",
+              "source_step_id": "step_1",
+              "source_field": "PurchasingDocumentItem",
+              "fanout": false
+            }
+          ],
+          "order_by": [],
+          "top": 200,
+          "rationale": ""
+        },
+        {
+          "step_id": "step_3",
+          "entity_set": "A_PurchaseOrder",
+          "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+          "http_method": "GET",
+          "select_fields": [
+            "PurchaseOrder",
+            "Supplier"
+          ],
+          "response_summary_fields": [
+            "PurchaseOrder",
+            "Supplier"
+          ],
+          "filters": [],
+          "filter_from_previous": [
+            {
+              "field": "PurchaseOrder",
+              "source_step_id": "step_2",
+              "source_field": "PurchaseOrder",
+              "fanout": false
+            }
+          ],
+          "order_by": [],
+          "top": 200,
+          "rationale": ""
+        },
+        {
+          "step_id": "step_4",
+          "entity_set": "A_BusinessPartnerAddress",
+          "service_name": "API_BUSINESS_PARTNER",
+          "http_method": "GET",
+          "select_fields": [
+            "BusinessPartner",
+            "AddressID"
+          ],
+          "response_summary_fields": [
+            "BusinessPartner",
+            "AddressID"
+          ],
+          "filters": [],
+          "filter_from_previous": [
+            {
+              "field": "BusinessPartner",
+              "source_step_id": "step_3",
+              "source_field": "Supplier",
+              "fanout": false
+            }
+          ],
+          "order_by": [],
+          "top": 200,
+          "rationale": ""
+        },
+        {
+          "step_id": "step_5",
+          "entity_set": "A_AddressEmailAddress",
+          "service_name": "API_BUSINESS_PARTNER",
+          "http_method": "GET",
+          "select_fields": [
+            "AddressID",
+            "EmailAddress",
+            "IsDefaultEmailAddress",
+            "Person"
+          ],
+          "response_summary_fields": [
+            "AddressID",
+            "EmailAddress",
+            "IsDefaultEmailAddress",
+            "Person"
+          ],
+          "filters": [],
+          "filter_from_previous": [
+            {
+              "field": "AddressID",
+              "source_step_id": "step_4",
+              "source_field": "AddressID",
+              "fanout": false
+            }
+          ],
+          "order_by": [],
+          "top": 10,
+          "rationale": ""
+        }
+      ],
+      "function_parameters": [],
+      "result_transform": null
+    },
+    "validation_issues": [],
+    "attempts": [
+      {
+        "attempt_number": 1,
+        "request": {
+          "method": "GET",
+          "url": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine?$select=PurchasingDocument,PurchasingDocumentItem,ScheduleLine,ScheduleLineDeliveryDate,ScheduleLineOrderQuantity,PurchaseOrderQuantityUnit&$filter=ScheduleLineDeliveryDate+eq+datetimeoffset'2026-07-01T00:00:00Z'&$top=200&sap-client=100&$format=json&$inlinecount=allpages",
+          "payload": null
+        },
+        "success": false,
+        "step_id": "step_1",
+        "status_code": 400,
+        "response_preview": null,
+        "extracted_values": {},
+        "error_message": "Invalid parametertype used at function 'eq' (Position: 26)"
+      },
+      {
+        "attempt_number": 2,
+        "request": {
+          "method": "GET",
+          "url": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine?$select=PurchasingDocument,PurchasingDocumentItem,ScheduleLine,ScheduleLineDeliveryDate,ScheduleLineOrderQuantity,PurchaseOrderQuantityUnit&$filter=ScheduleLineDeliveryDate+eq+datetime'2026-07-01T00:00:00'&$top=200&sap-client=100&$format=json&$inlinecount=allpages",
+          "payload": null
+        },
+        "success": true,
+        "step_id": "step_1",
+        "status_code": 200,
+        "response_preview": {
+          "result_count": 1,
+          "returned_count": 1,
+          "displayed_count": 1,
+          "results": [
+            {
+              "__metadata": {
+                "id": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine(PurchasingDocument='4500001548',PurchasingDocumentItem='5',ScheduleLine='1')",
+                "uri": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine(PurchasingDocument='4500001548',PurchasingDocumentItem='5',ScheduleLine='1')",
+                "type": "API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderScheduleLineType"
+              },
+              "PurchasingDocument": "4500001548",
+              "PurchasingDocumentItem": "5",
+              "ScheduleLine": "1",
+              "ScheduleLineDeliveryDate": "/Date(1782864000000)/",
+              "PurchaseOrderQuantityUnit": "PC",
+              "ScheduleLineOrderQuantity": "71"
+            }
+          ],
+          "_all_results": [
+            {
+              "__metadata": {
+                "id": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine(PurchasingDocument='4500001548',PurchasingDocumentItem='5',ScheduleLine='1')",
+                "uri": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine(PurchasingDocument='4500001548',PurchasingDocumentItem='5',ScheduleLine='1')",
+                "type": "API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderScheduleLineType"
+              },
+              "PurchasingDocument": "4500001548",
+              "PurchasingDocumentItem": "5",
+              "ScheduleLine": "1",
+              "ScheduleLineDeliveryDate": "/Date(1782864000000)/",
+              "PurchaseOrderQuantityUnit": "PC",
+              "ScheduleLineOrderQuantity": "71"
+            }
+          ],
+          "_result_window_start": 0,
+          "pagination": {
+            "page_size": 200,
+            "display_limit": 50,
+            "skip": 0,
+            "page_number": 1,
+            "has_next": false,
+            "next_skip": null
+          }
+        },
+        "extracted_values": {},
+        "error_message": null
+      },
+      {
+        "attempt_number": 3,
+        "request": {
+          "method": "GET",
+          "url": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem?$select=PurchaseOrder,PurchaseOrderItem,Material,Plant,OrderQuantity&$filter=PurchaseOrder+eq+'4500001548'+and+PurchaseOrderItem+eq+'5'&$top=200&sap-client=100&$format=json&$inlinecount=allpages",
+          "payload": null
+        },
+        "success": true,
+        "step_id": "step_2",
+        "status_code": 200,
+        "response_preview": {
+          "result_count": 1,
+          "returned_count": 1,
+          "displayed_count": 1,
+          "results": [
+            {
+              "__metadata": {
+                "id": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem(PurchaseOrder='4500001548',PurchaseOrderItem='5')",
+                "uri": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem(PurchaseOrder='4500001548',PurchaseOrderItem='5')",
+                "type": "API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderItemType"
+              },
+              "PurchaseOrder": "4500001548",
+              "PurchaseOrderItem": "5",
+              "Plant": "1710",
+              "OrderQuantity": "71",
+              "Material": "MZ-RM-C950-05"
+            }
+          ],
+          "_all_results": [
+            {
+              "__metadata": {
+                "id": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem(PurchaseOrder='4500001548',PurchaseOrderItem='5')",
+                "uri": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem(PurchaseOrder='4500001548',PurchaseOrderItem='5')",
+                "type": "API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderItemType"
+              },
+              "PurchaseOrder": "4500001548",
+              "PurchaseOrderItem": "5",
+              "Plant": "1710",
+              "OrderQuantity": "71",
+              "Material": "MZ-RM-C950-05"
+            }
+          ],
+          "_result_window_start": 0,
+          "pagination": {
+            "page_size": 200,
+            "display_limit": 50,
+            "skip": 0,
+            "page_number": 1,
+            "has_next": false,
+            "next_skip": null
+          }
+        },
+        "extracted_values": {
+          "PurchaseOrder": "4500001548",
+          "PurchaseOrderItem": "5"
+        },
+        "error_message": null
+      },
+      {
+        "attempt_number": 4,
+        "request": {
+          "method": "GET",
+          "url": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder?$select=PurchaseOrder,Supplier&$filter=PurchaseOrder+eq+'4500001548'&$top=200&sap-client=100&$format=json&$inlinecount=allpages",
+          "payload": null
+        },
+        "success": true,
+        "step_id": "step_3",
+        "status_code": 200,
+        "response_preview": {
+          "result_count": 1,
+          "returned_count": 1,
+          "displayed_count": 1,
+          "results": [
+            {
+              "__metadata": {
+                "id": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder('4500001548')",
+                "uri": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder('4500001548')",
+                "type": "API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderType"
+              },
+              "PurchaseOrder": "4500001548",
+              "Supplier": "USSU-VSF08"
+            }
+          ],
+          "_all_results": [
+            {
+              "__metadata": {
+                "id": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder('4500001548')",
+                "uri": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder('4500001548')",
+                "type": "API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderType"
+              },
+              "PurchaseOrder": "4500001548",
+              "Supplier": "USSU-VSF08"
+            }
+          ],
+          "_result_window_start": 0,
+          "pagination": {
+            "page_size": 200,
+            "display_limit": 50,
+            "skip": 0,
+            "page_number": 1,
+            "has_next": false,
+            "next_skip": null
+          }
+        },
+        "extracted_values": {
+          "PurchaseOrder": "4500001548"
+        },
+        "error_message": null
+      },
+      {
+        "attempt_number": 5,
+        "request": {
+          "method": "GET",
+          "url": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartnerAddress?$select=BusinessPartner,AddressID&$filter=BusinessPartner+eq+'USSU-VSF08'&$top=200&sap-client=100&$format=json&$inlinecount=allpages",
+          "payload": null
+        },
+        "success": true,
+        "step_id": "step_4",
+        "status_code": 200,
+        "response_preview": {
+          "result_count": 1,
+          "returned_count": 1,
+          "displayed_count": 1,
+          "results": [
+            {
+              "__metadata": {
+                "id": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartnerAddress(BusinessPartner='USSU-VSF08',AddressID='23580')",
+                "uri": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartnerAddress(BusinessPartner='USSU-VSF08',AddressID='23580')",
+                "type": "API_BUSINESS_PARTNER.A_BusinessPartnerAddressType"
+              },
+              "BusinessPartner": "USSU-VSF08",
+              "AddressID": "23580"
+            }
+          ],
+          "_all_results": [
+            {
+              "__metadata": {
+                "id": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartnerAddress(BusinessPartner='USSU-VSF08',AddressID='23580')",
+                "uri": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartnerAddress(BusinessPartner='USSU-VSF08',AddressID='23580')",
+                "type": "API_BUSINESS_PARTNER.A_BusinessPartnerAddressType"
+              },
+              "BusinessPartner": "USSU-VSF08",
+              "AddressID": "23580"
+            }
+          ],
+          "_result_window_start": 0,
+          "pagination": {
+            "page_size": 200,
+            "display_limit": 50,
+            "skip": 0,
+            "page_number": 1,
+            "has_next": false,
+            "next_skip": null
+          }
+        },
+        "extracted_values": {
+          "BusinessPartner": "USSU-VSF08"
+        },
+        "error_message": null
+      },
+      {
+        "attempt_number": 6,
+        "request": {
+          "method": "GET",
+          "url": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress?$select=AddressID,EmailAddress,IsDefaultEmailAddress,Person,OrdinalNumber&$filter=AddressID+eq+'23580'&$top=10&sap-client=100&$format=json&$inlinecount=allpages",
+          "payload": null
+        },
+        "success": true,
+        "step_id": "step_5",
+        "status_code": 200,
+        "response_preview": {
+          "result_count": 1,
+          "returned_count": 1,
+          "displayed_count": 1,
+          "results": [
+            {
+              "__metadata": {
+                "id": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')",
+                "uri": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')",
+                "type": "API_BUSINESS_PARTNER.A_AddressEmailAddressType"
+              },
+              "AddressID": "23580",
+              "Person": "",
+              "OrdinalNumber": "1",
+              "IsDefaultEmailAddress": true,
+              "EmailAddress": "info@ussu.com"
+            }
+          ],
+          "_all_results": [
+            {
+              "__metadata": {
+                "id": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')",
+                "uri": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')",
+                "type": "API_BUSINESS_PARTNER.A_AddressEmailAddressType"
+              },
+              "AddressID": "23580",
+              "Person": "",
+              "OrdinalNumber": "1",
+              "IsDefaultEmailAddress": true,
+              "EmailAddress": "info@ussu.com"
+            }
+          ],
+          "_result_window_start": 0,
+          "pagination": {
+            "page_size": 10,
+            "display_limit": 10,
+            "skip": 0,
+            "page_number": 1,
+            "has_next": false,
+            "next_skip": null
+          }
+        },
+        "extracted_values": {
+          "AddressID": "23580"
+        },
+        "error_message": null
+      }
+    ],
+    "data": {
+      "result_count": 1,
+      "returned_count": 1,
+      "displayed_count": 1,
+      "results": [
+        {
+          "__metadata": {
+            "id": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')",
+            "uri": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')",
+            "type": "API_BUSINESS_PARTNER.A_AddressEmailAddressType"
+          },
+          "AddressID": "23580",
+          "Person": "",
+          "OrdinalNumber": "1",
+          "IsDefaultEmailAddress": true,
+          "EmailAddress": "info@ussu.com"
+        }
+      ],
+      "_all_results": [
+        {
+          "__metadata": {
+            "id": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')",
+            "uri": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')",
+            "type": "API_BUSINESS_PARTNER.A_AddressEmailAddressType"
+          },
+          "AddressID": "23580",
+          "Person": "",
+          "OrdinalNumber": "1",
+          "IsDefaultEmailAddress": true,
+          "EmailAddress": "info@ussu.com"
+        }
+      ],
+      "_result_window_start": 0,
+      "pagination": {
+        "page_size": 10,
+        "display_limit": 10,
+        "skip": 0,
+        "page_number": 1,
+        "has_next": false,
+        "next_skip": null
+      },
+      "primary_step_id": "step_5",
+      "primary_entity_set": "A_AddressEmailAddress",
+      "primary_results": [
+        {
+          "__metadata": {
+            "id": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')",
+            "uri": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')",
+            "type": "API_BUSINESS_PARTNER.A_AddressEmailAddressType"
+          },
+          "AddressID": "23580",
+          "Person": "",
+          "OrdinalNumber": "1",
+          "IsDefaultEmailAddress": true,
+          "EmailAddress": "info@ussu.com"
+        }
+      ],
+      "final_step_id": "step_5",
+      "final_step_entity_set": "A_AddressEmailAddress",
+      "step_results": {
+        "step_1": {
+          "step_id": "step_1",
+          "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+          "entity_set": "A_PurchaseOrderScheduleLine",
+          "select_fields": [
+            "PurchasingDocument",
+            "PurchasingDocumentItem",
+            "ScheduleLine",
+            "ScheduleLineDeliveryDate",
+            "ScheduleLineOrderQuantity",
+            "PurchaseOrderQuantityUnit"
+          ],
+          "result_count": 1,
+          "returned_count": 1,
+          "displayed_count": 1,
+          "results": [
+            {
+              "__metadata": {
+                "id": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine(PurchasingDocument='4500001548',PurchasingDocumentItem='5',ScheduleLine='1')",
+                "uri": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine(PurchasingDocument='4500001548',PurchasingDocumentItem='5',ScheduleLine='1')",
+                "type": "API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderScheduleLineType"
+              },
+              "PurchasingDocument": "4500001548",
+              "PurchasingDocumentItem": "5",
+              "ScheduleLine": "1",
+              "ScheduleLineDeliveryDate": "/Date(1782864000000)/",
+              "PurchaseOrderQuantityUnit": "PC",
+              "ScheduleLineOrderQuantity": "71"
+            }
+          ],
+          "pagination": {
+            "page_size": 200,
+            "display_limit": 50,
+            "skip": 0,
+            "page_number": 1,
+            "has_next": false,
+            "next_skip": null
+          },
+          "data": {
+            "result_count": 1,
+            "returned_count": 1,
+            "displayed_count": 1,
+            "results": [
+              {
+                "__metadata": {
+                  "id": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine(PurchasingDocument='4500001548',PurchasingDocumentItem='5',ScheduleLine='1')",
+                  "uri": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine(PurchasingDocument='4500001548',PurchasingDocumentItem='5',ScheduleLine='1')",
+                  "type": "API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderScheduleLineType"
+                },
+                "PurchasingDocument": "4500001548",
+                "PurchasingDocumentItem": "5",
+                "ScheduleLine": "1",
+                "ScheduleLineDeliveryDate": "/Date(1782864000000)/",
+                "PurchaseOrderQuantityUnit": "PC",
+                "ScheduleLineOrderQuantity": "71"
+              }
+            ],
+            "_all_results": [
+              {
+                "__metadata": {
+                  "id": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine(PurchasingDocument='4500001548',PurchasingDocumentItem='5',ScheduleLine='1')",
+                  "uri": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine(PurchasingDocument='4500001548',PurchasingDocumentItem='5',ScheduleLine='1')",
+                  "type": "API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderScheduleLineType"
+                },
+                "PurchasingDocument": "4500001548",
+                "PurchasingDocumentItem": "5",
+                "ScheduleLine": "1",
+                "ScheduleLineDeliveryDate": "/Date(1782864000000)/",
+                "PurchaseOrderQuantityUnit": "PC",
+                "ScheduleLineOrderQuantity": "71"
+              }
+            ],
+            "_result_window_start": 0,
+            "pagination": {
+              "page_size": 200,
+              "display_limit": 50,
+              "skip": 0,
+              "page_number": 1,
+              "has_next": false,
+              "next_skip": null
+            }
+          }
+        },
+        "step_2": {
+          "step_id": "step_2",
+          "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+          "entity_set": "A_PurchaseOrderItem",
+          "select_fields": [
+            "PurchaseOrder",
+            "PurchaseOrderItem",
+            "Material",
+            "Plant",
+            "OrderQuantity"
+          ],
+          "result_count": 1,
+          "returned_count": 1,
+          "displayed_count": 1,
+          "results": [
+            {
+              "__metadata": {
+                "id": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem(PurchaseOrder='4500001548',PurchaseOrderItem='5')",
+                "uri": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem(PurchaseOrder='4500001548',PurchaseOrderItem='5')",
+                "type": "API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderItemType"
+              },
+              "PurchaseOrder": "4500001548",
+              "PurchaseOrderItem": "5",
+              "Plant": "1710",
+              "OrderQuantity": "71",
+              "Material": "MZ-RM-C950-05"
+            }
+          ],
+          "pagination": {
+            "page_size": 200,
+            "display_limit": 50,
+            "skip": 0,
+            "page_number": 1,
+            "has_next": false,
+            "next_skip": null
+          },
+          "data": {
+            "result_count": 1,
+            "returned_count": 1,
+            "displayed_count": 1,
+            "results": [
+              {
+                "__metadata": {
+                  "id": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem(PurchaseOrder='4500001548',PurchaseOrderItem='5')",
+                  "uri": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem(PurchaseOrder='4500001548',PurchaseOrderItem='5')",
+                  "type": "API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderItemType"
+                },
+                "PurchaseOrder": "4500001548",
+                "PurchaseOrderItem": "5",
+                "Plant": "1710",
+                "OrderQuantity": "71",
+                "Material": "MZ-RM-C950-05"
+              }
+            ],
+            "_all_results": [
+              {
+                "__metadata": {
+                  "id": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem(PurchaseOrder='4500001548',PurchaseOrderItem='5')",
+                  "uri": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem(PurchaseOrder='4500001548',PurchaseOrderItem='5')",
+                  "type": "API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderItemType"
+                },
+                "PurchaseOrder": "4500001548",
+                "PurchaseOrderItem": "5",
+                "Plant": "1710",
+                "OrderQuantity": "71",
+                "Material": "MZ-RM-C950-05"
+              }
+            ],
+            "_result_window_start": 0,
+            "pagination": {
+              "page_size": 200,
+              "display_limit": 50,
+              "skip": 0,
+              "page_number": 1,
+              "has_next": false,
+              "next_skip": null
+            }
+          }
+        },
+        "step_3": {
+          "step_id": "step_3",
+          "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+          "entity_set": "A_PurchaseOrder",
+          "select_fields": [
+            "PurchaseOrder",
+            "Supplier"
+          ],
+          "result_count": 1,
+          "returned_count": 1,
+          "displayed_count": 1,
+          "results": [
+            {
+              "__metadata": {
+                "id": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder('4500001548')",
+                "uri": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder('4500001548')",
+                "type": "API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderType"
+              },
+              "PurchaseOrder": "4500001548",
+              "Supplier": "USSU-VSF08"
+            }
+          ],
+          "pagination": {
+            "page_size": 200,
+            "display_limit": 50,
+            "skip": 0,
+            "page_number": 1,
+            "has_next": false,
+            "next_skip": null
+          },
+          "data": {
+            "result_count": 1,
+            "returned_count": 1,
+            "displayed_count": 1,
+            "results": [
+              {
+                "__metadata": {
+                  "id": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder('4500001548')",
+                  "uri": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder('4500001548')",
+                  "type": "API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderType"
+                },
+                "PurchaseOrder": "4500001548",
+                "Supplier": "USSU-VSF08"
+              }
+            ],
+            "_all_results": [
+              {
+                "__metadata": {
+                  "id": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder('4500001548')",
+                  "uri": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder('4500001548')",
+                  "type": "API_PURCHASEORDER_PROCESS_SRV.A_PurchaseOrderType"
+                },
+                "PurchaseOrder": "4500001548",
+                "Supplier": "USSU-VSF08"
+              }
+            ],
+            "_result_window_start": 0,
+            "pagination": {
+              "page_size": 200,
+              "display_limit": 50,
+              "skip": 0,
+              "page_number": 1,
+              "has_next": false,
+              "next_skip": null
+            }
+          }
+        },
+        "step_4": {
+          "step_id": "step_4",
+          "service_name": "API_BUSINESS_PARTNER",
+          "entity_set": "A_BusinessPartnerAddress",
+          "select_fields": [
+            "BusinessPartner",
+            "AddressID"
+          ],
+          "result_count": 1,
+          "returned_count": 1,
+          "displayed_count": 1,
+          "results": [
+            {
+              "__metadata": {
+                "id": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartnerAddress(BusinessPartner='USSU-VSF08',AddressID='23580')",
+                "uri": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartnerAddress(BusinessPartner='USSU-VSF08',AddressID='23580')",
+                "type": "API_BUSINESS_PARTNER.A_BusinessPartnerAddressType"
+              },
+              "BusinessPartner": "USSU-VSF08",
+              "AddressID": "23580"
+            }
+          ],
+          "pagination": {
+            "page_size": 200,
+            "display_limit": 50,
+            "skip": 0,
+            "page_number": 1,
+            "has_next": false,
+            "next_skip": null
+          },
+          "data": {
+            "result_count": 1,
+            "returned_count": 1,
+            "displayed_count": 1,
+            "results": [
+              {
+                "__metadata": {
+                  "id": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartnerAddress(BusinessPartner='USSU-VSF08',AddressID='23580')",
+                  "uri": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartnerAddress(BusinessPartner='USSU-VSF08',AddressID='23580')",
+                  "type": "API_BUSINESS_PARTNER.A_BusinessPartnerAddressType"
+                },
+                "BusinessPartner": "USSU-VSF08",
+                "AddressID": "23580"
+              }
+            ],
+            "_all_results": [
+              {
+                "__metadata": {
+                  "id": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartnerAddress(BusinessPartner='USSU-VSF08',AddressID='23580')",
+                  "uri": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartnerAddress(BusinessPartner='USSU-VSF08',AddressID='23580')",
+                  "type": "API_BUSINESS_PARTNER.A_BusinessPartnerAddressType"
+                },
+                "BusinessPartner": "USSU-VSF08",
+                "AddressID": "23580"
+              }
+            ],
+            "_result_window_start": 0,
+            "pagination": {
+              "page_size": 200,
+              "display_limit": 50,
+              "skip": 0,
+              "page_number": 1,
+              "has_next": false,
+              "next_skip": null
+            }
+          }
+        },
+        "step_5": {
+          "step_id": "step_5",
+          "service_name": "API_BUSINESS_PARTNER",
+          "entity_set": "A_AddressEmailAddress",
+          "select_fields": [
+            "AddressID",
+            "EmailAddress",
+            "IsDefaultEmailAddress",
+            "Person"
+          ],
+          "result_count": 1,
+          "returned_count": 1,
+          "displayed_count": 1,
+          "results": [
+            {
+              "__metadata": {
+                "id": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')",
+                "uri": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')",
+                "type": "API_BUSINESS_PARTNER.A_AddressEmailAddressType"
+              },
+              "AddressID": "23580",
+              "Person": "",
+              "OrdinalNumber": "1",
+              "IsDefaultEmailAddress": true,
+              "EmailAddress": "info@ussu.com"
+            }
+          ],
+          "pagination": {
+            "page_size": 10,
+            "display_limit": 10,
+            "skip": 0,
+            "page_number": 1,
+            "has_next": false,
+            "next_skip": null
+          },
+          "data": {
+            "result_count": 1,
+            "returned_count": 1,
+            "displayed_count": 1,
+            "results": [
+              {
+                "__metadata": {
+                  "id": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')",
+                  "uri": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')",
+                  "type": "API_BUSINESS_PARTNER.A_AddressEmailAddressType"
+                },
+                "AddressID": "23580",
+                "Person": "",
+                "OrdinalNumber": "1",
+                "IsDefaultEmailAddress": true,
+                "EmailAddress": "info@ussu.com"
+              }
+            ],
+            "_all_results": [
+              {
+                "__metadata": {
+                  "id": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')",
+                  "uri": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress(AddressID='23580',Person='',OrdinalNumber='1')",
+                  "type": "API_BUSINESS_PARTNER.A_AddressEmailAddressType"
+                },
+                "AddressID": "23580",
+                "Person": "",
+                "OrdinalNumber": "1",
+                "IsDefaultEmailAddress": true,
+                "EmailAddress": "info@ussu.com"
+              }
+            ],
+            "_result_window_start": 0,
+            "pagination": {
+              "page_size": 10,
+              "display_limit": 10,
+              "skip": 0,
+              "page_number": 1,
+              "has_next": false,
+              "next_skip": null
+            }
+          }
+        }
+      },
+      "result_count_by_step": {
+        "step_1": 1,
+        "step_2": 1,
+        "step_3": 1,
+        "step_4": 1,
+        "step_5": 1
+      },
+      "execution_trace": [
+        {
+          "step_id": "step_1",
+          "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+          "entity_set": "A_PurchaseOrderScheduleLine",
+          "request_url": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderScheduleLine?$select=PurchasingDocument,PurchasingDocumentItem,ScheduleLine,ScheduleLineDeliveryDate,ScheduleLineOrderQuantity,PurchaseOrderQuantityUnit&$filter=ScheduleLineDeliveryDate+eq+datetime'2026-07-01T00:00:00'&$top=200&sap-client=100&$format=json&$inlinecount=allpages",
+          "status_code": 200,
+          "success": true,
+          "extracted_values": {}
+        },
+        {
+          "step_id": "step_2",
+          "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+          "entity_set": "A_PurchaseOrderItem",
+          "request_url": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrderItem?$select=PurchaseOrder,PurchaseOrderItem,Material,Plant,OrderQuantity&$filter=PurchaseOrder+eq+'4500001548'+and+PurchaseOrderItem+eq+'5'&$top=200&sap-client=100&$format=json&$inlinecount=allpages",
+          "status_code": 200,
+          "success": true,
+          "extracted_values": {
+            "PurchaseOrder": "4500001548",
+            "PurchaseOrderItem": "5"
+          }
+        },
+        {
+          "step_id": "step_3",
+          "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+          "entity_set": "A_PurchaseOrder",
+          "request_url": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder?$select=PurchaseOrder,Supplier&$filter=PurchaseOrder+eq+'4500001548'&$top=200&sap-client=100&$format=json&$inlinecount=allpages",
+          "status_code": 200,
+          "success": true,
+          "extracted_values": {
+            "PurchaseOrder": "4500001548"
+          }
+        },
+        {
+          "step_id": "step_4",
+          "service_name": "API_BUSINESS_PARTNER",
+          "entity_set": "A_BusinessPartnerAddress",
+          "request_url": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartnerAddress?$select=BusinessPartner,AddressID&$filter=BusinessPartner+eq+'USSU-VSF08'&$top=200&sap-client=100&$format=json&$inlinecount=allpages",
+          "status_code": 200,
+          "success": true,
+          "extracted_values": {
+            "BusinessPartner": "USSU-VSF08"
+          }
+        },
+        {
+          "step_id": "step_5",
+          "service_name": "API_BUSINESS_PARTNER",
+          "entity_set": "A_AddressEmailAddress",
+          "request_url": "http://s5.sapehr.cn:50000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress?$select=AddressID,EmailAddress,IsDefaultEmailAddress,Person,OrdinalNumber&$filter=AddressID+eq+'23580'&$top=10&sap-client=100&$format=json&$inlinecount=allpages",
+          "status_code": 200,
+          "success": true,
+          "extracted_values": {
+            "AddressID": "23580"
+          }
+        }
+      ],
+      "source_step_summaries": [
+        {
+          "step_id": "step_1",
+          "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+          "entity_set": "A_PurchaseOrderScheduleLine",
+          "select_fields": [
+            "PurchasingDocument",
+            "PurchasingDocumentItem",
+            "ScheduleLine",
+            "ScheduleLineDeliveryDate",
+            "ScheduleLineOrderQuantity",
+            "PurchaseOrderQuantityUnit"
+          ],
+          "filters": [
+            {
+              "field": "ScheduleLineDeliveryDate",
+              "operator": "eq",
+              "value": "2026-07-01",
+              "value_type": "datetime"
+            }
+          ],
+          "result_count": 1,
+          "returned_count": 1,
+          "displayed_count": 1
+        },
+        {
+          "step_id": "step_2",
+          "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+          "entity_set": "A_PurchaseOrderItem",
+          "select_fields": [
+            "PurchaseOrder",
+            "PurchaseOrderItem",
+            "Material",
+            "Plant",
+            "OrderQuantity"
+          ],
+          "filters": [],
+          "result_count": 1,
+          "returned_count": 1,
+          "displayed_count": 1
+        },
+        {
+          "step_id": "step_3",
+          "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+          "entity_set": "A_PurchaseOrder",
+          "select_fields": [
+            "PurchaseOrder",
+            "Supplier"
+          ],
+          "filters": [],
+          "result_count": 1,
+          "returned_count": 1,
+          "displayed_count": 1
+        },
+        {
+          "step_id": "step_4",
+          "service_name": "API_BUSINESS_PARTNER",
+          "entity_set": "A_BusinessPartnerAddress",
+          "select_fields": [
+            "BusinessPartner",
+            "AddressID"
+          ],
+          "filters": [],
+          "result_count": 1,
+          "returned_count": 1,
+          "displayed_count": 1
+        },
+        {
+          "step_id": "step_5",
+          "service_name": "API_BUSINESS_PARTNER",
+          "entity_set": "A_AddressEmailAddress",
+          "select_fields": [
+            "AddressID",
+            "EmailAddress",
+            "IsDefaultEmailAddress",
+            "Person"
+          ],
+          "filters": [],
+          "result_count": 1,
+          "returned_count": 1,
+          "displayed_count": 1
+        }
+      ],
+      "lookup_context": {
+        "path_id": "llm_dynamic_path",
+        "anchor_object": null,
+        "anchor_value": null,
+        "target_field": null,
+        "target_entity_set": "A_AddressEmailAddress",
+        "primary_step_id": "step_5",
+        "primary_entity_set": "A_AddressEmailAddress",
+        "final_step_id": "step_5",
+        "final_step_entity_set": "A_AddressEmailAddress"
+      }
+    },
+    "presentation": {
+      "kind": "table",
+      "title": "2026年7月1日到货的采购订单明细及供应商邮箱",
+      "text": "针对“2026.07.01到货的采购订单明细信息（包括：采购订单号，明细行号，物料号，数量，到货日期），以及该订单的供应商的邮箱”，当前查询结果显示：AddressID为23580，EmailAddress为info@ussu.com，IsDefaultEmailAddress为True，Person为。",
+      "columns": [
+        "采购订单号",
+        "明细行号",
+        "物料号",
+        "数量",
+        "单位",
+        "到货日期",
+        "供应商邮箱"
+      ],
+      "rows": [
+        {
+          "采购订单号": "4500001548",
+          "明细行号": "5",
+          "物料号": "MZ-RM-C950-05",
+          "数量": "71",
+          "单位": "PC",
+          "到货日期": "2026.07.01",
+          "供应商邮箱": "info@ussu.com"
+        }
+      ]
+    },
+    "guardrail_decision": {
+      "accepted": true,
+      "winner": "llm",
+      "reasons": [
+        "plan_respects_current_guardrails"
+      ],
+      "severity": "info"
+    },
+    "critic_findings": [],
+    "failure_attribution": null,
+    "presentation_verification": {
+      "passed": true,
+      "issues": []
+    },
+    "timings": [
+      {
+        "key": "history.list_recent",
+        "label": "读取最近查询",
+        "duration_ms": 28.37,
+        "success": true
+      },
+      {
+        "key": "history.search_feedback_memory",
+        "label": "检索反馈记忆",
+        "duration_ms": 0.31,
+        "success": true
+      },
+      {
+        "key": "api_catalog.load",
+        "label": "加载 API Catalog",
+        "duration_ms": 23.65,
+        "success": true
+      },
+      {
+        "key": "api_skills.enrich_catalog",
+        "label": "加载 API Skills",
+        "duration_ms": 2.88,
+        "success": true
+      },
+      {
+        "key": "llm.api_route",
+        "label": "LLM API 路由",
+        "duration_ms": 6094.25,
+        "success": true
+      },
+      {
+        "key": "schema_context.build",
+        "label": "构建 Schema Context",
+        "duration_ms": 2753.89,
+        "success": true
+      },
+      {
+        "key": "api_skills.load",
+        "label": "加载 API Skill",
+        "duration_ms": 0.16,
+        "success": true
+      },
+      {
+        "key": "schema_context.enrich_with_api_skill",
+        "label": "使用 API Skill 增强 Schema Context",
+        "duration_ms": 7.29,
+        "success": true
+      },
+      {
+        "key": "api_skills.load",
+        "label": "加载 API Skill",
+        "duration_ms": 0.1,
+        "success": true
+      },
+      {
+        "key": "api_skills.load",
+        "label": "加载 API Skill",
+        "duration_ms": 0.07,
+        "success": true
+      },
+      {
+        "key": "schema_context.enrich_with_api_skill",
+        "label": "菴ｿ逕ｨ API Skill 蠅槫ｼｺ Schema Context",
+        "duration_ms": 11.4,
+        "success": true
+      },
+      {
+        "key": "llm.schema_research",
+        "label": "LLM Schema Research",
+        "duration_ms": 46042.95,
+        "success": true
+      },
+      {
+        "key": "llm.api_specific_plan",
+        "label": "LLM API 内查询规划",
+        "duration_ms": 36661.57,
+        "success": true
+      },
+      {
+        "key": "guardrail.evaluate",
+        "label": "Guardrail 检查",
+        "duration_ms": 0.01,
+        "success": true
+      },
+      {
+        "key": "critic.rule_review",
+        "label": "规则 Critic 检查",
+        "duration_ms": 0.01,
+        "success": true
+      },
+      {
+        "key": "schema_feasibility.validate",
+        "label": "Schema 可行性校验",
+        "duration_ms": 3.19,
+        "success": true
+      },
+      {
+        "key": "llm.plan_critic",
+        "label": "LLM Plan Critic",
+        "duration_ms": 41598.57,
+        "success": true
+      },
+      {
+        "key": "validator.basic_validate",
+        "label": "基础计划校验",
+        "duration_ms": 0.01,
+        "success": true
+      },
+      {
+        "key": "sap.multi_step_execute",
+        "label": "多步 SAP OData 执行",
+        "duration_ms": 5049.22,
+        "success": true
+      },
+      {
+        "key": "llm.plan_repair",
+        "label": "LLM 查询修复",
+        "duration_ms": 42200.2,
+        "success": true
+      },
+      {
+        "key": "guardrail.evaluate",
+        "label": "Guardrail 检查",
+        "duration_ms": 0.01,
+        "success": true
+      },
+      {
+        "key": "critic.rule_review",
+        "label": "规则 Critic 检查",
+        "duration_ms": 0.01,
+        "success": true
+      },
+      {
+        "key": "schema_feasibility.validate",
+        "label": "Schema 可行性校验",
+        "duration_ms": 1.87,
+        "success": true
+      },
+      {
+        "key": "llm.plan_critic",
+        "label": "LLM Plan Critic",
+        "duration_ms": 4909.03,
+        "success": true
+      },
+      {
+        "key": "validator.basic_validate",
+        "label": "基础计划校验",
+        "duration_ms": 0.01,
+        "success": true
+      },
+      {
+        "key": "sap.multi_step_execute",
+        "label": "多步 SAP OData 执行",
+        "duration_ms": 15597.39,
+        "success": true
+      },
+      {
+        "key": "llm.result_verify",
+        "label": "LLM Result Verifier",
+        "duration_ms": 6935.44,
+        "success": true
+      },
+      {
+        "key": "llm.result_present",
+        "label": "结果呈现生成",
+        "duration_ms": 4596.83,
+        "success": true
+      },
+      {
+        "key": "presentation.verify",
+        "label": "结果呈现校验",
+        "duration_ms": 0.03,
+        "success": true
+      }
+    ],
+    "timing_summary": {
+      "history.list_recent": 28.37,
+      "history.search_feedback_memory": 0.31,
+      "api_catalog.load": 23.65,
+      "api_skills.enrich_catalog": 2.88,
+      "llm.api_route": 6094.25,
+      "schema_context.build": 2753.89,
+      "api_skills.load": 0.33,
+      "schema_context.enrich_with_api_skill": 18.69,
+      "llm.schema_research": 46042.95,
+      "llm.api_specific_plan": 36661.57,
+      "guardrail.evaluate": 0.02,
+      "critic.rule_review": 0.02,
+      "schema_feasibility.validate": 5.06,
+      "llm.plan_critic": 46507.6,
+      "validator.basic_validate": 0.02,
+      "sap.multi_step_execute": 20646.61,
+      "llm.plan_repair": 42200.2,
+      "llm.result_verify": 6935.44,
+      "llm.result_present": 4596.83,
+      "presentation.verify": 0.03
+    },
+    "total_duration_ms": 212521.2
+  },
+  "isError": false
+}
