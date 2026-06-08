@@ -913,6 +913,7 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
                         step,
                         select_fields=selected,
                         response_summary_fields=fields,
+                        top=None,
                     )
                 )
                 if applied is None:
@@ -954,6 +955,7 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             plan,
             select_fields=LlmDynamicPathPlanner._dedupe_fields([*list(plan.select_fields or []), *fields]),
             response_summary_fields=fields,
+            top=None,
             result_transform=transform,
             planner_diagnostics={
                 **(plan.planner_diagnostics or {}),
@@ -3543,6 +3545,11 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
         if "\u660e\u5929" in raw or "tomorrow" in raw.lower():
             return (today + timedelta(days=1)).isoformat()
         if "\u4eca\u5929" in raw or "today" in raw.lower():
+            return today.isoformat()
+        lowered = raw.lower()
+        if any(marker in raw for marker in ("目前", "当前", "现在")) or any(
+            marker in lowered for marker in ("as of now", "as-of-now", "to date", "todate")
+        ):
             return today.isoformat()
         match = re.search(r"(\d{4})[.\-/](\d{1,2})[.\-/](\d{1,2})", raw)
         if match:

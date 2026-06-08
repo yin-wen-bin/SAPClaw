@@ -117,6 +117,14 @@ def _write_index(root: Path) -> None:
                 {
                     "service_name": "API_TEST",
                     "entity_set": "A_Test",
+                    "field_name": "Supplier",
+                    "data_type": "Edm.String",
+                    "filterable": True,
+                    "selectable": True,
+                },
+                {
+                    "service_name": "API_TEST",
+                    "entity_set": "A_Test",
                     "field_name": "CompanyCodeCurrency",
                     "data_type": "Edm.String",
                     "filterable": True,
@@ -1252,6 +1260,90 @@ def test_api_specific_planner_applies_open_item_balance_key_date_transform(
     assert plan.result_transform.group_by == ["CompanyCode", "GLAccount", "CompanyCodeCurrency"]
     assert plan.result_transform.sum_fields == ["Amount"]
     assert plan.response_summary_fields == ["CompanyCode", "GLAccount", "CompanyCodeCurrency", "Amount"]
+
+
+def test_api_specific_planner_applies_supplier_payable_total_as_of_now_transform(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    import sap_odata_agent.infrastructure.llm.api_specific_planner as planner_module
+
+    real_date = planner_module.date
+
+    class FixedDate:
+        @classmethod
+        def today(cls):
+            return real_date(2026, 6, 8)
+
+    monkeypatch.setattr(planner_module, "date", FixedDate)
+    _write_index(tmp_path)
+    client = CapturingClient(
+        {
+            "plan_kind": "direct",
+            "service_name": "API_TEST",
+            "entity_set": "A_Test",
+            "http_method": "GET",
+            "select_fields": ["CompanyCode", "Supplier", "Amount"],
+            "filters": [
+                {"field": "CompanyCode", "operator": "eq", "value": "1710", "value_type": "string"},
+                {"field": "Supplier", "operator": "eq", "value": "17300003", "value_type": "string"},
+            ],
+            "presentation": {"kind": "table", "reason": "supplier payable total"},
+            "rationale": "The user asks for a supplier payable total.",
+        }
+    )
+    planner = LlmApiSpecificPlanner(index_root=tmp_path, llm_client=client)
+    schema_context = {
+        "service_name": "API_TEST",
+        "entities": [
+            {
+                "entity_set": "A_Test",
+                "fields": [
+                    {"field_name": "CompanyCode", "data_type": "Edm.String", "filterable": True},
+                    {"field_name": "Supplier", "data_type": "Edm.String", "filterable": True},
+                    {"field_name": "CompanyCodeCurrency", "data_type": "Edm.String", "filterable": True},
+                    {"field_name": "Amount", "data_type": "Edm.Decimal", "filterable": True},
+                    {"field_name": "PostingDate", "data_type": "Edm.DateTime", "filterable": True},
+                    {"field_name": "ClearingDate", "data_type": "Edm.DateTime", "filterable": True},
+                ],
+            }
+        ],
+        "api_skill": {
+            "service_name": "API_TEST",
+            "summary": (
+                "For supplier AP balance wording such as `供应商...应付款总额`, "
+                "`供应商应付账款余额`, `供应商未清应付款余额`, `供应商应付余额`, "
+                "`vendor payable balance`, or `supplier payable total`, select only "
+                "`A_Test.CompanyCode`, `A_Test.Supplier`, `A_Test.CompanyCodeCurrency`, "
+                "`A_Test.PostingDate`, `A_Test.ClearingDate`, and `A_Test.Amount`; "
+                "filter `A_Test.CompanyCode` and `A_Test.Supplier` when provided, "
+                "filter `A_Test.ClearingDate eq null`, and filter `A_Test.PostingDate le <user_date>` "
+                "when the user provides a key date such as `今天`, `截止目前`, `截至目前`, "
+                "`today`, `as of now`, or `截至2024年12月31日`; result_transform: aggregate; "
+                "group_by: `A_Test.CompanyCode`, `A_Test.Supplier`, `A_Test.CompanyCodeCurrency`; "
+                "sum_fields: `A_Test.Amount`."
+            ),
+            "content": "",
+        },
+    }
+
+    plan = planner.plan_for_api(
+        AgentRequest(user_input="查询供应商17300003在公司代码1710下，截止目前的应付款总额。"),
+        ApiRouteDecision(selected_apis=[SelectedApi(service_name="API_TEST", confidence=1.0, reason="test")]),
+        schema_context,
+    )
+
+    assert [(item.field, item.operator, item.value, item.value_type) for item in plan.filters] == [
+        ("CompanyCode", "eq", "1710", "string"),
+        ("Supplier", "eq", "17300003", "string"),
+        ("ClearingDate", "eq", "null", "null"),
+        ("PostingDate", "le", "2026-06-08T23:59:59", "datetime"),
+    ]
+    assert plan.result_transform is not None
+    assert plan.result_transform.group_by == ["CompanyCode", "Supplier", "CompanyCodeCurrency"]
+    assert plan.result_transform.sum_fields == ["Amount"]
+    assert plan.response_summary_fields == ["CompanyCode", "Supplier", "CompanyCodeCurrency", "Amount"]
+    assert plan.top is None
 
 
 def test_api_specific_planner_does_not_apply_cost_center_pattern_to_balance_drilldown(tmp_path: Path) -> None:

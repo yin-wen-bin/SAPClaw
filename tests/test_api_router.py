@@ -68,7 +68,7 @@ def _ap_catalog() -> list[dict]:
         {
             "service_name": "API_GLACCOUNTLINEITEM",
             "short_description": "G/L Account Line Items - Read (A2X).",
-            "primary_business_objects": ["G/L Account Line Item", "Supplier AP Open Item"],
+            "primary_business_objects": ["G/L Account Line Item", "Supplier AP Open Item", "Supplier AP Balance"],
             "top_entities": ["GLAccountLineItem"],
             "top_filter_fields": ["GLAccountLineItem.Supplier", "GLAccountLineItem.ClearingDate"],
             "top_answer_fields": [
@@ -79,6 +79,8 @@ def _ap_catalog() -> list[dict]:
             "api_skill_summary": (
                 "For supplier open payable wording such as 供应商...是否有未清的应付款, "
                 "供应商未清应付款, or 供应商未付款, use GLAccountLineItem directly. "
+                "For supplier AP balance wording such as 供应商...应付款总额 or 供应商应付账款余额, "
+                "use GLAccountLineItem with result_transform aggregate. "
                 "For supplier open payable wording, use GLAccountLineItem directly. "
                 "Filter Supplier when provided and ClearingDate eq null for open items."
             ),
@@ -198,6 +200,37 @@ def test_api_router_skill_fallback_supplier_open_payables_query_without_llm() ->
 
     assert decision.selected_apis[0].service_name == "API_GLACCOUNTLINEITEM"
     assert decision.raw_response["router_fallback"] == "skill_catalog_similarity"
+    assert decision.needs_clarification is False
+
+
+def test_api_router_repairs_supplier_payable_total_to_gl_line_items() -> None:
+    client = SequencedClient(
+        [
+            {
+                "resolved_user_input": "查询供应商17300003在公司代码1710下，截止目前的应付款总额。",
+                "should_carry_context": False,
+                "selected_apis": [
+                    {
+                        "service_name": "API_OPLACCTGDOCITEMCUBE_SRV",
+                        "confidence": 0.77,
+                        "reason": "Initial AP amount match.",
+                    }
+                ],
+                "requires_multi_api": False,
+                "intent_summary": "Supplier payable total by company code as of today.",
+                "business_domain": "Finance",
+                "business_object": "Supplier payable balance",
+                "needs_clarification": False,
+                "clarification_question": "",
+                "clarification_options": [],
+            }
+        ]
+    )
+    router = LlmApiRouter(llm_client=client, enabled=True, allow_default_fallback=False)
+
+    decision = router.route("查询供应商17300003在公司代码1710下，截止目前的应付款总额。", _ap_catalog())
+
+    assert decision.selected_apis[0].service_name == "API_GLACCOUNTLINEITEM"
     assert decision.needs_clarification is False
 
 

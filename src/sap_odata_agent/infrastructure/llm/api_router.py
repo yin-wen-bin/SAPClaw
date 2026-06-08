@@ -1828,6 +1828,8 @@ class LlmApiRouter:
             return True
         if LlmApiRouter._looks_like_ar_dimension_analysis_request(user_input):
             return True
+        if LlmApiRouter._looks_like_partner_ap_ar_balance_request(user_input):
+            return True
         explicit_line_item_terms = (
             "glaccountlineitem",
             "generalledgerlineitem",
@@ -1921,6 +1923,31 @@ class LlmApiRouter:
             flags=re.IGNORECASE,
         )
         return has_account_number is not None
+
+    @staticmethod
+    def _looks_like_partner_ap_ar_balance_request(user_input: str) -> bool:
+        partner_scope_terms = ("供应商", "客户", "supplier", "vendor", "customer")
+        balance_terms = (
+            "应付款总额",
+            "应付账款余额",
+            "未清应付款余额",
+            "应付余额",
+            "应收款总额",
+            "应收账款余额",
+            "未清应收款余额",
+            "应收余额",
+            "payable balance",
+            "payables balance",
+            "payable total",
+            "payables total",
+            "receivable balance",
+            "receivables balance",
+            "receivable total",
+            "receivables total",
+        )
+        return LlmApiRouter._contains_any_marker(user_input, partner_scope_terms) and LlmApiRouter._contains_any_marker(
+            user_input, balance_terms
+        )
 
     @staticmethod
     def _looks_like_reference_to_fi_line_item_request(user_input: str) -> bool:
