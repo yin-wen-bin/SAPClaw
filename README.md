@@ -132,6 +132,50 @@ npm run build --prefix frontend
 
 部分测试会检查本地 API 索引行为，需要开发环境中存在 `data/index/`。
 
+## API 与 MCP 说明
+
+### HTTP API
+
+SAPClaw 后端基于 FastAPI 提供本地 HTTP API，用于把自然语言请求转换为受控的 SAP OData 查询流程。启动后端后，默认服务地址为：
+
+```text
+http://127.0.0.1:8000
+```
+
+常用接口包括：
+
+- `GET /health`：检查本地后端是否可用。
+- `POST /api/v1/agent/query`：面向本地 UI 的自然语言查询入口，返回路由、计划、执行结果、展示内容和诊断信息。
+- `GET /api/v1/agent/progress/{conversation_id}`：查询执行进度的 SSE 流。
+- `GET /api/v1/agent/model-profiles`：查看可用的 LLM 配置。
+- `POST /api/v1/agent/feedback`：记录用户对查询结果的反馈。
+- `POST /api/v1/queries`：面向外部工具或内部集成的只读查询接口，需要内部 API key。
+- `GET /api/v1/queries/{case_id}/pages`：按 `case_id` 获取后续分页结果。
+
+### MCP
+
+SAPClaw 也提供 MCP（Model Context Protocol）stdio server，方便支持 MCP 的客户端或智能体把 SAPClaw 当作本地工具调用。MCP server 本身不直接连接 SAP，而是调用已经启动的 SAPClaw FastAPI 服务。
+
+安装可选 MCP 依赖：
+
+```powershell
+pip install -e .[agent]
+```
+
+先启动本地后端，再启动 MCP server：
+
+```powershell
+sapclaw-mcp --base-url http://127.0.0.1:8000
+```
+
+MCP 暴露的主要工具包括：
+
+- `sapclaw_health`：检查本地 SAPClaw 服务是否可达。
+- `sapclaw_query`：提交自然语言 SAP OData 查询。
+- `sapclaw_page`：读取某次查询的后续分页结果。
+- `sapclaw_feedback`：写入查询结果反馈。
+- `sapclaw_model_profiles`：列出本地可用的 LLM profile。
+
 ## 免责声明
 
 SAPClaw 是一个用于探索 SAP OData API 自然语言访问能力的个人测试和实验工具。
