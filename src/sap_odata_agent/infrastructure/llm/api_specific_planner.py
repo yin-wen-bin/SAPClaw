@@ -213,6 +213,7 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             "18. If the user asks for an output level such as material level, plant level, storage-location level, batch level, or another summarized level, choose fields for the raw SAP query and set result_transform.type=aggregate with schema-valid group_by and sum_fields. The program will execute the aggregation; do not calculate totals in text.\n\n"
             "19. For master-data basic information/profile/detail/overview requests, actively choose the most business-relevant select_fields and response_summary_fields from schema_context instead of copying default_select_fields. Prefer object ID plus name/full-name/description, address, country/region/city/street/postal-code, and contact fields when schema-valid. Avoid returning mainly block flags, authorization group, creation fields, or account group unless the user asks for status/control/audit/accounting setup.\n\n"
             "20. If detected_time_expressions is non-empty, preserve that time constraint in the executable plan. Use the normalized range_start/range_end values, choose the SAP date/period field whose business meaning matches the user's wording, and put the filters on the owning entity or function parameters. Do not drop the date range during multi-step planning.\n\n"
+            "21. schema_context.kg_business_terms, kg_recommended_fields, kg_recommended_paths, and kg_semantic_warnings are semantic guidance only. Schema context is the execution authority. Do not use KG fields, entities, function imports, or paths unless they exist in schema_context entities/candidate_fields/function_imports/join_hints/relations.\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )
@@ -289,6 +290,10 @@ class LlmApiSpecificPlanner(LlmDynamicPathPlanner):
             "skill_field_matches": schema_context.get("skill_field_matches", []),
             "schema_research": schema_context.get("schema_research", {}),
             "detected_time_expressions": schema_context.get("detected_time_expressions", request.detected_time_expressions),
+            "kg_business_terms": schema_context.get("kg_business_terms", []),
+            "kg_recommended_fields": schema_context.get("kg_recommended_fields", []),
+            "kg_recommended_paths": schema_context.get("kg_recommended_paths", []),
+            "kg_semantic_warnings": schema_context.get("kg_semantic_warnings", []),
         }
         api_skill = schema_context.get("api_skill") or {}
         api_skills = [

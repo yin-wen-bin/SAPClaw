@@ -66,6 +66,9 @@ class LlmApiRouter:
             "clarification_options": [],
         }
         user_prompt = (
+            "Routing rules:\n"
+            "1. kg_api_evidence is semantic guidance only; do not select APIs filtered out by runtime availability, service_kind, or OData routability.\n"
+            "2. If KG evidence conflicts with catalog fields, service_kind, or runtime notes, trust the catalog/runtime constraints.\n\n"
             f"Input:\n{json.dumps(payload, ensure_ascii=False, indent=2)}\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
@@ -351,6 +354,21 @@ class LlmApiRouter:
             score += synonym_score
             evidence.append("business_synonyms:matched user wording to catalog business terms")
 
+        kg_evidence = entry.get("kg_api_evidence") if isinstance(entry.get("kg_api_evidence"), dict) else {}
+        if kg_evidence:
+            kg_text = json.dumps(
+                {
+                    "matched_terms": kg_evidence.get("matched_terms") or [],
+                    "reason": kg_evidence.get("reason") or "",
+                    "evidence_text": kg_evidence.get("evidence_text") or "",
+                },
+                ensure_ascii=False,
+            )
+            kg_score = LlmApiRouter._semantic_match_score(user_input, kg_text)
+            if kg_score > 0:
+                score += kg_score * 2.2 + 4.0
+                evidence.append(f"local_kg:{LlmApiRouter._truncate(kg_text, 180)}")
+
         return score, evidence
 
     @staticmethod
@@ -605,6 +623,14 @@ class LlmApiRouter:
                     skill_summary,
                     user_input=user_input,
                 )
+            kg_evidence = entry.get("kg_api_evidence") if isinstance(entry.get("kg_api_evidence"), dict) else {}
+            if kg_evidence:
+                item["kg_api_evidence"] = {
+                    "confidence": kg_evidence.get("confidence"),
+                    "matched_terms": [str(value)[:80] for value in (kg_evidence.get("matched_terms") or [])[:8]],
+                    "reason": LlmApiRouter._truncate(str(kg_evidence.get("reason") or ""), 180),
+                    "confirmed": bool(kg_evidence.get("confirmed", True)),
+                }
             if entry.get("odata_runtime_available") is False:
                 item["odata_runtime_available"] = False
                 item["runtime_notes"] = LlmApiRouter._truncate(str(entry.get("runtime_notes") or ""), 80)

@@ -127,6 +127,10 @@ class LlmResultVerifierAgent:
                 "api_skills": schema_context_summary.get("api_skills", [])[:6],
                 "top_entities": schema_context_summary.get("top_entities", []),
                 "available_fields": schema_context_summary.get("available_fields", [])[:120],
+                "kg_business_terms": schema_context_summary.get("kg_business_terms", [])[:8],
+                "kg_recommended_fields": schema_context_summary.get("kg_recommended_fields", [])[:8],
+                "kg_recommended_paths": schema_context_summary.get("kg_recommended_paths", [])[:8],
+                "kg_semantic_warnings": schema_context_summary.get("kg_semantic_warnings", [])[:8],
             },
             "data_summary": {
                 "result_count": data.get("result_count"),
@@ -151,6 +155,7 @@ class LlmResultVerifierAgent:
             "10. repair_hints must only recommend fields listed in schema_context_summary.available_fields; do not invent field names.\n"
             "10a. Return issue.message and repair_hints.reason in the same natural language as user_input. Keep SAP technical field names unchanged.\n"
             "11. For unreceived/undelivered/open receipt questions, prefer actual completion/status or received/open quantity fields over expected/required/configuration flags. If the user explicitly asks for orders that need goods receipt but are not yet received, the API skill may define expected=true plus completion=false as the correct combination.\n\n"
+            "11a. KG guidance in schema_context_summary.kg_* is semantic guidance only; schema_context_summary.available_fields is the execution authority. Confirmed KG semantic warnings may block if the executed plan violates them. Candidate or unconfirmed KG facts are reference only and must not block.\n\n"
             "12. A successful SAP response with result_count=0 can be a correct answer for a list query. Do not reject only because there are no rows or because a repair might find related rows. Block an empty result only when the plan clearly used the wrong entity, omitted a required user filter, or omitted required answer fields.\n"
             "13. Do not require enrichment identifiers that the user did not explicitly ask for. For address communication list questions, address-level keys plus the requested email, phone, or fax fields are sufficient unless the user explicitly asks to include business partner details.\n\n"
             "14. A business object name in the question can identify the domain or entity type. Do not treat words like business partner, supplier, customer, material, or purchase order as mandatory output fields unless the user explicitly asks for the ID/number/code or those fields are required to distinguish returned rows.\n\n"
@@ -168,6 +173,9 @@ class LlmResultVerifierAgent:
         data: dict[str, Any],
         schema_context_summary: dict[str, Any],
     ) -> dict[str, Any] | None:
+        kg_result = LlmResultVerifierAgent._kg_semantic_warning_static_check(schema_context_summary)
+        if kg_result is not None:
+            return kg_result
         po_history_result = LlmResultVerifierAgent._purchase_order_history_static_check(request, plan, data)
         if po_history_result is not None:
             return po_history_result
@@ -250,6 +258,43 @@ class LlmResultVerifierAgent:
                 "presentation_kind": "table",
             },
             "source": "skill_grounded_result_verifier",
+        }
+
+    @staticmethod
+    def _kg_semantic_warning_static_check(schema_context_summary: dict[str, Any]) -> dict[str, Any] | None:
+        warnings = schema_context_summary.get("kg_semantic_warnings") or []
+        blocking_warnings = [
+            item
+            for item in warnings
+            if isinstance(item, dict) and item.get("blocking") and item.get("confirmed") is not False
+        ]
+        if not blocking_warnings:
+            return None
+        issues = []
+        merged_hints: dict[str, Any] = {"preferred_filters": []}
+        for item in blocking_warnings:
+            issues.append(
+                {
+                    "code": str(item.get("code") or "kg_semantic_warning"),
+                    "message": str(item.get("message") or "Confirmed local KG semantic warning rejected this plan."),
+                    "blocking": True,
+                }
+            )
+            repair_hints = item.get("repair_hints") if isinstance(item.get("repair_hints"), dict) else {}
+            for key, value in repair_hints.items():
+                if key == "preferred_filters" and isinstance(value, list):
+                    merged_hints.setdefault("preferred_filters", [])
+                    merged_hints["preferred_filters"].extend(value)
+                elif key not in merged_hints:
+                    merged_hints[key] = value
+        merged_hints = LlmResultVerifierAgent._filter_repair_hints(merged_hints, schema_context_summary)
+        if not merged_hints.get("reason"):
+            merged_hints["reason"] = "Follow confirmed Local KG semantic warning and use schema-valid repair hints only."
+        return {
+            "passed": False,
+            "issues": issues,
+            "repair_hints": merged_hints,
+            "source": "local_kg_result_verifier",
         }
 
     @staticmethod
@@ -798,6 +843,11 @@ class LlmResultVerifierAgent:
             for item in available_fields
             if isinstance(item, dict)
         }
+        available_field_names = {
+            str(item.get("field_name", ""))
+            for item in available_fields
+            if isinstance(item, dict) and str(item.get("field_name", ""))
+        }
         filtered_filters = []
         for item in preferred_filters:
             if not isinstance(item, dict):
@@ -805,6 +855,13 @@ class LlmResultVerifierAgent:
             key = (str(item.get("entity_set", "")), str(item.get("field", "")))
             if key in available_keys:
                 filtered_filters.append(item)
+        preferred_select_fields = repair_hints.get("preferred_select_fields")
+        if isinstance(preferred_select_fields, list):
+            repair_hints["preferred_select_fields"] = [
+                str(field)
+                for field in preferred_select_fields
+                if str(field) in available_field_names
+            ]
         return {
             **repair_hints,
             "preferred_filters": filtered_filters,

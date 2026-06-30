@@ -9,6 +9,7 @@ from sap_odata_agent.infrastructure.config.settings import get_settings
 from sap_odata_agent.infrastructure.indexing.api_catalog_provider import ApiCatalogProvider
 from sap_odata_agent.infrastructure.indexing.api_skill_provider import ApiSkillProvider
 from sap_odata_agent.infrastructure.indexing.schema_context_provider import SchemaContextProvider
+from sap_odata_agent.infrastructure.knowledge_graph import KnowledgeGraphProvider
 from sap_odata_agent.infrastructure.llm.api_router import LlmApiRouter
 from sap_odata_agent.infrastructure.llm.api_specific_planner import LlmApiSpecificPlanner
 from sap_odata_agent.infrastructure.llm.failure_diagnoser import LlmFailureDiagnoser
@@ -67,6 +68,16 @@ def get_sap_executor() -> SapODataExecutor:
             auth_type=settings.sap_auth_type,
             timeout_seconds=max(1, settings.sap_timeout_ms // 1000),
         )
+    )
+
+
+@lru_cache(maxsize=1)
+def get_knowledge_graph_provider() -> KnowledgeGraphProvider:
+    settings = get_settings()
+    return KnowledgeGraphProvider(
+        kg_root=settings.local_kg_root,
+        enabled=settings.local_kg_enabled,
+        max_evidence=settings.local_kg_max_evidence,
     )
 
 
@@ -148,6 +159,7 @@ def get_orchestrator_for_profile(profile_id: str | None = None) -> AgentOrchestr
             llm_client=llm_client,
             enabled=llm_enabled,
         ),
+        knowledge_graph_provider=get_knowledge_graph_provider(),
         llm_planning_max_attempts=settings.llm_planning_max_attempts,
         use_llm_first_pipeline=True,
     )

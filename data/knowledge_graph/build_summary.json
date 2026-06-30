@@ -1,0 +1,21 @@
+{
+  "build_version": "1766441886a3b5a6",
+  "built_at": "2026-06-30T16:14:19.522275+00:00",
+  "source": {
+    "index_root": "data\\index",
+    "api_skill_root": "data\\api_skills",
+    "feedback_memory_path": "",
+    "feedback_included": false
+  },
+  "builder_options": {
+    "business_term_limit_per_service": 250,
+    "include_feedback": false
+  },
+  "counts": {
+    "business_terms": 11808,
+    "field_semantics": 1267,
+    "business_paths": 564,
+    "api_candidates": 53,
+    "candidate_kg_facts": 0
+  }
+}
