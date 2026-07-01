@@ -800,7 +800,8 @@ def _append_binding_filter(url: str, target_field: str, values: list[Any]) -> st
         else:
             other_params.append((key, value))
     unique_values = [str(value) for value in dict.fromkeys(values) if str(value)]
-    binding_filter = " or ".join(f"{target_field} eq '{value.replace("'", "''")}'" for value in unique_values)
+    escaped_values = [value.replace("'", "''") for value in unique_values]
+    binding_filter = " or ".join(f"{target_field} eq '{value}'" for value in escaped_values)
     if binding_filter:
         binding_filter = f"({binding_filter})"
     combined_filter = binding_filter
