@@ -530,6 +530,13 @@ class SchemaContextProvider:
             "available_fields": available_fields,
             "feedback_field_matches": schema_context.get("feedback_field_matches", []),
             "skill_field_matches": schema_context.get("skill_field_matches", []),
+            "kg_business_terms": schema_context.get("kg_business_terms", []),
+            "kg_recommended_fields": schema_context.get("kg_recommended_fields", []),
+            "kg_recommended_paths": schema_context.get("kg_recommended_paths", []),
+            "kg_semantic_warnings": schema_context.get("kg_semantic_warnings", []),
+            "kg_enabled": (schema_context.get("kg_debug") or {}).get("kg_enabled", False),
+            "kg_build_version": (schema_context.get("kg_debug") or {}).get("kg_build_version", ""),
+            "kg_evidence_used": (schema_context.get("kg_debug") or {}).get("kg_evidence_used", []),
         }
 
     @staticmethod

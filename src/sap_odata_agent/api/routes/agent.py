@@ -99,7 +99,8 @@ def run_query(payload: QueryRequestModel) -> dict[str, Any]:
             terminal=True,
         )
     llm_profile = describe_llm_profile(effective_profile_id)
-    return {
+    kg_debug = ((response.plan.planner_diagnostics or {}).get("kg_debug") or {}) if response.plan else {}
+    payload = {
         "case_id": response.case_id,
         "llm_profile_id": effective_profile_id,
         "llm_profile": llm_profile,
@@ -121,6 +122,19 @@ def run_query(payload: QueryRequestModel) -> dict[str, Any]:
         "timing_summary": response.timing_summary,
         "total_duration_ms": response.total_duration_ms,
     }
+    payload.update(
+        {
+            key: value
+            for key, value in {
+                "kg_enabled": kg_debug.get("kg_enabled"),
+                "kg_build_version": kg_debug.get("kg_build_version"),
+                "kg_evidence_used": kg_debug.get("kg_evidence_used"),
+                "kg_semantic_warnings": kg_debug.get("kg_semantic_warnings"),
+            }.items()
+            if value not in (None, [], "")
+        }
+    )
+    return payload
 
 
 @router.post("/page")
@@ -304,6 +318,14 @@ def _history_entry_to_payload(entry: dict[str, Any] | None) -> dict[str, Any] | 
         "feedback_memories_used": entry.get("feedback_memories_used", []),
         "api_skill_used": api_skill_used,
     }
+    schema_context_summary = entry.get("schema_context_summary") or {}
+    kg_payload = {
+        "kg_enabled": schema_context_summary.get("kg_enabled"),
+        "kg_build_version": schema_context_summary.get("kg_build_version"),
+        "kg_evidence_used": schema_context_summary.get("kg_evidence_used"),
+        "kg_semantic_warnings": schema_context_summary.get("kg_semantic_warnings"),
+    }
+    result_snapshot.update({key: value for key, value in kg_payload.items() if value not in (None, [], "")})
 
     return {
         "case_id": entry.get("case_id"),
@@ -330,5 +352,6 @@ def _history_entry_to_payload(entry: dict[str, Any] | None) -> dict[str, Any] | 
         "total_duration_ms": entry.get("total_duration_ms"),
         "feedback_memories_used": entry.get("feedback_memories_used", []),
         "api_skill_used": api_skill_used,
+        **{key: value for key, value in kg_payload.items() if value not in (None, [], "")},
         "result_snapshot": result_snapshot,
     }

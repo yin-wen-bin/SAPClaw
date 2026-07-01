@@ -183,6 +183,7 @@ class LlmPlanRepairer(LlmApiSpecificPlanner):
             "20. If schema_context.service_names contains multiple services, every multi_step step must include service_name. Keep each step's entity set and fields within that service and use cross-service join_hints or shared key fields to bridge services.\n\n"
             "21. If the verifier or api_skill requests summarized output, set result_transform.type=aggregate with schema-valid group_by and sum_fields. The program will execute the aggregation; do not calculate totals in text.\n\n"
             "22. If detected_time_expressions is non-empty, the repaired executable plan must preserve that time constraint. Use range_start/range_end values and choose the schema-valid SAP date/period field whose business meaning matches the user wording. Do not return a plan with no temporal filter for a temporal request.\n\n"
+            "23. schema_context.kg_business_terms, kg_recommended_fields, kg_recommended_paths, and kg_semantic_warnings are semantic guidance only. Schema context is the execution authority. Do not use KG fields, entities, function imports, or paths unless they exist in schema_context entities/candidate_fields/function_imports/join_hints/relations.\n\n"
             "Return JSON with this shape:\n"
             f"{json.dumps(example, ensure_ascii=False, indent=2)}"
         )

@@ -148,6 +148,7 @@ def _agent_response_payload(
             "code": _error_code_from_agent_response(response),
             "message": message or "Query failed.",
         }
+    kg_debug = ((_get_value(response.plan, "planner_diagnostics", {}) or {}).get("kg_debug") or {}) if response.plan else {}
 
     return {
         "case_id": response.case_id,
@@ -159,6 +160,16 @@ def _agent_response_payload(
         "metadata": {
             "service_name": _get_value(response.plan, "service_name", ""),
             "entity_set": _get_value(response.plan, "entity_set", ""),
+            **{
+                key: value
+                for key, value in {
+                    "kg_enabled": kg_debug.get("kg_enabled"),
+                    "kg_build_version": kg_debug.get("kg_build_version"),
+                    "kg_evidence_used": kg_debug.get("kg_evidence_used"),
+                    "kg_semantic_warnings": kg_debug.get("kg_semantic_warnings"),
+                }.items()
+                if value not in (None, [], "")
+            },
         },
         "duration_ms": response.total_duration_ms,
         "error": error,

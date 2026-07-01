@@ -15,6 +15,7 @@ SAPClaw 是一个通过SAP OData用自然语言操作SAP的Agent（目标是在S
 - `src/`：后端应用和 Agent 工具。
 - `frontend/`：前端源代码。
 - `data/api_skills/`：API 专属规划指导。
+- `data/knowledge_graph/`：本地语义 grounding 数据，由 `data/index/` 和 `data/api_skills/` 构建。
 - `docs/`：项目说明文档。
 - `skills/`：可选的 SAPClaw Agent skill 集成。
 - `tests/`：不包含 SAP 凭据的单元测试和集成测试。
@@ -79,6 +80,29 @@ python -m sap_odata_agent.tools.build_dual_source_index `
 
 - 该工具当前按单个 API 执行，不会自动扫描所有 `data/index/*/raw/*.json` 批量重建。
 - 该工具不是纯离线构建器；它需要能够访问 SAP 系统以获取 `$metadata`。
+
+## 本地 Knowledge Graph
+
+SAPClaw Local Knowledge Graph 是内部语义 grounding 层，只增强 Router、Schema Context、Planner、Repairer 和 Result Verifier，不改变 HTTP API 或 MCP tool 的公开协议。
+
+默认配置：
+
+```env
+LOCAL_KG_ENABLED=true
+LOCAL_KG_ROOT=data/knowledge_graph
+LOCAL_KG_MAX_EVIDENCE=5
+```
+
+构建本地 KG：
+
+```powershell
+$env:PYTHONPATH='src'
+python -m sap_odata_agent.tools.build_local_knowledge_graph
+```
+
+默认构建只使用 `data/index/` 和 `data/api_skills/` 生成 confirmed facts，不读取本地 feedback memory。如需把 feedback memory 生成为 candidate-only facts，可显式添加 `--include-feedback`。
+
+更多说明见 `docs/local-knowledge-graph.md`。
 
 ## 启动本地 UI
 

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import re
 import time
 from dataclasses import replace
@@ -90,6 +91,7 @@ class AgentOrchestrator:
         failure_diagnoser: LlmFailureDiagnoser | None = None,
         schema_research_agent: LlmSchemaResearchAgent | None = None,
         result_verifier_agent: LlmResultVerifierAgent | None = None,
+        knowledge_graph_provider=None,
         llm_planning_max_attempts: int = 3,
         use_llm_first_pipeline: bool = False,
     ) -> None:
@@ -116,6 +118,7 @@ class AgentOrchestrator:
         self.failure_diagnoser = failure_diagnoser or LlmFailureDiagnoser(enabled=False)
         self.schema_research_agent = schema_research_agent or LlmSchemaResearchAgent(enabled=False)
         self.result_verifier_agent = result_verifier_agent or LlmResultVerifierAgent(enabled=False)
+        self.knowledge_graph_provider = knowledge_graph_provider
         self.llm_planning_max_attempts = max(1, llm_planning_max_attempts)
         self.use_llm_first_pipeline = use_llm_first_pipeline
         self.multi_step_executor = MultiStepSapExecutor(compiler=compiler, executor=executor)
@@ -501,6 +504,7 @@ class AgentOrchestrator:
                 self.api_skill_provider.enrich_catalog,
                 api_catalog,
             )
+        api_catalog, kg_debug = self._attach_kg_to_api_catalog(request.user_input, api_catalog, timings)
         route_decision: ApiRouteDecision = self._timed_call(
             timings,
             "llm.api_route",
@@ -512,6 +516,7 @@ class AgentOrchestrator:
             latest_clarification_case=clarification_case,
             feedback_memories=feedback_memories,
         )
+        route_decision = self._attach_kg_debug_to_route(route_decision, kg_debug)
         selected_service = route_decision.selected_apis[0].service_name if route_decision.selected_apis else ""
         resolved_user_input = self._compose_llm_first_resolved_input(
             request.user_input,
@@ -540,7 +545,7 @@ class AgentOrchestrator:
             service_name=selected_service or "UNKNOWN_SERVICE",
             entity_set="UNKNOWN_ENTITY",
             rationale="LLM-first pipeline route placeholder.",
-            planner_diagnostics={"route_decision": route_decision.raw_response},
+            planner_diagnostics={"route_decision": route_decision.raw_response, "kg_debug": kg_debug},
         )
 
         if not route_decision.selected_apis and not route_decision.needs_clarification:
@@ -586,7 +591,7 @@ class AgentOrchestrator:
                 critic_findings=latest_critic_findings,
                 failure_attribution=failure_attribution,
                 route_decision=route_decision,
-                schema_context_summary={},
+                schema_context_summary=kg_debug,
             )
             return response
 
@@ -625,6 +630,7 @@ class AgentOrchestrator:
                 response,
                 failure_attribution=failure_attribution,
                 route_decision=route_decision,
+                schema_context_summary=kg_debug,
             )
             return response
 
@@ -656,6 +662,7 @@ class AgentOrchestrator:
             }
         schema_context = self._attach_multi_api_skills(schema_context, timings)
         schema_context = self._attach_temporal_context(schema_context, effective_request)
+        schema_context = self._attach_kg_to_schema_context(schema_context, effective_request, route_decision, kg_debug, timings)
         pre_schema_context_summary = self.schema_context_provider.summarize(schema_context)
         if self._primary_service_is_cds_view_only(schema_context):
             final_message = self._cds_view_only_final_message(selected_service, schema_context)
@@ -746,6 +753,7 @@ class AgentOrchestrator:
         }
         schema_context_summary = self.schema_context_provider.summarize(schema_context)
         schema_context_summary["schema_research"] = self.schema_research_agent.summarize(schema_research)
+        kg_debug = self._merge_kg_debug(kg_debug, schema_context_summary)
 
         attempts = []
         planning_attempts: list[PlanningAttemptRecord] = []
@@ -842,7 +850,7 @@ class AgentOrchestrator:
                 )
                 if rerouted.selected_apis:
                     reroute_attempts += 1
-                    route_decision = rerouted
+                    route_decision = self._attach_kg_debug_to_route(rerouted, kg_debug)
                     selected_service = route_decision.selected_apis[0].service_name
                     effective_request = replace(
                         effective_request,
@@ -862,7 +870,7 @@ class AgentOrchestrator:
                         service_name=selected_service or "UNKNOWN_SERVICE",
                         entity_set="UNKNOWN_ENTITY",
                         rationale="LLM-first pipeline route placeholder.",
-                        planner_diagnostics={"route_decision": route_decision.raw_response},
+                        planner_diagnostics={"route_decision": route_decision.raw_response, "kg_debug": kg_debug},
                     )
                     schema_context, schema_research, schema_context_summary = self._build_llm_schema_context(
                         effective_request,
@@ -870,7 +878,9 @@ class AgentOrchestrator:
                         selected_service,
                         feedback_memories,
                         timings,
+                        kg_debug,
                     )
+                    kg_debug = self._merge_kg_debug(kg_debug, schema_context_summary)
                     failure_context = {
                         "route_decision": route_decision.raw_response,
                         "schema_context_summary": schema_context_summary,
@@ -1035,7 +1045,16 @@ class AgentOrchestrator:
                 final_data = execution_result["data"]
                 last_successful_plan = final_plan
                 last_successful_data = final_data
-                if self._plan_uses_shortcut(final_plan):
+                verification_schema_context_summary = self._schema_summary_with_kg_plan_warnings(
+                    effective_request,
+                    final_plan,
+                    schema_context_summary,
+                )
+                kg_has_confirmed_blocking_warning = any(
+                    isinstance(item, dict) and item.get("blocking") and item.get("confirmed") is not False
+                    for item in verification_schema_context_summary.get("kg_semantic_warnings", [])
+                )
+                if self._plan_uses_shortcut(final_plan) and not kg_has_confirmed_blocking_warning:
                     result_verification = {
                         "passed": True,
                         "issues": [],
@@ -1052,7 +1071,7 @@ class AgentOrchestrator:
                         final_plan,
                         final_data,
                         schema_research,
-                        schema_context_summary,
+                        verification_schema_context_summary,
                     )
                 final_plan = replace(
                     final_plan,
@@ -1060,8 +1079,15 @@ class AgentOrchestrator:
                         **(final_plan.planner_diagnostics or {}),
                         "schema_research": self.schema_research_agent.summarize(schema_research),
                         "result_verification": result_verification,
+                        "kg_debug": {
+                            "kg_enabled": verification_schema_context_summary.get("kg_enabled", False),
+                            "kg_build_version": verification_schema_context_summary.get("kg_build_version", ""),
+                            "kg_evidence_used": verification_schema_context_summary.get("kg_evidence_used", []),
+                            "kg_semantic_warnings": verification_schema_context_summary.get("kg_semantic_warnings", []),
+                        },
                     },
                 )
+                schema_context_summary = verification_schema_context_summary
                 if not result_verification.get("passed", True):
                     verifier_findings = [
                         CriticFinding(
@@ -1531,6 +1557,7 @@ class AgentOrchestrator:
         selected_service: str,
         feedback_memories: list[dict],
         timings: list[dict],
+        kg_debug: dict | None = None,
     ) -> tuple[dict, dict, dict]:
         schema_context = self._timed_call(
             timings,
@@ -1560,6 +1587,13 @@ class AgentOrchestrator:
             }
         schema_context = self._attach_multi_api_skills(schema_context, timings)
         schema_context = self._attach_temporal_context(schema_context, effective_request)
+        schema_context = self._attach_kg_to_schema_context(
+            schema_context,
+            effective_request,
+            route_decision,
+            kg_debug or {},
+            timings,
+        )
         if self._route_uses_shortcut(route_decision):
             schema_research = self._shortcut_schema_research(route_decision)
         else:
@@ -1580,6 +1614,167 @@ class AgentOrchestrator:
         schema_context_summary = self.schema_context_provider.summarize(schema_context)
         schema_context_summary["schema_research"] = self.schema_research_agent.summarize(schema_research)
         return schema_context, schema_research, schema_context_summary
+
+    def _attach_kg_to_api_catalog(
+        self,
+        user_input: str,
+        api_catalog: list[dict],
+        timings: list[dict],
+    ) -> tuple[list[dict], dict]:
+        provider = self.knowledge_graph_provider
+        if provider is None:
+            return api_catalog, {"kg_enabled": False, "kg_evidence_used": [], "kg_semantic_warnings": []}
+        api_evidence = self._timed_call(
+            timings,
+            "kg.recommend_apis",
+            "Local KG API 推荐",
+            provider.recommend_apis,
+            user_input,
+        )
+        evidence_by_service = {
+            str(item.get("service_name") or ""): item
+            for item in api_evidence
+            if isinstance(item, dict) and str(item.get("service_name") or "")
+        }
+        if not evidence_by_service:
+            return api_catalog, provider.build_debug_payload(evidence_used=[])
+        enriched_catalog = []
+        for entry in api_catalog:
+            service_name = str(entry.get("service_name") or "")
+            kg_entry = evidence_by_service.get(service_name)
+            if kg_entry:
+                enriched_catalog.append({**entry, "kg_api_evidence": kg_entry})
+            else:
+                enriched_catalog.append(entry)
+        return enriched_catalog, provider.build_debug_payload(evidence_used=list(evidence_by_service.values()))
+
+    @staticmethod
+    def _attach_kg_debug_to_route(route_decision: ApiRouteDecision, kg_debug: dict) -> ApiRouteDecision:
+        if not kg_debug:
+            return route_decision
+        return replace(
+            route_decision,
+            raw_response={
+                **(route_decision.raw_response or {}),
+                **{
+                    key: value
+                    for key, value in kg_debug.items()
+                    if key in {"kg_enabled", "kg_build_version", "kg_evidence_used"}
+                },
+            },
+        )
+
+    def _attach_kg_to_schema_context(
+        self,
+        schema_context: dict,
+        effective_request: AgentRequest,
+        route_decision: ApiRouteDecision,
+        kg_debug: dict,
+        timings: list[dict],
+    ) -> dict:
+        provider = self.knowledge_graph_provider
+        if provider is None:
+            return schema_context
+        query = effective_request.resolved_user_input or effective_request.user_input
+        service_names = [
+            str(item.service_name or "")
+            for item in route_decision.selected_apis
+            if str(item.service_name or "")
+        ] or [str(schema_context.get("service_name") or "")]
+        primary_service = service_names[0] if service_names else ""
+        kg_terms = self._timed_call(
+            timings,
+            "kg.business_terms",
+            "Local KG 业务术语",
+            provider.business_terms,
+            query,
+            primary_service,
+        )
+        kg_fields = self._timed_call(
+            timings,
+            "kg.recommend_fields",
+            "Local KG 字段推荐",
+            provider.recommend_fields,
+            query,
+            primary_service,
+        )
+        kg_paths = self._timed_call(
+            timings,
+            "kg.recommend_paths",
+            "Local KG 路径推荐",
+            provider.recommend_paths,
+            query,
+            service_names,
+        )
+        debug = provider.build_debug_payload(
+            evidence_used=[
+                *(kg_debug.get("kg_evidence_used") or []),
+                *kg_terms,
+                *kg_fields,
+                *kg_paths,
+            ],
+        )
+        return {
+            **schema_context,
+            "kg_business_terms": kg_terms,
+            "kg_recommended_fields": kg_fields,
+            "kg_recommended_paths": kg_paths,
+            "kg_semantic_warnings": [],
+            "kg_debug": debug,
+        }
+
+    def _schema_summary_with_kg_plan_warnings(
+        self,
+        effective_request: AgentRequest,
+        plan: QueryPlan,
+        schema_context_summary: dict,
+    ) -> dict:
+        provider = self.knowledge_graph_provider
+        if provider is None:
+            return schema_context_summary
+        warnings = provider.semantic_warnings(
+            effective_request.resolved_user_input or effective_request.user_input,
+            plan,
+        )
+        debug = provider.build_debug_payload(
+            evidence_used=schema_context_summary.get("kg_evidence_used") or [],
+            semantic_warnings=warnings,
+        )
+        return {
+            **schema_context_summary,
+            "kg_semantic_warnings": warnings,
+            **debug,
+        }
+
+    @staticmethod
+    def _merge_kg_debug(kg_debug: dict, schema_context_summary: dict) -> dict:
+        if not schema_context_summary:
+            return kg_debug
+        evidence = [
+            *(kg_debug.get("kg_evidence_used") or []),
+            *(schema_context_summary.get("kg_evidence_used") or []),
+        ]
+        seen: set[str] = set()
+        compact_evidence = []
+        for item in evidence:
+            key = json.dumps(item, ensure_ascii=False, sort_keys=True, default=str)
+            if key in seen:
+                continue
+            seen.add(key)
+            compact_evidence.append(item)
+        return {
+            **kg_debug,
+            "kg_enabled": schema_context_summary.get("kg_enabled", kg_debug.get("kg_enabled", False)),
+            "kg_build_version": schema_context_summary.get(
+                "kg_build_version",
+                kg_debug.get("kg_build_version", ""),
+            ),
+            "kg_evidence_used": compact_evidence[:8],
+            "kg_semantic_warnings": schema_context_summary.get(
+                "kg_semantic_warnings",
+                kg_debug.get("kg_semantic_warnings", []),
+            ),
+        }
 
     @staticmethod
     def _plan_requests_reroute(plan: QueryPlan) -> bool:
