@@ -118,7 +118,7 @@ class KnowledgeGraphProvider:
         data = self._load()
         if not data:
             return []
-        plan_fields = self._plan_field_names(plan)
+        plan_field_refs = self._plan_field_refs(plan)
         service_name = str(getattr(plan, "service_name", "") or "")
         warnings: list[dict[str, Any]] = []
         for fact in data.get("field_semantics", []):
@@ -127,7 +127,8 @@ class KnowledgeGraphProvider:
             if service_name and str(fact.get("service_name") or "") not in ("", service_name):
                 continue
             field_name = str(fact.get("field_name") or "")
-            if field_name and field_name not in plan_fields:
+            entity_set = str(fact.get("entity_set") or "")
+            if field_name and not self._plan_contains_field_ref(plan_field_refs, entity_set, field_name):
                 continue
             meaning = " ".join(str(item) for item in fact.get("does_not_support") or [])
             if not meaning:
@@ -139,7 +140,7 @@ class KnowledgeGraphProvider:
                 {
                     "code": "kg_semantic_warning",
                     "service_name": fact.get("service_name") or "",
-                    "entity_set": fact.get("entity_set") or "",
+                    "entity_set": entity_set,
                     "field_name": field_name,
                     "message": self._compact_text(str(fact.get("evidence_text") or meaning), 360),
                     "blocking": bool(fact.get("blocking")) and confirmed,
@@ -298,22 +299,38 @@ class KnowledgeGraphProvider:
         return compact
 
     @staticmethod
-    def _plan_field_names(plan: Any) -> set[str]:
-        fields: set[str] = set()
+    def _plan_field_refs(plan: Any) -> set[tuple[str, str]]:
+        fields: set[tuple[str, str]] = set()
+        entity_set = str(getattr(plan, "entity_set", "") or "")
         for value in getattr(plan, "select_fields", []) or []:
-            fields.add(str(value))
+            fields.add(KnowledgeGraphProvider._plan_field_ref(str(value), entity_set))
         for value in getattr(plan, "response_summary_fields", []) or []:
-            fields.add(str(value))
+            fields.add(KnowledgeGraphProvider._plan_field_ref(str(value), entity_set))
         for condition in getattr(plan, "filters", []) or []:
-            fields.add(str(getattr(condition, "field", "")))
+            fields.add(KnowledgeGraphProvider._plan_field_ref(str(getattr(condition, "field", "")), entity_set))
         for step in getattr(plan, "steps", []) or []:
+            step_entity = str(getattr(step, "entity_set", "") or "")
             for value in getattr(step, "select_fields", []) or []:
-                fields.add(str(value))
+                fields.add(KnowledgeGraphProvider._plan_field_ref(str(value), step_entity))
             for value in getattr(step, "response_summary_fields", []) or []:
-                fields.add(str(value))
+                fields.add(KnowledgeGraphProvider._plan_field_ref(str(value), step_entity))
             for condition in getattr(step, "filters", []) or []:
-                fields.add(str(getattr(condition, "field", "")))
-        return {field for field in fields if field}
+                fields.add(KnowledgeGraphProvider._plan_field_ref(str(getattr(condition, "field", "")), step_entity))
+        return {(entity, field) for entity, field in fields if field}
+
+    @staticmethod
+    def _plan_field_ref(value: str, default_entity_set: str) -> tuple[str, str]:
+        text = str(value or "").strip()
+        if "." in text:
+            entity_set, field_name = text.rsplit(".", 1)
+            return entity_set.strip(), field_name.strip()
+        return str(default_entity_set or ""), text
+
+    @staticmethod
+    def _plan_contains_field_ref(plan_refs: set[tuple[str, str]], entity_set: str, field_name: str) -> bool:
+        if entity_set:
+            return (entity_set, field_name) in plan_refs
+        return any(candidate_field == field_name for _, candidate_field in plan_refs)
 
     @staticmethod
     def _normalize(value: str) -> str:

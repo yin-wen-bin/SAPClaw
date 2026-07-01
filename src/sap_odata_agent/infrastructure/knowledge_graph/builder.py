@@ -205,11 +205,11 @@ def _build_field_semantics(
 
     for service_name, skill in skills.items():
         for line in _skill_signal_lines(skill):
-            field_refs = _extract_field_refs(line)
+            field_refs = _extract_field_refs_with_spans(line)
             if not field_refs:
                 continue
-            negative = _is_negative_semantic_line(line)
-            for entity_set, field_name in field_refs:
+            for entity_set, field_name, start, end in field_refs:
+                negative = _is_negative_field_ref(line, start, end)
                 indexed = by_service_field.get((service_name, field_name), {})
                 entity = entity_set or str(indexed.get("entity_set") or "")
                 if not entity or not field_name:
@@ -439,16 +439,29 @@ def _extract_business_phrases(line: str) -> list[str]:
 
 
 def _extract_field_refs(line: str) -> list[tuple[str, str]]:
-    refs: list[tuple[str, str]] = []
-    for text in re.findall(r"`([^`]+)`", line):
+    return [(entity_set, field_name) for entity_set, field_name, _, _ in _extract_field_refs_with_spans(line)]
+
+
+def _extract_field_refs_with_spans(line: str) -> list[tuple[str, str, int, int]]:
+    refs_with_spans: list[tuple[str, str, int, int]] = []
+    for match in re.finditer(r"`([^`]+)`", line):
+        text = match.group(1)
         if "." in text:
             left, right = text.rsplit(".", 1)
-            refs.append((left.strip(), right.strip()))
+            refs_with_spans.append((left.strip(), right.strip(), match.start(), match.end()))
         elif re.match(r"^[A-Za-z][A-Za-z0-9_]{2,}$", text):
-            refs.append(("", text.strip()))
+            refs_with_spans.append(("", text.strip(), match.start(), match.end()))
     for match in re.finditer(r"\b([A-Z][A-Za-z0-9_]{2,})\.([A-Z][A-Za-z0-9_]{2,})\b", line):
-        refs.append((match.group(1), match.group(2)))
-    return list(dict.fromkeys(refs))
+        refs_with_spans.append((match.group(1), match.group(2), match.start(), match.end()))
+    seen: set[tuple[str, str]] = set()
+    deduped: list[tuple[str, str, int, int]] = []
+    for entity_set, field_name, start, end in refs_with_spans:
+        key = (entity_set, field_name)
+        if key in seen:
+            continue
+        seen.add(key)
+        deduped.append((entity_set, field_name, start, end))
+    return deduped
 
 
 def _is_negative_semantic_line(line: str) -> bool:
@@ -472,6 +485,34 @@ def _is_negative_semantic_line(line: str) -> bool:
             "不是",
         )
     )
+
+
+def _is_negative_field_ref(line: str, ref_start: int, ref_end: int) -> bool:
+    fragment = _fragment_containing_span(line, ref_start, ref_end)
+    if _is_negative_semantic_line(fragment):
+        return True
+    compact_fragment = fragment.replace("`", "")
+    lower_fragment = compact_fragment.lower()
+    if "alone" in lower_fragment and _is_negative_semantic_line(line):
+        return True
+    return False
+
+
+def _fragment_containing_span(line: str, ref_start: int, ref_end: int) -> str:
+    boundaries = [0, len(line)]
+    for match in re.finditer(r"(?:;|；|。|\.\s+|,\s+but\s+|,\s+however\s+|\s+but\s+|\s+however\s+|但是|但|不过)", line, flags=re.IGNORECASE):
+        boundaries.extend([match.start(), match.end()])
+    boundaries = sorted(set(boundaries))
+    start = 0
+    end = len(line)
+    for index in range(len(boundaries) - 1):
+        left = boundaries[index]
+        right = boundaries[index + 1]
+        if left <= ref_start and ref_end <= right:
+            start = left
+            end = right
+            break
+    return line[start:end]
 
 
 def _line_meaning(line: str) -> str:

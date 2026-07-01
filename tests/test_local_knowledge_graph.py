@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 
-from sap_odata_agent.domain.models import QueryPlan
+from sap_odata_agent.domain.models import ExecutionStep, QueryPlan
 from sap_odata_agent.infrastructure.indexing.schema_context_provider import SchemaContextProvider
 from sap_odata_agent.infrastructure.knowledge_graph.builder import build_local_knowledge_graph
 from sap_odata_agent.infrastructure.knowledge_graph.provider import KnowledgeGraphProvider
@@ -102,6 +102,56 @@ def test_local_kg_builder_creates_confirmed_and_candidate_facts(tmp_path) -> Non
     assert candidate_facts[0]["blocking"] is False
 
 
+def test_local_kg_builder_only_blocks_negated_field_refs(tmp_path) -> None:
+    index_root = tmp_path / "index"
+    skill_root = tmp_path / "api_skills"
+    output_root = tmp_path / "knowledge_graph"
+    service_dir = index_root / "API_SUPPLIER_TEST"
+    service_dir.mkdir(parents=True)
+    _write_json(
+        service_dir / "services.json",
+        [
+            {
+                "service_name": "API_SUPPLIER_TEST",
+                "description": "Supplier test API",
+                "entity_sets": ["A_Supplier"],
+                "runtime_available": True,
+                "odata_runtime_available": True,
+            }
+        ],
+    )
+    _write_json(
+        service_dir / "fields.json",
+        [
+            {"service_name": "API_SUPPLIER_TEST", "entity_set": "A_Supplier", "field_name": "Supplier"},
+            {"service_name": "API_SUPPLIER_TEST", "entity_set": "A_Supplier", "field_name": "SupplierName"},
+            {"service_name": "API_SUPPLIER_TEST", "entity_set": "A_Supplier", "field_name": "PurchasingIsBlocked"},
+        ],
+    )
+    _write_json(service_dir / "relations.json", [])
+    skill_dir = skill_root / "API_SUPPLIER_TEST"
+    skill_dir.mkdir(parents=True)
+    (skill_dir / "skill.md").write_text(
+        (
+            "Use `A_Supplier.Supplier` and `A_Supplier.SupplierName` for supplier basic information, "
+            "but do not use `A_Supplier.PurchasingIsBlocked` to answer supplier profile questions."
+        ),
+        encoding="utf-8",
+    )
+
+    build_local_knowledge_graph(index_root=index_root, api_skill_root=skill_root, output_root=output_root)
+
+    field_semantics = json.loads((output_root / "field_semantics.json").read_text(encoding="utf-8"))
+    blocking_by_field = {
+        item["field_name"]: item["blocking"]
+        for item in field_semantics
+        if item["service_name"] == "API_SUPPLIER_TEST"
+    }
+    assert blocking_by_field["Supplier"] is False
+    assert blocking_by_field["SupplierName"] is False
+    assert blocking_by_field["PurchasingIsBlocked"] is True
+
+
 def test_knowledge_graph_provider_can_be_disabled(tmp_path) -> None:
     provider = KnowledgeGraphProvider(tmp_path / "missing", enabled=False)
 
@@ -157,6 +207,54 @@ def test_knowledge_graph_provider_returns_confirmed_semantic_warning(tmp_path) -
     assert warnings
     assert warnings[0]["blocking"] is True
     assert warnings[0]["confirmed"] is True
+
+
+def test_knowledge_graph_provider_matches_warning_entity_and_field(tmp_path) -> None:
+    kg_root = tmp_path / "kg"
+    kg_root.mkdir()
+    _write_json(kg_root / "business_terms.json", [])
+    _write_json(kg_root / "business_paths.json", [])
+    _write_json(kg_root / "api_candidates.json", [])
+    _write_json(kg_root / "candidate_kg_facts.json", [])
+    _write_json(kg_root / "build_summary.json", {"build_version": "test"})
+    _write_json(
+        kg_root / "field_semantics.json",
+        [
+            {
+                "service_name": "API_STOCK_TEST",
+                "entity_set": "A_MatlStkInAcctMod",
+                "field_name": "Batch",
+                "does_not_support": ["material-level stock"],
+                "blocking": True,
+                "confirmed": True,
+                "confidence": 0.9,
+                "evidence_text": "A_MatlStkInAcctMod.Batch does not support material-level stock.",
+            }
+        ],
+    )
+    provider = KnowledgeGraphProvider(kg_root)
+    unrelated_plan = QueryPlan(
+        service_name="API_STOCK_TEST",
+        entity_set="A_MaterialSerialNumber",
+        select_fields=["Batch"],
+    )
+    matching_step_plan = QueryPlan(
+        service_name="API_STOCK_TEST",
+        entity_set="A_Material",
+        steps=[
+            ExecutionStep(
+                step_id="step_1",
+                service_name="API_STOCK_TEST",
+                entity_set="A_MatlStkInAcctMod",
+                select_fields=["Material", "Batch"],
+            )
+        ],
+    )
+
+    assert provider.semantic_warnings("show material-level stock", unrelated_plan) == []
+    warnings = provider.semantic_warnings("show material-level stock", matching_step_plan)
+    assert warnings
+    assert warnings[0]["entity_set"] == "A_MatlStkInAcctMod"
 
 
 def test_result_verifier_blocks_confirmed_kg_warning_but_not_candidate() -> None:
