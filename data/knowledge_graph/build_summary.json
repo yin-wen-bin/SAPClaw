@@ -1,6 +1,6 @@
 {
-  "build_version": "1766441886a3b5a6",
-  "built_at": "2026-06-30T16:14:19.522275+00:00",
+  "build_version": "29066c94eb180eed",
+  "built_at": "2026-07-01T14:53:07.650655+00:00",
   "source": {
     "index_root": "data\\index",
     "api_skill_root": "data\\api_skills",
@@ -13,7 +13,7 @@
   },
   "counts": {
     "business_terms": 11808,
-    "field_semantics": 1267,
+    "field_semantics": 1284,
     "business_paths": 564,
     "api_candidates": 53,
     "candidate_kg_facts": 0

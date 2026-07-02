@@ -112,6 +112,12 @@ def read_internal_query_page(
         )
 
     started_at = time.perf_counter()
+    local_data = _stored_local_page(entry, skip)
+    if local_data is not None:
+        duration_ms = round((time.perf_counter() - started_at) * 1000, 2)
+        presentation = _build_page_presentation(entry, local_data)
+        return _page_response_payload(case_id, local_data, presentation, entry, duration_ms)
+
     page_size = _page_size_from_entry(entry)
     page_url = _replace_query_params(base_url, {"$top": str(page_size), "$skip": str(skip)})
     attempt = sap_executor.execute(CompiledRequest(method="GET", url=page_url), attempt_number=1)
@@ -360,10 +366,52 @@ def _replace_query_params(url: str, replacements: dict[str, str]) -> str:
     return urllib.parse.urlunsplit((split.scheme, split.netloc, split.path, query, split.fragment))
 
 
+def _stored_local_page(entry: dict[str, Any], skip: int) -> dict[str, Any] | None:
+    data = entry.get("response_preview") or {}
+    if not isinstance(data, dict):
+        return None
+    rows = data.get("_all_results")
+    if not isinstance(rows, list) or skip >= len(rows):
+        return None
+    pagination = data.get("pagination") if isinstance(data.get("pagination"), dict) else {}
+    display_limit = _safe_int(pagination.get("display_limit"), 50)
+    if display_limit <= 0:
+        display_limit = 50
+    page_rows = rows[skip : skip + display_limit]
+    if skip > 0 and not page_rows:
+        return None
+    total_count = _safe_int(data.get("result_count"), len(rows))
+    next_skip = skip + len(page_rows) if skip + len(page_rows) < len(rows) else None
+    page_data = dict(data)
+    page_pagination = dict(pagination)
+    page_pagination.update(
+        {
+            "page_size": display_limit,
+            "display_limit": display_limit,
+            "skip": skip,
+            "page_number": (skip // display_limit) + 1,
+            "has_next": next_skip is not None,
+            "next_skip": next_skip,
+            "local_has_next": next_skip is not None,
+        }
+    )
+    page_data.update(
+        {
+            "result_count": total_count,
+            "returned_count": len(rows),
+            "displayed_count": len(page_rows),
+            "results": page_rows,
+            "pagination": page_pagination,
+        }
+    )
+    return page_data
+
+
 def _page_size_from_entry(entry: dict[str, Any]) -> int:
     data = entry.get("response_preview") or {}
     pagination = data.get("pagination") if isinstance(data, dict) else {}
     for raw_value in [
+        (pagination or {}).get("display_limit") if isinstance(pagination, dict) else None,
         (pagination or {}).get("page_size") if isinstance(pagination, dict) else None,
         (entry.get("final_plan") or {}).get("top"),
     ]:
