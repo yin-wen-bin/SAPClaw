@@ -60,6 +60,7 @@ def test_executor_returns_preview_for_json_results() -> None:
     assert attempt.response_preview["_result_window_start"] == 0
     assert attempt.response_preview["pagination"]["has_next"] is True
     assert attempt.response_preview["pagination"]["next_skip"] == 2
+    assert attempt.response_preview["pagination"]["sap_next_skip"] == 2
     assert attempt.response_preview["results"][0]["Customer"] == "1000001"
 
 
@@ -89,6 +90,7 @@ def test_executor_marks_next_page_when_more_rows_returned_than_display_limit() -
     assert attempt.response_preview["pagination"]["display_limit"] == 50
     assert attempt.response_preview["pagination"]["has_next"] is True
     assert attempt.response_preview["pagination"]["next_skip"] == 50
+    assert attempt.response_preview["pagination"]["sap_next_skip"] is None
 
 
 def test_executor_retries_transient_url_error() -> None:

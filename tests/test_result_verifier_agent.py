@@ -433,6 +433,152 @@ def test_result_verifier_accepts_material_level_stock_aggregation() -> None:
     assert result["passed"] is True
 
 
+def test_result_verifier_blocks_supplier_ap_balance_without_fbl1n_filters() -> None:
+    verifier = LlmResultVerifierAgent(enabled=False)
+
+    result = verifier.verify(
+        request=AgentRequest(user_input="查询供应商17300001截止目前的应付余额"),
+        plan=QueryPlan(
+            service_name="API_GLACCOUNTLINEITEM",
+            entity_set="GLAccountLineItem",
+            select_fields=["CompanyCode", "Supplier", "AmountInCompanyCodeCurrency"],
+            filters=[
+                FilterCondition(field="Supplier", operator="eq", value="17300001"),
+                FilterCondition(field="ClearingDate", operator="eq", value="null", value_type="null"),
+            ],
+            result_transform=ResultTransform(
+                type="aggregate",
+                group_by=["CompanyCode", "Supplier", "CompanyCodeCurrency"],
+                sum_fields=["AmountInCompanyCodeCurrency"],
+            ),
+        ),
+        data={"result_count": 1, "results": [{"Supplier": "17300001"}]},
+        schema_context_summary={
+            "service_name": "API_GLACCOUNTLINEITEM",
+            "available_fields": [
+                {"entity_set": "GLAccountLineItem", "field_name": "Ledger"},
+                {"entity_set": "GLAccountLineItem", "field_name": "FinancialAccountType"},
+                {"entity_set": "GLAccountLineItem", "field_name": "IsOpenItemManaged"},
+                {"entity_set": "GLAccountLineItem", "field_name": "ClearingDate"},
+            ],
+        },
+    )
+
+    assert result["passed"] is False
+    assert result["issues"][0]["code"] == "wrong_business_level_for_supplier_ap_fbl1n"
+    assert {
+        "entity_set": "GLAccountLineItem",
+        "field": "IsOpenItemManaged",
+        "operator": "eq",
+        "value": "X",
+        "value_type": "string",
+    } in result["repair_hints"]["preferred_filters"]
+
+
+def test_result_verifier_blocks_supplier_ap_balance_contradictory_clearing_date_filters() -> None:
+    verifier = LlmResultVerifierAgent(enabled=False)
+
+    result = verifier.verify(
+        request=AgentRequest(user_input="查询供应商17300001截止目前的应付余额"),
+        plan=QueryPlan(
+            service_name="API_GLACCOUNTLINEITEM",
+            entity_set="GLAccountLineItem",
+            select_fields=[
+                "CompanyCode",
+                "Supplier",
+                "Ledger",
+                "FinancialAccountType",
+                "IsOpenItemManaged",
+                "ClearingDate",
+                "AmountInCompanyCodeCurrency",
+            ],
+            filters=[
+                FilterCondition(field="Supplier", operator="eq", value="17300001"),
+                FilterCondition(field="Ledger", operator="eq", value="0L"),
+                FilterCondition(field="FinancialAccountType", operator="eq", value="K"),
+                FilterCondition(field="IsOpenItemManaged", operator="eq", value="X"),
+                FilterCondition(field="ClearingDate", operator="eq", value="null", value_type="null"),
+                FilterCondition(
+                    field="ClearingDate",
+                    operator="gt",
+                    value="2026-07-01T23:59:59",
+                    value_type="datetime",
+                ),
+            ],
+            result_transform=ResultTransform(
+                type="aggregate",
+                group_by=["CompanyCode", "Supplier", "CompanyCodeCurrency"],
+                sum_fields=["AmountInCompanyCodeCurrency"],
+            ),
+        ),
+        data={"result_count": 1, "results": [{"Supplier": "17300001"}]},
+        schema_context_summary={
+            "service_name": "API_GLACCOUNTLINEITEM",
+            "available_fields": [
+                {"entity_set": "GLAccountLineItem", "field_name": "Ledger"},
+                {"entity_set": "GLAccountLineItem", "field_name": "FinancialAccountType"},
+                {"entity_set": "GLAccountLineItem", "field_name": "IsOpenItemManaged"},
+                {"entity_set": "GLAccountLineItem", "field_name": "ClearingDate"},
+            ],
+        },
+    )
+
+    assert result["passed"] is False
+    assert result["issues"][0]["code"] == "contradictory_supplier_ap_clearing_date_filters"
+    assert result["repair_hints"]["preferred_filters"][-1] == {
+        "entity_set": "GLAccountLineItem",
+        "field": "ClearingDate",
+        "operator": "eq",
+        "value": "null",
+        "value_type": "null",
+    }
+
+
+def test_result_verifier_accepts_supplier_ap_balance_with_fbl1n_filters() -> None:
+    verifier = LlmResultVerifierAgent(enabled=False)
+
+    result = verifier.verify(
+        request=AgentRequest(user_input="查询供应商17300001截止目前的应付余额"),
+        plan=QueryPlan(
+            service_name="API_GLACCOUNTLINEITEM",
+            entity_set="GLAccountLineItem",
+            select_fields=[
+                "CompanyCode",
+                "Supplier",
+                "Ledger",
+                "FinancialAccountType",
+                "IsOpenItemManaged",
+                "ClearingDate",
+                "AmountInCompanyCodeCurrency",
+            ],
+            filters=[
+                FilterCondition(field="Supplier", operator="eq", value="17300001"),
+                FilterCondition(field="Ledger", operator="eq", value="0L"),
+                FilterCondition(field="FinancialAccountType", operator="eq", value="K"),
+                FilterCondition(field="IsOpenItemManaged", operator="eq", value="X"),
+                FilterCondition(field="ClearingDate", operator="eq", value="null", value_type="null"),
+            ],
+            result_transform=ResultTransform(
+                type="aggregate",
+                group_by=["CompanyCode", "Supplier", "CompanyCodeCurrency"],
+                sum_fields=["AmountInCompanyCodeCurrency"],
+            ),
+        ),
+        data={"result_count": 1, "results": [{"Supplier": "17300001"}]},
+        schema_context_summary={
+            "service_name": "API_GLACCOUNTLINEITEM",
+            "available_fields": [
+                {"entity_set": "GLAccountLineItem", "field_name": "Ledger"},
+                {"entity_set": "GLAccountLineItem", "field_name": "FinancialAccountType"},
+                {"entity_set": "GLAccountLineItem", "field_name": "IsOpenItemManaged"},
+                {"entity_set": "GLAccountLineItem", "field_name": "ClearingDate"},
+            ],
+        },
+    )
+
+    assert result["passed"] is True
+
+
 def test_result_verifier_blocks_outbound_delivery_shipping_date_from_delivery_date() -> None:
     verifier = LlmResultVerifierAgent(enabled=False)
 

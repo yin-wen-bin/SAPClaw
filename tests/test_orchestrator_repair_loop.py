@@ -8,6 +8,7 @@ from sap_odata_agent.domain.models import (
     FilterCondition,
     QueryPlan,
     ResultPresentation,
+    ResultTransform,
     RetrievedContext,
     RetrievedDocument,
 )
@@ -177,6 +178,97 @@ def test_orchestrator_repairs_failed_query_and_succeeds(tmp_path: Path) -> None:
     assert response.plan.filters[0].field == "BusinessPartner"
     assert response.presentation is not None
     assert response.presentation.text == "A_BusinessPartner rendered"
+
+
+def test_orchestrator_fetches_all_pages_before_aggregate_transform(tmp_path: Path) -> None:
+    class AggregatePlanner:
+        def plan(self, request: AgentRequest, context: RetrievedContext) -> QueryPlan:
+            return QueryPlan(
+                service_name="API_TEST",
+                entity_set="A_LineItem",
+                select_fields=["CompanyCode", "Amount"],
+                top=None,
+                result_transform=ResultTransform(
+                    type="aggregate",
+                    group_by=["CompanyCode"],
+                    sum_fields=["Amount"],
+                ),
+            )
+
+    class AggregateCompiler:
+        def compile(self, plan: QueryPlan) -> CompiledRequest:
+            suffix = f"?$top={plan.top}" if plan.top is not None else ""
+            return CompiledRequest(method=plan.http_method, url=f"https://sap.example.com/A_LineItem{suffix}")
+
+    class PagedAggregateExecutor:
+        def __init__(self) -> None:
+            self.urls: list[str] = []
+
+        def execute(self, compiled_request: CompiledRequest, attempt_number: int) -> ExecutionAttempt:
+            self.urls.append(compiled_request.url)
+            if "$skip=2" in compiled_request.url:
+                rows = [{"CompanyCode": "1710", "Amount": "3"}]
+                sap_skip = 2
+                sap_next_skip = None
+            else:
+                rows = [
+                    {"CompanyCode": "1710", "Amount": "1"},
+                    {"CompanyCode": "1710", "Amount": "2"},
+                ]
+                sap_skip = 0
+                sap_next_skip = 2
+            return ExecutionAttempt(
+                attempt_number=attempt_number,
+                request=compiled_request,
+                success=True,
+                status_code=200,
+                response_preview={
+                    "result_count": 3,
+                    "returned_count": len(rows),
+                    "displayed_count": len(rows),
+                    "results": rows,
+                    "_all_results": rows,
+                    "pagination": {
+                        "page_size": 2,
+                        "display_limit": 2,
+                        "skip": sap_skip,
+                        "has_next": sap_next_skip is not None,
+                        "next_skip": sap_next_skip,
+                        "sap_page_size": 2,
+                        "sap_skip": sap_skip,
+                        "sap_next_skip": sap_next_skip,
+                    },
+                },
+            )
+
+    executor = PagedAggregateExecutor()
+    orchestrator = AgentOrchestrator(
+        retriever=StaticRetriever(),
+        planner=AggregatePlanner(),
+        validator=PassThroughValidator(),
+        compiler=AggregateCompiler(),
+        executor=executor,
+        repair_engine=IndexAwareRepairEngine(index_root=tmp_path, service_name="API_TEST"),
+        result_presenter=StaticPresenter(),
+        case_repository=JsonlCaseRepository(str(tmp_path / "cases_aggregate.jsonl")),
+        max_attempts=1,
+        retrieval_top_k=5,
+    )
+    plan = AggregatePlanner().plan(AgentRequest(user_input="sum amount"), RetrievedContext())
+
+    result = orchestrator._execute_query_plan(
+        AgentRequest(user_input="sum amount"),
+        plan,
+        start_attempt_number=1,
+        timings=[],
+    )
+
+    assert result["success"] is True
+    assert len(result["attempts"]) == 2
+    assert "$top=5000" in executor.urls[0]
+    assert "$skip=2" in executor.urls[1]
+    assert result["data"]["results"] == [{"CompanyCode": "1710", "Amount": "6"}]
+    assert result["data"]["result_transform"]["source_returned_count"] == 3
 
 
 def test_orchestrator_can_disable_query_repair_and_fail_fast(tmp_path: Path) -> None:

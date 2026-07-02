@@ -189,6 +189,13 @@ class LlmResultVerifierAgent:
         )
         if outbound_shipping_date_result is not None:
             return outbound_shipping_date_result
+        supplier_ap_result = LlmResultVerifierAgent._supplier_ap_fbl1n_static_check(
+            request,
+            plan,
+            schema_context_summary,
+        )
+        if supplier_ap_result is not None:
+            return supplier_ap_result
         production_order_confirmation_result = (
             LlmResultVerifierAgent._production_order_confirmation_static_check(request, plan)
         )
@@ -559,6 +566,123 @@ class LlmResultVerifierAgent:
         }
 
     @staticmethod
+    def _supplier_ap_fbl1n_static_check(
+        request: AgentRequest,
+        plan: QueryPlan,
+        schema_context_summary: dict[str, Any],
+    ) -> dict[str, Any] | None:
+        if not LlmResultVerifierAgent._looks_like_supplier_ap_open_balance_request(request):
+            return None
+        if plan.service_name != "API_GLACCOUNTLINEITEM" or plan.entity_set != "GLAccountLineItem":
+            return None
+        required_fields = {"Ledger", "FinancialAccountType", "IsOpenItemManaged", "ClearingDate"}
+        if not LlmResultVerifierAgent._has_available_fields(
+            schema_context_summary,
+            "GLAccountLineItem",
+            required_fields,
+        ):
+            return None
+
+        if LlmResultVerifierAgent._plan_has_null_and_range_filters(plan, "ClearingDate"):
+            return LlmResultVerifierAgent._supplier_ap_fbl1n_block(
+                "contradictory_supplier_ap_clearing_date_filters",
+                (
+                    "The plan applies `ClearingDate eq null` together with a range/comparison filter on "
+                    "`ClearingDate`. The current plan model combines filters with AND, so this cannot express "
+                    "FBL1N open-at-key-date OR logic and will exclude valid open items."
+                ),
+                "Keep `ClearingDate eq null` for current FBL1N-style open supplier payables and do not add a separate ClearingDate range filter.",
+            )
+
+        missing: list[str] = []
+        if not LlmResultVerifierAgent._plan_has_filter(plan, "Ledger", operator="eq", non_empty=True):
+            missing.append("Ledger eq leading ledger, normally 0L")
+        if not LlmResultVerifierAgent._plan_has_filter(plan, "FinancialAccountType", operator="eq", value="K"):
+            missing.append("FinancialAccountType eq 'K'")
+        if not LlmResultVerifierAgent._plan_has_filter(plan, "IsOpenItemManaged", operator="eq", value="X"):
+            missing.append("IsOpenItemManaged eq 'X'")
+        if not LlmResultVerifierAgent._plan_has_filter(plan, "ClearingDate", operator="eq", value="null"):
+            missing.append("ClearingDate eq null for current open items")
+        if not missing:
+            return None
+
+        return LlmResultVerifierAgent._supplier_ap_fbl1n_block(
+            "wrong_business_level_for_supplier_ap_fbl1n",
+            (
+                "FBL1N-style supplier payable/open-item answers require supplier subledger open-item "
+                "filters. The executed plan is missing: " + ", ".join(missing) + "."
+            ),
+            "Use FBL1N-style supplier AP open-item filters before aggregating payable balances.",
+        )
+
+    @staticmethod
+    def _supplier_ap_fbl1n_block(code: str, message: str, reason: str) -> dict[str, Any]:
+        preferred_filters = [
+            {
+                "entity_set": "GLAccountLineItem",
+                "field": "Ledger",
+                "operator": "eq",
+                "value": "0L",
+                "value_type": "string",
+            },
+            {
+                "entity_set": "GLAccountLineItem",
+                "field": "FinancialAccountType",
+                "operator": "eq",
+                "value": "K",
+                "value_type": "string",
+            },
+            {
+                "entity_set": "GLAccountLineItem",
+                "field": "IsOpenItemManaged",
+                "operator": "eq",
+                "value": "X",
+                "value_type": "string",
+            },
+            {
+                "entity_set": "GLAccountLineItem",
+                "field": "ClearingDate",
+                "operator": "eq",
+                "value": "null",
+                "value_type": "null",
+            },
+        ]
+        return {
+            "passed": False,
+            "issues": [
+                {
+                    "code": code,
+                    "message": message,
+                    "blocking": True,
+                }
+            ],
+            "repair_hints": {
+                "reason": reason,
+                "preferred_entity_set": "GLAccountLineItem",
+                "preferred_filters": preferred_filters,
+                "preferred_select_fields": [
+                    "CompanyCode",
+                    "Supplier",
+                    "CompanyCodeCurrency",
+                    "Ledger",
+                    "FinancialAccountType",
+                    "IsOpenItemManaged",
+                    "SpecialGLCode",
+                    "PostingDate",
+                    "ClearingDate",
+                    "AmountInCompanyCodeCurrency",
+                ],
+                "preferred_result_transform": {
+                    "type": "aggregate",
+                    "group_by": ["CompanyCode", "Supplier", "CompanyCodeCurrency"],
+                    "sum_fields": ["AmountInCompanyCodeCurrency"],
+                },
+                "presentation_kind": "table",
+            },
+            "source": "skill_grounded_result_verifier",
+        }
+
+    @staticmethod
     def _production_order_confirmation_static_check(
         request: AgentRequest,
         plan: QueryPlan,
@@ -661,6 +785,33 @@ class LlmResultVerifierAgent:
         return any(term in text for term in order_terms) and any(term in text for term in unconfirmed_terms)
 
     @staticmethod
+    def _looks_like_supplier_ap_open_balance_request(request: AgentRequest) -> bool:
+        text = f"{request.resolved_user_input or ''} {request.user_input or ''}".lower()
+        supplier_terms = ("供应商", "vendor", "supplier")
+        ap_terms = ("应付", "应付款", "payable", "payables", "ap ", "未付款", "unpaid")
+        open_or_balance_terms = (
+            "余额",
+            "总额",
+            "未清",
+            "未付款",
+            "截止",
+            "截至",
+            "open",
+            "outstanding",
+            "balance",
+            "total",
+            "as of",
+            "unpaid",
+        )
+        cleared_terms = ("已清", "已经清账", "cleared")
+        return (
+            any(term in text for term in supplier_terms)
+            and any(term in text for term in ap_terms)
+            and any(term in text for term in open_or_balance_terms)
+            and not any(term in text for term in cleared_terms)
+        )
+
+    @staticmethod
     def _explicitly_asks_for_pricing(request: AgentRequest) -> bool:
         text = f"{request.resolved_user_input or ''} {request.user_input or ''}".lower()
         pricing_terms = (
@@ -728,6 +879,64 @@ class LlmResultVerifierAgent:
                 if condition.field == field_name and condition.value not in (None, ""):
                     return str(condition.value)
         return ""
+
+    @staticmethod
+    def _plan_has_null_and_range_filters(plan: QueryPlan, field_name: str) -> bool:
+        expected_field = LlmResultVerifierAgent._base_field_name(field_name)
+        has_null_filter = False
+        has_range_filter = False
+        for condition in list(plan.filters or []) + [
+            step_condition
+            for step in plan.steps or []
+            for step_condition in step.filters or []
+        ]:
+            if LlmResultVerifierAgent._base_field_name(condition.field) != expected_field:
+                continue
+            operator = str(condition.operator or "").lower()
+            value = str(condition.value or "").strip().strip("'").lower()
+            value_type = str(condition.value_type or "").lower()
+            if operator == "eq" and (
+                value == "null"
+                or value_type in {"null", "edm.null", "null_keyword", "odata.null"}
+            ):
+                has_null_filter = True
+            if operator in {"gt", "ge", "lt", "le"}:
+                has_range_filter = True
+        return has_null_filter and has_range_filter
+
+    @staticmethod
+    def _plan_has_filter(
+        plan: QueryPlan,
+        field_name: str,
+        *,
+        operator: str | None = None,
+        value: str | None = None,
+        non_empty: bool = False,
+    ) -> bool:
+        expected_field = LlmResultVerifierAgent._base_field_name(field_name)
+        expected_value = str(value).strip().lower() if value is not None else None
+        for condition in list(plan.filters or []) + [
+            step_condition
+            for step in plan.steps or []
+            for step_condition in step.filters or []
+        ]:
+            if LlmResultVerifierAgent._base_field_name(condition.field) != expected_field:
+                continue
+            if operator is not None and str(condition.operator or "").lower() != operator.lower():
+                continue
+            condition_value = str(condition.value or "").strip()
+            if non_empty and not condition_value:
+                continue
+            if expected_value is not None:
+                normalized_value = condition_value.strip("'").lower()
+                if normalized_value != expected_value:
+                    continue
+            return True
+        return False
+
+    @staticmethod
+    def _base_field_name(field_name: str) -> str:
+        return str(field_name or "").split(".")[-1]
 
     @staticmethod
     def _materialize(

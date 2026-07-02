@@ -597,6 +597,7 @@ class SapODataExecutor:
                     next_skip = skip + len(displayed_results)
                 elif sap_has_next:
                     next_skip = skip + page_size
+                sap_next_skip = skip + len(results) if sap_has_next else None
                 return {
                     "result_count": total_count,
                     "returned_count": len(results),
@@ -611,6 +612,11 @@ class SapODataExecutor:
                         "page_number": (skip // display_limit) + 1 if display_limit > 0 else 1,
                         "has_next": next_skip is not None,
                         "next_skip": next_skip,
+                        "local_has_next": local_has_next,
+                        "sap_has_next": sap_has_next,
+                        "sap_page_size": page_size,
+                        "sap_skip": skip,
+                        "sap_next_skip": sap_next_skip,
                     },
                 }
             if isinstance(data, dict):

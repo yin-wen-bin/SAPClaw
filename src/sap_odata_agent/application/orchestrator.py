@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import re
 import time
+import urllib.parse
 from dataclasses import replace
 from datetime import datetime
 from uuid import uuid4
@@ -65,6 +66,9 @@ from sap_odata_agent.infrastructure.llm.query_classifier import QueryShapeClassi
 
 
 class AgentOrchestrator:
+    AGGREGATE_PAGE_SIZE = 5000
+    AGGREGATE_MAX_SOURCE_ROWS = 50000
+
     def __init__(
         self,
         retriever: KnowledgeRetriever,
@@ -2041,6 +2045,26 @@ class AgentOrchestrator:
                 plan,
                 starting_attempt_number=start_attempt_number,
             )
+            if (
+                path_attempts
+                and path_attempts[-1].success
+                and final_data is not None
+                and self._requires_complete_result_transform(plan)
+            ):
+                completed_data, completed = self._complete_result_transform_source_data(
+                    path_attempts[-1],
+                    path_attempts,
+                    timings,
+                )
+                if not completed:
+                    return {
+                        "success": False,
+                        "plan": plan,
+                        "attempts": path_attempts,
+                        "data": None,
+                    }
+                if completed_data is not None:
+                    final_data = {**final_data, **completed_data}
             return {
                 "success": bool(path_attempts and path_attempts[-1].success and final_data is not None),
                 "plan": plan,
@@ -2048,12 +2072,13 @@ class AgentOrchestrator:
                 "data": self.result_transformer.apply(plan, final_data),
             }
 
+        execution_plan = self._plan_for_complete_result_transform(plan)
         compiled_request = self._timed_call(
             timings,
             "odata.compile",
             "编译 OData 请求",
             self.compiler.compile,
-            plan,
+            execution_plan,
         )
         execution = self._timed_call(
             timings,
@@ -2065,16 +2090,164 @@ class AgentOrchestrator:
         )
         attempts = [execution]
         if not execution.success:
-            return {"success": False, "plan": plan, "attempts": attempts, "data": None}
+            return {"success": False, "plan": execution_plan, "attempts": attempts, "data": None}
 
-        final_plan = plan
-        final_data = self.result_transformer.apply(final_plan, execution.response_preview)
+        final_plan = execution_plan
+        source_data = execution.response_preview
+        if self._requires_complete_result_transform(final_plan):
+            source_data, completed = self._complete_result_transform_source_data(
+                execution,
+                attempts,
+                timings,
+            )
+            if not completed:
+                return {"success": False, "plan": final_plan, "attempts": attempts, "data": None}
+        final_data = self.result_transformer.apply(final_plan, source_data)
         return {
             "success": True,
             "plan": final_plan,
             "attempts": attempts,
             "data": final_data,
         }
+
+    @staticmethod
+    def _requires_complete_result_transform(plan: QueryPlan) -> bool:
+        transform = plan.result_transform
+        return bool(transform is not None and transform.type == "aggregate" and plan.http_method.upper() == "GET")
+
+    def _plan_for_complete_result_transform(self, plan: QueryPlan) -> QueryPlan:
+        if not self._requires_complete_result_transform(plan):
+            return plan
+        requested_top = plan.top or 0
+        if requested_top >= self.AGGREGATE_PAGE_SIZE:
+            return plan
+        diagnostics = dict(plan.planner_diagnostics or {})
+        diagnostics["aggregate_execution"] = {
+            "source_page_size": self.AGGREGATE_PAGE_SIZE,
+            "original_top": plan.top,
+            "reason": "aggregate_result_requires_complete_source_rows",
+        }
+        return replace(plan, top=self.AGGREGATE_PAGE_SIZE, planner_diagnostics=diagnostics)
+
+    def _complete_result_transform_source_data(
+        self,
+        first_attempt,
+        attempts: list,
+        timings: list[dict],
+    ) -> tuple[dict | None, bool]:
+        first_preview = first_attempt.response_preview or {}
+        if not isinstance(first_preview, dict):
+            return first_preview, True
+        pagination = first_preview.get("pagination") if isinstance(first_preview.get("pagination"), dict) else {}
+        next_skip = self._safe_int(pagination.get("sap_next_skip"), None)
+        page_size = self._safe_int(pagination.get("sap_page_size"), self.AGGREGATE_PAGE_SIZE)
+        previews = [first_preview]
+        fetched_rows = self._preview_rows_count(first_preview)
+        seen_skips = {self._safe_int(pagination.get("sap_skip"), 0)}
+
+        while next_skip is not None and fetched_rows < self.AGGREGATE_MAX_SOURCE_ROWS:
+            if next_skip in seen_skips:
+                merged = self._merge_result_transform_source_previews(previews, truncated=True)
+                return merged, True
+            seen_skips.add(next_skip)
+            page_url = self._replace_url_query_params(
+                first_attempt.request.url,
+                {"$top": str(page_size), "$skip": str(next_skip)},
+            )
+            page_attempt = self._timed_call(
+                timings,
+                "sap.aggregate_page_execute",
+                "执行 SAP 聚合分页请求",
+                self.executor.execute,
+                replace(first_attempt.request, url=page_url),
+                first_attempt.attempt_number + len(attempts),
+            )
+            attempts.append(page_attempt)
+            if not page_attempt.success:
+                return None, False
+            page_preview = page_attempt.response_preview or {}
+            if not isinstance(page_preview, dict):
+                break
+            previews.append(page_preview)
+            fetched_rows += self._preview_rows_count(page_preview)
+            page_pagination = page_preview.get("pagination") if isinstance(page_preview.get("pagination"), dict) else {}
+            next_skip = self._safe_int(page_pagination.get("sap_next_skip"), None)
+
+        truncated = next_skip is not None and fetched_rows >= self.AGGREGATE_MAX_SOURCE_ROWS
+        return self._merge_result_transform_source_previews(previews, truncated=truncated), True
+
+    @staticmethod
+    def _preview_rows_count(preview: dict) -> int:
+        rows = preview.get("_all_results")
+        if not isinstance(rows, list):
+            rows = preview.get("results")
+        return len(rows) if isinstance(rows, list) else 0
+
+    @classmethod
+    def _merge_result_transform_source_previews(cls, previews: list[dict], *, truncated: bool = False) -> dict:
+        if not previews:
+            return {}
+        all_results: list[dict] = []
+        first = dict(previews[0])
+        total_count = 0
+        for preview in previews:
+            rows = preview.get("_all_results")
+            if not isinstance(rows, list):
+                rows = preview.get("results")
+            if isinstance(rows, list):
+                all_results.extend(row for row in rows if isinstance(row, dict))
+            try:
+                total_count = max(total_count, int(preview.get("result_count") or 0))
+            except (TypeError, ValueError):
+                pass
+        if total_count <= 0:
+            total_count = len(all_results)
+        display_limit = min(cls.AGGREGATE_PAGE_SIZE, 50)
+        displayed_results = all_results[:display_limit]
+        has_next = len(displayed_results) < len(all_results)
+        pagination = dict(first.get("pagination") or {}) if isinstance(first.get("pagination"), dict) else {}
+        pagination.update(
+            {
+                "display_limit": display_limit,
+                "skip": 0,
+                "page_number": 1,
+                "has_next": has_next,
+                "next_skip": display_limit if has_next else None,
+                "local_has_next": has_next,
+                "sap_has_next": False,
+                "sap_next_skip": None,
+                "source_pages_fetched": len(previews),
+            }
+        )
+        first.update(
+            {
+                "result_count": total_count,
+                "returned_count": len(all_results),
+                "displayed_count": len(displayed_results),
+                "results": displayed_results,
+                "_all_results": all_results,
+                "_result_window_start": 0,
+                "pagination": pagination,
+                "source_complete": not truncated and len(all_results) >= total_count,
+                "source_truncated": truncated,
+            }
+        )
+        return first
+
+    @staticmethod
+    def _replace_url_query_params(url: str, replacements: dict[str, str]) -> str:
+        split = urllib.parse.urlsplit(url)
+        params = dict(urllib.parse.parse_qsl(split.query, keep_blank_values=True))
+        params.update(replacements)
+        query = urllib.parse.urlencode(params, safe="$(),'/")
+        return urllib.parse.urlunsplit((split.scheme, split.netloc, split.path, query, split.fragment))
+
+    @staticmethod
+    def _safe_int(value: object, fallback: int | None = 0) -> int | None:
+        try:
+            return int(str(value))
+        except (TypeError, ValueError):
+            return fallback
 
     def _build_effective_request(self, request: AgentRequest, timings: list[dict] | None = None) -> tuple[AgentRequest, object]:
         timings = timings if timings is not None else []

@@ -42,14 +42,18 @@ class ResultTransformer:
         display_limit = 50
         displayed_rows = aggregated_rows[:display_limit]
         pagination = dict(data.get("pagination") or {}) if isinstance(data.get("pagination"), dict) else {}
+        has_next = len(displayed_rows) < len(aggregated_rows)
         pagination.update(
             {
                 "page_size": display_limit,
                 "display_limit": display_limit,
                 "skip": 0,
                 "page_number": 1,
-                "has_next": False,
-                "next_skip": None,
+                "has_next": has_next,
+                "next_skip": display_limit if has_next else None,
+                "local_has_next": has_next,
+                "sap_has_next": False,
+                "sap_next_skip": None,
             }
         )
         transformed = dict(data)
@@ -67,6 +71,8 @@ class ResultTransformer:
                     "sum_fields": list(transform.sum_fields),
                     "source_result_count": data.get("result_count", len(source_rows)),
                     "source_returned_count": len(source_rows),
+                    "source_complete": bool(data.get("source_complete", True)),
+                    "source_truncated": bool(data.get("source_truncated", False)),
                 },
             }
         )
