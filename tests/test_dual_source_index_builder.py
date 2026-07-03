@@ -64,7 +64,7 @@ def test_parsers_and_merge_include_runtime_and_doc_only_fields() -> None:
     builder = DualSourceIndexBuilder(metadata_parser=metadata_parser, openapi_parser=openapi_parser)
 
     parsed_metadata = metadata_parser.parse(SAMPLE_XML, "API_TEST", "http://sap.example.com/$metadata")
-    parsed_openapi = openapi_parser.parse(SAMPLE_OPENAPI, "C:/tmp/openapi.json")
+    parsed_openapi = openapi_parser.parse(SAMPLE_OPENAPI, "<LOCAL_OPENAPI_FILE>")
     bundle = builder._merge(parsed_metadata, parsed_openapi, "API_TEST")
 
     service = bundle.services[0]
@@ -133,7 +133,7 @@ def test_merge_uses_metadata_business_aliases_for_payment_terms() -> None:
     }
 
     parsed_metadata = metadata_parser.parse(sample_xml, "API_TEST", "http://sap.example.com/$metadata")
-    parsed_openapi = openapi_parser.parse(sample_openapi, "C:/tmp/openapi.json")
+    parsed_openapi = openapi_parser.parse(sample_openapi, "<LOCAL_OPENAPI_FILE>")
     bundle = builder._merge(parsed_metadata, parsed_openapi, "API_TEST")
 
     payment_terms_field = next(
@@ -233,7 +233,7 @@ def test_merge_uses_metadata_business_aliases_for_planned_delivery_time() -> Non
 """
 
     parsed_metadata = metadata_parser.parse(sample_xml, "API_TEST", "http://sap.example.com/$metadata")
-    parsed_openapi = openapi_parser.parse(SAMPLE_OPENAPI, "C:/tmp/openapi.json")
+    parsed_openapi = openapi_parser.parse(SAMPLE_OPENAPI, "<LOCAL_OPENAPI_FILE>")
     bundle = builder._merge(parsed_metadata, parsed_openapi, "API_TEST")
 
     field = next(
@@ -295,7 +295,7 @@ def test_merge_builds_attribute_filter_lookup_path_for_city_to_supplier_list() -
     }
 
     parsed_metadata = metadata_parser.parse(sample_xml, "API_TEST", "http://sap.example.com/$metadata")
-    parsed_openapi = openapi_parser.parse(sample_openapi, "C:/tmp/openapi.json")
+    parsed_openapi = openapi_parser.parse(sample_openapi, "<LOCAL_OPENAPI_FILE>")
     bundle = builder._merge(parsed_metadata, parsed_openapi, "API_TEST")
 
     path = next(
