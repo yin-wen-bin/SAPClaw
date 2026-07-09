@@ -51,7 +51,7 @@ explain why. If the API cannot be determined from the catalog and user question,
 Keep route reasons and clarification text concise so the response remains valid JSON.
 
 Routing guidelines:
-1. Prefer the API whose short_description, primary_business_objects, top_entities, top_filter_fields, top_answer_fields, and api_skill_summary best match the user's intent.
+1. Prefer the API whose short_description, primary_business_objects, top_entities, top_filter_fields, top_answer_fields, api_skill_hints, and api_skill_summary best match the user's intent.
 2. Match both business object and business process.
 3. Master data questions usually route to master data APIs.
 4. Document status, item details, quantities, values, dates, approvals, and lifecycle questions usually route to transactional APIs.
@@ -65,7 +65,7 @@ Routing guidelines:
 12. When a feedback memory names a preferred field, prefer APIs whose top_filter_fields or catalog evidence expose that field on the requested business object.
 13. Use top_filter_fields to recognize filterable attributes in the user's wording. For example, purchase orders filtered by material/product should route to a purchase order API that exposes an item-level Material field, while purchase orders filtered by delivery date should route to a purchase order API that exposes a schedule-line delivery date field.
 14. If feedback_memories conflict with the API catalog, keep the route grounded in the catalog and explain the conflict in the route reason.
-15. Use api_skill_summary as API-specific learned guidance. It can explain business wording, known pitfalls, and when to use the API, but it cannot override the catalog or schema.
+15. Use api_skill_hints first, then api_skill_summary as fallback API-specific learned guidance. They can explain business wording, known pitfalls, and when to use the API, but they cannot override the catalog or schema.
 16. Treat "history" wording as high-risk and potentially ambiguous. If the catalog or api_skill does not clearly expose history, movement, receipt, invoice, or change-history objects for the requested document, ask a clarification instead of routing to a merely related detail entity such as pricing.
 17. If the user asks for standalone ledger master records, ledger lists, ledger text, ledger names, or leading-ledger attributes, prefer a ledger master-data API such as API_LEDGER_SRV when present. Do not route those questions to a G/L line item API merely because line items contain a Ledger field. Route to G/L line item APIs only when the user asks for journal entry items, postings, line items, amounts, or accounting documents.
 18. In intent_summary, keep requested output attributes separate from filter constraints. Bare field-list wording such as "with/include/show/display field A and field B" means those attributes should be returned, not used as filters, unless the user explicitly says only/where/true/false/nonzero/greater than/less than or gives a concrete filter value.
@@ -75,7 +75,7 @@ Routing guidelines:
 22. Prefer a single API when that API exposes status fields that directly answer the user's status condition. For example, delivered-but-not-billed outbound delivery lists should route to the outbound delivery API when its catalog or skill exposes goods movement status and delivery-related billing status fields; do not add the billing document API unless the user asks for actual billing documents or invoice details.
 23. Do not ask the user for permission to perform a read-only bridge lookup when the catalog already exposes the bridge field. For example, company-code-scoped G/L account questions should select the company code API to read ChartOfAccounts, then the G/L account API to list accounts in that chart.
 24. When the user gives a company code and asks for G/L accounts, account names, account types, P&L accounts, balance sheet accounts, expense accounts, or accounts in the company's chart of accounts, select both the company code API and the G/L account-in-chart-of-accounts API if both are present.
-25. If the user asks for a blocked, frozen, locked, or posting-blocked master-data list and a selected API's catalog or api_skill_summary suggests a matching status field, route to that API and let the schema planner validate the exact field. Do not ask the user to name the technical status field.
+25. If the user asks for a blocked, frozen, locked, or posting-blocked master-data list and a selected API's catalog, api_skill_hints, or api_skill_summary suggests a matching status field, route to that API and let the schema planner validate the exact field. Do not ask the user to name the technical status field.
 26. If the user asks for a master-data object's attribute such as hierarchy, category, type, responsible person, or currency, route to that object's API when selected catalog/skill evidence suggests the attribute may exist. Let the schema planner validate the exact field instead of asking the user to name it.
 """.strip()
 

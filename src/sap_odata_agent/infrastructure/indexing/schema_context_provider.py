@@ -322,6 +322,177 @@ class SchemaContextProvider:
             ],
         }
 
+    def enrich_with_requested_fields(
+        self,
+        schema_context: dict[str, Any],
+        requested_fields: list[str] | None,
+    ) -> dict[str, Any]:
+        concepts = list(
+            dict.fromkeys(
+                str(item or "").strip()
+                for item in requested_fields or []
+                if str(item or "").strip()
+            )
+        )
+        if not concepts:
+            return schema_context
+
+        service_names = [
+            str(item or "").strip()
+            for item in schema_context.get("service_names", [schema_context.get("service_name", "")])
+            if str(item or "").strip()
+        ]
+        service_names = list(dict.fromkeys(service_names))
+        if not service_names:
+            return schema_context
+
+        matches: list[dict[str, Any]] = []
+        snapshots: dict[str, Any] = {}
+        for service_name in service_names:
+            try:
+                snapshot = self.loader.load(service_name)
+            except FileNotFoundError:
+                continue
+            snapshots[service_name] = snapshot
+            matches.extend(self._requested_field_matches(snapshot, concepts))
+        if not matches:
+            return {
+                **schema_context,
+                "requested_field_matches": [],
+            }
+
+        coverage_by_entity: dict[tuple[str, str], set[str]] = {}
+        for match in matches:
+            key = (str(match["service_name"]), str(match["entity_set"]))
+            coverage_by_entity.setdefault(key, set()).add(str(match["requested_field"]))
+        matches.sort(
+            key=lambda item: (
+                -len(
+                    coverage_by_entity.get(
+                        (str(item["service_name"]), str(item["entity_set"])),
+                        set(),
+                    )
+                ),
+                -float(item["score"]),
+                str(item["service_name"]),
+                str(item["entity_set"]),
+                str(item["field_name"]),
+            )
+        )
+
+        enriched_fields: list[dict[str, Any]] = []
+        seen_fields: set[tuple[str, str, str]] = set()
+        for match in matches:
+            service_name = str(match["service_name"])
+            snapshot = snapshots.get(service_name)
+            if snapshot is None:
+                continue
+            field = next(
+                (
+                    item
+                    for item in snapshot.fields
+                    if str(item.get("entity_set", "")) == str(match["entity_set"])
+                    and str(item.get("field_name", "")) == str(match["field_name"])
+                ),
+                None,
+            )
+            if field is None:
+                continue
+            key = (service_name, str(match["entity_set"]), str(match["field_name"]))
+            if key in seen_fields:
+                continue
+            seen_fields.add(key)
+            enriched_fields.append(
+                {
+                    **self._field_payload(field, float(match["score"])),
+                    "service_name": service_name,
+                }
+            )
+
+        for field in schema_context.get("candidate_fields", []):
+            if not isinstance(field, dict):
+                continue
+            service_name = str(field.get("service_name") or schema_context.get("service_name") or "")
+            key = (
+                service_name,
+                str(field.get("entity_set", "")),
+                str(field.get("field_name", "")),
+            )
+            if not all(key) or key in seen_fields:
+                continue
+            seen_fields.add(key)
+            enriched_fields.append(field)
+
+        field_limit = self.max_candidate_fields * max(1, len(service_names))
+        enriched_fields = enriched_fields[:field_limit]
+        entity_order: list[tuple[str, str]] = []
+
+        def add_entity(service_name: str, entity_set: str) -> None:
+            key = (service_name, entity_set)
+            if service_name and entity_set and key not in entity_order:
+                entity_order.append(key)
+
+        for field in enriched_fields:
+            add_entity(
+                str(field.get("service_name") or schema_context.get("service_name") or ""),
+                str(field.get("entity_set") or ""),
+            )
+        for entity in schema_context.get("entities", []):
+            if not isinstance(entity, dict):
+                continue
+            add_entity(
+                str(entity.get("service_name") or schema_context.get("service_name") or ""),
+                str(entity.get("entity_set") or ""),
+            )
+
+        entity_limit = self.max_candidate_entities * max(1, len(service_names))
+        entities: list[dict[str, Any]] = []
+        for service_name, entity_set in entity_order[:entity_limit]:
+            snapshot = snapshots.get(service_name)
+            if snapshot is None:
+                continue
+            function_imports = function_imports_from_snapshot(snapshot)
+            function_import_map = {str(item.get("name", "")): item for item in function_imports}
+            service_fields = [
+                field
+                for field in enriched_fields
+                if str(field.get("service_name") or service_name) == service_name
+            ]
+            entity = self._entity_payload(snapshot, entity_set, service_fields, function_import_map)
+            if entity:
+                entities.append({**entity, "service_name": service_name})
+
+        join_hints: list[dict[str, Any]] = []
+        relations: list[dict[str, Any]] = []
+        for service_name, snapshot in snapshots.items():
+            entity_scope = {
+                str(entity.get("entity_set") or "")
+                for entity in entities
+                if str(entity.get("service_name") or "") == service_name
+            }
+            join_hints.extend(
+                {**item, "service_name": service_name}
+                for item in self._build_join_hints(snapshot, entity_scope)
+            )
+            relations.extend(
+                {**item, "service_name": service_name}
+                for item in self._build_relation_hints(snapshot, entity_scope)
+            )
+        if len(service_names) > 1:
+            join_hints.extend(self._build_cross_service_join_hints(entities))
+
+        return {
+            **schema_context,
+            "candidate_fields": enriched_fields,
+            "entities": entities,
+            "join_hints": join_hints,
+            "relations": relations,
+            "requested_field_matches": [
+                {key: value for key, value in match.items() if key != "score"}
+                for match in matches
+            ],
+        }
+
     def _enrich_multi_api_context_with_skill(
         self,
         schema_context: dict[str, Any],
@@ -530,6 +701,7 @@ class SchemaContextProvider:
             "available_fields": available_fields,
             "feedback_field_matches": schema_context.get("feedback_field_matches", []),
             "skill_field_matches": schema_context.get("skill_field_matches", []),
+            "requested_field_matches": schema_context.get("requested_field_matches", []),
             "kg_business_terms": schema_context.get("kg_business_terms", []),
             "kg_recommended_fields": schema_context.get("kg_recommended_fields", []),
             "kg_recommended_paths": schema_context.get("kg_recommended_paths", []),
@@ -878,6 +1050,79 @@ class SchemaContextProvider:
             by_qualified.values(),
             key=lambda item: (-float(item.get("score", 0.0)), str(item.get("matched_field", ""))),
         )
+
+    @staticmethod
+    def _requested_field_matches(snapshot, requested_fields: list[str]) -> list[dict[str, Any]]:
+        matches: list[dict[str, Any]] = []
+        seen: set[tuple[str, str, str]] = set()
+        for requested_field in requested_fields:
+            if not SchemaContextProvider._normalize(requested_field):
+                continue
+            requested_entity = ""
+            requested_name = requested_field
+            if "." in requested_field:
+                requested_entity, requested_name = requested_field.rsplit(".", 1)
+            normalized_name = SchemaContextProvider._normalize(requested_name)
+            concept_matches: list[dict[str, Any]] = []
+            for field in snapshot.fields or []:
+                entity_set = str(field.get("entity_set", "") or "")
+                field_name = str(field.get("field_name", "") or "")
+                if not entity_set or not field_name:
+                    continue
+                if requested_entity and requested_entity.lower() != entity_set.lower():
+                    continue
+
+                score = 0.0
+                if normalized_name == SchemaContextProvider._normalize(field_name):
+                    score = 120.0 if requested_entity else 110.0
+                else:
+                    aliases = [
+                        str(field.get("label", "") or ""),
+                        str(field.get("description", "") or ""),
+                        *[str(item or "") for item in field.get("business_aliases", []) or []],
+                    ]
+                    if any(
+                        normalized_name == SchemaContextProvider._normalize(alias)
+                        for alias in aliases
+                        if alias
+                    ):
+                        score = 90.0
+                    else:
+                        semantic_score = SchemaContextProvider._score_field(requested_field, field)
+                        if semantic_score >= 24.0:
+                            score = min(semantic_score, 70.0)
+                if score <= 0:
+                    continue
+                concept_matches.append(
+                    {
+                        "service_name": snapshot.service_name,
+                        "requested_field": requested_field,
+                        "matched_field": f"{entity_set}.{field_name}",
+                        "entity_set": entity_set,
+                        "field_name": field_name,
+                        "reason": "explicit requested output field matched full service index",
+                        "score": score,
+                    }
+                )
+
+            concept_matches.sort(
+                key=lambda item: (
+                    -float(item["score"]),
+                    str(item["entity_set"]),
+                    str(item["field_name"]),
+                )
+            )
+            for match in concept_matches[:12]:
+                key = (
+                    str(match["requested_field"]),
+                    str(match["entity_set"]),
+                    str(match["field_name"]),
+                )
+                if key in seen:
+                    continue
+                seen.add(key)
+                matches.append(match)
+        return matches
 
     @staticmethod
     def _is_business_status_field(field: dict[str, Any]) -> bool:

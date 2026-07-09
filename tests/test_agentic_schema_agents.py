@@ -73,7 +73,10 @@ def test_schema_research_agent_materializes_llm_field_analysis() -> None:
     assert research["available"] is True
     assert research["recommended_filters"][0]["field"] == "IsCompletelyDelivered"
     assert [item["field"] for item in research["field_reviews"]] == ["GoodsReceiptIsExpected"]
+    assert research["schema_scope"]["complete_service_index"] is False
     assert "schema_context" in client.user_prompt
+    assert '"complete_service_index": false' in client.user_prompt
+    assert "not visible in the current schema_context" in client.user_prompt
 
 
 def test_result_verifier_agent_blocks_unsupported_business_conclusion() -> None:

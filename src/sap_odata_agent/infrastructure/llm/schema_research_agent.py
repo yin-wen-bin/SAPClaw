@@ -8,6 +8,15 @@ from sap_odata_agent.infrastructure.llm.planner import AnthropicCompatibleMessag
 from sap_odata_agent.infrastructure.llm.prompts import GLOBAL_SAP_ODATA_PROMPT, METADATA_MATCHING_TASK_PROMPT
 
 
+SCHEMA_CONTEXT_SCOPE = {
+    "complete_service_index": False,
+    "absence_interpretation": (
+        "A field missing from schema_context is not visible in the current retrieval-limited context; "
+        "that alone does not prove the field is absent from the SAP service index."
+    ),
+}
+
+
 class LlmSchemaResearchAgent:
     """LLM-first schema researcher for business-semantic field selection.
 
@@ -56,6 +65,7 @@ class LlmSchemaResearchAgent:
             "business_intent": research.get("business_intent", ""),
             "recommended_filters": research.get("recommended_filters", [])[:8],
             "semantic_risks": research.get("semantic_risks", [])[:8],
+            "schema_scope": research.get("schema_scope", SCHEMA_CONTEXT_SCOPE),
         }
 
     @staticmethod
@@ -113,6 +123,7 @@ class LlmSchemaResearchAgent:
         payload = {
             "user_input": request.resolved_user_input or request.user_input,
             "detected_time_expressions": request.detected_time_expressions,
+            "schema_context_scope": SCHEMA_CONTEXT_SCOPE,
             "route_decision": {
                 "selected_apis": [
                     {"service_name": item.service_name, "confidence": item.confidence, "reason": item.reason}
@@ -134,7 +145,9 @@ class LlmSchemaResearchAgent:
             "4. If a field is unsuitable, explain why in field_reviews and semantic_risks.\n"
             "5. Recommend filters only when the field exists in schema_context and the value follows from the user intent.\n"
             "6. Preserve user literals exactly, including leading zeros.\n"
-            "7. If metadata is insufficient to prove the answer, say so in semantic_risks and planner_instructions.\n\n"
+            "7. schema_context is retrieval-limited, not the complete service index. If a field is missing, say "
+            "\"not visible in the current schema_context\" and recommend expanded schema lookup. Never claim that "
+            "the field is absent from the API, SAP service, or all service entities based only on schema_context.\n\n"
             "8. Distinguish requested output attributes from filters. Bare field-list wording such as "
             "\"with/include/show/display field A and field B\" means those fields should be returned. "
             "Recommend filters only when the user provides an explicit restriction, comparison, literal value, "
@@ -214,6 +227,7 @@ class LlmSchemaResearchAgent:
             ][:12],
             "semantic_risks": [str(item) for item in parsed.get("semantic_risks", []) if str(item).strip()][:12],
             "planner_instructions": str(parsed.get("planner_instructions", "") or ""),
+            "schema_scope": dict(SCHEMA_CONTEXT_SCOPE),
             "source": "llm_schema_research_agent",
         }
 
@@ -227,5 +241,6 @@ class LlmSchemaResearchAgent:
             "recommended_steps": [],
             "semantic_risks": [],
             "planner_instructions": "",
+            "schema_scope": dict(SCHEMA_CONTEXT_SCOPE),
             "source": "schema_research_unavailable",
         }

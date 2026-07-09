@@ -6,7 +6,7 @@ from sap_odata_agent.infrastructure.indexing.api_catalog_provider import ApiCata
 from sap_odata_agent.infrastructure.indexing.api_skill_provider import ApiSkillProvider
 from sap_odata_agent.infrastructure.indexing.index_loader import LocalIndexLoader
 from sap_odata_agent.infrastructure.indexing.schema_context_provider import SchemaContextProvider
-from sap_odata_agent.domain.models import ApiRouteDecision, SelectedApi
+from sap_odata_agent.domain.models import AgentRequest, ApiRouteDecision, QueryConstraints, SelectedApi
 
 
 ADDITIONAL_APIS = {
@@ -529,6 +529,91 @@ def test_production_order_skill_does_not_clarify_plant_work_center_operations() 
     assert "do not ask for a specific work center" in skill.content
     assert "WorkCenter eq '1710'" in skill.content
     assert "A_ProductionOrderOperation_2.ProductionPlant" in skill.content
+
+
+def test_production_order_skill_maps_target_quantity_and_unit_to_item_entity() -> None:
+    skill = ApiSkillProvider(skill_root="data/api_skills").load("API_PRODUCTION_ORDER_2_SRV")
+    assert skill is not None
+
+    assert "target/planned quantity or unit" in skill.content
+    assert "select only `A_ProductionOrderItem_2.ManufacturingOrder`" in skill.content
+    assert "A_ProductionOrderItem_2.MfgOrderItemPlannedTotalQty" in skill.content
+    assert "A_ProductionOrderItem_2.ProductionUnit" in skill.content
+
+
+def test_schema_context_force_injects_explicit_requested_fields_from_full_index() -> None:
+    provider = SchemaContextProvider(index_root="data/index")
+    context = provider.build(
+        "API_PRODUCTION_ORDER_2_SRV",
+        "查询生产订单",
+    )
+
+    context = provider.enrich_with_requested_fields(
+        context,
+        [
+            "ManufacturingOrder",
+            "Material",
+            "ManufacturingOrderType",
+            "MfgOrderItemPlannedTotalQty",
+            "ProductionUnit",
+        ],
+    )
+
+    expected_item_fields = {
+        "ManufacturingOrder",
+        "Material",
+        "ManufacturingOrderType",
+        "MfgOrderItemPlannedTotalQty",
+        "ProductionUnit",
+    }
+    first_entity = context["entities"][0]
+    assert first_entity["entity_set"] == "A_ProductionOrderItem_2"
+    assert expected_item_fields.issubset(
+        {field["field_name"] for field in first_entity["fields"]}
+    )
+    assert expected_item_fields.issubset(
+        {
+            field["field_name"]
+            for field in context["candidate_fields"]
+            if field["entity_set"] == "A_ProductionOrderItem_2"
+        }
+    )
+    assert {
+        match["requested_field"]
+        for match in context["requested_field_matches"]
+        if match["entity_set"] == "A_ProductionOrderItem_2"
+    } == expected_item_fields
+
+
+def test_orchestrator_passes_constraint_and_rerank_answer_fields_to_schema_enrichment() -> None:
+    provider = SchemaContextProvider(index_root="data/index")
+    orchestrator = AgentOrchestrator.__new__(AgentOrchestrator)
+    orchestrator.schema_context_provider = provider
+    context = provider.build(
+        "API_PRODUCTION_ORDER_2_SRV",
+        "查询生产订单",
+    )
+    request = AgentRequest(
+        user_input="查询生产订单",
+        constraints=QueryConstraints(
+            target_field_concepts=["MfgOrderItemPlannedTotalQty"],
+        ),
+        schema_rerank={
+            "answer_fields": ["ProductionUnit"],
+        },
+    )
+
+    enriched = orchestrator._enrich_schema_context_with_requested_fields(
+        context,
+        request,
+        timings=[],
+    )
+
+    assert {
+        match["requested_field"]
+        for match in enriched["requested_field_matches"]
+        if match["entity_set"] == "A_ProductionOrderItem_2"
+    } == {"MfgOrderItemPlannedTotalQty", "ProductionUnit"}
 
 
 def test_production_order_catalog_pins_operation_fields_for_router() -> None:

@@ -979,6 +979,93 @@ def test_api_specific_planner_can_switch_direct_plan_to_skill_select_only_entity
     assert plan.planner_diagnostics["api_skill_applied_select_only"][0]["entity_switched_from"] == "A_Extra"
 
 
+def test_api_specific_planner_uses_item_fields_for_production_order_target_quantity() -> None:
+    from sap_odata_agent.infrastructure.indexing.api_skill_provider import ApiSkillProvider
+    from sap_odata_agent.infrastructure.indexing.schema_context_provider import SchemaContextProvider
+
+    client = CapturingClient(
+        {
+            "plan_kind": "direct",
+            "service_name": "API_PRODUCTION_ORDER_2_SRV",
+            "entity_set": "A_ProductionOrder_2",
+            "http_method": "GET",
+            "select_fields": ["ManufacturingOrder", "Material", "ManufacturingOrderType"],
+            "filters": [
+                {
+                    "field": "Material",
+                    "operator": "eq",
+                    "value": "EWMS4-50",
+                    "value_type": "string",
+                }
+            ],
+            "presentation": {"kind": "table", "reason": "production order list"},
+            "rationale": "The LLM initially chose the header entity.",
+        }
+    )
+    provider = SchemaContextProvider(index_root="data/index")
+    skill = ApiSkillProvider(skill_root="data/api_skills").load("API_PRODUCTION_ORDER_2_SRV")
+    assert skill is not None
+    schema_context = provider.build(
+        "API_PRODUCTION_ORDER_2_SRV",
+        "查询物料EWMS4-50的生产订单",
+    )
+    schema_context = provider.enrich_with_api_skill(schema_context, skill.as_prompt_payload())
+    assert {
+        field["field_name"]
+        for field in schema_context["candidate_fields"]
+        if field["entity_set"] == "A_ProductionOrderItem_2"
+    }.issuperset({"MfgOrderItemPlannedTotalQty", "ProductionUnit"})
+    schema_context = provider.enrich_with_requested_fields(
+        schema_context,
+        [
+            "ManufacturingOrder",
+            "Material",
+            "ManufacturingOrderType",
+            "MfgOrderItemPlannedTotalQty",
+            "ProductionUnit",
+        ],
+    )
+    schema_context["api_skill"] = skill.as_prompt_payload()
+
+    planner = LlmApiSpecificPlanner(index_root="data/index", llm_client=client)
+    plan = planner.plan_for_api(
+        AgentRequest(
+            user_input=(
+                "查询物料EWMS4-50的生产订单，在输出中请包含，生产订单号，物料号，"
+                "生产订单类型，目标数量，单位"
+            )
+        ),
+        ApiRouteDecision(
+            selected_apis=[
+                SelectedApi(
+                    service_name="API_PRODUCTION_ORDER_2_SRV",
+                    confidence=1.0,
+                    reason="production orders",
+                )
+            ]
+        ),
+        schema_context,
+    )
+
+    assert plan.entity_set == "A_ProductionOrderItem_2"
+    assert plan.select_fields == [
+        "ManufacturingOrder",
+        "Material",
+        "ManufacturingOrderType",
+        "MfgOrderItemPlannedTotalQty",
+        "ProductionUnit",
+    ]
+    assert [(item.field, item.operator, item.value) for item in plan.filters] == [
+        ("Material", "eq", "EWMS4-50")
+    ]
+    assert plan.needs_clarification is False
+    assert plan.planner_diagnostics["api_skill_applied_select_only"][0]["entity_switched_from"] == (
+        "A_ProductionOrder_2"
+    )
+    assert "MfgOrderItemPlannedTotalQty" in client.user_prompt
+    assert "ProductionUnit" in client.user_prompt
+
+
 def test_api_specific_planner_applies_matching_skill_null_filter(tmp_path: Path) -> None:
     _write_index(tmp_path)
     client = CapturingClient(
