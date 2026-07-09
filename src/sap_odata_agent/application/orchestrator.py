@@ -665,6 +665,11 @@ class AgentOrchestrator:
                 "api_skill": api_skill,
             }
         schema_context = self._attach_multi_api_skills(schema_context, timings)
+        schema_context = self._enrich_schema_context_with_requested_fields(
+            schema_context,
+            effective_request,
+            timings,
+        )
         schema_context = self._attach_temporal_context(schema_context, effective_request)
         schema_context = self._attach_kg_to_schema_context(schema_context, effective_request, route_decision, kg_debug, timings)
         pre_schema_context_summary = self.schema_context_provider.summarize(schema_context)
@@ -1484,6 +1489,42 @@ class AgentOrchestrator:
             "api_skill": enriched_context.get("api_skill") or skills[0],
         }
 
+    def _enrich_schema_context_with_requested_fields(
+        self,
+        schema_context: dict,
+        request: AgentRequest,
+        timings: list[dict],
+    ) -> dict:
+        if not hasattr(self.schema_context_provider, "enrich_with_requested_fields"):
+            return schema_context
+        requested_fields: list[str] = []
+        if request.constraints is not None:
+            requested_fields.extend(request.constraints.target_field_concepts or [])
+        for item in (request.schema_rerank or {}).get("answer_fields", []):
+            if isinstance(item, dict):
+                value = str(item.get("field_name") or "").strip()
+            else:
+                value = str(item or "").strip()
+            if value:
+                requested_fields.append(value)
+        requested_fields = list(
+            dict.fromkeys(
+                str(item or "").strip()
+                for item in requested_fields
+                if str(item or "").strip()
+            )
+        )
+        if not requested_fields:
+            return schema_context
+        return self._timed_call(
+            timings,
+            "schema_context.enrich_with_requested_fields",
+            "使用请求输出字段增强 Schema Context",
+            self.schema_context_provider.enrich_with_requested_fields,
+            schema_context,
+            requested_fields,
+        )
+
     @staticmethod
     def _attach_temporal_context(schema_context: dict, request: AgentRequest) -> dict:
         expressions = list(getattr(request, "detected_time_expressions", []) or [])
@@ -1590,6 +1631,11 @@ class AgentOrchestrator:
                 "api_skill": api_skill,
             }
         schema_context = self._attach_multi_api_skills(schema_context, timings)
+        schema_context = self._enrich_schema_context_with_requested_fields(
+            schema_context,
+            effective_request,
+            timings,
+        )
         schema_context = self._attach_temporal_context(schema_context, effective_request)
         schema_context = self._attach_kg_to_schema_context(
             schema_context,

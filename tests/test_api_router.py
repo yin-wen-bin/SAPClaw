@@ -63,6 +63,39 @@ def _product_catalog() -> list[dict]:
     ]
 
 
+def _structured_product_catalog() -> list[dict]:
+    return [
+        {
+            "service_name": "API_PRODUCT_SRV",
+            "short_description": "Product/material master data API.",
+            "primary_business_objects": ["Product", "Material"],
+            "top_entities": ["A_Product", "A_ProductPlant"],
+            "top_filter_fields": ["A_ProductPlant.Plant", "A_ProductPlant.IsBatchManagementRequired"],
+            "top_answer_fields": ["A_Product.Product", "A_Product.BaseUnit", "A_Product.ProductGroup"],
+            "api_skill_summary": "Legacy summary fallback.",
+            "api_skill_routing_hints": {
+                "route_when": [
+                    "Use this API for product or material master data by plant.",
+                    "For batch managed materials by plant, use API_PRODUCT_SRV.",
+                ],
+                "route_not_when": [
+                    "Do not use this API for purchase orders.",
+                ],
+                "business_terms": [
+                    "Batch managed wording belongs to product plant data.",
+                ],
+                "anchor_terms": [
+                    "Filter A_ProductPlant.Plant and A_ProductPlant.IsBatchManagementRequired.",
+                ],
+                "companion_apis": ["API_BUSINESS_PARTNER"],
+                "anti_patterns": [
+                    "Do not use this API for purchase orders.",
+                ],
+            },
+        }
+    ]
+
+
 def _ap_catalog() -> list[dict]:
     return [
         {
@@ -123,6 +156,15 @@ def test_api_router_skill_fallback_supplier_purchase_order_query_without_llm() -
     assert decision.selected_apis[0].service_name == "API_PURCHASEORDER_PROCESS_SRV"
     assert decision.raw_response["router_fallback"] == "skill_catalog_similarity"
     assert decision.needs_clarification is False
+
+
+def test_api_router_structured_skill_fallback_routes_batch_managed_materials_to_product() -> None:
+    router = LlmApiRouter(llm_client=None, enabled=False, allow_default_fallback=False)
+
+    decision = router.route("查询工厂1710下所有有批次管理的物料", _structured_product_catalog())
+
+    assert decision.selected_apis[0].service_name == "API_PRODUCT_SRV"
+    assert decision.raw_response["router_fallback"] == "skill_catalog_similarity"
 
 
 def test_api_router_excludes_cds_view_only_api_from_prompt_and_selection() -> None:
@@ -491,6 +533,36 @@ def test_api_router_prompt_includes_api_skill_summary() -> None:
     assert "api_skill_summary" in client.calls[0]["system_prompt"]
 
 
+def test_api_router_prompt_prefers_structured_skill_hints_over_summary() -> None:
+    valid = {
+        "resolved_user_input": "query batch managed materials by plant",
+        "should_carry_context": False,
+        "selected_apis": [
+            {
+                "service_name": "API_PRODUCT_SRV",
+                "confidence": 0.93,
+                "reason": "Structured routing hints match plant-scoped batch-managed material wording.",
+            }
+        ],
+        "requires_multi_api": False,
+        "intent_summary": "Batch managed materials by plant",
+        "business_domain": "Manufacturing",
+        "business_object": "Product Master",
+        "needs_clarification": False,
+        "clarification_question": "",
+        "clarification_options": [],
+    }
+    client = SequencedClient([json.dumps(valid)])
+    router = LlmApiRouter(llm_client=client, enabled=True, allow_default_fallback=False)
+
+    decision = router.route("查询工厂1710下所有有批次管理的物料", _structured_product_catalog())
+
+    assert decision.selected_apis[0].service_name == "API_PRODUCT_SRV"
+    assert "api_skill_hints" in client.calls[0]["user_prompt"]
+    assert "A_ProductPlant.IsBatchManagementRequired" in client.calls[0]["user_prompt"]
+    assert "Legacy summary fallback." not in client.calls[0]["user_prompt"]
+
+
 def test_api_router_compacts_large_catalog_payload() -> None:
     valid = {
         "resolved_user_input": "query purchase orders",
@@ -531,6 +603,18 @@ def test_api_router_compacts_large_catalog_payload() -> None:
     assert len(compact_entry["top_filter_fields"]) == 4
     assert len(compact_entry["top_answer_fields"]) == 4
     assert len(compact_entry["api_skill_summary"]) <= 700
+
+
+def test_api_router_structured_negative_hints_suppress_misroute() -> None:
+    router = LlmApiRouter(llm_client=None, enabled=False, allow_default_fallback=False)
+    catalog = [
+        *_structured_product_catalog(),
+        *_catalog(),
+    ]
+
+    decision = router.route("查询物料TG0011的采购订单", catalog)
+
+    assert decision.selected_apis[0].service_name == "API_PURCHASEORDER_PROCESS_SRV"
 
 
 def test_api_router_keeps_user_relevant_skill_guidance_after_compaction() -> None:
@@ -1570,6 +1654,54 @@ def test_api_router_adds_trial_balance_companion_for_gl_balance_drilldown() -> N
                 "or `drill down from G/L account balance to line items`, use companion API "
                 "`C_TRIALBALANCE_CDS` with `API_GLACCOUNTLINEITEM`."
             ),
+        },
+        {"service_name": "C_TRIALBALANCE_CDS", "short_description": "Trial balance API."},
+    ]
+    client = SequencedClient([json.dumps(response)])
+    router = LlmApiRouter(llm_client=client, enabled=True, allow_default_fallback=False)
+
+    decision = router.route("从公司1710总账科目10010000在2023年第12期的余额下钻查看凭证明细", catalog)
+
+    assert [item.service_name for item in decision.selected_apis] == [
+        "API_GLACCOUNTLINEITEM",
+        "C_TRIALBALANCE_CDS",
+    ]
+    assert decision.requires_multi_api is True
+
+
+def test_api_router_adds_structured_trial_balance_companion_for_gl_balance_drilldown() -> None:
+    response = {
+        "resolved_user_input": "从公司1710总账科目10010000在2023年第12期的余额下钻查看凭证明细",
+        "should_carry_context": False,
+        "selected_apis": [
+            {
+                "service_name": "API_GLACCOUNTLINEITEM",
+                "confidence": 0.88,
+                "reason": "The user asks for G/L account line item drilldown details.",
+            }
+        ],
+        "requires_multi_api": False,
+        "intent_summary": "Drill down from G/L account balance to accounting document line items.",
+        "business_domain": "Finance",
+        "business_object": "G/L Balance Drilldown",
+        "needs_clarification": False,
+        "clarification_question": "",
+        "clarification_options": [],
+    }
+    catalog = [
+        {
+            "service_name": "API_GLACCOUNTLINEITEM",
+            "short_description": "G/L account line item API.",
+            "api_skill_routing_hints": {
+                "route_when": [
+                    "For balance drilldown wording such as `余额下钻`, `从余额下钻查看凭证明细`, or `drill down from G/L account balance to line items`, use companion API `C_TRIALBALANCE_CDS` with `API_GLACCOUNTLINEITEM`."
+                ],
+                "route_not_when": [],
+                "business_terms": [],
+                "anchor_terms": [],
+                "companion_apis": ["C_TRIALBALANCE_CDS"],
+                "anti_patterns": [],
+            },
         },
         {"service_name": "C_TRIALBALANCE_CDS", "short_description": "Trial balance API."},
     ]

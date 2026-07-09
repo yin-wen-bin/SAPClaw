@@ -330,19 +330,18 @@ class LlmApiRouter:
             score += match_score * weight
             evidence.append(f"{label}:{LlmApiRouter._truncate(text, 140)}")
 
+        routing_hint_score, routing_hint_evidence = LlmApiRouter._score_routing_hints_for_fallback(entry, user_input)
+        score += routing_hint_score
+        evidence.extend(routing_hint_evidence)
+
         skill_summary = str(entry.get("api_skill_summary") or "")
-        for raw_line in skill_summary.splitlines():
-            line = raw_line.strip()
-            if not line or line.startswith("#"):
-                continue
-            match_score = LlmApiRouter._semantic_match_score(user_input, line)
-            if match_score <= 0:
-                continue
-            if LlmApiRouter._is_negative_skill_line(line):
-                score -= match_score * 6.0
-                continue
-            score += match_score * 2.8
-            evidence.append(f"api_skill:{LlmApiRouter._truncate(line, 180)}")
+        skill_line_score, skill_line_evidence = LlmApiRouter._score_skill_summary_lines_for_fallback(
+            skill_summary,
+            user_input=user_input,
+            prefer_legacy=not bool(LlmApiRouter._coerce_routing_hints(entry)),
+        )
+        score += skill_line_score
+        evidence.extend(skill_line_evidence)
 
         memory_score = LlmApiRouter._feedback_memory_match_score(entry, user_input, feedback_memories)
         if memory_score > 0:
@@ -383,6 +382,7 @@ class LlmApiRouter:
                     "top_filter_fields": entry.get("top_filter_fields") or [],
                     "top_answer_fields": entry.get("top_answer_fields") or [],
                     "api_skill_summary": entry.get("api_skill_summary") or "",
+                    "api_skill_routing_hints": entry.get("api_skill_routing_hints") or {},
                 },
                 ensure_ascii=False,
             )
@@ -395,6 +395,7 @@ class LlmApiRouter:
                     "primary_business_objects": entry.get("primary_business_objects") or [],
                     "top_entities": entry.get("top_entities") or [],
                     "api_skill_summary": entry.get("api_skill_summary") or "",
+                    "api_skill_routing_hints": entry.get("api_skill_routing_hints") or {},
                 },
                 ensure_ascii=False,
             )
@@ -581,6 +582,176 @@ class LlmApiRouter:
         )
 
     @staticmethod
+    def _coerce_routing_hints(entry: dict[str, Any]) -> dict[str, list[str]]:
+        raw = entry.get("api_skill_routing_hints")
+        if not isinstance(raw, dict):
+            return {}
+        keys = (
+            "route_when",
+            "route_not_when",
+            "business_terms",
+            "anchor_terms",
+            "companion_apis",
+            "anti_patterns",
+        )
+        hints: dict[str, list[str]] = {}
+        for key in keys:
+            values = raw.get(key)
+            if not isinstance(values, list):
+                hints[key] = []
+                continue
+            hints[key] = [str(value).strip() for value in values if str(value).strip()]
+        return hints
+
+    @staticmethod
+    def _score_routing_hints_for_fallback(entry: dict[str, Any], user_input: str) -> tuple[float, list[str]]:
+        hints = LlmApiRouter._coerce_routing_hints(entry)
+        if not hints:
+            return 0.0, []
+        score = 0.0
+        evidence: list[str] = []
+        weighted_groups = (
+            ("route_when", 4.8, "route_when"),
+            ("business_terms", 3.8, "business_terms"),
+            ("anchor_terms", 3.2, "anchor_terms"),
+        )
+        matched_positive_lines: list[str] = []
+        for key, weight, label in weighted_groups:
+            lines = LlmApiRouter._matched_hint_lines(hints.get(key, []), user_input=user_input, max_lines=4)
+            for line in lines:
+                match_score = max(1.0, LlmApiRouter._semantic_match_score(user_input, line))
+                score += match_score * weight
+                matched_positive_lines.append(line)
+                evidence.append(f"{label}:{LlmApiRouter._truncate(line, 180)}")
+
+        for key, weight, label in (
+            ("route_not_when", 6.5, "route_not_when"),
+            ("anti_patterns", 8.0, "anti_pattern"),
+        ):
+            lines = LlmApiRouter._matched_hint_lines(hints.get(key, []), user_input=user_input, max_lines=3)
+            for line in lines:
+                match_score = max(1.0, LlmApiRouter._semantic_match_score(user_input, line))
+                score -= match_score * weight
+                evidence.append(f"{label}:{LlmApiRouter._truncate(line, 180)}")
+
+        if matched_positive_lines and hints.get("companion_apis"):
+            score += min(4.0, float(len(hints["companion_apis"])) * 1.2)
+            evidence.append(
+                "companion_apis:" + ",".join(str(value) for value in hints["companion_apis"][:3])
+            )
+        return score, evidence
+
+    @staticmethod
+    def _score_skill_summary_lines_for_fallback(
+        skill_summary: str,
+        *,
+        user_input: str,
+        prefer_legacy: bool,
+    ) -> tuple[float, list[str]]:
+        score = 0.0
+        evidence: list[str] = []
+        positive_weight = 2.8 if prefer_legacy else 1.2
+        negative_weight = 6.0 if prefer_legacy else 2.6
+        for raw_line in str(skill_summary or "").splitlines():
+            line = raw_line.strip()
+            if not line or line.startswith("#"):
+                continue
+            match_score = LlmApiRouter._semantic_match_score(user_input, line)
+            if match_score <= 0:
+                continue
+            if LlmApiRouter._is_negative_skill_line(line):
+                score -= match_score * negative_weight
+                continue
+            score += match_score * positive_weight
+            evidence.append(f"api_skill:{LlmApiRouter._truncate(line, 180)}")
+        return score, evidence
+
+    @staticmethod
+    def _compact_skill_hints_for_prompt(entry: dict[str, Any], *, user_input: str) -> dict[str, list[str]]:
+        hints = LlmApiRouter._coerce_routing_hints(entry)
+        if not hints:
+            return {}
+        compact: dict[str, list[str]] = {}
+        route_when = LlmApiRouter._matched_hint_lines(hints.get("route_when", []), user_input=user_input, max_lines=3)
+        business_terms = LlmApiRouter._matched_hint_lines(
+            hints.get("business_terms", []),
+            user_input=user_input,
+            max_lines=3,
+        )
+        if route_when or business_terms:
+            if len(route_when) >= 3:
+                business_terms = []
+                route_when = route_when[:3]
+            elif len(route_when) + len(business_terms) > 3:
+                business_terms = business_terms[: 3 - len(route_when)]
+        compact["route_when"] = route_when
+        compact["business_terms"] = business_terms
+        compact["route_not_when"] = LlmApiRouter._dedupe_preserve(
+            [
+                *LlmApiRouter._matched_hint_lines(hints.get("route_not_when", []), user_input=user_input, max_lines=2),
+                *LlmApiRouter._matched_hint_lines(hints.get("anti_patterns", []), user_input=user_input, max_lines=2),
+            ]
+        )[:2]
+        compact["anchor_terms"] = LlmApiRouter._matched_hint_lines(
+            hints.get("anchor_terms", []),
+            user_input=user_input,
+            max_lines=2,
+        )
+        matched_companions = [
+            service_name
+            for service_name in hints.get("companion_apis", [])
+            if LlmApiRouter._routing_hint_group_mentions_service(hints, user_input, service_name)
+        ]
+        compact["companion_apis"] = matched_companions[:3]
+        return {key: value for key, value in compact.items() if value}
+
+    @staticmethod
+    def _routing_hint_group_mentions_service(
+        hints: dict[str, list[str]],
+        user_input: str,
+        service_name: str,
+    ) -> bool:
+        for key in ("route_when", "business_terms", "anchor_terms", "route_not_when", "anti_patterns"):
+            for line in LlmApiRouter._matched_hint_lines(hints.get(key, []), user_input=user_input, max_lines=6):
+                if service_name in line:
+                    return True
+        return False
+
+    @staticmethod
+    def _dedupe_preserve(values: list[str]) -> list[str]:
+        ordered: list[str] = []
+        seen: set[str] = set()
+        for value in values:
+            if value in seen:
+                continue
+            ordered.append(value)
+            seen.add(value)
+        return ordered
+
+    @staticmethod
+    def _matched_hint_lines(lines: list[str], *, user_input: str, max_lines: int) -> list[str]:
+        ranked_lines: list[tuple[int, int, str]] = []
+        for index, raw_line in enumerate(lines):
+            line = str(raw_line or "").strip()
+            if not line:
+                continue
+            if LlmApiRouter._skill_line_matches_user_input(line, user_input):
+                ranked_lines.append(
+                    (
+                        LlmApiRouter._skill_prompt_line_score(line, user_input),
+                        index,
+                        line,
+                    )
+                )
+        relevant_lines: list[str] = []
+        for _, _, line in sorted(ranked_lines, key=lambda item: (-item[0], item[1])):
+            if line not in relevant_lines:
+                relevant_lines.append(line)
+            if len(relevant_lines) >= max_lines:
+                break
+        return relevant_lines
+
+    @staticmethod
     def _compact_catalog_for_prompt(
         api_catalog: list[dict[str, Any]],
         user_input: str = "",
@@ -617,12 +788,16 @@ class LlmApiRouter:
                     max_limit=10,
                 ),
             }
-            skill_summary = str(entry.get("api_skill_summary") or "")
-            if skill_summary.strip():
-                item["api_skill_summary"] = LlmApiRouter._compact_skill_summary_for_prompt(
-                    skill_summary,
-                    user_input=user_input,
-                )
+            skill_hints = LlmApiRouter._compact_skill_hints_for_prompt(entry, user_input=user_input)
+            if skill_hints:
+                item["api_skill_hints"] = skill_hints
+            else:
+                skill_summary = str(entry.get("api_skill_summary") or "")
+                if skill_summary.strip():
+                    item["api_skill_summary"] = LlmApiRouter._compact_skill_summary_for_prompt(
+                        skill_summary,
+                        user_input=user_input,
+                    )
             kg_evidence = entry.get("kg_api_evidence") if isinstance(entry.get("kg_api_evidence"), dict) else {}
             if kg_evidence:
                 item["kg_api_evidence"] = {
@@ -1159,11 +1334,24 @@ class LlmApiRouter:
         repaired = list(selected)
         for selected_item in selected:
             entry = catalog_by_service.get(selected_item.service_name) or {}
-            relevant_lines = LlmApiRouter._relevant_skill_lines_for_prompt(
-                str(entry.get("api_skill_summary") or ""),
+            hints = LlmApiRouter._coerce_routing_hints(entry)
+            relevant_lines = LlmApiRouter._matched_hint_lines(
+                [
+                    *hints.get("route_when", []),
+                    *hints.get("route_not_when", []),
+                    *hints.get("business_terms", []),
+                    *hints.get("anchor_terms", []),
+                    *hints.get("anti_patterns", []),
+                ],
                 user_input=user_input,
                 max_lines=20,
             )
+            if not relevant_lines:
+                relevant_lines = LlmApiRouter._relevant_skill_lines_for_prompt(
+                    str(entry.get("api_skill_summary") or ""),
+                    user_input=user_input,
+                    max_lines=20,
+                )
             for line in relevant_lines:
                 normalized_line = line.lower()
                 if "do not use" in normalized_line or "don't use" in normalized_line:
@@ -1215,6 +1403,24 @@ class LlmApiRouter:
                     selected_names.add(service_name)
                     if len(repaired) >= 4:
                         return repaired
+            for service_name in hints.get("companion_apis", [])[:3]:
+                if service_name in selected_names or service_name not in valid_services:
+                    continue
+                if not LlmApiRouter._routing_hint_group_mentions_service(hints, user_input, service_name):
+                    continue
+                repaired.append(
+                    SelectedApi(
+                        service_name=service_name,
+                        confidence=0.55,
+                        reason=(
+                            "Selected API structured skill guidance declares this companion API "
+                            "for the user request."
+                        ),
+                    )
+                )
+                selected_names.add(service_name)
+                if len(repaired) >= 4:
+                    return repaired
         return repaired
 
     @staticmethod
