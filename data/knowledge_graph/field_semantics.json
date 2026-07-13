@@ -8857,6 +8857,58 @@
     "field_name": "Material",
     "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
     "confidence": 0.82,
+    "evidence_text": "For material-and-plant stock requests without a lower-level breakdown, select only `A_MatlStkInAcctMod.Material`, `A_MatlStkInAcctMod.Plant`, `A_MatlStkInAcctMod.MaterialBaseUnit`, and `A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit`, then use result_transform aggregate grouped by material, plant, and material base unit with the warehouse stock quantity as the summed measure.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "For material-and-plant stock requests without a lower-level breakdown, select only A_MatlStkInAcctMod.Material, A_MatlStkInAcctMod.Plant, A_MatlStkInAcctMod.MaterialBaseUnit, and A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit, then use result_transform aggregate grouped by material, plant, and material base unit with the warehouse stock quantity as the summ"
+    ]
+  },
+  {
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "entity_set": "A_MatlStkInAcctMod",
+    "field_name": "Plant",
+    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "For material-and-plant stock requests without a lower-level breakdown, select only `A_MatlStkInAcctMod.Material`, `A_MatlStkInAcctMod.Plant`, `A_MatlStkInAcctMod.MaterialBaseUnit`, and `A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit`, then use result_transform aggregate grouped by material, plant, and material base unit with the warehouse stock quantity as the summed measure.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "For material-and-plant stock requests without a lower-level breakdown, select only A_MatlStkInAcctMod.Material, A_MatlStkInAcctMod.Plant, A_MatlStkInAcctMod.MaterialBaseUnit, and A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit, then use result_transform aggregate grouped by material, plant, and material base unit with the warehouse stock quantity as the summ"
+    ]
+  },
+  {
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "entity_set": "A_MatlStkInAcctMod",
+    "field_name": "MaterialBaseUnit",
+    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "For material-and-plant stock requests without a lower-level breakdown, select only `A_MatlStkInAcctMod.Material`, `A_MatlStkInAcctMod.Plant`, `A_MatlStkInAcctMod.MaterialBaseUnit`, and `A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit`, then use result_transform aggregate grouped by material, plant, and material base unit with the warehouse stock quantity as the summed measure.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "For material-and-plant stock requests without a lower-level breakdown, select only A_MatlStkInAcctMod.Material, A_MatlStkInAcctMod.Plant, A_MatlStkInAcctMod.MaterialBaseUnit, and A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit, then use result_transform aggregate grouped by material, plant, and material base unit with the warehouse stock quantity as the summ"
+    ]
+  },
+  {
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "entity_set": "A_MatlStkInAcctMod",
+    "field_name": "MatlWrhsStkQtyInMatlBaseUnit",
+    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "For material-and-plant stock requests without a lower-level breakdown, select only `A_MatlStkInAcctMod.Material`, `A_MatlStkInAcctMod.Plant`, `A_MatlStkInAcctMod.MaterialBaseUnit`, and `A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit`, then use result_transform aggregate grouped by material, plant, and material base unit with the warehouse stock quantity as the summed measure.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "For material-and-plant stock requests without a lower-level breakdown, select only A_MatlStkInAcctMod.Material, A_MatlStkInAcctMod.Plant, A_MatlStkInAcctMod.MaterialBaseUnit, and A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit, then use result_transform aggregate grouped by material, plant, and material base unit with the warehouse stock quantity as the summ"
+    ]
+  },
+  {
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "entity_set": "A_MatlStkInAcctMod",
+    "field_name": "Material",
+    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
+    "confidence": 0.82,
     "evidence_text": "For material-level stock requests such as \"物料层级\", \"物料层级库存\", \"物料层级的库存\", or \"物料级库存\", select only `A_MatlStkInAcctMod.Material`, `A_MatlStkInAcctMod.Plant`, `A_MatlStkInAcctMod.MaterialBaseUnit`, and `A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit`.",
     "confirmed": true,
     "blocking": false,
@@ -9127,6 +9179,32 @@
     "blocking": false,
     "supports_meaning": [
       "For plant/storage-location breakdown wording such as 按工厂和库存地点区分的库存, stock by plant and storage location, or plant storage-location stock breakdown, use result_transform aggregate: group_by: A_MatlStkInAcctMod.Plant, A_MatlStkInAcctMod.StorageLocation; sum_fields: A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit, unless the user explicitly asks for material-le"
+    ]
+  },
+  {
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "entity_set": "API_PRODUCTION_ORDER_2_SRV",
+    "field_name": "A_ProductionOrderComponent_2",
+    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "When a production order number is provided, query `API_PRODUCTION_ORDER_2_SRV.A_ProductionOrderComponent_2` by `ManufacturingOrder` first, then bind only that order's component `Material` values to stock. Do not replace a specific order with an all-orders-at-plant component scan.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "When a production order number is provided, query API_PRODUCTION_ORDER_2_SRV.A_ProductionOrderComponent_2 by ManufacturingOrder first, then bind only that order's component Material values to stock. Do not replace a specific order with an all-orders-at-plant component scan."
+    ]
+  },
+  {
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "entity_set": "A_MatlStkInAcctMod",
+    "field_name": "Material",
+    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "When a production order number is provided, query `API_PRODUCTION_ORDER_2_SRV.A_ProductionOrderComponent_2` by `ManufacturingOrder` first, then bind only that order's component `Material` values to stock. Do not replace a specific order with an all-orders-at-plant component scan.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "When a production order number is provided, query API_PRODUCTION_ORDER_2_SRV.A_ProductionOrderComponent_2 by ManufacturingOrder first, then bind only that order's component Material values to stock. Do not replace a specific order with an all-orders-at-plant component scan."
     ]
   },
   {
@@ -12787,6 +12865,71 @@
   },
   {
     "service_name": "API_PRODUCTION_ORDER_2_SRV",
+    "entity_set": "A_ProductionOrderItem_2",
+    "field_name": "ManufacturingOrder",
+    "source": "data\\api_skills\\API_PRODUCTION_ORDER_2_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "For production order requests that explicitly ask for target/planned quantity or unit (`目标数量`, `计划数量`, `单位`), query `A_ProductionOrderItem_2` and select only `A_ProductionOrderItem_2.ManufacturingOrder`, `A_ProductionOrderItem_2.Material`, `A_ProductionOrderItem_2.ManufacturingOrderType`, `A_ProductionOrderItem_2.MfgOrderItemPlannedTotalQty`, and `A_ProductionOrderItem_2.ProductionUnit`; filter `A_ProductionOrderItem_2.Material` when the user provides a material.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "For production order requests that explicitly ask for target/planned quantity or unit (目标数量, 计划数量, 单位), query A_ProductionOrderItem_2 and select only A_ProductionOrderItem_2.ManufacturingOrder, A_ProductionOrderItem_2.Material, A_ProductionOrderItem_2.ManufacturingOrderType, A_ProductionOrderItem_2.MfgOrderItemPlannedTotalQty, and A_ProductionOrderItem_2.Pro"
+    ]
+  },
+  {
+    "service_name": "API_PRODUCTION_ORDER_2_SRV",
+    "entity_set": "A_ProductionOrderItem_2",
+    "field_name": "Material",
+    "source": "data\\api_skills\\API_PRODUCTION_ORDER_2_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "For production order requests that explicitly ask for target/planned quantity or unit (`目标数量`, `计划数量`, `单位`), query `A_ProductionOrderItem_2` and select only `A_ProductionOrderItem_2.ManufacturingOrder`, `A_ProductionOrderItem_2.Material`, `A_ProductionOrderItem_2.ManufacturingOrderType`, `A_ProductionOrderItem_2.MfgOrderItemPlannedTotalQty`, and `A_ProductionOrderItem_2.ProductionUnit`; filter `A_ProductionOrderItem_2.Material` when the user provides a material.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "For production order requests that explicitly ask for target/planned quantity or unit (目标数量, 计划数量, 单位), query A_ProductionOrderItem_2 and select only A_ProductionOrderItem_2.ManufacturingOrder, A_ProductionOrderItem_2.Material, A_ProductionOrderItem_2.ManufacturingOrderType, A_ProductionOrderItem_2.MfgOrderItemPlannedTotalQty, and A_ProductionOrderItem_2.Pro"
+    ]
+  },
+  {
+    "service_name": "API_PRODUCTION_ORDER_2_SRV",
+    "entity_set": "A_ProductionOrderItem_2",
+    "field_name": "ManufacturingOrderType",
+    "source": "data\\api_skills\\API_PRODUCTION_ORDER_2_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "For production order requests that explicitly ask for target/planned quantity or unit (`目标数量`, `计划数量`, `单位`), query `A_ProductionOrderItem_2` and select only `A_ProductionOrderItem_2.ManufacturingOrder`, `A_ProductionOrderItem_2.Material`, `A_ProductionOrderItem_2.ManufacturingOrderType`, `A_ProductionOrderItem_2.MfgOrderItemPlannedTotalQty`, and `A_ProductionOrderItem_2.ProductionUnit`; filter `A_ProductionOrderItem_2.Material` when the user provides a material.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "For production order requests that explicitly ask for target/planned quantity or unit (目标数量, 计划数量, 单位), query A_ProductionOrderItem_2 and select only A_ProductionOrderItem_2.ManufacturingOrder, A_ProductionOrderItem_2.Material, A_ProductionOrderItem_2.ManufacturingOrderType, A_ProductionOrderItem_2.MfgOrderItemPlannedTotalQty, and A_ProductionOrderItem_2.Pro"
+    ]
+  },
+  {
+    "service_name": "API_PRODUCTION_ORDER_2_SRV",
+    "entity_set": "A_ProductionOrderItem_2",
+    "field_name": "MfgOrderItemPlannedTotalQty",
+    "source": "data\\api_skills\\API_PRODUCTION_ORDER_2_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "For production order requests that explicitly ask for target/planned quantity or unit (`目标数量`, `计划数量`, `单位`), query `A_ProductionOrderItem_2` and select only `A_ProductionOrderItem_2.ManufacturingOrder`, `A_ProductionOrderItem_2.Material`, `A_ProductionOrderItem_2.ManufacturingOrderType`, `A_ProductionOrderItem_2.MfgOrderItemPlannedTotalQty`, and `A_ProductionOrderItem_2.ProductionUnit`; filter `A_ProductionOrderItem_2.Material` when the user provides a material.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "For production order requests that explicitly ask for target/planned quantity or unit (目标数量, 计划数量, 单位), query A_ProductionOrderItem_2 and select only A_ProductionOrderItem_2.ManufacturingOrder, A_ProductionOrderItem_2.Material, A_ProductionOrderItem_2.ManufacturingOrderType, A_ProductionOrderItem_2.MfgOrderItemPlannedTotalQty, and A_ProductionOrderItem_2.Pro"
+    ]
+  },
+  {
+    "service_name": "API_PRODUCTION_ORDER_2_SRV",
+    "entity_set": "A_ProductionOrderItem_2",
+    "field_name": "ProductionUnit",
+    "source": "data\\api_skills\\API_PRODUCTION_ORDER_2_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "For production order requests that explicitly ask for target/planned quantity or unit (`目标数量`, `计划数量`, `单位`), query `A_ProductionOrderItem_2` and select only `A_ProductionOrderItem_2.ManufacturingOrder`, `A_ProductionOrderItem_2.Material`, `A_ProductionOrderItem_2.ManufacturingOrderType`, `A_ProductionOrderItem_2.MfgOrderItemPlannedTotalQty`, and `A_ProductionOrderItem_2.ProductionUnit`; filter `A_ProductionOrderItem_2.Material` when the user provides a material.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "For production order requests that explicitly ask for target/planned quantity or unit (目标数量, 计划数量, 单位), query A_ProductionOrderItem_2 and select only A_ProductionOrderItem_2.ManufacturingOrder, A_ProductionOrderItem_2.Material, A_ProductionOrderItem_2.ManufacturingOrderType, A_ProductionOrderItem_2.MfgOrderItemPlannedTotalQty, and A_ProductionOrderItem_2.Pro"
+    ]
+  },
+  {
+    "service_name": "API_PRODUCTION_ORDER_2_SRV",
     "entity_set": "A_ProductionOrder_2",
     "field_name": "ProductionPlant",
     "source": "data\\api_skills\\API_PRODUCTION_ORDER_2_SRV\\skill.md",
@@ -13210,6 +13353,19 @@
     "blocking": false,
     "supports_meaning": [
       "If the user provides a plant, filter A_ProductionOrderOperation_2.ProductionPlant."
+    ]
+  },
+  {
+    "service_name": "API_PRODUCTION_ORDER_2_SRV",
+    "entity_set": "A_ProductionOrderComponent_2",
+    "field_name": "ManufacturingOrder",
+    "source": "data\\api_skills\\API_PRODUCTION_ORDER_2_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "When the user provides a production order number, filter `A_ProductionOrderComponent_2.ManufacturingOrder` by that number before applying any plant filter. Do not broaden a specific-order component request into an all-orders-for-plant query.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "When the user provides a production order number, filter A_ProductionOrderComponent_2.ManufacturingOrder by that number before applying any plant filter. Do not broaden a specific-order component request into an all-orders-for-plant query."
     ]
   },
   {

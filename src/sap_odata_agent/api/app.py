@@ -9,6 +9,7 @@ from fastapi.staticfiles import StaticFiles
 
 from sap_odata_agent.api.routes.agent import router as agent_router
 from sap_odata_agent.api.routes.queries import router as queries_router
+from sap_odata_agent.api.routes.runtime import router as runtime_router
 from sap_odata_agent.infrastructure.config.settings import get_settings
 
 
@@ -29,6 +30,7 @@ def create_app() -> FastAPI:
 
     app.include_router(agent_router)
     app.include_router(queries_router)
+    app.include_router(runtime_router)
 
     if frontend_dist.exists():
         assets_dir = frontend_dist / "assets"

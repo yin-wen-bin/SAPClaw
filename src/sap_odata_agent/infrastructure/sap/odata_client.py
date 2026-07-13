@@ -178,6 +178,16 @@ class BasicODataCompiler:
 
         return CompiledRequest(method=plan.http_method, url=url, payload=plan.payload)
 
+    def runtime_service_name(self, service_name: str) -> str:
+        """Resolve an indexed service to its SAP Gateway runtime name."""
+        self._ensure_odata_runtime_service(service_name)
+        return self._runtime_service_name(service_name)
+
+    @staticmethod
+    def compile_literal(value: str, value_type: str) -> str:
+        """Compile a typed OData literal without constructing a request."""
+        return BasicODataCompiler._compile_literal(value, value_type)
+
     def _ensure_odata_runtime_service(self, service_name: str) -> None:
         if str(service_name or "") in self.cds_view_only_services:
             raise ValueError(

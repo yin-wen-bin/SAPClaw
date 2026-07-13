@@ -5,6 +5,7 @@ from functools import lru_cache
 from sap_odata_agent.application.llm_plan_critic import LlmPlanCritic
 from sap_odata_agent.application.orchestrator import AgentOrchestrator
 from sap_odata_agent.application.schema_feasibility_validator import SchemaFeasibilityValidator
+from sap_odata_agent.application.thin_runtime import ThinRuntimeService
 from sap_odata_agent.infrastructure.config.settings import get_settings
 from sap_odata_agent.infrastructure.indexing.api_catalog_provider import ApiCatalogProvider
 from sap_odata_agent.infrastructure.indexing.api_skill_provider import ApiSkillProvider
@@ -68,6 +69,36 @@ def get_sap_executor() -> SapODataExecutor:
             auth_type=settings.sap_auth_type,
             timeout_seconds=max(1, settings.sap_timeout_ms // 1000),
         )
+    )
+
+
+@lru_cache(maxsize=1)
+def get_thin_runtime_service() -> ThinRuntimeService:
+    settings = get_settings()
+    return ThinRuntimeService(
+        settings=settings,
+        catalog_provider=ApiCatalogProvider(
+            index_root=settings.index_root,
+            default_service_name=settings.default_index_service,
+        ),
+        skill_provider=ApiSkillProvider(
+            skill_root=settings.api_skill_root,
+            max_summary_chars=4000,
+        ),
+        knowledge_graph_provider=get_knowledge_graph_provider(),
+        schema_context_provider=SchemaContextProvider(index_root=settings.index_root),
+        schema_validator=SchemaFeasibilityValidator(
+            index_root=settings.index_root,
+            service_name=settings.default_index_service,
+            enabled=True,
+        ),
+        plan_validator=BasicPlanValidator(),
+        compiler=BasicODataCompiler(
+            base_url=settings.sap_base_url,
+            index_root=settings.index_root,
+        ),
+        executor=get_sap_executor(),
+        case_repository=get_case_repository(),
     )
 
 

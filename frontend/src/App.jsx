@@ -42,6 +42,29 @@ const initialForm = {
   llm_profile_id: "",
 };
 
+function readViewerLocation() {
+  if (typeof window === "undefined") {
+    return { caseId: "", page: 1 };
+  }
+  const params = new URLSearchParams(window.location.search);
+  const caseId = params.get("case_id") || "";
+  const rawPage = Number(params.get("page") || 1);
+  return {
+    caseId,
+    page: Number.isFinite(rawPage) && rawPage > 0 ? Math.floor(rawPage) : 1,
+  };
+}
+
+function syncViewerPage(caseId, page) {
+  if (typeof window === "undefined" || !caseId) {
+    return;
+  }
+  const url = new URL(window.location.href);
+  url.searchParams.set("case_id", caseId);
+  url.searchParams.set("page", String(page));
+  window.history.replaceState({}, "", url);
+}
+
 function generateConversationId(now = new Date()) {
   const pad = (value, length = 2) => String(value).padStart(length, "0");
   return [
@@ -143,6 +166,7 @@ function buildLocalDisplayPage(current, nextSkip) {
 
   return {
     ...current,
+    final_message: text,
     data: {
       ...data,
       results: rawRows,
@@ -1080,7 +1104,16 @@ function DetailSection({ title, children, defaultOpen = false }) {
   );
 }
 
-function ResultPanel({ result, selectedHistory, feedbackProps, onPageChange, pageLoading, loading }) {
+function ResultPanel({
+  result,
+  selectedHistory,
+  feedbackProps,
+  onPageChange,
+  pageLoading,
+  loading,
+  showFeedback = true,
+  showDetails = true,
+}) {
   const summaryRows = useMemo(
     () => summarizeResultData(result?.data, result?.plan?.response_summary_fields || []),
     [result],
@@ -1101,7 +1134,7 @@ function ResultPanel({ result, selectedHistory, feedbackProps, onPageChange, pag
       <div className="panel-header result-header">
         <div>
           <h2>执行结果</h2>
-          <p className="panel-subtitle">{result.final_message || "无摘要信息"}</p>
+          <p className="panel-subtitle">{result.presentation?.text || result.final_message || "无摘要信息"}</p>
         </div>
         <span className={`status-pill ${result.needs_clarification ? "pending" : result.success ? "ok" : "fail"}`}>
           {statusLabel(result)}
@@ -1118,9 +1151,9 @@ function ResultPanel({ result, selectedHistory, feedbackProps, onPageChange, pag
         <KeyFieldsCard rows={summaryRows} />
       </div>
 
-      <FeedbackCard result={result} {...feedbackProps} />
+      {showFeedback ? <FeedbackCard result={result} {...feedbackProps} /> : null}
 
-      <div className="details-stack">
+      {showDetails ? <div className="details-stack">
         <DetailSection title="执行轨迹" defaultOpen>
           <ExecutionTraceCard attempts={result.attempts || []} />
         </DetailSection>
@@ -1161,12 +1194,13 @@ function ResultPanel({ result, selectedHistory, feedbackProps, onPageChange, pag
         <DetailSection title="历史上下文">
           <HistoryContextCard item={selectedHistory} />
         </DetailSection>
-      </div>
+      </div> : null}
     </section>
   );
 }
 
 export default function App() {
+  const [viewerLocation] = useState(readViewerLocation);
   const [form, setForm] = useState(initialForm);
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -1182,6 +1216,7 @@ export default function App() {
   const [defaultProfileId, setDefaultProfileId] = useState("");
   const [progressEvents, setProgressEvents] = useState([]);
   const [currentProgressEvent, setCurrentProgressEvent] = useState(null);
+  const [viewerLoading, setViewerLoading] = useState(Boolean(viewerLocation.caseId));
   const progressSourceRef = useRef(null);
   const [feedbackForm, setFeedbackForm] = useState({
     status: "",
@@ -1224,9 +1259,55 @@ export default function App() {
     }
   }
 
+  async function loadViewerCase(caseId, requestedPage = 1) {
+    setViewerLoading(true);
+    setError("");
+    try {
+      const response = await fetch(`/api/v1/agent/cases/${encodeURIComponent(caseId)}`, { cache: "no-store" });
+      const payload = await response.json();
+      if (!response.ok || !payload.success || !payload.result_snapshot) {
+        throw new Error(payload.detail || "查询结果不存在或已过期");
+      }
+
+      let snapshot = payload.result_snapshot;
+      const pagination = snapshot?.data?.pagination || {};
+      const pageSizeValue = Number(pagination.display_limit || pagination.page_size || 50);
+      const pageSize = Number.isFinite(pageSizeValue) && pageSizeValue > 0 ? pageSizeValue : 50;
+      const targetSkip = (Math.max(1, requestedPage) - 1) * pageSize;
+      if (targetSkip > 0) {
+        const pageResponse = await fetch("/api/v1/agent/page", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ case_id: caseId, skip: targetSkip }),
+        });
+        const pagePayload = await pageResponse.json();
+        if (!pageResponse.ok || !pagePayload.success) {
+          throw new Error(pagePayload.detail || "请求页码不存在或加载失败");
+        }
+        snapshot = {
+          ...snapshot,
+          data: pagePayload.data,
+          presentation: pagePayload.presentation,
+          attempts: [...(snapshot.attempts || []), ...(pagePayload.attempts || [])],
+        };
+      }
+      setResult(snapshot);
+      syncViewerPage(caseId, requestedPage);
+    } catch (viewerError) {
+      setResult(null);
+      setError(viewerError.message || "无法加载本地查询结果");
+    } finally {
+      setViewerLoading(false);
+    }
+  }
+
   useEffect(() => {
-    loadModelProfiles();
-    loadHistory();
+    if (viewerLocation.caseId) {
+      loadViewerCase(viewerLocation.caseId, viewerLocation.page);
+    } else {
+      loadModelProfiles();
+      loadHistory();
+    }
     return () => {
       if (progressSourceRef.current) {
         progressSourceRef.current.close();
@@ -1356,6 +1437,9 @@ export default function App() {
     const localPage = buildLocalDisplayPage(result, targetSkip);
     if (localPage) {
       setResult(localPage);
+      if (viewerLocation.caseId) {
+        syncViewerPage(viewerLocation.caseId, targetPage);
+      }
       return;
     }
 
@@ -1383,10 +1467,13 @@ export default function App() {
               data: payload.data,
               presentation: payload.presentation,
               attempts: [...(current.attempts || []), ...(payload.attempts || [])],
-              final_message: payload.final_message || current.final_message,
+              final_message: payload.presentation?.text || payload.final_message || current.final_message,
             }
           : current,
       );
+      if (viewerLocation.caseId) {
+        syncViewerPage(viewerLocation.caseId, targetPage);
+      }
     } catch (pageError) {
       setError(pageError.message || "页码加载失败");
     } finally {
@@ -1466,6 +1553,55 @@ export default function App() {
     } finally {
       setFeedbackSaving(false);
     }
+  }
+
+  if (viewerLocation.caseId) {
+    return (
+      <div className="app-shell viewer-shell">
+        <section className="hero viewer-hero">
+          <div className="hero-copy">
+            <div className="hero-title-block">
+              <h1>SAPClaw</h1>
+              <p className="hero-tagline">只读结果查看器</p>
+            </div>
+          </div>
+        </section>
+        <main className="workspace viewer-workspace">
+          <section className="content-column">
+            <section className="panel viewer-context-panel">
+              <div>
+                <span className="viewer-eyebrow">Thin Runtime Case</span>
+                <strong>{viewerLocation.caseId}</strong>
+              </div>
+              <span className="status-pill ok">只读</span>
+            </section>
+            {viewerLoading ? (
+              <section className="panel result-panel empty-state">
+                <h2>正在加载结果</h2>
+                <p>正在读取本地 case 快照。</p>
+              </section>
+            ) : null}
+            {error ? (
+              <section className="panel result-panel empty-state viewer-error-state">
+                <h2>无法打开结果</h2>
+                <p className="error-text">{error}</p>
+              </section>
+            ) : null}
+            {!viewerLoading && !error ? (
+              <ResultPanel
+                result={result}
+                selectedHistory={null}
+                onPageChange={handlePageChange}
+                pageLoading={pageLoading}
+                loading={false}
+                showFeedback={false}
+                showDetails={false}
+              />
+            ) : null}
+          </section>
+        </main>
+      </div>
+    );
   }
 
   return (

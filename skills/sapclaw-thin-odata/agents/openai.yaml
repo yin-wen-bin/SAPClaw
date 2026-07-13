@@ -1,0 +1,10 @@
+interface:
+  display_name: "SAPClaw Thin OData"
+  short_description: "Plan and run guarded SAP OData reads through Thin MCP"
+  default_prompt: "Use $sapclaw-thin-odata to answer this SAP question through the read-only Thin Runtime."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "sapclaw_runtime"
+      description: "Local SAPClaw read-only Thin Runtime"
+      transport: "stdio"

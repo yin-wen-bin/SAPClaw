@@ -269,6 +269,7 @@ class StepBinding:
     source_step_id: str
     source_field: str
     fanout: bool = False
+    fetch_all_for_binding: bool = False
 
 
 @dataclass(slots=True)
@@ -386,6 +387,9 @@ class CaseRecord:
     feedback_memories_used: list[dict[str, Any]] = field(default_factory=list)
     feedback: QueryFeedback | None = None
     error_summary: str | None = None
+    execution_origin: str | None = None
+    request_kind: str | None = None
+    runtime_request: dict[str, Any] | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)

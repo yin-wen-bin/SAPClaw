@@ -209,3 +209,34 @@ Only purpose text.
         "companion_apis": [],
         "anti_patterns": [],
     }
+
+
+def test_api_skill_provider_recommends_exact_cjk_planning_pattern(tmp_path: Path) -> None:
+    operational_dir = tmp_path / "API_OPERATIONAL"
+    operational_dir.mkdir(parents=True)
+    (operational_dir / "skill.md").write_text(
+        """# API_OPERATIONAL Skill
+
+## Common Planning Patterns
+- For Chinese wording such as `成本中心的运营会计项目`, use this API.
+""",
+        encoding="utf-8",
+    )
+    journal_dir = tmp_path / "API_JOURNAL"
+    journal_dir.mkdir(parents=True)
+    (journal_dir / "skill.md").write_text(
+        """# API_JOURNAL Skill
+
+## Common Planning Patterns
+- For Chinese wording such as `成本中心上的财务行项目`, use this API.
+""",
+        encoding="utf-8",
+    )
+
+    evidence = ApiSkillProvider(skill_root=tmp_path).recommend_services(
+        "查询公司1710成本中心的运营会计项目",
+        ["API_JOURNAL", "API_OPERATIONAL"],
+    )
+
+    assert evidence[0]["service_name"] == "API_OPERATIONAL"
+    assert "运营会计" in evidence[0]["evidence_text"]

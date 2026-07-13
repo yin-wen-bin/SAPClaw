@@ -9,6 +9,7 @@ SAPClaw 是一个通过SAP OData用自然语言操作SAP的Agent（目标是在S
 - LLM-first SAP OData 查询链路：API Router、Schema Context Provider、API-specific Planner、Plan Repair、Schema Validator、SAP Executor、Result Verifier 和 Result Presenter。
 - API skill 文件位于 `data/api_skills/`，用于沉淀每个 API 的业务知识和规划提示。
 - 运行时本地索引位于 `data/index/`。
+- 可选 Codex-first Thin Runtime 与现有 Agent 并行，提供严格只读 MCP 执行面。
 
 ## 仓库内容
 
@@ -199,6 +200,30 @@ MCP 暴露的主要工具包括：
 - `sapclaw_page`：读取某次查询的后续分页结果。
 - `sapclaw_feedback`：写入查询结果反馈。
 - `sapclaw_model_profiles`：列出本地可用的 LLM profile。
+
+### Codex-first Thin Runtime（实验功能）
+
+Thin Runtime 不替换现有 UI、HTTP API 或 `sapclaw-mcp`。Codex 负责业务理解、API 选择、QueryPlan 和最终回答，SAPClaw 负责 Catalog/Skill/KG evidence、Schema 权威、严格校验、只读 OData 执行、分页和审计。
+
+默认关闭；在 `env/.env` 中显式启用：
+
+```env
+THIN_RUNTIME_ENABLED=true
+THIN_RUNTIME_PAGE_SIZE=50
+THIN_RUNTIME_MAX_BINDING_ROWS=5000
+THIN_RUNTIME_VIEWER_ENABLED=true
+THIN_RUNTIME_VIEWER_BASE_URL=http://127.0.0.1:8000
+```
+
+启动独立 Runtime MCP：
+
+```powershell
+.\start_sapclaw_runtime_mcp.bat
+```
+
+它提供 `sapclaw_catalog`、`sapclaw_schema`、`sapclaw_guidance`、`sapclaw_validate_plan`、`sapclaw_execute_plan`、`sapclaw_execute_get`、分页和反馈工具，不会调用旧 `sapclaw_query`。Catalog 会返回可选的 KG 与 API Skill 候选 evidence；它们只帮助 Codex 找到需要检查的服务，不能自动选择 API 或绕过 schema 校验。
+
+完整配置、MCP client 示例、安全边界和本地结果查看器说明见 `docs/thin-runtime.md`。Codex workflow skill 位于 `skills/sapclaw-thin-odata/`。
 
 ## 免责声明
 

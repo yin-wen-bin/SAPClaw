@@ -147,6 +147,19 @@ def read_page(
     if entry is None:
         raise HTTPException(status_code=404, detail="Case not found.")
 
+    runtime_pagination = ((entry.get("runtime_request") or {}).get("pagination") or {})
+    is_thin_case = entry.get("execution_origin") == "thin_mcp"
+    business_top = _optional_positive_int(runtime_pagination.get("business_top")) if is_thin_case else None
+    initial_skip = max(0, _safe_int(runtime_pagination.get("initial_skip"), 0)) if is_thin_case else 0
+    effective_end = initial_skip + business_top if business_top is not None else None
+    if effective_end is not None and payload.skip >= effective_end:
+        raise HTTPException(status_code=416, detail="Requested page exceeds the plan's top limit.")
+    if is_thin_case:
+        stored_data = entry.get("response_preview") if isinstance(entry.get("response_preview"), dict) else {}
+        known_total = _safe_int(stored_data.get("result_count"), -1)
+        if payload.skip > 0 and known_total >= 0 and payload.skip >= known_total:
+            raise HTTPException(status_code=416, detail="Requested page exceeds the result count.")
+
     local_data = _stored_local_page(entry, payload.skip)
     if local_data is not None:
         presentation = _build_page_presentation(entry, local_data)
@@ -164,12 +177,19 @@ def read_page(
         raise HTTPException(status_code=400, detail="Case does not contain a pageable query URL.")
 
     page_size = _page_size_from_entry(entry)
-    page_url = _replace_query_params(base_url, {"$top": str(page_size), "$skip": str(payload.skip)})
+    remaining = min(page_size, effective_end - payload.skip) if effective_end is not None else page_size
+    page_url = _replace_query_params(
+        base_url,
+        {"$top": str(remaining), "$skip": str(payload.skip)},
+        remove={"$skiptoken"} if is_thin_case else None,
+    )
     attempt = sap_executor.execute(CompiledRequest(method="GET", url=page_url), attempt_number=1)
     if not attempt.success:
         raise HTTPException(status_code=502, detail=attempt.error_message or "SAP page request failed.")
 
     data = attempt.response_preview or {}
+    if is_thin_case:
+        data = _thin_page_data(data, payload.skip, page_size, effective_end)
     presentation = _build_page_presentation(entry, data)
     return {
         "case_id": payload.case_id,
@@ -214,12 +234,70 @@ def read_history(
     }
 
 
-def _replace_query_params(url: str, replacements: dict[str, str]) -> str:
+@router.get("/cases/{case_id}")
+def read_case_snapshot(
+    case_id: str,
+    case_repository=Depends(get_case_repository),
+) -> dict[str, Any]:
+    entry = case_repository.get_by_case_id(case_id)
+    if entry is None:
+        raise HTTPException(status_code=404, detail="Case not found.")
+    payload = _history_entry_to_payload(entry) or {}
+    snapshot = payload.get("result_snapshot")
+    if not isinstance(snapshot, dict):
+        raise HTTPException(status_code=410, detail="Case result snapshot is unavailable.")
+    return {
+        "case_id": case_id,
+        "success": True,
+        "result_snapshot": snapshot,
+    }
+
+
+def _replace_query_params(
+    url: str,
+    replacements: dict[str, str],
+    remove: set[str] | None = None,
+) -> str:
     split = urllib.parse.urlsplit(url)
     params = dict(urllib.parse.parse_qsl(split.query, keep_blank_values=True))
+    for key in remove or set():
+        params.pop(key, None)
     params.update(replacements)
     query = urllib.parse.urlencode(params, safe="$(),'/")
     return urllib.parse.urlunsplit((split.scheme, split.netloc, split.path, query, split.fragment))
+
+
+def _thin_page_data(
+    data: dict[str, Any],
+    skip: int,
+    page_size: int,
+    effective_end: int | None,
+) -> dict[str, Any]:
+    normalized = dict(data)
+    rows = [item for item in data.get("results") or [] if isinstance(item, dict)]
+    if effective_end is not None:
+        rows = rows[: max(0, effective_end - skip)]
+    raw_total = _safe_int(data.get("result_count"), skip + len(rows))
+    total = min(raw_total, effective_end) if effective_end is not None else raw_total
+    has_next = skip + len(rows) < total
+    normalized.update(
+        {
+            "result_count": total,
+            "returned_count": len(rows),
+            "displayed_count": len(rows),
+            "results": rows,
+            "pagination": {
+                **(data.get("pagination") or {}),
+                "page_size": page_size,
+                "display_limit": page_size,
+                "skip": skip,
+                "page_number": (skip // page_size) + 1,
+                "has_next": has_next,
+                "next_skip": skip + len(rows) if has_next else None,
+            },
+        }
+    )
+    return normalized
 
 
 def _stored_local_page(entry: dict[str, Any], skip: int) -> dict[str, Any] | None:
@@ -227,13 +305,15 @@ def _stored_local_page(entry: dict[str, Any], skip: int) -> dict[str, Any] | Non
     if not isinstance(data, dict):
         return None
     rows = data.get("_all_results")
-    if not isinstance(rows, list) or skip >= len(rows):
+    window_start = _safe_int(data.get("_result_window_start"), 0)
+    offset = skip - window_start
+    if not isinstance(rows, list) or offset < 0 or offset >= len(rows):
         return None
     pagination = data.get("pagination") if isinstance(data.get("pagination"), dict) else {}
     display_limit = _safe_int(pagination.get("display_limit"), 50)
     if display_limit <= 0:
         display_limit = 50
-    page_rows = rows[skip : skip + display_limit]
+    page_rows = rows[offset : offset + display_limit]
     if skip > 0 and not page_rows:
         return None
     total_count = _safe_int(data.get("result_count"), len(rows))
@@ -318,6 +398,11 @@ def _safe_int(value: Any, fallback: int) -> int:
         return fallback
 
 
+def _optional_positive_int(value: Any) -> int | None:
+    parsed = _safe_int(value, 0)
+    return parsed if parsed > 0 else None
+
+
 def _format_display_value(value: Any) -> Any:
     return format_sap_json_date_for_display(value)
 
@@ -371,6 +456,8 @@ def _history_entry_to_payload(entry: dict[str, Any] | None) -> dict[str, Any] | 
         "total_duration_ms": entry.get("total_duration_ms"),
         "feedback_memories_used": entry.get("feedback_memories_used", []),
         "api_skill_used": api_skill_used,
+        "execution_origin": entry.get("execution_origin"),
+        "request_kind": entry.get("request_kind"),
     }
     schema_context_summary = entry.get("schema_context_summary") or {}
     kg_payload = {
@@ -406,6 +493,8 @@ def _history_entry_to_payload(entry: dict[str, Any] | None) -> dict[str, Any] | 
         "total_duration_ms": entry.get("total_duration_ms"),
         "feedback_memories_used": entry.get("feedback_memories_used", []),
         "api_skill_used": api_skill_used,
+        "execution_origin": entry.get("execution_origin"),
+        "request_kind": entry.get("request_kind"),
         **{key: value for key, value in kg_payload.items() if value not in (None, [], "")},
         "result_snapshot": result_snapshot,
     }

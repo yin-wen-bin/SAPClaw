@@ -2892,3 +2892,50 @@ pre {
     white-space: normal;
   }
 }
+
+.viewer-hero {
+  min-height: 116px;
+  padding-top: 30px;
+  padding-bottom: 18px;
+}
+
+.viewer-workspace {
+  padding-top: 22px;
+}
+
+.viewer-context-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px 20px;
+}
+
+.viewer-context-panel > div {
+  display: grid;
+  min-width: 0;
+  gap: 4px;
+}
+
+.viewer-context-panel strong {
+  overflow-wrap: anywhere;
+  font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.9rem;
+}
+
+.viewer-eyebrow {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.viewer-error-state {
+  border-color: rgba(201, 58, 58, 0.28);
+}
+
+@media (max-width: 760px) {
+  .viewer-context-panel {
+    align-items: flex-start;
+  }
+}

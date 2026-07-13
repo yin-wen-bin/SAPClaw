@@ -102,6 +102,66 @@ class ApiSkillProvider:
             )
         return enriched
 
+    def recommend_services(
+        self,
+        user_input: str,
+        service_names: list[str] | set[str] | tuple[str, ...],
+        *,
+        limit: int = 5,
+    ) -> list[dict[str, Any]]:
+        """Return compact, advisory candidate evidence from authored API Skills.
+
+        This is retrieval only. It never selects a service, modifies a plan, or
+        overrides catalog/schema availability. Matching the complete Skill
+        patterns is important because the short catalog summary can omit a
+        precise business phrase found later in a skill's planning patterns.
+        """
+
+        query = str(user_input or "").strip()
+        if not query:
+            return []
+
+        ranked: list[tuple[float, str, dict[str, Any]]] = []
+        for service_name in dict.fromkeys(str(name or "").strip() for name in service_names):
+            if not service_name:
+                continue
+            skill = self.load(service_name)
+            if skill is None:
+                continue
+            lines = [
+                *skill.routing_hints.route_when,
+                *skill.routing_hints.business_terms,
+                *skill.routing_hints.anchor_terms,
+            ]
+            best_score = 0.0
+            best_line = ""
+            matched_terms: list[str] = []
+            for line in lines:
+                score, matches = self._skill_match_score(query, line)
+                if score > best_score:
+                    best_score = score
+                    best_line = line
+                    matched_terms = matches
+            if best_score <= 0:
+                continue
+            ranked.append(
+                (
+                    best_score,
+                    service_name,
+                    {
+                        "service_name": service_name,
+                        "confidence": round(min(1.0, 0.55 + best_score / 20.0), 3),
+                        "matched_terms": matched_terms[:8],
+                        "reason": self._truncate(best_line, 280),
+                        "source": skill.path,
+                        "confirmed": True,
+                        "evidence_text": self._truncate(best_line, 360),
+                    },
+                )
+            )
+        ranked.sort(key=lambda item: (-item[0], item[1]))
+        return [item for _, _, item in ranked[: max(1, int(limit or 1))]]
+
     def _summarize(self, content: str) -> str:
         sections_by_heading = self._extract_sections_by_heading(
             content,
@@ -242,6 +302,49 @@ class ApiSkillProvider:
                 "不包含",
             )
         )
+
+    @classmethod
+    def _skill_match_score(cls, query: str, candidate: str) -> tuple[float, list[str]]:
+        query_text = str(query or "")
+        candidate_text = str(candidate or "")
+        if not query_text.strip() or not candidate_text.strip():
+            return 0.0, []
+
+        score = 0.0
+        query_normalized = cls._normalize_search_text(query_text)
+        candidate_normalized = cls._normalize_search_text(candidate_text)
+        if len(query_normalized) >= 6 and query_normalized in candidate_normalized:
+            score += 10.0
+        if len(candidate_normalized) >= 6 and candidate_normalized in query_normalized:
+            score += 7.0
+
+        common_tokens = cls._search_tokens(query_text) & cls._search_tokens(candidate_text)
+        score += 2.0 * len(common_tokens)
+
+        common_cjk_terms = cls._cjk_terms(query_text) & cls._cjk_terms(candidate_text)
+        meaningful_cjk_terms = sorted((term for term in common_cjk_terms if len(term) >= 2), key=lambda term: (-len(term), term))
+        score += 1.5 * len(meaningful_cjk_terms)
+        matched_terms = [*meaningful_cjk_terms, *sorted(common_tokens)]
+        return score, matched_terms
+
+    @staticmethod
+    def _normalize_search_text(value: str) -> str:
+        return "".join(char for char in str(value or "").lower() if char.isalnum())
+
+    @staticmethod
+    def _search_tokens(value: str) -> set[str]:
+        split_camel = re.sub(r"(?<=[a-z0-9])(?=[A-Z])", " ", str(value or ""))
+        return {token.lower() for token in re.findall(r"[A-Za-z0-9]+", split_camel) if len(token) >= 3}
+
+    @staticmethod
+    def _cjk_terms(value: str) -> set[str]:
+        terms: set[str] = set()
+        for chunk in re.findall(r"[\u4e00-\u9fff]+", str(value or "")):
+            for size in (2, 3, 4, 5, 6):
+                if len(chunk) < size:
+                    continue
+                terms.update(chunk[index : index + size] for index in range(0, len(chunk) - size + 1))
+        return terms
 
     @staticmethod
     def _truncate(value: str, max_chars: int) -> str:

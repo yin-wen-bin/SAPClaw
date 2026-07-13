@@ -26,6 +26,8 @@ dev = [
 [project.scripts]
 sap-odata-build-index = "sap_odata_agent.tools.build_dual_source_index:main"
 sapclaw-mcp = "sap_odata_agent.agent_tools.mcp_server:main"
+sapclaw-runtime-mcp = "sap_odata_agent.agent_tools.runtime_mcp_server:main"
+sapclaw-thin-e2e = "sap_odata_agent.tools.run_thin_codex_e2e:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

@@ -55,7 +55,15 @@ class JsonlCaseRepository:
         self._feedback_signature: tuple[int, int] | None = None
 
     def save(self, record: CaseRecord) -> None:
-        payload = self._normalize_json(record.to_dict())
+        self.save_entry(record.to_dict())
+
+    def save_entry(self, entry: dict[str, Any]) -> None:
+        """Append an already-structured case record.
+
+        Thin Runtime cases intentionally share the existing append-only store,
+        but do not pretend to be LLM Agent CaseRecord instances.
+        """
+        payload = self._normalize_json(entry)
         with self._cache_lock:
             before_signature = self._file_signature(self.file_path)
             with self.file_path.open("a", encoding="utf-8") as handle:

@@ -40,6 +40,8 @@ data/api_test_cases/*/baselines/
 data/api_test_runs/
 data/cross_api_test_cases/*/baselines/
 data/cross_api_test_runs/
+data/thin_runtime_test_cases/
+data/thin_runtime_test_runs/
 /raw/
 frontend/node_modules/
 frontend/dist/

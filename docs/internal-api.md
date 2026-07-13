@@ -2,6 +2,8 @@
 
 This document describes the read-only API intended for trusted internal tools and agents. It is separate from the browser UI endpoints.
 
+The Codex-first strict execution surface is documented separately in [thin-runtime.md](thin-runtime.md). It runs in parallel with this natural-language API and does not change the request or response contract described below.
+
 ## Base URL
 
 Use the deployment URL for your environment:

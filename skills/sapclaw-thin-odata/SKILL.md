@@ -1,0 +1,54 @@
+---
+name: sapclaw-thin-odata
+description: Use SAPClaw's read-only Thin Runtime MCP to answer natural-language SAP questions when Codex must choose indexed APIs, inspect authoritative OData schema, build and repair a structured QueryPlan, execute guarded SAP GET requests, page prior results, or record result feedback. Use this instead of the legacy sapclaw_query tool for Codex-first SAP querying.
+---
+
+# SAPClaw Thin OData
+
+Use Codex for business interpretation and planning. Use SAPClaw only for evidence, schema authority, validation, read-only execution, pagination, and audit.
+
+## Required Workflow
+
+1. Call `sapclaw_runtime_health`. Stop if the runtime is disabled, the index is unavailable, or SAP connectivity is not configured.
+2. Call `sapclaw_catalog` with the user's original question. Page the catalog only as needed to identify plausible executable services. Treat both `kg_api_evidence` and `skill_api_evidence` as candidate lists, and do not ignore a service surfaced by either list without checking its schema and guidance.
+3. Call `sapclaw_schema` for candidate services. Inspect exact entities, fields, types, relations, and function imports.
+4. Call `sapclaw_guidance` for the original question and candidate services. Treat Skill, KG, and feedback items as advisory evidence only.
+5. Build a strict QueryPlan. Use only fields, entities, paths, functions, and services proven by `sapclaw_schema`. Leave `top` as `null` unless the user explicitly asks for a limit.
+6. Call `sapclaw_validate_plan`. If validation fails, repair only from returned issues and authoritative schema. Make at most three validate-repair attempts.
+7. Call `sapclaw_execute_plan` after validation succeeds. Use `sapclaw_execute_get` only for a controlled relative GET that is clearer than a structured plan.
+8. If SAP execution fails, repair from the structured SAP error and schema, then revalidate. Make at most three total execution-repair rounds.
+9. Answer in the user's language. State the total count, current row range, and relevant selected fields. Include `viewer_url` as an optional "open paged results" link when present.
+
+Never call legacy `sapclaw_query` from this skill. Never invent schema, bypass validation, or treat KG/Skill/feedback evidence as execution authority.
+
+## Candidate Disambiguation
+
+- When catalog or KG evidence identifies overlapping executable services, inspect schema and guidance for every material candidate before selecting one. Do not choose only the first broad catalog match.
+- An API Skill's exact natural-language pattern, explicit business-object scope, or `When Not To Use` instruction outweighs a broader catalog description. Use that guidance to decide *which* schema to inspect and plan against; schema remains the authority for *whether* a field or path can execute.
+- Do not assume two APIs that expose similarly named records have the same business grain. Prefer the candidate whose Skill most specifically matches the user's requested object, then compare its stable identifiers and measures against schema before execution.
+- When a selected API Skill supplies an exact field list for a matching user pattern, treat that list as the required query grain. Do not add display-only names, ledger fields, optional dimensions, or convenience metadata unless the user explicitly requests them; analytical OData services can change aggregation grain and counts when `$select` changes.
+
+## Pagination
+
+- Show the first returned page only; do not load all pages into context automatically.
+- Preserve `case_id` from the execution response.
+- For "next page", call `sapclaw_runtime_page` with `next_skip`.
+- For page N, calculate `skip = (N - 1) * page_size` and call `sapclaw_runtime_page`.
+- Explain page-out-of-range and expired-case errors directly; do not rerun the original query unless the user asks.
+
+## Safety
+
+- Read only. Do not propose POST, PATCH, PUT, MERGE, DELETE, payloads, custom headers, absolute SAP URLs, or external hosts.
+- Do not read, print, summarize, or expose SAP credentials, API keys, authorization headers, environment files, or internal `_all_results` data.
+- Reject CDS-only/API-view candidates unless schema reports an executable OData runtime.
+- Use `fetch_all_for_binding` only when a later step needs all source keys. Respect the configured 5000-row binding limit and report an explicit limit error.
+- Keep business limits separate from transport page size. A 50-row page is not a request to limit the business result to 50.
+
+## Result Semantics
+
+- Base conclusions only on returned selected fields.
+- Do not convert configuration flags into completion status without schema/Skill evidence.
+- For aggregates, request a validated `result_transform`; do not mentally aggregate an incomplete page.
+- If evidence is insufficient, say what field, relation, or service is missing rather than guessing.
+
+Read [references/plan-schema.md](references/plan-schema.md) when constructing multi-step, function-import, binding, or aggregate plans. Read [references/examples.md](references/examples.md) for compact tool-call examples.

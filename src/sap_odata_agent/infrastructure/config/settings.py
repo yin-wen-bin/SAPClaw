@@ -76,6 +76,24 @@ class Settings:
     llm_verify_ssl: bool = field(default_factory=lambda: _get_setting("LLM_VERIFY_SSL", default="true").lower() == "true")
     llm_timeout_ms: int = field(default_factory=lambda: int(_get_setting("LLM_TIMEOUT_MS", default="45000")))
     internal_api_keys: str = field(default_factory=lambda: _get_setting("SAPCLAW_API_KEYS"))
+    thin_runtime_enabled: bool = field(
+        default_factory=lambda: _get_setting("THIN_RUNTIME_ENABLED", default="false").lower() == "true"
+    )
+    thin_runtime_page_size: int = field(
+        default_factory=lambda: int(_get_setting("THIN_RUNTIME_PAGE_SIZE", default="50"))
+    )
+    thin_runtime_max_binding_rows: int = field(
+        default_factory=lambda: int(_get_setting("THIN_RUNTIME_MAX_BINDING_ROWS", default="5000"))
+    )
+    thin_runtime_viewer_enabled: bool = field(
+        default_factory=lambda: _get_setting("THIN_RUNTIME_VIEWER_ENABLED", default="true").lower() == "true"
+    )
+    thin_runtime_viewer_base_url: str = field(
+        default_factory=lambda: _get_setting(
+            "THIN_RUNTIME_VIEWER_BASE_URL",
+            default="http://127.0.0.1:8000",
+        ).rstrip("/")
+    )
 
     @property
     def llm_enabled(self) -> bool:
