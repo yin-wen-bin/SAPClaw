@@ -249,7 +249,7 @@ def read_case_snapshot(
     return {
         "case_id": case_id,
         "success": True,
-        "result_snapshot": snapshot,
+        "result_snapshot": _viewer_result_snapshot(entry, snapshot),
     }
 
 
@@ -310,7 +310,9 @@ def _stored_local_page(entry: dict[str, Any], skip: int) -> dict[str, Any] | Non
     if not isinstance(rows, list) or offset < 0 or offset >= len(rows):
         return None
     pagination = data.get("pagination") if isinstance(data.get("pagination"), dict) else {}
-    display_limit = _safe_int(pagination.get("display_limit"), 50)
+    display_limit = _safe_int(pagination.get("display_limit"), 0)
+    if display_limit <= 0:
+        display_limit = _safe_int(pagination.get("page_size"), 50)
     if display_limit <= 0:
         display_limit = 50
     page_rows = rows[offset : offset + display_limit]
@@ -319,6 +321,7 @@ def _stored_local_page(entry: dict[str, Any], skip: int) -> dict[str, Any] | Non
     total_count = _safe_int(data.get("result_count"), len(rows))
     next_skip = skip + len(page_rows) if skip + len(page_rows) < len(rows) else None
     page_data = dict(data)
+    page_data.pop("_all_results", None)
     page_pagination = dict(pagination)
     page_pagination.update(
         {
@@ -341,6 +344,53 @@ def _stored_local_page(entry: dict[str, Any], skip: int) -> dict[str, Any] | Non
         }
     )
     return page_data
+
+
+def _viewer_result_snapshot(entry: dict[str, Any], snapshot: dict[str, Any]) -> dict[str, Any]:
+    """Return only the data needed to render the initial local viewer page."""
+    viewer_snapshot = dict(snapshot)
+    stored_page = _stored_local_page(entry, skip=0)
+    if stored_page is not None:
+        viewer_snapshot["data"] = stored_page
+        viewer_snapshot["presentation"] = _build_page_presentation(entry, stored_page)
+    elif isinstance(viewer_snapshot.get("data"), dict):
+        viewer_data = dict(viewer_snapshot["data"])
+        viewer_data.pop("_all_results", None)
+        viewer_snapshot["data"] = viewer_data
+
+    viewer_snapshot["attempts"] = _compact_viewer_attempts(viewer_snapshot.get("attempts"))
+    return viewer_snapshot
+
+
+def _compact_viewer_attempts(attempts: Any) -> list[dict[str, Any]]:
+    """Keep trace metadata while excluding full SAP response previews from viewer payloads."""
+    if not isinstance(attempts, list):
+        return []
+
+    compact_attempts: list[dict[str, Any]] = []
+    for attempt in attempts:
+        if not isinstance(attempt, dict):
+            continue
+        compact: dict[str, Any] = {}
+        for key in (
+            "attempt_number",
+            "step_id",
+            "success",
+            "status_code",
+            "extracted_values",
+            "error_message",
+        ):
+            if key in attempt:
+                compact[key] = attempt[key]
+        request = attempt.get("request")
+        if isinstance(request, dict):
+            compact["request"] = {
+                key: request[key]
+                for key in ("method", "url")
+                if key in request
+            }
+        compact_attempts.append(compact)
+    return compact_attempts
 
 
 def _page_size_from_entry(entry: dict[str, Any]) -> int:

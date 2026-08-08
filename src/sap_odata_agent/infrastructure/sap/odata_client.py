@@ -41,6 +41,7 @@ class SapRuntimeConfig:
     timeout_seconds: int = 30
     retry_attempts: int = 3
     retry_delay_seconds: float = 0.4
+    proxy_bypass_hosts: str = ""
 
 
 class BasicPlanValidator:
@@ -564,6 +565,8 @@ class SapODataExecutor:
         auth_handler = urllib.request.HTTPBasicAuthHandler(password_mgr)
 
         handlers: list[urllib.request.BaseHandler] = [auth_handler]
+        if self._should_bypass_proxy(compiled_request.url):
+            handlers.append(urllib.request.ProxyHandler({}))
         if compiled_request.url.lower().startswith("https://") and not self.config.verify_ssl:
             handlers.append(urllib.request.HTTPSHandler(context=ssl._create_unverified_context()))
 
@@ -583,6 +586,26 @@ class SapODataExecutor:
                 "content_type": response.headers.get("Content-Type", ""),
                 "body": response.read().decode("utf-8", errors="ignore"),
             }
+
+    def _should_bypass_proxy(self, url: str) -> bool:
+        host = (urllib.parse.urlsplit(url).hostname or "").strip(".").lower()
+        if not host:
+            return False
+
+        for raw_value in self.config.proxy_bypass_hosts.split(","):
+            candidate = raw_value.strip().lower()
+            if not candidate:
+                continue
+            if candidate == "*":
+                return True
+            if "://" in candidate:
+                candidate = urllib.parse.urlsplit(candidate).hostname or ""
+            elif candidate.count(":") == 1:
+                candidate = candidate.rsplit(":", 1)[0]
+            candidate = candidate.strip(".")
+            if candidate and (host == candidate or host.endswith(f".{candidate}")):
+                return True
+        return False
 
     @staticmethod
     def _parse_response_body(body: str, content_type: str) -> dict:

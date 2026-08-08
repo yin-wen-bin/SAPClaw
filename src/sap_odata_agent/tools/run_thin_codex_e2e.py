@@ -20,6 +20,7 @@ DEFAULT_SOURCE_ROOT = Path("data/cross_api_test_cases")
 DEFAULT_CASE_ROOT = Path("data/thin_runtime_test_cases")
 DEFAULT_RUN_ROOT = Path("data/thin_runtime_test_runs")
 DEFAULT_SKILL_PATH = Path("skills/sapclaw-thin-odata/SKILL.md")
+DEFAULT_RUNTIME_BASE_URL = "http://127.0.0.1:8000"
 
 
 def main() -> None:
@@ -40,6 +41,11 @@ def main() -> None:
     parser.add_argument("--codex-cli", default=os.getenv("CODEX_CLI", "codex"))
     parser.add_argument("--codex-model", default="")
     parser.add_argument("--codex-timeout-seconds", type=int, default=900)
+    parser.add_argument(
+        "--runtime-base-url",
+        default=os.getenv("THIN_RUNTIME_BASE_URL", DEFAULT_RUNTIME_BASE_URL),
+        help="Base URL for the isolated Thin Runtime backend.",
+    )
     parser.add_argument("--baseline-sap-timeout-ms", type=int, default=120_000)
     parser.add_argument("--baseline-retries", type=int, default=2)
     parser.add_argument("--baseline-retry-delay-seconds", type=float, default=2.0)
@@ -50,6 +56,7 @@ def main() -> None:
     args = parser.parse_args()
 
     modules = tuple(args.module or DEFAULT_MODULES)
+    runtime_base_url = str(args.runtime_base_url or DEFAULT_RUNTIME_BASE_URL).rstrip("/")
     case_root = Path(args.case_root)
     if args.prepare or not all((case_root / module / "cases.json").exists() for module in modules):
         prepare_suite(
@@ -103,6 +110,7 @@ def main() -> None:
                 codex_cli=args.codex_cli,
                 codex_model=args.codex_model,
                 timeout_seconds=max(30, args.codex_timeout_seconds),
+                runtime_base_url=runtime_base_url,
             )
         comparison = compare_case(case, baseline, codex_result, baseline_only=args.baseline_only)
         result = {
@@ -244,6 +252,7 @@ def run_codex_case(
     codex_cli: str,
     codex_model: str,
     timeout_seconds: int,
+    runtime_base_url: str,
 ) -> dict[str, Any]:
     case_id = case["id"]
     last_message_path = run_dir / "codex_outputs" / f"{case_id}.json"
@@ -287,7 +296,7 @@ def run_codex_case(
         "-c",
         'approval_policy="never"',
     ]
-    command.extend(isolated_runtime_mcp_config(skill_path.parents[2]))
+    command.extend(isolated_runtime_mcp_config(skill_path.parents[2], runtime_base_url=runtime_base_url))
     if codex_model:
         command.extend(["--model", codex_model])
     command.append(prompt)
@@ -367,7 +376,11 @@ def get_case_repository() -> JsonlCaseRepository:
     return JsonlCaseRepository(get_settings().case_store_path)
 
 
-def isolated_runtime_mcp_config(repo_root: Path) -> list[str]:
+def isolated_runtime_mcp_config(
+    repo_root: Path,
+    *,
+    runtime_base_url: str = DEFAULT_RUNTIME_BASE_URL,
+) -> list[str]:
     def quote(value: Path) -> str:
         return json.dumps(str(value), ensure_ascii=True)
 
@@ -375,7 +388,7 @@ def isolated_runtime_mcp_config(repo_root: Path) -> list[str]:
         "-m",
         "sap_odata_agent.agent_tools.runtime_mcp_server",
         "--base-url",
-        "http://127.0.0.1:8000",
+        runtime_base_url.rstrip("/"),
         "--timeout",
         "500",
     ]
@@ -588,7 +601,12 @@ def classify_codex_failure(value: str) -> str:
     lowered = value.lower()
     if "usage limit" in lowered or "purchase more credits" in lowered:
         return "codex_quota_limited"
-    if "rate limit" in lowered or "too many requests" in lowered:
+    if (
+        "rate limit" in lowered
+        or "too many requests" in lowered
+        or "selected model is at capacity" in lowered
+        or "model at capacity" in lowered
+    ):
         return "codex_rate_limited"
     if "timed out" in lowered or "timeout" in lowered:
         return "codex_timeout"

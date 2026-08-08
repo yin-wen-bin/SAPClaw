@@ -63,6 +63,29 @@ THIN_RUNTIME_VIEWER_BASE_URL=http://127.0.0.1:8000
 
 MCP/HTTP 输出会移除 `__metadata`、内部 `_all_results` 和敏感配置。完整本地分页窗口只保存在 ignored case store 中。
 
+## 输出字段契约
+
+新的 Codex 结构化计划应包含可选的 `output_contract`。它将请求字段和展示字段分开：
+
+```json
+{
+  "mode": "explicit",
+  "display_grain": "supplier",
+  "requested_fields": ["SupplierName"],
+  "display_fields": ["SupplierName"],
+  "support_fields": ["Supplier"],
+  "reason": "用户明确要求供应商名称。"
+}
+```
+
+- `explicit`：用户明确要求字段时使用。`requested_fields` 与 `display_fields` 必须完全一致且顺序一致；不能静默替换或追加展示字段。
+- `inferred`：用户未要求具体字段时使用。Codex 根据问题意图、业务粒度和 schema 选择最小完整业务视图。
+- `display_fields` 是表格、关键字段、分页和本地 Viewer 的唯一展示列；`support_fields` 仍会被请求，但只用于执行、关联或校验。
+- 对 aggregate 计划，展示字段必须属于 `group_by` 或 `sum_fields`，避免展示聚合后不存在的字段。
+
+该字段保持 optional，以兼容旧 Thin API caller；未提供时保留原有 `response_summary_fields + select_fields` 展示行为。
+`/execute-get` 也接受同一可选契约；Runtime 会将 `display_fields` 和 `support_fields` 合并进受控 `$select` 后再做 schema 校验。
+
 `/catalog` 可选返回 `kg_api_evidence` 和 `skill_api_evidence`。两者都只用于把潜在服务提供给 Codex 进一步检查；它们不会自动选择 API、修改 QueryPlan 或绕过 schema/guardrail。Codex 必须对候选服务继续调用 `/schema` 和 `/guidance`。
 
 ## MCP
@@ -116,6 +139,7 @@ sapclaw_validate_plan
 sapclaw_execute_plan
 sapclaw_execute_get
 sapclaw_runtime_page
+sapclaw_runtime_open_viewer
 sapclaw_runtime_feedback
 ```
 
@@ -149,6 +173,8 @@ http://127.0.0.1:8000/?case_id=<case-id>&page=<page-number>
 页面仅在本地读取已保存快照，不重新执行自然语言查询。数字页码通过现有 `/api/v1/agent/page` 加载后续页并同步 URL。
 
 Viewer URL 只会为 `localhost`、`127.0.0.1` 或 `::1` 生成。共享部署必须另行配置 HTTPS、认证网关和访问控制。
+
+在 Codex Desktop 中，使用 `sapclaw_runtime_open_viewer(case_id, page=1)` 打开结果。该 MCP 工具会先验证本地 case，再由系统默认浏览器打开结果页，不使用 Codex 的内嵌浏览器，也不返回聊天中的可点击链接。Thin workflow 在每次成功执行后默认调用该工具；多行、可分页或字段较多的单行结果会打开浏览器，空结果和可用一句话表达的单行结果保留在 Codex 中。
 
 ## 真实 E2E 验收
 

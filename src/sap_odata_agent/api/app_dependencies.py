@@ -68,6 +68,7 @@ def get_sap_executor() -> SapODataExecutor:
             verify_ssl=settings.sap_verify_ssl,
             auth_type=settings.sap_auth_type,
             timeout_seconds=max(1, settings.sap_timeout_ms // 1000),
+            proxy_bypass_hosts=settings.sap_proxy_bypass_hosts,
         )
     )
 

@@ -1114,9 +1114,10 @@ function ResultPanel({
   showFeedback = true,
   showDetails = true,
 }) {
+  const displayFields = result?.plan?.output_contract?.display_fields || result?.plan?.response_summary_fields || [];
   const summaryRows = useMemo(
-    () => summarizeResultData(result?.data, result?.plan?.response_summary_fields || []),
-    [result],
+    () => summarizeResultData(result?.data, displayFields),
+    [result, displayFields],
   );
   const totalDurationMs = getTotalDuration(result);
 

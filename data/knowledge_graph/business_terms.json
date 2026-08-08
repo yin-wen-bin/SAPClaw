@@ -112644,6 +112644,78 @@
     "confirmed": true
   },
   {
+    "term": "客户物料",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "Use this API for Chinese business wording such as `客户物料`、`客户物料信息`、`客户物料主数据`、`客户料号`、`客户物料编号`、`客户维护的物料信息`, including requests that also specify a customer number.",
+    "confirmed": true
+  },
+  {
+    "term": "客户物料信息",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "Use this API for Chinese business wording such as `客户物料`、`客户物料信息`、`客户物料主数据`、`客户料号`、`客户物料编号`、`客户维护的物料信息`, including requests that also specify a customer number.",
+    "confirmed": true
+  },
+  {
+    "term": "客户物料主数据",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "Use this API for Chinese business wording such as `客户物料`、`客户物料信息`、`客户物料主数据`、`客户料号`、`客户物料编号`、`客户维护的物料信息`, including requests that also specify a customer number.",
+    "confirmed": true
+  },
+  {
+    "term": "客户料号",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "Use this API for Chinese business wording such as `客户物料`、`客户物料信息`、`客户物料主数据`、`客户料号`、`客户物料编号`、`客户维护的物料信息`, including requests that also specify a customer number.",
+    "confirmed": true
+  },
+  {
+    "term": "客户物料编号",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "Use this API for Chinese business wording such as `客户物料`、`客户物料信息`、`客户物料主数据`、`客户料号`、`客户物料编号`、`客户维护的物料信息`, including requests that also specify a customer number.",
+    "confirmed": true
+  },
+  {
+    "term": "客户维护的物料信息",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "Use this API for Chinese business wording such as `客户物料`、`客户物料信息`、`客户物料主数据`、`客户料号`、`客户物料编号`、`客户维护的物料信息`, including requests that also specify a customer number.",
+    "confirmed": true
+  },
+  {
+    "term": "Use this API for Chinese business wording such as",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "Use this API for Chinese business wording such as `客户物料`、`客户物料信息`、`客户物料主数据`、`客户料号`、`客户物料编号`、`客户维护的物料信息`, including requests that also specify a customer number.",
+    "confirmed": true
+  },
+  {
+    "term": "including requests that also specify a customer number",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "Use this API for Chinese business wording such as `客户物料`、`客户物料信息`、`客户物料主数据`、`客户料号`、`客户物料编号`、`客户维护的物料信息`, including requests that also specify a customer number.",
+    "confirmed": true
+  },
+  {
     "term": "data/index/API_CUSTOMER_MATERIAL_SRV",
     "service_name": "API_CUSTOMER_MATERIAL_SRV",
     "semantic_role": "api_skill_business_term",
@@ -112704,6 +112776,42 @@
     "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
     "confidence": 0.76,
     "evidence_text": "Do not use this API for unrelated master data or transactions that belong to a more specific API already available in the catalog.",
+    "confirmed": true
+  },
+  {
+    "term": "Do not substitute a sales-order item",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "Do not substitute a sales-order item's customer-material number for customer-material master data. That value describes a specific sales-order item and is appropriate only when the user explicitly asks about sales orders or sales-order history.",
+    "confirmed": true
+  },
+  {
+    "term": "s customer-material number for customer-material master data",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "Do not substitute a sales-order item's customer-material number for customer-material master data. That value describes a specific sales-order item and is appropriate only when the user explicitly asks about sales orders or sales-order history.",
+    "confirmed": true
+  },
+  {
+    "term": "priate only when the user explicitly asks about sales orders",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "Do not substitute a sales-order item's customer-material number for customer-material master data. That value describes a specific sales-order item and is appropriate only when the user explicitly asks about sales orders or sales-order history.",
+    "confirmed": true
+  },
+  {
+    "term": "or sales-order history",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "Do not substitute a sales-order item's customer-material number for customer-material master data. That value describes a specific sales-order item and is appropriate only when the user explicitly asks about sales orders or sales-order history.",
     "confirmed": true
   },
   {
@@ -113073,6 +113181,159 @@
     "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
     "confidence": 0.76,
     "evidence_text": "Keep `$select` focused on key fields plus fields needed to answer the question.",
+    "confirmed": true
+  },
+  {
+    "term": "查询客户 <customer> 维护的客户物料信息",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "For `查询客户 <customer> 维护的客户物料信息`, query `A_CustomerMaterial` directly with `Customer eq <customer>`.",
+    "confirmed": true
+  },
+  {
+    "term": "A_CustomerMaterial",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "For `查询客户 <customer> 维护的客户物料信息`, query `A_CustomerMaterial` directly with `Customer eq <customer>`.",
+    "confirmed": true
+  },
+  {
+    "term": "Customer eq <customer>",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "For `查询客户 <customer> 维护的客户物料信息`, query `A_CustomerMaterial` directly with `Customer eq <customer>`.",
+    "confirmed": true
+  },
+  {
+    "term": "For",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "For `查询客户 <customer> 维护的客户物料信息`, query `A_CustomerMaterial` directly with `Customer eq <customer>`.",
+    "confirmed": true
+  },
+  {
+    "term": "查询客户",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "For `查询客户 <customer> 维护的客户物料信息`, query `A_CustomerMaterial` directly with `Customer eq <customer>`.",
+    "confirmed": true
+  },
+  {
+    "term": "customer",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "For `查询客户 <customer> 维护的客户物料信息`, query `A_CustomerMaterial` directly with `Customer eq <customer>`.",
+    "confirmed": true
+  },
+  {
+    "term": "维护的客户物料信息",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "For `查询客户 <customer> 维护的客户物料信息`, query `A_CustomerMaterial` directly with `Customer eq <customer>`.",
+    "confirmed": true
+  },
+  {
+    "term": "query",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "For `查询客户 <customer> 维护的客户物料信息`, query `A_CustomerMaterial` directly with `Customer eq <customer>`.",
+    "confirmed": true
+  },
+  {
+    "term": "directly with",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "For `查询客户 <customer> 维护的客户物料信息`, query `A_CustomerMaterial` directly with `Customer eq <customer>`.",
+    "confirmed": true
+  },
+  {
+    "term": "Customer eq",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "For `查询客户 <customer> 维护的客户物料信息`, query `A_CustomerMaterial` directly with `Customer eq <customer>`.",
+    "confirmed": true
+  },
+  {
+    "term": "API_SALES_ORDER_SRV",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "This is customer-material master data, not sales-order history. Do not add `API_SALES_ORDER_SRV` unless the user explicitly requests documents, orders, or order-item history.",
+    "confirmed": true
+  },
+  {
+    "term": "This is customer-material master data",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "This is customer-material master data, not sales-order history. Do not add `API_SALES_ORDER_SRV` unless the user explicitly requests documents, orders, or order-item history.",
+    "confirmed": true
+  },
+  {
+    "term": "not sales-order history",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "This is customer-material master data, not sales-order history. Do not add `API_SALES_ORDER_SRV` unless the user explicitly requests documents, orders, or order-item history.",
+    "confirmed": true
+  },
+  {
+    "term": "Do not add",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "This is customer-material master data, not sales-order history. Do not add `API_SALES_ORDER_SRV` unless the user explicitly requests documents, orders, or order-item history.",
+    "confirmed": true
+  },
+  {
+    "term": "unless the user explicitly requests documents",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "This is customer-material master data, not sales-order history. Do not add `API_SALES_ORDER_SRV` unless the user explicitly requests documents, orders, or order-item history.",
+    "confirmed": true
+  },
+  {
+    "term": "orders",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "This is customer-material master data, not sales-order history. Do not add `API_SALES_ORDER_SRV` unless the user explicitly requests documents, orders, or order-item history.",
+    "confirmed": true
+  },
+  {
+    "term": "or order-item history",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "This is customer-material master data, not sales-order history. Do not add `API_SALES_ORDER_SRV` unless the user explicitly requests documents, orders, or order-item history.",
     "confirmed": true
   },
   {

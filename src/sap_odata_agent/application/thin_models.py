@@ -8,6 +8,7 @@ from sap_odata_agent.domain.models import (
     ExecutionStep,
     FilterCondition,
     FunctionParameter,
+    OutputContract,
     QueryPlan,
     ResultTransform,
     StepBinding,
@@ -125,6 +126,47 @@ class ThinResultTransform(BaseModel):
         )
 
 
+class ThinOutputContract(BaseModel):
+    """Codex-authored, schema-validated selection of fields visible to the user."""
+
+    model_config = ConfigDict(extra="forbid", strict=True)
+
+    mode: Literal["explicit", "inferred"] = "inferred"
+    display_grain: str = ""
+    requested_fields: list[str] = Field(default_factory=list)
+    display_fields: list[str] = Field(min_length=1)
+    support_fields: list[str] = Field(default_factory=list)
+    reason: str = Field(min_length=1)
+
+    @field_validator("requested_fields", "display_fields", "support_fields")
+    @classmethod
+    def validate_contract_fields(cls, values: list[str]) -> list[str]:
+        if any(not str(value).strip() for value in values):
+            raise ValueError("Output contract field names must not be empty.")
+        return list(dict.fromkeys(values))
+
+    @model_validator(mode="after")
+    def validate_contract_shape(self) -> "ThinOutputContract":
+        if self.mode == "explicit":
+            if not self.requested_fields:
+                raise ValueError("Explicit output contracts require requested_fields.")
+            if self.requested_fields != self.display_fields:
+                raise ValueError(
+                    "Explicit output contracts must display exactly the requested_fields in the same order."
+                )
+        return self
+
+    def to_domain(self) -> OutputContract:
+        return OutputContract(
+            mode=self.mode,
+            display_grain=self.display_grain,
+            requested_fields=list(self.requested_fields),
+            display_fields=list(self.display_fields),
+            support_fields=list(self.support_fields),
+            reason=self.reason,
+        )
+
+
 class ThinQueryPlan(BaseModel):
     """Strict Codex-authored plan accepted by the read-only Thin Runtime."""
 
@@ -147,6 +189,7 @@ class ThinQueryPlan(BaseModel):
     steps: list[ThinExecutionStep] = Field(default_factory=list)
     function_parameters: list[ThinFunctionParameter] = Field(default_factory=list)
     result_transform: ThinResultTransform | None = None
+    output_contract: ThinOutputContract | None = None
     response_directive: str = ""
     rationale: str = ""
 
@@ -168,16 +211,38 @@ class ThinQueryPlan(BaseModel):
         step_ids = [step.step_id for step in self.steps]
         if len(step_ids) != len(set(step_ids)):
             raise ValueError("Execution step ids must be unique.")
+        if self.output_contract and self.result_transform:
+            transform_fields = set(self.result_transform.group_by) | set(self.result_transform.sum_fields)
+            missing = [field for field in self.output_contract.display_fields if field not in transform_fields]
+            if missing:
+                raise ValueError(
+                    "Aggregate output contracts may display only result_transform group_by or sum_fields: "
+                    + ", ".join(missing)
+                )
         return self
 
     def to_domain(self) -> QueryPlan:
-        selected = list(dict.fromkeys([*self.select_fields, *self.response_summary_fields]))
+        output_contract = self.output_contract.to_domain() if self.output_contract else None
+        display_fields = (
+            list(output_contract.display_fields)
+            if output_contract is not None
+            else list(self.response_summary_fields)
+        )
+        support_fields = list(output_contract.support_fields) if output_contract is not None else []
+        selected = list(dict.fromkeys([*self.select_fields, *display_fields, *support_fields]))
+        steps = [step.to_domain() for step in self.steps]
+        if output_contract is not None and steps:
+            final_step = steps[-1]
+            final_step.select_fields = list(
+                dict.fromkeys([*final_step.select_fields, *display_fields, *support_fields])
+            )
+            final_step.response_summary_fields = display_fields
         return QueryPlan(
             service_name=self.service_name,
             entity_set=self.entity_set,
             http_method=self.http_method,
             select_fields=selected,
-            response_summary_fields=list(self.response_summary_fields),
+            response_summary_fields=display_fields,
             filters=[item.to_domain() for item in self.filters],
             order_by=list(self.order_by),
             top=self.top,
@@ -191,9 +256,10 @@ class ThinQueryPlan(BaseModel):
             target_field=self.target_field,
             target_entity_set=self.target_entity_set,
             path_id=self.path_id,
-            steps=[step.to_domain() for step in self.steps],
+            steps=steps,
             function_parameters=[item.to_domain() for item in self.function_parameters],
             result_transform=self.result_transform.to_domain() if self.result_transform else None,
+            output_contract=output_contract,
         )
 
 
@@ -238,6 +304,7 @@ class RuntimeGetRequest(BaseModel):
     resource_path: str = Field(min_length=1)
     query_options: dict[str, str] = Field(default_factory=dict)
     function_parameters: dict[str, str] = Field(default_factory=dict)
+    output_contract: ThinOutputContract | None = None
     user_input: str = ""
     conversation_id: str | None = None
 

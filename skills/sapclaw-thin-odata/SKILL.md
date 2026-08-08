@@ -13,13 +13,34 @@ Use Codex for business interpretation and planning. Use SAPClaw only for evidenc
 2. Call `sapclaw_catalog` with the user's original question. Page the catalog only as needed to identify plausible executable services. Treat both `kg_api_evidence` and `skill_api_evidence` as candidate lists, and do not ignore a service surfaced by either list without checking its schema and guidance.
 3. Call `sapclaw_schema` for candidate services. Inspect exact entities, fields, types, relations, and function imports.
 4. Call `sapclaw_guidance` for the original question and candidate services. Treat Skill, KG, and feedback items as advisory evidence only.
-5. Build a strict QueryPlan. Use only fields, entities, paths, functions, and services proven by `sapclaw_schema`. Leave `top` as `null` unless the user explicitly asks for a limit.
+5. Build a strict QueryPlan with an `output_contract`. Use only fields, entities, paths, functions, and services proven by `sapclaw_schema`. Leave `top` as `null` unless the user explicitly asks for a limit.
 6. Call `sapclaw_validate_plan`. If validation fails, repair only from returned issues and authoritative schema. Make at most three validate-repair attempts.
 7. Call `sapclaw_execute_plan` after validation succeeds. Use `sapclaw_execute_get` only for a controlled relative GET that is clearer than a structured plan.
 8. If SAP execution fails, repair from the structured SAP error and schema, then revalidate. Make at most three total execution-repair rounds.
-9. Answer in the user's language. State the total count, current row range, and relevant selected fields. Include `viewer_url` as an optional "open paged results" link when present.
+9. After a successful execution response with a `case_id`, call `sapclaw_runtime_open_viewer` with that case ID before answering. The tool opens the saved local result page in the system default browser only for multi-row, pageable, or detailed results. It keeps an empty or compact single-result answer in Codex. If opening fails, continue with the answer and report that the local viewer could not be opened.
+10. Answer in the user's language. State the total count, current row range, and relevant selected fields. Keep `viewer_url` as optional runtime metadata only. Do not render it as a Markdown or clickable link in Codex Desktop; continue pagination through `sapclaw_runtime_page`.
 
 Never call legacy `sapclaw_query` from this skill. Never invent schema, bypass validation, or treat KG/Skill/feedback evidence as execution authority.
+
+## Output Contract
+
+Every new structured plan must include an `output_contract` with schema field names:
+
+```json
+{
+  "mode": "explicit | inferred",
+  "display_grain": "business grain of each displayed row",
+  "requested_fields": ["SchemaField"],
+  "display_fields": ["SchemaField"],
+  "support_fields": ["SchemaField"],
+  "reason": "Why these fields answer the user's question"
+}
+```
+
+- If the user explicitly names return fields, use `mode: "explicit"`. Resolve each requested business field to an authoritative schema field. `requested_fields` and `display_fields` must contain exactly the same fields in the same order. Do not silently substitute, add, or hide display fields. Keys, join fields, and filters that are needed only for execution belong in `support_fields` and are not displayed.
+- If the user does not name return fields, use `mode: "inferred"`. Choose the smallest complete business view for the requested grain. Include the business identifier, the requested measure/status/date, and the contextual fields needed to interpret it. Do not use a fixed column cap and do not return only an identifier when the question needs evidence or context.
+- For an aggregate, every `display_field` must be a `group_by` or `sum_field`; other fields are lost by the transform and cannot be displayed.
+- `display_fields` are the only fields shown in the SAPClaw table. `support_fields` are fetched for safe execution, joins, filtering, or audit but remain hidden from presentation.
 
 ## Candidate Disambiguation
 
@@ -35,6 +56,8 @@ Never call legacy `sapclaw_query` from this skill. Never invent schema, bypass v
 - For "next page", call `sapclaw_runtime_page` with `next_skip`.
 - For page N, calculate `skip = (N - 1) * page_size` and call `sapclaw_runtime_page`.
 - Explain page-out-of-range and expired-case errors directly; do not rerun the original query unless the user asks.
+- Do not offer a clickable local result-viewer link in Codex Desktop. The conversational page tools are the supported pagination surface in this client.
+- A successful multi-row, pageable, or detailed query opens the system-browser viewer by default through `sapclaw_runtime_open_viewer`. Compact single-result answers remain in Codex; do not ask the user to click a local URL.
 
 ## Safety
 

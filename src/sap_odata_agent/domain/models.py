@@ -264,6 +264,18 @@ class ResultTransform:
 
 
 @dataclass(slots=True)
+class OutputContract:
+    """A schema-bound contract for fields visible in a Thin Runtime result."""
+
+    mode: str = "inferred"
+    display_grain: str = ""
+    requested_fields: list[str] = field(default_factory=list)
+    display_fields: list[str] = field(default_factory=list)
+    support_fields: list[str] = field(default_factory=list)
+    reason: str = ""
+
+
+@dataclass(slots=True)
 class StepBinding:
     field: str
     source_step_id: str
@@ -314,6 +326,7 @@ class QueryPlan:
     steps: list[ExecutionStep] = field(default_factory=list)
     function_parameters: list[FunctionParameter] = field(default_factory=list)
     result_transform: ResultTransform | None = None
+    output_contract: OutputContract | None = None
 
 
 @dataclass(slots=True)

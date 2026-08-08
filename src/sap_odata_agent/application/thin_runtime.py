@@ -27,6 +27,7 @@ from sap_odata_agent.domain.models import (
     ExecutionAttempt,
     FilterCondition,
     FunctionParameter,
+    OutputContract,
     QueryPlan,
 )
 from sap_odata_agent.infrastructure.config.settings import Settings
@@ -385,6 +386,7 @@ class ThinRuntimeService:
         disabled = self._disabled_response()
         if disabled:
             return disabled
+        request = self._controlled_get_with_output_contract(request)
         issues, snapshot, root_name, is_function = self._validate_controlled_get(request)
         if issues or snapshot is None:
             return self._envelope(
@@ -421,8 +423,14 @@ class ThinRuntimeService:
             entity_set=request.resource_path,
             http_method="GET",
             select_fields=self._split_option_fields(request.query_options.get("$select", "")),
+            response_summary_fields=(
+                list(request.output_contract.display_fields)
+                if request.output_contract is not None
+                else self._split_option_fields(request.query_options.get("$select", ""))
+            ),
             top=business_top,
             plan_kind="function_import" if is_function else "direct",
+            output_contract=request.output_contract.to_domain() if request.output_contract else None,
         )
         presentation = self._build_presentation(plan, data, request.user_input) if attempt.success else None
         runtime_request = {
@@ -431,6 +439,7 @@ class ThinRuntimeService:
             "resource_path": request.resource_path,
             "query_options": dict(request.query_options),
             "function_parameters": dict(request.function_parameters),
+            "output_contract": request.output_contract.model_dump(mode="json") if request.output_contract else None,
             "pagination": {
                 "page_size": self.page_size,
                 "business_top": business_top,
@@ -461,6 +470,23 @@ class ThinRuntimeService:
             duration_ms=duration_ms,
             error=error,
         )
+
+    def _controlled_get_with_output_contract(self, request: RuntimeGetRequest) -> RuntimeGetRequest:
+        if request.output_contract is None:
+            return request
+        query_options = dict(request.query_options)
+        selected = self._split_option_fields(query_options.get("$select", ""))
+        selected = list(
+            dict.fromkeys(
+                [
+                    *selected,
+                    *request.output_contract.display_fields,
+                    *request.output_contract.support_fields,
+                ]
+            )
+        )
+        query_options["$select"] = ",".join(selected)
+        return request.model_copy(update={"query_options": query_options})
 
     def page(self, request: RuntimePageRequest) -> dict[str, Any]:
         disabled = self._disabled_response()
@@ -1514,7 +1540,10 @@ class ThinRuntimeService:
 
     def _build_presentation(self, plan: QueryPlan, data: dict[str, Any] | None, user_input: str) -> dict[str, Any]:
         rows = [self._clean_display_row(row) for row in self._visible_rows(data)]
-        preferred = list(dict.fromkeys([*plan.response_summary_fields, *plan.select_fields]))
+        if plan.output_contract is not None:
+            preferred = list(plan.output_contract.display_fields)
+        else:
+            preferred = list(dict.fromkeys([*plan.response_summary_fields, *plan.select_fields]))
         columns = [field for field in preferred if any(field in row for row in rows)]
         if not columns and rows:
             columns = list(rows[0].keys())
@@ -1659,6 +1688,17 @@ class ThinRuntimeService:
 
     @staticmethod
     def _domain_plan_from_stored(payload: dict[str, Any]) -> QueryPlan:
+        output_payload = payload.get("output_contract") or {}
+        output_contract = None
+        if isinstance(output_payload, dict) and output_payload.get("display_fields"):
+            output_contract = OutputContract(
+                mode=str(output_payload.get("mode") or "inferred"),
+                display_grain=str(output_payload.get("display_grain") or ""),
+                requested_fields=[str(item) for item in output_payload.get("requested_fields") or []],
+                display_fields=[str(item) for item in output_payload.get("display_fields") or []],
+                support_fields=[str(item) for item in output_payload.get("support_fields") or []],
+                reason=str(output_payload.get("reason") or ""),
+            )
         return QueryPlan(
             service_name=str(payload.get("service_name") or ""),
             entity_set=str(payload.get("entity_set") or ""),
@@ -1668,6 +1708,7 @@ class ThinRuntimeService:
             top=ThinRuntimeService._optional_positive_int(payload.get("top")),
             plan_kind=str(payload.get("plan_kind") or "direct"),
             target_entity_set=payload.get("target_entity_set"),
+            output_contract=output_contract,
         )
 
     @staticmethod

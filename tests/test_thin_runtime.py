@@ -192,6 +192,86 @@ def test_validate_plan_uses_schema_as_execution_authority(tmp_path: Path) -> Non
     assert any(issue["code"] == "schema_select_field_not_in_entity" for issue in invalid["validation_issues"])
 
 
+def test_output_contract_requests_support_fields_but_displays_explicit_fields(tmp_path: Path) -> None:
+    executor = FakeExecutor(total_count=2)
+    runtime = build_runtime(tmp_path, executor=executor)
+    plan = valid_plan(
+        select_fields=[],
+        output_contract={
+            "mode": "explicit",
+            "display_grain": "supplier",
+            "requested_fields": ["SupplierName"],
+            "display_fields": ["SupplierName"],
+            "support_fields": ["Supplier"],
+            "reason": "The user explicitly requested only the supplier name.",
+        },
+    )
+
+    response = runtime.execute_plan(plan, user_input="show only supplier name")
+    request_query = dict(urllib.parse.parse_qsl(urllib.parse.urlsplit(executor.requests[0].url).query))
+    stored = runtime.case_repository.get_by_case_id(response["case_id"])
+
+    assert response["ok"] is True
+    assert request_query["$select"].split(",") == ["SupplierName", "Supplier"]
+    assert response["data"]["presentation"]["columns"] == ["SupplierName"]
+    assert list(response["data"]["presentation"]["rows"][0]) == ["SupplierName"]
+    assert stored["final_plan"]["output_contract"]["mode"] == "explicit"
+
+
+def test_output_contract_unknown_display_field_is_rejected_by_schema(tmp_path: Path) -> None:
+    runtime = build_runtime(tmp_path)
+    plan = valid_plan(
+        output_contract={
+            "mode": "inferred",
+            "display_grain": "supplier",
+            "display_fields": ["UnknownDisplayField"],
+            "support_fields": [],
+            "reason": "Test schema enforcement.",
+        }
+    )
+
+    response = runtime.validate_plan(plan, "show supplier")
+
+    assert response["ok"] is False
+    assert any(issue["code"] == "schema_select_field_not_in_entity" for issue in response["validation_issues"])
+
+
+def test_explicit_output_contract_cannot_substitute_requested_fields() -> None:
+    try:
+        valid_plan(
+            output_contract={
+                "mode": "explicit",
+                "display_grain": "supplier",
+                "requested_fields": ["SupplierName"],
+                "display_fields": ["Supplier"],
+                "support_fields": [],
+                "reason": "Test explicit contract strictness.",
+            }
+        )
+    except ValueError as exc:
+        assert "display exactly the requested_fields" in str(exc)
+    else:  # pragma: no cover
+        raise AssertionError("Explicit output contract accepted a substituted display field.")
+
+
+def test_aggregate_output_contract_rejects_fields_lost_after_transform() -> None:
+    try:
+        valid_plan(
+            result_transform={"type": "aggregate", "group_by": ["Supplier"], "sum_fields": []},
+            output_contract={
+                "mode": "inferred",
+                "display_grain": "supplier",
+                "display_fields": ["SupplierName"],
+                "support_fields": [],
+                "reason": "Test aggregate output preservation.",
+            },
+        )
+    except ValueError as exc:
+        assert "Aggregate output contracts" in str(exc)
+    else:  # pragma: no cover
+        raise AssertionError("Aggregate output contract accepted a field lost after transformation.")
+
+
 def test_catalog_schema_and_guidance_are_evidence_only(tmp_path: Path) -> None:
     runtime = build_runtime(tmp_path)
 
@@ -468,6 +548,33 @@ def test_controlled_get_executes_only_indexed_relative_entity(tmp_path: Path) ->
         "https://sap.example/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_Supplier?"
     )
     assert response["metadata"]["read_only"] is True
+
+
+def test_controlled_get_output_contract_hides_support_fields(tmp_path: Path) -> None:
+    executor = FakeExecutor(total_count=1)
+    runtime = build_runtime(tmp_path, executor=executor)
+
+    response = runtime.execute_get(
+        RuntimeGetRequest(
+            service_name="API_BUSINESS_PARTNER",
+            resource_path="A_Supplier",
+            query_options={"$select": "Supplier"},
+            output_contract={
+                "mode": "explicit",
+                "display_grain": "supplier",
+                "requested_fields": ["SupplierName"],
+                "display_fields": ["SupplierName"],
+                "support_fields": ["Supplier"],
+                "reason": "The user explicitly requested only the supplier name.",
+            },
+            user_input="show only supplier name",
+        )
+    )
+    request_query = dict(urllib.parse.parse_qsl(urllib.parse.urlsplit(executor.requests[0].url).query))
+
+    assert response["ok"] is True
+    assert request_query["$select"].split(",") == ["Supplier", "SupplierName"]
+    assert response["data"]["presentation"]["columns"] == ["SupplierName"]
 
 
 def test_runtime_disabled_short_circuits_without_sap_request(tmp_path: Path) -> None:

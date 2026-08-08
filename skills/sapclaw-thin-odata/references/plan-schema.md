@@ -9,6 +9,14 @@
   "http_method": "GET",
   "select_fields": ["<field>"],
   "response_summary_fields": ["<field>"],
+  "output_contract": {
+    "mode": "inferred",
+    "display_grain": "<business row grain>",
+    "requested_fields": [],
+    "display_fields": ["<field shown to user>"],
+    "support_fields": ["<field fetched but hidden>"],
+    "reason": "<why this is the smallest complete business view>"
+  },
   "filters": [
     {"field": "<field>", "operator": "eq", "value": "<value>", "value_type": "string"}
   ],
@@ -95,3 +103,13 @@ Use only fields selected from the final result entity.
 ```
 
 Aggregation requires a complete source result and is bounded by runtime safety limits.
+
+## Output contract
+
+`output_contract` is optional only for compatibility with older clients. New Codex-authored plans must provide it.
+
+- `explicit`: `requested_fields` and `display_fields` must match exactly and use schema field names.
+- `inferred`: Codex selects the smallest complete business view from the user intent and schema.
+- `support_fields`: fields requested from SAP but hidden from the result table.
+- `display_fields`: ordered fields visible in the table, result summary, and local viewer.
+- Aggregate plans may display only `group_by` and `sum_fields`.

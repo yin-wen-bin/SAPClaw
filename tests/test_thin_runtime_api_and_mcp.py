@@ -1,11 +1,13 @@
 from __future__ import annotations
 
 import json
+import urllib.request
 from typing import Any
 
 from fastapi.testclient import TestClient
 
-from sap_odata_agent.agent_tools.runtime_client import SapClawRuntimeClient
+from sap_odata_agent.agent_tools.runtime_client import SapClawRuntimeClient, _urllib_runtime_transport
+from sap_odata_agent.agent_tools.runtime_mcp_server import SapClawRuntimeToolset
 from sap_odata_agent.api.app import create_app
 from sap_odata_agent.api.app_dependencies import get_case_repository, get_sap_executor, get_thin_runtime_service
 from sap_odata_agent.domain.models import ExecutionAttempt
@@ -99,9 +101,17 @@ def test_agent_case_snapshot_supports_thin_viewer_deep_link(monkeypatch) -> None
                     "http_method": "GET",
                 },
                 "response_preview": {
-                    "result_count": 1,
-                    "results": [{"Supplier": "<SUPPLIER_ID>"}],
-                    "pagination": {"page_size": 50, "skip": 0, "has_next": False},
+                    "result_count": 3,
+                    "results": [
+                        {"Supplier": "<SUPPLIER_ID_1>"},
+                        {"Supplier": "<SUPPLIER_ID_2>"},
+                    ],
+                    "_all_results": [
+                        {"Supplier": "<SUPPLIER_ID_1>"},
+                        {"Supplier": "<SUPPLIER_ID_2>"},
+                        {"Supplier": "<SUPPLIER_ID_3>"},
+                    ],
+                    "pagination": {"page_size": 2, "skip": 0, "has_next": True},
                 },
                 "presentation": {
                     "kind": "table",
@@ -110,7 +120,15 @@ def test_agent_case_snapshot_supports_thin_viewer_deep_link(monkeypatch) -> None
                     "columns": ["Supplier"],
                     "rows": [{"Supplier": "<SUPPLIER_ID>"}],
                 },
-                "attempts": [],
+                "attempts": [
+                    {
+                        "attempt_number": 1,
+                        "success": True,
+                        "status_code": 200,
+                        "request": {"method": "GET", "url": "https://sap.example/A_Supplier"},
+                        "response_preview": {"results": [{"Supplier": "<SUPPLIER_ID_1>"}]},
+                    }
+                ],
                 "execution_origin": "thin_mcp",
                 "request_kind": "structured_plan",
             }
@@ -127,6 +145,16 @@ def test_agent_case_snapshot_supports_thin_viewer_deep_link(monkeypatch) -> None
     assert snapshot["case_id"] == "thin-case"
     assert snapshot["execution_origin"] == "thin_mcp"
     assert snapshot["request_kind"] == "structured_plan"
+    assert snapshot["data"]["results"] == [
+        {"Supplier": "<SUPPLIER_ID_1>"},
+        {"Supplier": "<SUPPLIER_ID_2>"},
+    ]
+    assert "_all_results" not in snapshot["data"]
+    assert "response_preview" not in snapshot["attempts"][0]
+    assert snapshot["attempts"][0]["request"] == {
+        "method": "GET",
+        "url": "https://sap.example/A_Supplier",
+    }
     assert missing.status_code == 404
 
 
@@ -214,6 +242,14 @@ def test_runtime_client_sends_api_key_in_header_only() -> None:
         service_name="API_BUSINESS_PARTNER",
         resource_path="A_Supplier",
         query_options={"$select": "Supplier"},
+        output_contract={
+            "mode": "explicit",
+            "display_grain": "supplier",
+            "requested_fields": ["SupplierName"],
+            "display_fields": ["SupplierName"],
+            "support_fields": ["Supplier"],
+            "reason": "The user explicitly requested only the supplier name.",
+        },
     )
 
     assert response["ok"] is True
@@ -221,7 +257,41 @@ def test_runtime_client_sends_api_key_in_header_only() -> None:
     assert call["headers"]["X-API-Key"] == "runtime-secret"
     assert "runtime-secret" not in call["url"]
     assert "runtime-secret" not in json.dumps(call["payload"])
+    assert call["payload"]["output_contract"]["display_fields"] == ["SupplierName"]
     assert call["timeout_seconds"] == 500.0
+
+
+def test_runtime_client_bypasses_system_proxy_for_loopback(monkeypatch) -> None:
+    captured_handlers: list[tuple[object, ...]] = []
+
+    class Response:
+        status = 200
+        headers = {}
+
+        def read(self):
+            return b"{}"
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, exc_type, exc_value, traceback):
+            return False
+
+    class Opener:
+        def open(self, request, timeout):
+            return Response()
+
+    def build_opener(*handlers):
+        captured_handlers.append(handlers)
+        return Opener()
+
+    monkeypatch.setattr(urllib.request, "build_opener", build_opener)
+
+    _urllib_runtime_transport("GET", "http://127.0.0.1:8000/health", None, 1, {})
+
+    assert len(captured_handlers) == 1
+    assert isinstance(captured_handlers[0][0], urllib.request.ProxyHandler)
+    assert captured_handlers[0][0].proxies == {}
 
 
 def test_runtime_mcp_module_registers_only_thin_tool_names() -> None:
@@ -239,9 +309,98 @@ def test_runtime_mcp_module_registers_only_thin_tool_names() -> None:
         "sapclaw_execute_plan",
         "sapclaw_execute_get",
         "sapclaw_runtime_page",
+        "sapclaw_runtime_open_viewer",
         "sapclaw_runtime_feedback",
     }
     assert "sapclaw_query" not in tool_names
     assert server._tool_manager._tools["sapclaw_runtime_health"].annotations.readOnlyHint is True
     assert server._tool_manager._tools["sapclaw_execute_plan"].annotations.readOnlyHint is True
+    assert server._tool_manager._tools["sapclaw_runtime_open_viewer"].annotations.readOnlyHint is True
+    assert server._tool_manager._tools["sapclaw_runtime_open_viewer"].annotations.idempotentHint is False
     assert server._tool_manager._tools["sapclaw_runtime_feedback"].annotations.readOnlyHint is False
+
+
+def test_runtime_open_viewer_validates_case_and_uses_system_browser() -> None:
+    class ViewerClient:
+        base_url = "http://127.0.0.1:8000"
+
+        def __init__(self) -> None:
+            self.calls: list[str] = []
+
+        def health(self):
+            self.calls.append("health")
+            return {"data": {"viewer_enabled": True}}
+
+        def case_snapshot(self, case_id):
+            self.calls.append(f"case:{case_id}")
+            return {"success": True}
+
+    opened: list[str] = []
+    client = ViewerClient()
+    tools = SapClawRuntimeToolset(client, browser_opener=lambda url: opened.append(url) is None)
+
+    response = tools.open_viewer("case-123", page=2)
+
+    assert response["ok"] is True
+    assert response["viewer_url"] is None
+    assert response["metadata"]["opened_in_system_browser"] is True
+    assert client.calls == ["health", "case:case-123"]
+    assert opened == ["http://127.0.0.1:8000/?case_id=case-123&page=2"]
+
+
+def test_runtime_open_viewer_rejects_non_loopback_runtime_url() -> None:
+    class RemoteViewerClient:
+        base_url = "https://runtime.example"
+
+        def health(self):
+            return {"data": {"viewer_enabled": True}}
+
+        def case_snapshot(self, case_id):
+            raise AssertionError("Remote case snapshot should not be requested.")
+
+    opened: list[str] = []
+    tools = SapClawRuntimeToolset(
+        RemoteViewerClient(),
+        browser_opener=lambda url: opened.append(url) is None,
+    )
+
+    response = tools.open_viewer("case-123")
+
+    assert response["ok"] is False
+    assert response["status"] == "viewer_unavailable"
+    assert opened == []
+
+
+def test_runtime_open_viewer_keeps_compact_single_result_in_codex() -> None:
+    class CompactResultClient:
+        base_url = "http://127.0.0.1:8000"
+
+        def health(self):
+            return {"data": {"viewer_enabled": True}}
+
+        def case_snapshot(self, case_id):
+            return {
+                "result_snapshot": {
+                    "success": True,
+                    "data": {
+                        "result_count": 1,
+                        "results": [{"Answer": "value"}],
+                        "pagination": {"has_next": False},
+                    },
+                    "presentation": {"columns": ["Answer"]},
+                }
+            }
+
+    opened: list[str] = []
+    tools = SapClawRuntimeToolset(
+        CompactResultClient(),
+        browser_opener=lambda url: opened.append(url) is None,
+    )
+
+    response = tools.open_viewer("case-123")
+
+    assert response["ok"] is True
+    assert response["status"] == "not_required"
+    assert response["data"]["reason"] == "compact_single_result"
+    assert response["metadata"]["opened_in_system_browser"] is False
+    assert opened == []

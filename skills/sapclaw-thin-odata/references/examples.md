@@ -19,6 +19,8 @@ sapclaw_execute_plan(plan=<same validated plan>, user_input=<original question>)
 
 Do not skip validation. `sapclaw_execute_plan` revalidates to prevent time-of-check/time-of-use drift.
 
+For every structured plan, include `output_contract`. For example, a user who explicitly requests only a name receives a strict contract with that one schema field in both `requested_fields` and `display_fields`; any identifier needed for execution belongs in `support_fields`.
+
 ## Controlled GET
 
 ```text
@@ -26,6 +28,7 @@ sapclaw_execute_get(
   service_name=<indexed service>,
   resource_path=<relative entity or function path>,
   query_options={"$select": "FieldA,FieldB", "$filter": "FieldA eq 'value'"},
+  output_contract=<same output contract rules as a structured plan>,
   user_input=<original question>
 )
 ```

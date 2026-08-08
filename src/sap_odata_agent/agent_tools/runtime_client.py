@@ -4,6 +4,7 @@ import json
 import os
 import socket
 import urllib.error
+import urllib.parse
 import urllib.request
 from dataclasses import dataclass
 from typing import Any, Callable
@@ -128,6 +129,7 @@ class SapClawRuntimeClient:
         resource_path: str,
         query_options: dict[str, str] | None = None,
         function_parameters: dict[str, str] | None = None,
+        output_contract: JsonPayload | None = None,
         user_input: str = "",
         conversation_id: str | None = None,
     ) -> JsonPayload:
@@ -138,12 +140,18 @@ class SapClawRuntimeClient:
             "function_parameters": function_parameters or {},
             "user_input": user_input,
         }
+        if output_contract is not None:
+            payload["output_contract"] = output_contract
         if conversation_id:
             payload["conversation_id"] = conversation_id
         return self._request_json("POST", "/api/v1/runtime/execute-get", payload)
 
     def page(self, case_id: str, skip: int = 0) -> JsonPayload:
         return self._request_json("POST", "/api/v1/runtime/page", {"case_id": case_id, "skip": skip})
+
+    def case_snapshot(self, case_id: str) -> JsonPayload:
+        encoded_case_id = urllib.parse.quote(str(case_id or ""), safe="")
+        return self._request_json("GET", f"/api/v1/agent/cases/{encoded_case_id}")
 
     def feedback(
         self,
@@ -222,8 +230,13 @@ def _urllib_runtime_transport(
 ) -> tuple[int, dict[str, str], bytes]:
     data = None if payload is None else json.dumps(payload, ensure_ascii=False).encode("utf-8")
     request = urllib.request.Request(url, data=data, method=method, headers=headers)
+    opener = (
+        urllib.request.build_opener(urllib.request.ProxyHandler({}))
+        if _is_loopback_url(url)
+        else urllib.request.build_opener()
+    )
     try:
-        with urllib.request.urlopen(request, timeout=timeout_seconds) as response:
+        with opener.open(request, timeout=timeout_seconds) as response:
             return response.status, dict(response.headers.items()), response.read()
     except urllib.error.HTTPError as exc:
         return exc.code, dict(exc.headers.items()), exc.read()
@@ -234,3 +247,11 @@ def _decode_json(body: bytes) -> Any:
         return json.loads(body.decode("utf-8"))
     except (UnicodeDecodeError, json.JSONDecodeError):
         return None
+
+
+def _is_loopback_url(url: str) -> bool:
+    try:
+        host = (urllib.parse.urlsplit(url).hostname or "").lower()
+    except ValueError:
+        return False
+    return host in {"localhost", "127.0.0.1", "::1"}

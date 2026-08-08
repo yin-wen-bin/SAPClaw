@@ -27,6 +27,22 @@ def test_settings_reads_env_file_at_instance_time(monkeypatch, tmp_path) -> None
     assert settings_module.Settings().llm_model == "new-minimax-model"
 
 
+def test_settings_merges_local_proxy_bypass_hosts(monkeypatch, tmp_path) -> None:
+    env_file = tmp_path / ".env"
+    env_file.write_text(
+        "NO_PROXY=sap.example.com,localhost\n"
+        "no_proxy=127.0.0.1\n",
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(settings_module, "DEFAULT_ENV_FILE", env_file)
+    monkeypatch.setenv("NO_PROXY", "system.example.com")
+    monkeypatch.delenv("SAP_ODATA_NO_PROXY", raising=False)
+
+    settings = settings_module.Settings()
+
+    assert settings.sap_proxy_bypass_hosts == "system.example.com,sap.example.com,localhost,127.0.0.1"
+
+
 def test_profile_registry_reloads_after_env_file_changes(monkeypatch, tmp_path) -> None:
     env_file = tmp_path / ".env"
     env_file.write_text(

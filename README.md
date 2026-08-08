@@ -221,7 +221,7 @@ THIN_RUNTIME_VIEWER_BASE_URL=http://127.0.0.1:8000
 .\start_sapclaw_runtime_mcp.bat
 ```
 
-它提供 `sapclaw_catalog`、`sapclaw_schema`、`sapclaw_guidance`、`sapclaw_validate_plan`、`sapclaw_execute_plan`、`sapclaw_execute_get`、分页和反馈工具，不会调用旧 `sapclaw_query`。Catalog 会返回可选的 KG 与 API Skill 候选 evidence；它们只帮助 Codex 找到需要检查的服务，不能自动选择 API 或绕过 schema 校验。
+它提供 `sapclaw_catalog`、`sapclaw_schema`、`sapclaw_guidance`、`sapclaw_validate_plan`、`sapclaw_execute_plan`、`sapclaw_execute_get`、分页、系统浏览器结果查看器和反馈工具，不会调用旧 `sapclaw_query`。成功执行后，Thin workflow 会调用 `sapclaw_runtime_open_viewer`：多行、可分页或字段较多的结果会在系统默认浏览器中打开本地结果页，避免 Codex 内嵌浏览器加载该页面；可用一句话表达的单行结果保留在 Codex 中。Catalog 会返回可选的 KG 与 API Skill 候选 evidence；它们只帮助 Codex 找到需要检查的服务，不能自动选择 API 或绕过 schema 校验。
 
 完整配置、MCP client 示例、安全边界和本地结果查看器说明见 `docs/thin-runtime.md`。Codex workflow skill 位于 `skills/sapclaw-thin-odata/`。
 

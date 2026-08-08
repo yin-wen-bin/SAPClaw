@@ -49,6 +49,28 @@ def _get_setting(*keys: str, default: str = "") -> str:
     return default
 
 
+def _merge_csv_values(*values: str | None) -> str:
+    merged: list[str] = []
+    for value in values:
+        for item in str(value or "").split(","):
+            normalized = item.strip()
+            if normalized and normalized not in merged:
+                merged.append(normalized)
+    return ",".join(merged)
+
+
+def _get_sap_proxy_bypass_hosts() -> str:
+    local_env = _load_local_env_file()
+    return _merge_csv_values(
+        os.getenv("SAP_ODATA_NO_PROXY"),
+        local_env.get("SAP_ODATA_NO_PROXY"),
+        os.getenv("NO_PROXY"),
+        os.getenv("no_proxy"),
+        local_env.get("NO_PROXY"),
+        local_env.get("no_proxy"),
+    )
+
+
 @dataclass(slots=True)
 class Settings:
     app_name: str = "SAP OData Agent"
@@ -59,6 +81,7 @@ class Settings:
     sap_verify_ssl: bool = field(default_factory=lambda: _get_setting("SAP_VERIFY_SSL", default="true").lower() == "true")
     sap_auth_type: str = field(default_factory=lambda: _get_setting("SAP_AUTH_TYPE", default="basic"))
     sap_timeout_ms: int = field(default_factory=lambda: int(_get_setting("SAP_ODATA_TIMEOUT_MS", default="30000")))
+    sap_proxy_bypass_hosts: str = field(default_factory=_get_sap_proxy_bypass_hosts)
     case_store_path: str = field(default_factory=lambda: _get_setting("CASE_STORE_PATH", default="data/cases/cases.jsonl"))
     index_root: str = field(default_factory=lambda: _get_setting("LOCAL_INDEX_ROOT", default="data/index"))
     api_skill_root: str = field(default_factory=lambda: _get_setting("API_SKILL_ROOT", default="data/api_skills"))

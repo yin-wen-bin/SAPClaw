@@ -1,15 +1,22 @@
 from __future__ import annotations
 
 import argparse
-from typing import Any, Literal
+import urllib.parse
+import webbrowser
+from typing import Any, Callable, Literal
 
 from sap_odata_agent.agent_tools.client import DEFAULT_BASE_URL, DEFAULT_TIMEOUT_SECONDS, START_COMMAND
 from sap_odata_agent.agent_tools.runtime_client import RuntimeClientError, SapClawRuntimeClient
 
 
 class SapClawRuntimeToolset:
-    def __init__(self, client: SapClawRuntimeClient) -> None:
+    def __init__(
+        self,
+        client: SapClawRuntimeClient,
+        browser_opener: Callable[[str], bool] | None = None,
+    ) -> None:
         self.client = client
+        self._browser_opener = browser_opener or (lambda url: webbrowser.open(url, new=2))
 
     def call(self, operation: str, callback) -> dict[str, Any]:
         try:
@@ -39,6 +46,145 @@ class SapClawRuntimeToolset:
                     "start_command": START_COMMAND,
                 },
             }
+
+    def open_viewer(self, case_id: str, page: int = 1) -> dict[str, Any]:
+        normalized_case_id = str(case_id or "").strip()
+        if not normalized_case_id:
+            return self._viewer_error(None, "case_id is required.")
+        if page < 1:
+            return self._viewer_error(normalized_case_id, "page must be greater than or equal to 1.")
+
+        try:
+            viewer_url = _local_viewer_url(self.client.base_url, normalized_case_id, page)
+            health = self.client.health()
+            if not bool((health.get("data") or {}).get("viewer_enabled")):
+                return self._viewer_error(normalized_case_id, "The local result viewer is disabled.")
+            case_snapshot = self.client.case_snapshot(normalized_case_id)
+            should_open, reason = _viewer_opening_decision(case_snapshot)
+            if not should_open:
+                return self._viewer_not_required(normalized_case_id, page, reason)
+            if not self._browser_opener(viewer_url):
+                return self._viewer_error(normalized_case_id, "The system browser did not accept the viewer request.")
+        except RuntimeClientError as exc:
+            return self.call("open_viewer", lambda: (_ for _ in ()).throw(exc))
+        except (OSError, webbrowser.Error) as exc:
+            return self._viewer_error(normalized_case_id, f"The system browser could not be opened: {exc}")
+        except ValueError as exc:
+            return self._viewer_error(normalized_case_id, str(exc))
+
+        return {
+            "schema_version": "1.0",
+            "ok": True,
+            "status": "success",
+            "case_id": normalized_case_id,
+            "data": {"opened": True, "page": page},
+            "pagination": {
+                "page_size": 50,
+                "skip": 0,
+                "total_count": 0,
+                "has_next": False,
+                "next_skip": None,
+            },
+            "viewer_url": None,
+            "validation_issues": [],
+            "executed_requests": [],
+            "error": None,
+            "metadata": {
+                "origin": "thin_mcp",
+                "read_only": True,
+                "opened_in_system_browser": True,
+            },
+        }
+
+    @staticmethod
+    def _viewer_error(case_id: str | None, message: str) -> dict[str, Any]:
+        return {
+            "schema_version": "1.0",
+            "ok": False,
+            "status": "viewer_unavailable",
+            "case_id": case_id,
+            "data": {},
+            "pagination": {
+                "page_size": 50,
+                "skip": 0,
+                "total_count": 0,
+                "has_next": False,
+                "next_skip": None,
+            },
+            "viewer_url": None,
+            "validation_issues": [],
+            "executed_requests": [],
+            "error": {"type": "viewer_unavailable", "message": message},
+            "metadata": {"origin": "thin_mcp", "read_only": True},
+        }
+
+    @staticmethod
+    def _viewer_not_required(case_id: str, page: int, reason: str) -> dict[str, Any]:
+        return {
+            "schema_version": "1.0",
+            "ok": True,
+            "status": "not_required",
+            "case_id": case_id,
+            "data": {"opened": False, "page": page, "reason": reason},
+            "pagination": {
+                "page_size": 50,
+                "skip": 0,
+                "total_count": 0,
+                "has_next": False,
+                "next_skip": None,
+            },
+            "viewer_url": None,
+            "validation_issues": [],
+            "executed_requests": [],
+            "error": None,
+            "metadata": {
+                "origin": "thin_mcp",
+                "read_only": True,
+                "opened_in_system_browser": False,
+                "viewer_reason": reason,
+            },
+        }
+
+
+def _local_viewer_url(base_url: str, case_id: str, page: int) -> str:
+    parsed = urllib.parse.urlsplit(base_url)
+    host = (parsed.hostname or "").lower()
+    if parsed.scheme not in {"http", "https"} or host not in {"localhost", "127.0.0.1", "::1"}:
+        raise ValueError("The local result viewer is available only for a loopback Thin Runtime URL.")
+    query = urllib.parse.urlencode({"case_id": case_id, "page": str(page)})
+    return urllib.parse.urlunsplit((parsed.scheme, parsed.netloc, "/", query, ""))
+
+
+def _viewer_opening_decision(case_snapshot: dict[str, Any]) -> tuple[bool, str]:
+    snapshot = case_snapshot.get("result_snapshot")
+    if not isinstance(snapshot, dict):
+        return True, "unknown_result_shape"
+    if not snapshot.get("success") or snapshot.get("needs_clarification"):
+        return False, "no_displayable_result"
+
+    data = snapshot.get("data") if isinstance(snapshot.get("data"), dict) else {}
+    rows = [row for row in data.get("results") or [] if isinstance(row, dict)]
+    pagination = data.get("pagination") if isinstance(data.get("pagination"), dict) else {}
+    total_count = _safe_nonnegative_int(data.get("result_count"), len(rows))
+    if total_count == 0:
+        return False, "empty_result"
+    if total_count > 1 or bool(pagination.get("has_next")):
+        return True, "multiple_rows"
+
+    presentation = snapshot.get("presentation") if isinstance(snapshot.get("presentation"), dict) else {}
+    columns = [column for column in presentation.get("columns") or [] if str(column).strip()]
+    first_row = rows[0] if rows else {}
+    field_count = len(columns) if columns else len([key for key in first_row if key != "__metadata"])
+    if field_count <= 3:
+        return False, "compact_single_result"
+    return True, "detailed_single_result"
+
+
+def _safe_nonnegative_int(value: Any, default: int) -> int:
+    try:
+        return max(0, int(value))
+    except (TypeError, ValueError):
+        return default
 def create_mcp_server(
     base_url: str = DEFAULT_BASE_URL,
     timeout_seconds: float = DEFAULT_TIMEOUT_SECONDS,
@@ -65,6 +211,12 @@ def create_mcp_server(
     )
     local_feedback_tool = ToolAnnotations(
         readOnlyHint=False,
+        destructiveHint=False,
+        idempotentHint=False,
+        openWorldHint=False,
+    )
+    local_viewer_tool = ToolAnnotations(
+        readOnlyHint=True,
         destructiveHint=False,
         idempotentHint=False,
         openWorldHint=False,
@@ -150,6 +302,7 @@ def create_mcp_server(
         resource_path: str,
         query_options: dict[str, str] | None = None,
         function_parameters: dict[str, str] | None = None,
+        output_contract: dict[str, Any] | None = None,
         user_input: str = "",
         conversation_id: str | None = None,
     ) -> dict[str, Any]:
@@ -165,6 +318,7 @@ def create_mcp_server(
                 resource_path=resource_path,
                 query_options=query_options,
                 function_parameters=function_parameters,
+                output_contract=output_contract,
                 user_input=user_input,
                 conversation_id=conversation_id,
             ),
@@ -174,6 +328,11 @@ def create_mcp_server(
     def sapclaw_runtime_page(case_id: str, skip: int = 0) -> dict[str, Any]:
         """Load a result page for a previous Thin Runtime case by skip offset."""
         return tools.call("page", lambda: client.page(case_id=case_id, skip=skip))
+
+    @server.tool(annotations=local_viewer_tool)
+    def sapclaw_runtime_open_viewer(case_id: str, page: int = 1) -> dict[str, Any]:
+        """Open a saved local result page in the system default browser, outside Codex's embedded browser."""
+        return tools.open_viewer(case_id=case_id, page=page)
 
     @server.tool(annotations=local_feedback_tool)
     def sapclaw_runtime_feedback(

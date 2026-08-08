@@ -70,6 +70,7 @@ def test_parse_json_object_accepts_fenced_or_embedded_json() -> None:
 def test_classify_codex_failure_separates_external_capacity_failures() -> None:
     assert classify_codex_failure("You have hit your usage limit") == "codex_quota_limited"
     assert classify_codex_failure("429 Too Many Requests") == "codex_rate_limited"
+    assert classify_codex_failure("Selected model is at capacity. Please try a different model.") == "codex_rate_limited"
     assert classify_codex_failure("MCP startup failed during handshaking") == "mcp_startup_failed"
     assert classify_codex_failure("MCP tool call was cancelled") == "mcp_tool_cancelled"
     assert classify_codex_failure("request timed out") == "codex_timeout"
@@ -147,10 +148,11 @@ def test_compare_case_records_alternate_route_without_failing_equivalent_results
 
 
 def test_isolated_runtime_config_registers_only_repo_local_thin_mcp(tmp_path: Path) -> None:
-    args = isolated_runtime_mcp_config(tmp_path)
+    args = isolated_runtime_mcp_config(tmp_path, runtime_base_url="http://127.0.0.1:8101/")
     combined = " ".join(args)
 
     assert "mcp_servers.sapclaw_runtime.command" in combined
     assert "sap_odata_agent.agent_tools.runtime_mcp_server" in combined
+    assert "http://127.0.0.1:8101" in combined
     assert tmp_path.name in combined
     assert "mcp_servers.sapclaw." not in combined

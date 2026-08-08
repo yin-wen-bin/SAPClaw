@@ -9,12 +9,14 @@ Keep `data/index/API_CUSTOMER_MATERIAL_SRV` as the schema ground truth. This ski
 ## When To Use
 
 - The user asks about customer material (a2x) or the business objects exposed by this service: A Customer Material.
+- Use this API for Chinese business wording such as `客户物料`、`客户物料信息`、`客户物料主数据`、`客户料号`、`客户物料编号`、`客户维护的物料信息`, including requests that also specify a customer number.
 - The request is read-oriented and can be answered from entity sets and fields indexed under `data/index/API_CUSTOMER_MATERIAL_SRV`.
 - Prefer this API when the user language clearly matches the service title, entity names, or documented field descriptions.
 
 ## When Not To Use
 
 - Do not use this API for unrelated master data or transactions that belong to a more specific API already available in the catalog.
+- Do not substitute a sales-order item's customer-material number for customer-material master data. That value describes a specific sales-order item and is appropriate only when the user explicitly asks about sales orders or sales-order history.
 - Do not use this API for write, create, update, delete, release, cancel, or action execution in normal read-only query planning unless the user explicitly asks and the application mode allows it.
 - Do not invent fields, entities, joins, or business conclusions beyond the indexed schema and this skill.
 
@@ -37,6 +39,12 @@ Keep `data/index/API_CUSTOMER_MATERIAL_SRV` as the schema ground truth. This ski
 - Select the entity whose description most directly matches the requested business object.
 - Apply user-provided identifiers, dates, statuses, organizational units, material/product IDs, customer/supplier IDs, and document numbers as filters when corresponding filterable fields exist.
 - Keep `$select` focused on key fields plus fields needed to answer the question.
+
+### Customer Material Master Data
+
+- For `查询客户 <customer> 维护的客户物料信息`, query `A_CustomerMaterial` directly with `Customer eq <customer>`.
+- Select `Customer`, `SalesOrganization`, `DistributionChannel`, `Material`, `MaterialByCustomer`, and `MaterialDescriptionByCustomer` unless the user asks for a narrower result.
+- This is customer-material master data, not sales-order history. Do not add `API_SALES_ORDER_SRV` unless the user explicitly requests documents, orders, or order-item history.
 
 ### Detail Query
 

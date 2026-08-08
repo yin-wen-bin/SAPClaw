@@ -36,6 +36,15 @@ def test_prepare_runtime_url_appends_client_and_json_format() -> None:
     assert "$top=1" in prepared
 
 
+def test_executor_bypasses_proxy_only_for_configured_sap_host() -> None:
+    executor = _build_executor()
+    executor.config.proxy_bypass_hosts = "sap.example.com,.internal.example:8443"
+
+    assert executor._should_bypass_proxy("https://sap.example.com/sap/opu/odata") is True
+    assert executor._should_bypass_proxy("https://child.internal.example/sap/opu/odata") is True
+    assert executor._should_bypass_proxy("https://other.example.com/sap/opu/odata") is False
+
+
 def test_executor_returns_preview_for_json_results() -> None:
     class StubExecutor(SapODataExecutor):
         def _perform_request(self, compiled_request: CompiledRequest) -> dict[str, str | int]:
