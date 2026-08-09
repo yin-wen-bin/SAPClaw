@@ -550,6 +550,77 @@ def test_controlled_get_executes_only_indexed_relative_entity(tmp_path: Path) ->
     assert response["metadata"]["read_only"] is True
 
 
+def test_controlled_get_singletons_never_receive_collection_paging_options(tmp_path: Path) -> None:
+    class SingletonExecutor:
+        MAX_PREVIEW_ROWS = 50
+
+        def __init__(self) -> None:
+            self.requests: list[CompiledRequest] = []
+
+        def execute(self, compiled_request: CompiledRequest, attempt_number: int) -> ExecutionAttempt:
+            self.requests.append(compiled_request)
+            return ExecutionAttempt(
+                attempt_number=attempt_number,
+                request=compiled_request,
+                success=True,
+                status_code=200,
+                response_preview={"result": {"Supplier": "17300003", "SupplierName": "Test supplier"}},
+            )
+
+    executor = SingletonExecutor()
+    runtime = build_runtime(tmp_path, executor=executor)
+    resource_paths = [
+        "A_Supplier('17300003')",
+        (
+            "A_CustomerSalesArea(Customer='1000001',SalesOrganization='1000',"
+            "DistributionChannel='10',Division='00')"
+        ),
+    ]
+
+    for resource_path in resource_paths:
+        response = runtime.execute_get(
+            RuntimeGetRequest(service_name="API_BUSINESS_PARTNER", resource_path=resource_path)
+        )
+        query = dict(urllib.parse.parse_qsl(urllib.parse.urlsplit(executor.requests[-1].url).query))
+
+        assert response["ok"] is True
+        assert not {"$top", "$skip", "$skiptoken", "$inlinecount"}.intersection(query)
+        assert response["data"]["resource_kind"] == "singleton"
+        assert response["data"]["source_complete"] is True
+        assert response["pagination"] == {
+            "page_size": 1,
+            "skip": 0,
+            "total_count": 1,
+            "has_next": False,
+            "next_skip": None,
+        }
+
+    request_count = len(executor.requests)
+    repeated = runtime.page(RuntimePageRequest(case_id=response["case_id"], skip=0))
+    out_of_range = runtime.page(RuntimePageRequest(case_id=response["case_id"], skip=1))
+    assert repeated["ok"] is True
+    assert repeated["pagination"]["total_count"] == 1
+    assert out_of_range["status"] == "page_out_of_range"
+    assert len(executor.requests) == request_count
+
+
+def test_controlled_get_rejects_explicit_singleton_paging_before_executor(tmp_path: Path) -> None:
+    executor = FakeExecutor()
+    runtime = build_runtime(tmp_path, executor=executor)
+
+    response = runtime.execute_get(
+        RuntimeGetRequest(
+            service_name="API_BUSINESS_PARTNER",
+            resource_path="A_Supplier('17300003')",
+            query_options={"$top": "1", "$inlinecount": "allpages"},
+        )
+    )
+
+    assert response["ok"] is False
+    assert any(issue["code"] == "singleton_paging_not_allowed" for issue in response["validation_issues"])
+    assert executor.requests == []
+
+
 def test_controlled_get_output_contract_hides_support_fields(tmp_path: Path) -> None:
     executor = FakeExecutor(total_count=1)
     runtime = build_runtime(tmp_path, executor=executor)

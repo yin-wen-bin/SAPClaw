@@ -387,7 +387,7 @@ class ThinRuntimeService:
         if disabled:
             return disabled
         request = self._controlled_get_with_output_contract(request)
-        issues, snapshot, root_name, is_function = self._validate_controlled_get(request)
+        issues, snapshot, root_name, is_function, resource_kind = self._validate_controlled_get(request)
         if issues or snapshot is None:
             return self._envelope(
                 ok=False,
@@ -399,11 +399,14 @@ class ThinRuntimeService:
         case_id = str(uuid.uuid4())
         started = time.perf_counter()
         query_options = dict(request.query_options)
-        initial_skip = self._safe_int(query_options.get("$skip"), 0)
-        business_top = self._optional_positive_int(query_options.get("$top"))
-        transport_top = min(business_top or self.page_size, self.page_size)
-        query_options["$top"] = str(transport_top)
-        query_options["$skip"] = str(initial_skip)
+        initial_skip = 0
+        business_top = None
+        if resource_kind == "collection":
+            initial_skip = self._safe_int(query_options.get("$skip"), 0)
+            business_top = self._optional_positive_int(query_options.get("$top"))
+            transport_top = min(business_top or self.page_size, self.page_size)
+            query_options["$top"] = str(transport_top)
+            query_options["$skip"] = str(initial_skip)
         url = self._controlled_get_url(
             request=request,
             snapshot=snapshot,
@@ -415,7 +418,10 @@ class ThinRuntimeService:
         attempt = attempt_record["attempt"]
         data = attempt.response_preview if attempt.success else None
         if data is not None:
-            data = self._apply_business_pagination(data, business_top=business_top, initial_skip=initial_skip)
+            if resource_kind == "singleton":
+                data = self._apply_singleton_completeness(data)
+            elif resource_kind == "collection":
+                data = self._apply_business_pagination(data, business_top=business_top, initial_skip=initial_skip)
         duration_ms = round((time.perf_counter() - started) * 1000, 2)
         error = None if attempt.success else self._sap_error(attempt)
         plan = QueryPlan(
@@ -440,8 +446,9 @@ class ThinRuntimeService:
             "query_options": dict(request.query_options),
             "function_parameters": dict(request.function_parameters),
             "output_contract": request.output_contract.model_dump(mode="json") if request.output_contract else None,
+            "resource_kind": resource_kind,
             "pagination": {
-                "page_size": self.page_size,
+                "page_size": 1 if resource_kind == "singleton" else self.page_size,
                 "business_top": business_top,
                 "initial_skip": initial_skip,
             },
@@ -525,7 +532,10 @@ class ThinRuntimeService:
                 error={"code": "page_out_of_range", "message": "Requested page exceeds the result count."},
             )
 
-        local_page = self._stored_page(stored_data, request.skip, page_size)
+        resource_kind = str(runtime_request.get("resource_kind") or "collection")
+        local_page = stored_data if resource_kind == "singleton" and request.skip == 0 else self._stored_page(
+            stored_data, request.skip, page_size
+        )
         attempts: list[dict[str, Any]] = []
         if local_page is not None:
             data = local_page
@@ -692,7 +702,7 @@ class ThinRuntimeService:
     def _validate_controlled_get(
         self,
         request: RuntimeGetRequest,
-    ) -> tuple[list[dict[str, Any]], LocalIndexSnapshot | None, str, bool]:
+    ) -> tuple[list[dict[str, Any]], LocalIndexSnapshot | None, str, bool, str]:
         issues: list[dict[str, Any]] = []
         try:
             snapshot = self.index_loader.load(request.service_name)
@@ -708,6 +718,7 @@ class ThinRuntimeService:
                 None,
                 "",
                 False,
+                "unknown",
             )
         runtime_issue = self._runtime_availability_issue(snapshot)
         if runtime_issue:
@@ -739,6 +750,7 @@ class ThinRuntimeService:
             for item in function_imports_from_snapshot(snapshot)
         }
         is_function = root_name in function_map
+        resource_kind = self._controlled_get_resource_kind(raw_path, is_function=is_function)
         if root_name not in entity_names and not is_function:
             issues.append(
                 validation_issue_payload(
@@ -769,6 +781,18 @@ class ThinRuntimeService:
             issues.append(validation_issue_payload("format_not_allowed", "Only JSON OData responses are allowed.", "$format"))
         if "$inlinecount" in request.query_options and request.query_options["$inlinecount"] not in {"allpages", "none"}:
             issues.append(validation_issue_payload("invalid_inlinecount", "$inlinecount must be allpages or none.", "$inlinecount"))
+        singleton_paging_options = sorted(
+            set(request.query_options).intersection({"$top", "$skip", "$skiptoken", "$inlinecount"})
+        )
+        if resource_kind == "singleton" and singleton_paging_options:
+            issues.append(
+                validation_issue_payload(
+                    "singleton_paging_not_allowed",
+                    "Singleton resources do not accept collection paging options: "
+                    + ", ".join(singleton_paging_options),
+                    "query_options",
+                )
+            )
 
         if root_name in entity_names:
             field_map = self._field_map(snapshot, root_name)
@@ -814,7 +838,16 @@ class ThinRuntimeService:
                         "function_parameters",
                     )
                 )
-        return self._dedupe_issues(issues), snapshot, root_name, is_function
+        return self._dedupe_issues(issues), snapshot, root_name, is_function, resource_kind
+
+    @staticmethod
+    def _controlled_get_resource_kind(resource_path: str, *, is_function: bool) -> str:
+        if is_function:
+            return "function"
+        terminal_segment = str(resource_path or "").rsplit("/", 1)[-1]
+        if re.fullmatch(r"[^()]+\(.+\)", terminal_segment):
+            return "singleton"
+        return "collection"
 
     def _execute_domain_plan(
         self,
@@ -1476,6 +1509,33 @@ class ThinRuntimeService:
                     "page_number": (skip // self.page_size) + 1,
                     "has_next": has_next,
                     "next_skip": skip + len(display_rows) if has_next else None,
+                },
+            }
+        )
+        return normalized
+
+    @staticmethod
+    def _apply_singleton_completeness(data: dict[str, Any]) -> dict[str, Any]:
+        normalized = dict(data)
+        result = data.get("result")
+        count = 1 if isinstance(result, dict) else 0
+        normalized.update(
+            {
+                "result_count": count,
+                "returned_count": count,
+                "displayed_count": count,
+                "source_complete": True,
+                "source_truncated": False,
+                "resource_kind": "singleton",
+                "pagination": {
+                    "page_size": 1,
+                    "display_limit": 1,
+                    "skip": 0,
+                    "page_number": 1,
+                    "has_next": False,
+                    "next_skip": None,
+                    "local_has_next": False,
+                    "sap_has_next": False,
                 },
             }
         )
