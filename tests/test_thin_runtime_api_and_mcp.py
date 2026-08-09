@@ -5,9 +5,11 @@ import urllib.request
 from typing import Any
 
 from fastapi.testclient import TestClient
+from pydantic import ValidationError
 
 from sap_odata_agent.agent_tools.runtime_client import SapClawRuntimeClient, _urllib_runtime_transport
 from sap_odata_agent.agent_tools.runtime_mcp_server import SapClawRuntimeToolset
+from sap_odata_agent.application.thin_models import ThinOutputContract
 from sap_odata_agent.api.app import create_app
 from sap_odata_agent.api.app_dependencies import get_case_repository, get_sap_executor, get_thin_runtime_service
 from sap_odata_agent.domain.models import ExecutionAttempt
@@ -318,6 +320,43 @@ def test_runtime_mcp_module_registers_only_thin_tool_names() -> None:
     assert server._tool_manager._tools["sapclaw_runtime_open_viewer"].annotations.readOnlyHint is True
     assert server._tool_manager._tools["sapclaw_runtime_open_viewer"].annotations.idempotentHint is False
     assert server._tool_manager._tools["sapclaw_runtime_feedback"].annotations.readOnlyHint is False
+
+
+def test_runtime_mcp_execute_get_uses_backend_output_contract_schema() -> None:
+    from sap_odata_agent.agent_tools.runtime_mcp_server import create_mcp_server
+
+    server = create_mcp_server(base_url="http://127.0.0.1:8000", timeout_seconds=1)
+    tool = server._tool_manager._tools["sapclaw_execute_get"]
+    schema = tool.parameters
+
+    assert schema["$defs"]["ThinOutputContract"] == ThinOutputContract.model_json_schema()
+    assert schema["$defs"]["ThinOutputContract"]["additionalProperties"] is False
+    assert schema["$defs"]["ThinOutputContract"]["required"] == ["display_fields", "reason"]
+
+
+def test_runtime_mcp_execute_get_rejects_invalid_output_contract_before_execution() -> None:
+    from sap_odata_agent.agent_tools.runtime_mcp_server import create_mcp_server
+
+    server = create_mcp_server(base_url="http://127.0.0.1:8000", timeout_seconds=1)
+    argument_model = server._tool_manager._tools["sapclaw_execute_get"].fn_metadata.arg_model
+
+    try:
+        argument_model.model_validate(
+            {
+                "service_name": "API_PURCHASEORDER_PROCESS_SRV",
+                "resource_path": "A_PurchaseOrder",
+                "output_contract": {
+                    "required_fields": ["PurchaseOrder"],
+                    "key_fields": ["PurchaseOrder"],
+                },
+            }
+        )
+    except ValidationError as exc:
+        error_types = {item["type"] for item in exc.errors()}
+        assert "missing" in error_types
+        assert "extra_forbidden" in error_types
+    else:  # pragma: no cover
+        raise AssertionError("MCP accepted an output contract rejected by the backend model.")
 
 
 def test_runtime_open_viewer_validates_case_and_uses_system_browser() -> None:

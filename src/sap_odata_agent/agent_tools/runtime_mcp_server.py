@@ -7,6 +7,7 @@ from typing import Any, Callable, Literal
 
 from sap_odata_agent.agent_tools.client import DEFAULT_BASE_URL, DEFAULT_TIMEOUT_SECONDS, START_COMMAND
 from sap_odata_agent.agent_tools.runtime_client import RuntimeClientError, SapClawRuntimeClient
+from sap_odata_agent.application.thin_models import ThinOutputContract
 
 
 class SapClawRuntimeToolset:
@@ -302,7 +303,7 @@ def create_mcp_server(
         resource_path: str,
         query_options: dict[str, str] | None = None,
         function_parameters: dict[str, str] | None = None,
-        output_contract: dict[str, Any] | None = None,
+        output_contract: ThinOutputContract | None = None,
         user_input: str = "",
         conversation_id: str | None = None,
     ) -> dict[str, Any]:
@@ -310,6 +311,9 @@ def create_mcp_server(
 
         Absolute URLs, external hosts, custom headers, traversal, non-GET operations, and unknown
         query options are rejected before SAP is contacted.
+
+        A minimal valid output_contract is
+        {"display_fields": ["PurchaseOrder"], "reason": "Return the requested purchase order."}.
         """
         return tools.call(
             "execute_get",
@@ -318,7 +322,7 @@ def create_mcp_server(
                 resource_path=resource_path,
                 query_options=query_options,
                 function_parameters=function_parameters,
-                output_contract=output_contract,
+                output_contract=output_contract.model_dump(mode="json") if output_contract is not None else None,
                 user_input=user_input,
                 conversation_id=conversation_id,
             ),
