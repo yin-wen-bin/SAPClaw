@@ -5,6 +5,7 @@ from typing import Any, Literal
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 from sap_odata_agent.domain.models import (
+    AggregateMetric,
     ExecutionStep,
     FilterCondition,
     FunctionParameter,
@@ -105,17 +106,74 @@ class ThinExecutionStep(BaseModel):
         )
 
 
+class ThinAggregateMetric(BaseModel):
+    model_config = ConfigDict(extra="forbid", strict=True)
+
+    operation: Literal["count", "count_distinct", "sum", "sum_abs"]
+    output_field: str = Field(min_length=1)
+    field: str | None = Field(default=None, min_length=1)
+    distinct_fields: list[str] = Field(default_factory=list)
+    currency_field: str | None = Field(default=None, min_length=1)
+
+    @field_validator("distinct_fields")
+    @classmethod
+    def validate_distinct_fields(cls, values: list[str]) -> list[str]:
+        if any(not str(value).strip() for value in values):
+            raise ValueError("Distinct field names must not be empty.")
+        return list(dict.fromkeys(values))
+
+    @model_validator(mode="after")
+    def validate_metric_shape(self) -> "ThinAggregateMetric":
+        if self.operation == "count":
+            if self.field or self.distinct_fields or self.currency_field:
+                raise ValueError("count accepts only output_field.")
+        elif self.operation == "count_distinct":
+            if not self.distinct_fields:
+                raise ValueError("count_distinct requires distinct_fields.")
+            if self.field or self.currency_field:
+                raise ValueError("count_distinct does not accept field or currency_field.")
+        elif not self.field:
+            raise ValueError(f"{self.operation} requires field.")
+        elif self.distinct_fields:
+            raise ValueError(f"{self.operation} does not accept distinct_fields.")
+        return self
+
+    def to_domain(self) -> AggregateMetric:
+        return AggregateMetric(
+            operation=self.operation,
+            output_field=self.output_field,
+            field=self.field,
+            distinct_fields=list(self.distinct_fields),
+            currency_field=self.currency_field,
+        )
+
+
 class ThinResultTransform(BaseModel):
     model_config = ConfigDict(extra="forbid", strict=True)
 
     type: Literal["aggregate"]
     group_by: list[str] = Field(default_factory=list)
     sum_fields: list[str] = Field(default_factory=list)
+    metrics: list[ThinAggregateMetric] = Field(default_factory=list)
+    deduplicate_by: list[str] = Field(default_factory=list)
+
+    @field_validator("group_by", "sum_fields", "deduplicate_by")
+    @classmethod
+    def validate_transform_fields(cls, values: list[str]) -> list[str]:
+        if any(not str(value).strip() for value in values):
+            raise ValueError("Aggregate field names must not be empty.")
+        return list(dict.fromkeys(values))
 
     @model_validator(mode="after")
     def require_transform_fields(self) -> "ThinResultTransform":
-        if not self.group_by and not self.sum_fields:
-            raise ValueError("An aggregate transform requires group_by or sum_fields.")
+        if not self.group_by and not self.sum_fields and not self.metrics:
+            raise ValueError("An aggregate transform requires group_by, sum_fields, or metrics.")
+        output_fields = [metric.output_field for metric in self.metrics]
+        if len(output_fields) != len(set(output_fields)):
+            raise ValueError("Aggregate metric output_field values must be unique.")
+        collisions = sorted(set(output_fields).intersection(self.group_by))
+        if collisions:
+            raise ValueError("Aggregate metric output fields collide with group_by fields: " + ", ".join(collisions))
         return self
 
     def to_domain(self) -> ResultTransform:
@@ -123,6 +181,8 @@ class ThinResultTransform(BaseModel):
             type=self.type,
             group_by=list(dict.fromkeys(self.group_by)),
             sum_fields=list(dict.fromkeys(self.sum_fields)),
+            metrics=[metric.to_domain() for metric in self.metrics],
+            deduplicate_by=list(dict.fromkeys(self.deduplicate_by)),
         )
 
 
@@ -208,15 +268,21 @@ class ThinQueryPlan(BaseModel):
             raise ValueError("function_import plans require function_parameters.")
         if self.plan_kind not in {"lookup", "multi_step"} and self.steps:
             raise ValueError("Execution steps are allowed only for lookup or multi_step plans.")
+        if self.result_transform is not None and self.top is not None:
+            raise ValueError("Aggregate plans must leave top unset so the source can be proven complete.")
         step_ids = [step.step_id for step in self.steps]
         if len(step_ids) != len(set(step_ids)):
             raise ValueError("Execution step ids must be unique.")
         if self.output_contract and self.result_transform:
-            transform_fields = set(self.result_transform.group_by) | set(self.result_transform.sum_fields)
+            transform_fields = (
+                set(self.result_transform.group_by)
+                | set(self.result_transform.sum_fields)
+                | {metric.output_field for metric in self.result_transform.metrics}
+            )
             missing = [field for field in self.output_contract.display_fields if field not in transform_fields]
             if missing:
                 raise ValueError(
-                    "Aggregate output contracts may display only result_transform group_by or sum_fields: "
+                    "Aggregate output contracts may display only group_by fields or aggregate outputs: "
                     + ", ".join(missing)
                 )
         return self
@@ -229,12 +295,18 @@ class ThinQueryPlan(BaseModel):
             else list(self.response_summary_fields)
         )
         support_fields = list(output_contract.support_fields) if output_contract is not None else []
-        selected = list(dict.fromkeys([*self.select_fields, *display_fields, *support_fields]))
+        derived_fields = (
+            {metric.output_field for metric in self.result_transform.metrics}
+            if self.result_transform is not None
+            else set()
+        )
+        source_display_fields = [field for field in display_fields if field not in derived_fields]
+        selected = list(dict.fromkeys([*self.select_fields, *source_display_fields, *support_fields]))
         steps = [step.to_domain() for step in self.steps]
         if output_contract is not None and steps:
             final_step = steps[-1]
             final_step.select_fields = list(
-                dict.fromkeys([*final_step.select_fields, *display_fields, *support_fields])
+                    dict.fromkeys([*final_step.select_fields, *source_display_fields, *support_fields])
             )
             final_step.response_summary_fields = display_fields
         return QueryPlan(
@@ -295,6 +367,7 @@ class RuntimePlanRequest(BaseModel):
     plan: ThinQueryPlan
     user_input: str = ""
     conversation_id: str | None = None
+    resume_case_id: str | None = None
 
 
 class RuntimeGetRequest(BaseModel):

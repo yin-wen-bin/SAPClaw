@@ -32,8 +32,17 @@ def test_prepare_runtime_url_appends_client_and_json_format() -> None:
 
     assert "sap-client=100" in prepared
     assert "$format=json" in prepared
-    assert "$inlinecount=allpages" in prepared
+    assert "$inlinecount" not in prepared
     assert "$top=1" in prepared
+
+
+def test_prepare_runtime_url_preserves_explicit_inline_count() -> None:
+    executor = _build_executor()
+    prepared = executor._prepare_runtime_url(
+        "https://sap.example.com/sap/opu/odata/sap/API_TEST/A_Customer?$top=1&$inlinecount=allpages"
+    )
+
+    assert "$inlinecount=allpages" in prepared
 
 
 def test_executor_bypasses_proxy_only_for_configured_sap_host() -> None:

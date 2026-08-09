@@ -81,10 +81,20 @@ MCP/HTTP 输出会移除 `__metadata`、内部 `_all_results` 和敏感配置。
 - `explicit`：用户明确要求字段时使用。`requested_fields` 与 `display_fields` 必须完全一致且顺序一致；不能静默替换或追加展示字段。
 - `inferred`：用户未要求具体字段时使用。Codex 根据问题意图、业务粒度和 schema 选择最小完整业务视图。
 - `display_fields` 是表格、关键字段、分页和本地 Viewer 的唯一展示列；`support_fields` 仍会被请求，但只用于执行、关联或校验。
-- 对 aggregate 计划，展示字段必须属于 `group_by` 或 `sum_fields`，避免展示聚合后不存在的字段。
+- 对 aggregate 计划，展示字段必须属于 `group_by`、兼容字段 `sum_fields` 或 metric 的 `output_field`，避免展示聚合后不存在的字段。
 
 该字段保持 optional，以兼容旧 Thin API caller；未提供时保留原有 `response_summary_fields + select_fields` 展示行为。
 `/execute-get` 也接受同一可选契约；Runtime 会将 `display_fields` 和 `support_fields` 合并进受控 `$select` 后再做 schema 校验。
+
+## 完整聚合
+
+`result_transform.metrics` 支持 `count`、`count_distinct`、`sum` 和 `sum_abs`。聚合会按索引中的实体键稳定排序，自动读取全部源分页，并受 `THIN_RUNTIME_MAX_BINDING_ROWS` 限制。可使用 `deduplicate_by` 声明复合业务键；金额指标应声明 `currency_field`。
+
+Runtime 仅在源数据完整时产生聚合结果。源截断、缺失去重键、空值或非法数值、无法解析或混合币种都会 fail closed。成功结果的 `result_transform` 诊断包含源行数、读取行数、去重后行数、稳定排序键、币种分组以及完整性状态。
+
+如果读取至少一页后发生中断，失败响应仍会保存部分源数据和 `case_id`。使用相同计划再次调用 `sapclaw_execute_plan`，并传入该 `case_id` 作为 `resume_case_id`，Runtime 会从保存的稳定分页位置继续读取，最终只在合并后的源数据完整时聚合。
+
+普通 `$top` 预览不会隐式添加 `$inlinecount=allpages`。需要 SAP 总数时必须显式传入 `$inlinecount=allpages`；聚合取全依靠稳定分页和服务端 next-page/满页信号，不依赖昂贵的全量计数。
 
 `/catalog` 可选返回 `kg_api_evidence` 和 `skill_api_evidence`。两者都只用于把潜在服务提供给 Codex 进一步检查；它们不会自动选择 API、修改 QueryPlan 或绕过 schema/guardrail。Codex 必须对候选服务继续调用 `/schema` 和 `/guidance`。
 
@@ -152,6 +162,8 @@ sapclaw_runtime_feedback
 ```text
 $select $filter $orderby $top $skip $expand $inlinecount $format $skiptoken
 ```
+
+带实体键的 singleton `resource_path` 不接受 `$top`、`$skip`、`$skiptoken` 或 `$inlinecount`，Runtime 也不会自动注入这些集合分页参数。singleton 结果固定标记为完整且不可分页。
 
 在 SAP 请求前拒绝：
 

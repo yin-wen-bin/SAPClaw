@@ -73,6 +73,7 @@ def runtime_execute_plan(
         payload.plan,
         user_input=payload.user_input,
         conversation_id=payload.conversation_id,
+        resume_case_id=payload.resume_case_id,
     )
 
 

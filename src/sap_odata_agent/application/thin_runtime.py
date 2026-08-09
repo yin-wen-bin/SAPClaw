@@ -10,7 +10,7 @@ from datetime import datetime
 from itertools import product
 from typing import Any
 
-from sap_odata_agent.application.result_transformer import ResultTransformer
+from sap_odata_agent.application.result_transformer import ResultTransformError, ResultTransformer
 from sap_odata_agent.application.schema_feasibility_validator import SchemaFeasibilityValidator
 from sap_odata_agent.application.thin_models import (
     RuntimeCatalogRequest,
@@ -325,6 +325,7 @@ class ThinRuntimeService:
         *,
         user_input: str = "",
         conversation_id: str | None = None,
+        resume_case_id: str | None = None,
     ) -> dict[str, Any]:
         disabled = self._disabled_response()
         if disabled:
@@ -340,9 +341,19 @@ class ThinRuntimeService:
                 error={"code": "plan_validation_failed", "message": "No SAP request was executed."},
             )
 
+        resume_state: dict[str, Any] | None = None
+        if resume_case_id:
+            resume_state, resume_error = self._load_aggregate_resume(resume_case_id, plan_model)
+            if resume_error:
+                return self._envelope(
+                    ok=False,
+                    status="validation_failed",
+                    error=resume_error,
+                )
+
         case_id = str(uuid.uuid4())
         started = time.perf_counter()
-        attempts, data, execution_error = self._execute_domain_plan(plan)
+        attempts, data, execution_error = self._execute_domain_plan(plan, resume_state=resume_state)
         duration_ms = round((time.perf_counter() - started) * 1000, 2)
         success = execution_error is None and data is not None
         presentation = self._build_presentation(plan, data, user_input) if success else None
@@ -351,6 +362,7 @@ class ThinRuntimeService:
         runtime_request = {
             "kind": "structured_plan",
             "plan": plan_model.model_dump(mode="json"),
+            "resume_case_id": resume_case_id,
             "pagination": {
                 "page_size": self.page_size,
                 "business_top": plan.top,
@@ -387,7 +399,7 @@ class ThinRuntimeService:
         if disabled:
             return disabled
         request = self._controlled_get_with_output_contract(request)
-        issues, snapshot, root_name, is_function = self._validate_controlled_get(request)
+        issues, snapshot, root_name, is_function, resource_kind = self._validate_controlled_get(request)
         if issues or snapshot is None:
             return self._envelope(
                 ok=False,
@@ -399,11 +411,14 @@ class ThinRuntimeService:
         case_id = str(uuid.uuid4())
         started = time.perf_counter()
         query_options = dict(request.query_options)
-        initial_skip = self._safe_int(query_options.get("$skip"), 0)
-        business_top = self._optional_positive_int(query_options.get("$top"))
-        transport_top = min(business_top or self.page_size, self.page_size)
-        query_options["$top"] = str(transport_top)
-        query_options["$skip"] = str(initial_skip)
+        initial_skip = 0
+        business_top = None
+        if resource_kind == "collection":
+            initial_skip = self._safe_int(query_options.get("$skip"), 0)
+            business_top = self._optional_positive_int(query_options.get("$top"))
+            transport_top = min(business_top or self.page_size, self.page_size)
+            query_options["$top"] = str(transport_top)
+            query_options["$skip"] = str(initial_skip)
         url = self._controlled_get_url(
             request=request,
             snapshot=snapshot,
@@ -415,7 +430,10 @@ class ThinRuntimeService:
         attempt = attempt_record["attempt"]
         data = attempt.response_preview if attempt.success else None
         if data is not None:
-            data = self._apply_business_pagination(data, business_top=business_top, initial_skip=initial_skip)
+            if resource_kind == "singleton":
+                data = self._apply_singleton_completeness(data)
+            elif resource_kind == "collection":
+                data = self._apply_business_pagination(data, business_top=business_top, initial_skip=initial_skip)
         duration_ms = round((time.perf_counter() - started) * 1000, 2)
         error = None if attempt.success else self._sap_error(attempt)
         plan = QueryPlan(
@@ -440,8 +458,9 @@ class ThinRuntimeService:
             "query_options": dict(request.query_options),
             "function_parameters": dict(request.function_parameters),
             "output_contract": request.output_contract.model_dump(mode="json") if request.output_contract else None,
+            "resource_kind": resource_kind,
             "pagination": {
-                "page_size": self.page_size,
+                "page_size": 1 if resource_kind == "singleton" else self.page_size,
                 "business_top": business_top,
                 "initial_skip": initial_skip,
             },
@@ -525,7 +544,10 @@ class ThinRuntimeService:
                 error={"code": "page_out_of_range", "message": "Requested page exceeds the result count."},
             )
 
-        local_page = self._stored_page(stored_data, request.skip, page_size)
+        resource_kind = str(runtime_request.get("resource_kind") or "collection")
+        local_page = stored_data if resource_kind == "singleton" and request.skip == 0 else self._stored_page(
+            stored_data, request.skip, page_size
+        )
         attempts: list[dict[str, Any]] = []
         if local_page is not None:
             data = local_page
@@ -692,7 +714,7 @@ class ThinRuntimeService:
     def _validate_controlled_get(
         self,
         request: RuntimeGetRequest,
-    ) -> tuple[list[dict[str, Any]], LocalIndexSnapshot | None, str, bool]:
+    ) -> tuple[list[dict[str, Any]], LocalIndexSnapshot | None, str, bool, str]:
         issues: list[dict[str, Any]] = []
         try:
             snapshot = self.index_loader.load(request.service_name)
@@ -708,6 +730,7 @@ class ThinRuntimeService:
                 None,
                 "",
                 False,
+                "unknown",
             )
         runtime_issue = self._runtime_availability_issue(snapshot)
         if runtime_issue:
@@ -739,6 +762,7 @@ class ThinRuntimeService:
             for item in function_imports_from_snapshot(snapshot)
         }
         is_function = root_name in function_map
+        resource_kind = self._controlled_get_resource_kind(raw_path, is_function=is_function)
         if root_name not in entity_names and not is_function:
             issues.append(
                 validation_issue_payload(
@@ -769,6 +793,18 @@ class ThinRuntimeService:
             issues.append(validation_issue_payload("format_not_allowed", "Only JSON OData responses are allowed.", "$format"))
         if "$inlinecount" in request.query_options and request.query_options["$inlinecount"] not in {"allpages", "none"}:
             issues.append(validation_issue_payload("invalid_inlinecount", "$inlinecount must be allpages or none.", "$inlinecount"))
+        singleton_paging_options = sorted(
+            set(request.query_options).intersection({"$top", "$skip", "$skiptoken", "$inlinecount"})
+        )
+        if resource_kind == "singleton" and singleton_paging_options:
+            issues.append(
+                validation_issue_payload(
+                    "singleton_paging_not_allowed",
+                    "Singleton resources do not accept collection paging options: "
+                    + ", ".join(singleton_paging_options),
+                    "query_options",
+                )
+            )
 
         if root_name in entity_names:
             field_map = self._field_map(snapshot, root_name)
@@ -814,11 +850,22 @@ class ThinRuntimeService:
                         "function_parameters",
                     )
                 )
-        return self._dedupe_issues(issues), snapshot, root_name, is_function
+        return self._dedupe_issues(issues), snapshot, root_name, is_function, resource_kind
+
+    @staticmethod
+    def _controlled_get_resource_kind(resource_path: str, *, is_function: bool) -> str:
+        if is_function:
+            return "function"
+        terminal_segment = str(resource_path or "").rsplit("/", 1)[-1]
+        if re.fullmatch(r"[^()]+\(.+\)", terminal_segment):
+            return "singleton"
+        return "collection"
 
     def _execute_domain_plan(
         self,
         plan: QueryPlan,
+        *,
+        resume_state: dict[str, Any] | None = None,
     ) -> tuple[list[dict[str, Any]], dict[str, Any] | None, dict[str, Any] | None]:
         if not plan.steps:
             fetch_all = plan.result_transform is not None
@@ -826,10 +873,26 @@ class ThinRuntimeService:
                 plan,
                 fetch_all=fetch_all,
                 row_limit=self.max_binding_rows if fetch_all else None,
+                initial_rows=list((resume_state or {}).get("rows") or []),
+                initial_skip=self._safe_int((resume_state or {}).get("next_source_skip"), 0),
+                initial_total_count=self._safe_int((resume_state or {}).get("source_result_count"), 0),
             )
             if error or data is None:
                 return attempts, data, error
-            return attempts, self.result_transformer.apply(plan, data), None
+            try:
+                return attempts, self.result_transformer.apply(plan, data), None
+            except ResultTransformError as exc:
+                return attempts, None, {
+                    "code": exc.code,
+                    "message": str(exc),
+                    "diagnostics": exc.diagnostics,
+                }
+
+        if resume_state is not None:
+            return [], None, {
+                "code": "aggregate_resume_not_supported_for_multistep",
+                "message": "Aggregate resume currently supports direct plans only.",
+            }
 
         attempts: list[dict[str, Any]] = []
         step_results: dict[str, dict[str, Any]] = {}
@@ -961,7 +1024,14 @@ class ThinRuntimeService:
         final_step = plan.steps[-1]
         final_data = step_results.get(final_step.step_id, self._empty_data(final_step.top))
         if plan.result_transform is not None:
-            final_data = self.result_transformer.apply(plan, final_data) or final_data
+            try:
+                final_data = self.result_transformer.apply(plan, final_data) or final_data
+            except ResultTransformError as exc:
+                return attempts, None, {
+                    "code": exc.code,
+                    "message": str(exc),
+                    "diagnostics": exc.diagnostics,
+                }
         merged = dict(final_data)
         merged["primary_step_id"] = self._primary_step_id(plan, step_results)
         merged["final_step_id"] = final_step.step_id
@@ -990,6 +1060,9 @@ class ThinRuntimeService:
         fetch_all: bool,
         row_limit: int | None,
         attempt_start: int = 1,
+        initial_rows: list[dict[str, Any]] | None = None,
+        initial_skip: int = 0,
+        initial_total_count: int = 0,
     ) -> tuple[list[dict[str, Any]], dict[str, Any] | None, dict[str, Any] | None]:
         business_top = plan.top
         if plan.plan_kind == "function_import":
@@ -1004,16 +1077,27 @@ class ThinRuntimeService:
             return [attempt_record], attempt.response_preview or {}, None
 
         transport_top = min(business_top or self.page_size, self.page_size)
-        execution_plan = replace(plan, top=transport_top)
+        stable_order_fields = self._stable_paging_fields(plan) if fetch_all else []
+        if fetch_all and not stable_order_fields:
+            return [], None, {
+                "code": "stable_paging_key_unavailable",
+                "message": "Fetch-all requires indexed key fields or an explicit order_by for deterministic paging.",
+            }
+        execution_plan = replace(
+            plan,
+            top=transport_top,
+            select_fields=list(dict.fromkeys([*plan.select_fields, *stable_order_fields])),
+            order_by=list(dict.fromkeys([*plan.order_by, *stable_order_fields])),
+        )
         try:
             compiled = self.compiler.compile(execution_plan)
         except ValueError as exc:
             return [], None, {"code": "compile_failed", "message": str(exc)}
 
         attempts: list[dict[str, Any]] = []
-        all_rows: list[dict[str, Any]] = []
-        total_count = 0
-        skip = 0
+        all_rows: list[dict[str, Any]] = [row for row in (initial_rows or []) if isinstance(row, dict)]
+        total_count = max(initial_total_count, len(all_rows))
+        skip = max(0, initial_skip)
         while True:
             request_url = self._replace_query_params(
                 compiled.url,
@@ -1026,6 +1110,25 @@ class ThinRuntimeService:
             attempts.append(attempt_record)
             attempt = attempt_record["attempt"]
             if not attempt.success:
+                if fetch_all and all_rows:
+                    partial = self._data_from_rows(all_rows, max(total_count, len(all_rows) + 1), None)
+                    partial.update(
+                        {
+                            "source_complete": False,
+                            "source_truncated": True,
+                            "source_stable_order_fields": stable_order_fields,
+                            "next_source_skip": skip,
+                        }
+                    )
+                    return attempts, partial, {
+                        "code": "aggregate_source_interrupted",
+                        "message": "Aggregate source pagination was interrupted and can be resumed.",
+                        "diagnostics": {
+                            "fetched_row_count": len(all_rows),
+                            "next_source_skip": skip,
+                            "stable_order_fields": stable_order_fields,
+                        },
+                    }
                 return attempts, None, self._sap_error(attempt)
             preview = attempt.response_preview or {}
             if not fetch_all:
@@ -1034,24 +1137,117 @@ class ThinRuntimeService:
             if not rows and "result" in preview:
                 return attempts, preview, None
             all_rows.extend(rows)
-            total_count = self._safe_int(preview.get("result_count"), len(all_rows))
+            total_count = max(total_count, self._safe_int(preview.get("result_count"), len(all_rows)))
             if business_top is not None and len(all_rows) >= business_top:
                 all_rows = all_rows[:business_top]
                 break
             if row_limit is not None and len(all_rows) > row_limit:
-                return attempts, None, {
-                    "code": "binding_row_limit_exceeded",
+                partial = self._data_from_rows(all_rows[:row_limit], max(total_count, len(all_rows)), None)
+                partial.update(
+                    {
+                        "source_complete": False,
+                        "source_truncated": True,
+                        "source_stable_order_fields": stable_order_fields,
+                        "next_source_skip": skip + len(rows),
+                    }
+                )
+                return attempts, partial, {
+                    "code": "aggregate_source_limit_exceeded" if plan.result_transform else "binding_row_limit_exceeded",
                     "message": f"Fetch-all exceeded the configured {row_limit} row limit.",
+                    "diagnostics": {
+                        "fetched_row_count": len(all_rows),
+                        "retained_row_count": row_limit,
+                        "next_source_skip": skip + len(rows),
+                        "stable_order_fields": stable_order_fields,
+                    },
                 }
-            if len(rows) < transport_top or skip + len(rows) >= total_count:
+            pagination = preview.get("pagination") if isinstance(preview.get("pagination"), dict) else {}
+            sap_has_next = bool(pagination.get("sap_has_next", pagination.get("has_next", False)))
+            if not sap_has_next:
                 break
             if row_limit is not None and len(all_rows) >= row_limit:
-                return attempts, None, {
-                    "code": "binding_row_limit_exceeded",
+                partial = self._data_from_rows(all_rows, max(total_count, len(all_rows) + 1), None)
+                partial.update(
+                    {
+                        "source_complete": False,
+                        "source_truncated": True,
+                        "source_stable_order_fields": stable_order_fields,
+                        "next_source_skip": skip + len(rows),
+                    }
+                )
+                return attempts, partial, {
+                    "code": "aggregate_source_limit_exceeded" if plan.result_transform else "binding_row_limit_exceeded",
                     "message": f"More than {row_limit} rows are required for a complete binding.",
+                    "diagnostics": {
+                        "fetched_row_count": len(all_rows),
+                        "next_source_skip": skip + len(rows),
+                        "stable_order_fields": stable_order_fields,
+                    },
                 }
-            skip += len(rows)
-        return attempts, self._data_from_rows(all_rows, min(total_count, business_top or total_count), business_top), None
+            next_skip = self._safe_int(pagination.get("sap_next_skip"), skip + len(rows))
+            if next_skip <= skip:
+                return attempts, None, {
+                    "code": "non_progressing_pagination",
+                    "message": "SAP pagination did not advance; aggregation stopped to avoid an infinite loop.",
+                }
+            skip = next_skip
+        complete_total = min(max(total_count, len(all_rows)), business_top or max(total_count, len(all_rows)))
+        result = self._data_from_rows(all_rows, complete_total, business_top)
+        result["source_stable_order_fields"] = stable_order_fields
+        return attempts, result, None
+
+    def _load_aggregate_resume(
+        self, case_id: str, plan_model: ThinQueryPlan
+    ) -> tuple[dict[str, Any] | None, dict[str, Any] | None]:
+        entry = self.case_repository.get_by_case_id(case_id)
+        if entry is None or entry.get("execution_origin") != "thin_mcp":
+            return None, {
+                "code": "aggregate_resume_case_not_found",
+                "message": "The aggregate resume case was not found.",
+            }
+        stored_plan = entry.get("final_plan") or {}
+        current_plan = plan_model.to_domain()
+        if current_plan.result_transform is None:
+            return None, {
+                "code": "aggregate_resume_not_available",
+                "message": "Only aggregate plans can resume source pagination.",
+            }
+        if (
+            str(stored_plan.get("service_name") or "") != current_plan.service_name
+            or str(stored_plan.get("entity_set") or "") != current_plan.entity_set
+            or stored_plan.get("result_transform") != asdict(current_plan.result_transform)
+        ):
+            return None, {
+                "code": "aggregate_resume_plan_mismatch",
+                "message": "The resume case was created by a different aggregate plan.",
+            }
+        data = entry.get("response_preview") if isinstance(entry.get("response_preview"), dict) else {}
+        rows = self._all_rows(data)
+        next_source_skip = self._safe_int(data.get("next_source_skip"), -1)
+        if not rows or next_source_skip < 0 or not bool(data.get("source_truncated")):
+            return None, {
+                "code": "aggregate_resume_not_available",
+                "message": "The case does not contain an interrupted resumable aggregate source.",
+            }
+        return {
+            "rows": rows,
+            "next_source_skip": next_source_skip,
+            "source_result_count": self._safe_int(data.get("result_count"), len(rows)),
+        }, None
+
+    def _stable_paging_fields(self, plan: QueryPlan) -> list[str]:
+        explicit = [str(field) for field in plan.order_by if str(field).strip()]
+        try:
+            snapshot = self.index_loader.load(plan.service_name)
+        except FileNotFoundError:
+            return explicit
+        root_name = re.sub(r"\(.*\)$", "", str(plan.entity_set or "").split("/", 1)[0])
+        entity = next(
+            (item for item in snapshot.entities if str(item.get("entity_set") or "") == root_name),
+            None,
+        )
+        indexed_keys = [str(field) for field in (entity or {}).get("key_fields", []) if str(field).strip()]
+        return list(dict.fromkeys([*explicit, *indexed_keys]))
 
     def _controlled_get_url(
         self,
@@ -1476,6 +1672,33 @@ class ThinRuntimeService:
                     "page_number": (skip // self.page_size) + 1,
                     "has_next": has_next,
                     "next_skip": skip + len(display_rows) if has_next else None,
+                },
+            }
+        )
+        return normalized
+
+    @staticmethod
+    def _apply_singleton_completeness(data: dict[str, Any]) -> dict[str, Any]:
+        normalized = dict(data)
+        result = data.get("result")
+        count = 1 if isinstance(result, dict) else 0
+        normalized.update(
+            {
+                "result_count": count,
+                "returned_count": count,
+                "displayed_count": count,
+                "source_complete": True,
+                "source_truncated": False,
+                "resource_kind": "singleton",
+                "pagination": {
+                    "page_size": 1,
+                    "display_limit": 1,
+                    "skip": 0,
+                    "page_number": 1,
+                    "has_next": False,
+                    "next_skip": None,
+                    "local_has_next": False,
+                    "sap_has_next": False,
                 },
             }
         )

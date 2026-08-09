@@ -117,10 +117,13 @@ class SapClawRuntimeClient:
         plan: JsonPayload,
         user_input: str = "",
         conversation_id: str | None = None,
+        resume_case_id: str | None = None,
     ) -> JsonPayload:
         payload: JsonPayload = {"plan": plan, "user_input": user_input}
         if conversation_id:
             payload["conversation_id"] = conversation_id
+        if resume_case_id:
+            payload["resume_case_id"] = resume_case_id
         return self._request_json("POST", "/api/v1/runtime/execute-plan", payload)
 
     def execute_get(

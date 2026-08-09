@@ -468,9 +468,56 @@ class SchemaFeasibilityValidator:
                         entity_set=entity_set,
                     )
                 )
+        aggregate_source_fields = list(transform.deduplicate_by)
+        for metric in transform.metrics:
+            aggregate_source_fields.extend(metric.distinct_fields)
+            if metric.field:
+                aggregate_source_fields.append(metric.field)
+            if metric.currency_field:
+                aggregate_source_fields.append(metric.currency_field)
+        for field_name in dict.fromkeys(aggregate_source_fields):
+            field = field_map.get(field_name)
+            if field is None:
+                violations.append(
+                    FeasibilityViolation(
+                        code="result_transform_metric_field_not_in_entity",
+                        message=f"result_transform metric field `{field_name}` is not present on `{entity_set}`.",
+                        field=field_name,
+                        entity_set=entity_set,
+                    )
+                )
+            elif field_name not in selected_fields:
+                violations.append(
+                    FeasibilityViolation(
+                        code="result_transform_metric_field_not_selected",
+                        message=f"result_transform metric field `{field_name}` is not selected.",
+                        field=field_name,
+                        entity_set=entity_set,
+                    )
+                )
+        for metric in transform.metrics:
+            if metric.operation not in {"sum", "sum_abs"} or not metric.field:
+                continue
+            field = field_map.get(metric.field)
+            if field is not None and not self._is_numeric_field(field):
+                violations.append(
+                    FeasibilityViolation(
+                        code="result_transform_metric_field_not_numeric",
+                        message=f"result_transform {metric.operation} field `{metric.field}` is not numeric.",
+                        field=metric.field,
+                        entity_set=entity_set,
+                    )
+                )
         evidence.append(
             "result_transform:aggregate:"
-            + ",".join([*transform.group_by, *transform.sum_fields])
+            + ",".join(
+                [
+                    *transform.group_by,
+                    *transform.sum_fields,
+                    *transform.deduplicate_by,
+                    *(metric.output_field for metric in transform.metrics),
+                ]
+            )
         )
 
     def _load_snapshot(self, service_name: str):

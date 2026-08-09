@@ -28,7 +28,10 @@ sapclaw_execute_get(
   service_name=<indexed service>,
   resource_path=<relative entity or function path>,
   query_options={"$select": "FieldA,FieldB", "$filter": "FieldA eq 'value'"},
-  output_contract=<same output contract rules as a structured plan>,
+  output_contract={
+    "display_fields": ["FieldA"],
+    "reason": "Return the field requested by the user."
+  },
   user_input=<original question>
 )
 ```

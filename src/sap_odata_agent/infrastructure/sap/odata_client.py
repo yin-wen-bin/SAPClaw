@@ -552,8 +552,6 @@ class SapODataExecutor:
             param_map["sap-client"] = self.config.client
         if "$format" not in param_map:
             param_map["$format"] = "json"
-        if "$top" in param_map and "$inlinecount" not in param_map:
-            param_map["$inlinecount"] = "allpages"
 
         new_query = urllib.parse.urlencode(param_map, safe="$(),'/:")
         return urllib.parse.urlunsplit((split.scheme, split.netloc, split.path, new_query, split.fragment))
@@ -622,9 +620,15 @@ class SapODataExecutor:
                 skip = self._requested_skip(url)
                 display_limit = min(page_size, self.MAX_PREVIEW_ROWS)
                 displayed_results = results[:display_limit]
-                total_count = self._parse_total_count(data.get("__count"), len(results))
+                total_count_known = "__count" in data
+                total_count = self._parse_total_count(data.get("__count"), skip + len(results))
                 local_has_next = len(displayed_results) < len(results)
-                sap_has_next = skip + len(results) < total_count
+                server_has_next = bool(data.get("__next"))
+                sap_has_next = server_has_next or (
+                    skip + len(results) < total_count
+                    if total_count_known
+                    else len(results) >= page_size
+                )
                 next_skip = None
                 if local_has_next:
                     next_skip = skip + len(displayed_results)
@@ -638,6 +642,9 @@ class SapODataExecutor:
                     "results": displayed_results,
                     "_all_results": results,
                     "_result_window_start": skip,
+                    "source_complete": not sap_has_next,
+                    "source_truncated": sap_has_next,
+                    "total_count_known": total_count_known,
                     "pagination": {
                         "page_size": page_size,
                         "display_limit": display_limit,
