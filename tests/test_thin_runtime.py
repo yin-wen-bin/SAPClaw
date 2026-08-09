@@ -604,6 +604,184 @@ def test_controlled_get_singletons_never_receive_collection_paging_options(tmp_p
     assert len(executor.requests) == request_count
 
 
+def test_complete_month_end_aggregate_pages_all_rows_and_returns_diagnostics(tmp_path: Path) -> None:
+    class MonthEndExecutor:
+        MAX_PREVIEW_ROWS = 50
+
+        def __init__(self, total_count: int, fail_once_at_skip: int | None = None) -> None:
+            self.total_count = total_count
+            self.fail_once_at_skip = fail_once_at_skip
+            self.failed_once = False
+            self.requests: list[CompiledRequest] = []
+
+        def execute(self, compiled_request: CompiledRequest, attempt_number: int) -> ExecutionAttempt:
+            self.requests.append(compiled_request)
+            params = dict(urllib.parse.parse_qsl(urllib.parse.urlsplit(compiled_request.url).query))
+            skip = int(params.get("$skip", 0))
+            top = int(params.get("$top", 50))
+            if skip == self.fail_once_at_skip and not self.failed_once:
+                self.failed_once = True
+                return ExecutionAttempt(
+                    attempt_number=attempt_number,
+                    request=compiled_request,
+                    success=False,
+                    status_code=504,
+                    error_message="simulated page timeout",
+                )
+            end = min(skip + top, self.total_count)
+            rows = [
+                {
+                    "ID": str(index),
+                    "CompanyCode": "1710",
+                    "CompanyCodeCurrency": "CNY",
+                    "FiscalYear": "2026",
+                    "AccountingDocument": str(1000000000 + index),
+                    "AccountingDocumentItem": "001",
+                    "Ledger": "0L",
+                    "AmountInCompanyCodeCurrency": "-1" if index % 2 else "1",
+                }
+                for index in range(skip, end)
+            ]
+            return ExecutionAttempt(
+                attempt_number=attempt_number,
+                request=compiled_request,
+                success=True,
+                status_code=200,
+                response_preview={
+                    "result_count": self.total_count,
+                    "returned_count": len(rows),
+                    "results": rows,
+                    "_all_results": rows,
+                    "source_complete": end >= self.total_count,
+                    "source_truncated": end < self.total_count,
+                    "pagination": {
+                        "page_size": top,
+                        "skip": skip,
+                        "has_next": end < self.total_count,
+                        "sap_has_next": end < self.total_count,
+                        "sap_next_skip": end if end < self.total_count else None,
+                    },
+                },
+            )
+
+    def aggregate_plan() -> ThinQueryPlan:
+        return ThinQueryPlan.model_validate(
+            {
+                "service_name": "API_GLACCOUNTLINEITEM",
+                "entity_set": "GLAccountLineItem",
+                "select_fields": [
+                    "CompanyCode",
+                    "CompanyCodeCurrency",
+                    "FiscalYear",
+                    "AccountingDocument",
+                    "AccountingDocumentItem",
+                    "Ledger",
+                    "AmountInCompanyCodeCurrency",
+                ],
+                "result_transform": {
+                    "type": "aggregate",
+                    "group_by": ["CompanyCode", "CompanyCodeCurrency"],
+                    "deduplicate_by": [
+                        "CompanyCode",
+                        "FiscalYear",
+                        "AccountingDocument",
+                        "AccountingDocumentItem",
+                        "Ledger",
+                    ],
+                    "metrics": [
+                        {"operation": "count", "output_field": "SourceItemCount"},
+                        {
+                            "operation": "count_distinct",
+                            "output_field": "DistinctItemCount",
+                            "distinct_fields": [
+                                "CompanyCode",
+                                "FiscalYear",
+                                "AccountingDocument",
+                                "AccountingDocumentItem",
+                                "Ledger",
+                            ],
+                        },
+                        {
+                            "operation": "sum_abs",
+                            "output_field": "AbsoluteAmount",
+                            "field": "AmountInCompanyCodeCurrency",
+                            "currency_field": "CompanyCodeCurrency",
+                        },
+                    ],
+                },
+                "output_contract": {
+                    "mode": "inferred",
+                    "display_grain": "company code and currency",
+                    "display_fields": [
+                        "CompanyCode",
+                        "CompanyCodeCurrency",
+                        "SourceItemCount",
+                        "DistinctItemCount",
+                        "AbsoluteAmount",
+                    ],
+                    "reason": "Return complete month-end aggregate evidence.",
+                },
+            }
+        )
+
+    executor = MonthEndExecutor(total_count=1463)
+    runtime = build_runtime(tmp_path, executor=executor, max_binding_rows=2000)
+
+    response = runtime.execute_plan(aggregate_plan(), user_input="calculate complete AP month-end evidence")
+
+    assert response["ok"] is True
+    assert len(executor.requests) == 30
+    assert "$orderby=ID" in executor.requests[0].url
+    assert response["data"]["results"] == [
+        {
+            "CompanyCode": "1710",
+            "CompanyCodeCurrency": "CNY",
+            "SourceItemCount": 1463,
+            "DistinctItemCount": 1463,
+            "AbsoluteAmount": "1463",
+        }
+    ]
+    diagnostics = response["data"]["result_transform"]
+    assert diagnostics["source_row_count"] == 1463
+    assert diagnostics["fetched_row_count"] == 1463
+    assert diagnostics["source_complete"] is True
+    assert diagnostics["source_truncated"] is False
+    assert diagnostics["currency_groups"] == {"CompanyCodeCurrency": ["CNY"]}
+    assert diagnostics["stable_order_fields"] == ["ID"]
+
+    limited_executor = MonthEndExecutor(total_count=120)
+    limited_runtime = build_runtime(tmp_path / "limited", executor=limited_executor, max_binding_rows=100)
+    limited = limited_runtime.execute_plan(aggregate_plan(), user_input="bounded aggregate")
+
+    assert limited["ok"] is False
+    assert limited["error"]["code"] == "aggregate_source_limit_exceeded"
+    assert limited["data"]["source_complete"] is False
+    assert limited["data"]["source_truncated"] is True
+    assert limited["error"]["diagnostics"]["next_source_skip"] == 100
+
+    interrupted_executor = MonthEndExecutor(total_count=120, fail_once_at_skip=50)
+    interrupted_runtime = build_runtime(
+        tmp_path / "interrupted", executor=interrupted_executor, max_binding_rows=200
+    )
+    interrupted = interrupted_runtime.execute_plan(aggregate_plan(), user_input="resumable aggregate")
+
+    assert interrupted["ok"] is False
+    assert interrupted["error"]["code"] == "aggregate_source_interrupted"
+    assert interrupted["data"]["next_source_skip"] == 50
+    resumed = interrupted_runtime.execute_plan(
+        aggregate_plan(),
+        user_input="resume aggregate",
+        resume_case_id=interrupted["case_id"],
+    )
+
+    assert resumed["ok"] is True
+    assert resumed["data"]["results"][0]["SourceItemCount"] == 120
+    assert [
+        int(dict(urllib.parse.parse_qsl(urllib.parse.urlsplit(request.url).query)).get("$skip", 0))
+        for request in interrupted_executor.requests
+    ] == [0, 50, 50, 100]
+
+
 def test_controlled_get_rejects_explicit_singleton_paging_before_executor(tmp_path: Path) -> None:
     executor = FakeExecutor()
     runtime = build_runtime(tmp_path, executor=executor)

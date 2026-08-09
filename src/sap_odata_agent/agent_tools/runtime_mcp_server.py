@@ -286,14 +286,20 @@ def create_mcp_server(
         plan: dict[str, Any],
         user_input: str = "",
         conversation_id: str | None = None,
+        resume_case_id: str | None = None,
     ) -> dict[str, Any]:
-        """Revalidate and execute a structured read-only QueryPlan against SAP OData."""
+        """Revalidate and execute a structured read-only QueryPlan against SAP OData.
+
+        Pass resume_case_id from an interrupted aggregate execution to continue stable source
+        pagination without refetching already saved rows.
+        """
         return tools.call(
             "execute_plan",
             lambda: client.execute_plan(
                 plan=plan,
                 user_input=user_input,
                 conversation_id=conversation_id,
+                resume_case_id=resume_case_id,
             ),
         )
 

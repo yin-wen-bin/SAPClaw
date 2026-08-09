@@ -257,10 +257,21 @@ class FunctionParameter:
 
 
 @dataclass(slots=True)
+class AggregateMetric:
+    operation: str
+    output_field: str
+    distinct_fields: list[str] = field(default_factory=list)
+    field: str | None = None
+    currency_field: str | None = None
+
+
+@dataclass(slots=True)
 class ResultTransform:
     type: str = ""
     group_by: list[str] = field(default_factory=list)
     sum_fields: list[str] = field(default_factory=list)
+    metrics: list[AggregateMetric] = field(default_factory=list)
+    deduplicate_by: list[str] = field(default_factory=list)
 
 
 @dataclass(slots=True)

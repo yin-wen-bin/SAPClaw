@@ -31,7 +31,7 @@ class FakeRuntime:
     def validate_plan(self, plan, user_input=""):
         return {"schema_version": "1.0", "ok": True, "status": "success", "data": plan.model_dump()}
 
-    def execute_plan(self, plan, user_input="", conversation_id=None):
+    def execute_plan(self, plan, user_input="", conversation_id=None, resume_case_id=None):
         return {"schema_version": "1.0", "ok": True, "status": "success", "case_id": "case-plan"}
 
     def execute_get(self, payload):
@@ -261,6 +261,23 @@ def test_runtime_client_sends_api_key_in_header_only() -> None:
     assert "runtime-secret" not in json.dumps(call["payload"])
     assert call["payload"]["output_contract"]["display_fields"] == ["SupplierName"]
     assert call["timeout_seconds"] == 500.0
+
+
+def test_runtime_client_sends_aggregate_resume_case_id() -> None:
+    transport = RecordingRuntimeTransport()
+    client = SapClawRuntimeClient(
+        base_url="http://127.0.0.1:8000",
+        timeout_seconds=500,
+        transport=transport,
+    )
+
+    response = client.execute_plan(
+        plan={"service_name": "API_TEST", "entity_set": "A_Test"},
+        resume_case_id="interrupted-case",
+    )
+
+    assert response["ok"] is True
+    assert transport.calls[0]["payload"]["resume_case_id"] == "interrupted-case"
 
 
 def test_runtime_client_bypasses_system_proxy_for_loopback(monkeypatch) -> None:

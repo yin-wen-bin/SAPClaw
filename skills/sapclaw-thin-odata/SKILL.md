@@ -39,7 +39,7 @@ Every new structured plan must include an `output_contract` with schema field na
 
 - If the user explicitly names return fields, use `mode: "explicit"`. Resolve each requested business field to an authoritative schema field. `requested_fields` and `display_fields` must contain exactly the same fields in the same order. Do not silently substitute, add, or hide display fields. Keys, join fields, and filters that are needed only for execution belong in `support_fields` and are not displayed.
 - If the user does not name return fields, use `mode: "inferred"`. Choose the smallest complete business view for the requested grain. Include the business identifier, the requested measure/status/date, and the contextual fields needed to interpret it. Do not use a fixed column cap and do not return only an identifier when the question needs evidence or context.
-- For an aggregate, every `display_field` must be a `group_by` or `sum_field`; other fields are lost by the transform and cannot be displayed.
+- For an aggregate, every `display_field` must be a `group_by`, legacy `sum_field`, or metric `output_field`; source-only fields are lost by the transform and cannot be displayed.
 - `display_fields` are the only fields shown in the SAPClaw table. `support_fields` are fetched for safe execution, joins, filtering, or audit but remain hidden from presentation.
 
 ## Candidate Disambiguation
@@ -71,7 +71,7 @@ Every new structured plan must include an `output_contract` with schema field na
 
 - Base conclusions only on returned selected fields.
 - Do not convert configuration flags into completion status without schema/Skill evidence.
-- For aggregates, request a validated `result_transform`; do not mentally aggregate an incomplete page.
+- For aggregates, request a validated `result_transform`; do not mentally aggregate an incomplete page. Use `deduplicate_by` for stable business keys, `count_distinct` for composite document-item counts, and a `currency_field` for monetary `sum` or `sum_abs` metrics.
 - If evidence is insufficient, say what field, relation, or service is missing rather than guessing.
 
 Read [references/plan-schema.md](references/plan-schema.md) when constructing multi-step, function-import, binding, or aggregate plans. Read [references/examples.md](references/examples.md) for compact tool-call examples.
