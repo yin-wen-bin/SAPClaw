@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from datetime import datetime, timezone
 from pathlib import Path
 
 from sap_odata_agent.tools.run_runtime_codex_e2e import (
@@ -16,6 +17,7 @@ from sap_odata_agent.tools.run_runtime_codex_e2e import (
     provider_capacity_failure,
     runtime_entry_payload,
 )
+from sap_odata_agent.tools.runtime_e2e_support import _run_baseline, _to_jsonable
 
 
 def _source_case(case_id: str, user_input: str) -> dict[str, object]:
@@ -66,6 +68,22 @@ def test_parse_json_object_accepts_fenced_or_embedded_json() -> None:
     assert parse_json_object('```json\n{"case_id":"runtime-1"}\n```') == {"case_id": "runtime-1"}
     assert parse_json_object('result: {"case_id":"runtime-2"}') == {"case_id": "runtime-2"}
     assert parse_json_object("no json") is None
+
+
+def test_runtime_e2e_audit_serializes_datetimes() -> None:
+    value = datetime(2026, 8, 11, 13, 45, tzinfo=timezone.utc)
+
+    assert _to_jsonable({"created_at": value}) == {"created_at": "2026-08-11T13:45:00+00:00"}
+
+
+def test_runtime_e2e_baseline_writes_audit_json(tmp_path: Path) -> None:
+    case = {"id": "RUNTIME-EMPTY-001", "api": "PP", "baseline": {"steps": []}}
+
+    result = _run_baseline(case, tmp_path)
+
+    assert result["success"] is False
+    saved = json.loads((tmp_path / "PP" / "baselines" / "RUNTIME-EMPTY-001.json").read_text(encoding="utf-8"))
+    assert saved == result
 
 
 def test_classify_codex_failure_separates_external_capacity_failures() -> None:
