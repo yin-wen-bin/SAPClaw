@@ -1,6 +1,6 @@
 # SAPClaw
 
-SAPClaw 是一个通过SAP OData用自然语言操作SAP的Agent（目标是在SAP中进行增删改查，第一版只实现“查”）。它使用 LLM 将用户的业务问题路由到合适的 SAP API，生成可执行的 OData 查询计划，用本地索引的 SAP metadata 做 schema 校验，执行只读 SAP 请求，并以更贴近业务语义的形式展示结果。
+SAPClaw v1 是一个通过 SAP OData 使用自然语言查询 SAP 的只读 Agent。它使用 LLM 将用户的业务问题路由到合适的 SAP API，生成和修复可执行的 OData 查询计划，使用本地索引的 SAP metadata 做 schema 校验，执行只读 SAP 请求，并验证和组织最终结果。
 
 ## 架构
 
@@ -200,11 +200,9 @@ MCP 暴露的主要工具包括：
 - `sapclaw_feedback`：写入查询结果反馈。
 - `sapclaw_model_profiles`：列出本地可用的 LLM profile。
 
-## 免责声明
+## 安全边界与免责声明
 
-SAPClaw 是一个用于探索 SAP OData API 自然语言访问能力的个人测试和实验工具。
-
-本项目仅用于学习、原型验证和内部评估，不适用于生产环境、财务报告、合规判断或任何关键业务操作。
+SAPClaw v1.0 提供稳定的只读查询能力，不执行 SAP 新增、修改或删除操作。它仍应作为辅助查询工具使用，不应作为财务报告、合规判断或关键业务操作的唯一依据。
 
 本工具可能生成错误的 API 路由、查询计划、过滤条件、字段选择、结果摘要或业务解释。用户在依赖任何结果前，应直接到源 SAP 系统中核实。
 
