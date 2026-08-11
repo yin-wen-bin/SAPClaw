@@ -7,9 +7,6 @@ from pathlib import Path
 from threading import RLock
 from typing import Any
 
-from sap_odata_agent.domain.models import CaseRecord
-
-
 class JsonlCaseRepository:
     _MAX_ENTRY_CACHE_BYTES = 50 * 1024 * 1024
 
@@ -54,8 +51,9 @@ class JsonlCaseRepository:
         self._feedback_cache: list[dict[str, Any]] | None = None
         self._feedback_signature: tuple[int, int] | None = None
 
-    def save(self, record: CaseRecord) -> None:
-        payload = self._normalize_json(record.to_dict())
+    def save_entry(self, entry: dict[str, Any]) -> None:
+        """Append a structured SAPClaw Runtime case record."""
+        payload = self._normalize_json(entry)
         with self._cache_lock:
             before_signature = self._file_signature(self.file_path)
             with self.file_path.open("a", encoding="utf-8") as handle:

@@ -5,8 +5,7 @@ from dataclasses import asdict
 from typing import Any
 
 from sap_odata_agent.domain.models import (
-    AgentRequest,
-    CriticFinding,
+    RuntimeValidationContext,
     ExecutionStep,
     FeasibilityResult,
     FeasibilityViolation,
@@ -34,7 +33,7 @@ class SchemaFeasibilityValidator:
         self.service_name = service_name
         self.enabled = enabled
 
-    def validate(self, request: AgentRequest, plan: QueryPlan) -> FeasibilityResult:
+    def validate(self, request: RuntimeValidationContext, plan: QueryPlan) -> FeasibilityResult:
         if not self.enabled:
             return FeasibilityResult(passed=True)
         try:
@@ -60,17 +59,7 @@ class SchemaFeasibilityValidator:
             for item in function_imports_from_snapshot(snapshot)
         }
         is_function_import = plan.plan_kind == "function_import"
-        planner_failure_reason = self._planner_failure_reason(plan)
-        if planner_failure_reason:
-            planner_timed_out = self._is_timeout_text(planner_failure_reason)
-            violations.append(
-                FeasibilityViolation(
-                    code="planner_llm_timeout" if planner_timed_out else "planner_failed",
-                    message=self._planner_failure_message(request, planner_failure_reason, planner_timed_out),
-                    entity_set=plan.entity_set,
-                )
-            )
-        elif is_function_import and plan.entity_set not in function_imports:
+        if is_function_import and plan.entity_set not in function_imports:
             violations.append(
                 FeasibilityViolation(
                     code="function_import_not_found",
@@ -177,49 +166,6 @@ class SchemaFeasibilityValidator:
             coverage=coverage,
             evidence=evidence,
         )
-
-    @staticmethod
-    def _planner_failure_reason(plan: QueryPlan) -> str:
-        diagnostics = plan.planner_diagnostics or {}
-        llm_diagnostics = diagnostics.get("llm_dynamic_path_planner") or {}
-        reason = str(llm_diagnostics.get("reason") or "").strip()
-        accepted = llm_diagnostics.get("accepted")
-        if plan.entity_set == "UNKNOWN_ENTITY" and accepted is False and reason:
-            return reason
-        return ""
-
-    @staticmethod
-    def _planner_failure_message(request: AgentRequest, reason: str, timed_out: bool) -> str:
-        user_text = f"{request.resolved_user_input or ''} {request.user_input or ''}"
-        if any("\u4e00" <= char <= "\u9fff" for char in user_text):
-            if timed_out:
-                return "Planner LLM 在生成可执行查询计划前超时，未向 SAP 发起请求。"
-            return f"Planner 未能生成可执行的 schema 查询计划：{reason}"
-        return (
-            "Planner LLM timed out before producing an executable query plan. No SAP request was executed."
-            if timed_out
-            else f"Planner did not produce an executable schema plan: {reason}"
-        )
-
-    @staticmethod
-    def _is_timeout_text(text: str) -> bool:
-        value = str(text or "").lower()
-        return "timed out" in value or "timeout" in value
-
-    def to_critic_findings(self, result: FeasibilityResult) -> list[CriticFinding]:
-        return [
-            CriticFinding(
-                code=(
-                    "planner_llm_timeout"
-                    if violation.code == "planner_llm_timeout"
-                    else f"schema_{violation.code}"
-                ),
-                message=violation.message,
-                severity="error",
-                blocking=True,
-            )
-            for violation in result.violations
-        ]
 
     @staticmethod
     def to_debug_payload(result: FeasibilityResult) -> dict[str, Any]:
@@ -468,9 +414,56 @@ class SchemaFeasibilityValidator:
                         entity_set=entity_set,
                     )
                 )
+        aggregate_source_fields = list(transform.deduplicate_by)
+        for metric in transform.metrics:
+            aggregate_source_fields.extend(metric.distinct_fields)
+            if metric.field:
+                aggregate_source_fields.append(metric.field)
+            if metric.currency_field:
+                aggregate_source_fields.append(metric.currency_field)
+        for field_name in dict.fromkeys(aggregate_source_fields):
+            field = field_map.get(field_name)
+            if field is None:
+                violations.append(
+                    FeasibilityViolation(
+                        code="result_transform_metric_field_not_in_entity",
+                        message=f"result_transform metric field `{field_name}` is not present on `{entity_set}`.",
+                        field=field_name,
+                        entity_set=entity_set,
+                    )
+                )
+            elif field_name not in selected_fields:
+                violations.append(
+                    FeasibilityViolation(
+                        code="result_transform_metric_field_not_selected",
+                        message=f"result_transform metric field `{field_name}` is not selected.",
+                        field=field_name,
+                        entity_set=entity_set,
+                    )
+                )
+        for metric in transform.metrics:
+            if metric.operation not in {"sum", "sum_abs"} or not metric.field:
+                continue
+            field = field_map.get(metric.field)
+            if field is not None and not self._is_numeric_field(field):
+                violations.append(
+                    FeasibilityViolation(
+                        code="result_transform_metric_field_not_numeric",
+                        message=f"result_transform {metric.operation} field `{metric.field}` is not numeric.",
+                        field=metric.field,
+                        entity_set=entity_set,
+                    )
+                )
         evidence.append(
             "result_transform:aggregate:"
-            + ",".join([*transform.group_by, *transform.sum_fields])
+            + ",".join(
+                [
+                    *transform.group_by,
+                    *transform.sum_fields,
+                    *transform.deduplicate_by,
+                    *(metric.output_field for metric in transform.metrics),
+                ]
+            )
         )
 
     def _load_snapshot(self, service_name: str):
@@ -670,7 +663,7 @@ class SchemaFeasibilityValidator:
         return fields
 
     @staticmethod
-    def _detected_time_expressions(request: AgentRequest) -> list[dict[str, Any]]:
+    def _detected_time_expressions(request: RuntimeValidationContext) -> list[dict[str, Any]]:
         detected = list(getattr(request, "detected_time_expressions", []) or [])
         if detected:
             return detected
@@ -748,7 +741,7 @@ class SchemaFeasibilityValidator:
         return any(token and token in text for token in temporal_tokens)
 
     @staticmethod
-    def _required_temporal_filter_missing_message(request: AgentRequest) -> str:
+    def _required_temporal_filter_missing_message(request: RuntimeValidationContext) -> str:
         user_text = f"{request.resolved_user_input or ''} {request.user_input or ''}"
         if any("\u4e00" <= char <= "\u9fff" for char in user_text):
             return "用户问题包含明确时间范围，但最终可执行 plan 没有保留任何日期或期间过滤条件。"

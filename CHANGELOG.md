@@ -2,6 +2,27 @@
 
 All notable changes to SAPClaw are documented in this file.
 
+## [2.0.0] - 2026-08-11
+
+### Changed
+
+- Made the guarded SAPClaw Runtime the only execution architecture and enabled it by default.
+- Promoted the Runtime developed on the former Thin Runtime branch and renamed its models, skill, metadata and configuration to stable SAPClaw names.
+- Replaced the natural-language query UI with a loopback-only Runtime status and case viewer.
+- Added structured `not_ready` health diagnostics for missing SAP URL, credentials, indexes or live-schema support.
+
+### Removed
+
+- Removed the v1 LLM-first Router, Planner, Repairer, Critic, Verifier, Presenter and orchestrator.
+- Removed `/api/v1/agent/*`, `/api/v1/queries*`, `sapclaw-mcp`, LLM profiles and provider configuration.
+- Removed the Runtime enable switch; the Runtime is always available and fails closed when dependencies are not ready.
+
+### Migration
+
+- Configure `sapclaw-runtime-mcp` and use the `sapclaw-odata` skill.
+- Replace legacy Agent API calls with `/api/v1/runtime/*` contracts.
+- Continue using v1.0.0 if the embedded LLM-first workflow is required.
+
 ## [1.0.0] - 2026-08-11
 
 ### Added
@@ -25,3 +46,4 @@ All notable changes to SAPClaw are documented in this file.
 - The project is distributed as GitHub source; no PyPI package is published for this release.
 
 [1.0.0]: https://github.com/yin-wen-bin/SAPClaw/releases/tag/v1.0.0
+[2.0.0]: https://github.com/yin-wen-bin/SAPClaw/releases/tag/v2.0.0

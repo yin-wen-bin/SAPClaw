@@ -109,6 +109,19 @@ Keep `data/index/API_SALES_ORDER_SRV` as the schema ground truth. This skill pro
 - Step 2: query `A_SalesOrderItemPrElement` by binding `A_SalesOrder.SalesOrder` to `A_SalesOrderItemPrElement.SalesOrder`.
 - Select only `A_SalesOrderItemPrElement.SalesOrder`, `A_SalesOrderItemPrElement.SalesOrderItem`, `A_SalesOrderItemPrElement.PricingProcedureStep`, `A_SalesOrderItemPrElement.PricingProcedureCounter`, `A_SalesOrderItemPrElement.ConditionType`, `A_SalesOrderItemPrElement.ConditionAmount`, and `A_SalesOrderItemPrElement.ConditionCurrency`.
 
+### Exact Sales Order O2C Planning Pattern
+
+- Use this shared read-only Runtime path for exact sales-order status evidence across `API_SALES_ORDER_SRV`, `API_OUTBOUND_DELIVERY_SRV`, `API_BILLING_DOCUMENT_SRV`, and `API_OPLACCTGDOCITEMCUBE_SRV`.
+- Step 1: query `API_SALES_ORDER_SRV.A_SalesOrder` by exact `SalesOrder`; select `SalesOrder`, `OverallDeliveryStatus`, `OverallOrdReltdBillgStatus`, and `OverallSDProcessStatus`.
+- Step 2: query `API_OUTBOUND_DELIVERY_SRV.A_OutbDeliveryItem`; bind `ReferenceSDDocument <- Step 1 SalesOrder`; select `DeliveryDocument`, `DeliveryDocumentItem`, and `ReferenceSDDocument`.
+- Step 3: query `API_OUTBOUND_DELIVERY_SRV.A_OutbDeliveryHeader`; bind `DeliveryDocument <- Step 2 DeliveryDocument`; select `DeliveryDocument`, `ActualGoodsMovementDate`, `OverallGoodsMovementStatus`, `OverallDelivReltdBillgStatus`, and `OverallSDProcessStatus`.
+- Step 4: query `API_BILLING_DOCUMENT_SRV.A_BillingDocumentItem`; bind `SalesDocument <- Step 1 SalesOrder`; select `BillingDocument`, `BillingDocumentItem`, `SalesDocument`, `BillingQuantity`, `BillingQuantityUnit`, `NetAmount`, `TaxAmount`, and `TransactionCurrency`.
+- Step 5: query `API_BILLING_DOCUMENT_SRV.A_BillingDocument`; bind `BillingDocument <- Step 4 BillingDocument`; select `BillingDocument`, `TotalNetAmount`, `TaxAmount`, `TransactionCurrency`, `BillingDocumentIsCancelled`, `AccountingPostingStatus`, and `AccountingTransferStatus`.
+- Step 6: query `API_OPLACCTGDOCITEMCUBE_SRV.A_OperationalAcctgDocItemCube`; bind `BillingDocument <- Step 4 BillingDocument`; select `BillingDocument`, `AccountingDocument`, `AccountingDocumentItem`, `IsCleared`, `ClearingDate`, `ClearingAccountingDocument`, `AmountInCompanyCodeCurrency`, and `CompanyCodeCurrency`.
+- Set `fetch_all_for_binding=true` on every downstream binding source. The configured Runtime binding-row safety limit still applies.
+- Zero rows at an intermediate step mean the downstream delivery, billing, or FI business document is absent. SAP, schema, timeout, or binding errors mean the query failed; never present them as an absent document.
+- `IsCleared`, `ClearingDate`, and `ClearingAccountingDocument` prove receivable clearing only. They do not prove that bank funds were received.
+
 ### Detail Query
 
 - Use item/detail/text/pricing/account/partner/schedule entities only when the user asks for that detail level or when a relationship path in `lookup_paths.json` proves the navigation.

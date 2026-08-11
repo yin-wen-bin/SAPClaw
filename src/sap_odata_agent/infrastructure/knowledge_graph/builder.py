@@ -250,10 +250,16 @@ def _build_business_paths(relations: list[dict[str, Any]], skills: dict[str, dic
                 steps = [_clean_text(line.lstrip("-*0123456789. ").strip()) for line in lines if _clean_text(line)]
                 if not steps:
                     continue
+                companion_services = []
+                for step in steps:
+                    for candidate in re.findall(r"\bAPI_[A-Z0-9_]+\b", step):
+                        if candidate not in companion_services:
+                            companion_services.append(candidate)
+                service_names = list(dict.fromkeys([service_name, *companion_services]))
                 facts.append(
                     {
-                        "intent": _clean_text(title) or "Common Planning Pattern",
-                        "service_names": [service_name],
+                        "intent": _clean_text(title) or _clean_text(heading) or "Common Planning Pattern",
+                        "service_names": service_names,
                         "steps": steps[:8],
                         "source": skill["path"],
                         "confidence": 0.86,

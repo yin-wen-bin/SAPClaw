@@ -38,4 +38,4 @@ SAPClaw 面向私有 SAP 环境。不要公开真实 SAP 凭据、LLM API key、
 - 使用 HTTPS。
 - 将网络访问限制给可信用户和服务。
 - 不要在公开主机上放置 `env/`、`data/index/`、`data/metadata/`、`raw/` 或测试用例资产。
-- 除非已经强制执行等效的网关鉴权，否则不要直接暴露 `/api/v1/agent/*`。
+- 除非已经强制执行等效的网关鉴权，否则不要直接暴露 `/api/v1/runtime/*`。

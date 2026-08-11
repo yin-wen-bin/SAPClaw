@@ -41,6 +41,7 @@ class SapRuntimeConfig:
     timeout_seconds: int = 30
     retry_attempts: int = 3
     retry_delay_seconds: float = 0.4
+    proxy_bypass_hosts: str = ""
 
 
 class BasicPlanValidator:
@@ -85,7 +86,7 @@ class BasicPlanValidator:
             issues.append(
                 ValidationIssue(
                     severity="warning",
-                    message="Only GET requests are enabled in the current MVP.",
+                    message="Only GET requests are supported by SAPClaw Runtime.",
                     field="http_method",
                 )
             )
@@ -177,6 +178,16 @@ class BasicODataCompiler:
             url = f"{url}?{query_string}"
 
         return CompiledRequest(method=plan.http_method, url=url, payload=plan.payload)
+
+    def runtime_service_name(self, service_name: str) -> str:
+        """Resolve an indexed service to its SAP Gateway runtime name."""
+        self._ensure_odata_runtime_service(service_name)
+        return self._runtime_service_name(service_name)
+
+    @staticmethod
+    def compile_literal(value: str, value_type: str) -> str:
+        """Compile a typed OData literal without constructing a request."""
+        return BasicODataCompiler._compile_literal(value, value_type)
 
     def _ensure_odata_runtime_service(self, service_name: str) -> None:
         if str(service_name or "") in self.cds_view_only_services:
@@ -463,7 +474,7 @@ class SapODataExecutor:
                 success=False,
                 status_code=None,
                 response_preview=None,
-                error_message="Only GET requests are enabled in the current MVP executor.",
+                error_message="Only GET requests are supported by SAPClaw Runtime.",
             )
 
         runtime_url = self._prepare_runtime_url(compiled_request.url)
@@ -514,6 +525,30 @@ class SapODataExecutor:
                 error_message=f"Unexpected SAP execution error: {exc}",
             )
 
+    def fetch_metadata(self, service_name: str) -> tuple[str, str]:
+        """Fetch a service's read-only EDMX using the runtime auth, SSL and proxy policy."""
+
+        if self.config.auth_type.lower() != "basic":
+            raise ValueError(f"Unsupported SAP auth type: {self.config.auth_type}")
+        query = urllib.parse.urlencode({"sap-client": self.config.client}) if self.config.client else ""
+        metadata_url = f"{self.config.base_url.rstrip('/')}/sap/opu/odata/sap/{service_name}/$metadata"
+        if query:
+            metadata_url = f"{metadata_url}?{query}"
+        password_mgr = urllib.request.HTTPPasswordMgrWithDefaultRealm()
+        base_origin = (
+            f"{urllib.parse.urlsplit(self.config.base_url).scheme}://"
+            f"{urllib.parse.urlsplit(self.config.base_url).netloc}"
+        )
+        password_mgr.add_password(None, base_origin, self.config.username, self.config.password)
+        handlers: list[urllib.request.BaseHandler] = [urllib.request.HTTPBasicAuthHandler(password_mgr)]
+        if self._should_bypass_proxy(metadata_url):
+            handlers.append(urllib.request.ProxyHandler({}))
+        if metadata_url.lower().startswith("https://") and not self.config.verify_ssl:
+            handlers.append(urllib.request.HTTPSHandler(context=ssl._create_unverified_context()))
+        request = urllib.request.Request(metadata_url, headers={"Accept": "application/xml"}, method="GET")
+        with urllib.request.build_opener(*handlers).open(request, timeout=self.config.timeout_seconds) as response:
+            return response.read().decode("utf-8", errors="ignore"), metadata_url
+
     def _perform_request_with_retries(self, compiled_request: CompiledRequest) -> dict[str, str | int]:
         attempts = max(1, self.config.retry_attempts)
         delay = max(0.0, self.config.retry_delay_seconds)
@@ -541,8 +576,6 @@ class SapODataExecutor:
             param_map["sap-client"] = self.config.client
         if "$format" not in param_map:
             param_map["$format"] = "json"
-        if "$top" in param_map and "$inlinecount" not in param_map:
-            param_map["$inlinecount"] = "allpages"
 
         new_query = urllib.parse.urlencode(param_map, safe="$(),'/:")
         return urllib.parse.urlunsplit((split.scheme, split.netloc, split.path, new_query, split.fragment))
@@ -554,6 +587,8 @@ class SapODataExecutor:
         auth_handler = urllib.request.HTTPBasicAuthHandler(password_mgr)
 
         handlers: list[urllib.request.BaseHandler] = [auth_handler]
+        if self._should_bypass_proxy(compiled_request.url):
+            handlers.append(urllib.request.ProxyHandler({}))
         if compiled_request.url.lower().startswith("https://") and not self.config.verify_ssl:
             handlers.append(urllib.request.HTTPSHandler(context=ssl._create_unverified_context()))
 
@@ -574,6 +609,26 @@ class SapODataExecutor:
                 "body": response.read().decode("utf-8", errors="ignore"),
             }
 
+    def _should_bypass_proxy(self, url: str) -> bool:
+        host = (urllib.parse.urlsplit(url).hostname or "").strip(".").lower()
+        if not host:
+            return False
+
+        for raw_value in self.config.proxy_bypass_hosts.split(","):
+            candidate = raw_value.strip().lower()
+            if not candidate:
+                continue
+            if candidate == "*":
+                return True
+            if "://" in candidate:
+                candidate = urllib.parse.urlsplit(candidate).hostname or ""
+            elif candidate.count(":") == 1:
+                candidate = candidate.rsplit(":", 1)[0]
+            candidate = candidate.strip(".")
+            if candidate and (host == candidate or host.endswith(f".{candidate}")):
+                return True
+        return False
+
     @staticmethod
     def _parse_response_body(body: str, content_type: str) -> dict:
         if "json" in content_type.lower():
@@ -589,9 +644,15 @@ class SapODataExecutor:
                 skip = self._requested_skip(url)
                 display_limit = min(page_size, self.MAX_PREVIEW_ROWS)
                 displayed_results = results[:display_limit]
-                total_count = self._parse_total_count(data.get("__count"), len(results))
+                total_count_known = "__count" in data
+                total_count = self._parse_total_count(data.get("__count"), skip + len(results))
                 local_has_next = len(displayed_results) < len(results)
-                sap_has_next = skip + len(results) < total_count
+                server_has_next = bool(data.get("__next"))
+                sap_has_next = server_has_next or (
+                    skip + len(results) < total_count
+                    if total_count_known
+                    else len(results) >= page_size
+                )
                 next_skip = None
                 if local_has_next:
                     next_skip = skip + len(displayed_results)
@@ -605,6 +666,9 @@ class SapODataExecutor:
                     "results": displayed_results,
                     "_all_results": results,
                     "_result_window_start": skip,
+                    "source_complete": not sap_has_next,
+                    "source_truncated": sap_has_next,
+                    "total_count_known": total_count_known,
                     "pagination": {
                         "page_size": page_size,
                         "display_limit": display_limit,
@@ -1055,7 +1119,7 @@ class MultiStepSapExecutor:
 
 
 class SapExecutorStub:
-    """Stub executor retained for isolated tests or local scaffolding."""
+    """Stub executor retained for isolated Runtime tests."""
 
     def execute(self, compiled_request: CompiledRequest, attempt_number: int) -> ExecutionAttempt:
         if not compiled_request.url.startswith("http"):

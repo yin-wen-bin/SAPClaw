@@ -30,7 +30,7 @@ class TemporalExpression:
 
 
 class TemporalNormalizer:
-    """Normalize stable calendar-relative phrases before LLM planning.
+    """Normalize stable calendar-relative phrases before plan validation.
 
     This intentionally handles generic calendar language only. Business-specific
     periods such as fiscal year variants and payment periods should be resolved

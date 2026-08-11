@@ -1,10 +1,11 @@
 {
   "name": "sap-claw-frontend",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "test": "node --test src/viewerState.test.js",
     "build": "vite build",
     "preview": "vite preview"
   },

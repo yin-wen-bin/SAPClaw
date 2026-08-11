@@ -105,7 +105,7 @@ def build_connection_config(env_path: str | Path) -> SapConnectionConfig:
 class SapMetadataFetcher:
     def fetch(self, config: SapConnectionConfig, service_name: str) -> tuple[str, str]:
         if config.auth_type.lower() != "basic":
-            raise ValueError(f"Unsupported SAP auth type for scaffold: {config.auth_type}")
+            raise ValueError(f"Unsupported SAP auth type for index builder: {config.auth_type}")
 
         query = f"?sap-client={config.client}" if config.client else ""
         metadata_url = f"{config.base_url}/sap/opu/odata/sap/{service_name}/$metadata{query}"
