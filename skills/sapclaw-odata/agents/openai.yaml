@@ -1,0 +1,10 @@
+interface:
+  display_name: "SAPClaw OData"
+  short_description: "Plan and run guarded SAP OData reads through SAPClaw Runtime MCP"
+  default_prompt: "Use $sapclaw-odata to answer this SAP question through the read-only SAPClaw Runtime."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "sapclaw_runtime"
+      description: "Local SAPClaw read-only SAPClaw Runtime"
+      transport: "stdio"

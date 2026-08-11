@@ -2,13 +2,15 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
+from typing import Any
 
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-from sap_odata_agent.api.routes.agent import router as agent_router
-from sap_odata_agent.api.routes.queries import router as queries_router
+from sap_odata_agent.api.app_dependencies import get_runtime_service
+from sap_odata_agent.api.routes.runtime import router as runtime_router, viewer_router
+from sap_odata_agent.application.runtime import SapClawRuntimeService
 from sap_odata_agent.infrastructure.config.settings import get_settings
 
 
@@ -16,7 +18,7 @@ logger = logging.getLogger(__name__)
 
 
 def create_app() -> FastAPI:
-    app = FastAPI(title="SAP OData Agent")
+    app = FastAPI(title="SAPClaw Runtime", version="2.0.0")
     frontend_dist = Path("frontend/dist")
     settings = get_settings()
 
@@ -24,11 +26,13 @@ def create_app() -> FastAPI:
         logger.warning("Internal API authentication is disabled.")
 
     @app.get("/health")
-    def health() -> dict[str, str]:
-        return {"status": "ok"}
+    def health(
+        runtime: SapClawRuntimeService = Depends(get_runtime_service),
+    ) -> dict[str, Any]:
+        return runtime.health()
 
-    app.include_router(agent_router)
-    app.include_router(queries_router)
+    app.include_router(runtime_router)
+    app.include_router(viewer_router)
 
     if frontend_dist.exists():
         assets_dir = frontend_dist / "assets"

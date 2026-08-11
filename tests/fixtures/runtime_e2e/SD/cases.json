@@ -1,0 +1,120 @@
+[
+  {
+    "id": "RUNTIME-PRIORITY-O2C-001",
+    "api": "SD",
+    "scenario": "Discover a sanitized sales-order key and verify the shared six-step O2C evidence path",
+    "user_input": "查询销售订单 {{SalesOrder}} 的订单、交货、开票和应收清账状态。区分缺少下游业务凭证与查询失败；清账只作为应收清账证据，不要表述为银行到账。",
+    "prompt_bindings": [
+      {
+        "placeholder": "{{SalesOrder}}",
+        "source_step": "discover_order",
+        "source_field": "SalesDocument"
+      }
+    ],
+    "expected_apis": [
+      "API_SALES_ORDER_SRV",
+      "API_OUTBOUND_DELIVERY_SRV",
+      "API_BILLING_DOCUMENT_SRV",
+      "API_OPLACCTGDOCITEMCUBE_SRV"
+    ],
+    "require_all_expected_apis": true,
+    "expected_capability": {
+      "execute": true
+    },
+    "baseline": {
+      "steps": [
+        {
+          "id": "discover_order",
+          "url": "/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV/A_BillingDocumentItem?$select=SalesDocument&$filter=SalesDocument%20ne%20''&$top=1&$format=json",
+          "key_fields": ["SalesDocument"]
+        },
+        {
+          "id": "sales_order",
+          "url": "/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder?$select=SalesOrder,OverallDeliveryStatus,OverallOrdReltdBillgStatus,OverallSDProcessStatus&$top=50&$format=json",
+          "bindings": [{"source_step": "discover_order", "source_field": "SalesDocument", "target_field": "SalesOrder"}],
+          "key_fields": ["SalesOrder"]
+        },
+        {
+          "id": "delivery_items",
+          "url": "/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV/A_OutbDeliveryItem?$select=DeliveryDocument,DeliveryDocumentItem,ReferenceSDDocument&$top=50&$format=json",
+          "bindings": [{"source_step": "sales_order", "source_field": "SalesOrder", "target_field": "ReferenceSDDocument"}],
+          "key_fields": ["DeliveryDocument", "DeliveryDocumentItem"]
+        },
+        {
+          "id": "delivery_headers",
+          "url": "/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV/A_OutbDeliveryHeader?$select=DeliveryDocument,ActualGoodsMovementDate,OverallGoodsMovementStatus,OverallDelivReltdBillgStatus,OverallSDProcessStatus&$top=50&$format=json",
+          "bindings": [{"source_step": "delivery_items", "source_field": "DeliveryDocument", "target_field": "DeliveryDocument"}],
+          "key_fields": ["DeliveryDocument"]
+        },
+        {
+          "id": "billing_items",
+          "url": "/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV/A_BillingDocumentItem?$select=BillingDocument,BillingDocumentItem,SalesDocument,BillingQuantity,BillingQuantityUnit,NetAmount,TaxAmount,TransactionCurrency&$top=50&$format=json",
+          "bindings": [{"source_step": "sales_order", "source_field": "SalesOrder", "target_field": "SalesDocument"}],
+          "key_fields": ["BillingDocument", "BillingDocumentItem"]
+        },
+        {
+          "id": "billing_headers",
+          "url": "/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV/A_BillingDocument?$select=BillingDocument,TotalNetAmount,TaxAmount,TransactionCurrency,BillingDocumentIsCancelled,AccountingPostingStatus,AccountingTransferStatus&$top=50&$format=json",
+          "bindings": [{"source_step": "billing_items", "source_field": "BillingDocument", "target_field": "BillingDocument"}],
+          "key_fields": ["BillingDocument"]
+        },
+        {
+          "id": "receivable_clearing",
+          "url": "/sap/opu/odata/sap/API_OPLACCTGDOCITEMCUBE_SRV/A_OperationalAcctgDocItemCube?$select=BillingDocument,AccountingDocument,AccountingDocumentItem,IsCleared,ClearingDate,ClearingAccountingDocument,AmountInCompanyCodeCurrency,CompanyCodeCurrency&$top=50&$format=json",
+          "bindings": [{"source_step": "billing_items", "source_field": "BillingDocument", "target_field": "BillingDocument"}],
+          "key_fields": ["AccountingDocument", "AccountingDocumentItem"]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "exact_keys",
+      "keys": ["AccountingDocument", "AccountingDocumentItem"]
+    }
+  },
+  {
+    "id": "RUNTIME-PRIORITY-BILLING-001",
+    "api": "SD",
+    "scenario": "Discover a sanitized billing key and verify header-item-pricing authority",
+    "user_input": "查询开票凭证 {{BillingDocument}} 的抬头、项目和定价证据，使用权威金额、税额、币种和开票数量字段，并说明完整分页和币种可比性。",
+    "prompt_bindings": [
+      {
+        "placeholder": "{{BillingDocument}}",
+        "source_step": "discover_billing",
+        "source_field": "BillingDocument"
+      }
+    ],
+    "expected_api": "API_BILLING_DOCUMENT_SRV",
+    "expected_capability": {"execute": true},
+    "baseline": {
+      "steps": [
+        {
+          "id": "discover_billing",
+          "url": "/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV/A_BillingDocument?$select=BillingDocument&$top=1&$format=json",
+          "key_fields": ["BillingDocument"]
+        },
+        {
+          "id": "billing_header",
+          "url": "/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV/A_BillingDocument?$select=BillingDocument,TotalNetAmount,TaxAmount,TransactionCurrency,BillingDocumentIsCancelled,AccountingPostingStatus,AccountingTransferStatus&$top=50&$format=json",
+          "bindings": [{"source_step": "discover_billing", "source_field": "BillingDocument", "target_field": "BillingDocument"}],
+          "key_fields": ["BillingDocument"]
+        },
+        {
+          "id": "billing_items",
+          "url": "/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV/A_BillingDocumentItem?$select=BillingDocument,BillingDocumentItem,BillingQuantity,BillingQuantityUnit,NetAmount,TaxAmount,TransactionCurrency&$top=50&$format=json",
+          "bindings": [{"source_step": "billing_header", "source_field": "BillingDocument", "target_field": "BillingDocument"}],
+          "key_fields": ["BillingDocument", "BillingDocumentItem"]
+        },
+        {
+          "id": "pricing_elements",
+          "url": "/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV/A_BillingDocumentItemPrcgElmnt?$select=BillingDocument,BillingDocumentItem,PricingProcedureStep,PricingProcedureCounter,ConditionType,TaxCode,ConditionAmount,ConditionCurrency,ConditionInactiveReason,ConditionIsForStatistics&$top=50&$format=json",
+          "bindings": [{"source_step": "billing_items", "source_field": "BillingDocument", "target_field": "BillingDocument"}],
+          "key_fields": ["BillingDocument", "BillingDocumentItem", "PricingProcedureStep", "PricingProcedureCounter"]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "exact_keys",
+      "keys": ["BillingDocument", "BillingDocumentItem", "PricingProcedureStep", "PricingProcedureCounter"]
+    }
+  }
+]

@@ -408,7 +408,7 @@ def test_compiler_normalizes_dotted_dates_for_datetime_filters() -> None:
     assert "ScheduleLineDeliveryDate eq datetime'2018-11-23T00:00:00'" in compiled.url
 
 
-def test_compiler_does_not_quote_llm_supplied_datetime_wrapper() -> None:
+def test_compiler_does_not_quote_supplied_datetime_wrapper() -> None:
     plan = QueryPlan(
         service_name="API_PURCHASEORDER_PROCESS_SRV",
         entity_set="A_PurchaseOrderScheduleLine",

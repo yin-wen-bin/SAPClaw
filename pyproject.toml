@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sap-odata-agent"
-version = "1.0.0"
-description = "A controlled, read-only SAP OData agent for natural-language queries"
+version = "2.0.0"
+description = "A guarded, read-only SAP OData runtime for Codex"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
@@ -25,7 +25,8 @@ dev = [
 
 [project.scripts]
 sap-odata-build-index = "sap_odata_agent.tools.build_dual_source_index:main"
-sapclaw-mcp = "sap_odata_agent.agent_tools.mcp_server:main"
+sapclaw-runtime-mcp = "sap_odata_agent.agent_tools.runtime_mcp_server:main"
+sapclaw-runtime-e2e = "sap_odata_agent.tools.run_runtime_codex_e2e:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

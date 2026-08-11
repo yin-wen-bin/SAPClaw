@@ -1,0 +1,56 @@
+{
+  "evidence_authority": {
+    "billing_header": {
+      "entity": "A_BillingDocument",
+      "authoritative_fields": [
+        "TotalNetAmount",
+        "TaxAmount",
+        "TransactionCurrency",
+        "BillingDocumentIsCancelled",
+        "AccountingPostingStatus",
+        "AccountingTransferStatus"
+      ]
+    },
+    "billing_item": {
+      "entity": "A_BillingDocumentItem",
+      "authoritative_fields": [
+        "BillingQuantity",
+        "BillingQuantityUnit",
+        "NetAmount",
+        "TaxAmount",
+        "TransactionCurrency"
+      ]
+    },
+    "pricing_element": {
+      "entities": [
+        "A_BillingDocumentPrcgElmnt",
+        "A_BillingDocumentItemPrcgElmnt"
+      ],
+      "authoritative_fields": [
+        "ConditionType",
+        "TaxCode",
+        "ConditionAmount",
+        "ConditionCurrency",
+        "ConditionInactiveReason",
+        "ConditionIsForStatistics"
+      ],
+      "evidence_role": "detail_only"
+    }
+  },
+  "comparison_rules": {
+    "header_item_totals": {
+      "requires_complete_pagination": true,
+      "requires_same_currency": true
+    }
+  },
+  "prohibited_substitutions": [
+    {
+      "source": "pricing quantity",
+      "target": "BillingQuantity"
+    },
+    {
+      "source": "tax classification",
+      "target": "TaxAmount"
+    }
+  ]
+}

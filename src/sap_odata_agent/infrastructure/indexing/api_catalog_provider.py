@@ -10,7 +10,7 @@ from sap_odata_agent.infrastructure.indexing.index_loader import LocalIndexLoade
 
 
 class ApiCatalogProvider:
-    """Build a compact API catalog for LLM routing.
+    """Build a compact API catalog for Codex routing.
 
     The catalog is intentionally small: it summarizes indexed APIs without
     exposing every field. The router uses this to pick the API before any

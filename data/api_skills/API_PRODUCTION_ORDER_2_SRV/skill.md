@@ -79,6 +79,7 @@ Keep `data/index/API_PRODUCTION_ORDER_2_SRV` as the schema ground truth. This sk
 ### Production Order Components
 
 - For production order component / 组件 requests, use `A_ProductionOrderComponent_2`.
+- When the user provides a production order number, filter `A_ProductionOrderComponent_2.ManufacturingOrder` by that number before applying any plant filter. Do not broaden a specific-order component request into an all-orders-for-plant query.
 - If the user provides a plant, filter `A_ProductionOrderComponent_2.Plant` or `A_ProductionOrderComponent_2.ProductionPlant` according to the available schema.
 - Select `ManufacturingOrder`, `ManufacturingOrderOperation`, `Material`, `Plant`, and `ProductionPlant`.
 

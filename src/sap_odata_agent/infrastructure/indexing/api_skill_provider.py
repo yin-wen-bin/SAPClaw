@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import re
 from dataclasses import dataclass
 from pathlib import Path
@@ -34,6 +35,7 @@ class ApiSkill:
     content: str
     summary: str
     routing_hints: ApiSkillRoutingHints
+    runtime_rules: dict[str, Any]
 
     def as_prompt_payload(self) -> dict[str, Any]:
         return {
@@ -41,14 +43,15 @@ class ApiSkill:
             "path": self.path,
             "summary": self.summary,
             "routing_hints": self.routing_hints.as_dict(),
+            "runtime_rules": self.runtime_rules,
             "content": self.content,
         }
 
 
 class ApiSkillProvider:
-    """Loads API-specific LLM skills.
+    """Loads API-specific planning skills.
 
-    Skills are semantic playbooks for the LLM. They do not replace the local
+    Skills are semantic playbooks for Codex. They do not replace the local
     index, and schema validation remains authoritative for fields and entities.
     """
 
@@ -56,15 +59,16 @@ class ApiSkillProvider:
         self.skill_root = Path(skill_root)
         self.max_summary_chars = max_summary_chars
         self._cache_lock = RLock()
-        self._skill_cache: dict[str, tuple[tuple[int, int, int] | None, ApiSkill | None]] = {}
+        self._skill_cache: dict[str, tuple[tuple[int, ...] | None, ApiSkill | None]] = {}
 
     def load(self, service_name: str) -> ApiSkill | None:
         service = str(service_name or "").strip()
         if not service:
             return None
         path = self.skill_root / service / "skill.md"
+        rules_path = self.skill_root / service / "runtime_rules.json"
         with self._cache_lock:
-            signature = self._skill_signature(path)
+            signature = self._skill_signature(path, rules_path)
             cached = self._skill_cache.get(service)
             if cached is not None and cached[0] == signature:
                 return cached[1]
@@ -81,6 +85,7 @@ class ApiSkillProvider:
                 content=content,
                 summary=self._summarize(content),
                 routing_hints=self._extract_routing_hints(service, content),
+                runtime_rules=self._load_runtime_rules(rules_path),
             )
             self._skill_cache[service] = (signature, skill)
             return skill
@@ -101,6 +106,66 @@ class ApiSkillProvider:
                 }
             )
         return enriched
+
+    def recommend_services(
+        self,
+        user_input: str,
+        service_names: list[str] | set[str] | tuple[str, ...],
+        *,
+        limit: int = 5,
+    ) -> list[dict[str, Any]]:
+        """Return compact, advisory candidate evidence from authored API Skills.
+
+        This is retrieval only. It never selects a service, modifies a plan, or
+        overrides catalog/schema availability. Matching the complete Skill
+        patterns is important because the short catalog summary can omit a
+        precise business phrase found later in a skill's planning patterns.
+        """
+
+        query = str(user_input or "").strip()
+        if not query:
+            return []
+
+        ranked: list[tuple[float, str, dict[str, Any]]] = []
+        for service_name in dict.fromkeys(str(name or "").strip() for name in service_names):
+            if not service_name:
+                continue
+            skill = self.load(service_name)
+            if skill is None:
+                continue
+            lines = [
+                *skill.routing_hints.route_when,
+                *skill.routing_hints.business_terms,
+                *skill.routing_hints.anchor_terms,
+            ]
+            best_score = 0.0
+            best_line = ""
+            matched_terms: list[str] = []
+            for line in lines:
+                score, matches = self._skill_match_score(query, line)
+                if score > best_score:
+                    best_score = score
+                    best_line = line
+                    matched_terms = matches
+            if best_score <= 0:
+                continue
+            ranked.append(
+                (
+                    best_score,
+                    service_name,
+                    {
+                        "service_name": service_name,
+                        "confidence": round(min(1.0, 0.55 + best_score / 20.0), 3),
+                        "matched_terms": matched_terms[:8],
+                        "reason": self._truncate(best_line, 280),
+                        "source": skill.path,
+                        "confirmed": True,
+                        "evidence_text": self._truncate(best_line, 360),
+                    },
+                )
+            )
+        ranked.sort(key=lambda item: (-item[0], item[1]))
+        return [item for _, _, item in ranked[: max(1, int(limit or 1))]]
 
     def _summarize(self, content: str) -> str:
         sections_by_heading = self._extract_sections_by_heading(
@@ -243,15 +308,72 @@ class ApiSkillProvider:
             )
         )
 
+    @classmethod
+    def _skill_match_score(cls, query: str, candidate: str) -> tuple[float, list[str]]:
+        query_text = str(query or "")
+        candidate_text = str(candidate or "")
+        if not query_text.strip() or not candidate_text.strip():
+            return 0.0, []
+
+        score = 0.0
+        query_normalized = cls._normalize_search_text(query_text)
+        candidate_normalized = cls._normalize_search_text(candidate_text)
+        if len(query_normalized) >= 6 and query_normalized in candidate_normalized:
+            score += 10.0
+        if len(candidate_normalized) >= 6 and candidate_normalized in query_normalized:
+            score += 7.0
+
+        common_tokens = cls._search_tokens(query_text) & cls._search_tokens(candidate_text)
+        score += 2.0 * len(common_tokens)
+
+        common_cjk_terms = cls._cjk_terms(query_text) & cls._cjk_terms(candidate_text)
+        meaningful_cjk_terms = sorted((term for term in common_cjk_terms if len(term) >= 2), key=lambda term: (-len(term), term))
+        score += 1.5 * len(meaningful_cjk_terms)
+        matched_terms = [*meaningful_cjk_terms, *sorted(common_tokens)]
+        return score, matched_terms
+
+    @staticmethod
+    def _normalize_search_text(value: str) -> str:
+        return "".join(char for char in str(value or "").lower() if char.isalnum())
+
+    @staticmethod
+    def _search_tokens(value: str) -> set[str]:
+        split_camel = re.sub(r"(?<=[a-z0-9])(?=[A-Z])", " ", str(value or ""))
+        return {token.lower() for token in re.findall(r"[A-Za-z0-9]+", split_camel) if len(token) >= 3}
+
+    @staticmethod
+    def _cjk_terms(value: str) -> set[str]:
+        terms: set[str] = set()
+        for chunk in re.findall(r"[\u4e00-\u9fff]+", str(value or "")):
+            for size in (2, 3, 4, 5, 6):
+                if len(chunk) < size:
+                    continue
+                terms.update(chunk[index : index + size] for index in range(0, len(chunk) - size + 1))
+        return terms
+
     @staticmethod
     def _truncate(value: str, max_chars: int) -> str:
         if len(value) <= max_chars:
             return value
         return value[: max_chars - 3].rstrip() + "..."
 
-    def _skill_signature(self, path: Path) -> tuple[int, int, int] | None:
+    @staticmethod
+    def _load_runtime_rules(path: Path) -> dict[str, Any]:
+        if not path.exists():
+            return {}
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        if not isinstance(payload, dict):
+            raise ValueError(f"Runtime rules must be a JSON object: {path}")
+        return payload
+
+    def _skill_signature(self, path: Path, rules_path: Path) -> tuple[int, ...] | None:
         try:
             stat = path.stat()
         except FileNotFoundError:
             return None
-        return (stat.st_mtime_ns, stat.st_size, self.max_summary_chars)
+        try:
+            rules_stat = rules_path.stat()
+            rules_signature = (rules_stat.st_mtime_ns, rules_stat.st_size)
+        except FileNotFoundError:
+            rules_signature = (0, 0)
+        return (stat.st_mtime_ns, stat.st_size, *rules_signature, self.max_summary_chars)

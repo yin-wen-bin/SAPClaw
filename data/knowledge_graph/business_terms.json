@@ -112644,6 +112644,78 @@
     "confirmed": true
   },
   {
+    "term": "客户物料",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "Use this API for Chinese business wording such as `客户物料`、`客户物料信息`、`客户物料主数据`、`客户料号`、`客户物料编号`、`客户维护的物料信息`, including requests that also specify a customer number.",
+    "confirmed": true
+  },
+  {
+    "term": "客户物料信息",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "Use this API for Chinese business wording such as `客户物料`、`客户物料信息`、`客户物料主数据`、`客户料号`、`客户物料编号`、`客户维护的物料信息`, including requests that also specify a customer number.",
+    "confirmed": true
+  },
+  {
+    "term": "客户物料主数据",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "Use this API for Chinese business wording such as `客户物料`、`客户物料信息`、`客户物料主数据`、`客户料号`、`客户物料编号`、`客户维护的物料信息`, including requests that also specify a customer number.",
+    "confirmed": true
+  },
+  {
+    "term": "客户料号",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "Use this API for Chinese business wording such as `客户物料`、`客户物料信息`、`客户物料主数据`、`客户料号`、`客户物料编号`、`客户维护的物料信息`, including requests that also specify a customer number.",
+    "confirmed": true
+  },
+  {
+    "term": "客户物料编号",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "Use this API for Chinese business wording such as `客户物料`、`客户物料信息`、`客户物料主数据`、`客户料号`、`客户物料编号`、`客户维护的物料信息`, including requests that also specify a customer number.",
+    "confirmed": true
+  },
+  {
+    "term": "客户维护的物料信息",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "Use this API for Chinese business wording such as `客户物料`、`客户物料信息`、`客户物料主数据`、`客户料号`、`客户物料编号`、`客户维护的物料信息`, including requests that also specify a customer number.",
+    "confirmed": true
+  },
+  {
+    "term": "Use this API for Chinese business wording such as",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "Use this API for Chinese business wording such as `客户物料`、`客户物料信息`、`客户物料主数据`、`客户料号`、`客户物料编号`、`客户维护的物料信息`, including requests that also specify a customer number.",
+    "confirmed": true
+  },
+  {
+    "term": "including requests that also specify a customer number",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "Use this API for Chinese business wording such as `客户物料`、`客户物料信息`、`客户物料主数据`、`客户料号`、`客户物料编号`、`客户维护的物料信息`, including requests that also specify a customer number.",
+    "confirmed": true
+  },
+  {
     "term": "data/index/API_CUSTOMER_MATERIAL_SRV",
     "service_name": "API_CUSTOMER_MATERIAL_SRV",
     "semantic_role": "api_skill_business_term",
@@ -112704,6 +112776,42 @@
     "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
     "confidence": 0.76,
     "evidence_text": "Do not use this API for unrelated master data or transactions that belong to a more specific API already available in the catalog.",
+    "confirmed": true
+  },
+  {
+    "term": "Do not substitute a sales-order item",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "Do not substitute a sales-order item's customer-material number for customer-material master data. That value describes a specific sales-order item and is appropriate only when the user explicitly asks about sales orders or sales-order history.",
+    "confirmed": true
+  },
+  {
+    "term": "s customer-material number for customer-material master data",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "Do not substitute a sales-order item's customer-material number for customer-material master data. That value describes a specific sales-order item and is appropriate only when the user explicitly asks about sales orders or sales-order history.",
+    "confirmed": true
+  },
+  {
+    "term": "priate only when the user explicitly asks about sales orders",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "Do not substitute a sales-order item's customer-material number for customer-material master data. That value describes a specific sales-order item and is appropriate only when the user explicitly asks about sales orders or sales-order history.",
+    "confirmed": true
+  },
+  {
+    "term": "or sales-order history",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "Do not substitute a sales-order item's customer-material number for customer-material master data. That value describes a specific sales-order item and is appropriate only when the user explicitly asks about sales orders or sales-order history.",
     "confirmed": true
   },
   {
@@ -113073,6 +113181,159 @@
     "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
     "confidence": 0.76,
     "evidence_text": "Keep `$select` focused on key fields plus fields needed to answer the question.",
+    "confirmed": true
+  },
+  {
+    "term": "查询客户 <customer> 维护的客户物料信息",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "For `查询客户 <customer> 维护的客户物料信息`, query `A_CustomerMaterial` directly with `Customer eq <customer>`.",
+    "confirmed": true
+  },
+  {
+    "term": "A_CustomerMaterial",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "For `查询客户 <customer> 维护的客户物料信息`, query `A_CustomerMaterial` directly with `Customer eq <customer>`.",
+    "confirmed": true
+  },
+  {
+    "term": "Customer eq <customer>",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "For `查询客户 <customer> 维护的客户物料信息`, query `A_CustomerMaterial` directly with `Customer eq <customer>`.",
+    "confirmed": true
+  },
+  {
+    "term": "For",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "For `查询客户 <customer> 维护的客户物料信息`, query `A_CustomerMaterial` directly with `Customer eq <customer>`.",
+    "confirmed": true
+  },
+  {
+    "term": "查询客户",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "For `查询客户 <customer> 维护的客户物料信息`, query `A_CustomerMaterial` directly with `Customer eq <customer>`.",
+    "confirmed": true
+  },
+  {
+    "term": "customer",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "For `查询客户 <customer> 维护的客户物料信息`, query `A_CustomerMaterial` directly with `Customer eq <customer>`.",
+    "confirmed": true
+  },
+  {
+    "term": "维护的客户物料信息",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "For `查询客户 <customer> 维护的客户物料信息`, query `A_CustomerMaterial` directly with `Customer eq <customer>`.",
+    "confirmed": true
+  },
+  {
+    "term": "query",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "For `查询客户 <customer> 维护的客户物料信息`, query `A_CustomerMaterial` directly with `Customer eq <customer>`.",
+    "confirmed": true
+  },
+  {
+    "term": "directly with",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "For `查询客户 <customer> 维护的客户物料信息`, query `A_CustomerMaterial` directly with `Customer eq <customer>`.",
+    "confirmed": true
+  },
+  {
+    "term": "Customer eq",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "For `查询客户 <customer> 维护的客户物料信息`, query `A_CustomerMaterial` directly with `Customer eq <customer>`.",
+    "confirmed": true
+  },
+  {
+    "term": "API_SALES_ORDER_SRV",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "This is customer-material master data, not sales-order history. Do not add `API_SALES_ORDER_SRV` unless the user explicitly requests documents, orders, or order-item history.",
+    "confirmed": true
+  },
+  {
+    "term": "This is customer-material master data",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "This is customer-material master data, not sales-order history. Do not add `API_SALES_ORDER_SRV` unless the user explicitly requests documents, orders, or order-item history.",
+    "confirmed": true
+  },
+  {
+    "term": "not sales-order history",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "This is customer-material master data, not sales-order history. Do not add `API_SALES_ORDER_SRV` unless the user explicitly requests documents, orders, or order-item history.",
+    "confirmed": true
+  },
+  {
+    "term": "Do not add",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "This is customer-material master data, not sales-order history. Do not add `API_SALES_ORDER_SRV` unless the user explicitly requests documents, orders, or order-item history.",
+    "confirmed": true
+  },
+  {
+    "term": "unless the user explicitly requests documents",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "This is customer-material master data, not sales-order history. Do not add `API_SALES_ORDER_SRV` unless the user explicitly requests documents, orders, or order-item history.",
+    "confirmed": true
+  },
+  {
+    "term": "orders",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "This is customer-material master data, not sales-order history. Do not add `API_SALES_ORDER_SRV` unless the user explicitly requests documents, orders, or order-item history.",
+    "confirmed": true
+  },
+  {
+    "term": "or order-item history",
+    "service_name": "API_CUSTOMER_MATERIAL_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_CUSTOMER_MATERIAL_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "This is customer-material master data, not sales-order history. Do not add `API_SALES_ORDER_SRV` unless the user explicitly requests documents, orders, or order-item history.",
     "confirmed": true
   },
   {
@@ -116082,6 +116343,69 @@
     "confirmed": true
   },
   {
+    "term": "t a stock-location",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "A request that names a material and plant but does not request a stock-location, batch, stock-type, special-stock, customer, supplier, or serial-number breakdown defaults to a material-and-plant stock total. Aggregate by material, plant, and unit; do not expose lower-level stock dimensions unless the user asks for them.",
+    "confirmed": true
+  },
+  {
+    "term": "stock-type",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "A request that names a material and plant but does not request a stock-location, batch, stock-type, special-stock, customer, supplier, or serial-number breakdown defaults to a material-and-plant stock total. Aggregate by material, plant, and unit; do not expose lower-level stock dimensions unless the user asks for them.",
+    "confirmed": true
+  },
+  {
+    "term": "special-stock",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "A request that names a material and plant but does not request a stock-location, batch, stock-type, special-stock, customer, supplier, or serial-number breakdown defaults to a material-and-plant stock total. Aggregate by material, plant, and unit; do not expose lower-level stock dimensions unless the user asks for them.",
+    "confirmed": true
+  },
+  {
+    "term": "tock total",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "A request that names a material and plant but does not request a stock-location, batch, stock-type, special-stock, customer, supplier, or serial-number breakdown defaults to a material-and-plant stock total. Aggregate by material, plant, and unit; do not expose lower-level stock dimensions unless the user asks for them.",
+    "confirmed": true
+  },
+  {
+    "term": "Aggregate by material",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "A request that names a material and plant but does not request a stock-location, batch, stock-type, special-stock, customer, supplier, or serial-number breakdown defaults to a material-and-plant stock total. Aggregate by material, plant, and unit; do not expose lower-level stock dimensions unless the user asks for them.",
+    "confirmed": true
+  },
+  {
+    "term": "and unit",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "A request that names a material and plant but does not request a stock-location, batch, stock-type, special-stock, customer, supplier, or serial-number breakdown defaults to a material-and-plant stock total. Aggregate by material, plant, and unit; do not expose lower-level stock dimensions unless the user asks for them.",
+    "confirmed": true
+  },
+  {
+    "term": "ks for them",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "A request that names a material and plant but does not request a stock-location, batch, stock-type, special-stock, customer, supplier, or serial-number breakdown defaults to a material-and-plant stock total. Aggregate by material, plant, and unit; do not expose lower-level stock dimensions unless the user asks for them.",
+    "confirmed": true
+  },
+  {
     "term": "物料层面库存",
     "service_name": "API_MATERIAL_STOCK_SRV",
     "semantic_role": "api_skill_business_term",
@@ -116118,15 +116442,6 @@
     "confirmed": true
   },
   {
-    "term": "and unit",
-    "service_name": "API_MATERIAL_STOCK_SRV",
-    "semantic_role": "api_skill_business_term",
-    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
-    "confidence": 0.76,
-    "evidence_text": "\"物料层级库存\", \"物料级库存\", \"物料层面库存\", \"material level stock\", or \"by material stock\" means the answer must be aggregated by material, plant, and unit. It must not be displayed at batch, storage-location, stock-type, or special-stock detail unless the user explicitly asks for those breakdowns.",
-    "confirmed": true
-  },
-  {
     "term": "It must not be displayed at batch",
     "service_name": "API_MATERIAL_STOCK_SRV",
     "semantic_role": "api_skill_business_term",
@@ -116137,15 +116452,6 @@
   },
   {
     "term": "storage-location",
-    "service_name": "API_MATERIAL_STOCK_SRV",
-    "semantic_role": "api_skill_business_term",
-    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
-    "confidence": 0.76,
-    "evidence_text": "\"物料层级库存\", \"物料级库存\", \"物料层面库存\", \"material level stock\", or \"by material stock\" means the answer must be aggregated by material, plant, and unit. It must not be displayed at batch, storage-location, stock-type, or special-stock detail unless the user explicitly asks for those breakdowns.",
-    "confirmed": true
-  },
-  {
-    "term": "stock-type",
     "service_name": "API_MATERIAL_STOCK_SRV",
     "semantic_role": "api_skill_business_term",
     "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
@@ -116550,6 +116856,51 @@
     "confirmed": true
   },
   {
+    "term": "reakdown",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "For material-and-plant stock requests without a lower-level breakdown, select only `A_MatlStkInAcctMod.Material`, `A_MatlStkInAcctMod.Plant`, `A_MatlStkInAcctMod.MaterialBaseUnit`, and `A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit`, then use result_transform aggregate grouped by material, plant, and material base unit with the warehouse stock quantity as the summed measure.",
+    "confirmed": true
+  },
+  {
+    "term": "select only",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "For material-and-plant stock requests without a lower-level breakdown, select only `A_MatlStkInAcctMod.Material`, `A_MatlStkInAcctMod.Plant`, `A_MatlStkInAcctMod.MaterialBaseUnit`, and `A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit`, then use result_transform aggregate grouped by material, plant, and material base unit with the warehouse stock quantity as the summed measure.",
+    "confirmed": true
+  },
+  {
+    "term": "MaterialBaseUnit",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "For material-and-plant stock requests without a lower-level breakdown, select only `A_MatlStkInAcctMod.Material`, `A_MatlStkInAcctMod.Plant`, `A_MatlStkInAcctMod.MaterialBaseUnit`, and `A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit`, then use result_transform aggregate grouped by material, plant, and material base unit with the warehouse stock quantity as the summed measure.",
+    "confirmed": true
+  },
+  {
+    "term": "then use result_transform aggregate grouped by material",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "For material-and-plant stock requests without a lower-level breakdown, select only `A_MatlStkInAcctMod.Material`, `A_MatlStkInAcctMod.Plant`, `A_MatlStkInAcctMod.MaterialBaseUnit`, and `A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit`, then use result_transform aggregate grouped by material, plant, and material base unit with the warehouse stock quantity as the summed measure.",
+    "confirmed": true
+  },
+  {
+    "term": "he summed measure",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "For material-and-plant stock requests without a lower-level breakdown, select only `A_MatlStkInAcctMod.Material`, `A_MatlStkInAcctMod.Plant`, `A_MatlStkInAcctMod.MaterialBaseUnit`, and `A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit`, then use result_transform aggregate grouped by material, plant, and material base unit with the warehouse stock quantity as the summed measure.",
+    "confirmed": true
+  },
+  {
     "term": "For material-level stock requests such as",
     "service_name": "API_MATERIAL_STOCK_SRV",
     "semantic_role": "api_skill_business_term",
@@ -116569,24 +116920,6 @@
   },
   {
     "term": "物料层级的库存",
-    "service_name": "API_MATERIAL_STOCK_SRV",
-    "semantic_role": "api_skill_business_term",
-    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
-    "confidence": 0.76,
-    "evidence_text": "For material-level stock requests such as \"物料层级\", \"物料层级库存\", \"物料层级的库存\", or \"物料级库存\", select only `A_MatlStkInAcctMod.Material`, `A_MatlStkInAcctMod.Plant`, `A_MatlStkInAcctMod.MaterialBaseUnit`, and `A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit`.",
-    "confirmed": true
-  },
-  {
-    "term": "select only",
-    "service_name": "API_MATERIAL_STOCK_SRV",
-    "semantic_role": "api_skill_business_term",
-    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
-    "confidence": 0.76,
-    "evidence_text": "For material-level stock requests such as \"物料层级\", \"物料层级库存\", \"物料层级的库存\", or \"物料级库存\", select only `A_MatlStkInAcctMod.Material`, `A_MatlStkInAcctMod.Plant`, `A_MatlStkInAcctMod.MaterialBaseUnit`, and `A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit`.",
-    "confirmed": true
-  },
-  {
-    "term": "MaterialBaseUnit",
     "service_name": "API_MATERIAL_STOCK_SRV",
     "semantic_role": "api_skill_business_term",
     "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
@@ -116726,20 +117059,83 @@
     "semantic_role": "api_skill_business_term",
     "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
     "confidence": 0.76,
-    "evidence_text": "Step 1: query `API_PRODUCTION_ORDER_2_SRV.A_ProductionOrderComponent_2` filtered by plant and select `ManufacturingOrder`, `Material`, and `Plant`.",
+    "evidence_text": "When a production order number is provided, query `API_PRODUCTION_ORDER_2_SRV.A_ProductionOrderComponent_2` by `ManufacturingOrder` first, then bind only that order's component `Material` values to stock. Do not replace a specific order with an all-orders-at-plant component scan.",
     "confirmed": true
   },
   {
-    "term": "Step 1",
+    "term": "When a production order number is provided",
     "service_name": "API_MATERIAL_STOCK_SRV",
     "semantic_role": "api_skill_business_term",
     "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
     "confidence": 0.76,
-    "evidence_text": "Step 1: query `API_PRODUCTION_ORDER_2_SRV.A_ProductionOrderComponent_2` filtered by plant and select `ManufacturingOrder`, `Material`, and `Plant`.",
+    "evidence_text": "When a production order number is provided, query `API_PRODUCTION_ORDER_2_SRV.A_ProductionOrderComponent_2` by `ManufacturingOrder` first, then bind only that order's component `Material` values to stock. Do not replace a specific order with an all-orders-at-plant component scan.",
     "confirmed": true
   },
   {
     "term": "A_ProductionOrderComponent_2",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "When a production order number is provided, query `API_PRODUCTION_ORDER_2_SRV.A_ProductionOrderComponent_2` by `ManufacturingOrder` first, then bind only that order's component `Material` values to stock. Do not replace a specific order with an all-orders-at-plant component scan.",
+    "confirmed": true
+  },
+  {
+    "term": "by",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "When a production order number is provided, query `API_PRODUCTION_ORDER_2_SRV.A_ProductionOrderComponent_2` by `ManufacturingOrder` first, then bind only that order's component `Material` values to stock. Do not replace a specific order with an all-orders-at-plant component scan.",
+    "confirmed": true
+  },
+  {
+    "term": "first",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "When a production order number is provided, query `API_PRODUCTION_ORDER_2_SRV.A_ProductionOrderComponent_2` by `ManufacturingOrder` first, then bind only that order's component `Material` values to stock. Do not replace a specific order with an all-orders-at-plant component scan.",
+    "confirmed": true
+  },
+  {
+    "term": "then bind only that order",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "When a production order number is provided, query `API_PRODUCTION_ORDER_2_SRV.A_ProductionOrderComponent_2` by `ManufacturingOrder` first, then bind only that order's component `Material` values to stock. Do not replace a specific order with an all-orders-at-plant component scan.",
+    "confirmed": true
+  },
+  {
+    "term": "s component",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "When a production order number is provided, query `API_PRODUCTION_ORDER_2_SRV.A_ProductionOrderComponent_2` by `ManufacturingOrder` first, then bind only that order's component `Material` values to stock. Do not replace a specific order with an all-orders-at-plant component scan.",
+    "confirmed": true
+  },
+  {
+    "term": "values to stock",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "When a production order number is provided, query `API_PRODUCTION_ORDER_2_SRV.A_ProductionOrderComponent_2` by `ManufacturingOrder` first, then bind only that order's component `Material` values to stock. Do not replace a specific order with an all-orders-at-plant component scan.",
+    "confirmed": true
+  },
+  {
+    "term": "omponent scan",
+    "service_name": "API_MATERIAL_STOCK_SRV",
+    "semantic_role": "api_skill_business_term",
+    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
+    "confidence": 0.76,
+    "evidence_text": "When a production order number is provided, query `API_PRODUCTION_ORDER_2_SRV.A_ProductionOrderComponent_2` by `ManufacturingOrder` first, then bind only that order's component `Material` values to stock. Do not replace a specific order with an all-orders-at-plant component scan.",
+    "confirmed": true
+  },
+  {
+    "term": "Step 1",
     "service_name": "API_MATERIAL_STOCK_SRV",
     "semantic_role": "api_skill_business_term",
     "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
@@ -116821,15 +117217,6 @@
   },
   {
     "term": "A_MRPMaterial",
-    "service_name": "API_MATERIAL_STOCK_SRV",
-    "semantic_role": "api_skill_business_term",
-    "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",
-    "confidence": 0.76,
-    "evidence_text": "Step 1: query `API_MRP_MATERIALS_SRV_01.A_MRPMaterial` by `API_MRP_MATERIALS_SRV_01.A_MRPMaterial.MRPPlant` when the user provides a plant. Select `API_MRP_MATERIALS_SRV_01.A_MRPMaterial.Material`, `API_MRP_MATERIALS_SRV_01.A_MRPMaterial.MRPPlant`, and `API_MRP_MATERIALS_SRV_01.A_MRPMaterial.MRPArea`.",
-    "confirmed": true
-  },
-  {
-    "term": "by",
     "service_name": "API_MATERIAL_STOCK_SRV",
     "semantic_role": "api_skill_business_term",
     "source": "data\\api_skills\\API_MATERIAL_STOCK_SRV\\skill.md",

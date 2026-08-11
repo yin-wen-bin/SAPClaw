@@ -35,6 +35,7 @@ Keep `data/index/API_MATERIAL_STOCK_SRV` as the schema ground truth. This skill 
 
 ## Stock Output Levels
 
+- A request that names a material and plant but does not request a stock-location, batch, stock-type, special-stock, customer, supplier, or serial-number breakdown defaults to a material-and-plant stock total. Aggregate by material, plant, and unit; do not expose lower-level stock dimensions unless the user asks for them.
 - "物料层级库存", "物料级库存", "物料层面库存", "material level stock", or "by material stock" means the answer must be aggregated by material, plant, and unit. It must not be displayed at batch, storage-location, stock-type, or special-stock detail unless the user explicitly asks for those breakdowns.
 - "批次层级库存", "按批次库存", or "batch stock" means include `A_MatlStkInAcctMod.Batch`.
 - "库存地点层级库存", "按库存地点库存", or "storage-location stock" means include `A_MatlStkInAcctMod.StorageLocation`.
@@ -55,6 +56,7 @@ Keep `data/index/API_MATERIAL_STOCK_SRV` as the schema ground truth. This skill 
 
 - For requests such as "查询物料2211在工厂1710的物料层级库存", answer from `A_MatlStkInAcctMod`.
 - Filter `A_MatlStkInAcctMod.Material` and `A_MatlStkInAcctMod.Plant` when material and plant are provided.
+- For material-and-plant stock requests without a lower-level breakdown, select only `A_MatlStkInAcctMod.Material`, `A_MatlStkInAcctMod.Plant`, `A_MatlStkInAcctMod.MaterialBaseUnit`, and `A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit`, then use result_transform aggregate grouped by material, plant, and material base unit with the warehouse stock quantity as the summed measure.
 - For material-level stock requests such as "物料层级", "物料层级库存", "物料层级的库存", or "物料级库存", select only `A_MatlStkInAcctMod.Material`, `A_MatlStkInAcctMod.Plant`, `A_MatlStkInAcctMod.MaterialBaseUnit`, and `A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit`.
 - For material-level stock requests such as "物料层级", "物料层级库存", "物料层级的库存", or "物料级库存", use result_transform aggregate: group_by: `A_MatlStkInAcctMod.Material`, `A_MatlStkInAcctMod.Plant`, `A_MatlStkInAcctMod.MaterialBaseUnit`; sum_fields: `A_MatlStkInAcctMod.MatlWrhsStkQtyInMatlBaseUnit`.
 - Do not select `A_MatlStkInAcctMod.Batch`, `A_MatlStkInAcctMod.StorageLocation`, `A_MatlStkInAcctMod.InventoryStockType`, or `A_MatlStkInAcctMod.InventorySpecialStockType` unless the user explicitly asks for that detail level.
@@ -69,6 +71,7 @@ Keep `data/index/API_MATERIAL_STOCK_SRV` as the schema ground truth. This skill 
 ### Production Order Component Stock
 
 - For production order component stock requests, use `API_PRODUCTION_ORDER_2_SRV` together with `API_MATERIAL_STOCK_SRV`.
+- When a production order number is provided, query `API_PRODUCTION_ORDER_2_SRV.A_ProductionOrderComponent_2` by `ManufacturingOrder` first, then bind only that order's component `Material` values to stock. Do not replace a specific order with an all-orders-at-plant component scan.
 - Step 1: query `API_PRODUCTION_ORDER_2_SRV.A_ProductionOrderComponent_2` filtered by plant and select `ManufacturingOrder`, `Material`, and `Plant`.
 - Step 2: query `API_MATERIAL_STOCK_SRV.A_MatlStkInAcctMod` filtered by the same plant and bind component `Material` to stock `Material`.
 - Select stock dimensions and quantity fields such as `Material`, `Plant`, `StorageLocation`, `InventoryStockType`, and `MatlWrhsStkQtyInMatlBaseUnit`.

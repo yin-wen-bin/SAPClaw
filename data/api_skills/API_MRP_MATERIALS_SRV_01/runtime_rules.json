@@ -1,0 +1,29 @@
+{
+  "entities": {
+    "MaterialCoverages": {
+      "required_filters": [
+        "MaterialShortageProfile",
+        "MaterialShortageProfileCount"
+      ],
+      "preferred_filter_scope": [
+        "Material",
+        "MRPPlant",
+        "MRPArea"
+      ],
+      "fallback_filter_scope": [
+        "MRPController",
+        "MRPPlant"
+      ],
+      "suggested_values": {
+        "MaterialShortageProfile": {
+          "value": "SAP000000001",
+          "explicit_only": true
+        },
+        "MaterialShortageProfileCount": {
+          "value": "001",
+          "explicit_only": true
+        }
+      }
+    }
+  }
+}

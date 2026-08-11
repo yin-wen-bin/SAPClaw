@@ -14,7 +14,7 @@ class SchemaContextProvider:
     """Provide API-specific schema context after routing.
 
     This component trims metadata for prompt size, but it does not decide the
-    final business intent. The LLM planner remains responsible for choosing
+    final business intent. The Codex planner remains responsible for choosing
     fields/entities/paths.
     """
 

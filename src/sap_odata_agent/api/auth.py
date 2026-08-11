@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import secrets
 
-from fastapi import Header, HTTPException, status
+from fastapi import Header, HTTPException, Request, status
 
 from sap_odata_agent.infrastructure.config.settings import get_settings
 
@@ -22,4 +22,13 @@ def require_internal_api_key(x_api_key: str | None = Header(default=None)) -> No
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid API key.",
+        )
+
+
+def require_loopback_client(request: Request) -> None:
+    host = (request.client.host if request.client else "").lower()
+    if host not in {"127.0.0.1", "::1", "localhost", "testclient"}:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="The local SAPClaw viewer is available only from this computer.",
         )
