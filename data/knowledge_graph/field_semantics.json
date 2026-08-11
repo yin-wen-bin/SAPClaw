@@ -250,6 +250,32 @@
   },
   {
     "service_name": "API_BILLING_DOCUMENT_SRV",
+    "entity_set": "A_BillingDocumentText",
+    "field_name": "BillingDocument",
+    "source": "data\\api_skills\\API_BILLING_DOCUMENT_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "A Thin three-layer billing evidence plan binds header `BillingDocument` to item `BillingDocument`, then item `BillingDocument` and `BillingDocumentItem` to item pricing elements. Every binding source must set `fetch_all_for_binding=true`.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "A Thin three-layer billing evidence plan binds header BillingDocument to item BillingDocument, then item BillingDocument and BillingDocumentItem to item pricing elements. Every binding source must set fetch_all_for_binding=true."
+    ]
+  },
+  {
+    "service_name": "API_BILLING_DOCUMENT_SRV",
+    "entity_set": "A_BillingDocumentItemText",
+    "field_name": "BillingDocumentItem",
+    "source": "data\\api_skills\\API_BILLING_DOCUMENT_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "A Thin three-layer billing evidence plan binds header `BillingDocument` to item `BillingDocument`, then item `BillingDocument` and `BillingDocumentItem` to item pricing elements. Every binding source must set `fetch_all_for_binding=true`.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "A Thin three-layer billing evidence plan binds header BillingDocument to item BillingDocument, then item BillingDocument and BillingDocumentItem to item pricing elements. Every binding source must set fetch_all_for_binding=true."
+    ]
+  },
+  {
+    "service_name": "API_BILLING_DOCUMENT_SRV",
     "entity_set": "API_OUTBOUND_DELIVERY_SRV",
     "field_name": "A_OutbDeliveryHeader",
     "source": "data\\api_skills\\API_BILLING_DOCUMENT_SRV\\skill.md",
@@ -9730,6 +9756,71 @@
   },
   {
     "service_name": "API_MRP_MATERIALS_SRV_01",
+    "entity_set": "SupplyDemandItems",
+    "field_name": "MaterialShortageProfile",
+    "source": "data\\api_skills\\API_MRP_MATERIALS_SRV_01\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "`MaterialCoverages` requires explicit filters for both `MaterialShortageProfile` and `MaterialShortageProfileCount` before SAP execution.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "MaterialCoverages requires explicit filters for both MaterialShortageProfile and MaterialShortageProfileCount before SAP execution."
+    ]
+  },
+  {
+    "service_name": "API_MRP_MATERIALS_SRV_01",
+    "entity_set": "SupplyDemandItems",
+    "field_name": "MaterialShortageProfileCount",
+    "source": "data\\api_skills\\API_MRP_MATERIALS_SRV_01\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "`MaterialCoverages` requires explicit filters for both `MaterialShortageProfile` and `MaterialShortageProfileCount` before SAP execution.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "MaterialCoverages requires explicit filters for both MaterialShortageProfile and MaterialShortageProfileCount before SAP execution."
+    ]
+  },
+  {
+    "service_name": "API_MRP_MATERIALS_SRV_01",
+    "entity_set": "SupplyDemandItems",
+    "field_name": "Material",
+    "source": "data\\api_skills\\API_MRP_MATERIALS_SRV_01\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "Prefer the narrow scope `Material` + `MRPPlant` + `MRPArea`. Only consider controller/plant scope when an exact material scope is not available.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "Prefer the narrow scope Material + MRPPlant + MRPArea. Only consider controller/plant scope when an exact material scope is not available."
+    ]
+  },
+  {
+    "service_name": "API_MRP_MATERIALS_SRV_01",
+    "entity_set": "SupplyDemandItems",
+    "field_name": "MRPPlant",
+    "source": "data\\api_skills\\API_MRP_MATERIALS_SRV_01\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "Prefer the narrow scope `Material` + `MRPPlant` + `MRPArea`. Only consider controller/plant scope when an exact material scope is not available.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "Prefer the narrow scope Material + MRPPlant + MRPArea. Only consider controller/plant scope when an exact material scope is not available."
+    ]
+  },
+  {
+    "service_name": "API_MRP_MATERIALS_SRV_01",
+    "entity_set": "SupplyDemandItems",
+    "field_name": "MRPArea",
+    "source": "data\\api_skills\\API_MRP_MATERIALS_SRV_01\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "Prefer the narrow scope `Material` + `MRPPlant` + `MRPArea`. Only consider controller/plant scope when an exact material scope is not available.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "Prefer the narrow scope Material + MRPPlant + MRPArea. Only consider controller/plant scope when an exact material scope is not available."
+    ]
+  },
+  {
+    "service_name": "API_MRP_MATERIALS_SRV_01",
     "entity_set": "A_MRPMaterial",
     "field_name": "MRPPlant",
     "source": "data\\api_skills\\API_MRP_MATERIALS_SRV_01\\skill.md",
@@ -16261,6 +16352,253 @@
     "blocking": false,
     "supports_meaning": [
       "Step 2: query A_SalesOrderItemPrElement by binding A_SalesOrder.SalesOrder to A_SalesOrderItemPrElement.SalesOrder."
+    ]
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "API_SALES_ORDER_SRV",
+    "field_name": "A_SalesOrder",
+    "source": "data\\api_skills\\API_SALES_ORDER_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "Step 1: query `API_SALES_ORDER_SRV.A_SalesOrder` by exact `SalesOrder`; select `SalesOrder`, `OverallDeliveryStatus`, `OverallOrdReltdBillgStatus`, and `OverallSDProcessStatus`.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "Step 1: query API_SALES_ORDER_SRV.A_SalesOrder by exact SalesOrder; select SalesOrder, OverallDeliveryStatus, OverallOrdReltdBillgStatus, and OverallSDProcessStatus."
+    ]
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SlsOrderItemBillingPlanItem",
+    "field_name": "SalesOrder",
+    "source": "data\\api_skills\\API_SALES_ORDER_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "Step 1: query `API_SALES_ORDER_SRV.A_SalesOrder` by exact `SalesOrder`; select `SalesOrder`, `OverallDeliveryStatus`, `OverallOrdReltdBillgStatus`, and `OverallSDProcessStatus`.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "Step 1: query API_SALES_ORDER_SRV.A_SalesOrder by exact SalesOrder; select SalesOrder, OverallDeliveryStatus, OverallOrdReltdBillgStatus, and OverallSDProcessStatus."
+    ]
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrder",
+    "field_name": "OverallDeliveryStatus",
+    "source": "data\\api_skills\\API_SALES_ORDER_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "Step 1: query `API_SALES_ORDER_SRV.A_SalesOrder` by exact `SalesOrder`; select `SalesOrder`, `OverallDeliveryStatus`, `OverallOrdReltdBillgStatus`, and `OverallSDProcessStatus`.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "Step 1: query API_SALES_ORDER_SRV.A_SalesOrder by exact SalesOrder; select SalesOrder, OverallDeliveryStatus, OverallOrdReltdBillgStatus, and OverallSDProcessStatus."
+    ]
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrder",
+    "field_name": "OverallOrdReltdBillgStatus",
+    "source": "data\\api_skills\\API_SALES_ORDER_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "Step 1: query `API_SALES_ORDER_SRV.A_SalesOrder` by exact `SalesOrder`; select `SalesOrder`, `OverallDeliveryStatus`, `OverallOrdReltdBillgStatus`, and `OverallSDProcessStatus`.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "Step 1: query API_SALES_ORDER_SRV.A_SalesOrder by exact SalesOrder; select SalesOrder, OverallDeliveryStatus, OverallOrdReltdBillgStatus, and OverallSDProcessStatus."
+    ]
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrderSubsqntProcFlow",
+    "field_name": "OverallSDProcessStatus",
+    "source": "data\\api_skills\\API_SALES_ORDER_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "Step 1: query `API_SALES_ORDER_SRV.A_SalesOrder` by exact `SalesOrder`; select `SalesOrder`, `OverallDeliveryStatus`, `OverallOrdReltdBillgStatus`, and `OverallSDProcessStatus`.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "Step 1: query API_SALES_ORDER_SRV.A_SalesOrder by exact SalesOrder; select SalesOrder, OverallDeliveryStatus, OverallOrdReltdBillgStatus, and OverallSDProcessStatus."
+    ]
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "API_OUTBOUND_DELIVERY_SRV",
+    "field_name": "A_OutbDeliveryItem",
+    "source": "data\\api_skills\\API_SALES_ORDER_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "Step 2: query `API_OUTBOUND_DELIVERY_SRV.A_OutbDeliveryItem`; bind `ReferenceSDDocument <- Step 1 SalesOrder`; select `DeliveryDocument`, `DeliveryDocumentItem`, and `ReferenceSDDocument`.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "Step 2: query API_OUTBOUND_DELIVERY_SRV.A_OutbDeliveryItem; bind ReferenceSDDocument <- Step 1 SalesOrder; select DeliveryDocument, DeliveryDocumentItem, and ReferenceSDDocument."
+    ]
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrderItem",
+    "field_name": "ReferenceSDDocument",
+    "source": "data\\api_skills\\API_SALES_ORDER_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "Step 2: query `API_OUTBOUND_DELIVERY_SRV.A_OutbDeliveryItem`; bind `ReferenceSDDocument <- Step 1 SalesOrder`; select `DeliveryDocument`, `DeliveryDocumentItem`, and `ReferenceSDDocument`.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "Step 2: query API_OUTBOUND_DELIVERY_SRV.A_OutbDeliveryItem; bind ReferenceSDDocument <- Step 1 SalesOrder; select DeliveryDocument, DeliveryDocumentItem, and ReferenceSDDocument."
+    ]
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "API_OUTBOUND_DELIVERY_SRV",
+    "field_name": "A_OutbDeliveryHeader",
+    "source": "data\\api_skills\\API_SALES_ORDER_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "Step 3: query `API_OUTBOUND_DELIVERY_SRV.A_OutbDeliveryHeader`; bind `DeliveryDocument <- Step 2 DeliveryDocument`; select `DeliveryDocument`, `ActualGoodsMovementDate`, `OverallGoodsMovementStatus`, `OverallDelivReltdBillgStatus`, and `OverallSDProcessStatus`.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "Step 3: query API_OUTBOUND_DELIVERY_SRV.A_OutbDeliveryHeader; bind DeliveryDocument <- Step 2 DeliveryDocument; select DeliveryDocument, ActualGoodsMovementDate, OverallGoodsMovementStatus, OverallDelivReltdBillgStatus, and OverallSDProcessStatus."
+    ]
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrderSubsqntProcFlow",
+    "field_name": "OverallSDProcessStatus",
+    "source": "data\\api_skills\\API_SALES_ORDER_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "Step 3: query `API_OUTBOUND_DELIVERY_SRV.A_OutbDeliveryHeader`; bind `DeliveryDocument <- Step 2 DeliveryDocument`; select `DeliveryDocument`, `ActualGoodsMovementDate`, `OverallGoodsMovementStatus`, `OverallDelivReltdBillgStatus`, and `OverallSDProcessStatus`.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "Step 3: query API_OUTBOUND_DELIVERY_SRV.A_OutbDeliveryHeader; bind DeliveryDocument <- Step 2 DeliveryDocument; select DeliveryDocument, ActualGoodsMovementDate, OverallGoodsMovementStatus, OverallDelivReltdBillgStatus, and OverallSDProcessStatus."
+    ]
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "API_BILLING_DOCUMENT_SRV",
+    "field_name": "A_BillingDocumentItem",
+    "source": "data\\api_skills\\API_SALES_ORDER_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "Step 4: query `API_BILLING_DOCUMENT_SRV.A_BillingDocumentItem`; bind `SalesDocument <- Step 1 SalesOrder`; select `BillingDocument`, `BillingDocumentItem`, `SalesDocument`, `BillingQuantity`, `BillingQuantityUnit`, `NetAmount`, `TaxAmount`, and `TransactionCurrency`.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "Step 4: query API_BILLING_DOCUMENT_SRV.A_BillingDocumentItem; bind SalesDocument <- Step 1 SalesOrder; select BillingDocument, BillingDocumentItem, SalesDocument, BillingQuantity, BillingQuantityUnit, NetAmount, TaxAmount, and TransactionCurrency."
+    ]
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrderItem",
+    "field_name": "NetAmount",
+    "source": "data\\api_skills\\API_SALES_ORDER_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "Step 4: query `API_BILLING_DOCUMENT_SRV.A_BillingDocumentItem`; bind `SalesDocument <- Step 1 SalesOrder`; select `BillingDocument`, `BillingDocumentItem`, `SalesDocument`, `BillingQuantity`, `BillingQuantityUnit`, `NetAmount`, `TaxAmount`, and `TransactionCurrency`.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "Step 4: query API_BILLING_DOCUMENT_SRV.A_BillingDocumentItem; bind SalesDocument <- Step 1 SalesOrder; select BillingDocument, BillingDocumentItem, SalesDocument, BillingQuantity, BillingQuantityUnit, NetAmount, TaxAmount, and TransactionCurrency."
+    ]
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrderItem",
+    "field_name": "TaxAmount",
+    "source": "data\\api_skills\\API_SALES_ORDER_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "Step 4: query `API_BILLING_DOCUMENT_SRV.A_BillingDocumentItem`; bind `SalesDocument <- Step 1 SalesOrder`; select `BillingDocument`, `BillingDocumentItem`, `SalesDocument`, `BillingQuantity`, `BillingQuantityUnit`, `NetAmount`, `TaxAmount`, and `TransactionCurrency`.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "Step 4: query API_BILLING_DOCUMENT_SRV.A_BillingDocumentItem; bind SalesDocument <- Step 1 SalesOrder; select BillingDocument, BillingDocumentItem, SalesDocument, BillingQuantity, BillingQuantityUnit, NetAmount, TaxAmount, and TransactionCurrency."
+    ]
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SlsOrderItemBillingPlanItem",
+    "field_name": "TransactionCurrency",
+    "source": "data\\api_skills\\API_SALES_ORDER_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "Step 4: query `API_BILLING_DOCUMENT_SRV.A_BillingDocumentItem`; bind `SalesDocument <- Step 1 SalesOrder`; select `BillingDocument`, `BillingDocumentItem`, `SalesDocument`, `BillingQuantity`, `BillingQuantityUnit`, `NetAmount`, `TaxAmount`, and `TransactionCurrency`.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "Step 4: query API_BILLING_DOCUMENT_SRV.A_BillingDocumentItem; bind SalesDocument <- Step 1 SalesOrder; select BillingDocument, BillingDocumentItem, SalesDocument, BillingQuantity, BillingQuantityUnit, NetAmount, TaxAmount, and TransactionCurrency."
+    ]
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "API_BILLING_DOCUMENT_SRV",
+    "field_name": "A_BillingDocument",
+    "source": "data\\api_skills\\API_SALES_ORDER_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "Step 5: query `API_BILLING_DOCUMENT_SRV.A_BillingDocument`; bind `BillingDocument <- Step 4 BillingDocument`; select `BillingDocument`, `TotalNetAmount`, `TaxAmount`, `TransactionCurrency`, `BillingDocumentIsCancelled`, `AccountingPostingStatus`, and `AccountingTransferStatus`.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "Step 5: query API_BILLING_DOCUMENT_SRV.A_BillingDocument; bind BillingDocument <- Step 4 BillingDocument; select BillingDocument, TotalNetAmount, TaxAmount, TransactionCurrency, BillingDocumentIsCancelled, AccountingPostingStatus, and AccountingTransferStatus."
+    ]
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrder",
+    "field_name": "TotalNetAmount",
+    "source": "data\\api_skills\\API_SALES_ORDER_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "Step 5: query `API_BILLING_DOCUMENT_SRV.A_BillingDocument`; bind `BillingDocument <- Step 4 BillingDocument`; select `BillingDocument`, `TotalNetAmount`, `TaxAmount`, `TransactionCurrency`, `BillingDocumentIsCancelled`, `AccountingPostingStatus`, and `AccountingTransferStatus`.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "Step 5: query API_BILLING_DOCUMENT_SRV.A_BillingDocument; bind BillingDocument <- Step 4 BillingDocument; select BillingDocument, TotalNetAmount, TaxAmount, TransactionCurrency, BillingDocumentIsCancelled, AccountingPostingStatus, and AccountingTransferStatus."
+    ]
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrderItem",
+    "field_name": "TaxAmount",
+    "source": "data\\api_skills\\API_SALES_ORDER_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "Step 5: query `API_BILLING_DOCUMENT_SRV.A_BillingDocument`; bind `BillingDocument <- Step 4 BillingDocument`; select `BillingDocument`, `TotalNetAmount`, `TaxAmount`, `TransactionCurrency`, `BillingDocumentIsCancelled`, `AccountingPostingStatus`, and `AccountingTransferStatus`.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "Step 5: query API_BILLING_DOCUMENT_SRV.A_BillingDocument; bind BillingDocument <- Step 4 BillingDocument; select BillingDocument, TotalNetAmount, TaxAmount, TransactionCurrency, BillingDocumentIsCancelled, AccountingPostingStatus, and AccountingTransferStatus."
+    ]
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SlsOrderItemBillingPlanItem",
+    "field_name": "TransactionCurrency",
+    "source": "data\\api_skills\\API_SALES_ORDER_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "Step 5: query `API_BILLING_DOCUMENT_SRV.A_BillingDocument`; bind `BillingDocument <- Step 4 BillingDocument`; select `BillingDocument`, `TotalNetAmount`, `TaxAmount`, `TransactionCurrency`, `BillingDocumentIsCancelled`, `AccountingPostingStatus`, and `AccountingTransferStatus`.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "Step 5: query API_BILLING_DOCUMENT_SRV.A_BillingDocument; bind BillingDocument <- Step 4 BillingDocument; select BillingDocument, TotalNetAmount, TaxAmount, TransactionCurrency, BillingDocumentIsCancelled, AccountingPostingStatus, and AccountingTransferStatus."
+    ]
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "A_SalesOrderItmSubsqntProcFlow",
+    "field_name": "AccountingTransferStatus",
+    "source": "data\\api_skills\\API_SALES_ORDER_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "Step 5: query `API_BILLING_DOCUMENT_SRV.A_BillingDocument`; bind `BillingDocument <- Step 4 BillingDocument`; select `BillingDocument`, `TotalNetAmount`, `TaxAmount`, `TransactionCurrency`, `BillingDocumentIsCancelled`, `AccountingPostingStatus`, and `AccountingTransferStatus`.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "Step 5: query API_BILLING_DOCUMENT_SRV.A_BillingDocument; bind BillingDocument <- Step 4 BillingDocument; select BillingDocument, TotalNetAmount, TaxAmount, TransactionCurrency, BillingDocumentIsCancelled, AccountingPostingStatus, and AccountingTransferStatus."
+    ]
+  },
+  {
+    "service_name": "API_SALES_ORDER_SRV",
+    "entity_set": "API_OPLACCTGDOCITEMCUBE_SRV",
+    "field_name": "A_OperationalAcctgDocItemCube",
+    "source": "data\\api_skills\\API_SALES_ORDER_SRV\\skill.md",
+    "confidence": 0.82,
+    "evidence_text": "Step 6: query `API_OPLACCTGDOCITEMCUBE_SRV.A_OperationalAcctgDocItemCube`; bind `BillingDocument <- Step 4 BillingDocument`; select `BillingDocument`, `AccountingDocument`, `AccountingDocumentItem`, `IsCleared`, `ClearingDate`, `ClearingAccountingDocument`, `AmountInCompanyCodeCurrency`, and `CompanyCodeCurrency`.",
+    "confirmed": true,
+    "blocking": false,
+    "supports_meaning": [
+      "Step 6: query API_OPLACCTGDOCITEMCUBE_SRV.A_OperationalAcctgDocItemCube; bind BillingDocument <- Step 4 BillingDocument; select BillingDocument, AccountingDocument, AccountingDocumentItem, IsCleared, ClearingDate, ClearingAccountingDocument, AmountInCompanyCodeCurrency, and CompanyCodeCurrency."
     ]
   },
   {

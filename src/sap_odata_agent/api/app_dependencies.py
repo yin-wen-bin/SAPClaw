@@ -29,6 +29,7 @@ from sap_odata_agent.infrastructure.sap.odata_client import (
     SapODataExecutor,
     SapRuntimeConfig,
 )
+from sap_odata_agent.infrastructure.sap.live_schema import LiveSchemaProvider
 
 
 @lru_cache(maxsize=1)
@@ -76,6 +77,7 @@ def get_sap_executor() -> SapODataExecutor:
 @lru_cache(maxsize=1)
 def get_thin_runtime_service() -> ThinRuntimeService:
     settings = get_settings()
+    sap_executor = get_sap_executor()
     return ThinRuntimeService(
         settings=settings,
         catalog_provider=ApiCatalogProvider(
@@ -98,7 +100,12 @@ def get_thin_runtime_service() -> ThinRuntimeService:
             base_url=settings.sap_base_url,
             index_root=settings.index_root,
         ),
-        executor=get_sap_executor(),
+        executor=sap_executor,
+        live_schema_provider=LiveSchemaProvider(
+            fetch_metadata=sap_executor.fetch_metadata,
+            fresh_ttl_seconds=settings.thin_runtime_live_schema_ttl_seconds,
+            max_stale_seconds=settings.thin_runtime_live_schema_max_stale_seconds,
+        ),
         case_repository=get_case_repository(),
     )
 

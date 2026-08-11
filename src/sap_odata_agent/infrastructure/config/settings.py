@@ -108,6 +108,15 @@ class Settings:
     thin_runtime_max_binding_rows: int = field(
         default_factory=lambda: int(_get_setting("THIN_RUNTIME_MAX_BINDING_ROWS", default="5000"))
     )
+    thin_runtime_live_schema_enabled: bool = field(
+        default_factory=lambda: _get_setting("THIN_RUNTIME_LIVE_SCHEMA_ENABLED", default="true").lower() == "true"
+    )
+    thin_runtime_live_schema_ttl_seconds: int = field(
+        default_factory=lambda: int(_get_setting("THIN_RUNTIME_LIVE_SCHEMA_TTL_SECONDS", default="300"))
+    )
+    thin_runtime_live_schema_max_stale_seconds: int = field(
+        default_factory=lambda: int(_get_setting("THIN_RUNTIME_LIVE_SCHEMA_MAX_STALE_SECONDS", default="86400"))
+    )
     thin_runtime_viewer_enabled: bool = field(
         default_factory=lambda: _get_setting("THIN_RUNTIME_VIEWER_ENABLED", default="true").lower() == "true"
     )

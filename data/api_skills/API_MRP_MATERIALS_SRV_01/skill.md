@@ -46,6 +46,12 @@ Keep `data/index/API_MRP_MATERIALS_SRV_01` as the schema ground truth. This skil
 - Select `SupplyDemandItems.Material`, `SupplyDemandItems.MRPPlant`, `SupplyDemandItems.MRPArea`, `SupplyDemandItems.MRPElement`, `SupplyDemandItems.MRPElementItem`, `SupplyDemandItems.MRPElementCategory`, `SupplyDemandItems.MRPElementOpenQuantity`, and `SupplyDemandItems.MRPElementAvailyOrRqmtDate`.
 - Do not remove `MRPElement` from supply/demand item output during repair; it is the business element identifier needed to distinguish rows.
 
+### Material Coverage Runtime Constraints
+
+- `MaterialCoverages` requires explicit filters for both `MaterialShortageProfile` and `MaterialShortageProfileCount` before SAP execution.
+- `SAP000000001` and `001` are suggested values only. They are `explicit_only`: the Runtime must never inject them when the caller omitted them.
+- Prefer the narrow scope `Material` + `MRPPlant` + `MRPArea`. Only consider controller/plant scope when an exact material scope is not available.
+
 ### MRP Material Stock
 
 - For MRP material stock requests (`MRP物料的库存`), use `API_MRP_MATERIALS_SRV_01` together with `API_MATERIAL_STOCK_SRV`.

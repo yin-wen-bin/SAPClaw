@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 import time
@@ -44,6 +45,7 @@ from sap_odata_agent.infrastructure.sap.odata_client import (
     BasicPlanValidator,
     SapODataExecutor,
 )
+from sap_odata_agent.infrastructure.sap.live_schema import LiveSchemaOverlay, LiveSchemaProvider
 
 
 SCHEMA_VERSION = "1.0"
@@ -92,6 +94,7 @@ class ThinRuntimeService:
         executor: SapODataExecutor,
         case_repository: JsonlCaseRepository,
         result_transformer: ResultTransformer | None = None,
+        live_schema_provider: LiveSchemaProvider | None = None,
     ) -> None:
         self.settings = settings
         self.catalog_provider = catalog_provider
@@ -104,6 +107,7 @@ class ThinRuntimeService:
         self.executor = executor
         self.case_repository = case_repository
         self.result_transformer = result_transformer or ResultTransformer()
+        self.live_schema_provider = live_schema_provider
         self.index_loader = LocalIndexLoader(settings.index_root)
         self.page_size = max(1, settings.thin_runtime_page_size)
         self.max_binding_rows = max(1, settings.thin_runtime_max_binding_rows)
@@ -208,6 +212,8 @@ class ThinRuntimeService:
             }
             field_scope.update(entity for entity, _field in candidate_field_refs)
 
+        live_overlay = self._live_schema_overlay(request.service_name)
+        live_entities = live_overlay.snapshot.entities if live_overlay and live_overlay.snapshot else {}
         selected_fields: list[dict[str, Any]] = []
         if request.include_fields:
             for field in snapshot.fields:
@@ -217,7 +223,11 @@ class ThinRuntimeService:
                     continue
                 if candidate_field_refs and (entity_set, field_name) not in candidate_field_refs:
                     continue
-                selected_fields.append(self._schema_field_payload(field))
+                field_payload = self._schema_field_payload(field)
+                if live_overlay is not None:
+                    runtime_available = field_name in live_entities.get(entity_set, set())
+                    field_payload.update({"runtime_available": runtime_available, "executable": runtime_available})
+                selected_fields.append(field_payload)
                 if len(selected_fields) >= request.max_fields:
                     break
 
@@ -228,14 +238,37 @@ class ThinRuntimeService:
             if str(item.get("from_entity_set") or "") in relation_scope
         ]
         service = self._service_record(snapshot)
+        entity_payloads = []
+        for name in (requested_entities or list(entity_map)):
+            payload = self._schema_entity_payload(entity_map[name])
+            if live_overlay is not None:
+                runtime_available = name in live_entities
+                payload.update({"runtime_available": runtime_available, "executable": runtime_available})
+            entity_payloads.append(payload)
+        compatibility_status = None
+        if live_overlay is not None:
+            if live_overlay.snapshot is None:
+                compatibility_status = "unavailable"
+            elif live_overlay.stale:
+                compatibility_status = "stale"
+            else:
+                drifted = any(not item.get("runtime_available", False) for item in [*entity_payloads, *selected_fields])
+                compatibility_status = "drifted" if drifted else "compatible"
+        overlay_payload = {}
+        if live_overlay is not None:
+            overlay_payload = {
+                "compatibility_status": compatibility_status,
+                "runtime_schema_source": live_overlay.runtime_schema_source,
+                "metadata_fingerprint": (
+                    live_overlay.snapshot.metadata_fingerprint if live_overlay.snapshot else None
+                ),
+                "checked_at": live_overlay.snapshot.checked_at if live_overlay.snapshot else None,
+            }
         return self._envelope(
             ok=True,
             data={
                 "service": service,
-                "entities": [
-                    self._schema_entity_payload(entity_map[name])
-                    for name in (requested_entities or list(entity_map))
-                ],
+                "entities": entity_payloads,
                 "fields": selected_fields,
                 "relations": relations,
                 "function_imports": function_imports_from_snapshot(snapshot),
@@ -243,6 +276,7 @@ class ThinRuntimeService:
                 and len(selected_fields) >= request.max_fields
                 and self._matching_field_count(snapshot, field_scope, candidate_field_refs) > len(selected_fields),
                 "schema_authority": True,
+                **overlay_payload,
             },
         )
 
@@ -338,7 +372,7 @@ class ThinRuntimeService:
                 status="validation_failed",
                 data={"plan": plan_model.model_dump(mode="json")},
                 validation_issues=issues,
-                error={"code": "plan_validation_failed", "message": "No SAP request was executed."},
+                error=self._preflight_error(issues, "plan_validation_failed"),
             )
 
         resume_state: dict[str, Any] | None = None
@@ -354,6 +388,8 @@ class ThinRuntimeService:
         case_id = str(uuid.uuid4())
         started = time.perf_counter()
         attempts, data, execution_error = self._execute_domain_plan(plan, resume_state=resume_state)
+        if execution_error is not None:
+            execution_error = self._reclassify_plan_schema_error(plan, execution_error)
         duration_ms = round((time.perf_counter() - started) * 1000, 2)
         success = execution_error is None and data is not None
         presentation = self._build_presentation(plan, data, user_input) if success else None
@@ -405,7 +441,7 @@ class ThinRuntimeService:
                 ok=False,
                 status="validation_failed",
                 validation_issues=issues,
-                error={"code": "controlled_get_validation_failed", "message": "No SAP request was executed."},
+                error=self._preflight_error(issues, "controlled_get_validation_failed"),
             )
 
         case_id = str(uuid.uuid4())
@@ -436,6 +472,8 @@ class ThinRuntimeService:
                 data = self._apply_business_pagination(data, business_top=business_top, initial_skip=initial_skip)
         duration_ms = round((time.perf_counter() - started) * 1000, 2)
         error = None if attempt.success else self._sap_error(attempt)
+        if error is not None:
+            error = self._reclassify_controlled_schema_error(request, root_name, error)
         plan = QueryPlan(
             service_name=request.service_name,
             entity_set=request.resource_path,
@@ -535,8 +573,10 @@ class ThinRuntimeService:
             )
 
         stored_data = entry.get("response_preview") if isinstance(entry.get("response_preview"), dict) else {}
+        stored_pagination = stored_data.get("pagination") if isinstance(stored_data.get("pagination"), dict) else {}
+        total_count_known = stored_pagination.get("total_count_known") is True
         known_total = self._safe_int(stored_data.get("result_count"), -1)
-        if request.skip > 0 and known_total >= 0 and request.skip >= known_total:
+        if total_count_known and request.skip > 0 and known_total >= 0 and request.skip >= known_total:
             return self._envelope(
                 ok=False,
                 status="page_out_of_range",
@@ -655,6 +695,11 @@ class ThinRuntimeService:
             if runtime_issue:
                 issues.append(runtime_issue)
 
+        if issues:
+            return self._dedupe_issues(issues)
+
+        issues.extend(self._live_plan_schema_issues(plan, snapshots))
+        issues.extend(self._runtime_rule_plan_issues(plan))
         if issues:
             return self._dedupe_issues(issues)
 
@@ -817,6 +862,20 @@ class ThinRuntimeService:
                             field_name,
                         )
                     )
+            issues.extend(
+                self._live_reference_issues(
+                    request.service_name,
+                    root_name,
+                    self._controlled_get_field_refs(request.query_options),
+                )
+            )
+            issues.extend(
+                self._required_runtime_filter_issues(
+                    request.service_name,
+                    root_name,
+                    self._controlled_get_filter_refs(request.query_options.get("$filter", "")),
+                )
+            )
         if request.function_parameters and not is_function:
             issues.append(
                 validation_issue_payload(
@@ -851,6 +910,145 @@ class ThinRuntimeService:
                     )
                 )
         return self._dedupe_issues(issues), snapshot, root_name, is_function, resource_kind
+
+    def _live_schema_overlay(self, service_name: str, *, force_refresh: bool = False) -> LiveSchemaOverlay | None:
+        if not self.settings.thin_runtime_live_schema_enabled:
+            return None
+        if self.live_schema_provider is None:
+            return LiveSchemaOverlay(service_name, "none", False, None, "Live schema provider is not configured.")
+        return self.live_schema_provider.get(service_name, force_refresh=force_refresh)
+
+    @staticmethod
+    def _preflight_error(issues: list[dict[str, Any]], fallback_code: str) -> dict[str, Any]:
+        priority_codes = {
+            "live_schema_unavailable",
+            "schema_drift_entity_unavailable",
+            "schema_drift_field_unavailable",
+            "missing_required_runtime_filter",
+        }
+        code = next((str(item.get("code")) for item in issues if item.get("code") in priority_codes), fallback_code)
+        return {"code": code, "message": "No SAP request was executed."}
+
+    def _runtime_rule_plan_issues(self, plan: QueryPlan) -> list[dict[str, Any]]:
+        issues: list[dict[str, Any]] = []
+        if plan.steps:
+            for step in plan.steps:
+                issues.extend(
+                    self._required_runtime_filter_issues(
+                        step.service_name or plan.service_name,
+                        re.sub(r"\(.*\)$", "", step.entity_set.split("/", 1)[0]),
+                        {condition.field for condition in step.filters},
+                        step_id=step.step_id,
+                    )
+                )
+        elif plan.plan_kind != "function_import":
+            issues.extend(
+                self._required_runtime_filter_issues(
+                    plan.service_name,
+                    re.sub(r"\(.*\)$", "", plan.entity_set.split("/", 1)[0]),
+                    {condition.field for condition in plan.filters},
+                )
+            )
+        return issues
+
+    def _required_runtime_filter_issues(
+        self,
+        service_name: str,
+        entity_set: str,
+        explicit_filter_fields: set[str],
+        *,
+        step_id: str | None = None,
+    ) -> list[dict[str, Any]]:
+        skill = self.skill_provider.load(service_name)
+        entities = (skill.runtime_rules.get("entities") if skill else None) or {}
+        entity_rules = entities.get(entity_set) if isinstance(entities, dict) else None
+        required = entity_rules.get("required_filters", []) if isinstance(entity_rules, dict) else []
+        missing = [str(field) for field in required if str(field) not in explicit_filter_fields]
+        if not missing:
+            return []
+        suffix = f" in step `{step_id}`" if step_id else ""
+        return [
+            validation_issue_payload(
+                "missing_required_runtime_filter",
+                f"`{entity_set}` requires explicit runtime filter `{field}`{suffix}; suggested values are never injected.",
+                field,
+            )
+            for field in missing
+        ]
+
+    def _live_reference_issues(
+        self,
+        service_name: str,
+        entity_set: str,
+        field_names: set[str] | list[str],
+        *,
+        force_refresh: bool = False,
+    ) -> list[dict[str, Any]]:
+        overlay = self._live_schema_overlay(service_name, force_refresh=force_refresh)
+        if overlay is None:
+            return []
+        if overlay.snapshot is None:
+            return [
+                validation_issue_payload(
+                    "live_schema_unavailable",
+                    f"Live schema for `{service_name}` is unavailable and no cache is valid.",
+                    "service_name",
+                )
+            ]
+        if entity_set not in overlay.snapshot.entities:
+            return [
+                validation_issue_payload(
+                    "schema_drift_entity_unavailable",
+                    f"Entity set `{entity_set}` is documented locally but unavailable in the SAP runtime schema.",
+                    entity_set,
+                )
+            ]
+        runtime_fields = overlay.snapshot.entities[entity_set]
+        return [
+            validation_issue_payload(
+                "schema_drift_field_unavailable",
+                f"Field `{field_name}` on `{entity_set}` is documented locally but unavailable in the SAP runtime schema.",
+                field_name,
+            )
+            for field_name in sorted(set(field_names) - runtime_fields)
+        ]
+
+    def _live_plan_schema_issues(
+        self,
+        plan: QueryPlan,
+        snapshots: dict[str, LocalIndexSnapshot],
+        *,
+        force_refresh: bool = False,
+    ) -> list[dict[str, Any]]:
+        if plan.plan_kind == "function_import":
+            return []
+        references: list[tuple[str, str, set[str]]] = []
+        if plan.steps:
+            for step in plan.steps:
+                service_name = step.service_name or plan.service_name
+                entity_set = self._metadata_entity_set(snapshots[service_name], step.entity_set)
+                fields = set(step.select_fields)
+                fields.update(condition.field for condition in step.filters)
+                fields.update(str(item).strip().split()[0] for item in step.order_by)
+                fields.update(binding.field for binding in step.filter_from_previous)
+                references.append((service_name, entity_set, fields))
+        else:
+            entity_set = self._metadata_entity_set(snapshots[plan.service_name], plan.entity_set)
+            fields = set(plan.select_fields)
+            fields.update(condition.field for condition in plan.filters)
+            fields.update(str(item).strip().split()[0] for item in plan.order_by)
+            references.append((plan.service_name, entity_set, fields))
+        issues: list[dict[str, Any]] = []
+        for service_name, entity_set, fields in references:
+            issues.extend(
+                self._live_reference_issues(
+                    service_name,
+                    entity_set,
+                    fields,
+                    force_refresh=force_refresh,
+                )
+            )
+        return issues
 
     @staticmethod
     def _controlled_get_resource_kind(resource_path: str, *, is_function: bool) -> str:
@@ -896,6 +1094,7 @@ class ThinRuntimeService:
 
         attempts: list[dict[str, Any]] = []
         step_results: dict[str, dict[str, Any]] = {}
+        business_evidence_gaps: list[dict[str, Any]] = []
         fetch_all_sources = {
             binding.source_step_id
             for step in plan.steps
@@ -913,6 +1112,18 @@ class ThinRuntimeService:
                     if self._has_zero_rows(source_data):
                         empty = self._empty_data(step.top)
                         step_results[step.step_id] = empty
+                        business_evidence_gaps.append(
+                            {
+                                "kind": "missing_downstream_business_document",
+                                "source_step_id": binding.source_step_id,
+                                "target_step_id": step.step_id,
+                                "binding_field": binding.field,
+                                "message": (
+                                    f"No downstream business document was found because step "
+                                    f"`{binding.source_step_id}` returned zero rows."
+                                ),
+                            }
+                        )
                         break
                     return (
                         attempts,
@@ -1035,6 +1246,7 @@ class ThinRuntimeService:
         merged = dict(final_data)
         merged["primary_step_id"] = self._primary_step_id(plan, step_results)
         merged["final_step_id"] = final_step.step_id
+        merged["business_evidence_gaps"] = business_evidence_gaps
         merged["step_results"] = {
             step_id: {
                 "step_id": step_id,
@@ -1046,6 +1258,8 @@ class ThinRuntimeService:
                 "result_count": data.get("result_count"),
                 "returned_count": data.get("returned_count"),
                 "displayed_count": data.get("displayed_count"),
+                "source_complete": data.get("source_complete"),
+                "source_truncated": data.get("source_truncated"),
                 "results": data.get("results", []),
                 "pagination": data.get("pagination", {}),
             }
@@ -1120,14 +1334,19 @@ class ThinRuntimeService:
                             "next_source_skip": skip,
                         }
                     )
+                    failure = self._sap_error(attempt)
+                    diagnostics = {
+                        "fetched_row_count": len(all_rows),
+                        "next_source_skip": skip,
+                        "stable_order_fields": stable_order_fields,
+                        "resume_available": True,
+                    }
+                    if failure.get("code") == "sap_request_timeout":
+                        return attempts, partial, {**failure, "diagnostics": diagnostics}
                     return attempts, partial, {
                         "code": "aggregate_source_interrupted",
                         "message": "Aggregate source pagination was interrupted and can be resumed.",
-                        "diagnostics": {
-                            "fetched_row_count": len(all_rows),
-                            "next_source_skip": skip,
-                            "stable_order_fields": stable_order_fields,
-                        },
+                        "diagnostics": diagnostics,
                     }
                 return attempts, None, self._sap_error(attempt)
             preview = attempt.response_preview or {}
@@ -1212,14 +1431,16 @@ class ThinRuntimeService:
                 "code": "aggregate_resume_not_available",
                 "message": "Only aggregate plans can resume source pagination.",
             }
-        if (
-            str(stored_plan.get("service_name") or "") != current_plan.service_name
-            or str(stored_plan.get("entity_set") or "") != current_plan.entity_set
-            or stored_plan.get("result_transform") != asdict(current_plan.result_transform)
-        ):
+        stored_fingerprint = self._source_plan_fingerprint(stored_plan)
+        current_fingerprint = self._source_plan_fingerprint(asdict(current_plan))
+        if stored_fingerprint != current_fingerprint:
             return None, {
                 "code": "aggregate_resume_plan_mismatch",
                 "message": "The resume case was created by a different aggregate plan.",
+                "diagnostics": {
+                    "stored_source_plan_fingerprint": stored_fingerprint,
+                    "current_source_plan_fingerprint": current_fingerprint,
+                },
             }
         data = entry.get("response_preview") if isinstance(entry.get("response_preview"), dict) else {}
         rows = self._all_rows(data)
@@ -1234,6 +1455,47 @@ class ThinRuntimeService:
             "next_source_skip": next_source_skip,
             "source_result_count": self._safe_int(data.get("result_count"), len(rows)),
         }, None
+
+    @staticmethod
+    def _source_plan_fingerprint(plan: dict[str, Any]) -> str:
+        """Fingerprint only fields that can change SAP requests or aggregate semantics."""
+
+        execution_keys = (
+            "service_name",
+            "entity_set",
+            "http_method",
+            "select_fields",
+            "filters",
+            "order_by",
+            "top",
+            "plan_kind",
+            "target_entity_set",
+            "anchor_object",
+            "anchor_value",
+            "target_field",
+            "path_id",
+            "function_parameters",
+            "result_transform",
+        )
+        step_keys = (
+            "step_id",
+            "service_name",
+            "entity_set",
+            "http_method",
+            "select_fields",
+            "filters",
+            "filter_from_previous",
+            "order_by",
+            "top",
+        )
+        normalized = {key: plan.get(key) for key in execution_keys}
+        normalized["steps"] = [
+            {key: step.get(key) for key in step_keys}
+            for step in (plan.get("steps") or [])
+            if isinstance(step, dict)
+        ]
+        encoded = json.dumps(normalized, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+        return hashlib.sha256(encoded.encode("utf-8")).hexdigest()
 
     def _stable_paging_fields(self, plan: QueryPlan) -> list[str]:
         explicit = [str(field) for field in plan.order_by if str(field).strip()]
@@ -1614,6 +1876,10 @@ class ThinRuntimeService:
         )
         return {ref for ref in refs if ref}
 
+    @classmethod
+    def _controlled_get_filter_refs(cls, filter_text: str) -> set[str]:
+        return cls._controlled_get_field_refs({"$filter": filter_text})
+
     @staticmethod
     def _split_option_fields(value: str) -> list[str]:
         return [item.strip().split("/")[-1] for item in str(value or "").split(",") if item.strip()]
@@ -1650,12 +1916,17 @@ class ThinRuntimeService:
         normalized = dict(data)
         rows = self._all_rows(data)
         pagination = dict(data.get("pagination") or {})
+        total_count_known = pagination.get("total_count_known") is True
         skip = self._safe_int(pagination.get("skip"), initial_skip)
         raw_total = self._safe_int(data.get("result_count"), skip + len(rows))
         effective_total = min(raw_total, initial_skip + business_top) if business_top is not None else raw_total
         remaining = max(0, effective_total - skip)
         display_rows = rows[: min(self.page_size, remaining)]
-        has_next = skip + len(display_rows) < effective_total
+        has_next = (
+            skip + len(display_rows) < effective_total
+            if total_count_known
+            else bool(pagination.get("sap_has_next", pagination.get("has_next", False)))
+        )
         normalized.update(
             {
                 "result_count": effective_total,
@@ -1699,6 +1970,7 @@ class ThinRuntimeService:
                     "next_skip": None,
                     "local_has_next": False,
                     "sap_has_next": False,
+                    "total_count_known": True,
                 },
             }
         )
@@ -1727,6 +1999,7 @@ class ThinRuntimeService:
                 "next_skip": len(display) if has_next else None,
                 "local_has_next": len(display) < len(capped_rows),
                 "sap_has_next": len(capped_rows) < effective_total,
+                "total_count_known": True,
             },
         }
 
@@ -1858,10 +2131,72 @@ class ThinRuntimeService:
 
     @staticmethod
     def _sap_error(attempt: ExecutionAttempt) -> dict[str, Any]:
+        message = attempt.error_message or "SAP OData request failed."
+        normalized = message.lower()
+        if attempt.status_code in {408, 504} or any(
+            marker in normalized for marker in ("timed out", "timeout", "time out")
+        ):
+            return {
+                "code": "sap_request_timeout",
+                "message": message,
+                "status_code": attempt.status_code,
+                "conclusion_state": "INCONCLUSIVE",
+                "retryable": True,
+            }
         return {
             "code": "sap_request_failed",
-            "message": attempt.error_message or "SAP OData request failed.",
+            "message": message,
             "status_code": attempt.status_code,
+        }
+
+    def _reclassify_plan_schema_error(
+        self,
+        plan: QueryPlan,
+        error: dict[str, Any],
+    ) -> dict[str, Any]:
+        if error.get("status_code") not in {400, 404} or self.live_schema_provider is None:
+            return error
+        services = {plan.service_name, *(step.service_name or plan.service_name for step in plan.steps)}
+        for service_name in services:
+            self.live_schema_provider.invalidate(service_name)
+        snapshots = {
+            service_name: self.index_loader.load(service_name)
+            for service_name in services
+        }
+        issues = self._live_plan_schema_issues(plan, snapshots, force_refresh=True)
+        drift = [item for item in issues if str(item.get("code", "")).startswith("schema_drift_")]
+        if not drift:
+            return error
+        return {
+            "code": "schema_drift",
+            "message": "SAP rejected the resource and refreshed metadata confirmed schema drift; the business query was not replayed.",
+            "status_code": error.get("status_code"),
+            "validation_issues": drift,
+        }
+
+    def _reclassify_controlled_schema_error(
+        self,
+        request: RuntimeGetRequest,
+        root_name: str,
+        error: dict[str, Any],
+    ) -> dict[str, Any]:
+        if error.get("status_code") not in {400, 404} or self.live_schema_provider is None:
+            return error
+        self.live_schema_provider.invalidate(request.service_name)
+        issues = self._live_reference_issues(
+            request.service_name,
+            root_name,
+            self._controlled_get_field_refs(request.query_options),
+            force_refresh=True,
+        )
+        drift = [item for item in issues if str(item.get("code", "")).startswith("schema_drift_")]
+        if not drift:
+            return error
+        return {
+            "code": "schema_drift",
+            "message": "SAP rejected the resource and refreshed metadata confirmed schema drift; the business query was not replayed.",
+            "status_code": error.get("status_code"),
+            "validation_issues": drift,
         }
 
     @classmethod
@@ -1888,6 +2223,7 @@ class ThinRuntimeService:
             "page_size": page_size,
             "skip": skip,
             "total_count": total,
+            "total_count_known": pagination.get("total_count_known") is True,
             "has_next": has_next,
             "next_skip": pagination.get("next_skip") if has_next else None,
         }

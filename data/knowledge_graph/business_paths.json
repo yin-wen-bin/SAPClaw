@@ -1,5 +1,28 @@
 [
   {
+    "intent": "Exact Sales Order O2C Planning Pattern",
+    "service_names": [
+      "API_SALES_ORDER_SRV",
+      "API_OUTBOUND_DELIVERY_SRV",
+      "API_BILLING_DOCUMENT_SRV",
+      "API_OPLACCTGDOCITEMCUBE_SRV"
+    ],
+    "steps": [
+      "Use this shared read-only Thin path for exact sales-order status evidence across `API_SALES_ORDER_SRV`, `API_OUTBOUND_DELIVERY_SRV`, `API_BILLING_DOCUMENT_SRV`, and `API_OPLACCTGDOCITEMCUBE_SRV`.",
+      "Step 1: query `API_SALES_ORDER_SRV.A_SalesOrder` by exact `SalesOrder`; select `SalesOrder`, `OverallDeliveryStatus`, `OverallOrdReltdBillgStatus`, and `OverallSDProcessStatus`.",
+      "Step 2: query `API_OUTBOUND_DELIVERY_SRV.A_OutbDeliveryItem`; bind `ReferenceSDDocument <- Step 1 SalesOrder`; select `DeliveryDocument`, `DeliveryDocumentItem`, and `ReferenceSDDocument`.",
+      "Step 3: query `API_OUTBOUND_DELIVERY_SRV.A_OutbDeliveryHeader`; bind `DeliveryDocument <- Step 2 DeliveryDocument`; select `DeliveryDocument`, `ActualGoodsMovementDate`, `OverallGoodsMovementStatus`, `OverallDelivReltdBillgStatus`, and `OverallSDProcessStatus`.",
+      "Step 4: query `API_BILLING_DOCUMENT_SRV.A_BillingDocumentItem`; bind `SalesDocument <- Step 1 SalesOrder`; select `BillingDocument`, `BillingDocumentItem`, `SalesDocument`, `BillingQuantity`, `BillingQuantityUnit`, `NetAmount`, `TaxAmount`, and `TransactionCurrency`.",
+      "Step 5: query `API_BILLING_DOCUMENT_SRV.A_BillingDocument`; bind `BillingDocument <- Step 4 BillingDocument`; select `BillingDocument`, `TotalNetAmount`, `TaxAmount`, `TransactionCurrency`, `BillingDocumentIsCancelled`, `AccountingPostingStatus`, and `AccountingTransferStatus`.",
+      "Step 6: query `API_OPLACCTGDOCITEMCUBE_SRV.A_OperationalAcctgDocItemCube`; bind `BillingDocument <- Step 4 BillingDocument`; select `BillingDocument`, `AccountingDocument`, `AccountingDocumentItem`, `IsCleared`, `ClearingDate`, `ClearingAccountingDocument`, `AmountInCompanyCodeCurrency`, and `CompanyCodeCurrency`.",
+      "Set `fetch_all_for_binding=true` on every downstream binding source. The configured Thin binding-row safety limit still applies."
+    ],
+    "source": "data\\api_skills\\API_SALES_ORDER_SRV\\skill.md",
+    "confidence": 0.86,
+    "evidence_text": "Use this shared read-only Thin path for exact sales-order status evidence across `API_SALES_ORDER_SRV`, `API_OUTBOUND_DELIVERY_SRV`, `API_BILLING_DOCUMENT_SRV`, and `API_OPLACCTGDOCITEMCUBE_SRV`. Step 1: query `API_SALES_ORDER_SRV.A_SalesOrder` by exact `SalesOrder`; select `SalesOrder`, `OverallDeliveryStatus`, `OverallOrdReltdBillgStatus`, and `OverallSDProcessStatus`. Step 2: query `API_OUTBOUND_DELIVERY_SRV.A_OutbDeliveryItem`; bind `ReferenceSDDocument <- Step 1 SalesOrder`; select `DeliveryDocument`, `DeliveryDocumentItem`, and `ReferenceSDDocument`. Step 3: query `API_OUTBOUND_DELIVERY_SRV.A_OutbDeliveryHeader`; bind `DeliveryDocument <- Step 2 DeliveryDocument`; select `DeliveryDocument`, `ActualGoodsMovementDate`, `OverallGoodsMovementStatus`, `OverallDelivReltdBillgStatus`, and `OverallSDProcessStatus`.",
+    "confirmed": true
+  },
+  {
     "intent": "Batch to ToRole_assoc_60ABC63B5847FBB947A5E66206309374",
     "service_names": [
       "API_BATCH_SRV"

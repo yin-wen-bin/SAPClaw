@@ -36,6 +36,11 @@ def main() -> None:
     parser.add_argument("--limit-per-module", type=int, default=10)
     parser.add_argument("--source-root", default=str(DEFAULT_SOURCE_ROOT))
     parser.add_argument("--case-root", default=str(DEFAULT_CASE_ROOT))
+    parser.add_argument(
+        "--baseline-root",
+        default="",
+        help="Optional writable root for discovered baselines; keeps tracked case templates immutable.",
+    )
     parser.add_argument("--run-root", default=str(DEFAULT_RUN_ROOT))
     parser.add_argument("--run-id", default="")
     parser.add_argument("--codex-cli", default=os.getenv("CODEX_CLI", "codex"))
@@ -58,6 +63,7 @@ def main() -> None:
     modules = tuple(args.module or DEFAULT_MODULES)
     runtime_base_url = str(args.runtime_base_url or DEFAULT_RUNTIME_BASE_URL).rstrip("/")
     case_root = Path(args.case_root)
+    baseline_root = Path(args.baseline_root) if args.baseline_root else case_root
     if args.prepare or not all((case_root / module / "cases.json").exists() for module in modules):
         prepare_suite(
             source_root=Path(args.source_root),
@@ -94,16 +100,17 @@ def main() -> None:
         started_at = datetime.now().astimezone().isoformat()
         baseline = load_or_run_baseline(
             case,
-            case_root,
+            baseline_root,
             run_baseline=run_baseline,
             use_existing=args.use_existing_baseline,
             retries=max(0, args.baseline_retries),
             retry_delay_seconds=max(0.0, args.baseline_retry_delay_seconds),
         )
+        execution_case = inject_discovered_prompt(case, baseline)
         codex_result = None
         if run_codex:
             codex_result = run_codex_case(
-                case=case,
+                case=execution_case,
                 run_dir=run_dir,
                 output_schema=output_schema,
                 workspace=workspace,
@@ -119,7 +126,7 @@ def main() -> None:
             "source_case_id": case.get("source_case_id"),
             "api": case["api"],
             "scenario": case["scenario"],
-            "user_input": case["user_input"],
+            "user_input": execution_case["user_input"],
             "started_at": started_at,
             "finished_at": datetime.now().astimezone().isoformat(),
             "status": "passed" if comparison.get("passed") else "failed",
@@ -241,6 +248,43 @@ def baseline_retryable(baseline: dict[str, Any]) -> bool:
             "status_code\": 504",
         )
     )
+
+
+def inject_discovered_prompt(
+    case: dict[str, Any],
+    baseline: dict[str, Any] | None,
+) -> dict[str, Any]:
+    """Inject read-only discovery values into a sanitized prompt template."""
+
+    resolved = dict(case)
+    prompt = str(case.get("user_input") or "")
+    steps = {
+        str(step.get("id") or ""): step
+        for step in (baseline or {}).get("steps", [])
+        if isinstance(step, dict)
+    }
+    resolved_values: dict[str, str] = {}
+    for binding in case.get("prompt_bindings", []) or []:
+        if not isinstance(binding, dict):
+            continue
+        placeholder = str(binding.get("placeholder") or "")
+        source_step = steps.get(str(binding.get("source_step") or ""), {})
+        field_name = str(binding.get("source_field") or "")
+        values = _extract_prompt_values(source_step.get("results"), field_name)
+        if not placeholder or not values:
+            continue
+        prompt = prompt.replace(placeholder, values[0])
+        resolved_values[placeholder] = values[0]
+    resolved["user_input"] = prompt
+    resolved["discovery_prompt_values"] = resolved_values
+    return resolved
+
+
+def _extract_prompt_values(rows: Any, field_name: str) -> list[str]:
+    if not isinstance(rows, list) or not field_name:
+        return []
+    values = [str(row.get(field_name)) for row in rows if isinstance(row, dict) and row.get(field_name) not in (None, "")]
+    return list(dict.fromkeys(values))
 
 
 def run_codex_case(

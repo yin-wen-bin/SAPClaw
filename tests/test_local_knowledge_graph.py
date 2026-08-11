@@ -71,8 +71,8 @@ def test_local_kg_builder_creates_confirmed_and_candidate_facts(tmp_path) -> Non
                 "Do not use `A_PurchaseOrderItem.GoodsReceiptIsExpected` alone to prove unreceived purchase orders.",
                 "Prefer `A_PurchaseOrderItem.IsCompletelyDelivered` for actual delivery completion.",
                 "## Common Planning Patterns",
-                "### Unreceived Purchase Orders",
-                "- Query `A_PurchaseOrderItem`.",
+                "### Unreceived Purchase Orders Planning Pattern",
+                "- Query `A_PurchaseOrderItem` and `API_COMPANION_SRV.A_Companion`.",
                 "- Filter `GoodsReceiptIsExpected` eq true.",
                 "- Filter `IsCompletelyDelivered` eq false.",
             ]
@@ -97,6 +97,9 @@ def test_local_kg_builder_creates_confirmed_and_candidate_facts(tmp_path) -> Non
     assert summary["counts"]["candidate_kg_facts"] == 1
     field_semantics = json.loads((output_root / "field_semantics.json").read_text(encoding="utf-8"))
     assert any(item["field_name"] == "GoodsReceiptIsExpected" and item["confirmed"] for item in field_semantics)
+    business_paths = json.loads((output_root / "business_paths.json").read_text(encoding="utf-8"))
+    path = next(item for item in business_paths if item["intent"] == "Unreceived Purchase Orders Planning Pattern")
+    assert path["service_names"] == ["API_TEST_SRV", "API_COMPANION_SRV"]
     candidate_facts = json.loads((output_root / "candidate_kg_facts.json").read_text(encoding="utf-8"))
     assert candidate_facts[0]["confirmed"] is False
     assert candidate_facts[0]["blocking"] is False
