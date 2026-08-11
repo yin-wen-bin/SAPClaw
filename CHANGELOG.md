@@ -15,7 +15,7 @@ All notable changes to SAPClaw are documented in this file.
 ### Safety
 
 - SAP execution is restricted to read-only OData requests.
-- Credentials and runtime case data remain local and are excluded from source control.
+- Credentials and locally persisted case files are excluded from source control. When a remote LLM profile is configured, query context and selected SAP result records can be sent to that provider for planning, verification, or presentation; operators must apply the provider's privacy and data-handling controls.
 - Query results must be verified in the source SAP system before critical use.
 
 ### Known limitations
