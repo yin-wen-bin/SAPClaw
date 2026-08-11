@@ -66,6 +66,7 @@ class FakeExecutor:
                     "skip": skip,
                     "has_next": end < self.total_count,
                     "next_skip": end if end < self.total_count else None,
+                    "total_count_known": True,
                 },
             },
         )
@@ -124,6 +125,8 @@ def build_runtime(
     enabled: bool = True,
     executor=None,
     max_binding_rows: int = 5000,
+    live_schema_provider=None,
+    live_schema_enabled: bool = False,
 ) -> ThinRuntimeService:
     settings_kwargs = {
         "sap_base_url": "https://sap.example",
@@ -135,6 +138,7 @@ def build_runtime(
         "thin_runtime_enabled": enabled,
         "thin_runtime_page_size": 50,
         "thin_runtime_max_binding_rows": max_binding_rows,
+        "thin_runtime_live_schema_enabled": live_schema_enabled,
         "thin_runtime_viewer_enabled": True,
         "thin_runtime_viewer_base_url": "http://127.0.0.1:8000",
     }
@@ -151,6 +155,7 @@ def build_runtime(
         compiler=BasicODataCompiler(settings.sap_base_url, index_root=settings.index_root),
         executor=executor or FakeExecutor(),
         case_repository=JsonlCaseRepository(settings.case_store_path),
+        live_schema_provider=live_schema_provider,
     )
 
 
@@ -311,7 +316,8 @@ def test_execute_plan_revalidates_pages_and_strips_internal_data(tmp_path: Path)
     assert response["pagination"] == {
         "page_size": 50,
         "skip": 0,
-        "total_count": 82,
+            "total_count": 82,
+            "total_count_known": True,
         "has_next": True,
         "next_skip": 50,
     }
@@ -590,8 +596,9 @@ def test_controlled_get_singletons_never_receive_collection_paging_options(tmp_p
         assert response["pagination"] == {
             "page_size": 1,
             "skip": 0,
-            "total_count": 1,
-            "has_next": False,
+                "total_count": 1,
+                "total_count_known": True,
+                "has_next": False,
             "next_skip": None,
         }
 
@@ -766,7 +773,9 @@ def test_complete_month_end_aggregate_pages_all_rows_and_returns_diagnostics(tmp
     interrupted = interrupted_runtime.execute_plan(aggregate_plan(), user_input="resumable aggregate")
 
     assert interrupted["ok"] is False
-    assert interrupted["error"]["code"] == "aggregate_source_interrupted"
+    assert interrupted["error"]["code"] == "sap_request_timeout"
+    assert interrupted["error"]["conclusion_state"] == "INCONCLUSIVE"
+    assert interrupted["error"]["retryable"] is True
     assert interrupted["data"]["next_source_skip"] == 50
     resumed = interrupted_runtime.execute_plan(
         aggregate_plan(),

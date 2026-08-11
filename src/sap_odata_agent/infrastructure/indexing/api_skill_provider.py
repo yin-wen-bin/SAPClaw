@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import re
 from dataclasses import dataclass
 from pathlib import Path
@@ -34,6 +35,7 @@ class ApiSkill:
     content: str
     summary: str
     routing_hints: ApiSkillRoutingHints
+    runtime_rules: dict[str, Any]
 
     def as_prompt_payload(self) -> dict[str, Any]:
         return {
@@ -41,6 +43,7 @@ class ApiSkill:
             "path": self.path,
             "summary": self.summary,
             "routing_hints": self.routing_hints.as_dict(),
+            "runtime_rules": self.runtime_rules,
             "content": self.content,
         }
 
@@ -56,15 +59,16 @@ class ApiSkillProvider:
         self.skill_root = Path(skill_root)
         self.max_summary_chars = max_summary_chars
         self._cache_lock = RLock()
-        self._skill_cache: dict[str, tuple[tuple[int, int, int] | None, ApiSkill | None]] = {}
+        self._skill_cache: dict[str, tuple[tuple[int, ...] | None, ApiSkill | None]] = {}
 
     def load(self, service_name: str) -> ApiSkill | None:
         service = str(service_name or "").strip()
         if not service:
             return None
         path = self.skill_root / service / "skill.md"
+        rules_path = self.skill_root / service / "runtime_rules.json"
         with self._cache_lock:
-            signature = self._skill_signature(path)
+            signature = self._skill_signature(path, rules_path)
             cached = self._skill_cache.get(service)
             if cached is not None and cached[0] == signature:
                 return cached[1]
@@ -81,6 +85,7 @@ class ApiSkillProvider:
                 content=content,
                 summary=self._summarize(content),
                 routing_hints=self._extract_routing_hints(service, content),
+                runtime_rules=self._load_runtime_rules(rules_path),
             )
             self._skill_cache[service] = (signature, skill)
             return skill
@@ -352,9 +357,23 @@ class ApiSkillProvider:
             return value
         return value[: max_chars - 3].rstrip() + "..."
 
-    def _skill_signature(self, path: Path) -> tuple[int, int, int] | None:
+    @staticmethod
+    def _load_runtime_rules(path: Path) -> dict[str, Any]:
+        if not path.exists():
+            return {}
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        if not isinstance(payload, dict):
+            raise ValueError(f"Runtime rules must be a JSON object: {path}")
+        return payload
+
+    def _skill_signature(self, path: Path, rules_path: Path) -> tuple[int, ...] | None:
         try:
             stat = path.stat()
         except FileNotFoundError:
             return None
-        return (stat.st_mtime_ns, stat.st_size, self.max_summary_chars)
+        try:
+            rules_stat = rules_path.stat()
+            rules_signature = (rules_stat.st_mtime_ns, rules_stat.st_size)
+        except FileNotFoundError:
+            rules_signature = (0, 0)
+        return (stat.st_mtime_ns, stat.st_size, *rules_signature, self.max_summary_chars)

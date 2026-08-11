@@ -8,6 +8,7 @@ from sap_odata_agent.tools.run_thin_codex_e2e import (
     classify_codex_failure,
     compare_case,
     isolated_runtime_mcp_config,
+    inject_discovered_prompt,
     load_cases,
     parse_json_object,
     percentile,
@@ -156,3 +157,26 @@ def test_isolated_runtime_config_registers_only_repo_local_thin_mcp(tmp_path: Pa
     assert "http://127.0.0.1:8101" in combined
     assert tmp_path.name in combined
     assert "mcp_servers.sapclaw." not in combined
+
+
+def test_inject_discovered_prompt_uses_read_only_baseline_values() -> None:
+    case = {
+        "user_input": "查询销售订单 {{SalesOrder}} 的完整O2C状态",
+        "prompt_bindings": [
+            {
+                "placeholder": "{{SalesOrder}}",
+                "source_step": "discover_order",
+                "source_field": "SalesDocument",
+            }
+        ],
+    }
+    baseline = {
+        "steps": [
+            {"id": "discover_order", "results": [{"SalesDocument": "0000003773"}]}
+        ]
+    }
+
+    resolved = inject_discovered_prompt(case, baseline)
+
+    assert resolved["user_input"] == "查询销售订单 0000003773 的完整O2C状态"
+    assert resolved["discovery_prompt_values"] == {"{{SalesOrder}}": "0000003773"}

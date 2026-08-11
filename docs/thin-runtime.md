@@ -12,11 +12,16 @@ Thin Runtime 默认关闭。在 `env/.env` 中显式配置：
 THIN_RUNTIME_ENABLED=true
 THIN_RUNTIME_PAGE_SIZE=50
 THIN_RUNTIME_MAX_BINDING_ROWS=5000
+THIN_RUNTIME_LIVE_SCHEMA_ENABLED=true
+THIN_RUNTIME_LIVE_SCHEMA_TTL_SECONDS=300
+THIN_RUNTIME_LIVE_SCHEMA_MAX_STALE_SECONDS=86400
 THIN_RUNTIME_VIEWER_ENABLED=true
 THIN_RUNTIME_VIEWER_BASE_URL=http://127.0.0.1:8000
 ```
 
 `THIN_RUNTIME_PAGE_SIZE` 是传输和展示页大小，不是业务数量限制。QueryPlan 的 `top` 默认为 `null`；只有用户明确要求限制数量时才应设置。
+
+Live Schema Overlay 在执行前以只读方式校验 SAP `$metadata`。元数据缓存 5 分钟内为 fresh；刷新失败时最多使用 24 小时内的 stale 缓存并明确标记。没有有效缓存时返回 `live_schema_unavailable`，不会执行或自动重放业务查询。
 
 ## HTTP API
 

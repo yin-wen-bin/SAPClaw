@@ -1,0 +1,38 @@
+[
+  {
+    "id": "THIN-PRIORITY-MRP-001",
+    "api": "PP",
+    "scenario": "Discover a sanitized material scope and execute MaterialCoverages with explicit profile filters",
+    "user_input": "查询物料 {{Material}} 在工厂 {{MRPPlant}}、MRP区域 {{MRPArea}} 的物料覆盖情况，显式使用 MaterialShortageProfile=SAP000000001 和 MaterialShortageProfileCount=001。超时必须报告 INCONCLUSIVE。",
+    "prompt_bindings": [
+      {"placeholder": "{{Material}}", "source_step": "discover_scope", "source_field": "Material"},
+      {"placeholder": "{{MRPPlant}}", "source_step": "discover_scope", "source_field": "MRPPlant"},
+      {"placeholder": "{{MRPArea}}", "source_step": "discover_scope", "source_field": "MRPArea"}
+    ],
+    "expected_api": "API_MRP_MATERIALS_SRV_01",
+    "expected_capability": {"execute": true},
+    "baseline": {
+      "steps": [
+        {
+          "id": "discover_scope",
+          "url": "/sap/opu/odata/sap/API_MRP_MATERIALS_SRV_01/A_MRPMaterial?$select=Material,MRPPlant,MRPArea&$filter=Material%20ne%20''&$top=1&$format=json",
+          "key_fields": ["Material", "MRPPlant", "MRPArea"]
+        },
+        {
+          "id": "material_coverage",
+          "url": "/sap/opu/odata/sap/API_MRP_MATERIALS_SRV_01/MaterialCoverages?$select=Material,MRPPlant,MRPArea,MaterialShortageProfile,MaterialShortageProfileCount&$filter=MaterialShortageProfile%20eq%20'SAP000000001'%20and%20MaterialShortageProfileCount%20eq%20'001'&$top=50&$format=json",
+          "bindings": [
+            {"source_step": "discover_scope", "source_field": "Material", "target_field": "Material"},
+            {"source_step": "discover_scope", "source_field": "MRPPlant", "target_field": "MRPPlant"},
+            {"source_step": "discover_scope", "source_field": "MRPArea", "target_field": "MRPArea"}
+          ],
+          "key_fields": ["Material", "MRPPlant", "MRPArea", "MaterialShortageProfile", "MaterialShortageProfileCount"]
+        }
+      ]
+    },
+    "comparison": {
+      "type": "exact_keys",
+      "keys": ["Material", "MRPPlant", "MRPArea", "MaterialShortageProfile", "MaterialShortageProfileCount"]
+    }
+  }
+]

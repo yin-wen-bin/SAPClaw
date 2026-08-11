@@ -270,6 +270,12 @@ class ThinQueryPlan(BaseModel):
             raise ValueError("Execution steps are allowed only for lookup or multi_step plans.")
         if self.result_transform is not None and self.top is not None:
             raise ValueError("Aggregate plans must leave top unset so the source can be proven complete.")
+        aggregate_step_tops = [step.step_id for step in self.steps if self.result_transform is not None and step.top]
+        if aggregate_step_tops:
+            raise ValueError(
+                "Aggregate plans must leave top unset on every execution step: "
+                + ", ".join(aggregate_step_tops)
+            )
         step_ids = [step.step_id for step in self.steps]
         if len(step_ids) != len(set(step_ids)):
             raise ValueError("Execution step ids must be unique.")

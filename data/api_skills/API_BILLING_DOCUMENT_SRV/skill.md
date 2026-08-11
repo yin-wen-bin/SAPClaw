@@ -65,6 +65,15 @@ Keep `data/index/API_BILLING_DOCUMENT_SRV` as the schema ground truth. This skil
 - Step 2: query `A_BillingDocument` by binding `A_BillingDocumentItem.BillingDocument` to `A_BillingDocument.BillingDocument`. The final answer should include header fields such as `BillingDocument`, `BillingDocumentDate`, `SoldToParty`, `CompanyCode`, and `OverallBillingStatus`.
 - Query `A_BillingDocumentItem` directly only when the user explicitly asks for billing items, invoice line items, `开票项目`, `行项目`, material, quantity, or item-level details.
 
+### Billing Evidence Authority And Completeness
+
+- Header authority comes from `A_BillingDocument.TotalNetAmount`, `TaxAmount`, `TransactionCurrency`, `BillingDocumentIsCancelled`, `AccountingPostingStatus`, and `AccountingTransferStatus`.
+- Item authority comes from `A_BillingDocumentItem.BillingQuantity`, `BillingQuantityUnit`, `NetAmount`, `TaxAmount`, and `TransactionCurrency`.
+- Pricing evidence comes from `ConditionType`, `TaxCode`, `ConditionAmount`, `ConditionCurrency`, `ConditionInactiveReason`, and `ConditionIsForStatistics` on header/item pricing entities. Pricing elements are detail evidence only.
+- Never substitute a pricing quantity for `BillingQuantity`, and never substitute a tax classification for `TaxAmount`.
+- Compare header and item totals only when every item page has been fetched and all compared rows use one matching currency. Otherwise report the evidence as incomplete or non-comparable.
+- A Thin three-layer billing evidence plan binds header `BillingDocument` to item `BillingDocument`, then item `BillingDocument` and `BillingDocumentItem` to item pricing elements. Every binding source must set `fetch_all_for_binding=true`.
+
 ### Delivery Billing Items
 
 - For requests such as `query billing items for delivery documents of customer 17100003`, use a cross-API plan with `API_OUTBOUND_DELIVERY_SRV` and this API.

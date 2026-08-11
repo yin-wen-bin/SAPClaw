@@ -525,6 +525,30 @@ class SapODataExecutor:
                 error_message=f"Unexpected SAP execution error: {exc}",
             )
 
+    def fetch_metadata(self, service_name: str) -> tuple[str, str]:
+        """Fetch a service's read-only EDMX using the runtime auth, SSL and proxy policy."""
+
+        if self.config.auth_type.lower() != "basic":
+            raise ValueError(f"Unsupported SAP auth type: {self.config.auth_type}")
+        query = urllib.parse.urlencode({"sap-client": self.config.client}) if self.config.client else ""
+        metadata_url = f"{self.config.base_url.rstrip('/')}/sap/opu/odata/sap/{service_name}/$metadata"
+        if query:
+            metadata_url = f"{metadata_url}?{query}"
+        password_mgr = urllib.request.HTTPPasswordMgrWithDefaultRealm()
+        base_origin = (
+            f"{urllib.parse.urlsplit(self.config.base_url).scheme}://"
+            f"{urllib.parse.urlsplit(self.config.base_url).netloc}"
+        )
+        password_mgr.add_password(None, base_origin, self.config.username, self.config.password)
+        handlers: list[urllib.request.BaseHandler] = [urllib.request.HTTPBasicAuthHandler(password_mgr)]
+        if self._should_bypass_proxy(metadata_url):
+            handlers.append(urllib.request.ProxyHandler({}))
+        if metadata_url.lower().startswith("https://") and not self.config.verify_ssl:
+            handlers.append(urllib.request.HTTPSHandler(context=ssl._create_unverified_context()))
+        request = urllib.request.Request(metadata_url, headers={"Accept": "application/xml"}, method="GET")
+        with urllib.request.build_opener(*handlers).open(request, timeout=self.config.timeout_seconds) as response:
+            return response.read().decode("utf-8", errors="ignore"), metadata_url
+
     def _perform_request_with_retries(self, compiled_request: CompiledRequest) -> dict[str, str | int]:
         attempts = max(1, self.config.retry_attempts)
         delay = max(0.0, self.config.retry_delay_seconds)
