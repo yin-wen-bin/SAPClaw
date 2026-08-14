@@ -257,6 +257,89 @@ def test_live_schema_unavailable_blocks_before_sap(tmp_path: Path) -> None:
     assert executor.requests == []
 
 
+def _cross_entity_output_contract_plan(*, include_unknown_support: bool = False) -> RuntimeQueryPlan:
+    support_fields = ["Supplier"]
+    if include_unknown_support:
+        support_fields.append("UnknownSupportField")
+    return RuntimeQueryPlan.model_validate(
+        {
+            "service_name": "API_BUSINESS_PARTNER",
+            "entity_set": "A_Supplier",
+            "plan_kind": "multi_step",
+            "steps": [
+                {
+                    "step_id": "supplier",
+                    "service_name": "API_BUSINESS_PARTNER",
+                    "entity_set": "A_Supplier",
+                    "select_fields": ["Supplier", "SupplierName"],
+                },
+                {
+                    "step_id": "line_items",
+                    "service_name": "API_GLACCOUNTLINEITEM",
+                    "entity_set": "GLAccountLineItem",
+                    "select_fields": ["CompanyCode"],
+                    "filters": [{"field": "CompanyCode", "operator": "eq", "value": "1710"}],
+                },
+            ],
+            "output_contract": {
+                "mode": "inferred",
+                "display_grain": "cross-entity evidence",
+                "display_fields": ["SupplierName", "CompanyCode"],
+                "support_fields": support_fields,
+                "reason": "Expose evidence selected by different execution steps.",
+            },
+        }
+    )
+
+
+def test_multi_step_output_contract_fields_are_not_attached_to_final_entity() -> None:
+    plan = _cross_entity_output_contract_plan().to_domain()
+
+    assert plan.steps[0].select_fields == ["Supplier", "SupplierName"]
+    assert plan.steps[1].select_fields == ["CompanyCode"]
+    assert plan.steps[1].response_summary_fields == []
+    assert plan.response_summary_fields == ["SupplierName", "CompanyCode"]
+
+
+def test_multi_step_output_contract_is_validated_against_all_step_outputs(tmp_path: Path) -> None:
+    def fetch_metadata(service_name: str) -> tuple[str, str]:
+        if service_name == "API_BUSINESS_PARTNER":
+            xml = _metadata_xml("A_Supplier", ["Supplier", "SupplierName"])
+        else:
+            xml = _metadata_xml("GLAccountLineItem", ["CompanyCode"])
+        return xml, f"https://sap.example/{service_name}/$metadata"
+
+    executor = FakeExecutor(total_count=1)
+    runtime = build_runtime(
+        tmp_path,
+        executor=executor,
+        live_schema_provider=LiveSchemaProvider(fetch_metadata=fetch_metadata),
+        live_schema_enabled=True,
+    )
+
+    response = runtime.execute_plan(_cross_entity_output_contract_plan())
+
+    assert response["ok"] is True
+    assert len(executor.requests) == 2
+    final_query = dict(urllib.parse.parse_qsl(urllib.parse.urlsplit(executor.requests[-1].url).query))
+    assert final_query["$select"] == "CompanyCode"
+
+
+def test_multi_step_output_contract_rejects_fields_not_selected_by_any_step(tmp_path: Path) -> None:
+    executor = FakeExecutor(total_count=1)
+    runtime = build_runtime(tmp_path, executor=executor)
+
+    response = runtime.execute_plan(_cross_entity_output_contract_plan(include_unknown_support=True))
+
+    assert response["ok"] is False
+    assert any(
+        issue["code"] == "schema_output_contract_field_not_selected"
+        and issue["field"] == "UnknownSupportField"
+        for issue in response["validation_issues"]
+    )
+    assert executor.requests == []
+
+
 class FailingExecutor(FakeExecutor):
     def __init__(self, status_code: int, message: str) -> None:
         super().__init__()

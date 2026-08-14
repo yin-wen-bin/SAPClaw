@@ -307,14 +307,10 @@ class RuntimeQueryPlan(BaseModel):
             else set()
         )
         source_display_fields = [field for field in display_fields if field not in derived_fields]
-        selected = list(dict.fromkeys([*self.select_fields, *source_display_fields, *support_fields]))
+        selected = list(self.select_fields)
+        if not self.steps:
+            selected = list(dict.fromkeys([*selected, *source_display_fields, *support_fields]))
         steps = [step.to_domain() for step in self.steps]
-        if output_contract is not None and steps:
-            final_step = steps[-1]
-            final_step.select_fields = list(
-                    dict.fromkeys([*final_step.select_fields, *source_display_fields, *support_fields])
-            )
-            final_step.response_summary_fields = display_fields
         return QueryPlan(
             service_name=self.service_name,
             entity_set=self.entity_set,
