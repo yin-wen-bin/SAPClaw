@@ -28,6 +28,22 @@ AUTO_KEY_SELECT_EXCLUSIONS = {
     ("C_TRIALBALANCE_CDS", "C_TRIALBALANCEResults"): frozenset({"ID"}),
     ("API_GLACCOUNTLINEITEM", "GLAccountLineItem"): frozenset({"ID"}),
 }
+ORDER_BY_EXPRESSION = re.compile(
+    r"^(?P<field>[A-Za-z_][A-Za-z0-9_]*)(?:\s+(?P<direction>asc|desc))?$",
+    flags=re.IGNORECASE,
+)
+
+
+def parse_order_by_expression(expression: str) -> tuple[str, str]:
+    normalized = " ".join(str(expression or "").strip().split())
+    match = ORDER_BY_EXPRESSION.fullmatch(normalized)
+    if match is None:
+        raise ValueError(
+            f"Invalid order_by expression `{expression}`. Use a field name with optional asc or desc."
+        )
+    field_name = match.group("field")
+    direction = str(match.group("direction") or "").lower()
+    return field_name, f"{field_name} {direction}" if direction else field_name
 
 
 @dataclass(slots=True)
@@ -153,11 +169,13 @@ class BasicODataCompiler:
 
         query_parts: list[str] = []
 
+        normalized_order_by = [parse_order_by_expression(item) for item in plan.order_by]
+
         if plan.select_fields:
             select_fields = self._select_fields_with_entity_keys(
                 plan.service_name,
                 plan.entity_set,
-                [*plan.select_fields, *plan.order_by],
+                [*plan.select_fields, *[field_name for field_name, _expression in normalized_order_by]],
             )
             query_parts.append("$select=" + ",".join(select_fields))
 
@@ -165,8 +183,8 @@ class BasicODataCompiler:
             filter_parts = [self._compile_filter_item(item) for item in plan.filters]
             query_parts.append("$filter=" + " and ".join(filter_parts))
 
-        if plan.order_by:
-            query_parts.append("$orderby=" + ",".join(plan.order_by))
+        if normalized_order_by:
+            query_parts.append("$orderby=" + ",".join(expression for _field_name, expression in normalized_order_by))
 
         if plan.top is not None:
             query_parts.append(f"$top={plan.top}")

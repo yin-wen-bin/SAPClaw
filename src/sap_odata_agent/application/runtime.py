@@ -44,6 +44,7 @@ from sap_odata_agent.infrastructure.sap.odata_client import (
     BasicODataCompiler,
     BasicPlanValidator,
     SapODataExecutor,
+    parse_order_by_expression,
 )
 from sap_odata_agent.infrastructure.sap.live_schema import LiveSchemaOverlay, LiveSchemaProvider
 
@@ -1324,13 +1325,19 @@ class SapClawRuntimeService:
         if fetch_all and not stable_order_fields:
             return [], None, {
                 "code": "stable_paging_key_unavailable",
-                "message": "Fetch-all requires indexed key fields or an explicit order_by for deterministic paging.",
+                "message": (
+                    "Fetch-all requires schema-supported sortable key fields or an explicit order_by "
+                    "for deterministic paging."
+                ),
             }
+        explicit_order_by = [parse_order_by_expression(item)[1] for item in plan.order_by]
+        explicit_order_fields = {parse_order_by_expression(item)[0] for item in plan.order_by}
+        fallback_order_fields = [field for field in stable_order_fields if field not in explicit_order_fields]
         execution_plan = replace(
             plan,
             top=transport_top,
             select_fields=list(dict.fromkeys([*plan.select_fields, *stable_order_fields])),
-            order_by=list(dict.fromkeys([*plan.order_by, *stable_order_fields])),
+            order_by=[*explicit_order_by, *fallback_order_fields],
         )
         try:
             compiled = self.compiler.compile(execution_plan)
@@ -1527,7 +1534,7 @@ class SapClawRuntimeService:
         return hashlib.sha256(encoded.encode("utf-8")).hexdigest()
 
     def _stable_paging_fields(self, plan: QueryPlan) -> list[str]:
-        explicit = [str(field) for field in plan.order_by if str(field).strip()]
+        explicit = [parse_order_by_expression(field)[0] for field in plan.order_by]
         try:
             snapshot = self.index_loader.load(plan.service_name)
         except FileNotFoundError:
@@ -1537,8 +1544,26 @@ class SapClawRuntimeService:
             (item for item in snapshot.entities if str(item.get("entity_set") or "") == root_name),
             None,
         )
-        indexed_keys = [str(field) for field in (entity or {}).get("key_fields", []) if str(field).strip()]
-        return list(dict.fromkeys([*explicit, *indexed_keys]))
+        field_map = self._field_map(snapshot, root_name)
+        key_candidates = [
+            str(field)
+            for field in (entity or {}).get("key_fields", [])
+            if str(field).strip()
+        ]
+        if self.settings.runtime_live_schema_enabled:
+            overlay = self._live_schema_overlay(plan.service_name)
+            if overlay is not None and overlay.snapshot is not None:
+                key_candidates = sorted(overlay.snapshot.key_fields.get(root_name, set()))
+                live_sortable_fields = overlay.snapshot.sortable_fields.get(root_name, set())
+                key_candidates = [field for field in key_candidates if field in live_sortable_fields]
+            else:
+                key_candidates = []
+        stable_keys = [
+            field
+            for field in key_candidates
+            if field in field_map and field_map[field].get("sortable") is not False
+        ]
+        return list(dict.fromkeys([*explicit, *stable_keys]))
 
     def _controlled_get_url(
         self,
@@ -1863,7 +1888,18 @@ class SapClawRuntimeService:
         entity_set = self._metadata_entity_set(snapshot, entity_path)
         fields = self._field_map(snapshot, entity_set)
         for expression in order_by:
-            field_name = str(expression).strip().split()[0]
+            try:
+                field_name, _normalized = parse_order_by_expression(expression)
+            except ValueError as exc:
+                suffix = f" in step `{step_id}`" if step_id else ""
+                issues.append(
+                    validation_issue_payload(
+                        "invalid_orderby_expression",
+                        f"{exc}{suffix}",
+                        str(expression),
+                    )
+                )
+                continue
             if field_name not in fields:
                 suffix = f" in step `{step_id}`" if step_id else ""
                 issues.append(

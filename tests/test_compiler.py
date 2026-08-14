@@ -286,6 +286,22 @@ def test_compiler_includes_order_by_fields_in_select() -> None:
     assert "$orderby=CompanyCode,PostingDate" in compiled.url
 
 
+def test_compiler_keeps_order_direction_out_of_select() -> None:
+    plan = QueryPlan(
+        service_name="API_GLACCOUNTLINEITEM",
+        entity_set="GLAccountLineItem",
+        select_fields=["CompanyCode", "AccountingDocument"],
+        order_by=["CompanyCode asc", "PostingDate DESC"],
+        top=50,
+    )
+
+    compiled = BasicODataCompiler(base_url="https://sap.example.com").compile(plan)
+    query = urllib.parse.parse_qs(urllib.parse.urlsplit(compiled.url).query)
+
+    assert query["$select"][0].split(",") == ["CompanyCode", "AccountingDocument", "PostingDate"]
+    assert query["$orderby"] == ["CompanyCode asc,PostingDate desc"]
+
+
 def test_compiler_preserves_parameterized_trial_balance_results_path(tmp_path) -> None:
     service_dir = tmp_path / "data" / "index" / "C_TRIALBALANCE_CDS"
     service_dir.mkdir(parents=True)
