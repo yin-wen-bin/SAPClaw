@@ -340,6 +340,128 @@ def test_multi_step_output_contract_rejects_fields_not_selected_by_any_step(tmp_
     assert executor.requests == []
 
 
+def _gl_count_plan(*, order_by: list[str] | None = None) -> RuntimeQueryPlan:
+    return RuntimeQueryPlan.model_validate(
+        {
+            "service_name": "API_GLACCOUNTLINEITEM",
+            "entity_set": "GLAccountLineItem",
+            "select_fields": ["CompanyCode"],
+            "filters": [{"field": "CompanyCode", "operator": "eq", "value": "1710"}],
+            "order_by": order_by or [],
+            "result_transform": {
+                "type": "aggregate",
+                "metrics": [{"operation": "count", "output_field": "LineItemCount"}],
+            },
+        }
+    )
+
+
+def test_order_by_direction_is_not_copied_into_select_or_duplicated(tmp_path: Path) -> None:
+    executor = FakeExecutor(total_count=82)
+    runtime = build_runtime(tmp_path, executor=executor)
+
+    response = runtime.execute_plan(_gl_count_plan(order_by=["CompanyCode asc"]))
+
+    assert response["ok"] is True
+    assert len(executor.requests) == 2
+    for request in executor.requests:
+        query = dict(urllib.parse.parse_qsl(urllib.parse.urlsplit(request.url).query))
+        assert query["$select"] == "CompanyCode"
+        assert query["$orderby"] == "CompanyCode asc"
+
+
+def test_invalid_order_by_direction_is_rejected_before_sap(tmp_path: Path) -> None:
+    executor = FakeExecutor(total_count=1)
+    runtime = build_runtime(tmp_path, executor=executor)
+
+    response = runtime.execute_plan(valid_plan(order_by=["Supplier ascending"]))
+
+    assert response["ok"] is False
+    assert any(issue["code"] == "invalid_orderby_expression" for issue in response["validation_issues"])
+    assert executor.requests == []
+
+
+def test_unsortable_gl_technical_key_is_not_injected_for_fetch_all(tmp_path: Path) -> None:
+    executor = FakeExecutor(total_count=82)
+    runtime = build_runtime(tmp_path, executor=executor)
+
+    response = runtime.execute_plan(_gl_count_plan())
+
+    assert response["ok"] is False
+    assert response["error"]["code"] == "stable_paging_key_unavailable"
+    assert executor.requests == []
+
+
+def test_fetch_all_fallback_key_must_exist_in_live_schema(tmp_path: Path) -> None:
+    provider = LiveSchemaProvider(
+        fetch_metadata=lambda service_name: (
+            _metadata_xml("A_Supplier", ["RuntimeOnlyKey", "SupplierName"]),
+            f"https://sap.example/{service_name}/$metadata",
+        )
+    )
+    executor = FakeExecutor(total_count=82)
+    runtime = build_runtime(
+        tmp_path,
+        executor=executor,
+        live_schema_provider=provider,
+        live_schema_enabled=True,
+    )
+    plan = RuntimeQueryPlan.model_validate(
+        {
+            "service_name": "API_BUSINESS_PARTNER",
+            "entity_set": "A_Supplier",
+            "select_fields": ["SupplierName"],
+            "filters": [{"field": "SupplierName", "operator": "ne", "value": ""}],
+            "result_transform": {
+                "type": "aggregate",
+                "metrics": [{"operation": "count", "output_field": "SupplierCount"}],
+            },
+        }
+    )
+
+    response = runtime.execute_plan(plan)
+
+    assert response["ok"] is False
+    assert response["error"]["code"] == "stable_paging_key_unavailable"
+    assert executor.requests == []
+
+
+def test_fetch_all_uses_live_sortable_entity_key(tmp_path: Path) -> None:
+    provider = LiveSchemaProvider(
+        fetch_metadata=lambda service_name: (
+            _metadata_xml("A_Supplier", ["Supplier", "SupplierName"]),
+            f"https://sap.example/{service_name}/$metadata",
+        )
+    )
+    executor = FakeExecutor(total_count=82)
+    runtime = build_runtime(
+        tmp_path,
+        executor=executor,
+        live_schema_provider=provider,
+        live_schema_enabled=True,
+    )
+    plan = RuntimeQueryPlan.model_validate(
+        {
+            "service_name": "API_BUSINESS_PARTNER",
+            "entity_set": "A_Supplier",
+            "select_fields": ["SupplierName"],
+            "filters": [{"field": "SupplierName", "operator": "ne", "value": ""}],
+            "result_transform": {
+                "type": "aggregate",
+                "metrics": [{"operation": "count", "output_field": "SupplierCount"}],
+            },
+        }
+    )
+
+    response = runtime.execute_plan(plan)
+
+    assert response["ok"] is True
+    assert len(executor.requests) == 2
+    query = dict(urllib.parse.parse_qsl(urllib.parse.urlsplit(executor.requests[0].url).query))
+    assert query["$select"] == "SupplierName,Supplier"
+    assert query["$orderby"] == "Supplier"
+
+
 class FailingExecutor(FakeExecutor):
     def __init__(self, status_code: int, message: str) -> None:
         super().__init__()

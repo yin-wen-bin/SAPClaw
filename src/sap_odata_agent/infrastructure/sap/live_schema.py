@@ -13,6 +13,8 @@ from sap_odata_agent.infrastructure.indexing.dual_source_index_builder import Sa
 class LiveSchemaSnapshot:
     service_name: str
     entities: dict[str, set[str]]
+    key_fields: dict[str, set[str]]
+    sortable_fields: dict[str, set[str]]
     metadata_fingerprint: str
     checked_at: str
     fetched_at: float
@@ -58,11 +60,21 @@ class LiveSchemaProvider:
             entity_fields: dict[str, set[str]] = {
                 item.entity_set: set() for item in parsed.entities
             }
+            entity_keys = {
+                item.entity_set: set(item.key_fields) for item in parsed.entities
+            }
+            sortable_fields: dict[str, set[str]] = {
+                item.entity_set: set() for item in parsed.entities
+            }
             for field in parsed.fields:
                 entity_fields.setdefault(field.entity_set, set()).add(field.field_name)
+                if field.sortable:
+                    sortable_fields.setdefault(field.entity_set, set()).add(field.field_name)
             snapshot = LiveSchemaSnapshot(
                 service_name=service_name,
                 entities=entity_fields,
+                key_fields=entity_keys,
+                sortable_fields=sortable_fields,
                 metadata_fingerprint=hashlib.sha256(xml_text.encode("utf-8")).hexdigest(),
                 checked_at=datetime.now(timezone.utc).isoformat(),
                 fetched_at=now,

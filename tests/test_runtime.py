@@ -686,6 +686,13 @@ def test_complete_month_end_aggregate_pages_all_rows_and_returns_diagnostics(tmp
                     "Ledger",
                     "AmountInCompanyCodeCurrency",
                 ],
+                "order_by": [
+                    "CompanyCode",
+                    "FiscalYear",
+                    "AccountingDocument",
+                    "AccountingDocumentItem",
+                    "Ledger",
+                ],
                 "result_transform": {
                     "type": "aggregate",
                     "group_by": ["CompanyCode", "CompanyCodeCurrency"],
@@ -739,7 +746,11 @@ def test_complete_month_end_aggregate_pages_all_rows_and_returns_diagnostics(tmp
 
     assert response["ok"] is True
     assert len(executor.requests) == 30
-    assert "$orderby=ID" in executor.requests[0].url
+    assert (
+        "$orderby=CompanyCode,FiscalYear,AccountingDocument,AccountingDocumentItem,Ledger"
+        in executor.requests[0].url
+    )
+    assert "GENERATED_ID" not in executor.requests[0].url
     assert response["data"]["results"] == [
         {
             "CompanyCode": "1710",
@@ -755,7 +766,13 @@ def test_complete_month_end_aggregate_pages_all_rows_and_returns_diagnostics(tmp
     assert diagnostics["source_complete"] is True
     assert diagnostics["source_truncated"] is False
     assert diagnostics["currency_groups"] == {"CompanyCodeCurrency": ["CNY"]}
-    assert diagnostics["stable_order_fields"] == ["ID"]
+    assert diagnostics["stable_order_fields"] == [
+        "CompanyCode",
+        "FiscalYear",
+        "AccountingDocument",
+        "AccountingDocumentItem",
+        "Ledger",
+    ]
 
     limited_executor = MonthEndExecutor(total_count=120)
     limited_runtime = build_runtime(tmp_path / "limited", executor=limited_executor, max_binding_rows=100)
