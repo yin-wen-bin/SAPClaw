@@ -92,6 +92,7 @@ class SchemaFeasibilityValidator:
             filter_fields = {parameter.name for parameter in plan.function_parameters or []}
         elif plan.plan_kind in {"lookup", "multi_step"} and plan.steps:
             self._validate_steps(plan, violations, evidence)
+            self._validate_multi_step_output_contract(plan, violations)
             selected_fields = self._selected_fields(plan)
             filter_fields = self._step_filter_fields(plan.steps)
         else:
@@ -319,6 +320,42 @@ class SchemaFeasibilityValidator:
                 )
         if steps:
             evidence.append(f"steps_validated:{len(steps)}")
+
+    @staticmethod
+    def _validate_multi_step_output_contract(
+        plan: QueryPlan,
+        violations: list[FeasibilityViolation],
+    ) -> None:
+        contract = plan.output_contract
+        if contract is None:
+            return
+
+        step_output_fields = {
+            field_name
+            for step in plan.steps
+            for field_name in [*(step.select_fields or []), *(step.response_summary_fields or [])]
+        }
+        derived_fields: set[str] = set()
+        if plan.result_transform is not None:
+            derived_fields.update(plan.result_transform.group_by)
+            derived_fields.update(plan.result_transform.sum_fields)
+            derived_fields.update(metric.output_field for metric in plan.result_transform.metrics)
+        available_fields = step_output_fields | derived_fields
+        contract_fields = list(dict.fromkeys([*contract.display_fields, *contract.support_fields]))
+        for field_name in contract_fields:
+            if field_name in available_fields:
+                continue
+            violations.append(
+                FeasibilityViolation(
+                    code="output_contract_field_not_selected",
+                    message=(
+                        f"Multi-step output contract field `{field_name}` is neither selected by an execution "
+                        "step nor produced by result_transform."
+                    ),
+                    field=field_name,
+                    entity_set=plan.entity_set,
+                )
+            )
 
     def _validate_result_transform(
         self,
